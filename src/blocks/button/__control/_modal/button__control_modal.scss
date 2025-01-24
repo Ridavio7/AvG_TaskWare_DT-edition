@@ -1,0 +1,16 @@
+.button__control_modal{
+    color: var(--font-color);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    background-color: var(--expand-button-active);
+    border: none;
+    width: 150px;
+    height: 40px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0px;
+}

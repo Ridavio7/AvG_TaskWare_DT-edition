@@ -1,0 +1,13 @@
+.table_little-product{
+    border-top: none;
+}
+
+.table_little-product tr:nth-child(odd) {
+    background-color: inherit;
+    border-bottom: 1px solid var(--border);
+}
+
+.table_little-product tr:nth-child(even) {
+    background-color: inherit;
+    border-bottom: 1px solid var(--border);
+}

@@ -1,0 +1,79 @@
+@font-face {
+    font-family: Roboto;
+    src: url(Roboto-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    line-height: 100%;
+}
+
+:root{
+    --white: #ffffff;
+    --blue: #294f74;
+    --font-color-button: #ffffff;
+}
+
+.theme-light {
+    overflow: hidden;
+    --font-color: #212121;
+    --background_first: #f3f3f3;
+    --background_second: #ffffff;
+    --background_sidebar: #e9e9e9;
+    --expand-button: #ffffff;
+    --expand-button-active: #7fd9f5;
+    --border: #cecece; /*cfcfcf*/
+    --box-shadow: #cecece;
+    --img_color: invert(14%) sepia(37%) saturate(0%) hue-rotate(272deg) brightness(94%) contrast(103%);
+    --img-button_color: invert(14%) sepia(37%) saturate(0%) hue-rotate(272deg) brightness(94%) contrast(103%);
+    --img_tree: url(../tree/img/tree_dark.png);
+}
+
+.theme-dark {
+    overflow: hidden;
+    --font-color: #ffffff;
+    --background_first: #343435; /*333335*/
+    --background_second: #3b3b3d; /*39393b 3b3b3d*/
+    --background_sidebar: #2a2a2c; /*2a2a2c*/
+    --box-shadow: #212121;
+    --expand-button: #414143;
+    --expand-button-active: #294f74;
+    --border: #575757;
+    --img_color: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
+    --img-button_color: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
+    --img_tree: url(../tree/img/tree_light.png);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+} 
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 10px var(--box-shadow); 
+} 
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 10px var(--box-shadow); 
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    max-height: 1200px;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--background_second);
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding-top: 45px;
+}

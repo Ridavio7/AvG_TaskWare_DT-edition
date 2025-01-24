@@ -1,0 +1,29 @@
+.button__control{
+    width: 35px;
+    height: 35px;
+    padding-top: 2px;
+    outline: 1px solid var(--border);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background-color: inherit;
+    cursor: pointer;
+    margin-right: 5px;
+
+    &:disabled{
+        cursor: no-drop;
+    }
+
+    &__img{
+        height: 15px;
+        filter: var(--img-button_color);
+        -webkit-filter: var(--img-button_color);
+    }
+
+    &_mark{
+        background-color: red;
+    }
+
+    &_no-mark{
+        background-color: inherit;
+    }
+}

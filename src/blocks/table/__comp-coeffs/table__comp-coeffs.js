@@ -1,0 +1,109 @@
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, addToDropdown, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js.js';
+
+export const funcGetCoeffs = () => {
+    let body  =  {"user":"demo", "meth":"view", "obj":"coeffs", "count":"100","sort":"uin"};
+    funcCommand(body, funcProcessGetCoeffs);
+}
+
+function funcProcessGetCoeffs(result, respobj){
+    if( result === 0 ) return;
+    console.log("Приставки СИ:", respobj);
+    let tb_id = "tb_componenets_coeffs";
+    clearTable(tb_id);
+
+    let coeffs_list = respobj.answ;
+    localStorage.setItem("coeffs_list", JSON.stringify(coeffs_list));
+    
+    for (let key in respobj.answ){
+        let set   = respobj.answ[key];
+        let name  = set.name;
+        let coeff = set.coeff;
+        let smv   = set.smv;
+        let help  = set.help;
+        let del   = set.del;
+        let uin   = set.uin;
+        addCoeffsRow(name, coeff, smv, help, del, uin, tb_id);
+    }
+
+    /* функция удаления */
+    let button_control_mdel_Coeffsurement = document.querySelectorAll(".button__control_mdel-coeffs");
+    button_control_mdel_Coeffsurement.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"mdel", "obj":"coeffs", "uin":`${elem.value}`};
+
+            if(elem.style.background === "red"){
+                elem.style.background = "inherit";
+            } else {
+                elem.style.background = "red"
+            }
+        
+            funcCommand(body, funcProcessOnlyInfo);
+        })
+    })
+
+    /* функция обновления */
+    let button_control_update_Coeffsurement = document.querySelectorAll(".button__control_update-coeffs");
+    button_control_update_Coeffsurement.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"update", "obj":"coeffs", "uin":`${elem.value}`, "name":"", "help":"", "smv":""};
+
+            let target_table = document.getElementById("tb_componenets_coeffs");
+            body.name = findForUpdateInput(`coeff_name_${elem.value}`, target_table);
+            body.help = findForUpdateInput(`coeff_help_${elem.value}`, target_table);
+            body.smv  = findForUpdateInput(`coeff_smv_${elem.value}`, target_table);
+        
+            funcCommand(body, funcProcessOnlyInfo);
+            highlightButtonSave(elem);
+            setTimeout(function(){funcGetCoeffs()}, 100);
+        })
+    })
+}
+
+const addCoeffsRow = (name, coeff, smv, help, del, uin, tb_id) => {
+    let tableRef = document.getElementById(tb_id);
+    let newRow = tableRef.insertRow(-1);
+    newRow.classList = "tr";
+
+    let cellName  = newRow.insertCell(0); cellName.classList = "td";
+    let cellCoeff = newRow.insertCell(1); cellCoeff.classList = "td";
+    let cellSmv   = newRow.insertCell(2); cellSmv.classList = "td";
+    let cellHelp  = newRow.insertCell(3); cellHelp.classList = "td";
+    let cellBtn   = newRow.insertCell(4); cellBtn.classList = "td";
+
+    cellName.innerHTML  = `<input class="input__type-text" type="text" value="${name}" name="coeff_name_${uin}">`;
+    cellCoeff.innerHTML = `<input class="input__type-text" type="text" value="${coeff}" name="coeff_coeff_${uin}" disabled>`;
+    cellSmv.innerHTML   = `<input class="input__type-text" type="text" value="${smv}" name="coeff_smv_${uin}">`;
+    cellHelp.innerHTML  = `<input class="input__type-text" type="text" value="${help}" name="coeff_help_${uin}">`;
+
+    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_update-coeffs" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel-coeffs" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+}
+
+let button_control_add = document.querySelector(".button__control_add-coeffs");
+button_control_add.addEventListener("click", () => {
+    let body  =  {"user":"demo", "obj":"coeffs", "meth":"add", "name":"", "coeff":"", "smv":"", "help":""};
+
+    let name_value  = document.getElementById("input_add_coeffs_name").value
+    let coeff_value = document.getElementById("input_add_coeffs_coeff").value
+    let smv_value   = document.getElementById("input_add_coeffs_smv").value
+    let help_value  = document.getElementById("input_add_coeffs_help").value
+
+    if(name_value === "" || coeff_value === "" || smv_value === "" || help_value === ""){
+        alert("Вы не заполнили все поля!");
+    } else {
+        body.name  = name_value;
+        body.coeff = coeff_value;
+        body.smv   = smv_value;
+        body.help  = help_value;
+    
+        document.getElementById("input_add_coeffs_name").value  = "";
+        document.getElementById("input_add_coeffs_coeff").value = "";
+        document.getElementById("input_add_coeffs_smv").value   = "";
+        document.getElementById("input_add_coeffs_help").value  = "";
+    
+        funcCommand(body, funcProcessOnlyInfo);
+        setTimeout(function(){funcGetCoeffs()}, 100);
+    }
+})
+
+listenSortSelect("sort_coeffs", "tb_componenets_coeffs", "coeffs", funcProcessGetCoeffs);

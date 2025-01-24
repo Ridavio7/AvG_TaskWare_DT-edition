@@ -1,0 +1,118 @@
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 15%;
+  left: 35%;
+
+  &__moving{
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--background_sidebar);
+    margin: 0px -10px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+  }
+
+  &__content{
+    position: relative;
+    background-color: var(--background_first);
+    margin: auto;
+    padding: 0px 10px;
+    border: 1px solid var(--blue);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+              0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    overflow: auto;
+    resize: both;
+  }
+
+  &__header{
+    color: var(--font-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0px;
+
+    &_component-select{
+      justify-content: flex-end;
+    }
+  }
+
+  &__input-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_center{
+      margin: 0px 25px;
+    }
+  }
+
+  &__body{
+    display: flex;
+    justify-content: center;
+  }
+
+  &__table{
+    margin-left: 20px;
+    border: 1px solid var(--border);
+  }
+
+  &__footer{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__close{
+    color: var(--font-color);
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+
+    &:hover,
+    &:focus{
+      color: var(--expand-button-active);
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.modal-header__elements{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal-header__elements select,
+.modal-header__elements input[type="text"]{
+  width: 200px;
+}
+
+.modal-header__elements input[type="date"]{
+  color: var(--font-color);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  background-color: var(--background_second);
+  margin: 5px;
+  padding: 0px 10px;
+  height: 40px;
+  width: 150px;
+  border: 1px solid var(--border);
+  border-radius: 0px;
+}
+
+#modal_select_component{
+  z-index: 100;
+}
+
+#modal_info_component{
+  z-index: 200;
+}

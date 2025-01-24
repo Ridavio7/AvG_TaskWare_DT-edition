@@ -1,0 +1,62 @@
+.button__tab__first {
+    float: left;
+    background-color: var(--expand-button);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: var(--font-color);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    width: 180px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    box-shadow: 5px 5px 10px -1px var(--box-shadow);
+
+    &:hover,
+    &_active{
+        background-color: var(--expand-button-active);
+    }
+
+    &__img{
+        height: 28px;
+        width: 28px;
+        cursor: pointer;
+        margin-right: 10px;
+        filter: var(--img_color);
+        -webkit-filter: var(--img_color);
+    }
+}
+
+.button__tab__second {
+    background-color: inherit;
+    border: none;
+    background-color: var(--background_second);
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: left;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: 0.3s;
+    color: var(--font-color);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 5px 5px 10px -1px var(--box-shadow);
+
+    &:hover,
+    &_active{
+        background-color: var(--expand-button-active);
+    }
+}
