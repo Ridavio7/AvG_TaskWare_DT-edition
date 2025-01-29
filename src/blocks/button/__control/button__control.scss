@@ -26,4 +26,10 @@
     &_no-mark{
         background-color: inherit;
     }
+
+    &_active{
+        background-color: var(--expand-button-active);
+        border: none;
+        outline: none;
+    }
 }

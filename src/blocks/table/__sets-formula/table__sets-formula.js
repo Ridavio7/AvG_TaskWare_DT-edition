@@ -5,7 +5,7 @@ import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__sele
 let modal_select_component = document.getElementById("modal_select_component");
 
 export const funcGetFormulaSets = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"formula_sets", "count":"100"};
+    let body  =  {"user":"demo", "meth":"view", "obj":"formula_sets", "count":"100", "filt":`${JSON.stringify(filt_formula_sets)}`};
     funcCommand(body, funcProcessGetFormulaSets);
 }
 
@@ -131,6 +131,7 @@ button_sets_formula_choose.addEventListener("click", () => {
 
 let button_sets_formula_reset = document.getElementById("button_sets_formula_reset");
 button_sets_formula_reset.addEventListener("click", () => {
+    filt_formula_sets.length = 0;
     clearFilt(filt_formula_sets, 'filt_sets_formula_sets_items', 'filt_sets_formula_products_items', 'filt_sets_formula_components_items', 'tb_sets_formula_info', funcGetFormulaSets())
 });
 
@@ -176,4 +177,4 @@ button_control_add_set_formula.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_sets_formula", "tb_sets_formula_info", "formula_sets", funcProcessGetFormulaSets);
+listenSortSelect("sort_sets_formula", "tb_sets_formula_info", "formula_sets", funcProcessGetFormulaSets, filt_formula_sets);

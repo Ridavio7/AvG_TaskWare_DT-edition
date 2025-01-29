@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelec
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
 export const funcGetSNProd = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"snprod", "count":"100"};
+    let body  =  {"user":"demo", "meth":"view", "obj":"snprod", "count":"100", "filt":`${JSON.stringify(filt_snprod)}`};
     funcCommand( body, funcProcessGetSNProd );
 }
 
@@ -122,6 +122,7 @@ button_SNprod_choose.addEventListener("click", () => {
 
 let button_SNprod_reset = document.getElementById("button_SNprod_reset");
 button_SNprod_reset.addEventListener("click", () => {
+    filt_snprod.length = 0;
     clearFilt(filt_snprod, 'filt_SNprod_products_items', 'filt_SNprod_status_items', 'filt_SNprod_status_items', 'tb_products_SNProd', funcGetSNProd());
 });
 
@@ -166,4 +167,4 @@ button_control_add_snprod.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_SNProd", "tb_products_SNProd", "snprod", funcProcessGetSNProd);
+listenSortSelect("sort_SNProd", "tb_products_SNProd", "snprod", funcProcessGetSNProd, filt_snprod);

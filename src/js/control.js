@@ -16,13 +16,10 @@ import '../blocks/button/__select/button__select.scss'
 import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
-import '../blocks/input/__type-radio/input__type-radio.scss';
 /* select */
 import '../blocks/select/select.scss';
 import '../blocks/select/select.js';
 import '../blocks/select/_modal/select_modal.scss';
-/* checkbox */
-import '../blocks/checkbox/checkbox.scss';
 /* модальные окна */
 import '../blocks/modal/modal.scss';
 /* таблицы */

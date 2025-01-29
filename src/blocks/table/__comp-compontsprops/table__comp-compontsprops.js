@@ -71,11 +71,12 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
             let body  =  {"user":"demo", "meth":"update", "obj":"compontsprops", "uin":`${elem.value}`, "uincompont":`${elem.name}`, "uinprops":"", "value":"", "d1":"", "d2":"", "perc":""};
 
             let target_table = main_tb_modal_info_component;
-            body.uinprops = findForUpdateSelect(target_table, "component_info_props_select_", elem.value);
-            body.value    = findForUpdateInput(`component_info_value_${elem.value}`, target_table);
-            body.d1       = findForUpdateInput(`component_info_d1_${elem.value}`, target_table);
-            body.d2       = findForUpdateInput(`component_info_d2_${elem.value}`, target_table);
-            body.perc     = findForUpdateInput(`component_info_perc_${elem.value}`, target_table);
+            body.uinprops    = findForUpdateSelect(target_table, "component_info_props_select_", elem.value);
+            let prop_value   = document.getElementById(`component_info_props_value_select__${elem.value}`);
+            body.value       = prop_value.options[prop_value.selectedIndex].text;
+            body.d1          = findForUpdateInput(`component_info_d1_${elem.value}`, target_table);
+            body.d2          = findForUpdateInput(`component_info_d2_${elem.value}`, target_table);
+            body.perc        = findForUpdateInput(`component_info_perc_${elem.value}`, target_table);
 
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
@@ -90,30 +91,35 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     let newRow     = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellProps = newRow.insertCell(0); cellProps.classList = "td";
-    let cellMeas  = newRow.insertCell(1); cellMeas.classList  = "td";
-    let cellValue = newRow.insertCell(2); cellValue.classList = "td";
-    let cellPerc  = newRow.insertCell(3); cellPerc.classList  = "td";
-    let cellD1    = newRow.insertCell(4); cellD1.classList    = "td";
-    let cellD2    = newRow.insertCell(5); cellD2.classList    = "td";
-    let cellBtn   = newRow.insertCell(6); cellBtn.classList   = "td";
+    let cellProps   = newRow.insertCell(0); cellProps.classList   = "td";
+    let cellMeas    = newRow.insertCell(1); cellMeas.classList    = "td";
+    let cellPropVal = newRow.insertCell(2); cellPropVal.classList = "td";
+    let cellPerc    = newRow.insertCell(3); cellPerc.classList    = "td";
+    let cellD1      = newRow.insertCell(4); cellD1.classList      = "td";
+    let cellD2      = newRow.insertCell(5); cellD2.classList      = "td";
+    let cellBtn     = newRow.insertCell(6); cellBtn.classList     = "td";
 
     makeSelect("component_info_props_select_", uin, props, propsUin, "typesprops_list", "select", cellProps);
     cellMeas.innerHTML  = meas;
-    cellValue.innerHTML = `<input class="input__type-text" type="text" name="component_info_value_${uin}" value="${value}">`;
+
+
+    let body  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${propsUin}`, "count":"100", "sort":"uin"};
+    funcCommand(body, funcProcessGetInfoEnumsForModalComp);
+
+    function funcProcessGetInfoEnumsForModalComp(result, respobj){
+        if( result === 0 ) return;
+
+        localStorage.setItem("prop_enums_list", JSON.stringify(respobj.answ))
+        makeSelect("component_info_props_value_select_", uin, value, '---', "prop_enums_list", "select", cellPropVal);
+    }
+
     cellPerc.innerHTML  = `<input class="input__type-text" type="text" name="component_info_perc_${uin}" value="${perc}">`;
     cellD1.innerHTML    = `<input class="input__type-text" type="text" name="component_info_d1_${uin}" value="${d1}">`;
     cellD2.innerHTML    = `<input class="input__type-text" type="text" name="component_info_d2_${uin}" value="${d2}">`;
 
     let select = document.getElementById(`component_info_props_select__${uin}`);
     select.addEventListener("change", function (){
-        let body = {"user":"demo", "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
-        funcCommand(body, funcSelectMeasOnTable);
-    
-        function funcSelectMeasOnTable(result, respobj){
-            if( result === 0 ) return;
-            select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
-        }
+        addEventSelectProps(select, `component_info_props_value_select__${uin}`);
     });
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
@@ -125,22 +131,23 @@ button_control_add.addEventListener("click", () => {
     let body  =  {"user":"demo", "meth":"add", "obj":"compontsprops", "uincompont":`${button_control_add.value}`, "uinprops":"", "value":"", "d1":"", "d2":"", "perc":""};
 
     let uinprops_value = document.getElementById(`component_info_add_props_select`).value;
-    let value_value    = document.getElementById(`component_info_add_value`).value;
+    let prop_value     = document.getElementById(`component_info_add_props_value_select`);
+    let value          = prop_value.options[prop_value.selectedIndex].text;
     let d1_value       = document.getElementById(`component_info_add_d1`).value;
     let d2_value       = document.getElementById(`component_info_add_d2`).value;
     let perc_value     = document.getElementById(`component_info_add_perc`).value;
 
-    if(uinprops_value === "" || value_value === "" || perc_value === ""){
+    if(uinprops_value === "" || value === "" || perc_value === ""){
         alert("Вы не заполнили все поля!");
     } else {
         body.uinprops = uinprops_value;
-        body.value    = value_value;
+        body.value    = value;
         body.d1       = d1_value;
         body.d2       = d2_value;
         body.perc     = perc_value;
         
         removeOptionsSetValue(`component_info_add_props_select`, "---");
-        document.getElementById(`component_info_add_value`).value = "0";
+        removeOptionsSetValue(`component_info_add_props_value_select`, "---");
         document.getElementById(`component_info_add_d1`).value = "0";
         document.getElementById(`component_info_add_d2`).value = "0";
         document.getElementById(`component_info_add_perc`).value = "0";
@@ -150,3 +157,31 @@ button_control_add.addEventListener("click", () => {
         setTimeout(function(){funcGetComponentInfoProps(button_control_add.value)}, 100);
     }
 })
+
+export const addEventSelectProps = (select, select_value_id) => {
+    let body_1  =  {"user":"demo", "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
+    funcCommand(body_1, funcSelectAddMeasOnTable);
+
+    function funcSelectAddMeasOnTable(result, respobj){
+        if( result === 0 ) return;
+
+        select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
+    }
+
+    let body_2  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin"};
+    funcCommand(body_2, funcSelectAddEnumsOnTable);
+
+    let select_value = document.getElementById(select_value_id);
+    function funcSelectAddEnumsOnTable(result, respobj){
+        if( result === 0 ) return;
+
+        removeOptions(select_value);
+        let arr = respobj.answ;
+        for (let key in arr) {
+            if(arr[key].del === 0){
+                let newOption = new Option(arr[key].name, arr[key].uin);
+                select_value.append(newOption);
+            }
+        }
+    }
+}

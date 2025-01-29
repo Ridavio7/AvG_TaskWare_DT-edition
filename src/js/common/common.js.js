@@ -157,46 +157,46 @@ export const clearTableAll = (tb_id) => {
 }
 
 /* select сортировка */
-export const listenSortSelect = (select, tb, obj, func) => {
+export const listenSortSelect = (select, tb, obj, func, filt) => {
     document.getElementById(select).addEventListener('change', function(){
         clearTable(tb);
     
         let option = this.selectedIndex;
         switch (option){
             case 0:
-            let body0  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500"};
+            let body0  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body0, func);
             break;
             case 1:
-            let body1  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"name"};
+            let body1  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"name", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body1, func);
             break;
             case 2:
-            let body2  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"name"};
+            let body2  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"name", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body2, func);
             break;
             case 3:
-            let body3  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"uin"};
+            let body3  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"uin", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body3, func);
             break;
             case 4:
-            let body4  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"uin"};
+            let body4  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"uin", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body4, func);
             break;
             case 5:
-            let body5  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"uinset"};
+            let body5  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"uinset", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body5, func);
             break;
             case 6:
-            let body6  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"uinset"};
+            let body6  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"uinset", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body6, func);
             break;
             case 7: 
-            let body7  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"datechange"};
+            let body7  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"datechange", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body7, func);
             break;
             case 8:
-            let body8  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"datechange"};
+            let body8  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"datechange", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body8, func);
             break;
         }

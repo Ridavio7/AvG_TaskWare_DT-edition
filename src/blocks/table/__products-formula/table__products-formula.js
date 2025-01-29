@@ -2,11 +2,10 @@ import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelec
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 
-let filt_formula_products = [];
 let modal_select_component = document.getElementById("modal_select_component");
 
 export const funcGetFormulaProducts = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"formula_products", "count":"100"};
+    let body  =  {"user":"demo", "meth":"view", "obj":"formula_products", "count":"100", "filt":`${JSON.stringify(filt_formula_products)}`};
     funcCommand(body, funcProcessGetFormulaProducts);
 }
 
@@ -127,12 +126,14 @@ button_products_formula_choose.addEventListener("click", () => {
 
 let button_products_formula_reset = document.getElementById("button_products_formula_reset");
 button_products_formula_reset.addEventListener("click", () => {
+    filt_formula_products.length = 0;
     clearFilt(filt_formula_products, 'filt_products_formula_products_items', 'filt_products_formula_components_items', 'filt_products_formula_components_items', 'tb_products_formula', funcGetFormulaProducts());
 });
 
 let select_1 = document.getElementById("filt_products_formula_products_items");
 let select_2 = document.getElementById("filt_products_formula_components_items");
-let val_1 = [], val_2 = [], filt_1 = {fld: "uin", on: "products"},
+let filt_formula_products = []; let val_1 = [], val_2 = [],
+filt_1 = {fld: "uin", on: "products"},
 filt_2   = {fld: "uin", on: "components"};
 
 listenSelect(select_1, filt_1, val_1, filt_formula_products);
@@ -169,4 +170,4 @@ button_control_add_product_formula.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_products_formula", "tb_products_formula", "formula_products", funcProcessGetFormulaProducts);
+listenSortSelect("sort_products_formula", "tb_products_formula", "formula_products", funcProcessGetFormulaProducts, filt_formula_products);

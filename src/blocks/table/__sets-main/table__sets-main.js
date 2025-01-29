@@ -1,10 +1,8 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, sendFilt, clearFilt, listenSelect, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, addToDropdownPsevdoAnotherList, psevdoSelect} from '../../select/select.js';
 
-let filt_sets = [];
-
 export const funcGetSets = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"sets", "count":"100"};
+    let body  =  {"user":"demo", "meth":"view", "obj":"sets", "count":"100", "filt":`${JSON.stringify(filt_sets)}`};
     funcCommand(body, funcProcessGetSets);
 }
 
@@ -100,12 +98,14 @@ button_sets_choose.addEventListener("click", () => {
 
 let button_sets_reset = document.getElementById("button_sets_reset");
 button_sets_reset.addEventListener("click", () => {
+    filt_sets.length = 0;
     clearFilt(filt_sets, 'filt_sets_set_items', 'filt_sets_train_items', 'filt_sets_train_items', 'tb_sets_info', funcGetSets());
 });
 
 let select_1 = document.getElementById("filt_sets_set_items");
 let select_2 = document.getElementById("filt_sets_train_items");
-let val_1 = [], val_2 = [], filt_1   = {fld: "uin", on: "sets"},
+let filt_sets = []; let val_1 = [], val_2 = [],
+filt_1   = {fld: "uin", on: "sets"},
 filt_2   = {fld: "model_train"};
 
 listenSelect(select_1, filt_1, val_1, filt_sets);
@@ -133,4 +133,4 @@ button_control_add_set.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_sets", "tb_sets_info", "sets", funcProcessGetSets);
+listenSortSelect("sort_sets", "tb_sets_info", "sets", funcProcessGetSets, filt_sets);

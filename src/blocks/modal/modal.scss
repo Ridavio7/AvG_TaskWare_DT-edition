@@ -13,6 +13,7 @@
     margin: 0px -10px;
     padding: 0px 10px;
     margin-bottom: 10px;
+    cursor: move;
   }
 
   &__content{
@@ -59,8 +60,12 @@
   }
 
   &__table{
-    margin-left: 20px;
+    margin-left: 5px;
     border: 1px solid var(--border);
+  }
+
+  &__tree{
+    margin-left: 5px;
   }
 
   &__footer{

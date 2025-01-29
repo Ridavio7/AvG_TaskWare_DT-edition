@@ -4,7 +4,7 @@ import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 let filt_analysis_products_all = [];
 
 export const funcGetShipProductsAll = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"shipProdsAll", "count":"500", "filt":"", "asort": "uin"};
+    let body  =  {"user":"demo", "meth":"view", "obj":"shipProdsAll", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_products_all)}`};
     funcCommand(body, funcProcessGetShipProductsAll);
 }
 
@@ -95,6 +95,7 @@ button_analysis_products_all_choose.addEventListener("click", () => {
 
 let button_analysis_products_all_reset = document.getElementById("button_analysis_products_all_reset");
 button_analysis_products_all_reset.addEventListener("click", () => {
+    filt_analysis_products_all.length = 0;
     clearFiltAnalisys('filt_analysis_products_all_sets_items', 'filt_analysis_products_all_products_items', 'filt_analysis_products_all_components_items', 'filt_analysis_products_all_contragents_items',
         'filt_analysis_products_all_status_items', "filt_analysis_products_all_date_first", "filt_analysis_products_all_date_second", 'tb_analysis_products_all', filt_analysis_products_all, funcGetShipProductsAll());
 });

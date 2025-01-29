@@ -42,6 +42,7 @@ const plugins = () => {
         { from: "src/blocks/button/__control/img/arrow_3.svg", to: "assets/images/" },
         { from: "src/blocks/button/__control/img/cross.svg", to: "assets/images/" },
         { from: "src/blocks/button/__control/img/info.svg", to: "assets/images/" },
+        { from: "src/blocks/button/__control/img/found.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_green.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_orange.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_white.svg", to: "assets/images/" },

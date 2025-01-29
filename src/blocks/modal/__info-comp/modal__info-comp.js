@@ -1,7 +1,7 @@
-import {funcCommand, clearTable, removeOptionsSetValue, addToDropdown, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptionsSetValue, addToDropdown, funcProcessOnlyInfo, removeOptions} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
-import {funcGetComponentInfoProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
+import {funcGetComponentInfoProps, addEventSelectProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
 import {funcGetComponentInfoTypesProps} from '../../table/__comp-typesprops/table__comp-typesprops.js';
 import {funcGetDirC} from '../__select-comp/modal__select-comp.js';
 
@@ -14,13 +14,26 @@ let component_button_add          = document.getElementById("component_add");
 let component_button_save         = document.getElementById("component_save");
 let component_button_add_props    = document.getElementById("component_info_add_button");
 let component_table_props         = document.getElementById("main_tb_modal_info_component");
-let component_select_typesprops_name = document.getElementById("component_info_add_props_select");
-let component_input_d1 = document.getElementById("component_info_add_d1");
-let component_input_d2 = document.getElementById("component_info_add_d2");
+let component_select_add_props    = document.getElementById("component_info_add_props_select");
+let component_input_d1            = document.getElementById("component_info_add_d1");
+let component_input_d2            = document.getElementById("component_info_add_d2");
+
+let inputIsChange = false;
+let selectIsChange = false;
 
 span_info_component.onclick = function(){
-    let result = confirm("Вы покидаете окно редактирования комплектующего! Вы сохранили все изменения?");
-    if(result === true){
+    if(inputIsChange === true || selectIsChange === true){
+        let res = confirm("Вы не сохранили все изменения! Все равно выйти?");
+        if(res === true){
+            inputIsChange = false;
+            selectIsChange = false;
+
+            modal_info_component.style.display = "none";
+        }
+    } else {
+        inputIsChange = false;
+        selectIsChange = false;
+        
         modal_info_component.style.display = "none";
     }
 }
@@ -69,6 +82,7 @@ component_button_add.addEventListener("click", () => {
     }
 })
 
+/* открытие модального окна */
 export const funcInfoComponentsOpenModal = (uin) => {
     modal_info_component.style.display = "block";
 
@@ -141,14 +155,25 @@ const addComponentInfo = (name, fUnic, typelm, typelmUin, uin) => {
 
     component_button_add.style.display = "none";
     component_button_save.style.display = "flex";
+
+    setTimeout(() => {
+        modal_info_component.querySelectorAll(".input__type-text").forEach((elem) => {
+            elem.addEventListener('change', () => {inputIsChange = true; console.log(inputIsChange)});
+        });
+    
+        modal_info_component.querySelectorAll(".select").forEach((elem) => {
+            elem.addEventListener('change', () => {selectIsChange = true; console.log(selectIsChange)});
+        });
+    }, 500)
 }
 
+/* переключение типа комплектующего с удалением всех его свойств */
 component_type.addEventListener("change", function (){
     if(component_save.style.display === "flex"){
         let result = confirm("Вы меняете тип! Если вы подтверждаете, то все свойства будут удалены! Подтвердить?");
         if(result === true){
             setTimeout(function(){
-                for (let i of component_select_typesprops_name){
+                for (let i of component_select_add_props){
                     let body  =  {"user":"demo", "meth":"fulldel", "obj":"compontsprops", "uincompont":`${component_button_add_props.value}`};
                     funcCommand(body, funcProcessOnlyInfo);
                 }
@@ -161,23 +186,18 @@ component_type.addEventListener("change", function (){
             }, 200);
     
             setTimeout(function(){
-                addToDropdown(component_select_typesprops_name, "typesprops_list");
+                addToDropdown(component_select_add_props, "typesprops_list");
                 document.getElementById("component_save").click();
             }, 300);
         }
     }
-});
+})
 
-component_info_add_props_select.addEventListener("change", function (){
-    let body  =  {"user":"demo", "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${component_info_add_props_select.value}"]}]`};
-    funcCommand(body, funcSelectAddMeasOnTable);
+component_select_add_props.addEventListener("change", function (){
+    addEventSelectProps(component_select_add_props, 'component_info_add_props_value_select');
+})
 
-    function funcSelectAddMeasOnTable(result, respobj){
-        if( result === 0 ) return;
-        component_info_add_props_select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
-    }
-});
-
+/* переключение блокировка значений погрешности при абстрактном */
 component_unic.addEventListener('click', function () {
     let inputs = document.getElementsByClassName("input__type-text_comp-fault");
     if(component_unic.checked === true){
@@ -189,9 +209,13 @@ component_unic.addEventListener('click', function () {
             i.disabled = true;
         }
     }
-});
+})
 
+/* кнопка сохранения комплектующего */
 component_button_save.addEventListener('click', function () {
+    inputIsChange = false;
+    selectIsChange = false;
+
     let body  =  {"user":"demo", "meth":"update", "obj":"components", "name":"", "uin":`${component_button_save.value}`, "fUnic":"", "uintypes":""};
 
     let name_value     = document.getElementById("component_name").value;
@@ -207,4 +231,4 @@ component_button_save.addEventListener('click', function () {
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){clearTable("tb_components_tree")}, 100);
     setTimeout(function(){funcGetComponents(localStorage.getItem("uincatC"))}, 150);
-});
+})

@@ -87,9 +87,8 @@
                             <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
                         </div>
                         <ul class="sidebar__menu">
-                            <li><a class="sidebar__menu__link" id="" href="#">Вкладка 1</a></li>
-                            <li><a class="sidebar__menu__link" id="" href="#">Вкладка 2</a></li>
-                            <li><a class="sidebar__menu__link" id="" href="#">Вкладка 3</a></li>
+                            <li><a class="sidebar__menu__link" id="" href="#">Спецификация</a></li>
+                            <li><a class="sidebar__menu__link" id="" href="#">Монтаж/сборка</a></li>
                         </ul>
                     </li>
                     <li class="sidebar__wrapper" id="sidebar_tablink_3">
@@ -768,7 +767,7 @@
                         <span class="select__anchor">Комплектующие <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
                         <ul class="select__items" id="filt_products_formula_components_items"></ul>
                     </div>
-                    <button class="button__control" id="button_products_formula_choose"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    <button class="button__control" id="button_products_formula_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                     <button class="button__control" id="button_products_formula_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                 </div>
                 <table class="table">
@@ -912,9 +911,6 @@
                     <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
                 </div>
                 <div class="modal__body">
-                    <div class="modal__tree">
-                        <div id="jstree_div"></div>
-                    </div>
                     <div style="display: none;">
                         <button id="sub_rename_node"></button>
                         <button id="sub_create_node"></button>
@@ -924,7 +920,7 @@
                             <thead class="thead">
                                 <tr class="tr">
                                     <td class="td td_active"></td>
-                                    <td class="td td_active">Универсальный</td>
+                                    <td class="td td_active">Абстрактный</td>
                                     <td class="td td_active">Комплектующее</td>
                                     <td class="td td_active">Тип</td>
                                     <td class="td td_active"></td>
@@ -934,6 +930,9 @@
             
                             </tbody>
                         </table>
+                    </div>
+                    <div class="modal__tree">
+                        <div id="jstree_div"></div>
                     </div>
                 </div>
             </div>
@@ -1262,7 +1261,7 @@
                 </div>
                 <div class="modal__input-wrapper modal__input-wrapper_center">
                     <input class="checkbox" type="checkbox" id="component_unic">
-                    <label for="component_unic">Универсальный</label>
+                    <label for="component_unic">Абстрактный</label>
                 </div>
                 <div>
                 <div class="modal__input-wrapper">
@@ -1292,7 +1291,7 @@
                     <tr class="tr">
                         <td class="td"><select class="select" id="component_info_add_props_select"></select></td>
                         <td class="td">---</td>
-                        <td class="td"><input class="input__type-text" type="text" id="component_info_add_value" value="0"></td>
+                        <td class="td"><select class="select" id="component_info_add_props_value_select"><option value="">---</option></select></td>
                         <td class="td"><input class="input__type-text" type="text" id="component_info_add_perc" value="0"></td>
                         <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
                         <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>
@@ -1313,8 +1312,23 @@
                 <span class="modal__close" id="close_component_select">&times;</span>
             </div>
             <div class="modal__body">
-                <div class="modal__tree">
-                    <div id="modal_select_component_tree"></div>
+                <div class="modal__table">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr class="tr">
+                                <td class="td td_active">Тип</td>
+                                <td class="td td_active">Название</td>
+                                <td class="td td_active"></td>
+                            </tr>
+                        </thead>
+                        <tbody id="found_table">
+                            <tr class="tr">
+                                <td class="td"><select class="select" id="found_select"></select></td>
+                                <td class="td"><input class="input__type-text input__type-text_title" type="text" id="found_input" value=""></td>
+                                <td class="td td_buttons-control"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal__table">
                     <table class="table">
@@ -1330,6 +1344,9 @@
             
                         </tbody>
                     </table>
+                </div>
+                <div class="modal__tree">
+                    <div id="modal_select_component_tree"></div>
                 </div>
             </div>
             <div class="modal__footer">
@@ -1477,7 +1494,7 @@
                 <table class="table" id="enums_main_tb_modal">
                     <thead class="thead">
                         <tr class="tr">
-                            <td class="td td_active">Название</td>
+                            <td class="td td_active">Значение св-ва</td>
                             <td class="td td_active"></td>
                         </tr>
                     </thead>

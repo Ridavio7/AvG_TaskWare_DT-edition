@@ -7,7 +7,7 @@
 .checkbox + label {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     user-select: none;
     margin: 5px 0px;
     color: var(--font-color);
@@ -36,5 +36,5 @@
 .checkbox:checked + label::before {
     border-color: var(--expand-button-active);
     background-color: var(--expand-button-active);
-    background-image: url(../../blocks/checkbox/img/arrow.svg);
+    background-image: url(../__type-checkbox/img/arrow.svg);
 }

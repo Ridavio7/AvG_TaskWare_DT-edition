@@ -116,14 +116,6 @@
   /* disable the IOS popup when long-press on a link */
   user-select: none;
 }
-#jstree_div,
-#jstree_div_second{
-  border: 1px solid var(--border);
-  padding: 10px 0px;
-  padding-right: 10px;
-  background-color: var(--background_second);
-  color: var(--font-color);
-}
 
 .jstree-default .jstree-anchor {
   color: var(--font-color);
@@ -135,13 +127,13 @@
 }
 
 .jstree-default .jstree-clicked {
-  background: var(--background_first);
+  background: var(--expand-button-active);
   border: 1px solid var(--border);
   padding-right: 5px;
 }
 
 .jstree-default .jstree-hovered {
-  background: var(--background_first);
+  background: var(--expand-button-active);
   border: 1px solid var(--border);
   padding-right: 5px;
 }

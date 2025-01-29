@@ -168,7 +168,7 @@
 }
 
 body.collapsed .sidebar {
-    max-width: 70px;
+    min-width: 70px;
     display: flex;
 }
 
