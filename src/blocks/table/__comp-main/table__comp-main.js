@@ -1,10 +1,27 @@
-import {funcCommand, clearTable, clearTableAll, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, clearTable, clearTableAll, funcProcessOnlyInfo, removeOptionsSetValue, addToDropdown} from '../../../js/common/common.js';
 import {funcProcessInfoComponentsModalAdd, funcInfoComponentsOpenModal} from '../../modal/__info-comp/modal__info-comp.js';
 import {funcInfoComponentsTransferOpenModal} from '../../modal/__transfer-comp/modal__transfer-comp.js';
+import {funcFoundComponents} from '../__comp-found/table__comp-found.js';
+import {funcFoundPlusOpenModal} from '../../modal/__found-plus/modal__found-plus.js';
+
+let found_select = document.getElementById("found_main_select");
+let found_button = document.getElementById("found_main_button");
+let found_button_modal = document.getElementById("found_main_button_modal_plus");
+
+found_button.onclick = function(){
+    funcFoundComponents("found_main_input", "found_main_select", "found_main_table", "tb_components_tree", "jstree_div", "component_name_");
+}
+
+found_button_modal.onclick = function(){
+    funcFoundPlusOpenModal("found_main_table", "tb_components_tree", "jstree_div", "component_name_");
+}
 
 export const funcGetComponentsTree = () => {
     let body  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"100"};
     funcCommand(body, funcProcessGetComponentsTree);
+
+    removeOptionsSetValue("found_main_select", "-- Выберите тип --");
+    addToDropdown(found_select, 'typelm_list');
 
     funcGetListDirC();
 }
@@ -18,7 +35,9 @@ const funcProcessGetComponentsTree = (result, respobj) => {
             data: respobj.answ
         },
         "plugins" : [ "state", "unique", "contextmenu", "dnd" ],
-    });
+    }).bind("loaded.jstree", function () {
+        $(this).jstree("open_all");
+    })
 
     $('#jstree_div').on('changed.jstree', function (e, data) {
         let objNode = data.instance.get_node(data.selected);
@@ -144,7 +163,7 @@ const addComponents = (name, fUnic, typelm, del, uin, tb_id) => {
     cellInfo.innerHTML = `<button class="button__control button__control_modal-component" value="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
     fUnic === 1 ? cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled checked><label for="chb_funic_${uin}"></label>` : 
                   cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled><label for="chb_funic_${uin}"></label>`;
-    cellName.innerHTML     = name;
+    cellName.innerHTML     = `<input class="input__type-text" type="text" value="${name}" id="component_name_${uin}" disabled>`;
     cellTypelm.innerHTML   = typelm;
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";

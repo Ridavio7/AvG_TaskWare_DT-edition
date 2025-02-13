@@ -1,15 +1,19 @@
-import {funcCommand, clearTable, removeOptionsSetValue, addToDropdown, funcProcessOnlyInfo, removeOptions} from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcGetComponentInfoProps, addEventSelectProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
 import {funcGetComponentInfoTypesProps} from '../../table/__comp-typesprops/table__comp-typesprops.js';
 import {funcGetDirC} from '../__select-comp/modal__select-comp.js';
+import {funcInfoTypeselemOpenModal} from '../../modal/__typeselem/modal__typeselem.js';
 
 export const modal_info_component = document.getElementById("modal_info_component");
 let span_info_component           = document.getElementById("close_info");
 let component_input_name          = document.getElementById("component_name");
 let component_select_type         = document.getElementById("component_type");
+let component_button_type_info    = document.getElementById("component_type_info");
 let component_checkbox_funic      = document.getElementById("component_unic");
+let component_input_remainder     = document.getElementById("component_remainder");
+let component_input_storage       = document.getElementById("component_storage");
 let component_button_add          = document.getElementById("component_add");
 let component_button_save         = document.getElementById("component_save");
 let component_button_add_props    = document.getElementById("component_info_add_button");
@@ -48,10 +52,13 @@ export const funcProcessInfoComponentsModalAdd = (uin) => {
     removeOptionsSetValue("component_type", "---");
     component_checkbox_funic.checked = false;
     component_table_props.style.display = "none";
+    component_button_type_info.style.display = "none";
 
     component_button_add.value = uin;
     component_button_add.style.display = "flex";
     component_button_save.style.display = "none";
+    component_input_remainder.parentElement.style.display = "none";
+    component_input_storage.parentElement.style.display = "none";
 
     addToDropdown(component_select_type, "typelm_list");
 }
@@ -75,10 +82,8 @@ component_button_add.addEventListener("click", () => {
         body.fUnic      = fUnic_value;
 
         funcCommand(body, funcProcessOnlyInfo);
-        setTimeout(function(){clearTable("tb_modal_info_component")}, 100);
-        setTimeout(function(){clearTable("tb_components_tree"); clearTable("tb_component_select")}, 150);
-        setTimeout(function(){funcGetComponents(uincatC); funcGetDirC(uincatC)}, 200);
-        setTimeout(function(){modal_info_component.style.display = "none";}, 250);
+        setTimeout(function(){funcGetComponents(uincatC); funcGetDirC(uincatC)}, 100);
+        setTimeout(function(){modal_info_component.style.display = "none";}, 200);
     }
 })
 
@@ -101,6 +106,9 @@ const funcProcessGetComponentInfo = (result, respobj) => {
     console.log("Комплектующее ИНФО:", respobj);
 
     document.getElementById("component_name").value = "";
+    //removeOptionsSetValue("component_type", "---");
+    removeOptionsSetValue("component_info_add_props_value_select", "---");
+    document.getElementById("component_info_add_props_value_input").value = "";
     let select = component_select_type;
     select.value = "";
     let len = select.length;
@@ -134,6 +142,9 @@ const addComponentInfo = (name, fUnic, typelm, typelmUin, uin) => {
 
     addToDropdown(select, "typelm_list");
 
+    let button = document.getElementById("component_type_info");
+    button.value = typelmUin;
+
     let select_unic = component_checkbox_funic;
     if(fUnic === 1){
         select_unic.checked = true;
@@ -146,6 +157,9 @@ const addComponentInfo = (name, fUnic, typelm, typelmUin, uin) => {
     }
 
     component_table_props.style.display = "block";
+    component_button_type_info.style.display = "block";
+    component_input_remainder.parentElement.style.display = "flex";
+    component_input_storage.parentElement.style.display = "flex";
 
     component_button_add_props.value = "";
     component_button_save.value = "";
@@ -158,11 +172,11 @@ const addComponentInfo = (name, fUnic, typelm, typelmUin, uin) => {
 
     setTimeout(() => {
         modal_info_component.querySelectorAll(".input__type-text").forEach((elem) => {
-            elem.addEventListener('change', () => {inputIsChange = true; console.log(inputIsChange)});
+            elem.addEventListener('change', () => {inputIsChange = true});
         });
     
         modal_info_component.querySelectorAll(".select").forEach((elem) => {
-            elem.addEventListener('change', () => {selectIsChange = true; console.log(selectIsChange)});
+            elem.addEventListener('change', () => {selectIsChange = true});
         });
     }, 500)
 }
@@ -193,9 +207,57 @@ component_type.addEventListener("change", function (){
     }
 })
 
-component_select_add_props.addEventListener("change", function (){
-    addEventSelectProps(component_select_add_props, 'component_info_add_props_value_select');
+/* открытие модального окна типа комплектующего */
+component_button_type_info.addEventListener("click", (elem) => {
+    if(elem.target.className === "button__control__img"){
+        funcInfoTypeselemOpenModal(elem.target.parentElement.value);
+    } else {
+        funcInfoTypeselemOpenModal(elem.target.value);
+    }
 })
+
+/* в строке добавленя комплектующего при изменении св-ва меняется ед. изм. и select/input */
+component_select_add_props.addEventListener("change", function (){
+    addEventSelectOrInputProps(component_select_add_props, 'component_info_add_props_value_select');
+})
+
+const addEventSelectOrInputProps = (select, select_value_id) => {
+    let body_1  =  {"user":"demo", "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
+    funcCommand(body_1, funcSelectAddMeasOnTable);
+
+    function funcSelectAddMeasOnTable(result, respobj){
+        if( result === 0 ) return;
+
+        select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
+    }
+
+    let body_2  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin", "all":"0"};
+    funcCommand(body_2, funcSelectAddEnumsOnTable);
+
+    let select_value = document.getElementById(select_value_id);
+    let input_value = document.getElementById("component_info_add_props_value_input");
+
+    function funcSelectAddEnumsOnTable(result, respobj){
+        if( result === 0 ) return;
+        console.log(respobj.answ)
+
+        removeOptions(select_value);
+        if(respobj.answ != ''){
+            select_value.style.display = "inline";
+            input_value.style.display  = "none";
+            let arr = respobj.answ;
+            for (let key in arr) {
+                if(arr[key].del === 0){
+                    let newOption = new Option(arr[key].name, arr[key].uin);
+                    select_value.append(newOption);
+                }
+            }
+        } else {
+            input_value.style.display  = "block";
+            select_value.style.display = "none";
+        }
+    }
+}
 
 /* переключение блокировка значений погрешности при абстрактном */
 component_unic.addEventListener('click', function () {
@@ -229,6 +291,14 @@ component_button_save.addEventListener('click', function () {
     body.fUnic    = fUnic_value;
 
     funcCommand(body, funcProcessOnlyInfo);
-    setTimeout(function(){clearTable("tb_components_tree")}, 100);
-    setTimeout(function(){funcGetComponents(localStorage.getItem("uincatC"))}, 150);
+    
+    setTimeout(function(){
+        let button_control_update = document.querySelectorAll(".button__control_update-compontsprops");
+        button_control_update.forEach((elem) => {
+            elem.click();
+        })
+    }, 100);
+
+    setTimeout(function(){clearTable("tb_components_tree")}, 150);
+    setTimeout(function(){funcGetComponents(localStorage.getItem("uincatC"))}, 200);
 })

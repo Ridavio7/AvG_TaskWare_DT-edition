@@ -1,6 +1,6 @@
 .button__control{
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     padding-top: 2px;
     outline: 1px solid var(--border);
     border: 1px solid var(--border);
@@ -14,7 +14,7 @@
     }
 
     &__img{
-        height: 15px;
+        height: 20px;
         filter: var(--img-button_color);
         -webkit-filter: var(--img-button_color);
     }
@@ -25,6 +25,14 @@
 
     &_no-mark{
         background-color: inherit;
+    }
+
+    &_docpost-ready{
+        background-color: var(--green) !important;
+    }
+
+    &_docpost-process{
+        background-color: var(--yellow) !important;
     }
 
     &_active{

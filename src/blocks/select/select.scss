@@ -15,6 +15,7 @@
     -moz-appearance: none;
     appearance: none;
     text-align: center;
+    max-width: 250px;
 
     &__img{
         margin-left: 5px;
@@ -54,12 +55,21 @@
 
     &__items{
         display: none;
-        position: absolute;
+        position: fixed;
         z-index: 5;
         background-color: var(--background_second);
         border: 1px solid var(--border);
         border-radius: 7px;
         padding: 5px 10px;
         list-style: none;
+    }
+
+    &__simple{
+        background-color: var(--background_sidebar);
+    }
+
+    option{
+        background-color: var(--background_second);
+        color: var(--font-color);
     }
 }

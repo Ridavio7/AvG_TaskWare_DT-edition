@@ -3,6 +3,7 @@ import {dragElement} from '../modal.js';
 
 let enums_modal = document.getElementById("enums_modal");
 let enums_close = document.getElementById("enums_close");
+let enums_title = document.getElementById("enums_title");
 let propUinForAdd = null;
 
 enums_close.addEventListener("click", () => {
@@ -11,8 +12,10 @@ enums_close.addEventListener("click", () => {
 
 dragElement(enums_modal);
 
-export const funcInfoEnumsOpenModal = (uin) => {
+export const funcInfoEnumsOpenModal = (uin, name) => {
     enums_modal.style.display = "block";
+
+    enums_title.value = `Св-во: ${name}`;
 
     propUinForAdd = uin;
 
@@ -75,7 +78,7 @@ const funcProcessGetInfoEnums = (result, respobj) => {
     })
 
     let button_control_add = document.getElementById('enums_add_button');
-    button_control_add.addEventListener("click", () => {
+    button_control_add.onclick = () => {
         let body  =  {"user":"demo", "meth":"add", "obj":"enums", "uinprops":`${propUinForAdd}`, "name":""}
 
         let name_value = document.getElementById("enums_add_input").value;
@@ -90,7 +93,7 @@ const funcProcessGetInfoEnums = (result, respobj) => {
             funcCommand(body, funcProcessOnlyInfo);
             setTimeout(function(){funcGetInfoEnums(propUinForAdd)}, 100);
         }
-    })
+    }
 }
 
 const addInfoEnums = (name, uin, del, tb_id) => {

@@ -63,7 +63,7 @@ const funcProcessGetProps = (result, respobj) => {
     let button_modal_enums = document.querySelectorAll(".button__control_modal-enums");
     button_modal_enums.forEach((elem) => {
         elem.addEventListener("click", () => {
-            funcInfoEnumsOpenModal(elem.value);
+            funcInfoEnumsOpenModal(elem.value, elem.name);
         })
     })
 }
@@ -78,7 +78,7 @@ const addPropsRow = (name, del, uin, meas, uinmeas, tb_id) => {
     let cellMeas = newRow.insertCell(2); cellMeas.classList = "td";
     let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-enums" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-enums" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="props_name_${uin}">`;
     makeSelect("props_select_", uin, meas, uinmeas, "meas_list", "select", cellMeas);
 

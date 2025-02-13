@@ -2,6 +2,7 @@ import {funcCommand, clearTableAll, clearTable, addToDropdownOneOption, addToDro
 import {dragElement} from '../modal.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 import {funcGetDocpost} from '../../table/__provider/table__provider.js';
+import {funcFoundOneComponent} from '../../table/__comp-found/table__comp-found.js';
 
 let docpost_modal   = document.getElementById("modal_info_docpost");
 let docpost_close   = document.getElementById("close_info_docpost");
@@ -14,7 +15,7 @@ let docpost_numb1c  = document.getElementById("docpost_numb1c");
 let docpost_date1c  = document.getElementById("docpost_date1c");
 let docpost_contr   = document.getElementById("docpost_contr");
 let docpost_storage = document.getElementById("docpost_storage");
-let docpost_save   = document.getElementById("docpost_save");
+let docpost_save    = document.getElementById("docpost_save");
 let modal_select_component = document.getElementById("modal_select_component");
 
 docpost_close.onclick = function(){
@@ -86,7 +87,7 @@ const addDocpostInfoInputs =
 }
 
 const funcGetInfoTableDocpost = (uin) => {
-    let body_table  =  {"user":"demo", "meth":"view", "obj":"compontpost", "count":"10", "uindoc":`${uin}`};
+    let body_table  =  {"user":"demo", "meth":"view", "obj":"compontpost", "count":"100", "uindoc":`${uin}`};
     funcCommand(body_table, funcProcessGetInfoTableDocpost);
 }
 
@@ -142,7 +143,6 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
 
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
-            setTimeout(function(){funcGetInfoTableDocpost(localStorage.getItem("docpost_uin"))}, 150);
         })
     })
 
@@ -152,6 +152,7 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
             modal_select_component.style.display = "block";
             
             funcGetComponentsTreeSelect();
+            funcFoundOneComponent(elem.name)
             localStorage.setItem("button_select_component_id", elem.id);
         })
     })
@@ -162,15 +163,20 @@ const addDocpostInfoTable = (name, compontName, compontUin, measName, measUin, s
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName    = newRow.insertCell(0); cellName.classList    = "td";
+    let cellName    = newRow.insertCell(0); cellName.classList    = "td td_full-content";
     let cellCompont = newRow.insertCell(1); cellCompont.classList = "td";
-    let cellMeas    = newRow.insertCell(2); cellMeas.classList    = "td";
-    let cellStorage = newRow.insertCell(3); cellStorage.classList = "td";
-    let cellCount   = newRow.insertCell(4); cellCount.classList   = "td";
+    let cellCount   = newRow.insertCell(2); cellCount.classList   = "td";
+    let cellMeas    = newRow.insertCell(3); cellMeas.classList    = "td";
+    let cellStorage = newRow.insertCell(4); cellStorage.classList = "td";
     let cellBtn     = newRow.insertCell(5); cellBtn.classList     = "td";
 
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" disabled>`;
-    cellCompont.innerHTML = `<button class="button__select button__select_docpost" id="docpost_component_${uin}" value="${compontUin}">${compontName}</button>`;
+    if(compontName === ''){
+        cellCompont.innerHTML = `<button class="button__select button__select_docpost" id="docpost_component_${uin}" value="${compontUin}" name="">-- Выбрать --</button>`;
+    } else {
+        cellCompont.innerHTML = `<button class="button__select button__select_docpost" id="docpost_component_${uin}" value="${compontUin}" name="${compontName}">${compontName}</button>`;
+    }
+
     makeSelect("docpost_meas_select_", uin, measName, measUin, "meas_list", "select", cellMeas);
     makeSelect("docpost_storage_select_", uin, storageName, storageUin, "storages_list", "select", cellStorage);
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="docpost_count_${uin}">`;
@@ -192,6 +198,17 @@ docpost_save.addEventListener("click", () => {
     body.uinstorage = docpost_storage.value;
 
     funcCommand(body, funcProcessOnlyInfo);
-    setTimeout(function(){clearTableAll("tb_docpost")}, 100);
-    setTimeout(function(){funcGetDocpost()}, 150);
+
+    setTimeout(function(){
+        let button_control_update = document.querySelectorAll(".button__control_update-docpost");
+        button_control_update.forEach((elem) => {
+            elem.click();
+        })
+    }, 100);
+
+    
+    setTimeout(function(){funcGetInfoInputsDocpost(localStorage.getItem("docpost_uin"))}, 100);
+    setTimeout(function(){funcGetInfoTableDocpost(localStorage.getItem("docpost_uin"))}, 150);
+    setTimeout(function(){clearTableAll("tb_docpost")}, 200);
+    setTimeout(function(){funcGetDocpost()}, 250);
 })

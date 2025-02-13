@@ -39,14 +39,14 @@ export const funcProcessOnlyInfo = (result, respobj) => {
 
 /* изменение цвета кнопки обновления */
 export const highlightButtonSave = (obj) => {
-    obj.style.background = "green";
+    obj.style.background = "var(--green)";
     setTimeout(function(){
         obj.style.background = "inherit";
     }, 1000);
 }
 
 export const highlightButtonSaveModal = (obj) => {
-    obj.style.background = "green";
+    obj.style.background = "var(--green)";
     setTimeout(function(){
         obj.style.background = "var(--expand-button-active)";
     }, 2000);
@@ -368,7 +368,7 @@ export const funcMarkNode = (arr) => {
         if(del === 1){
             let node = document.getElementById(`${id}_anchor`);
             if(node != null){
-            node.style.color = "red";
+                node.style.color = "red";
             }
         }
     }

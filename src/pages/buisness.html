@@ -915,6 +915,9 @@
                         <button id="sub_rename_node"></button>
                         <button id="sub_create_node"></button>
                     </div>
+                    <div class="modal__tree">
+                        <div id="jstree_div"></div>
+                    </div>
                     <div class="modal__table">
                         <table class="table">
                             <thead class="thead">
@@ -931,8 +934,24 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="modal__tree">
-                        <div id="jstree_div"></div>
+                    <div class="modal__table">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_text-align_left">Поиск</td>
+                                    <td class="td"></td>
+                                    <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active"><select class="select" id="found_main_select"></select></td>
+                                    <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_main_input" value="" placeholder="Комплектующее"></td>
+                                    <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                </tr>
+                            </thead>
+                            <tbody id="found_main_table">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -969,6 +988,7 @@
                     </tbody>
                 </table>
             </div>
+            <!-- справочники комплектующие приставки си -->
             <div id="dir_components/coeffs" class="sidebar__tabcontent__container">
                 <div class="sidebar__tabcontent__first-tabs">
                     <a href="#dir_components/components"><button class="button__tab__first button__tab__first_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
@@ -1257,6 +1277,7 @@
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="component_type">Тип:</label>
                         <select class="select select_modal" id="component_type"></select>
+                        <button class="button__control" id="component_type_info" value=""><img class="button__control__img" src="../blocks/button/__control/img/info.svg" alt=""></button>
                     </div>
                 </div>
                 <div class="modal__input-wrapper modal__input-wrapper_center">
@@ -1278,6 +1299,7 @@
                 <table class="table" id="main_tb_modal_info_component">
                 <thead class="thead">
                     <tr class="tr">
+                        <td class="td td_active">Инфо св-ва</td>
                         <td class="td td_active">Название св-ва</td>
                         <td class="td td_active">Ед. изм.</td>
                         <td class="td td_active">Значение</td>
@@ -1289,9 +1311,10 @@
                 </thead>
                 <tbody id="tb_modal_info_component">
                     <tr class="tr">
+                        <td class="td"></td>
                         <td class="td"><select class="select" id="component_info_add_props_select"></select></td>
                         <td class="td">---</td>
-                        <td class="td"><select class="select" id="component_info_add_props_value_select"><option value="">---</option></select></td>
+                        <td class="td"><select class="select" id="component_info_add_props_value_select"><option value="">---</option></select><input class="input__type-text input__type-text_title" type="text" id="component_info_add_props_value_input" value="" style="display: none;"></td>
                         <td class="td"><input class="input__type-text" type="text" id="component_info_add_perc" value="0"></td>
                         <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
                         <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>
@@ -1312,32 +1335,18 @@
                 <span class="modal__close" id="close_component_select">&times;</span>
             </div>
             <div class="modal__body">
-                <div class="modal__table">
-                    <table class="table">
-                        <thead class="thead">
-                            <tr class="tr">
-                                <td class="td td_active">Тип</td>
-                                <td class="td td_active">Название</td>
-                                <td class="td td_active"></td>
-                            </tr>
-                        </thead>
-                        <tbody id="found_table">
-                            <tr class="tr">
-                                <td class="td"><select class="select" id="found_select"></select></td>
-                                <td class="td"><input class="input__type-text input__type-text_title" type="text" id="found_input" value=""></td>
-                                <td class="td td_buttons-control"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="modal__tree">
+                    <div id="modal_select_component_tree"></div>
                 </div>
                 <div class="modal__table">
                     <table class="table">
                         <thead class="thead">
                             <tr class="tr">
-                                <td class="td td_active"></td>
+                                <td class="td td_active">Выбрать</td>
+                                <td class="td td_active">Инфо</td>
                                 <td class="td td_active">Комплектующее</td>
                                 <td class="td td_active">Тип</td>
-                                <td class="td td_active"></td>
+                                <td class="td td_active">Пометка</td>
                             </tr>
                         </thead>
                         <tbody id="tb_component_select">
@@ -1345,8 +1354,29 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="modal__tree">
-                    <div id="modal_select_component_tree"></div>
+                <div class="modal__table">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr class="tr">
+                                <td class="td td_text-align_left">Поиск</td>
+                                <td class="td"></td>
+                                <td class="td"><button class="button__control button__control_active" id="found_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                            </tr>
+                            <tr class="tr">
+                                <td class="td td_active"><select class="select" id="found_select"></select></td>
+                                <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_input" value="" placeholder="Комплектующее"></td>
+                                <td class="td td_active"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                            </tr>
+                            <tr class="tr">
+                                <td class="td td_active"></td>
+                                <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_1c_input" value="" placeholder="Комплектующее 1C"></td>
+                                <td class="td td_active"><button class="button__control button__control_active" id="found_1c_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                            </tr>
+                        </thead>
+                        <tbody id="found_table">
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal__footer">
@@ -1360,13 +1390,12 @@
                 <span class="modal__close" id="close_component_transfer">&times;</span>
             </div>
             <div class="modal__body">
-                <div class="modal__input-wrapper">
-                    <label class="input__type-text__label" for="component_name"></label>
+                <div class="">
                     <input class="input__type-text input__type-text_modal" type="text" id="component_transfer_name" value="" name="" disabled>
+                    <label class="input__type-text__label" for="component_transfer_name">переместить в</label>
                 </div>
-                <div class="modal__input-wrapper">
-                    <label class="input__type-text__label" for="component_type">переместить в папку</label>
-                    <select class="select select_modal" id="component_transfer_dir"></select>
+                <div class="modal__tree">
+                    <div id="modal_transfer_component_tree"></div>
                 </div>
             </div>
             <div class="modal__footer">
@@ -1432,9 +1461,9 @@
                         <tr class="tr">
                             <td class="td td_active">Комплектующее 1С</td>
                             <td class="td td_active">Комплектующее TW</td>
+                            <td class="td td_active">Кол-во</td>
                             <td class="td td_active">Ед. изм</td>
                             <td class="td td_active">Склад</td>
-                            <td class="td td_active">Кол-во</td>
                             <td class="td td_active"></td>
                         </tr>
                     </thead>
@@ -1454,14 +1483,16 @@
                 <span class="modal__close" id="close_typeselem">&times;</span>
             </div>
             <div class="modal__header">
-                <div class="modal__input-wrapper">
-                    <label class="input__type-text__label" for="typeselem_name">Тип:</label>
-                    <input class="input__type-text" type="text" id="typeselem_name" value="" disabled>
-                </div>
+
             </div>
             <div class="modal__body">
                 <table class="table" id="main_tb_modal_typeselem">
                     <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active"><input class="input__type-text" type="text" id="typeselem_title" value="" disabled></td>
+                            <td class="td td_active"></td>
+                            <td class="td td_active"></td>
+                        </tr>
                         <tr class="tr">
                             <td class="td td_active">Название</td>
                             <td class="td td_active">Ед. изм.</td>
@@ -1494,7 +1525,11 @@
                 <table class="table" id="enums_main_tb_modal">
                     <thead class="thead">
                         <tr class="tr">
-                            <td class="td td_active">Значение св-ва</td>
+                            <td class="td td_active"><input class="input__type-text" type="text" id="enums_title" value="" disabled></td>
+                            <td class="td td_active"></td>
+                        </tr>
+                        <tr class="tr">
+                            <td class="td td_active">Значение</td>
                             <td class="td td_active"></td>
                         </tr>
                     </thead>
@@ -1503,6 +1538,33 @@
                             <td class="td"><input class="input__type-text input__type-text_title" type="text" id="enums_add_input" value=""></td>
                             <td class="td td_buttons-control"><button class="button__control" id="enums_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal__footer">
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="found_plus_modal">
+        <div class="modal__content">
+            <div class="modal__moving" id="found_plus_modal_moving">
+                <span class="modal__close" id="found_plus_close">&times;</span>
+            </div>
+            <div class="modal__header">
+
+            </div>
+            <div class="modal__body">
+                <table class="table" id="found_plus_main_tb_modal">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active"><select class="select" id="found_plus_select"></select></td>
+                            <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_plus_input" value="" placeholder="Комплектующее"></td>
+                            <td class="td td_active"><button class="button__control button__control_active" id="found_plus_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                        </tr>
+                    </thead>
+                    <tbody id="found_plus_tb">
+
                     </tbody>
                 </table>
             </div>

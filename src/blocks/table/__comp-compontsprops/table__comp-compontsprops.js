@@ -1,5 +1,6 @@
 import {funcCommand, clearTable, removeOptions, addToDropdown, makeSelect, highlightButtonSave, findForUpdateSelect, findForUpdateInput, removeOptionsSetValue, funcProcessOnlyInfo } from '../../../js/common/common.js';
 import {funcGetComponentInfo} from '../../modal/__info-comp/modal__info-comp.js';
+import {funcInfoEnumsOpenModal} from '../../modal/__enums/modal__enums.js';
 
 /* св-ва комплектующего в модальном окне */
 export const funcGetComponentInfoProps = (uin) => {
@@ -72,8 +73,16 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
 
             let target_table = main_tb_modal_info_component;
             body.uinprops    = findForUpdateSelect(target_table, "component_info_props_select_", elem.value);
+
             let prop_value   = document.getElementById(`component_info_props_value_select__${elem.value}`);
-            body.value       = prop_value.options[prop_value.selectedIndex].text;
+            let value;
+            if(prop_value.tagName === "SELECT"){
+                value = prop_value.options[prop_value.selectedIndex].text
+                body.value = value;
+            } else {
+                body.value = prop_value.value;
+            }
+
             body.d1          = findForUpdateInput(`component_info_d1_${elem.value}`, target_table);
             body.d2          = findForUpdateInput(`component_info_d2_${elem.value}`, target_table);
             body.perc        = findForUpdateInput(`component_info_perc_${elem.value}`, target_table);
@@ -84,6 +93,13 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
             setTimeout(function(){funcGetComponentInfoProps(elem.name)}, 100);
         })
     })
+
+    let button_control = document.querySelectorAll(".button__control_modal-props-info");
+    button_control.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            funcInfoEnumsOpenModal(elem.value, elem.name);
+        })
+    })
 }
 
 const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, uin, uincompont, tb_id) => {
@@ -91,17 +107,19 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     let newRow     = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellProps   = newRow.insertCell(0); cellProps.classList   = "td";
-    let cellMeas    = newRow.insertCell(1); cellMeas.classList    = "td";
-    let cellPropVal = newRow.insertCell(2); cellPropVal.classList = "td";
-    let cellPerc    = newRow.insertCell(3); cellPerc.classList    = "td";
-    let cellD1      = newRow.insertCell(4); cellD1.classList      = "td";
-    let cellD2      = newRow.insertCell(5); cellD2.classList      = "td";
-    let cellBtn     = newRow.insertCell(6); cellBtn.classList     = "td";
+    let cellInfo    = newRow.insertCell(0); cellInfo.classList   = "td";
+    let cellProps   = newRow.insertCell(1); cellProps.classList   = "td";
+    let cellMeas    = newRow.insertCell(2); cellMeas.classList    = "td";
+    let cellPropVal = newRow.insertCell(3); cellPropVal.classList = "td";
+    let cellPerc    = newRow.insertCell(4); cellPerc.classList    = "td";
+    let cellD1      = newRow.insertCell(5); cellD1.classList      = "td";
+    let cellD2      = newRow.insertCell(6); cellD2.classList      = "td";
+    let cellBtn     = newRow.insertCell(7); cellBtn.classList     = "td";
+
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-props-info" value="${propsUin}" name="${props}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
 
     makeSelect("component_info_props_select_", uin, props, propsUin, "typesprops_list", "select", cellProps);
     cellMeas.innerHTML  = meas;
-
 
     let body  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${propsUin}`, "count":"100", "sort":"uin"};
     funcCommand(body, funcProcessGetInfoEnumsForModalComp);
@@ -109,8 +127,16 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     function funcProcessGetInfoEnumsForModalComp(result, respobj){
         if( result === 0 ) return;
 
-        localStorage.setItem("prop_enums_list", JSON.stringify(respobj.answ))
-        makeSelect("component_info_props_value_select_", uin, value, '---', "prop_enums_list", "select", cellPropVal);
+        if(respobj.answ != ''){
+            localStorage.setItem("prop_enums_list", JSON.stringify(respobj.answ))
+            makeSelect("component_info_props_value_select_", uin, value, '---', "prop_enums_list", "select", cellPropVal);
+        } else {
+            let input = document.createElement('input');
+            input.className = "input__type-text input__type-text_title";
+            input.id = `component_info_props_value_select__${uin}`;
+            input.value = value;
+            cellPropVal.appendChild(input);
+        }
     }
 
     cellPerc.innerHTML  = `<input class="input__type-text" type="text" name="component_info_perc_${uin}" value="${perc}">`;
@@ -131,8 +157,16 @@ button_control_add.addEventListener("click", () => {
     let body  =  {"user":"demo", "meth":"add", "obj":"compontsprops", "uincompont":`${button_control_add.value}`, "uinprops":"", "value":"", "d1":"", "d2":"", "perc":""};
 
     let uinprops_value = document.getElementById(`component_info_add_props_select`).value;
-    let prop_value     = document.getElementById(`component_info_add_props_value_select`);
-    let value          = prop_value.options[prop_value.selectedIndex].text;
+
+    let prop_select_value = document.getElementById(`component_info_add_props_value_select`);
+    let prop_input_value = document.getElementById(`component_info_add_props_value_input`);
+    let value;
+    if(prop_select_value.style.display === "inline"){
+        value = prop_select_value.options[prop_select_value.selectedIndex].text
+    } else {
+        value = prop_input_value.value;
+    }
+
     let d1_value       = document.getElementById(`component_info_add_d1`).value;
     let d2_value       = document.getElementById(`component_info_add_d2`).value;
     let perc_value     = document.getElementById(`component_info_add_perc`).value;
@@ -148,13 +182,15 @@ button_control_add.addEventListener("click", () => {
         
         removeOptionsSetValue(`component_info_add_props_select`, "---");
         removeOptionsSetValue(`component_info_add_props_value_select`, "---");
+        document.getElementById(`component_info_add_props_value_input`).value = "";
         document.getElementById(`component_info_add_d1`).value = "0";
         document.getElementById(`component_info_add_d2`).value = "0";
         document.getElementById(`component_info_add_perc`).value = "0";
         
         funcCommand(body, funcProcessOnlyInfo);
-        funcGetComponentInfo(button_control_add.value);
-        setTimeout(function(){funcGetComponentInfoProps(button_control_add.value)}, 100);
+        
+        setTimeout(function(){funcGetComponentInfo(button_control_add.value);}, 100);
+        setTimeout(function(){funcGetComponentInfoProps(button_control_add.value)}, 150);
     }
 })
 
@@ -168,20 +204,25 @@ export const addEventSelectProps = (select, select_value_id) => {
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
-    let body_2  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin"};
+    let body_2  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin", "all":"0"};
     funcCommand(body_2, funcSelectAddEnumsOnTable);
 
     let select_value = document.getElementById(select_value_id);
     function funcSelectAddEnumsOnTable(result, respobj){
         if( result === 0 ) return;
+        console.log(respobj)
 
-        removeOptions(select_value);
-        let arr = respobj.answ;
-        for (let key in arr) {
-            if(arr[key].del === 0){
-                let newOption = new Option(arr[key].name, arr[key].uin);
-                select_value.append(newOption);
+        if(respobj.answ != 0){
+            removeOptions(select_value);
+            let arr = respobj.answ;
+            for (let key in arr) {
+                if(arr[key].del === 0){
+                    let newOption = new Option(arr[key].name, arr[key].uin);
+                    select_value.append(newOption);
+                }
             }
+        } else {
+            let prop_value   = document.getElementById(`component_info_props_value_select__${elem.value}`);
         }
     }
 }

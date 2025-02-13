@@ -1,13 +1,7 @@
 
 export const dragElement = (elmnt) => {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "_moving")) {
-        // если присутствует, заголовок - это место, откуда вы перемещаете DIV:
-        document.getElementById(elmnt.id + "_moving").onmousedown = dragMouseDown;
-    } else {
-        // в противном случае переместите DIV из любого места внутри DIV:
-        elmnt.onmousedown = dragMouseDown;
-    }
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    document.getElementById(elmnt.id + "_moving").onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
         e = e || window.event;
@@ -44,7 +38,7 @@ let modals = document.querySelectorAll(".modal__moving");
 let count = 0;
 modals.forEach((elem) => {
     elem.addEventListener("click", (elem) => {
-        count += 1;
+        count += 2;
         elem.target.offsetParent.offsetParent.style.zIndex = count;
     })
 })

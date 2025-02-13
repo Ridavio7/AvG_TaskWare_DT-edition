@@ -2,8 +2,8 @@ import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, add
 import {dragElement} from '../modal.js';
 
 let modal_typeselem = document.getElementById("modal_typeselem");
-let span_typeselem = document.getElementById("close_typeselem");
-let typeUinForAdd = null;
+let span_typeselem  = document.getElementById("close_typeselem");
+let typeUinForAdd   = null;
 
 span_typeselem.addEventListener("click", () => {
     modal_typeselem.style.display = "none";
@@ -26,7 +26,7 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Св-ва типа:", respobj);
 
-    document.getElementById("typeselem_name").value = "";
+    document.getElementById("typeselem_title").value = "";
 
     let tb_id = "tb_modal_typeselem";
     clearTable(tb_id);
@@ -47,12 +47,12 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
         let compName = respobj.answDop.name;
         let typeUin  = respobj.answDop.uintypes;
         for (let key in respobj.answ){
-        let prop     = respobj.answ[key];
-        let propName = prop.name;
-        let propUin  = prop.uin;
-        let meas     = prop.meas;
-        let del      = prop.tpdel;
-        addInfoTypeselem(compName, typeUin, propName, propUin, meas, del, tb_id, respobj.answ);
+            let prop     = respobj.answ[key];
+            let propName = prop.name;
+            let propUin  = prop.uin;
+            let meas     = prop.meas;
+            let del      = prop.del;
+            addInfoTypeselem(compName, typeUin, propName, propUin, meas, del, tb_id, respobj.answ);
         }
     }
 
@@ -73,7 +73,7 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
     })
 
     let button_control_add = document.getElementById('typeselem_add_button');
-    button_control_add.addEventListener("click", () => {
+    button_control_add.onclick = () => {
         let body  =  {"user":"demo", "meth":"add", "obj":"typesprops", "uintypes":`${typeUinForAdd}`, "uinprops":""};
 
         let uinprops_value = document.getElementById("typeselem_add_props_select").value;
@@ -88,11 +88,11 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
                 funcGetInfoTypeselem(typeUinForAdd);
             }, 100);
         }
-    })
+    }
 }
 
 const addInfoTypeselem = (compName, typeUin, propName, propUin, meas, del, tb_id, arr) => {
-    document.getElementById("typeselem_name").value = compName;
+    document.getElementById("typeselem_title").value = `Тип: ${compName}`;
     typeUinForAdd = typeUin;
 
     let tableRef = document.getElementById(tb_id);

@@ -24,22 +24,36 @@
     border: none;
 }
 
+.tr{
+    &_mark{
+        background-color: var(--expand-button-active) !important;
+    }
+}
+
 .td{
     padding: 0px 5px;
     height: 45px;
     text-align: center;
+    min-width: 65px;
 
     &_active{
         background-color: var(--background_sidebar);
         border-top: 1px solid var(--border);
         border-left: 1px solid var(--border);
     }
-}
 
-.td_buttons-control{
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: center;
-}
+    &_buttons-control{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
 
+    &_full-content{
+        width: 100%;
+    }
+
+    &_text-align_left{
+        text-align: left;
+    }
+}

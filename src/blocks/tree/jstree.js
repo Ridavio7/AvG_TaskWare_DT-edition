@@ -6124,41 +6124,17 @@
 		respobj.succ === 1 ? location.reload() : alert("Ошибка изменения дерева!")
 	}
 
-	const addToDropdown = (select, arr_obj) => {
-		let arr = JSON.parse(localStorage.getItem(arr_obj));
-		for (let key in arr) {
-			if(arr[key].del === 0){
-				let newOption = new Option(arr[key].name, arr[key].uin);
-				select.append(newOption);
-			}
-		}
-	}
-
-	const removeOptionsSetValue = (selec, text) => {
-		let mySelect = document.getElementById(selec);
-		mySelect.value = "";
-		let len = mySelect.length;
-		for (let i = 0; i < len; i++) {
-			mySelect.remove(0);
-		}
-		let option = document.createElement("option");
-		option.text = text;
-		option.value = "";
-		mySelect.appendChild(option);
-	}
-
 	let modal_transfer_component  = document.getElementById("modal_transfer_component");
 	let name_transfer_component   = document.getElementById("component_transfer_name");
-	let select_transfer_component = document.getElementById("component_transfer_dir");
 	let button_transfer_component = document.getElementById("component_transfer_comp");
 	let button_transfer_catc      = document.getElementById("component_transfer_catc");
 
 	button_transfer_catc.addEventListener("click", () => {
 		let body  =  {"user":"demo", "meth":"update", "obj":"dirC", "uin":"", "uinparent":"", "name":""};
 	
-		body.name = button_transfer_catc.name;
-		body.uin = button_transfer_catc.value;
-		body.uinparent = select_transfer_component.value;
+		body.name      = button_transfer_catc.name;
+		body.uin       = button_transfer_catc.value;
+		body.uinparent = localStorage.getItem("uincatC_trans");
 	
 		funcCommand(body, funcProcessOnlyInfo);
 	})
@@ -6321,9 +6297,28 @@
 						button_transfer_component.style.display = "none";
 						button_transfer_catc.value = obj.id;
 						button_transfer_catc.name = obj.text;
+
+						let body  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"100"};
+						funcCommand(body, funcProcessGetComponentsTree);
+
+						function funcProcessGetComponentsTree(result, respobj){
+							if( result === 0 ) return;
 						
-						removeOptionsSetValue("component_transfer_dir", "---")
-						addToDropdown(select_transfer_component, "dirC_list");
+							$('#modal_transfer_component_tree').jstree({
+								core: {
+									data: respobj.answ
+								},
+								"plugins" : ["state"],
+							}).bind("loaded.jstree", function () {
+								$(this).jstree("open_all");
+							})
+						
+							$('#modal_transfer_component_tree').on('changed.jstree', function (e, data) {
+								let objNode = data.instance.get_node(data.selected);
+								let uin = objNode.id;
+								localStorage.setItem("uincatC_trans", uin);
+							})
+						}
 					}
 				},
 				/*"ccp" : {

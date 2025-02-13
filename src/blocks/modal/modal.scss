@@ -1,10 +1,9 @@
 .modal {
   display: none;
   position: absolute;
-  z-index: 1;
   left: 0;
-  top: 15%;
-  left: 35%;
+  top: 10%;
+  left: 10%;
 
   &__moving{
     display: flex;
@@ -18,7 +17,7 @@
 
   &__content{
     position: relative;
-    background-color: var(--background_first);
+    background-color: var(--background_second);
     margin: auto;
     padding: 0px 10px;
     border: 1px solid var(--blue);
@@ -28,7 +27,7 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
-    overflow: auto;
+    overflow: hidden;
     resize: both;
   }
 
@@ -62,10 +61,15 @@
   &__table{
     margin-left: 5px;
     border: 1px solid var(--border);
+    height: 700px;
+    overflow-y: scroll;
+    resize: both;
   }
 
   &__tree{
-    margin-left: 5px;
+    height: 700px;
+    overflow-y: scroll;
+    resize: both;
   }
 
   &__footer{
@@ -115,9 +119,25 @@
 }
 
 #modal_select_component{
-  z-index: 100;
+  z-index: 10;
 }
 
 #modal_info_component{
-  z-index: 200;
+  z-index: 20;
+}
+
+#modal_typeselem{
+  z-index: 30;
+}
+
+#enums_modal{
+  z-index: 30;
+}
+
+#found_plus_modal{
+  z-index: 30;
+}
+
+#modal_transfer_component{
+  z-index: 30;
 }
