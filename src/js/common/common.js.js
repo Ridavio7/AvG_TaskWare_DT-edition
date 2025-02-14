@@ -1,34 +1,26 @@
 const url = "https://apitw.avantguard.pro:32100/json";
 
 export const funcCommand = (body, callbackfunc) => {
-    let xhr    = new XMLHttpRequest();
-    let jsbody = JSON.stringify( body );
-    let resp;
-
-    xhr.responseType = 'text';
-    xhr.onload = function (){
-        if (xhr.readyState === 4){
-            if (xhr.status === 200){
-                try{
-                    resp = JSON.parse(xhr.responseText);
-                    callbackfunc( 1, resp );
-                } catch (err){
-                    console.log(err);
-                }
-            } else {
-                callbackfunc( 0, null );
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded',
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Ошибка соединения!')
             }
-        }
-    };
-
-    xhr.onerror = function(){
-        console.log("Ошибка соединения!");
-        callbackfunc( 0, null );
-    }
-
-    xhr.open("POST", url );
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send(jsbody);
+            return response.json()
+        })
+        .catch((err) => {
+            console.log(err)
+            callbackfunc(0, null)
+        })
+        .then((data) => {
+            callbackfunc(1, data)
+        })
 }
 
 export const funcProcessOnlyInfo = (result, respobj) => {

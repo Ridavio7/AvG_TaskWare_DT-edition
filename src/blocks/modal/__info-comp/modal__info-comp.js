@@ -12,6 +12,7 @@ let component_input_name          = document.getElementById("component_name");
 let component_select_type         = document.getElementById("component_type");
 let component_button_type_info    = document.getElementById("component_type_info");
 let component_checkbox_funic      = document.getElementById("component_unic");
+let component_input_comment       = document.getElementById("component_comment");
 let component_input_remainder     = document.getElementById("component_remainder");
 let component_input_storage       = document.getElementById("component_storage");
 let component_button_add          = document.getElementById("component_add");
@@ -65,17 +66,19 @@ export const funcProcessInfoComponentsModalAdd = (uin) => {
 
 component_button_add.addEventListener("click", () => {
     let uincatC = localStorage.getItem("uincatC");
-    let body  =  {"user":"demo", "meth":"add", "obj":"components", "name":"", "uincatC":`${uincatC}`, "uintypes":"", "fUnic":""};
+    let body  =  {"user":"demo", "meth":"add", "obj":"components", "name":"", "uincatC":`${uincatC}`, "uintypes":"", "fUnic":"", "comment":""};
 
     let name_value = component_input_name.value;
     let type_value = component_select_type.value;
     let fUnic      = component_checkbox_funic;
+    let comment    = component_input_comment.value;
 
     if(name_value === ""){
         alert("Вы не заполнили все поля!");
     } else {
         body.name       = name_value;
         body.uintypes   = type_value;
+        body.comment       = comment;
     
         let fUnic_value = null;
         fUnic.checked === true ? fUnic_value = "1" : fUnic_value = "0";
@@ -97,7 +100,7 @@ export const funcInfoComponentsOpenModal = (uin) => {
 
 /* инфо о комплектующем в модальном окне */
 export const funcGetComponentInfo = (uin) => {
-    let body  =  {"user":"demo", "meth":"view","obj":"components", "count":"10", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
+    let body  =  {"user":"demo", "meth":"view","obj":"components", "count":"1", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
     funcCommand(body, funcProcessGetComponentInfo);
 }
 
@@ -105,31 +108,28 @@ const funcProcessGetComponentInfo = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Комплектующее ИНФО:", respobj);
 
-    document.getElementById("component_name").value = "";
-    //removeOptionsSetValue("component_type", "---");
+    document.getElementById("component_name").value    = "";
+    document.getElementById("component_comment").value = "";
+    let select = component_select_type; select.value   = "";
+    for (let i = 0; i < select.length; i++){select.remove(0)}
+
     removeOptionsSetValue("component_info_add_props_value_select", "---");
     document.getElementById("component_info_add_props_value_input").value = "";
-    let select = component_select_type;
-    select.value = "";
-    let len = select.length;
-    for (let i = 0; i < len; i++) {
-        select.remove(0);
-    }
 
     for (let key in respobj.answ){
-        let set       = respobj.answ[key];
-        let name      = set.name;
-        let fUnic     = set.fUnic;
-        let typelm    = set.typelm.name;
-        let typelmUin = set.typelm.uin;
-        let uin       = set.uin;
-        addComponentInfo(name, fUnic, typelm, typelmUin, uin);
+        let obj       = respobj.answ[key];
+        let name      = obj.name;
+        let typelm    = obj.typelm.name;
+        let typelmUin = obj.typelm.uin;
+        let fUnic     = obj.fUnic;
+        let comment   = obj.comment;
+        let uin       = obj.uin;
+        addComponentInfo(name, typelm, typelmUin, fUnic, comment, uin);
     }
 }
 
-const addComponentInfo = (name, fUnic, typelm, typelmUin, uin) => {
-    let input = document.getElementById("component_name");
-    input.value = name;
+const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, uin) => {
+    document.getElementById("component_name").value = name;
 
     funcGetComponentInfoTypesProps(typelmUin);
 
@@ -139,11 +139,7 @@ const addComponentInfo = (name, fUnic, typelm, typelmUin, uin) => {
     option.text = typelm;
     option.value = typelmUin;
     select.appendChild(option);
-
     addToDropdown(select, "typelm_list");
-
-    let button = document.getElementById("component_type_info");
-    button.value = typelmUin;
 
     let select_unic = component_checkbox_funic;
     if(fUnic === 1){
@@ -155,6 +151,10 @@ const addComponentInfo = (name, fUnic, typelm, typelmUin, uin) => {
         component_input_d1.disabled = true;
         component_input_d2.disabled = true;
     }
+
+    document.getElementById("component_comment").value = comment;
+
+    document.getElementById("component_type_info").value = typelmUin;
 
     component_table_props.style.display = "block";
     component_button_type_info.style.display = "block";
@@ -278,10 +278,11 @@ component_button_save.addEventListener('click', function () {
     inputIsChange = false;
     selectIsChange = false;
 
-    let body  =  {"user":"demo", "meth":"update", "obj":"components", "name":"", "uin":`${component_button_save.value}`, "fUnic":"", "uintypes":""};
+    let body  =  {"user":"demo", "meth":"update", "obj":"components", "name":"", "uin":`${component_button_save.value}`, "fUnic":"", "uintypes":"", "comment":""};
 
     let name_value     = document.getElementById("component_name").value;
     let uintypes_value = document.getElementById("component_type").value;
+    let comment_value  = document.getElementById("component_comment").value;
     let fUnic          = document.getElementById("component_unic");
     let fUnic_value    = null;
     fUnic.checked === true ? fUnic_value = "1" : fUnic_value = "0";
@@ -289,6 +290,7 @@ component_button_save.addEventListener('click', function () {
     body.name     = name_value;
     body.uintypes = uintypes_value;
     body.fUnic    = fUnic_value;
+    body.comment  = comment_value;
 
     funcCommand(body, funcProcessOnlyInfo);
     
