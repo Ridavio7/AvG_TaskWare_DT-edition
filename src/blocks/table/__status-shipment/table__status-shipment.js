@@ -5,7 +5,7 @@ export const funcGetStatuses = () => {
     funcCommand(body, funcProcessGetStatuses);
 }
 
-function funcProcessGetStatuses(result, respobj){
+const funcProcessGetStatuses = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Статусы:", respobj);
     let tb_id = "tb_statuses_shipment";
@@ -54,7 +54,7 @@ function funcProcessGetStatuses(result, respobj){
     })
 }
 
-function addStatusesRow(name, del, uin, tb_id){
+const addStatusesRow = (name, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";

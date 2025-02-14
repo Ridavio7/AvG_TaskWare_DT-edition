@@ -5,7 +5,7 @@ export const funcGetCoeffs = () => {
     funcCommand(body, funcProcessGetCoeffs);
 }
 
-function funcProcessGetCoeffs(result, respobj){
+const funcProcessGetCoeffs = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Приставки СИ:", respobj);
     let tb_id = "tb_componenets_coeffs";

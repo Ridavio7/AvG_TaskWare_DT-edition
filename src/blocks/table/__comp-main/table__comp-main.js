@@ -22,8 +22,6 @@ export const funcGetComponentsTree = () => {
 
     removeOptionsSetValue("found_main_select", "-- Выберите тип --");
     addToDropdown(found_select, 'typelm_list');
-
-    funcGetListDirC();
 }
 
 const funcProcessGetComponentsTree = (result, respobj) => {
@@ -80,19 +78,6 @@ const funcMarkNode = (arr) => {
             }
         }
     }
-}
-
-const funcGetListDirC = () => {
-    let body  =  {"user":"demo","obj":"catC0","meth":"view","count":"500","sort":"name"};
-
-    funcCommand(body, funcProcessfuncGetListDirC);
-}
-
-const funcProcessfuncGetListDirC = (result, respobj) => {
-    if( result === 0 ) return;
-    console.log("Все каталоги:", respobj);
-
-    localStorage.setItem("dirC_list", JSON.stringify(respobj.answ));
 }
 
 /* каталог комплектующих */
