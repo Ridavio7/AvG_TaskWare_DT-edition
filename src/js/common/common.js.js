@@ -112,11 +112,7 @@ export const makeSelect =
 /* очистка и установка опции select */
 export const removeOptionsSetValue = (selec, text) => {
     let mySelect = document.getElementById(selec);
-    mySelect.value = "";
-    let len = mySelect.length;
-    for (let i = 0; i < len; i++) {
-        mySelect.remove(0);
-    }
+    while (mySelect.options.length) {mySelect.options[0] = null};
     let option = document.createElement("option");
     option.text = text;
     option.value = "";

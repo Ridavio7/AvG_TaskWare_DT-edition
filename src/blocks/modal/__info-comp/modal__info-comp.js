@@ -78,7 +78,7 @@ component_button_add.addEventListener("click", () => {
     } else {
         body.name       = name_value;
         body.uintypes   = type_value;
-        body.comment       = comment;
+        body.comment    = comment;
     
         let fUnic_value = null;
         fUnic.checked === true ? fUnic_value = "1" : fUnic_value = "0";
@@ -108,10 +108,12 @@ const funcProcessGetComponentInfo = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Комплектующее ИНФО:", respobj);
 
-    document.getElementById("component_name").value    = "";
-    document.getElementById("component_comment").value = "";
-    let select = component_select_type; select.value   = "";
-    for (let i = 0; i < select.length; i++){select.remove(0)}
+    document.getElementById("component_name").value      = "";
+    document.getElementById("component_comment").value   = "";
+    document.getElementById("component_remainder").value = "";
+    document.getElementById("component_storage").value   = "";
+    let select = component_select_type;
+    while (select.options.length) {select.options[0] = null};
 
     removeOptionsSetValue("component_info_add_props_value_select", "---");
     document.getElementById("component_info_add_props_value_input").value = "";
@@ -123,12 +125,14 @@ const funcProcessGetComponentInfo = (result, respobj) => {
         let typelmUin = obj.typelm.uin;
         let fUnic     = obj.fUnic;
         let comment   = obj.comment;
+        let count     = obj.ost[0];
+        let store     = obj.ost[0];
         let uin       = obj.uin;
-        addComponentInfo(name, typelm, typelmUin, fUnic, comment, uin);
+        addComponentInfo(name, typelm, typelmUin, fUnic, comment, count, store, uin);
     }
 }
 
-const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, uin) => {
+const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, count, store, uin) => {
     document.getElementById("component_name").value = name;
 
     funcGetComponentInfoTypesProps(typelmUin);
@@ -152,7 +156,13 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, uin) => {
         component_input_d2.disabled = true;
     }
 
-    document.getElementById("component_comment").value = comment;
+    document.getElementById("component_comment").value   = comment;
+
+    count = count === undefined ? "---" : count.count;
+    document.getElementById("component_remainder").value = count;
+
+    store = store === undefined ? "---" : store.stor;
+    document.getElementById("component_storage").value   = store;
 
     document.getElementById("component_type_info").value = typelmUin;
 

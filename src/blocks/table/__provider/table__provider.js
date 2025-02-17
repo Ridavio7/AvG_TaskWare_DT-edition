@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
 import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js';
 
 export const funcGetDocpost = () => {
@@ -11,7 +11,7 @@ const funcProcessGetDocpost = (result, respobj) => {
     console.log("Док. поступления:", respobj);
 
     let tb_id = "tb_docpost";
-    clearTable(tb_id);
+    clearTableAll(tb_id);
 
     for (let key in respobj.answ){
         let obj = respobj.answ[key];
