@@ -36,6 +36,23 @@ export const addToDropdownPsevdo = (select_id, arr) => {
     }
 }
 
+export const addToDropdownPsevdoFoundPlus = (select_id, arr) => {
+    let psevdoSelect = document.getElementById(select_id);
+    for (let key in arr) {
+            let li = document.createElement("li");
+            let input = document.createElement("input");
+            input.type = "checkbox";
+            input.className = "checkbox";
+            input.id = `checkbox_${select_id}_${arr[key]}`;
+            let label = document.createElement("label");
+            label.htmlFor = `checkbox_${select_id}_${arr[key]}`;
+            label.textContent = arr[key];
+            li.append(input);
+            li.append(label);
+            psevdoSelect.append(li);
+    }
+}
+
 /* select фильтра вне справ */
 export const addToDropdownPsevdoAnotherList = (selec, arr, other) => {
     let psevdoSelect = document.getElementById(selec);

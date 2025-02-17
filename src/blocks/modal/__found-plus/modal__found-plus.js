@@ -1,5 +1,5 @@
 import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js.js';
-import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
+import {addToDropdownPsevdoFoundPlus, psevdoSelect} from '../../select/select.js';
 import {dragElement} from '../modal.js';
 import {funcFoundPlusComponents} from '../../table/__comp-found/table__comp-found.js';
 
@@ -108,7 +108,8 @@ const addFoundTypesProps = (name, uin, tb_id) => {
 
     cellName.innerHTML  = `<input class="input__type-text input__type-text_types-props-name" type="text" value="${name}" name=${uin} disabled>`;
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${uin}`, "count":"100", "sort":"uin", "all":"0"}
+    //let body  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${uin}`, "count":"100", "sort":"uin", "all":"0"}
+    let body = {"user":"demo", "meth":"view", "obj":"propsvals", "uintypes":"", "uinprops":`${uin}`, "count":"100"}
     funcCommand(body, funcProcessGetInfoEnums);
 
     function funcProcessGetInfoEnums(result, respobj){
@@ -123,7 +124,7 @@ const addFoundTypesProps = (name, uin, tb_id) => {
                         <ul class="select__items" id="list_enums_prop_${uin}_items"></ul>
                     </div>`
 
-            addToDropdownPsevdo(`list_enums_prop_${uin}_items`, respobj.answ);
+            addToDropdownPsevdoFoundPlus(`list_enums_prop_${uin}_items`, respobj.answ[0].vals);
             psevdoSelect(`list_enums_prop_${uin}`);
         }
     }
