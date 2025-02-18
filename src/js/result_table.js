@@ -29,7 +29,7 @@ import '../blocks/modal/modal.scss';
 import '../blocks/table/table.scss';
 import '../blocks/table/__task/table__task.scss';
 
-import {funcCommand, makeSelect, findForUpdateSelect, findForUpdateInput, addToDropdown } from '../js/common/common.js.js';
+import {funcCommand, makeSelect, findForUpdateSelect, findForUpdateInput, addToDropdown, funcProcessOnlyInfo} from '../js/common/common.js.js';
 
 window.onload = function(){
     funcGetResTable();
@@ -37,9 +37,9 @@ window.onload = function(){
 
 /* отправка запроса для выбранных сетов/изделий */
 function funcGetResTable(){
-    let zapros_sets = localStorage.getItem("zapros_set_value");
+    let zapros_sets     = localStorage.getItem("zapros_set_value");
     let zapros_products = localStorage.getItem("zapros_product_value");
-    let contragent = localStorage.getItem("contragent_uin");
+    let contragent      = localStorage.getItem("contragent_uin");
 
     let body  =  {"user":"demo", "meth":"ship", "contr":`${contragent}`, "zaprS":`${zapros_sets}`, "zaprP":`${zapros_products}`};
     funcCommand( body, funcProcessGetResTable );
@@ -87,7 +87,7 @@ function funcProcessGetResTableSets(result, respobj){
 
         let row_head   = table_head.insertRow(-1);
         row_head.className = "table";
-        row_head.innerHTML = '<td class="td table__content_head"><img src="assets/images/arrow_sidebar_2.svg"></td></td><td class="td">SN отгрузки</td><td class="td">№ в партии</td><td class="td">Комплект</td><td class="td">Статус</td><td class="td">Получатель</td><td class="td">Дата</td><td class="td">Примечание</td><td></td>';
+        row_head.innerHTML = '<td class="td td_arrow-slider"><img src="assets/images/arrow_sidebar_2.svg"></td></td><td class="td">SN отгрузки</td><td class="td">№ в партии</td><td class="td">Комплект</td><td class="td">Статус</td><td class="td">Получатель</td><td class="td">Дата</td><td class="td">Примечание</td><td></td>';
     
         div.append(table_head);
 
@@ -105,12 +105,12 @@ function funcProcessGetResTableSets(result, respobj){
         addSetsRow(NPset, SNset, name, status, statusUin, kontr, date, prim, uin, table_head, div_tb_id);
 
         let table_content = document.createElement("table");
-        table_content.className = "table table__content_set";
+        table_content.className = "table table__content-set";
         table_content.id = `table_content_set_${uin}`;
 
         let row_content = table_content.insertRow(-1);
         row_content.className = "table";
-        row_content.innerHTML = '<td class="td"></td><td class="td">SN изделия</td><td class="td">Изделие</td><td class="td">Цвет</td>';
+        row_content.innerHTML = '<td class="td">SN изделия</td><td class="td">Изделие</td><td class="td">Цвет</td>';
     
         table_head.after(table_content);
 
@@ -127,10 +127,10 @@ function funcProcessGetResTableSets(result, respobj){
     }
 
     //div.getElementsByClassName("table_head")[0].firstChild.firstChild.style.visibility = "visible";
-    div.querySelectorAll(".table__content_head").forEach(el=>{
-        el.addEventListener("click",e=>{
-            let action = e.currentTarget.parentNode.parentNode.parentNode.nextElementSibling.classList.toggle("active");
-            action === true ?e.srcElement.style.transform = "rotate(-180deg)" : e.srcElement.style.transform = "none";
+    div.querySelectorAll(".td_arrow-slider").forEach(el=>{
+        el.addEventListener("click", e =>{
+            let action = e.currentTarget.parentNode.parentNode.parentNode.nextElementSibling.classList.toggle("table__content-set_active");
+            action === true ? e.srcElement.style.transform = "rotate(-180deg)" : e.srcElement.style.transform = "none";
         })
     })
 
@@ -172,23 +172,23 @@ function addSetsRow(NPset, SNset, name, status, statusUin, kontr, date, prim, ui
     let newRow     = table_head.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellSlide  = newRow.insertCell(0); cellSlide.classList = "td";
-    let cellNPset  = newRow.insertCell(1); cellNPset.classList = "td";
-    let cellSNset  = newRow.insertCell(2); cellSNset.classList = "td";
-    let cellName   = newRow.insertCell(3); cellName.classList = "td";
+    let cellSlide  = newRow.insertCell(0); cellSlide.classList  = "td";
+    let cellNPset  = newRow.insertCell(1); cellNPset.classList  = "td";
+    let cellSNset  = newRow.insertCell(2); cellSNset.classList  = "td";
+    let cellName   = newRow.insertCell(3); cellName.classList   = "td";
     let cellStatus = newRow.insertCell(4); cellStatus.classList = "td";
-    let cellKontr  = newRow.insertCell(5); cellKontr.classList = "td";
-    let cellDate   = newRow.insertCell(6); cellDate.classList = "td";
-    let cellPrim   = newRow.insertCell(7); cellPrim.classList = "td";
+    let cellKontr  = newRow.insertCell(5); cellKontr.classList  = "td";
+    let cellDate   = newRow.insertCell(6); cellDate.classList   = "td";
+    let cellPrim   = newRow.insertCell(7); cellPrim.classList   = "td";
     let cellButton = newRow.insertCell(8); cellButton.classList = "td";
 
     makeSelect("ship_sets_status_select_", uin, status, statusUin, "statuses_list", "select", cellStatus);
     cellDate.innerHTML   = `<input class="input__type-text" type="date" value="${date}" name="ship_sets_date_${uin}">`;
     cellPrim.innerHTML   = `<input class="input__type-text" type="text" value="${prim}" name="ship_sets_prim_${uin}">`;
-    cellNPset.innerHTML = NPset;
-    cellSNset.innerHTML = SNset;
-    cellName.innerHTML  = name;
-    cellKontr.innerHTML = kontr;
+    cellNPset.innerHTML  = NPset;
+    cellSNset.innerHTML  = SNset;
+    cellName.innerHTML   = name;
+    cellKontr.innerHTML  = kontr;
     cellButton.innerHTML = `<button class="button__control button__control_update-ship-sets" style="background-color:inherit" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 
     let display_tb = document.getElementById(div_tb_id);
@@ -197,18 +197,19 @@ function addSetsRow(NPset, SNset, name, status, statusUin, kontr, date, prim, ui
 
 function addSetsRowChild(prod, SNprod, color, colorUin, uinPr, table_content){
     let newRow     = table_content.insertRow(-1);
+    newRow.classList = "tr";
 
+    //let cellButton = newRow.insertCell(0); cellButton.classList = "td";
+    let cellSNprod = newRow.insertCell(0); cellSNprod.classList = "td";
+    let cellProd   = newRow.insertCell(1); cellProd.classList   = "td";
+    let cellColor  = newRow.insertCell(2); cellColor.classList  = "td";
 
-    let cellButton = newRow.insertCell(0);
-    let cellSNprod = newRow.insertCell(1);
-    let cellProd   = newRow.insertCell(2);
-    let cellColor  = newRow.insertCell(3);
-
-    let cellProdText = document.createTextNode(prod); cellProd.append(cellProdText);
+    let cellProdText   = document.createTextNode(prod); cellProd.append(cellProdText);
     let cellSNprodText = document.createTextNode(SNprod); cellSNprod.append(cellSNprodText);
 
     let select = document.createElement("select");
     select.id = uinPr;
+    select.classList = "select";
     let option = document.createElement("option");
     option.text = color;
     option.value = colorUin;
@@ -227,27 +228,28 @@ function funcProcessGetResTableProducts(result, respobj){
 
     for (let key in respobj.answP) {
         let table_head = document.createElement("table");
+        table_head.classList = "table";
         let row_head   = table_head.insertRow(-1);
 
-        row_head.className = "td_ship";
-        row_head.innerHTML = '<td class="table_head"><img src="../images/arrow_down_sidebar.svg"></td><td>Диапазон SN изделий</td><td>Кол-во в партии</td><td>Изделие</td><td>Получатель</td>';
+        row_head.className = "table";
+        row_head.innerHTML = '<td class="td td_arrow-slider"><img src="assets/images/arrow_sidebar_2.svg"></td><td class="td">Диапазон SN изделий</td><td class="td">Кол-во в партии</td><td class="td">Изделие</td><td class="td">Получатель</td>';
     
         div.append(table_head);
         
-        let val = respobj.answP[key];
+        let val   = respobj.answP[key];
         let SNbeg = val.SNbeg;
         let SNend = val.SNend;
-        let NP = val.NP;
-        let prod = val.prod;
+        let NP    = val.NP;
+        let prod  = val.prod;
         let kontr = val.kontr;
-        let more = val.more;
+        let more  = val.more;
         addProductsRow(SNbeg, SNend, NP, prod, kontr, table_head, div_tb_id);
 
         let table_content = document.createElement("table");
-        table_content.className = "table_content_prod";
+        table_content.className = "table table__content-prod";
         let row_content = table_content.insertRow(-1);
-        row_content.className = "td_ship";
-        row_content.innerHTML = '<td></td><td>SN изделия</td><td>Доп. № изделия</td><td>№ в партии</td><td>Изделие</td><td>Цвет</td><td>Версия АПП</td><td>Версия ПО</td><td>МАС-адрес</td><td>Статус</td><td>Получатель</td><td>Дата</td><td>Примечание</td><td></td>';
+        row_content.className = "table";
+        row_content.innerHTML = '<td class="td">SN изделия</td><td class="td">Доп. № изделия</td><td class="td">№ в партии</td><td class="td">Изделие</td><td class="td">Цвет</td><td class="td">Версия АПП</td><td class="td">Версия ПО</td><td class="td">МАС-адрес</td><td class="td">Статус</td><td class="td">Получатель</td><td class="td">Дата</td><td class="td">Примечание</td><td></td>';
     
         table_head.after(table_content);
 
@@ -275,26 +277,48 @@ function funcProcessGetResTableProducts(result, respobj){
     }
 
     //div.getElementsByClassName("table_head")[0].firstChild.firstChild.style.visibility = "visible";
-    div.querySelectorAll(".table_head").forEach(el=>{
-        el.addEventListener("click",e=>{
-            let action = e.currentTarget.parentNode.parentNode.parentNode.nextElementSibling.classList.toggle("active");
-            action === true ?e.srcElement.style.transform = "rotate(-180deg)" : e.srcElement.style.transform = "none";
-        });
-    });
+    div.querySelectorAll(".td_arrow-slider").forEach(el=>{
+        el.addEventListener("click", e =>{
+            let action = e.currentTarget.parentNode.parentNode.parentNode.nextElementSibling.classList.toggle("table__content-prod_active");
+            action === true ? e.srcElement.style.transform = "rotate(-180deg)" : e.srcElement.style.transform = "none";
+        })
+    })
+
+    /* функция обновления */
+    let button_control_update = document.querySelectorAll(".button__control_update-ship-prod");
+    button_control_update.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"update", "obj":"shipProducts", "uincolor":"", "uinvapp":"", "uinvpp":"", "mac":"", "nprod":"","uinstatus":"", "date":"","prim":"", "uin":`${elem.value}`};
+
+            let target_table = wrapper_tb_shipment_products;
+            body.uincolor  = findForUpdateSelect(target_table, "ship_product_color_select_", elem.value);
+            body.uinvapp   = findForUpdateSelect(target_table, "ship_product_vapp_select_", elem.value);
+            body.uinvpp    = findForUpdateSelect(target_table, "ship_product_vpp_select_", elem.value);
+            body.uinstatus = findForUpdateSelect(target_table, "ship_product_status_select_", elem.value);
+            body.mac       = findForUpdateInput(`ship_product_mac_${elem.value}`, target_table);
+            body.nprod     = findForUpdateInput(`ship_product_nprod_${elem.value}`, target_table);
+            body.date      = findForUpdateInput(`ship_product_date_${elem.value}`, target_table);
+            body.prim      = findForUpdateInput(`ship_product_prim_${elem.value}`, target_table);
+        
+            funcCommand(body, funcProcessOnlyInfo);
+        })
+    })
 }
 
 function addProductsRow(SNbeg, SNend, NP, prod, kontr, table_head, div_tb_id){
     let newRow    = table_head.insertRow(-1);
-    let cellSlide = newRow.insertCell(0);
-    let cellSN    = newRow.insertCell(1);
-    let cellNP    = newRow.insertCell(2);
-    let cellprod  = newRow.insertCell(3);
-    let cellkontr = newRow.insertCell(4);
+    newRow.classList = "tr";
 
-    let cellSNtext    = document.createTextNode(`${SNbeg} - ${SNend}`); cellSN.append(cellSNtext);
-    let cellNPtext    = document.createTextNode(NP); cellNP.append(cellNPtext);
-    let cellprodtext  = document.createTextNode(prod); cellprod.append(cellprodtext);
-    let cellkontrtext = document.createTextNode(kontr); cellkontr.append(cellkontrtext);
+    let cellSlide = newRow.insertCell(0); cellSlide.classList = "td";
+    let cellSN    = newRow.insertCell(1); cellSN.classList    = "td";
+    let cellNP    = newRow.insertCell(2); cellNP.classList    = "td";
+    let cellprod  = newRow.insertCell(3); cellprod.classList  = "td";
+    let cellkontr = newRow.insertCell(4); cellkontr.classList = "td";
+
+    cellSN.innerHTML    = `${SNbeg} - ${SNend}`;
+    cellNP.innerHTML    = NP;
+    cellprod.innerHTML  = prod;
+    cellkontr.innerHTML = kontr;
 
     let display_tb = document.getElementById(div_tb_id);
     display_tb.style.display = "block";
@@ -303,51 +327,34 @@ function addProductsRow(SNbeg, SNend, NP, prod, kontr, table_head, div_tb_id){
 
 function addProductsRowChild(SNprod, nprod, NPset, name, color, colorUin, vapp, vappUin, vpp, vppUin, mac, status, statusUin, kontr, date, prim, uin, table_content){
     let newRow     = table_content.insertRow(-1);
-    let cellbutton = newRow.insertCell(0);
-    let cellSNprod = newRow.insertCell(1);
-    let cellNprod  = newRow.insertCell(2);
-    let cellNPset  = newRow.insertCell(3);
-    let cellName   = newRow.insertCell(4);
-    let cellColor  = newRow.insertCell(5);
-    let cellVapp   = newRow.insertCell(6);
-    let cellVpp    = newRow.insertCell(7);
-    let cellMac    = newRow.insertCell(8);
-    let cellStatus = newRow.insertCell(9);
-    let cellKontr  = newRow.insertCell(10);
-    let cellDate   = newRow.insertCell(11);
-    let cellPrim   = newRow.insertCell(12);
-    let cellButton = newRow.insertCell(13);
+    newRow.classList = "tr";
+
+    let cellSNprod = newRow.insertCell(0);  cellSNprod.classList = "td";
+    let cellNprod  = newRow.insertCell(1);  cellNprod.classList  = "td";
+    let cellNPset  = newRow.insertCell(2);  cellNPset.classList  = "td";
+    let cellName   = newRow.insertCell(3);  cellName.classList   = "td";
+    let cellColor  = newRow.insertCell(4);  cellColor.classList  = "td";
+    let cellVapp   = newRow.insertCell(5);  cellVapp.classList   = "td";
+    let cellVpp    = newRow.insertCell(6);  cellVpp.classList    = "td";
+    let cellMac    = newRow.insertCell(7);  cellMac.classList    = "td";
+    let cellStatus = newRow.insertCell(8);  cellStatus.classList = "td";
+    let cellKontr  = newRow.insertCell(9);  cellKontr.classList  = "td";
+    let cellDate   = newRow.insertCell(10); cellDate.classList   = "td";
+    let cellPrim   = newRow.insertCell(11); cellPrim.classList   = "td";
+    let cellButton = newRow.insertCell(12); cellButton.classList = "td";
 
     makeSelect("ship_product_color_select_", uin, color, colorUin, "colors_list", "select", cellColor);
     makeSelect("ship_product_vapp_select_", uin, vapp, vappUin, "verapp_list", "select", cellVapp);
     makeSelect("ship_product_vpp_select_", uin, vpp, vppUin, "verpp_list", "select", cellVpp);
     makeSelect("ship_product_status_select_", uin, status, statusUin, "statuses_list", "select", cellStatus);
 
-    cellMac.innerHTML   = `<input class="input__type-text" type="text" value="${mac}" name="ship_product_mac_${uin}">`;
-    cellDate.innerHTML  = `<input class="input__type-text" type="date" value="${date}" name="ship_product_date_${uin}">`;
-    cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="ship_product_prim_${uin}">`;
-    cellNprod.innerHTML = `<input class="input__type-text" type="text" value="${nprod}" name="ship_product_nprod_${uin}">`;
-
-    let cellSNprodText = document.createTextNode(SNprod); cellSNprod.append(cellSNprodText);
-    let cellNPsetText  = document.createTextNode(NPset); cellNPset.append(cellNPsetText);
-    let cellNameText   = document.createTextNode(name); cellName.append(cellNameText);
-    let cellKontrText  = document.createTextNode(kontr); cellKontr.append(cellKontrText);
-    cellButton.innerHTML = `<button class="button_control" style="background-color:inherit" onclick="funcUpdateProductsRowChild(${uin},${colorUin},${vappUin},${vppUin},${statusUin},this)"><img src="../images/button/chb/checkbox.svg"></button>`;
-}
-
-function funcUpdateProductsRowChild(uin, colorUin, vappUin, vppUin, statusUin, elem){
-    let body  =  {"user":"demo", "meth":"update", "obj":"shipProducts", "uincolor":"", "uinvapp":"", "uinvpp":"", "mac":"",
-                    "nprod":"","uinstatus":"", "date":"","prim":"", "uin":`${uin}`};
-
-    let target_table = wrapper_tb_shipment_products;
-    body.uincolor  = findForUpdateSelectFormula(uin, colorUin, target_table, "ship_product_color_select_");
-    body.uinvapp   = findForUpdateSelectFormula(uin, vappUin, target_table, "ship_product_vapp_select_");
-    body.uinvpp    = findForUpdateSelectFormula(uin, vppUin, target_table, "ship_product_vpp_select_");
-    body.uinstatus = findForUpdateSelectFormula(uin, statusUin, target_table, "ship_product_status_select_");
-    body.mac       = findForUpdateInput(`ship_product_mac_${uin}`, target_table);
-    body.nprod     = findForUpdateInput(`ship_product_nprod_${uin}`, target_table);
-    body.date      = findForUpdateInput(`ship_product_date_${uin}`, target_table);
-    body.prim      = findForUpdateInput(`ship_product_prim_${uin}`, target_table);
-
-    funcCommand(body, funcProcessOnlyInfo);
+    cellMac.innerHTML    = `<input class="input__type-text" type="text" value="${mac}" name="ship_product_mac_${uin}">`;
+    cellDate.innerHTML   = `<input class="input__type-text" type="date" value="${date}" name="ship_product_date_${uin}">`;
+    cellPrim.innerHTML   = `<input class="input__type-text" type="text" value="${prim}" name="ship_product_prim_${uin}">`;
+    cellNprod.innerHTML  = `<input class="input__type-text" type="text" value="${nprod}" name="ship_product_nprod_${uin}">`;
+    cellSNprod.innerHTML = SNprod;
+    cellNPset.innerHTML  = NPset;
+    cellName.innerHTML   = name;
+    cellKontr.innerHTML  = kontr;
+    cellButton.innerHTML = `<button class="button__control button__control_update-ship-prod" style="background-color:inherit" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 }

@@ -1,4 +1,3 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 
 let shipment_modal   = document.getElementById("shipment_modal");
@@ -48,8 +47,11 @@ shipment_button.addEventListener("click", () => {
 })
 
 shipment_button_sub.addEventListener("click", () => {
-    //window.location='result_table.html';
-    alert("Таблица отгрузки на разработке!");
+    if(zapros_set.length === 0 && zapros_product.length === 0){
+        alert("Вы ничего не выбрали!");
+    } else {
+        window.location='result_table.html';
+    }
 })
 
 const getCheckbox = (tb_id, input_id, zapros, forModal, storage_arr) => {

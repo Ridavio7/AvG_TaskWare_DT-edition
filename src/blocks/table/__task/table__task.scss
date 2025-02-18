@@ -12,3 +12,19 @@
     background-color: var(--background_first);
     border: none;
 }
+
+.table__content-set{
+    display: none;
+    
+    &_active{
+        display: table;
+    }
+}
+
+.table__content-prod{
+    display: none;
+    
+    &_active{
+        display: table;
+    }
+}
