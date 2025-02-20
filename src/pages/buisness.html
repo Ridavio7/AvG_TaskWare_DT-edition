@@ -1290,43 +1290,46 @@
                         <textarea class="input__type-text input__type-text_modal" id="component_comment" value=""></textarea>
                     </div>
                 </div>
-                <div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="component_remainder">Остаток:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="component_remainder" value="" disabled>
-                    </div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="component_storage">Склад:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="component_storage" value="" disabled>
-                    </div>
+                <div class="modal__table-wrapper_ost">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr class="tr">
+                                <td class="td td_active">Остаток</td>
+                                <td class="td td_active">Склад</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tb_modal_ost">
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal__body">
                 <table class="table" id="main_tb_modal_info_component">
-                <thead class="thead">
-                    <tr class="tr">
-                        <td class="td td_active">Инфо св-ва</td>
-                        <td class="td td_active">Название св-ва</td>
-                        <td class="td td_active">Ед. изм.</td>
-                        <td class="td td_active">Значение</td>
-                        <td class="td td_active">Погрешность, %</td>
-                        <td class="td td_active">Значение нач.</td>
-                        <td class="td td_active">Значение конеч.</td>
-                        <td class="td td_active"></td>
-                    </tr>
-                </thead>
-                <tbody id="tb_modal_info_component">
-                    <tr class="tr">
-                        <td class="td"></td>
-                        <td class="td"><select class="select" id="component_info_add_props_select"></select></td>
-                        <td class="td">---</td>
-                        <td class="td"><select class="select" id="component_info_add_props_value_select"><option value="">---</option></select><input class="input__type-text input__type-text_title" type="text" id="component_info_add_props_value_input" value="" style="display: none;"></td>
-                        <td class="td"><input class="input__type-text" type="text" id="component_info_add_perc" value="0"></td>
-                        <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
-                        <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>
-                        <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                    </tr>
-                </tbody>
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Инфо св-ва</td>
+                            <td class="td td_active">Название св-ва</td>
+                            <td class="td td_active">Ед. изм.</td>
+                            <td class="td td_active">Значение</td>
+                            <td class="td td_active">Погрешность, %</td>
+                            <td class="td td_active">Значение нач.</td>
+                            <td class="td td_active">Значение конеч.</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_modal_info_component">
+                        <tr class="tr">
+                            <td class="td"></td>
+                            <td class="td"><select class="select" id="component_info_add_props_select"></select></td>
+                            <td class="td">---</td>
+                            <td class="td"><select class="select" id="component_info_add_props_value_select"><option value="">---</option></select><input class="input__type-text input__type-text_title" type="text" id="component_info_add_props_value_input" value="" style="display: none;"></td>
+                            <td class="td"><input class="input__type-text" type="text" id="component_info_add_perc" value="0"></td>
+                            <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
+                            <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>
+                            <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="modal__footer">

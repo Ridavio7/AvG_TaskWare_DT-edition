@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcGetComponentInfoProps, addEventSelectProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
@@ -13,8 +13,7 @@ let component_select_type         = document.getElementById("component_type");
 let component_button_type_info    = document.getElementById("component_type_info");
 let component_checkbox_funic      = document.getElementById("component_unic");
 let component_input_comment       = document.getElementById("component_comment");
-let component_input_remainder     = document.getElementById("component_remainder");
-let component_input_storage       = document.getElementById("component_storage");
+let component_table_ost           = document.getElementById("tb_modal_ost");
 let component_button_add          = document.getElementById("component_add");
 let component_button_save         = document.getElementById("component_save");
 let component_button_add_props    = document.getElementById("component_info_add_button");
@@ -58,8 +57,6 @@ export const funcProcessInfoComponentsModalAdd = (uin) => {
     component_button_add.value = uin;
     component_button_add.style.display = "flex";
     component_button_save.style.display = "none";
-    component_input_remainder.parentElement.style.display = "none";
-    component_input_storage.parentElement.style.display = "none";
 
     addToDropdown(component_select_type, "typelm_list");
 }
@@ -110,8 +107,7 @@ const funcProcessGetComponentInfo = (result, respobj) => {
 
     document.getElementById("component_name").value      = "";
     document.getElementById("component_comment").value   = "";
-    document.getElementById("component_remainder").value = "";
-    document.getElementById("component_storage").value   = "";
+
     let select = component_select_type;
     while (select.options.length) {select.options[0] = null};
 
@@ -125,14 +121,13 @@ const funcProcessGetComponentInfo = (result, respobj) => {
         let typelmUin = obj.typelm.uin;
         let fUnic     = obj.fUnic;
         let comment   = obj.comment;
-        let count     = obj.ost[0];
-        let store     = obj.ost[0];
+        let ost       = obj.ost;
         let uin       = obj.uin;
-        addComponentInfo(name, typelm, typelmUin, fUnic, comment, count, store, uin);
+        addComponentInfo(name, typelm, typelmUin, fUnic, comment, ost, uin);
     }
 }
 
-const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, count, store, uin) => {
+const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, ost, uin) => {
     document.getElementById("component_name").value = name;
 
     funcGetComponentInfoTypesProps(typelmUin);
@@ -157,19 +152,24 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, count, store,
     }
 
     document.getElementById("component_comment").value   = comment;
-
-    count = count === undefined ? "---" : count.count;
-    document.getElementById("component_remainder").value = count;
-
-    store = store === undefined ? "---" : store.stor;
-    document.getElementById("component_storage").value   = store;
-
     document.getElementById("component_type_info").value = typelmUin;
+
+    let tb_id = "tb_modal_ost";
+    clearTableAll(tb_id);
+
+    if(ost.length != 0){
+        for (let key in ost){
+            let obj   = ost[key];
+            let count = obj.count;
+            let store = obj.stor;
+            addComponentOst(count, store, tb_id);
+        }
+    } else{
+        addComponentOst("---", "---", tb_id);
+    }
 
     component_table_props.style.display = "block";
     component_button_type_info.style.display = "block";
-    component_input_remainder.parentElement.style.display = "flex";
-    component_input_storage.parentElement.style.display = "flex";
 
     component_button_add_props.value = "";
     component_button_save.value = "";
@@ -189,6 +189,18 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, count, store,
             elem.addEventListener('change', () => {selectIsChange = true});
         });
     }, 500)
+}
+
+const addComponentOst = (count, store, tb_id) => {
+    let tableRef = document.getElementById(tb_id);
+    let newRow   = tableRef.insertRow(-1);
+    newRow.classList = "tr";
+
+    let cellCount  = newRow.insertCell(0); cellCount.classList = "td";
+    let cellStore  = newRow.insertCell(1); cellStore.classList = "td";
+
+    cellCount.innerHTML = count;
+    cellStore.innerHTML = store;
 }
 
 /* переключение типа комплектующего с удалением всех его свойств */
