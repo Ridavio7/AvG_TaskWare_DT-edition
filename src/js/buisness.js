@@ -81,8 +81,8 @@ import {funcGetStatusDoc} from '../blocks/table/__status-document/table__status-
 
 window.onload = function(){
     updateDirectory();
-    returnTabsBuisness();
     funcGetShipProductsAll();
+    returnTabsBuisness();
 }
 
 const returnTabsBuisness = () => {

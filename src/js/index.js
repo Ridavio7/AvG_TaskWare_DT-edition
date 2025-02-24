@@ -42,7 +42,7 @@ window.onload = function(){
 import {funcCommand} from '../js/common/common.js.js';
 
 function funcGetContragents(){
-    let body  =  {"user":"demo", "meth":"view", "obj":"contragents", "count":"100"};
+    let body  =  {"user":"demo", "meth":"view", "obj":"contragents", "count":"1000"};
     funcCommand(body, funcProcessGetContragents);
 }
 
@@ -52,17 +52,18 @@ function funcProcessGetContragents(result, respobj){
     let select_id = "task_contragents";
 
     for (let key in respobj.answ) {
-        let set = respobj.answ[key];
-        let name = set.name;
-        let del = set.del;
-        let uin = set.uin;
-        addToDropdownContragents(name, del, uin, select_id);
+        let obj  = respobj.answ[key];
+        let name = obj.name;
+        let buy  = obj.buy
+        let del  = obj.del;
+        let uin  = obj.uin;
+        addToDropdownContragents(name, buy, del, uin, select_id);
     }
 }
 
-function addToDropdownContragents(name, del, uin, select_id){
+function addToDropdownContragents(name, buy, del, uin, select_id){
     let select = document.getElementById(select_id);
-    if(del === 0){
+    if(del === 0 && buy === 1){
         let newOption = new Option(name, uin);
         select.append(newOption);
     }
