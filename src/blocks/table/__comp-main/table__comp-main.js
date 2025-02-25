@@ -32,33 +32,35 @@ const funcProcessGetComponentsTree = (result, respobj) => {
         core: {
             data: respobj.answ
         },
-        "plugins" : [ "state", "unique", "contextmenu", "dnd" ],
+        "plugins" : [ "state", "unique", "contextmenu" ],
     }).bind("loaded.jstree", function () {
         $(this).jstree("open_all");
     })
 
     $('#jstree_div').on('changed.jstree', function (e, data) {
         let objNode = data.instance.get_node(data.selected);
-    
-        let uin = objNode.id;
-        localStorage.setItem("uincatC", uin);
-    
-        let tb_id = "tb_components_tree";
-        clearTableAll(tb_id);
-    
-        let table = document.getElementById(tb_id);
-        let row_head   = table.insertRow(-1);
-        row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uin}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
-    
-        funcGetComponents(uin);
-    
-        funcMarkNode(respobj.answDop);
 
-        let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-tree");
-        button_control_add_comp_tree.addEventListener("click", (elem) => {
-            funcProcessInfoComponentsModalAdd(elem.value);
-        })
-    });
+        if(objNode.id != undefined){
+            let uin = objNode.id;
+            localStorage.setItem("uincatC", uin);
+        
+            let tb_id = "tb_components_tree";
+            clearTableAll(tb_id);
+        
+            let table = document.getElementById(tb_id);
+            let row_head   = table.insertRow(-1);
+            row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uin}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
+        
+            funcGetComponents(uin);
+        
+            funcMarkNode(respobj.answDop);
+    
+            let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-tree");
+            button_control_add_comp_tree.addEventListener("click", (elem) => {
+                funcProcessInfoComponentsModalAdd(elem.value);
+            })
+        }
+    })
 
     $('#jstree_div').on('click.jstree', function (){
         funcMarkNode(respobj.answDop);
@@ -154,3 +156,23 @@ const addComponents = (name, fUnic, typelm, del, uin, tb_id) => {
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_mdel-component" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/arrow_sidebar_1.svg"></button>`;
 }
+
+document.getElementById("sort_components").addEventListener('change', function(){
+    $('#jstree_div').jstree("destroy");
+
+    let option = this.selectedIndex;
+    switch (option){
+        case 0:
+        let body0  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"1000"};
+        funcCommand(body0, funcProcessGetComponentsTree);
+        break;
+        case 1:
+        let body1  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"1000", "sort":"name"};
+        funcCommand(body1, funcProcessGetComponentsTree);
+        break;
+        case 2:
+        let body2  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"1000", "asort":"name"};
+        funcCommand(body2, funcProcessGetComponentsTree);
+        break;
+    }
+});

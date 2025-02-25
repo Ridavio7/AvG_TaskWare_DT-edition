@@ -916,6 +916,13 @@
                         <button id="sub_create_node"></button>
                     </div>
                     <div class="modal__tree">
+                        <div class="select__wrapper">
+                            <select class="select select__sort" id="sort_components">
+                                <option value="">Сортировка &#8661;</option>
+                                <option value="">По названию &#8659;</option>
+                                <option value="">По названию &#8657;</option>
+                            </select>
+                        </div>
                         <div id="jstree_div"></div>
                     </div>
                     <div class="modal__table">
@@ -923,7 +930,7 @@
                             <thead class="thead">
                                 <tr class="tr">
                                     <td class="td td_active"></td>
-                                    <td class="td td_active">Абстрактный</td>
+                                    <td class="td td_active">Абстр.</td>
                                     <td class="td td_active">Комплектующее</td>
                                     <td class="td td_active">Тип</td>
                                     <td class="td td_active"></td>
