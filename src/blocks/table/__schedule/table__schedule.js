@@ -1,4 +1,4 @@
-import {funcCommand, addToDropdown, clearTable, makeSelect} from '../../../js/common/common.js'
+import {funcCommand, addToDropdown, clearTable, makeSelect, removeOptionsSetValue, funcProcessOnlyInfo, highlightButtonSave} from '../../../js/common/common.js'
 
 export const funcGetGrfShipSets = () => {
     let currYear = localStorage.getItem("curr_year");
@@ -14,6 +14,7 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
     console.log("График:", respobj);
 
     let select_sets = document.getElementById("select_add_grf_set");
+    removeOptionsSetValue("select_add_grf_set", "-- Выберите --");
     addToDropdown(select_sets, "sets_list");
 
     let tb_id = "tb_grf";
@@ -60,6 +61,49 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
                             m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12,
                             r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12);
     }
+
+    /* функция удаления */
+    let button_control_mdel = document.querySelectorAll(".button__control_mdel-schedule");
+    button_control_mdel.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"mdel", "obj":"grfShipSets", "uin":`${elem.value}`};
+
+            if(elem.style.background === "red"){
+                elem.style.background = "inherit";
+            } else {
+                elem.style.background = "red"
+            }
+        
+            funcCommand(body, funcProcessOnlyInfo);
+        })
+    })
+
+    /* функция обновления */
+    let button_control_update = document.querySelectorAll(".button__control_update-schedule");
+    button_control_update.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"update", "obj":"grfShipSets", "uin":`${elem.value}`, "uinset":"", "year":"" ,"m1":"", "m2":"", "m3":"", "m4":"", "m5":"", "m6":"", "m7":"", "m8":"", "m9":"", "m10":"", "m11":"", "m12":""};
+
+            body.uinset = document.getElementById(`grf_set_select__${elem.value}`).value;
+            body.year   = document.getElementById("grf_year").value;
+            body.m1     = document.getElementById(`grf_input_m1_${elem.value}`).value;
+            body.m2     = document.getElementById(`grf_input_m2_${elem.value}`).value;
+            body.m3     = document.getElementById(`grf_input_m3_${elem.value}`).value;
+            body.m4     = document.getElementById(`grf_input_m4_${elem.value}`).value;
+            body.m5     = document.getElementById(`grf_input_m5_${elem.value}`).value;
+            body.m6     = document.getElementById(`grf_input_m6_${elem.value}`).value;
+            body.m7     = document.getElementById(`grf_input_m7_${elem.value}`).value;
+            body.m8     = document.getElementById(`grf_input_m8_${elem.value}`).value;
+            body.m9     = document.getElementById(`grf_input_m9_${elem.value}`).value;
+            body.m10    = document.getElementById(`grf_input_m10_${elem.value}`).value;
+            body.m11    = document.getElementById(`grf_input_m11_${elem.value}`).value;
+            body.m12    = document.getElementById(`grf_input_m12_${elem.value}`).value;
+        
+            funcCommand(body, funcProcessOnlyInfo);
+            highlightButtonSave(elem);
+            setTimeout(function(){funcGetGrfShipSets()}, 100); 
+        })
+    })
 }
 
 function addGrfShipSetsRow(num, msum, rsum, uinSet, nameSet, del, uin, tb_id,
@@ -117,48 +161,12 @@ function addGrfShipSetsRow(num, msum, rsum, uinSet, nameSet, del, uin, tb_id,
     cellRsum.innerHTML = rsum;
     
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control" onclick="funcUpdateRowGrfShipSets(${uin},'${uinSet}',this)"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control ${bx_color}" onclick="funcMdelRowGrfShipSets('${uin}',this)"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
-}
-
-/* функция удаления графика */
-function funcMdelRowGrfShipSets(uin, elem){
-    let body  =  {"user":"demo", "meth":"mdel", "obj":"grfShipSets", "uin":`${uin}`};
-
-    if(elem.style.background === "red"){
-        elem.style.background = "inherit";
-    } else {
-        elem.style.background = "red"
-    }
-
-    funcCommand(body, funcProcessOnlyInfo);
-}
-
-/* функция обновления графика */
-function funcUpdateRowGrfShipSets(uin, uinSet, elem){
-    let body  =  {"user":"demo", "meth":"update", "obj":"grfShipSets", "uin":`${uin}`, "uinset":"", "year":"" ,"m1":"", "m2":"", "m3":"", "m4":"", "m5":"", "m6":"", "m7":"", "m8":"", "m9":"", "m10":"", "m11":"", "m12":""};
-
-    body.uinset = document.getElementById(`grf_set_select_${uinSet}_${uin}`).value;
-    body.year = document.getElementById("grf_year").value;
-    body.m1   = document.getElementById(`grf_input_m1_${uin}`).value;
-    body.m2   = document.getElementById(`grf_input_m2_${uin}`).value;
-    body.m3   = document.getElementById(`grf_input_m3_${uin}`).value;
-    body.m4   = document.getElementById(`grf_input_m4_${uin}`).value;
-    body.m5   = document.getElementById(`grf_input_m5_${uin}`).value;
-    body.m6   = document.getElementById(`grf_input_m6_${uin}`).value;
-    body.m7   = document.getElementById(`grf_input_m7_${uin}`).value;
-    body.m8   = document.getElementById(`grf_input_m8_${uin}`).value;
-    body.m9   = document.getElementById(`grf_input_m9_${uin}`).value;
-    body.m10  = document.getElementById(`grf_input_m10_${uin}`).value;
-    body.m11  = document.getElementById(`grf_input_m11_${uin}`).value;
-    body.m12  = document.getElementById(`grf_input_m12_${uin}`).value;
-
-    funcCommand(body, funcProcessOnlyInfo);
-    highlightButtonSave(elem);
-    setTimeout(function(){funcGetGrfShipSets()}, 100); 
+    cellBtn.innerHTML = `<button class="button__control button__control_update-schedule" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel-schedule" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 /* функция добавления графика */
-function funcAddRowGrfShipSets(){
+let button_control_add_product = document.querySelector(".button__control_add-schedule");
+button_control_add_product.addEventListener("click", () => {
     let body  =  {"user":"demo", "meth":"add", "obj":"grfShipSets", "uinset":"", "year":"" , "m1":"", "m2":"", "m3":"", "m4":"", "m5":"", "m6":"", "m7":"", "m8":"", "m9":"", "m10":"", "m11":"", "m12":""};;
 
     let uinset_value = document.getElementById("select_add_grf_set").value;
@@ -182,11 +190,8 @@ function funcAddRowGrfShipSets(){
     } else {
         body.uinset = uinset_value;
         body.year = year_value;
-
-        //removeOptionsSetValue("select_add_grf_set", "-- Выберите комплект --");
-        //document.getElementById("input_add_sets_mt").value = "";
     
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetGrfShipSets()}, 100);
     }
-}
+})
