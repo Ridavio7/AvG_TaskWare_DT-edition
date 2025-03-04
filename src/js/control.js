@@ -14,6 +14,7 @@ import '../blocks/button/__tab/button__tab.js';
 import '../blocks/button/__select/button__select.scss'
 /* input */
 import '../blocks/input/__type-text/input__type-text.scss';
+import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
 /* select */

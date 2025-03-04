@@ -42,7 +42,9 @@
         border: 1px solid var(--border);
 
         &_visible .select__items{
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
     }
 

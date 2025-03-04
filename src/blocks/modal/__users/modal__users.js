@@ -11,9 +11,11 @@ let user_phone  = document.getElementById("user_phone");
 let user_login  = document.getElementById("user_login");
 let user_pass_f = document.getElementById("user_pass_first");
 let user_pass_s = document.getElementById("user_pass_second");
-let user_rights = document.getElementById("tb_user_rights");
 let user_save   = document.getElementById("user_save");
 let user_add    = document.getElementById("user_add");
+let user_table  = document.getElementById("tb_user_rights");
+
+let log_pass_change = 0;
 
 user_close.onclick = function(){
     user_modal.style.display = "none";
@@ -27,6 +29,8 @@ export const funcInfoUserOpenModal = (uin) => {
 
     user_save.style.display = "flex";
     user_add.style.display  = "none";
+    user_login.parentElement.parentElement.style.display = "block";
+    user_table.parentElement.style.display = "block";
 
     funcGetRightsUsersInfo();
     setTimeout(function(){funcGetUserInfo(uin)}, 100);
@@ -111,14 +115,26 @@ const addUserInfo = (name, jobName, jobUin, email, phone, rights, uin) => {
     }
 }
 
+user_login.addEventListener("change", () => {
+    log_pass_change += 1;
+})
+
+user_pass_f.addEventListener("change", () => {
+    log_pass_change += 1;
+})
+
+user_pass_s.addEventListener("change", () => {
+    log_pass_change += 1;
+})
+
 /* функция обновления пользователи */
 user_save.addEventListener("click", (evt) => {
-    let body  =  {"user":"demo", "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"4", "email":"", "phone":""};
+    let body1  =  {"user":"demo", "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
 
-    body.name   = user_name.value;
-    body.uinjob = user_job.value;
-    body.email  = user_email.value;
-    body.phone  = user_phone.value;
+    body1.name   = user_name.value;
+    body1.uinjob = user_job.value;
+    body1.email  = user_email.value;
+    body1.phone  = user_phone.value;
 
     let checkboxs = user_modal.getElementsByClassName("checkbox");
     let arr_rights = [];
@@ -128,10 +144,27 @@ user_save.addEventListener("click", (evt) => {
             arr_rights.push(+checkboxs[chb].value);
         }
     }
-    body.rights = `[${arr_rights}]`;
+    body1.rights = `[${arr_rights}]`;
 
-    funcCommand(body, funcProcessOnlyInfo);
+    funcCommand(body1, funcProcessOnlyInfo);
     setTimeout(function(){funcGetUsers()}, 100);
+
+    let body2 = { "user":"demo", "meth":"update", "obj":"uslog", "log":"", "psw1":"", "psw2":"", "uinuser":`${evt.currentTarget.value}`};
+
+    if(user_pass_f.value != user_pass_s.value){
+        alert("Введенные пароли не совпадают!");
+    } else if(log_pass_change > 0) {
+        console.log(log_pass_change);
+        body2.log  = user_login.value;
+        body2.psw1 = user_pass_f.value;
+        body2.psw2 = user_pass_s.value;
+
+        funcCommand(body2, funcProcessOnlyInfo);
+
+        log_pass_change = 0;
+    } else {
+        console.log(log_pass_change);
+    }
 })
 
 /* открытие добавления мод. окна пользователя */
@@ -141,6 +174,8 @@ button__control_add.addEventListener("click", () => {
 
     user_add.style.display  = "flex";
     user_save.style.display = "none";
+    user_login.parentElement.parentElement.style.display = "none";
+    user_table.parentElement.style.display = "none";
 
     funcProcessInfoUserOpenModalAdd();
     setTimeout(function(){funcGetRightsUsersInfo()}, 100);
