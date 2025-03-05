@@ -1,4 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcInfoProcessOpenModal} from '../../modal/__process/modal__process.js';
 
 export const funcGetProducts = () => {
     let body  =  {"user":"demo", "meth":"view", "obj":"products", "count":"100"};
@@ -51,6 +52,13 @@ const funcProcessGetProducts = (result, respobj) => {
             setTimeout(function(){funcGetProducts()}, 100);
         })
     })
+
+    let button_modal = document.querySelectorAll(".button__control_modal-process");
+    button_modal.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            funcInfoProcessOpenModal(elem.value);
+        })
+    })
 }
 
 const addProductsRow = (name, del, uin, tb_id) => {
@@ -58,9 +66,11 @@ const addProductsRow = (name, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName = newRow.insertCell(0); cellName.classList = "td";
-    let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td";
+    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td";
+    let cellName = newRow.insertCell(1); cellName.classList = "td";
+    let cellBtn  = newRow.insertCell(2); cellBtn.classList  = "td";
 
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-process" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="product_name_${uin}">`;
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";

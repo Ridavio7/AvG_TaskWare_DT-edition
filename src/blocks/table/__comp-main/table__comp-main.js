@@ -150,7 +150,7 @@ const addComponents = (name, fUnic, typelm, del, uin, tb_id) => {
     cellInfo.innerHTML = `<button class="button__control button__control_modal-component" value="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
     fUnic === 1 ? cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled checked><label for="chb_funic_${uin}"></label>` : 
                   cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled><label for="chb_funic_${uin}"></label>`;
-    cellName.innerHTML     = `<input class="input__type-text" type="text" value="${name}" id="component_name_${uin}" disabled>`;
+    cellName.innerHTML     = `${name}<input class="input__type-text" type="text" value="${name}" id="component_name_${uin}" disabled hidden>`;
     cellTypelm.innerHTML   = typelm;
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";

@@ -53,6 +53,7 @@ export const funcProcessInfoComponentsModalAdd = (uin) => {
     component_checkbox_funic.checked = false;
     component_table_props.style.display = "none";
     component_button_type_info.style.display = "none";
+    component_table_ost.parentElement.parentElement.style.display = "none";
 
     component_button_add.value = uin;
     component_button_add.style.display = "flex";
@@ -167,6 +168,8 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, ost, uin) => 
     } else{
         addComponentOst("---", "---", tb_id);
     }
+
+    component_table_ost.parentElement.parentElement.style.display = "block";
 
     component_table_props.style.display = "block";
     component_button_type_info.style.display = "block";

@@ -70,6 +70,7 @@
     margin-left: 5px;
     border: 1px solid var(--border);
     height: 700px;
+    width: 500px;
     overflow-y: scroll;
     resize: both;
   }
@@ -77,6 +78,7 @@
   &__table-wrapper_ost{
     max-height: 91px;
     overflow-y: scroll;
+    margin-left: 10px;
   }
 
   &__tree{
