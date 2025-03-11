@@ -34,26 +34,15 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     removeOptionsSetValue("tcardprods_add_select_proc", "---");
     addToDropdown(tcardprods_add_select_proc, "techproc_list")
 
-    if(respobj.answ === ''){
-        /*let compName = respobj.answDop.name;
-        let typeUin  = respobj.answDop.uintypes;
-        let propName = '---';
-        let propUin  = '';
-        let meas     = '---';
-        let del      = '';
-        clearTable(tb_id);
-        addInfoTcardprod(compName, typeUin, propName, propUin, meas, del, tb_id, respobj.answ);*/
-    } else {
-        for (let key in respobj.answ){
-            let obj          = respobj.answ[key];
-            let numb         = obj.numb;
-            let nametechproc = obj.name;
-            let uintechproc  = obj.uintechproc;
-            let fix          = obj.fix;
-            let uin          = obj.uin;
-            let del          = obj.del;
-            addInfoTcardprod(numb, nametechproc, uintechproc, fix, uin, del, tb_id);
-        }
+    for (let key in respobj.answ){
+        let obj          = respobj.answ[key];
+        let numb         = obj.numb;
+        let nametechproc = obj.name;
+        let uintechproc  = obj.uintechproc;
+        let fix          = obj.fix;
+        let uin          = obj.uin;
+        let del          = obj.del;
+        addInfoTcardprod(numb, nametechproc, uintechproc, fix, uin, del, tb_id);
     }
 
     /* кнопка добавления */
@@ -84,10 +73,11 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-tcardprods");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"tcardprods", "uinproduct":"", "uintechproc":`${elem.name}`, "numb":"", "fix":"", "uin":`${elem.value}`};
+            let body  =  {"user":"demo", "meth":"update", "obj":"tcardprods", "uinproduct":"", "uintechproc":"", "numb":"", "fix":"", "uin":`${elem.value}`};
 
             let target_table = tb_modal_tcardprods;
-            body.uinproduct  = findForUpdateSelect(target_table, "tcardprods_select_", elem.value);
+            body.uinproduct  = uinProdForAdd;
+            body.uintechproc = findForUpdateSelect(target_table, "tcardprods_select_", elem.value);
             body.numb        = findForUpdateInput(`tcardprods_numb_${elem.value}`, target_table);
             let checkbox     = document.getElementById(`tcardprods_fix_${elem.value}`);
             body.fix         = checkbox.checked === true ? "1" : "0";
@@ -115,5 +105,5 @@ const addInfoTcardprod = (numb, nametechproc, uintechproc, fix, uin, del, tb_id)
     cellFix.innerHTML  = `<input class="checkbox" type="checkbox" id="tcardprods_fix_${uin}" ${fix_checked}><label for="tcardprods_fix_${uin}"></label>` 
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update-tcardprods" value="${uin}" name="${uintechproc}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update-tcardprods" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 }
