@@ -22,7 +22,7 @@
                 <img class="header__main-logo" src="../blocks/header/img/logo.svg" alt="logo">
                 <img class="header__main-logo-little" src="../blocks/header/img/logo_lt.svg" alt="logo">
                 <ul class="header__list">
-                    <li><a class="header__link" href="index.html">Мои задачи</a></li>
+                    <li><a class="header__link" href="index.html">Задачи</a></li>
                     <li><a class="header__link header__link_check" href="buisness.html">Бизнес управление</a></li>
                     <li><a class="header__link" href="control.html">Контроль</a></li>
                     <li><a class="header__link" href="#">Чат</a></li>
@@ -67,7 +67,7 @@
                     <li class="sidebar__wrapper" id="sidebar_tablink_1">
                         <div class="sidebar__link shipment" id="link_shipment">
                             <div class="sidebar__title">
-                                <img class="sidebar__img" src="../blocks/sidebar/img/shipment.svg" alt="">
+                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/shipment.svg" alt="">
                                 <span class="sidebar__name">Отгрузка</span>
                             </div>
                             <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
@@ -81,7 +81,7 @@
                     <li class="sidebar__wrapper" id="sidebar_tablink_2">
                         <div class="sidebar__link production" id="link_production">
                             <div class="sidebar__title">
-                                <img class="sidebar__img" src="../blocks/sidebar/img/production.svg" alt="">
+                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/production.svg" alt="">
                                 <span class="sidebar__name">Производство</span>
                             </div>
                             <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
@@ -95,7 +95,7 @@
                         <a href="#provider">
                             <div class="sidebar__link provider sidebar__link_provider sidebar__link_no-child" id="link_provider">
                                 <div class="sidebar__title">
-                                    <img class="sidebar__img" src="../blocks/sidebar/img/provider.svg" alt="">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/provider.svg" alt="">
                                     <span class="sidebar__name">Поставка</span>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                     <li class="sidebar__wrapper" id="sidebar_tablink_4">
                         <div class="sidebar__link development" id="link_development">
                             <div class="sidebar__title">
-                                <img class="sidebar__img" src="../blocks/sidebar/img/development.svg" alt="">
+                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/development.svg" alt="">
                                 <span class="sidebar__name">Проектирование</span>
                             </div>
                             <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
@@ -117,7 +117,7 @@
                         <a href="#storage">
                             <div class="sidebar__link storage sidebar__link_no-child" id="link_storage">
                                 <div class="sidebar__title">
-                                    <img class="sidebar__img" src="../blocks/sidebar/img/storage.svg" alt="">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/storage.svg" alt="">
                                     <span class="sidebar__name">Склад</span>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                     <li class="sidebar__wrapper" id="sidebar_tablink_6">
                         <div class="sidebar__link directory_all" id="link_directory_all">
                             <div class="sidebar__title">
-                                <img class="sidebar__img" src="../blocks/sidebar/img/directory.svg" alt="">
+                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/directory.svg" alt="">
                                 <span class="sidebar__name">Справочники</span>
                             </div>
                             <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
@@ -641,9 +641,9 @@
                     </thead>
                     <tbody id="tb_plan">
                         <tr class="tr">
-                            <td class="td"><select class="select" id="select_add_plan_user"><option value="">-- Выберите изделие --</option></select></td>
+                            <td class="td"><select class="select" id="select_add_plan_product"><option value="">-- Выберите изделие --</option></select></td>
                             <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_count" value=""></td>
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_date" value=""></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="date" id="input_add_plan_date" value=""></td>
                             <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_prim" value=""></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-plan"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
@@ -660,7 +660,7 @@
                     <a href="#prod_mount/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справочник кат.</button></a>
                 </div>
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_process">
+                    <select class="select select__sort" id="sort_techproc">
                         <option value="">Сортировка &#8661;</option>
                         <option value="">По названию &#8659;</option>
                         <option value="">По названию &#8657;</option>
@@ -671,16 +671,18 @@
                 <table class="table">
                     <thead class="thead">
                         <tr class="tr">
+                            <td class="td td_active">Номер</td>
                             <td class="td td_active">Название тех. процесса</td>
                             <td class="td td_active">Фиксировать</td>
                             <td class="td td_active"></td>
                         </tr>
                     </thead>
-                    <tbody id="tb_process">
+                    <tbody id="tb_techproc">
                         <tr class="tr">
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_process_name" value=""></td>
-                            <td class="td"><input class="checkbox" type="checkbox" id="input_add_process_fix"><label for="input_add_process_fix"></label></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-process"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_numb" value=""></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_name" value=""></td>
+                            <td class="td"><input class="checkbox" type="checkbox" id="input_add_techproc_fix"><label for="input_add_techproc_fix"></label></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-techproc"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1672,30 +1674,30 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="modal_process">
+    <div class="modal" id="modal_tcardprods">
         <div class="modal__content">
-            <div class="modal__moving" id="modal_process_moving">
-                <span class="modal__close" id="close_process">&times;</span>
+            <div class="modal__moving" id="modal_tcardprods_moving">
+                <span class="modal__close" id="close_tcardprods">&times;</span>
             </div>
             <div class="modal__header">
 
             </div>
             <div class="modal__body">
-                <table class="table" id="main_tb_modal_process">
+                <table class="table" id="main_tb_modal_tcardprods">
                     <thead class="thead">
                         <tr class="tr">
-                            <td class="td td_active"><input class="input__type-text" type="text" id="process_title" value="" disabled></td>
-                            <td class="td td_active"></td>
-                        </tr>
-                        <tr class="tr">
+                            <td class="td td_active">Номер</td>
                             <td class="td td_active">Тех. процесс</td>
+                            <td class="td td_active">Фиксировать</td>
                             <td class="td td_active"></td>
                         </tr>
                     </thead>
-                    <tbody id="tb_modal_process">
+                    <tbody id="tb_modal_tcardprods">
                         <tr class="tr">
-                            <td class="td"><select class="select" id="process_add_select" name=""></select></td>
-                            <td class="td td_buttons-control"><button class="button__control" id="process_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="tcardprods_add_input_num" value=""></td>
+                            <td class="td"><select class="select" id="tcardprods_add_select_proc"></select></td>
+                            <td class="td"><input class="checkbox" type="checkbox" id="tcardprods_add_chb_fix"><label for="tcardprods_add_chb_fix"></label></td>
+                            <td class="td td_buttons-control"><button class="button__control" id="tcardprods_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
                 </table>

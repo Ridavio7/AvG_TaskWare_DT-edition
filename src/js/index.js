@@ -5,6 +5,7 @@ import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
 /* боковая панель */
 import '../blocks/sidebar/sidebar.scss';
+import '../blocks/sidebar/sidebar.js';
 import '../blocks/sidebar/__task/sidebar__task.scss';
 /* кнопки */
 import '../blocks/button/__control/button__control.scss';
@@ -28,7 +29,6 @@ import '../blocks/modal/modal.scss';
 import '../blocks/modal/__shipment/modal__shipment.js';
 /* таблицы */
 import '../blocks/table/table.scss';
-import '../blocks/table/__task/table__task.scss';
 
 import {funcGetSets} from '../blocks/table/__shipment-sets/table__shipment-sets.js';
 import {funcGetProducts} from '../blocks/table/__shipment-products/table__shipment-products.js';
