@@ -48,6 +48,7 @@ import {funcGetShipProductsAll} from '../blocks/table/__analysis-products-all/ta
 import {funcGetShipComponentsAll} from '../blocks/table/__analysis-components/table__analysis-components.js';
 
 /* монтаж/сборка */
+import {funcGetLentapp} from '../blocks/table/__production-lentapp/table__production-lentapp.js';
 import {funcGetPlan} from '../blocks/table/__production-plan/table__production-plan.js';
 import {funcGetTechproc} from '../blocks/table/__production-techproc/table__production-techproc.js';
 
@@ -250,7 +251,10 @@ addEventButtonTab(button_tab_analysis_comp, funcGetShipComponentsAll);
 let button_tab_sets_main       = document.querySelectorAll(".button__tab__first_sets_main");
 addEventButtonTab(button_tab_sets_main, funcGetSets);
 
-let button_tab_prod_plan   = document.querySelectorAll(".button__tab__first_plan");
+let button_tab_prod_lentapp    = document.querySelectorAll(".button__tab__first_events");
+addEventButtonTab(button_tab_prod_lentapp, funcGetLentapp);
+
+let button_tab_prod_plan       = document.querySelectorAll(".button__tab__first_plan");
 addEventButtonTab(button_tab_prod_plan, funcGetPlan);
 
 let button_tab_prod_techproc   = document.querySelectorAll(".button__tab__first_process");
