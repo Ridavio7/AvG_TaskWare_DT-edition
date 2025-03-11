@@ -101,4 +101,22 @@ button_control_add_product.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_techproc", "tb_techproc", "techproc", funcProcessGetTechproc);
+document.getElementById("sort_techproc").addEventListener('change', function(){
+    clearTable("tb_techproc");
+
+    let option = this.selectedIndex;
+    switch (option){
+        case 0:
+        let body0  =  {"user":"demo", "meth":"view", "obj":"techproc", "count":"5000", "sort":"numb"};
+        funcCommand(body0, funcProcessGetTechproc);
+        break;
+        case 1:
+        let body1  =  {"user":"demo", "meth":"view", "obj":"techproc", "count":"5000", "asort":"numb"};
+        funcCommand(body1, funcProcessGetTechproc);
+        break;
+        case 2:
+        let body2  =  {"user":"demo", "meth":"view", "obj":"techproc", "count":"5000", "sort":"numb"};
+        funcCommand(body2, funcProcessGetTechproc);
+        break;
+    }
+});

@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, removeOptionsSetValue, addToDropdown, findForUpdateSelect} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, removeOptionsSetValue, addToDropdown, findForUpdateSelect, clearTableAll} from '../../../js/common/common.js';
 
 export const funcGetPlan = () => {
     let body  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"1000", "sort":"date"};
@@ -113,4 +113,34 @@ button_control_add_product.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_plan", "tb_plan", "plan", funcProcessGetPlan);
+document.getElementById("sort_plan").addEventListener('change', function(){
+    clearTable("tb_plan");
+
+    let option = this.selectedIndex;
+    switch (option){
+        case 0:
+        let body0  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
+        funcCommand(body0, funcProcessGetPlan);
+        break;
+
+        case 1:
+        let body1  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "asort":"name"};
+        funcCommand(body1, funcProcessGetPlan);
+        break;
+
+        case 2:
+        let body2  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "sort":"name"};
+        funcCommand(body2, funcProcessGetPlan);
+        break;
+
+        case 3:
+        let body3  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "asort":"date"};
+        funcCommand(body3, funcProcessGetPlan);
+        break;
+
+        case 4:
+        let body4  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
+        funcCommand(body4, funcProcessGetPlan);
+        break;
+    }
+});
