@@ -31,18 +31,24 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     let tb_id = "tb_modal_tcardprods";
     clearTable(tb_id);
 
+    document.getElementById("tcardprods_title").value = "";
     removeOptionsSetValue("tcardprods_add_select_proc", "---");
     addToDropdown(tcardprods_add_select_proc, "techproc_list")
 
-    for (let key in respobj.answ){
-        let obj          = respobj.answ[key];
-        let numb         = obj.numb;
-        let nametechproc = obj.name;
-        let uintechproc  = obj.uintechproc;
-        let fix          = obj.fix;
-        let uin          = obj.uin;
-        let del          = obj.del;
-        addInfoTcardprod(numb, nametechproc, uintechproc, fix, uin, del, tb_id);
+    let prod = respobj.answDop.name;
+    if(respobj.answ === ""){
+        document.getElementById("tcardprods_title").value = prod;
+    } else {
+        for (let key in respobj.answ){
+            let obj          = respobj.answ[key];
+            let numb         = obj.numb;
+            let nametechproc = obj.name;
+            let uintechproc  = obj.uintechproc;
+            let fix          = obj.fix;
+            let uin          = obj.uin;
+            let del          = obj.del;
+            addInfoTcardprod(prod, numb, nametechproc, uintechproc, fix, uin, del, tb_id);
+        }
     }
 
     /* кнопка добавления */
@@ -89,7 +95,9 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     })
 }
 
-const addInfoTcardprod = (numb, nametechproc, uintechproc, fix, uin, del, tb_id) => {
+const addInfoTcardprod = (prod, numb, nametechproc, uintechproc, fix, uin, del, tb_id) => {
+    document.getElementById("tcardprods_title").value = prod;
+
     let tableRef = document.getElementById(tb_id);
     let newRow   = tableRef.insertRow(-1);
     newRow.classList = "tr";
