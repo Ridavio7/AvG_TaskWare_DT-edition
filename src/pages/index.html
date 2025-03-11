@@ -179,7 +179,47 @@
             </div>
         </div>
         <div class="sidebar__tabcontent" id="mount">
-
+            <div class="modal__header">
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_users">Пользователи:</label>
+                        <select class="select select_modal" id="mount_users"><option value=" ">-- Пользователи --</option></select>
+                    </div>
+                </div>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_prod">Изделия:</label>
+                        <select class="select select_modal" id="mount_prod"><option value=" ">-- Изделия --</option></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_procc">Тех. процесс:</label>
+                        <select class="select select_modal" id="mount_procc"><option value=" ">-- Тех. процесс --</option></select>
+                    </div>
+                </div>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_count">Количество:</label>
+                        <input class="input__type-text input__type-text_modal" type="number" id="mount_count" min="0">
+                    </div>
+                    <button class="button__control" id="mount_count_minus"><img class="button__control__img" src="../blocks/button/__control/img/minus.svg" alt=""></button>
+                    <button class="button__control" id="mount_count_plus"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button>
+                </div>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_date">Дата:</label>
+                        <input class="input__type-text input__type-text_modal" type="date" id="mount_date">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_time">Время:</label>
+                        <input class="input__type-text input__type-text_modal" type="time" id="mount_time">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_prim">Примечание:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="mount_prim">
+                    </div>
+                </div>
+            </div>
+            <button class="button__control button__control_modal" id="mount_button">Сохранить</button>
         </div>
     </div>
     <div class="modal" id="shipment_modal">

@@ -37,16 +37,18 @@ window.onload = function(){
     funcGetSets();
     funcGetProducts();
     funcGetContragents();
+    funcGetUsers();
+    funcGetProductpp();
 }
 
-import {funcCommand} from '../js/common/common.js.js';
+import {funcCommand, removeOptionsSetValue, funcProcessOnlyInfo} from '../js/common/common.js.js';
 
-function funcGetContragents(){
+const funcGetContragents = () => {
     let body  =  {"user":"demo", "meth":"view", "obj":"contragents", "count":"1000"};
     funcCommand(body, funcProcessGetContragents);
 }
 
-function funcProcessGetContragents(result, respobj){
+const funcProcessGetContragents = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Контрагенты:", respobj);
     let select_id = "task_contragents";
@@ -57,14 +59,108 @@ function funcProcessGetContragents(result, respobj){
         let buy  = obj.buy
         let del  = obj.del;
         let uin  = obj.uin;
-        addToDropdownContragents(name, buy, del, uin, select_id);
+        addToDropdownTaskSelect(name, buy, del, uin, select_id);
     }
 }
 
-function addToDropdownContragents(name, buy, del, uin, select_id){
+const funcGetUsers = () => {
+    let body  =  {"user":"demo", "meth":"view", "obj":"users", "count":"1000"};
+    funcCommand(body, funcProcessGetUsers);
+}
+
+const funcProcessGetUsers = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("Контрагенты:", respobj);
+    let select_id = "mount_users";
+
+    for (let key in respobj.answ) {
+        let obj  = respobj.answ[key];
+        let name = obj.name;
+        let buy  = 1;
+        let del  = obj.del;
+        let uin  = obj.uin;
+        addToDropdownTaskSelect(name, buy, del, uin, select_id);
+    }
+}
+
+const addToDropdownTaskSelect = (name, buy, del, uin, select_id) => {
     let select = document.getElementById(select_id);
     if(del === 0 && buy === 1){
         let newOption = new Option(name, uin);
         select.append(newOption);
     }
 }
+
+const funcGetProductpp = () => {
+    let body  =  {"user":"demo", "meth":"getproductpp", "count":"1000", "sort":"name"};
+    funcCommand(body, funcProcessGetProductpp);
+}
+
+const funcProcessGetProductpp = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("Изделия монтаж:", respobj);
+    let select_id = "mount_prod";
+
+    for (let key in respobj.answ) {
+        let obj  = respobj.answ[key];
+        let name = obj.name;
+        let buy  = 1;
+        let del  = 0;
+        let uin  = obj.uinproduct;
+        addToDropdownTaskSelect(name, buy, del, uin, select_id);
+    }
+}
+
+document.getElementById("mount_prod").addEventListener("change", (event) => {
+    let body  =  {"user":"demo", "meth":"getprocpp", "uinproduct":`${event.target.value}`};
+    funcCommand(body, funcProcessGetProc);
+})
+
+const funcProcessGetProc = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("Тех.проц.:", respobj);
+
+    let select_id = "mount_procc";
+    removeOptionsSetValue(select_id, "-- Тех. процесс --")
+    for (let key in respobj.answ) {
+        let obj  = respobj.answ[key];
+        let name = obj.name;
+        let buy  = 1;
+        let del  = 0;
+        let uin  = obj.uintechproc;
+        addToDropdownTaskSelect(name, buy, del, uin, select_id);
+    }
+}
+
+document.getElementById("mount_button").addEventListener("click", () => {
+    let body  =  {"user":"demo", "meth":"fixprocpp", "uinuser":"", "uinproduct":"", "uintechproc":"", "count":"", "datetm":"", "prim":""};
+
+    body.uinuser     = document.getElementById("mount_users").value;
+    body.uinproduct  = document.getElementById("mount_prod").value;
+    body.uintechproc = document.getElementById("mount_procc").value;
+    body.count       = document.getElementById("mount_count").value;
+    body.prim        = document.getElementById("mount_prim").value;
+    let date_value   = document.getElementById("mount_date").value.split('-').join("");
+    let time_value   = document.getElementById("mount_time").value;
+    body.datetm      = `${date_value} ${time_value}`;
+    
+    funcCommand(body, funcProcessOnlyInfo);
+
+    removeOptionsSetValue("mount_users", "-- Пользователи --");
+    funcGetUsers();
+    removeOptionsSetValue("mount_prod", "-- Изделия --");
+    funcGetProductpp();
+    removeOptionsSetValue("mount_procc", "-- Тех. процесс --");
+    document.getElementById("mount_count").value = "";
+    document.getElementById("mount_prim").value = "";
+    document.getElementById("mount_date").value = "";
+    document.getElementById("mount_time").value = "";
+})
+
+document.getElementById("mount_count_minus").addEventListener("click", () => {
+    document.getElementById("mount_count").stepDown();
+})
+
+document.getElementById("mount_count_plus").addEventListener("click", () => {
+    document.getElementById("mount_count").stepUp();
+})
