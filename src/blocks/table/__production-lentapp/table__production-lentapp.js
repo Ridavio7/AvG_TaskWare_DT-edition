@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, highlightButtonSave, makeSelect, clearTableAll} from '../../../js/common/common.js';
 
 export const funcGetLentapp = () => {
     let body  =  {"user":"demo", "meth":"view", "obj":"lentapp", "count":"100", "asort":"datetm"};
@@ -10,7 +10,7 @@ const funcProcessGetLentapp = (result, respobj) => {
     console.log("Лента:", respobj);
     
     let tb_id = "tb_events";
-    clearTable(tb_id);
+    clearTableAll(tb_id);
 
     let lentapp_list = respobj.answ;
     localStorage.setItem("lentapp_list", JSON.stringify(lentapp_list));
@@ -46,20 +46,27 @@ const funcProcessGetLentapp = (result, respobj) => {
         })
     })
 
-    /* функция обновления 
+    /* функция обновления */
     let button_control_update_lentapp = document.querySelectorAll(".button__control_update-lentapp");
     button_control_update_lentapp.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"lentapp", "name":"", "uincolor":"", "uin":`${elem.value}`};
+            let body  =  {"user":"demo", "meth":"update", "obj":"lentapp", "uinuser":"", "uinproduct":"", "uintechproc":"", "count":"", "datetm":"", "prim":"", "uin":`${elem.value}`};
 
-            let target_table = tb_lentapp_main;
-            body.name = findForUpdateInput(`lentapp_name_${elem.value}`, target_table);
+            let target_table = tb_events;
+            body.uinuser     = findForUpdateSelect(target_table, "lentapp_user_select_", elem.value);
+            body.uinproduct  = findForUpdateSelect(target_table, "lentapp_prod_select_", elem.value);
+            body.uintechproc = findForUpdateSelect(target_table, "lentapp_techproc_select_", elem.value);
+            body.count       = findForUpdateInput(`lentapp_count_${elem.value}`, target_table);
+            body.prim        = findForUpdateInput(`lentapp_prim_${elem.value}`, target_table);
+            let date_value   = document.getElementsByName(`lentapp_date_${elem.value}`)[0].value.split('-').join("");
+            let time_value   = document.getElementsByName(`lentapp_time_${elem.value}`)[0].value;
+            body.datetm      = `${date_value} ${time_value}`;
         
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
             setTimeout(function(){funcGetLentapp()}, 100);
         })
-    })*/
+    })
 }
 
 const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameuser, uinuser, count, datetm, prim, del, uin, tb_id) => {
