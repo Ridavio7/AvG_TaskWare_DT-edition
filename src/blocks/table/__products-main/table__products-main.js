@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
-import {funcInfoProcessOpenModal} from '../../modal/__process/modal__process.js';
+import {funcInfoTcardprodsOpenModal} from '../../modal/__tcardprods/modal__tcardprods.js';
 
 export const funcGetProducts = () => {
     let body  =  {"user":"demo", "meth":"view", "obj":"products", "count":"100"};
@@ -56,7 +56,7 @@ const funcProcessGetProducts = (result, respobj) => {
     let button_modal = document.querySelectorAll(".button__control_modal-process");
     button_modal.forEach((elem) => {
         elem.addEventListener("click", () => {
-            funcInfoProcessOpenModal(elem.value);
+            funcInfoTcardprodsOpenModal(elem.value);
         })
     })
 }
