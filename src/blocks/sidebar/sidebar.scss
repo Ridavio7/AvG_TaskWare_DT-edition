@@ -2,7 +2,7 @@
     position: sticky;
     min-width: 203px;
     max-width: 203px;
-    min-height: 710px;
+
     margin: 10px 0px 10px 5px;
     padding: 5px 0px;
     user-select: none;
@@ -179,6 +179,10 @@ body.collapsed .sidebar {
 
 body.collapsed .sidebar__link {
     justify-content: center;
+}
+
+body.collapsed .sidebar__img {
+    margin-right: 0px;
 }
 
 body.collapsed .sidebar__expand-button__img {

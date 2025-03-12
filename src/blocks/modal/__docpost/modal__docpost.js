@@ -163,14 +163,14 @@ const addDocpostInfoTable = (name, compontName, compontUin, measName, measUin, s
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName    = newRow.insertCell(0); cellName.classList    = "td td_full-content";
+    let cellName    = newRow.insertCell(0); cellName.classList    = "td";
     let cellCompont = newRow.insertCell(1); cellCompont.classList = "td";
     let cellCount   = newRow.insertCell(2); cellCount.classList   = "td";
     let cellMeas    = newRow.insertCell(3); cellMeas.classList    = "td";
     let cellStorage = newRow.insertCell(4); cellStorage.classList = "td";
     let cellBtn     = newRow.insertCell(5); cellBtn.classList     = "td";
 
-    cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" disabled>`;
+    cellName.innerHTML = name;
     if(compontName === ''){
         cellCompont.innerHTML = `<button class="button__select button__select_docpost" id="docpost_component_${uin}" value="${compontUin}" name="">-- Выбрать --</button>`;
     } else {

@@ -6,7 +6,7 @@
     font-size: 16px;
     background-color: initial;
     border: none;
-    width: 100%;
+    max-width: 200px;
     text-align: center;
 
     &_title{
@@ -20,4 +20,19 @@
     &__label{
         font-family: 'Roboto', sans-serif;
     }
+
+    &_width_100{
+        width: 100%;
+        max-width: none;
+    }
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+    filter: var(--img_color);
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: var(--img_color);
+    cursor: pointer;
 }

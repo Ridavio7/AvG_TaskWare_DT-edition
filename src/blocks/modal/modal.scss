@@ -27,7 +27,7 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
-    overflow: hidden;
+    overflow-y: scroll;
     resize: both;
   }
 
@@ -36,6 +36,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     padding: 5px 0px;
 
     &_component-select{
@@ -64,13 +65,13 @@
   &__body{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   &__table{
     margin-left: 5px;
     border: 1px solid var(--border);
     height: 700px;
-    width: 500px;
     overflow-y: scroll;
     resize: both;
   }
@@ -78,6 +79,7 @@
   &__table-wrapper_ost{
     overflow-y: scroll;
     max-height: 137px;
+    margin-bottom: 5px;
   }
 
   &__tree{
@@ -154,4 +156,16 @@
 
 #modal_transfer_component{
   z-index: 30;
+}
+
+@media (max-height: 830px) {
+  .modal{
+    &__table{
+      height: 500px;
+    }
+
+    &__tree{
+      height: 500px;
+    }
+  }
 }

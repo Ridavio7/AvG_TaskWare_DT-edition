@@ -18,7 +18,6 @@ import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
 import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
-import '../blocks/input/__type-time/input__type-time.scss';
 import '../blocks/input/__type-radio/input__type-radio.scss';
 /* select */
 import '../blocks/select/select.scss';
@@ -39,6 +38,9 @@ window.onload = function(){
     funcGetContragents();
     funcGetUsers();
     funcGetProductpp();
+
+    document.getElementById("mount_date").value = new Date().toISOString().split('T')[0];
+    document.getElementById("mount_time").value = new Date().toLocaleTimeString();
 }
 
 import {funcCommand, removeOptionsSetValue, funcProcessOnlyInfo} from '../js/common/common.js.js';

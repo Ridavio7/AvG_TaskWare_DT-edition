@@ -73,7 +73,7 @@ const addPlanRow = (uinprod, nameprod, count, date, prim, del, uin, tb_id) => {
 
     let cellProd  = newRow.insertCell(0); cellProd.classList  = "td";
     let cellCount = newRow.insertCell(1); cellCount.classList = "td";
-    let cellDate  = newRow.insertCell(2); cellCount.classList = "td";
+    let cellDate  = newRow.insertCell(2); cellDate.classList = "td";
     let cellPrim  = newRow.insertCell(3); cellPrim.classList  = "td";
     let cellBtn   = newRow.insertCell(4); cellBtn.classList   = "td";
 
