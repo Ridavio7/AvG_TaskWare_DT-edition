@@ -1427,29 +1427,69 @@
                         <select class="select select_modal" id="component_type"></select>
                         <button class="button__control" id="component_type_info" value=""><img class="button__control__img" src="../blocks/button/__control/img/info.svg" alt=""></button>
                     </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="component_comment">Примечание:</label>
+                        <textarea class="input__type-text input__type-text_modal" id="component_comment" value=""></textarea>
+                    </div>
                 </div>
                 <div>
                     <div class="modal__input-wrapper">
                         <input class="checkbox" type="checkbox" id="component_unic">
                         <label for="component_unic">Абстрактный</label>
                     </div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="component_comment">Примечание:</label>
-                        <textarea class="input__type-text input__type-text_modal" id="component_comment" value=""></textarea>
+                    <div class="modal__table-wrapper_ost">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active">Остаток</td>
+                                    <td class="td td_active">Склад</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_modal_ost">
+    
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="modal__table-wrapper_ost">
-                    <table class="table">
-                        <thead class="thead">
-                            <tr class="tr">
-                                <td class="td td_active">Остаток</td>
-                                <td class="td td_active">Склад</td>
-                            </tr>
-                        </thead>
-                        <tbody id="tb_modal_ost">
-
-                        </tbody>
-                    </table>
+                <div>
+                    <div class="modal__table-wrapper_ost">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active">Название</td>
+                                    <td class="td td_active">Ссылка</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_modal_link">
+                                <tr class="tr">
+                                    <td class="td"></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_name"></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_link"></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_link" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal__table-wrapper_ost">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active">Название</td>
+                                    <td class="td td_active">Картинка</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_modal_img">
+                                <tr class="tr">
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_img_name"></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_img_img"></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_img" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal__body">
@@ -1472,9 +1512,9 @@
                             <td class="td"><select class="select" id="component_info_add_props_select"></select></td>
                             <td class="td">---</td>
                             <td class="td"><select class="select" id="component_info_add_props_value_select"><option value="">---</option></select><input class="input__type-text input__type-text_title" type="text" id="component_info_add_props_value_input" value="" style="display: none;"></td>
-                            <td class="td"><input class="input__type-text" type="text" id="component_info_add_perc" value="0"></td>
-                            <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
-                            <td class="td"><input class="input__type-text input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_perc" value="0"></td>
+                            <td class="td"><input class="input__type-text input__type-text_title input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
+                            <td class="td"><input class="input__type-text input__type-text_title input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>
                             <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
