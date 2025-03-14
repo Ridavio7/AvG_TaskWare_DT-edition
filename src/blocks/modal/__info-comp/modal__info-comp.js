@@ -173,7 +173,7 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, ost, uin) => 
 
     component_table_ost.parentElement.parentElement.style.display = "block";
 
-    component_table_props.style.display = "block";
+    component_table_props.style.display = "inline-table";
     component_button_type_info.style.display = "block";
 
     component_button_add_props.value = "";

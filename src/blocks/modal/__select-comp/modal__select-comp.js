@@ -150,7 +150,8 @@ function addComponentsSelect(name, typelm, del, uin, tb_id){
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-comp-info" value="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
 
-    cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" id="select_component_name_${uin}" disabled>`;
+    cellName.innerHTML = `${name}`;
+    cellName.id = `select_component_name_${uin}`;
     cellType.innerHTML = typelm;
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";

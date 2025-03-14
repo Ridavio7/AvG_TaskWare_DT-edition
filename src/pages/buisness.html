@@ -1062,40 +1062,42 @@
                         </div>
                         <div id="jstree_div"></div>
                     </div>
-                    <div class="modal__table">
-                        <table class="table">
-                            <thead class="thead">
-                                <tr class="tr">
-                                    <td class="td td_active"></td>
-                                    <td class="td td_active">Абстр.</td>
-                                    <td class="td td_active">Комплектующее</td>
-                                    <td class="td td_active">Тип</td>
-                                    <td class="td td_active"></td>
-                                </tr>
-                            </thead>
-                            <tbody id="tb_components_tree">
-            
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal__table">
-                        <table class="table">
-                            <thead class="thead">
-                                <tr class="tr">
-                                    <td class="td td_text-align_left">Поиск</td>
-                                    <td class="td"></td>
-                                    <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
-                                </tr>
-                                <tr class="tr">
-                                    <td class="td td_active"><select class="select" id="found_main_select"></select></td>
-                                    <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_main_input" value="" placeholder="Комплектующее"></td>
-                                    <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
-                                </tr>
-                            </thead>
-                            <tbody id="found_main_table">
-
-                            </tbody>
-                        </table>
+                    <div class="modal__table-wrapper">
+                        <div class="modal__table">
+                            <table class="table">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td td_active"></td>
+                                        <td class="td td_active">Абстр.</td>
+                                        <td class="td td_active">Комплектующее</td>
+                                        <td class="td td_active">Тип</td>
+                                        <td class="td td_active"></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb_components_tree">
+                
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal__table">
+                            <table class="table">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td td_text-align_left">Поиск</td>
+                                        <td class="td"></td>
+                                        <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class="td td_active"><select class="select" id="found_main_select"></select></td>
+                                        <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_main_input" value="" placeholder="Комплектующее"></td>
+                                        <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="found_main_table">
+    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1412,10 +1414,10 @@
         </div>
     </div>
     <div class="modal" id="modal_info_component">
+        <div class="modal__moving" id="modal_info_component_moving">
+            <span class="modal__close" id="close_info">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="modal_info_component_moving">
-                <span class="modal__close" id="close_info">&times;</span>
-            </div>
             <div class="modal__header">
                 <div>
                     <div class="modal__input-wrapper">
@@ -1527,63 +1529,64 @@
         </div>
     </div>
     <div class="modal" id="modal_select_component">
+        <div class="modal__moving" id="modal_select_component_moving">
+            <span class="modal__close" id="close_component_select">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="modal_select_component_moving">
-                <span class="modal__close" id="close_component_select">&times;</span>
-            </div>
             <div class="modal__body">
                 <div class="modal__tree">
                     <div id="modal_select_component_tree"></div>
                 </div>
-                <div class="modal__table">
-                    <table class="table">
-                        <thead class="thead">
-                            <tr class="tr">
-                                <td class="td td_active">Выбрать</td>
-                                <td class="td td_active">Инфо</td>
-                                <td class="td td_active">Комплектующее</td>
-                                <td class="td td_active">Тип</td>
-                                <td class="td td_active">Пометка</td>
-                            </tr>
-                        </thead>
-                        <tbody id="tb_component_select">
-            
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead class="thead">
-                            <tr class="tr">
-                                <td class="td td_text-align_left">Поиск</td>
-                                <td class="td"></td>
-                                <td class="td"><button class="button__control button__control_active" id="found_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
-                            </tr>
-                            <tr class="tr">
-                                <td class="td td_active"><select class="select" id="found_select"></select></td>
-                                <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_input" value="" placeholder="Комплектующее"></td>
-                                <td class="td td_active"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
-                            </tr>
-                            <tr class="tr">
-                                <td class="td td_active"></td>
-                                <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_1c_input" value="" placeholder="Комплектующее 1C"></td>
-                                <td class="td td_active"><button class="button__control button__control_active" id="found_1c_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
-                            </tr>
-                        </thead>
-                        <tbody id="found_table">
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal__footer">
+                <div class="modal__table-wrapper">
+                    <div class="modal__table">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active">Инфо</td>
+                                    <td class="td td_active">Комплектующее</td>
+                                    <td class="td td_active">Тип</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_component_select">
                 
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal__table">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_text-align_left">Поиск</td>
+                                    <td class="td"></td>
+                                    <td class="td"><button class="button__control button__control_active" id="found_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active"><select class="select" id="found_select"></select></td>
+                                    <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_input" value="" placeholder="Комплектующее"></td>
+                                    <td class="td td_active"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_1c_input" value="" placeholder="Комплектующее 1C"></td>
+                                    <td class="td td_active"><button class="button__control button__control_active" id="found_1c_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                </tr>
+                            </thead>
+                            <tbody id="found_table">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal" id="modal_transfer_component">
+        <div class="modal__moving" id="modal_transfer_component_moving">
+            <span class="modal__close" id="close_component_transfer">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="modal_transfer_component_moving">
-                <span class="modal__close" id="close_component_transfer">&times;</span>
-            </div>
             <div class="modal__body">
                 <div class="">
                     <input class="input__type-text input__type-text_modal" type="text" id="component_transfer_name" value="" name="" disabled>
@@ -1600,10 +1603,10 @@
         </div>
     </div>
     <div class="modal" id="modal_info_docpost">
+        <div class="modal__moving" id="modal_info_docpost_moving">
+            <span class="modal__close" id="close_info_docpost">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="modal_info_docpost_moving">
-                <span class="modal__close" id="close_info_docpost">&times;</span>
-            </div>
             <div class="modal__header">
                 <div>
                     <div class="modal__input-wrapper">
@@ -1673,10 +1676,10 @@
         </div>
     </div>
     <div class="modal" id="modal_typeselem">
+        <div class="modal__moving" id="modal_typeselem_moving">
+            <span class="modal__close" id="close_typeselem">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="modal_typeselem_moving">
-                <span class="modal__close" id="close_typeselem">&times;</span>
-            </div>
             <div class="modal__header">
 
             </div>
@@ -1709,10 +1712,10 @@
         </div>
     </div>
     <div class="modal" id="modal_tcardprods">
+        <div class="modal__moving" id="modal_tcardprods_moving">
+            <span class="modal__close" id="close_tcardprods">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="modal_tcardprods_moving">
-                <span class="modal__close" id="close_tcardprods">&times;</span>
-            </div>
             <div class="modal__header">
 
             </div>
@@ -1745,10 +1748,10 @@
         </div>
     </div>
     <div class="modal" id="enums_modal">
+        <div class="modal__moving" id="enums_modal_moving">
+            <span class="modal__close" id="enums_close">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="enums_modal_moving">
-                <span class="modal__close" id="enums_close">&times;</span>
-            </div>
             <div class="modal__header">
 
             </div>
@@ -1778,10 +1781,10 @@
         </div>
     </div>
     <div class="modal" id="found_plus_modal">
+        <div class="modal__moving" id="found_plus_modal_moving">
+            <span class="modal__close" id="found_plus_close">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="found_plus_modal_moving">
-                <span class="modal__close" id="found_plus_close">&times;</span>
-            </div>
             <div class="modal__header">
 
             </div>

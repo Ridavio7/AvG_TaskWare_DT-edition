@@ -138,11 +138,11 @@ export const funcFindAnchor = (value, name) => {
     }
 
     setTimeout(() => {
-        document.getElementById(`${found_input_id}${name}`).parentElement.parentElement.className += " tr_mark";
+        document.getElementById(`${found_input_id}${name}`).parentElement.className += " tr_mark";
     }, 300)
 
     setTimeout(() => {
         let tr = document.getElementById(`${found_input_id}${name}`);
-        tr.parentElement.parentElement.className = tr.parentElement.parentElement.className.replace(" tr_mark", "");
+        tr.parentElement.className = tr.parentElement.className.replace(" tr_mark", "");
     }, 3000)
 }

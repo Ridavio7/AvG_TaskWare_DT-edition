@@ -9,9 +9,9 @@
     display: flex;
     justify-content: flex-end;
     background-color: var(--background_sidebar);
-    margin: 0px -10px;
+    border: 1px solid var(--blue);
+    border-bottom: none;
     padding: 0px 10px;
-    margin-bottom: 5px;
     cursor: move;
   }
 
@@ -20,7 +20,9 @@
     background-color: var(--background_second);
     margin: auto;
     padding: 0px 10px;
+    padding-top: 5px;
     border: 1px solid var(--blue);
+    border-top: none;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
               0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
@@ -37,10 +39,15 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 5px 0px;
 
     &_component-select{
       justify-content: flex-end;
+    }
+
+    &_task{
+      background-color: var(--background_sidebar);
+      padding: 5px;
+      margin-bottom: 5px;
     }
   }
 
@@ -55,7 +62,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
 
     &_center{
       margin: 0px 25px;
@@ -64,26 +70,39 @@
 
   &__body{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
   }
 
   &__table{
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     border: 1px solid var(--border);
-    height: 700px;
+    height: 710px;
+    width: 495px;
     overflow-y: scroll;
     resize: both;
+  }
+
+  &__table-wrapper{
+    display: flex;
+  }
+
+  &__table-wrapper_task{
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &__table-wrapper_ost{
     overflow-y: scroll;
     max-height: 137px;
     margin-bottom: 5px;
+    margin-left: 5px;
   }
 
   &__tree{
-    height: 700px;
+    height: 710px;
+    width: 500px;
     overflow-y: scroll;
     resize: both;
   }
@@ -158,14 +177,46 @@
   z-index: 30;
 }
 
+@media (max-width: 1750px) {
+  .modal{
+    &__table{
+      height: 350px;
+    }
+
+    &__table-wrapper{
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 1135px) {
+  .modal{
+    &__table-wrapper_task{
+      flex-direction: column;
+    }
+  }
+}
+
 @media (max-height: 830px) {
   .modal{
     &__table{
-      height: 500px;
+      height: 300px;
     }
 
     &__tree{
-      height: 500px;
+      height: 610px;
+    }
+  }
+}
+
+@media (max-height: 730px) {
+  .modal{
+    &__table{
+      height: 250px;
+    }
+
+    &__tree{
+      height: 510px;
     }
   }
 }

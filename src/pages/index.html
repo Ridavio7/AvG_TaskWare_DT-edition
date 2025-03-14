@@ -88,11 +88,19 @@
             </div>
         </nav>
         <div class="sidebar__tabcontent" id="shipment">
-            <div class="modal__header">
-                <div>
+            <div class="modal__header modal__header_task">
+                <div class="modal__table-wrapper_task">
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_admin">Админ:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="task_admin" value="Иванов Иван Иванович">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_name">Название:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Задача №1">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_status">Статус:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_status" value="В работе">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_contragents">Контрагент:</label>
@@ -103,38 +111,26 @@
                         <input class="input__type-text input__type-text_modal" type="text" id="task_comment" value="Главная задача">
                     </div>
                 </div>
-                <div>
+                <div class="modal__table-wrapper_task">
                     <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="task_name">Название:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Задача №1">
-                    </div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="task_status">Статус:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="task_status" value="В работе">
-                    </div>
-                </div>
-                <div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="task_date_first">Дата начала:</label>
+                        <label class="input__type-text__label" for="task_date_first">Срок:</label>
                         <input class="input__type-text input__type-text_modal" type="date" id="task_date_first" value="2024-07-05">
                     </div>
                     <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="task_time_first">Время начала:</label>
+                        <label class="input__type-text__label" for="task_time_first"></label>
                         <input class="input__type-text input__type-text_modal" type="time" id="task_time_first" value="15:00">
                     </div>
-                </div>
-                <div>
                     <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="task_date_second">Дата окончания:</label>
+                        <label class="input__type-text__label" for="task_date_second"></label>
                         <input class="input__type-text input__type-text_modal" type="date" id="task_date_second" value="2024-07-10">
                     </div>
                     <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="task_time_second">Время окончания:</label>
+                        <label class="input__type-text__label" for="task_time_second"></label>
                         <input class="input__type-text input__type-text_modal" type="time" id="task_time_second" value="15:00">
                     </div>
                 </div>
             </div>
-            <div class="modal__body" style="flex-direction: column;">
+            <div style="flex-direction: column;">
                 <div class="sidebar__tabcontent__first-tabs" style="justify-content: space-between">
                     <div>
                         <a href="#sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Комплекты</button></a>
@@ -177,11 +173,57 @@
             </div>
         </div>
         <div class="sidebar__tabcontent" id="mount">
-            <div class="modal__header">
+            <div class="modal__header modal__header_task">
+                <div class="modal__table-wrapper_task">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_admin">Админ:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_admin" value="Иванов Иван Иванович">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_name">Название:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Задача №1">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_status">Статус:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_status" value="В работе">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_comment">Комментарий:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_comment" value="Главная задача">
+                    </div>
+                </div>
+                <div class="modal__table-wrapper_task">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_date_first">Срок:</label>
+                        <input class="input__type-text input__type-text_modal" type="date" id="task_date_first" value="2024-07-05">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_time_first"></label>
+                        <input class="input__type-text input__type-text_modal" type="time" id="task_time_first" value="15:00">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_date_second"></label>
+                        <input class="input__type-text input__type-text_modal" type="date" id="task_date_second" value="2024-07-10">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_time_second"></label>
+                        <input class="input__type-text input__type-text_modal" type="time" id="task_time_second" value="15:00">
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body">
                 <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_users">Пользователи:</label>
                         <select class="select select_modal" id="mount_users"><option value=" ">-- Пользователи --</option></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_date">Дата:</label>
+                        <input class="input__type-text input__type-text_modal" type="date" id="mount_date">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_time">Время:</label>
+                        <input class="input__type-text input__type-text_modal" type="time" id="mount_time">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_prod">Изделия:</label>
@@ -191,24 +233,12 @@
                         <label class="input__type-text__label" for="mount_procc">Тех. процесс:</label>
                         <select class="select select_modal" id="mount_procc"><option value=" ">-- Тех. процесс --</option></select>
                     </div>
-                </div>
-                <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_count">Количество:</label>
                         <input class="input__type-text input__type-text_modal" type="number" id="mount_count" min="0">
                     </div>
                     <button class="button__control" id="mount_count_minus"><img class="button__control__img" src="../blocks/button/__control/img/minus.svg" alt=""></button>
                     <button class="button__control" id="mount_count_plus"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button>
-                </div>
-                <div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="mount_date">Дата:</label>
-                        <input class="input__type-text input__type-text_modal" type="date" id="mount_date">
-                    </div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="mount_time">Время:</label>
-                        <input class="input__type-text input__type-text_modal" type="time" id="mount_time">
-                    </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_prim">Примечание:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="mount_prim">
