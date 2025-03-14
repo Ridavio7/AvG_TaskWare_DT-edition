@@ -6,6 +6,7 @@ import {funcGetComponentInfoTypesProps} from '../../table/__comp-typesprops/tabl
 import {funcGetDirC} from '../__select-comp/modal__select-comp.js';
 import {funcInfoTypeselemOpenModal} from '../../modal/__typeselem/modal__typeselem.js';
 import {funcGetCompontlinks} from '../../table/__comp-compontlinks/table__comp-compontlinks.js';
+import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table____comp-compontimgs.js';
 
 export const modal_info_component = document.getElementById("modal_info_component");
 let span_info_component           = document.getElementById("close_info");
@@ -95,7 +96,7 @@ export const funcInfoComponentsOpenModal = (uin) => {
 
     funcGetComponentInfo(uin);
     setTimeout(function(){funcGetComponentInfoProps(uin)}, 100);
-    setTimeout(function(){funcGetCompontlinks(uin)}, 120);
+    setTimeout(function(){funcGetCompontlinks(uin); funcGetCompontimgs(uin)}, 120);
 }
 
 /* инфо о комплектующем в модальном окне */
