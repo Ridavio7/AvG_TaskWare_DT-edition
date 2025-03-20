@@ -16,20 +16,20 @@ const funcProcessGetShipComponentsAll = (result, respobj) => {
     let tb_id = "tb_analysis_components_all";
 
     for (let key in respobj.answ) {
-        let val = respobj.answ[key];
-        let SNset = val.SNset;
-        let NPset = val.NPset;
-        let set = val.set;
-        let product = val.product;
+        let val        = respobj.answ[key];
+        let SNset      = val.SNset;
+        let NPset      = val.NPset;
+        let set        = val.set;
+        let product    = val.product;
         let innproduct = val.innprod;
-        let count = val.count;
-        let component = val.compont;
-        let status = val.status.name;
-        let uinstatus = val.status.uin;
-        let kontr = val.kontr;
-        let date = val.date;
-        let prim = val.prim;
-        let uin = val.uin;
+        let count      = val.count;
+        let component  = val.compont;
+        let status     = val.status.name;
+        let uinstatus  = val.status.uin;
+        let kontr      = val.kontr;
+        let date       = val.date;
+        let prim       = val.prim;
+        let uin        = val.uin;
         addRowColumsShipComponentsAll(SNset, NPset, set, product, innproduct, count, component, status, uinstatus, kontr, date, prim, uin, tb_id);
     }
 }
@@ -53,17 +53,16 @@ function addRowColumsShipComponentsAll(SNset, NPset, set, product, innproduct, c
 
     makeSelect("shipcomponents_all_select_", uin, status, uinstatus, "statuses_list", "select", cellStatus);
 
-    cellDate.innerHTML = `<input class="input__type-text" type="date" value="${date}" name="shipcomponents_all_date_${uin}">`;
-    cellPrim.innerHTML = `<input class="input__type-text" type="text" value="${prim}" name="shipcomponents_all_prim_${uin}">`;
-
-    let cellSNsetText      = document.createTextNode(SNset);      cellSNset.appendChild(cellSNsetText);
-    let cellNPsetText      = document.createTextNode(NPset);      cellNPset.appendChild(cellNPsetText);
-    let cellSetText        = document.createTextNode(set);        cellSet.appendChild(cellSetText);
-    let cellProductText    = document.createTextNode(product);    cellProduct.appendChild(cellProductText);
-    let cellCountText      = document.createTextNode(count);      cellCount.appendChild(cellCountText);
-    let cellCompText       = document.createTextNode(component);  cellComp.appendChild(cellCompText);
-    let cellInnproductText = document.createTextNode(innproduct); cellInnproduct.appendChild(cellInnproductText);
-    let cellKontrText      = document.createTextNode(kontr);      cellKontr.appendChild(cellKontrText);
+    cellSNset.innerHTML      = SNset;
+    cellNPset.innerHTML      = NPset;
+    cellSet.innerHTML        = set;
+    cellProduct.innerHTML    = product;
+    cellCount.innerHTML      = count;
+    cellComp.innerHTML       = component;
+    cellInnproduct.innerHTML = innproduct;
+    cellKontr.innerHTML      = kontr
+    cellDate.innerHTML       = `<input class="input__type-text" type="date" value="${date}" name="shipcomponents_all_date_${uin}">`;
+    cellPrim.innerHTML       = `<input class="input__type-text" type="text" value="${prim}" name="shipcomponents_all_prim_${uin}">`;
 }
 
 addToDropdownPsevdo("filt_analysis_components_all_sets_items", JSON.parse(localStorage.getItem("sets_list")));
