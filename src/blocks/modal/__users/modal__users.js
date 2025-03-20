@@ -30,7 +30,7 @@ export const funcInfoUserOpenModal = (uin) => {
     user_save.style.display = "flex";
     user_add.style.display  = "none";
     user_login.parentElement.parentElement.style.display = "block";
-    user_table.parentElement.style.display = "block";
+    user_table.parentElement.style.display = "table";
 
     funcGetRightsUsersInfo();
     setTimeout(function(){funcGetUserInfo(uin)}, 100);

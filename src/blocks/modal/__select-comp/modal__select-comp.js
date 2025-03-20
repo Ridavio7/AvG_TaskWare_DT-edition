@@ -155,5 +155,5 @@ function addComponentsSelect(name, typelm, del, uin, tb_id){
     cellType.innerHTML = typelm;
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control" style="background:${bx_color}" disabled><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/arrow_sidebar_1.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control" style="background:${bx_color}" disabled><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
 }

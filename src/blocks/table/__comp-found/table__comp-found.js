@@ -108,7 +108,7 @@ const addFoundComponents = (name, name1c, uin, nametype, uincatC, found_table) =
         cellName.innerHTML = name;
     }
 
-    cellBtn.innerHTML  = `<button class="button__control button__control_found-comp" value="${uincatC}" name="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
+    cellBtn.innerHTML  = `<button class="button__control button__control_found-comp" value="${uincatC}" name="${uin}"><img class="button__control__img" src="assets/images/found_it.svg"></button>`;
 }
 
 const addFoundComponentsEmpty = (found_table) => {
@@ -123,7 +123,7 @@ const addFoundComponentsEmpty = (found_table) => {
     cellType.innerHTML = "Ничего не найдено";
     cellName.innerHTML = "Повторите запрос";
 
-    cellBtn.innerHTML  = `<button class="button__control button__control_found-comp" disabled><img class="button__control__img" src="assets/images/info.svg"></button>`;
+    cellBtn.innerHTML  = `<button class="button__control button__control_found-comp" disabled><img class="button__control__img" src="assets/images/found_it.svg"></button>`;
 }
 
 export const funcFindAnchor = (value, name) => {
