@@ -98,7 +98,7 @@ const addFormulaSetsRow = (set, product, compont, count, del, uin, uinset, uinpr
     let cellSet     = newRow.insertCell(0); cellSet.classList     = "td";
     let cellProduct = newRow.insertCell(1); cellProduct.classList = "td";
     let cellСompont = newRow.insertCell(2); cellСompont.classList = "td";
-    let cellCount   = newRow.insertCell(3); cellCount.classList   = "td";
+    let cellCount   = newRow.insertCell(3); cellCount.classList   = "td td__text_align_center";
     let cellBtn     = newRow.insertCell(4); cellBtn.classList     = "td";
 
     makeSelect("formula_sets_set_select_", uin, set, uinset, "sets_list", "select", cellSet);

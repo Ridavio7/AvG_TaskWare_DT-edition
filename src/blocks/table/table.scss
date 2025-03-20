@@ -39,12 +39,12 @@
 .td{
     padding: 0px 5px;
     height: 45px;
-    text-align: center;
 
     &_active{
         background-color: var(--background_sidebar);
         border-top: 1px solid var(--border);
         border-left: 1px solid var(--border);
+        text-align: center;
     }
 
     &_buttons-control{
@@ -54,7 +54,7 @@
         align-items: center;
     }
 
-    &_text-align_left{
-        text-align: left;
+    &__text_align_center{
+        text-align: center;
     }
 }

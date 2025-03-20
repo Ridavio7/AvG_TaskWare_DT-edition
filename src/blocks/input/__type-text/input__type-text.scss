@@ -6,15 +6,20 @@
     font-size: 16px;
     background-color: initial;
     border: none;
+    height: 27px;
     max-width: 200px;
-    text-align: center;
+    padding: 0px 10px;
+    border: 1px solid var(--border);
 
     &_title{
         border: 1px solid var(--border);
     }
 
     &_title-table-schedule{
-        width: 5%;
+        max-width: none;
+        padding: 0px;
+        border: none;
+        text-align: center;
     }
 
     &__label{
@@ -35,4 +40,16 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 input[type="date"]::-webkit-calendar-picker-indicator{
     filter: var(--img_color);
     cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
 }

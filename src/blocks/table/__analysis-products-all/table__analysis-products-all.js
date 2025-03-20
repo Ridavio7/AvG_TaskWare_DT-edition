@@ -42,9 +42,9 @@ const addRowColumsShipProductsAll =
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellSNset   = newRow.insertCell(0);  cellSNset.classList   = "td";
-    let cellSNprod  = newRow.insertCell(1);  cellSNprod.classList  = "td";
-    let cellNPset   = newRow.insertCell(2);  cellNPset.classList   = "td";
+    let cellSNset   = newRow.insertCell(0);  cellSNset.classList   = "td td__text_align_center";
+    let cellSNprod  = newRow.insertCell(1);  cellSNprod.classList  = "td td__text_align_center";
+    let cellNPset   = newRow.insertCell(2);  cellNPset.classList   = "td td__text_align_center";
     let cellset     = newRow.insertCell(3);  cellset.classList     = "td";
     let cellproduct = newRow.insertCell(4);  cellproduct.classList = "td";
     let cellColor   = newRow.insertCell(5);  cellColor.classList   = "td";
@@ -53,7 +53,7 @@ const addRowColumsShipProductsAll =
     let cellmac     = newRow.insertCell(8);  cellmac.classList     = "td";
     let cellstatus  = newRow.insertCell(9);  cellstatus.classList  = "td";
     let cellkontr   = newRow.insertCell(10); cellkontr.classList   = "td";
-    let celldate    = newRow.insertCell(11); celldate.classList    = "td";
+    let celldate    = newRow.insertCell(11); celldate.classList    = "td td__text_align_center";
     let cellprim    = newRow.insertCell(12); cellprim.classList    = "td";
 
     makeSelect("shipproducts_all_select_", uin, status, uinstatus, "statuses_list", "select", cellstatus);

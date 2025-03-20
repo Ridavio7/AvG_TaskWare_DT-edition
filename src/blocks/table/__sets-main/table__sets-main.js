@@ -72,8 +72,8 @@ const addSetsRow = (name, other, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName  = newRow.insertCell(0); cellName.classList  = "td";
-    let cellOther = newRow.insertCell(1); cellOther.classList = "td";
+    let cellName  = newRow.insertCell(0); cellName.classList  = "td td__text_align_center";
+    let cellOther = newRow.insertCell(1); cellOther.classList = "td td__text_align_center";
     let cellBtn   = newRow.insertCell(2); cellBtn.classList   = "td";
 
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="set_name_${uin}">`;

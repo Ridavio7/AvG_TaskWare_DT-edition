@@ -74,13 +74,13 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellUser  = newRow.insertCell(0); cellUser.classList  = "td";
-    let cellProd  = newRow.insertCell(1); cellProd.classList  = "td";
-    let cellProc  = newRow.insertCell(2); cellProc.classList  = "td";
-    let cellCount = newRow.insertCell(3); cellCount.classList = "td";
-    let cellDate  = newRow.insertCell(4); cellDate.classList  = "td";
-    let cellPrim  = newRow.insertCell(5); cellPrim.classList  = "td";
-    let cellBtn   = newRow.insertCell(6); cellBtn.classList   = "td";
+    let cellUser  = newRow.insertCell(0); cellUser.classList  = "td td__text_align_center";
+    let cellProd  = newRow.insertCell(1); cellProd.classList  = "td td__text_align_center";
+    let cellProc  = newRow.insertCell(2); cellProc.classList  = "td td__text_align_center";
+    let cellCount = newRow.insertCell(3); cellCount.classList = "td td__text_align_center";
+    let cellDate  = newRow.insertCell(4); cellDate.classList  = "td td__text_align_center";
+    let cellPrim  = newRow.insertCell(5); cellPrim.classList  = "td td__text_align_center";
+    let cellBtn   = newRow.insertCell(6); cellBtn.classList   = "td td__text_align_center";
 
     makeSelect("lentapp_user_select_", uin, nameuser, uinuser, "users_list", "select", cellUser);
     makeSelect("lentapp_prod_select_", uin, nameproduct, uinproduct, "products_list", "select", cellProd);
@@ -88,7 +88,7 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="lentapp_count_${uin}">`;
     let date = datetm.split(" ")[0];
     let time = datetm.split(" ")[1];
-    cellDate.innerHTML  = `<input class="input__type-text" type="date" value="${date}" name="lentapp_date_${uin}"><input class="input__type-text" type="time" value="${time}" name="lentapp_time_${uin}">`;
+    cellDate.innerHTML  = `<input class="input__type-text" type="date" value="${date}" name="lentapp_date_${uin}"><input class="input__type-text" type="time" value="${time}" name="lentapp_time_${uin}" step="1">`;
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="lentapp_prim_${uin}">`;
 
     let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";

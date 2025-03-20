@@ -73,9 +73,9 @@ const addPropsRow = (name, del, uin, meas, uinmeas, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td";
-    let cellName = newRow.insertCell(1); cellName.classList = "td";
-    let cellMeas = newRow.insertCell(2); cellMeas.classList = "td";
+    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td__text_align_center";
+    let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
+    let cellMeas = newRow.insertCell(2); cellMeas.classList = "td td__text_align_center";
     let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-enums" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;

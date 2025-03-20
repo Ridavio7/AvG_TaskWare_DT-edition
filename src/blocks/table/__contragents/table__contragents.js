@@ -72,12 +72,12 @@ const addContragentsRow = (name, buy, vend, kpp, inn, address, del, uin, tb_id) 
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName    = newRow.insertCell(0); cellName.classList    = "td";
+    let cellName    = newRow.insertCell(0); cellName.classList    = "td td__text_align_center";
     let cellBuy     = newRow.insertCell(1); cellBuy.classList     = "td";
     let cellVend    = newRow.insertCell(2); cellVend.classList    = "td";
-    let cellKpp     = newRow.insertCell(3); cellKpp.classList     = "td";
-    let cellInn     = newRow.insertCell(4); cellInn.classList     = "td";
-    let cellAddress = newRow.insertCell(5); cellAddress.classList = "td";
+    let cellKpp     = newRow.insertCell(3); cellKpp.classList     = "td td__text_align_center";
+    let cellInn     = newRow.insertCell(4); cellInn.classList     = "td td__text_align_center";
+    let cellAddress = newRow.insertCell(5); cellAddress.classList = "td td__text_align_center";
     let cellBtn     = newRow.insertCell(6); cellBtn.classList     = "td";
 
     cellName.innerHTML    = `<input class="input__type-text" type="text" value="${name}" name="name_${uin}">`;

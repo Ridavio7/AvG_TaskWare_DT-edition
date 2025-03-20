@@ -96,7 +96,7 @@ const addFormulaProductsRow = (product, uinproduct, compont, uincompont, innprod
     let cellProduct   = newRow.insertCell(0); cellProduct.classList   = "td";
     let cellInnroduct = newRow.insertCell(1); cellInnroduct.classList = "td";
     let cellСompont   = newRow.insertCell(2); cellСompont.classList   = "td";
-    let cellCount     = newRow.insertCell(3); cellCount.classList     = "td";
+    let cellCount     = newRow.insertCell(3); cellCount.classList     = "td td__text_align_center";
     let cellBtn       = newRow.insertCell(4); cellBtn.classList       = "td";
 
     makeSelect("formula_product_products_select_", uin, product, uinproduct, "products_list", "select", cellProduct);

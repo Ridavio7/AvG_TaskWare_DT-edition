@@ -96,15 +96,11 @@
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_name">Название:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Задача №1">
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Отгрузка">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_status">Статус:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="task_status" value="В работе">
-                    </div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="task_contragents">Контрагент:</label>
-                        <select class="select select_modal" id="task_contragents"><option value=" ">-- Контрагент --</option></select>
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_comment">Комментарий:</label>
@@ -131,7 +127,11 @@
                 </div>
             </div>
             <div style="flex-direction: column;">
-                <div class="sidebar__tabcontent__first-tabs" style="justify-content: space-between">
+                <div>
+                    <label class="input__type-text__label" for="task_contragents">Контрагент:</label>
+                    <select class="select select_modal" id="task_contragents"><option value=" ">-- Контрагент --</option></select>
+                </div>
+                <div class="sidebar__tabcontent__first-tabs sidebar__tabcontent__first-tabs_task">
                     <div>
                         <a href="#sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Комплекты</button></a>
                         <a href="#products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
@@ -168,7 +168,7 @@
                     </table>
                 </div>
                 <div id="components" class="sidebar__tabcontent__container sidebar__task__tabcontent__container">
-                    <p>components</p>
+                    <p>Комплектующие</p>
                 </div>
             </div>
         </div>
@@ -177,11 +177,11 @@
                 <div class="modal__table-wrapper_task">
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_admin">Админ:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="task_admin" value="Иванов Иван Иванович">
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_admin" value="Петров Петр Петрович">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_name">Название:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Задача №1">
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Монтаж печатных плат">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_status">Статус:</label>
@@ -223,26 +223,28 @@
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_time">Время:</label>
-                        <input class="input__type-text input__type-text_modal" type="time" id="mount_time">
+                        <input class="input__type-text input__type-text_modal" type="time" id="mount_time" step="1">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_prod">Изделия:</label>
                         <select class="select select_modal" id="mount_prod"><option value=" ">-- Изделия --</option></select>
                     </div>
                     <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="mount_procc">Тех. процесс:</label>
-                        <select class="select select_modal" id="mount_procc"><option value=" ">-- Тех. процесс --</option></select>
+                        <label class="input__type-text__label" for="mount_procc">Тех. операция:</label>
+                        <select class="select select_modal" id="mount_procc"><option value=" ">-- Тех. операция --</option></select>
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_count">Количество:</label>
                         <input class="input__type-text input__type-text_modal" type="number" id="mount_count" min="0">
                     </div>
-                    <button class="button__control" id="mount_count_minus"><img class="button__control__img" src="../blocks/button/__control/img/minus.svg" alt=""></button>
-                    <button class="button__control" id="mount_count_plus"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="mount_prim">Примечание:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="mount_prim">
                     </div>
+                </div>
+                <div class="modal__button-wrapper">
+                    <button class="button__control" id="mount_count_minus"><img class="button__control__img" src="../blocks/button/__control/img/minus.svg" alt=""></button>
+                    <button class="button__control" id="mount_count_plus"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button>
                 </div>
             </div>
             <button class="button__control button__control_modal" id="mount_button">Сохранить</button>

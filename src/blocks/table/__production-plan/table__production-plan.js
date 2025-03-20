@@ -72,9 +72,9 @@ const addPlanRow = (uinprod, nameprod, count, date, prim, del, uin, tb_id) => {
     newRow.classList = "tr";
 
     let cellProd  = newRow.insertCell(0); cellProd.classList  = "td";
-    let cellCount = newRow.insertCell(1); cellCount.classList = "td";
-    let cellDate  = newRow.insertCell(2); cellDate.classList = "td";
-    let cellPrim  = newRow.insertCell(3); cellPrim.classList  = "td";
+    let cellCount = newRow.insertCell(1); cellCount.classList = "td td__text_align_center";
+    let cellDate  = newRow.insertCell(2); cellDate.classList  = "td td__text_align_center";
+    let cellPrim  = newRow.insertCell(3); cellPrim.classList  = "td td__text_align_center";
     let cellBtn   = newRow.insertCell(4); cellBtn.classList   = "td";
 
     makeSelect("plan_product_select_", uin, nameprod, uinprod, "products_list", "select", cellProd);

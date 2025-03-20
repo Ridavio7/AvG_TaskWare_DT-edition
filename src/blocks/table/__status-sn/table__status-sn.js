@@ -59,7 +59,7 @@ const addStatussnRow = (name, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
 
-    let cellName = newRow.insertCell(0); cellName.classList = "td";
+    let cellName = newRow.insertCell(0); cellName.classList = "td td__text_align_center";
     let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td";
 
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="sn_name_${uin}">`;

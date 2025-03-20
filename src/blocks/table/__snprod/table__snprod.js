@@ -77,12 +77,12 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let ceelLed      = newRow.insertCell(0); ceelLed.classList      = "td";
+    let ceelLed      = newRow.insertCell(0); ceelLed.classList      = "td td__text_align_center";
     let cellName     = newRow.insertCell(1); cellName.classList     = "td";
-    let cellSN       = newRow.insertCell(2); cellSN.classList       = "td";
-    let cellCount    = newRow.insertCell(3); cellCount.classList    = "td";
-    let cellCountUse = newRow.insertCell(4); cellCountUse.classList = "td";
-    let cellDate     = newRow.insertCell(5); cellDate.classList     = "td";
+    let cellSN       = newRow.insertCell(2); cellSN.classList       = "td td__text_align_center";
+    let cellCount    = newRow.insertCell(3); cellCount.classList    = "td td__text_align_center";
+    let cellCountUse = newRow.insertCell(4); cellCountUse.classList = "td td__text_align_center";
+    let cellDate     = newRow.insertCell(5); cellDate.classList     = "td td__text_align_center";
     let cellStatus   = newRow.insertCell(6); cellStatus.classList   = "td";
     let cellBtn      = newRow.insertCell(7); cellBtn.classList      = "td";
 

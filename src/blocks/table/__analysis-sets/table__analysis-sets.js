@@ -54,18 +54,18 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellNPset  = newRow.insertCell(0); cellNPset.classList  = "td";
-    let cellSNset  = newRow.insertCell(1); cellSNset.classList  = "td";
+    let cellNPset  = newRow.insertCell(0); cellNPset.classList  = "td td__text_align_center";
+    let cellSNset  = newRow.insertCell(1); cellSNset.classList  = "td td__text_align_center";
     let cellname   = newRow.insertCell(2); cellname.classList   = "td";
-    let cellcomp   = newRow.insertCell(3); cellcomp.classList   = "td";
-    let cellstatus = newRow.insertCell(4); cellstatus.classList = "td";
+    let cellcomp   = newRow.insertCell(3);
+    let cellstatus = newRow.insertCell(4); cellstatus.classList = "td td__text_align_center";
     let cellkontr  = newRow.insertCell(5); cellkontr.classList  = "td";
-    let celldate   = newRow.insertCell(6); celldate.classList   = "td";
-    let cellprim   = newRow.insertCell(7); cellprim.classList   = "td";
+    let celldate   = newRow.insertCell(6); celldate.classList   = "td td__text_align_center";
+    let cellprim   = newRow.insertCell(7); cellprim.classList   = "td td__text_align_center";
     let cellBtn    = newRow.insertCell(8); cellBtn.classList    = "td";
 
     let prodTable = document.createElement('table');
-    prodTable.className = "table table_little-product";
+    prodTable.className = "table table__little-product";
     cellcomp.append(prodTable);
 
     for(let key in comp){
@@ -75,9 +75,9 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
         let color  = val.color;
     
         let prodTableRow = prodTable.insertRow(-1);
-        let cellSNprod   = prodTableRow.insertCell(0);
-        let cellProd     = prodTableRow.insertCell(1);
-        let cellColor    = prodTableRow.insertCell(2);
+        let cellSNprod   = prodTableRow.insertCell(0); cellSNprod.classList = "td td__little-product";
+        let cellProd     = prodTableRow.insertCell(1); cellProd.classList   = "td td__little-product";
+        let cellColor    = prodTableRow.insertCell(2); cellColor.classList  = "td td__little-product";
     
         let cellProdText   = document.createTextNode(prod);   cellProd.appendChild(cellProdText);
         let cellSNprodText = document.createTextNode(SNprod); cellSNprod.appendChild(cellSNprodText);

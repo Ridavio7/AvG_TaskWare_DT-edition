@@ -64,11 +64,11 @@ const addCoeffsRow = (name, coeff, smv, help, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName  = newRow.insertCell(0); cellName.classList = "td";
-    let cellCoeff = newRow.insertCell(1); cellCoeff.classList = "td";
-    let cellSmv   = newRow.insertCell(2); cellSmv.classList = "td";
-    let cellHelp  = newRow.insertCell(3); cellHelp.classList = "td";
-    let cellBtn   = newRow.insertCell(4); cellBtn.classList = "td";
+    let cellName  = newRow.insertCell(0); cellName.classList  = "td td__text_align_center";
+    let cellCoeff = newRow.insertCell(1); cellCoeff.classList = "td td__text_align_center";
+    let cellSmv   = newRow.insertCell(2); cellSmv.classList   = "td td__text_align_center";
+    let cellHelp  = newRow.insertCell(3); cellHelp.classList  = "td td__text_align_center";
+    let cellBtn   = newRow.insertCell(4); cellBtn.classList   = "td";
 
     cellName.innerHTML  = `<input class="input__type-text" type="text" value="${name}" name="coeff_name_${uin}">`;
     cellCoeff.innerHTML = `<input class="input__type-text" type="text" value="${coeff}" name="coeff_coeff_${uin}" disabled>`;

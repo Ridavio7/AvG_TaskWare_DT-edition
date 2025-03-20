@@ -39,17 +39,17 @@ function addRowColumsShipComponentsAll(SNset, NPset, set, product, innproduct, c
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellSNset      = newRow.insertCell(0);  cellSNset.classList      = "td";
-    let cellNPset      = newRow.insertCell(1);  cellNPset.classList      = "td";
+    let cellSNset      = newRow.insertCell(0);  cellSNset.classList      = "td td__text_align_center";
+    let cellNPset      = newRow.insertCell(1);  cellNPset.classList      = "td td__text_align_center";
     let cellSet        = newRow.insertCell(2);  cellSet.classList        = "td";
     let cellProduct    = newRow.insertCell(3);  cellProduct.classList    = "td";
     let cellInnproduct = newRow.insertCell(4);  cellInnproduct.classList = "td";
     let cellCount      = newRow.insertCell(5);  cellCount.classList      = "td";
     let cellComp       = newRow.insertCell(6);  cellComp.classList       = "td";
-    let cellStatus     = newRow.insertCell(7);  cellStatus.classList     = "td";
+    let cellStatus     = newRow.insertCell(7);  cellStatus.classList     = "td td__text_align_center";
     let cellKontr      = newRow.insertCell(8);  cellKontr.classList      = "td";
-    let cellDate       = newRow.insertCell(9);  cellDate.classList       = "td";
-    let cellPrim       = newRow.insertCell(10); cellPrim.classList       = "td";
+    let cellDate       = newRow.insertCell(9);  cellDate.classList       = "td td__text_align_center";
+    let cellPrim       = newRow.insertCell(10); cellPrim.classList       = "td td__text_align_center";
 
     makeSelect("shipcomponents_all_select_", uin, status, uinstatus, "statuses_list", "select", cellStatus);
 

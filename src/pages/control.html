@@ -174,7 +174,7 @@
                     </thead>
                     <tbody id="tb_jobs">
                         <tr class="tr">
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_jobs"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_jobs"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-users-jobs"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -205,7 +205,7 @@
                     </thead>
                     <tbody id="tb_rights">
                         <tr class="tr">
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_add_rights"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_rights"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-users-rights"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -220,10 +220,11 @@
         </div>
     </div>
     <div class="modal" id="user_modal">
+        <div class="modal__moving" id="user_modal_moving">
+            <span class="modal__title">Модальное окно с информацией о пользователе</span>
+            <span class="modal__close" id="user_close">&times;</span>
+        </div>
         <div class="modal__content">
-            <div class="modal__moving" id="user_modal_moving">
-                <span class="modal__close" id="user_close">&times;</span>
-            </div>
             <div class="modal__header">
                 <div>
                     <div class="modal__input-wrapper">

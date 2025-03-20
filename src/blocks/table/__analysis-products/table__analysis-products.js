@@ -58,17 +58,17 @@ function addRowColumsShipProducts(SNprod, NPset, name, color, verapp, verpp, mac
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellSNprod = newRow.insertCell(0);  cellSNprod.classList = "td";
-    let cellNPset  = newRow.insertCell(1);  cellNPset.classList  = "td";
+    let cellSNprod = newRow.insertCell(0);  cellSNprod.classList = "td td__text_align_center";
+    let cellNPset  = newRow.insertCell(1);  cellNPset.classList  = "td td__text_align_center";
     let cellname   = newRow.insertCell(2);  cellname.classList   = "td";
     let cellColor  = newRow.insertCell(3);  cellColor.classList  = "td";
     let cellverapp = newRow.insertCell(4);  cellverapp.classList = "td";
     let cellverpp  = newRow.insertCell(5);  cellverpp.classList  = "td";
     let cellmac    = newRow.insertCell(6);  cellmac.classList    = "td";
-    let cellstatus = newRow.insertCell(7);  cellstatus.classList = "td";
+    let cellstatus = newRow.insertCell(7);  cellstatus.classList = "td td__text_align_center";
     let cellkontr  = newRow.insertCell(8);  cellkontr.classList  = "td";
-    let celldate   = newRow.insertCell(9);  celldate.classList   = "td";
-    let cellprim   = newRow.insertCell(10); cellprim.classList   = "td";
+    let celldate   = newRow.insertCell(9);  celldate.classList   = "td td__text_align_center";
+    let cellprim   = newRow.insertCell(10); cellprim.classList   = "td td__text_align_center";
     let cellBtn    = newRow.insertCell(11); cellBtn.classList    = "td";
 
     makeSelect("shipproducts_select_", uin, status, uinstatus, "statuses_list", "select", cellstatus);
