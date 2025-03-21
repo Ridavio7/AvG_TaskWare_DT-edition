@@ -25,8 +25,8 @@
     &__sort{
         color: var(--font-color);
         background-color: var(--background_second);
-        margin-right: 5px;
-        margin-bottom: 5px;
+        margin: 5px;
+        margin-left: 0px;
         padding: 0px 10px;
         height: 40px;
         border: 1px solid var(--border);
@@ -66,6 +66,10 @@
 
     &__simple{
         background-color: var(--background_sidebar);
+    }
+
+    & option:nth-child(1){
+        display: none;
     }
 
     option{
