@@ -62,10 +62,10 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
         elem.addEventListener("click", () => {
             let body  =  {"user":"demo", "meth":"mdel", "obj":"typesprops", "uintypes":`${elem.value}`, "uinprops":`${elem.name}`};
 
-            if(elem.style.background === "red"){
-                elem.style.background = "inherit";
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
             } else {
-                elem.style.background = "red"
+                elem.classList.add('button__control_mdel_active');
             }
         
             funcCommand(body, funcProcessOnlyInfo);
@@ -100,25 +100,13 @@ const addInfoTypeselem = (compName, typeUin, propName, propUin, meas, del, tb_id
     newRow.classList = "tr";
 
     let cellProps = newRow.insertCell(0); cellProps.classList = "td";
-    let cellMeas  = newRow.insertCell(1); cellMeas.classList = "td";
-    let cellBtn   = newRow.insertCell(2); cellBtn.classList = "td";
+    let cellMeas  = newRow.insertCell(1); cellMeas.classList  = "td";
+    let cellBtn   = newRow.insertCell(2); cellBtn.classList   = "td";
 
-    let select = document.createElement("select");
-    select.classList = 'select';
-    let option = document.createElement("option");
-    option.text = propName;
-    select.appendChild(option);
-    cellProps.appendChild(select);
-
-    for (let key in arr) {
-        if(arr[key].del === 0){
-        let newOption = new Option(arr[key].name, arr[key].uin);
-        select.append(newOption);
-        }
-    }
+    cellProps.innerHTML = propName;
 
     cellMeas.innerHTML = meas;
 
-    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel-typeselem-info" value="${typeUin}" name="${propUin}" style="background:${bx_color}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-typeselem-info${bx_color}" value="${typeUin}" name="${propUin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }

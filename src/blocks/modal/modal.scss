@@ -7,12 +7,21 @@
 
   &__moving{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--background_sidebar);
     border: 1px solid var(--blue);
     border-bottom: none;
     padding: 0px 10px;
     cursor: move;
+  }
+
+  &__title{
+    color: var(--font-color);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
   }
 
   &__content{
@@ -79,7 +88,7 @@
     margin-bottom: 10px;
     border: 1px solid var(--border);
     height: 710px;
-    width: 495px;
+    width: 510px;
     overflow-y: scroll;
     resize: both;
   }
@@ -100,6 +109,11 @@
     margin-left: 5px;
   }
 
+  &__button-wrapper{
+    position: relative;
+    top: 233px;
+  }
+
   &__tree{
     height: 710px;
     width: 500px;
@@ -117,13 +131,19 @@
     color: var(--font-color);
     float: right;
     font-size: 35px;
+    width: 40px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
 
     &:hover,
     &:focus{
-      color: var(--expand-button-active);
+      color: var(--font-color-button);
       text-decoration: none;
       cursor: pointer;
+      background-color: var(--red);
     }
   }
 }
@@ -177,7 +197,7 @@
   z-index: 30;
 }
 
-@media (max-width: 1750px) {
+@media (max-width: 1800px) {
   .modal{
     &__table{
       height: 350px;

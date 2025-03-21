@@ -34,10 +34,10 @@ const funcProcessGetProps = (result, respobj) => {
         elem.addEventListener("click", () => {
             let body  =  {"user":"demo", "meth":"mdel", "obj":"props", "uin":`${elem.value}`};
 
-            if(elem.style.background === "red"){
-                elem.style.background = "inherit";
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
             } else {
-                elem.style.background = "red"
+                elem.classList.add('button__control_mdel_active');
             }
         
             funcCommand(body, funcProcessOnlyInfo);
@@ -82,8 +82,8 @@ const addPropsRow = (name, del, uin, meas, uinmeas, tb_id) => {
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="props_name_${uin}">`;
     makeSelect("props_select_", uin, meas, uinmeas, "meas_list", "select", cellMeas);
 
-    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update-prop" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel-prop" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prop" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-prop${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 let button_control_add_product = document.querySelector(".button__control_add-props");

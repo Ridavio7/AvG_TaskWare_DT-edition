@@ -111,10 +111,10 @@ const funcProcessGetComponents = (result, respobj) => {
         elem.addEventListener("click", () => {
             let body  =  {"user":"demo", "meth":"mdel", "obj":"components", "uin":`${elem.value}`};
 
-            if(elem.style.background === "red"){
-                elem.style.background = "inherit";
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
             } else {
-                elem.style.background = "red"
+                elem.classList.add('button__control_mdel_active');
             }
 
             funcCommand(body, funcProcessOnlyInfo);
@@ -154,8 +154,8 @@ const addComponents = (name, fUnic, typelm, del, uin, tb_id) => {
     cellName.id = `component_name_${uin}`;
     cellTypelm.innerHTML   = typelm;
 
-    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel-component" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-component${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
 }
 
 document.getElementById("sort_components").addEventListener('change', function(){

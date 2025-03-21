@@ -30,10 +30,10 @@ export const funcProcessOnlyInfo = (result, respobj) => {
 }
 
 /* изменение цвета кнопки обновления */
-export const highlightButtonSave = (obj) => {
-    obj.style.background = "var(--green)";
+export const highlightButtonSave = (elem) => {
+    elem.classList.add('button__control_update_active');
     setTimeout(function(){
-        obj.style.background = "inherit";
+        elem.classList.remove('button__control_update_active');
     }, 1000);
 }
 

@@ -48,7 +48,7 @@ const funcProcessGetShipProducts = (result, respobj) => {
         
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
-            setTimeout(function(){funcGetShipProducts()}, 100);
+            //setTimeout(function(){funcGetShipProducts()}, 100);
         })
     })
 }
@@ -82,7 +82,7 @@ function addRowColumsShipProducts(SNprod, NPset, name, color, verapp, verpp, mac
     cellkontr.innerHTML  = kontr;
     celldate.innerHTML   = `<input class="input__type-text" type="date" value="${date}" name="shipproducts_date_${uin}">`;
     cellprim.innerHTML   = `<input class="input__type-text" type="text" value="${prim}" name="shipproducts_prim_${uin}">`;
-    cellBtn.innerHTML    = `<button class="button__control button__control_update-ananlysis-product" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellBtn.innerHTML    = `<button class="button__control button__control_update button__control_update-ananlysis-product" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 }
 
 addToDropdownPsevdo("filt_analysis_products_sets_items", JSON.parse(localStorage.getItem("sets_list")));

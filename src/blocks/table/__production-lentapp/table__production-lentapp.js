@@ -36,10 +36,10 @@ const funcProcessGetLentapp = (result, respobj) => {
         elem.addEventListener("click", () => {
             let body  =  {"user":"demo", "meth":"mdel", "obj":"lentapp", "uin":`${elem.value}`};
 
-            if(elem.style.background === "red"){
-                elem.style.background = "inherit";
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
             } else {
-                elem.style.background = "red"
+                elem.classList.add('button__control_mdel_active');
             }
         
             funcCommand(body, funcProcessOnlyInfo);
@@ -91,8 +91,8 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
     cellDate.innerHTML  = `<input class="input__type-text" type="date" value="${date}" name="lentapp_date_${uin}"><input class="input__type-text" type="time" value="${time}" name="lentapp_time_${uin}" step="1">`;
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="lentapp_prim_${uin}">`;
 
-    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update-lentapp" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel-lentapp" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-lentapp" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-lentapp${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 document.getElementById("sort_events").addEventListener('change', function(){

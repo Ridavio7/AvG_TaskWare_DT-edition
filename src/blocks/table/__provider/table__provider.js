@@ -35,10 +35,10 @@ const funcProcessGetDocpost = (result, respobj) => {
         elem.addEventListener("click", () => {
             let body  =  {"user":"demo", "meth":"mdel", "obj":"docpost", "uin":`${elem.value}`};
 
-            if(elem.style.background === "red"){
-                elem.style.background = "inherit";
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
             } else {
-                elem.style.background = "red"
+                elem.classList.add('button__control_mdel_active');
             }
         
             funcCommand(body, funcProcessOnlyInfo);
@@ -72,11 +72,11 @@ const addDocpostRow =
     let cellBtn         = newRow.insertCell(10); cellBtn.classList         = "td";
 
     if(statdocName === "Готов"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-ready" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-ready" value="${uin}"><img class="button__control__img button__control_docpost-ready_img" src="assets/images/info.svg" alt=""></button>`;
     } else if (statdocName === "Обработка"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-process" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-process" value="${uin}"><img class="button__control__img button__control_docpost-process_img" src="assets/images/info.svg" alt=""></button>`;
     } else if (statdocName === "Новый"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_mark" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-new" value="${uin}"><img class="button__control__img button__control_docpost-new_img" src="assets/images/info.svg" alt=""></button>`;
     } else {
         cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
     }
@@ -91,6 +91,6 @@ const addDocpostRow =
     cellUserName.innerHTML    = userName;
     cellPrim.innerHTML        = prim;
 
-    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel-docpost" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }

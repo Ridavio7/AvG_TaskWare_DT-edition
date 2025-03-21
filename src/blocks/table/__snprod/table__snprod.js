@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, makeSelect, clearTable, removeOptionsSetValue, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, makeSelect, clearTable, removeOptionsSetValue, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
 export const funcGetSNProd = () => {
@@ -40,10 +40,10 @@ const funcProcessGetSNProd = (result, respobj) => {
         elem.addEventListener("click", () => {
             let body  =  {"user":"demo", "meth":"mdel", "obj":"snprod", "uin":`${elem.value}`};
 
-            if(elem.style.background === "red"){
-                elem.style.background = "inherit";
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
             } else {
-                elem.style.background = "red"
+                elem.classList.add('button__control_mdel_active');
             }
         
             funcCommand(body, funcProcessOnlyInfo);
@@ -66,7 +66,6 @@ const funcProcessGetSNProd = (result, respobj) => {
             body.uinstatus  = findForUpdateSelect(target_table, "snprod_status_select_", elem.value);
         
             funcCommand(body, funcProcessOnlyInfo);
-            highlightButtonSave(elem);
             setTimeout(function(){funcGetSNProd()}, 100);
         })
     })
@@ -105,8 +104,8 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
 
     makeSelect("snprod_status_select_", uin, status, uinstatus, "statussn_list", "select", cellStatus);
 
-    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update-snprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel-snprod" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-snprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-snprod${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 addToDropdownPsevdo("filt_SNprod_products_items", JSON.parse(localStorage.getItem("products_list")));

@@ -44,7 +44,7 @@ const funcProcessGetShipSets = (result, respobj) => {
         
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
-            setTimeout(function(){funcGetShipSets()}, 100);
+            //setTimeout(function(){funcGetShipSets()}, 100);
         })
     })
 }
@@ -91,7 +91,7 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
     cellkontr.innerHTML = kontr;
     celldate.innerHTML  = `<input class="input__type-text" type="date" value="${date}" name="shipsets_date_${uin}">`;
     cellprim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="shipsets_prim_${uin}">`;
-    cellBtn.innerHTML   = `<button class="button__control button__control_update-ananlysis-set" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellBtn.innerHTML   = `<button class="button__control button__control_update button__control_update-ananlysis-set" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 }
 
 addToDropdownPsevdo("filt_analysis_sets_sets_items", JSON.parse(localStorage.getItem("sets_list")));

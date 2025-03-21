@@ -31,10 +31,10 @@ const funcProcessGetCoeffs = (result, respobj) => {
         elem.addEventListener("click", () => {
             let body  =  {"user":"demo", "meth":"mdel", "obj":"coeffs", "uin":`${elem.value}`};
 
-            if(elem.style.background === "red"){
-                elem.style.background = "inherit";
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
             } else {
-                elem.style.background = "red"
+                elem.classList.add('button__control_mdel_active');
             }
         
             funcCommand(body, funcProcessOnlyInfo);
@@ -75,8 +75,8 @@ const addCoeffsRow = (name, coeff, smv, help, del, uin, tb_id) => {
     cellSmv.innerHTML   = `<input class="input__type-text" type="text" value="${smv}" name="coeff_smv_${uin}">`;
     cellHelp.innerHTML  = `<input class="input__type-text" type="text" value="${help}" name="coeff_help_${uin}">`;
 
-    let bx_color; del === 0 ? bx_color = "inherit" : bx_color = "red"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update-coeffs" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel-coeffs" style="background:${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-coeffs" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-coeffs${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 let button_control_add = document.querySelector(".button__control_add-coeffs");
