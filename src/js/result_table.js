@@ -31,7 +31,12 @@ import '../blocks/table/__task/table__task.scss';
 import {funcCommand, makeSelect, findForUpdateSelect, findForUpdateInput, addToDropdown, funcProcessOnlyInfo} from '../js/common/common.js.js';
 
 window.onload = function(){
-    funcGetResTable();
+    funcGetUpdateStatuses();
+    funcGetUpdateColors();
+    funcGetUpdateVerapp();
+    funcGetUpdateVerpp();
+
+    setTimeout(function(){funcGetResTable()}, 500);
 }
 
 /* отправка запроса для выбранных сетов/изделий */
@@ -188,7 +193,7 @@ function addSetsRow(NPset, SNset, name, status, statusUin, kontr, date, prim, ui
     cellSNset.innerHTML  = SNset;
     cellName.innerHTML   = name;
     cellKontr.innerHTML  = kontr;
-    cellButton.innerHTML = `<button class="button__control button__control_update-ship-sets" style="background-color:inherit" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellButton.innerHTML = `<button class="button__control button__control_update button__control_update-ship-sets" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 
     let display_tb = document.getElementById(div_tb_id);
     display_tb.style.display = "block";
@@ -215,8 +220,7 @@ function addSetsRowChild(prod, SNprod, color, colorUin, uinPr, table_content){
     select.appendChild(option);
     cellColor.appendChild(select);
 
-    let list = localStorage.getItem("colors_list");
-    addToDropdown(select, JSON.parse(list));
+    addToDropdown(select, "colors_list");
 }
 
 function funcProcessGetResTableProducts(result, respobj){
@@ -355,5 +359,57 @@ function addProductsRowChild(SNprod, nprod, NPset, name, color, colorUin, vapp, 
     cellNPset.innerHTML  = NPset;
     cellName.innerHTML   = name;
     cellKontr.innerHTML  = kontr;
-    cellButton.innerHTML = `<button class="button__control button__control_update-ship-prod" style="background-color:inherit" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellButton.innerHTML = `<button class="button__control button__control_update button__control_update-ship-prod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+}
+
+export const funcGetUpdateStatuses = () => {
+    let body  =  {"user":"demo", "meth":"view", "obj":"statuses", "count":"100"};
+    funcCommand(body, funcProcessGetUpdateStatuses);
+}
+
+const funcProcessGetUpdateStatuses = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("Статусы:", respobj);
+
+    let statuses_list = respobj.answ;
+    localStorage.setItem("statuses_list", JSON.stringify(statuses_list));
+}
+
+export const funcGetUpdateColors = () => {
+    let body  =  {"user":"demo", "meth":"view", "obj":"colors", "count":"100"};
+    funcCommand(body, funcProcessGetUpdateColors);
+}
+
+const funcProcessGetUpdateColors = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("Цвета:", respobj);
+
+    let colors_list = respobj.answ;
+    localStorage.setItem("colors_list", JSON.stringify(colors_list));
+}
+
+export const funcGetUpdateVerapp = () => {
+    let body  =  {"user":"demo", "meth":"view", "obj":"verapp", "count":"100"};
+    funcCommand(body, funcProcessGetUpdateVerapp);
+}
+
+const funcProcessGetUpdateVerapp = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("verapp:", respobj);
+
+    let verapp_list = respobj.answ;
+    localStorage.setItem("verapp_list", JSON.stringify(verapp_list));
+}
+
+export const funcGetUpdateVerpp = () => {
+    let body  =  {"user":"demo", "meth":"view", "obj":"verpp", "count":"100"};
+    funcCommand(body, funcProcessGetUpdateVerpp);
+}
+
+const funcProcessGetUpdateVerpp = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("verpp:", respobj);
+
+    let verpp_list = respobj.answ;
+    localStorage.setItem("verpp_list", JSON.stringify(verpp_list));
 }
