@@ -1,12 +1,5 @@
-.select__wrapper{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
 .select{
-    color: var(--font-color);
+    color: var(--font-color_active);
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     background-color: initial;
@@ -15,6 +8,13 @@
     height: 27px;
     max-width: 230px;
     border: 1px solid var(--border);
+
+    &__wrapper{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 
     &__img{
         margin-left: 5px;

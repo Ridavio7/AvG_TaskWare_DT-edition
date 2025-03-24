@@ -69,7 +69,8 @@
 
     &__link:hover,
     &__link_check{
-        text-decoration: underline solid var(--font-color) 1px;
+        text-decoration: underline solid var(--font-color_active) 1px;
+        color: var(--font-color_active);
         text-underline-offset: 17px;
     }
 

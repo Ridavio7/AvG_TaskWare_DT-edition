@@ -22,6 +22,7 @@
     &:hover,
     &_active{
         background-color: var(--expand-button-active);
+        color: var(--font-color_active);
     }
 
     &__img{

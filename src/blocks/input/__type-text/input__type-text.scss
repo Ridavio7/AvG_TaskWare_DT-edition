@@ -1,5 +1,5 @@
 .input__type-text{
-    color: var(--font-color);
+    color: var(--font-color_active);
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -24,6 +24,7 @@
 
     &__label{
         font-family: 'Roboto', sans-serif;
+        color: var(--font-color_active);
     }
 
     &_width_100{
