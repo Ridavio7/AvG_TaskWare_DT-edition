@@ -65,30 +65,24 @@
             <div class="sidebar__container">
                 <ul>
                     <li class="sidebar__wrapper" id="sidebar_tablink_1">
-                        <div class="sidebar__link shipment" id="link_shipment">
-                            <div class="sidebar__title">
-                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/shipment.svg" alt="">
-                                <span class="sidebar__name">Отгрузка</span>
+                        <a href="#shipment">
+                            <div class="sidebar__link shipment sidebar__link_shipment sidebar__link_no-child" id="link_shipment">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/shipment.svg" alt="">
+                                    <span class="sidebar__name">Отгрузка</span>
+                                </div>
                             </div>
-                            <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
-                        </div>
-                        <ul class="sidebar__menu">
-                            <li><a class="sidebar__menu__link sidebar__menu__link_schedule sidebar__menu__link_no-child" id="link_shipment_schedule" href="#schedule">График</a></li>
-                            <li><a class="sidebar__menu__link" id="link_shipment_directory" href="#directory">Справочники</a></li>
-                            <li><a class="sidebar__menu__link" id="link_shipment_analysis" href="#analysis">Анализ</a></li>
-                        </ul>
+                        </a>
                     </li>
                     <li class="sidebar__wrapper" id="sidebar_tablink_2">
-                        <div class="sidebar__link production" id="link_production">
-                            <div class="sidebar__title">
-                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/production.svg" alt="">
-                                <span class="sidebar__name">Производство</span>
+                        <a href="#production">
+                            <div class="sidebar__link production sidebar__link_production sidebar__link_no-child" id="link_production">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/production.svg" alt="">
+                                    <span class="sidebar__name">Монтаж/сборка</span>
+                                </div>
                             </div>
-                            <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
-                        </div>
-                        <ul class="sidebar__menu">
-                            <li><a class="sidebar__menu__link" id="link_prod_mount" href="#prod_mount">Монтаж/сборка</a></li>
-                        </ul>
+                        </a>
                     </li>
                     <li class="sidebar__wrapper" id="sidebar_tablink_3">
                         <a href="#provider">
@@ -101,20 +95,18 @@
                         </a>
                     </li>
                     <li class="sidebar__wrapper" id="sidebar_tablink_4">
-                        <div class="sidebar__link development" id="link_development">
-                            <div class="sidebar__title">
-                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/development.svg" alt="">
-                                <span class="sidebar__name">Проектирование</span>
+                        <a href="#development">
+                            <div class="sidebar__link development sidebar__link_development sidebar__link_no-child" id="link_development">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/development.svg" alt="">
+                                    <span class="sidebar__name">Проектирование</span>
+                                </div>
                             </div>
-                            <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
-                        </div>
-                        <ul class="sidebar__menu">
-                            <li><a class="sidebar__menu__link" id="" href="#">Бегунок</a></li>
-                        </ul>
+                        </a>
                     </li>
                     <li class="sidebar__wrapper" id="sidebar_tablink_5">
                         <a href="#storage">
-                            <div class="sidebar__link storage sidebar__link_no-child" id="link_storage">
+                            <div class="sidebar__link storage sidebar__link_storage sidebar__link_no-child" id="link_storage">
                                 <div class="sidebar__title">
                                     <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/storage.svg" alt="">
                                     <span class="sidebar__name">Склад</span>
@@ -142,9 +134,17 @@
                 </ul>
             </div>
         </nav>
+        <!-- отгрузка -->
         <div class="sidebar__tabcontent" id="shipment">
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#shipment/schedule"><button class="button__tab__first button__tab__first_schedule"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Графики</button></a>
+                <a href="#shipment/SNProd"><button class="button__tab__first button__tab__first_snprod"><img class="button__tab__first__img" src="../blocks/button/__tab/img/snprod.svg">SN изделий</button></a>
+                <a href="#shipment/analysis_sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Анализ<br>комплектов</button></a>
+                <a href="#shipment/analysis_products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Анализ<br>изделий</button></a>
+                <a href="#shipment/analysis_components"><button class="button__tab__first button__tab__first_analysis_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Анализ<br>комплектующих</button></a>
+            </div>
             <!-- график -->
-            <div id="schedule" class="sidebar__tabcontent__container">
+            <div id="shipment/schedule" class="sidebar__tabcontent__container">
                 <div class="sidebar__tabcontent__header">
                     <button class="button__control button__control_previous-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_1.svg" alt=""></button>
                     <input class="input__type-text input__type-text_title-table-schedule" type="text" value="" id="grf_year" disabled>
@@ -234,18 +234,8 @@
                     </tbody>
                 </table>
             </div>
-            <!-- ///// -->
-            <!-- справочники -->
-            <div id="directory" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#directory/SNProd"><button class="button__tab__first button__tab__first_snprod"><img class="button__tab__first__img" src="../blocks/button/__tab/img/snprod.svg">SN изделия</button></a>
-                </div>
-            </div>
             <!-- справочники SN изделия -->
-            <div id="directory/SNProd" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#directory/SNProd"><button class="button__tab__first button__tab__first_snprod"><img class="button__tab__first__img" src="../blocks/button/__tab/img/snprod.svg">SN изделия</button></a>
-                </div>
+            <div id="shipment/SNProd" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_SNProd">
                         <option value="">Сортировка &#8661;</option>
@@ -292,22 +282,8 @@
                     </tbody>
                 </table>
             </div>
-            <!-- ///// -->
-            <!-- анализ -->
-            <div id="analysis" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#analysis/analysis_sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Комплекты</button></a>
-                    <a href="#analysis/analysis_products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
-                    <a href="#analysis/analysis_components"><button class="button__tab__first button__tab__first_analysis_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                </div>
-            </div>
             <!-- анализ комплектов -->
-            <div id="analysis/analysis_sets" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#analysis/analysis_sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Комплекты</button></a>
-                    <a href="#analysis/analysis_products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
-                    <a href="#analysis/analysis_components"><button class="button__tab__first button__tab__first_analysis_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                </div>
+            <div id="shipment/analysis_sets" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_analysis_sets">
                         <option value="">Сортировка &#8661;</option>
@@ -364,12 +340,7 @@
                 </table>
             </div>
             <!-- анализ изделий -->
-            <div id="analysis/analysis_products" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#analysis/analysis_sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Комплекты</button></a>
-                    <a href="#analysis/analysis_products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
-                    <a href="#analysis/analysis_components"><button class="button__tab__first button__tab__first_analysis_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                </div>
+            <div id="shipment/analysis_products" class="sidebar__tabcontent__container">
                 <div class="switch-table">
                     <div class="switch-table__elem">
                         <input class="input__type-radio" type="radio" name="switch-table__radio" id="switch_tb_1" checked>
@@ -501,12 +472,7 @@
                 </div>
             </div>
             <!-- анализ комплектующих -->
-            <div id="analysis/analysis_components" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#analysis/analysis_sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Комплекты</button></a>
-                    <a href="#analysis/analysis_products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
-                    <a href="#analysis/analysis_components"><button class="button__tab__first button__tab__first_analysis_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                </div>
+            <div id="shipment/analysis_components" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_analysis_components">
                         <option value="">Сортировка &#8661;</option>
@@ -564,26 +530,17 @@
                 </table>
             </div>
         </div>
+        <!-- мотаж/сборка -->
         <div class="sidebar__tabcontent" id="production">
-            <!-- мотаж/сборка -->
-            <div id="prod_mount" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#prod_mount/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
-                    <a href="#prod_mount/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                    <a href="#prod_mount/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
-                    <a href="#prod_mount/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
-                    <a href="#prod_mount/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справ. упак.</button></a>
-                </div>
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#production/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
+                <a href="#production/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
+                <a href="#production/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
+                <a href="#production/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
+                <a href="#production/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справ. упак.</button></a>
             </div>
             <!-- лента -->
-            <div id="prod_mount/events" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#prod_mount/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
-                    <a href="#prod_mount/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                    <a href="#prod_mount/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
-                    <a href="#prod_mount/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
-                    <a href="#prod_mount/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справ. упак.</button></a>
-                </div>
+            <div id="production/events" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_events">
                         <option value="">Сортировка &#8661;</option>
@@ -609,14 +566,7 @@
                 </table>
             </div>
             <!-- План -->
-            <div id="prod_mount/plan" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#prod_mount/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
-                    <a href="#prod_mount/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                    <a href="#prod_mount/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
-                    <a href="#prod_mount/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
-                    <a href="#prod_mount/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справ. упак.</button></a>
-                </div>
+            <div id="production/plan" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_plan">
                         <option value="">Сортировка &#8661;</option>
@@ -648,14 +598,7 @@
                 </table>
             </div>
             <!-- Тех. операция -->
-            <div id="prod_mount/process" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#prod_mount/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
-                    <a href="#prod_mount/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                    <a href="#prod_mount/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
-                    <a href="#prod_mount/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
-                    <a href="#prod_mount/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справ. упак.</button></a>
-                </div>
+            <div id="production/process" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_techproc">
                         <option value="">Сортировка &#8661;</option>
@@ -683,24 +626,12 @@
                 </table>
             </div>
             <!-- Тех. упаковка -->
-            <div id="prod_mount/install_coil" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#prod_mount/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
-                    <a href="#prod_mount/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                    <a href="#prod_mount/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
-                    <a href="#prod_mount/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
-                    <a href="#prod_mount/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справ. упак.</button></a>
-                </div>
+            <div id="production/install_coil" class="sidebar__tabcontent__container">
+
             </div>
             <!-- Тех. упаковка -->
-            <div id="prod_mount/dir_coil" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#prod_mount/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
-                    <a href="#prod_mount/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                    <a href="#prod_mount/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
-                    <a href="#prod_mount/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
-                    <a href="#prod_mount/dir_coil"><button class="button__tab__first button__tab__first_dir_coil"><img class="button__tab__first__img" src="../blocks/sidebar/img/directory.svg">Справ. упак.</button></a>
-                </div>
+            <div id="production/dir_coil" class="sidebar__tabcontent__container">
+
             </div>
         </div>
         <!-- поставка -->
@@ -726,12 +657,17 @@
                 </tbody>
             </table>
         </div>
+        <!-- проектирование -->
         <div class="sidebar__tabcontent" id="development">
-            <h2>Здесь будут вкладки и таблицы проектирования</h2>
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#development/begunok"><button class="button__tab__first button__tab__first_begunok"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Бегунок</button></a>
+            </div>
         </div>
+        <!-- склад -->
         <div class="sidebar__tabcontent" id="storage">
             <h2>Здесь будут вкладки и таблицы склада</h2>
         </div>
+        <!-- справочники -->
         <div class="sidebar__tabcontent" id="directory_all">
             <!-- справочники комплекта -->
             <div id="dir_sets" class="sidebar__tabcontent__container">

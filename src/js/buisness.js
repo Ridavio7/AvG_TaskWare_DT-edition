@@ -32,14 +32,10 @@ import '../blocks/tree/jstree.js';
 /* таблицы */
 import '../blocks/table/table.scss';
 
-/* график */
+/* Отгрузка */
 import {funcGetGrfShipSets} from '../blocks/table/__schedule/table__schedule.js';
 import '../blocks/table/__schedule/table__schedule.scss'
-
-/* SN Prod */
 import {funcGetSNProd} from '../blocks/table/__snprod/table__snprod.js';
-
-/* анализ */
 import {funcGetShipSets} from '../blocks/table/__analysis-sets/table__analysis-sets.js';
 import '../blocks/table/__analysis-sets/table__analysis-sets.scss';
 import {funcGetShipProducts} from '../blocks/table/__analysis-products/table__analysis-products.js';
@@ -93,7 +89,7 @@ window.onload = function(){
 const returnTabsBuisness = () => {
     let sidebar_tab_first_active = document.getElementById(localStorage.getItem("buisness_sidebar_tab_first_active"));
     sidebar_tab_first_active.click();
-    if(sidebar_tab_first_active.className.includes("sidebar__link_no-child")){localStorage.removeItem("buisness_sidebar_tab_second_active"); localStorage.removeItem("buisness_tabcontent_tab_active")};
+    if(sidebar_tab_first_active.className.includes("sidebar__link_no-child")){localStorage.removeItem("buisness_sidebar_tab_second_active"); /*localStorage.removeItem("buisness_tabcontent_tab_active")*/};
 
     let sidebar_tab_second_active = document.getElementById(localStorage.getItem("buisness_sidebar_tab_second_active"));
     if(sidebar_tab_second_active != null){
@@ -235,6 +231,9 @@ const addEventButtonTab = (button_tab, func) => {
         })
     })
 }
+
+let button_tab_schedule        = document.querySelectorAll(".button__tab__first_schedule");
+addEventButtonTab(button_tab_schedule, funcGetGrfShipSets);
 
 let button_tab_snprod          = document.querySelectorAll(".button__tab__first_snprod");
 addEventButtonTab(button_tab_snprod, funcGetSNProd);
