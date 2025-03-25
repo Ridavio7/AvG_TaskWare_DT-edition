@@ -15,7 +15,7 @@ dragElement(enums_modal);
 export const funcInfoEnumsOpenModal = (uin, name) => {
     enums_modal.style.display = "block";
 
-    enums_title.value = `Св-во: ${name}`;
+    enums_title.innerHTML = name;
 
     propUinForAdd = uin;
 

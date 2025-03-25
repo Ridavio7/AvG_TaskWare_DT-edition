@@ -31,13 +31,13 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     let tb_id = "tb_modal_tcardprods";
     clearTable(tb_id);
 
-    document.getElementById("tcardprods_title").value = "";
+    document.getElementById("tcardprods_title").innerHTML = "";
     removeOptionsSetValue("tcardprods_add_select_proc", "---");
     addToDropdown(tcardprods_add_select_proc, "techproc_list")
 
     let prod = respobj.answDop.name;
     if(respobj.answ === ""){
-        document.getElementById("tcardprods_title").value = prod;
+        document.getElementById("tcardprods_title").innerHTML = prod;
     } else {
         for (let key in respobj.answ){
             let obj          = respobj.answ[key];
@@ -112,7 +112,7 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
 }
 
 const addInfoTcardprod = (prod, numb, nametechproc, uintechproc, fix, uin, del, tb_id) => {
-    document.getElementById("tcardprods_title").value = prod;
+    document.getElementById("tcardprods_title").innerHTML = prod;
 
     let tableRef = document.getElementById(tb_id);
     let newRow   = tableRef.insertRow(-1);

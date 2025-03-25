@@ -26,7 +26,7 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Св-ва типа:", respobj);
 
-    document.getElementById("typeselem_title").value = "";
+    document.getElementById("typeselem_title").innerHTML = "";
 
     let tb_id = "tb_modal_typeselem";
     clearTable(tb_id);
@@ -92,7 +92,7 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
 }
 
 const addInfoTypeselem = (compName, typeUin, propName, propUin, meas, del, tb_id, arr) => {
-    document.getElementById("typeselem_title").value = `Тип: ${compName}`;
+    document.getElementById("typeselem_title").innerHTML = compName;
     typeUinForAdd = typeUin;
 
     let tableRef = document.getElementById(tb_id);

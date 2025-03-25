@@ -11,6 +11,7 @@ import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table____comp-c
 export const modal_info_component = document.getElementById("modal_info_component");
 let span_info_component           = document.getElementById("close_info");
 let component_input_name          = document.getElementById("component_name");
+let component_input_name_title    = document.getElementById("component_name_title");
 let component_select_type         = document.getElementById("component_type");
 let component_button_type_info    = document.getElementById("component_type_info");
 let component_checkbox_funic      = document.getElementById("component_unic");
@@ -51,6 +52,7 @@ export const funcProcessInfoComponentsModalAdd = (uin) => {
     modal_info_component.style.display = "block";
 
     component_input_name.value = "";
+    component_input_name_title.innerHTML = "";
     removeOptionsSetValue("component_type", "---");
     component_checkbox_funic.checked = false;
     component_table_props.style.display = "none";
@@ -133,6 +135,7 @@ const funcProcessGetComponentInfo = (result, respobj) => {
 
 const addComponentInfo = (name, typelm, typelmUin, fUnic, comment, ost, uin) => {
     document.getElementById("component_name").value = name;
+    document.getElementById("component_name_title").innerHTML = name;
 
     funcGetComponentInfoTypesProps(typelmUin);
 

@@ -1351,7 +1351,7 @@
     <!-- мод. окно инфо комлектующего -->
     <div class="modal" id="modal_info_component">
         <div class="modal__moving" id="modal_info_component_moving">
-            <span class="modal__title">Модальное окно с информацией о комплектующем</span>
+            <span class="modal__title">Комплектующее <span class="modal__title" id="component_name_title"></span></span>
             <span class="modal__close" id="close_info">&times;</span>
         </div>
         <div class="modal__content">
@@ -1470,7 +1470,7 @@
     <!-- мод. окно выбора комлектующего -->
     <div class="modal" id="modal_select_component">
         <div class="modal__moving" id="modal_select_component_moving">
-            <span class="modal__title">Модальное окно выбора комплектующего</span>
+            <span class="modal__title">Выбор комплектующего</span>
             <span class="modal__close" id="close_component_select">&times;</span>
         </div>
         <div class="modal__content">
@@ -1526,7 +1526,7 @@
     <!-- мод. окно перемещения комлектующего -->
     <div class="modal" id="modal_transfer_component">
         <div class="modal__moving" id="modal_transfer_component_moving">
-            <span class="modal__title">Модальное окно перемещения комплектующего</span>
+            <span class="modal__title">Перемещение комплектующего</span>
             <span class="modal__close" id="close_component_transfer">&times;</span>
         </div>
         <div class="modal__content">
@@ -1548,7 +1548,7 @@
     <!-- мод. окно инфо поставки -->
     <div class="modal" id="modal_info_docpost">
         <div class="modal__moving" id="modal_info_docpost_moving">
-            <span class="modal__title">Модальное окно с информацией о поставке</span>
+            <span class="modal__title">Поставка № <span class="modal__title" id="docpost_numb_title"></span> от <span class="modal__title" id="docpost_contr_title"></span></span>
             <span class="modal__close" id="close_info_docpost">&times;</span>
         </div>
         <div class="modal__content">
@@ -1623,7 +1623,7 @@
     <!-- мод. окно свойств типа -->
     <div class="modal" id="modal_typeselem">
         <div class="modal__moving" id="modal_typeselem_moving">
-            <span class="modal__title">Модальное окно свойств типа</span>
+            <span class="modal__title">Свойства типа <span class="modal__title" id="typeselem_title"></span></span>
             <span class="modal__close" id="close_typeselem">&times;</span>
         </div>
         <div class="modal__content">
@@ -1633,9 +1633,6 @@
             <div class="modal__body">
                 <table class="table" id="main_tb_modal_typeselem">
                     <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active" colspan="3"><input class="input__type-text input__type-text_title-table-schedule" type="text" id="typeselem_title" value="" disabled></td>
-                        </tr>
                         <tr class="tr">
                             <td class="td td_active">Св-во</td>
                             <td class="td td_active">Ед. изм.</td>
@@ -1659,7 +1656,7 @@
     <!-- мод. окно тех. карты -->
     <div class="modal" id="modal_tcardprods">
         <div class="modal__moving" id="modal_tcardprods_moving">
-            <span class="modal__title">Модальное окно тех. карты изделия</span>
+            <span class="modal__title">Тех. процесс изделия <span class="modal__title" id="tcardprods_title"></span></span>
             <span class="modal__close" id="close_tcardprods">&times;</span>
         </div>
         <div class="modal__content">
@@ -1669,9 +1666,6 @@
             <div class="modal__body">
                 <table class="table" id="main_tb_modal_tcardprods">
                     <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active" colspan="4"><input class="input__type-text input__type-text_title-table-schedule" type="text" id="tcardprods_title" value="" disabled></td>
-                        </tr>
                         <tr class="tr">
                             <td class="td td_active">Номер</td>
                             <td class="td td_active">Тех. операция</td>
@@ -1697,7 +1691,7 @@
     <!-- мод. окно значений свойства -->
     <div class="modal" id="enums_modal">
         <div class="modal__moving" id="enums_modal_moving">
-            <span class="modal__title">Модальное окно значений свойства</span>
+            <span class="modal__title">Значения свойства <span class="modal__title" id="enums_title"></span></span>
             <span class="modal__close" id="enums_close">&times;</span>
         </div>
         <div class="modal__content">
@@ -1707,9 +1701,6 @@
             <div class="modal__body">
                 <table class="table" id="enums_main_tb_modal">
                     <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active" colspan="2"><input class="input__type-text input__type-text_title-table-schedule" type="text" id="enums_title" value="" disabled></td>
-                        </tr>
                         <tr class="tr">
                             <td class="td td_active">Значение</td>
                             <td class="td td_active"></td>
@@ -1731,7 +1722,7 @@
     <!-- мод. окно расширенного поиска -->
     <div class="modal" id="found_plus_modal">
         <div class="modal__moving" id="found_plus_modal_moving">
-            <span class="modal__title">Модальное окно расширенного поиска</span>
+            <span class="modal__title">Расширенный поиск</span>
             <span class="modal__close" id="found_plus_close">&times;</span>
         </div>
         <div class="modal__content">

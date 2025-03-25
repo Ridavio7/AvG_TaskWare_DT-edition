@@ -10,10 +10,12 @@ let docpost_status  = document.getElementById("docpost_statdoc");
 let docpost_user    = document.getElementById("docpost_user");
 let docpost_prim    = document.getElementById("docpost_prim");
 let docpost_numb    = document.getElementById("docpost_numb");
+let docpost_numb_t  = document.getElementById("docpost_numb_title");
 let docpost_date    = document.getElementById("docpost_date");
 let docpost_numb1c  = document.getElementById("docpost_numb1c");
 let docpost_date1c  = document.getElementById("docpost_date1c");
 let docpost_contr   = document.getElementById("docpost_contr");
+let docpost_contr_t = document.getElementById("docpost_contr_title");
 let docpost_storage = document.getElementById("docpost_storage");
 let docpost_save    = document.getElementById("docpost_save");
 let modal_select_component = document.getElementById("modal_select_component");
@@ -44,12 +46,14 @@ const funcProcessGetInfoInputsDocpost = (result, respobj) => {
     removeOptions(docpost_status);
     removeOptions(docpost_user);
     removeOptions(docpost_storage);
-    docpost_contr.value  = "";
-    docpost_numb.value   = "";
-    docpost_date.value   = "";
-    docpost_numb1c.value = "";
-    docpost_date1c.value = "";
-    docpost_prim.value   = "";
+    docpost_numb_t.innerHTML  = "";
+    docpost_contr_t.innerHTML = "";
+    docpost_contr.value       = "";
+    docpost_numb.value        = "";
+    docpost_date.value        = "";
+    docpost_numb1c.value      = "";
+    docpost_date1c.value      = "";
+    docpost_prim.value        = "";
 
     for (let key in respobj.answ){
         let obj = respobj.answ[key];
@@ -78,6 +82,8 @@ const addDocpostInfoInputs =
     addToDropdown(docpost_storage, "storages_list");
     addToDropdownOneOption(docpost_user, userName, userUin);
     addToDropdown(docpost_user, "users_list");
+    docpost_numb_t.innerHTML  = numb;
+    docpost_contr_t.innerHTML = contrName;
     docpost_contr.value  = contrName;
     docpost_numb.value   = numb;
     docpost_date.value   = date;

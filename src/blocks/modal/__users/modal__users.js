@@ -5,6 +5,7 @@ import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 let user_modal  = document.getElementById("user_modal");
 let user_close  = document.getElementById("user_close");
 let user_name   = document.getElementById("user_name");
+let user_name_t = document.getElementById("user_name_title");
 let user_job    = document.getElementById("user_job");
 let user_email  = document.getElementById("user_email");
 let user_phone  = document.getElementById("user_phone");
@@ -81,9 +82,10 @@ const funcProcessGetUserInfo = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Пользователь:", respobj);
 
-    user_name.value  = "";
-    user_email.value = "";
-    user_phone.value = "";
+    user_name_t.innerHTML = "";
+    user_name.value       = "";
+    user_email.value      = "";
+    user_phone.value      = "";
     removeOptions(user_job);
 
     let obj     = respobj.answ[0];
@@ -99,10 +101,11 @@ const funcProcessGetUserInfo = (result, respobj) => {
 }
 
 const addUserInfo = (name, jobName, jobUin, email, phone, rights, uin) => {
-    user_name.value  = name;
-    user_email.value = email;
-    user_phone.value = phone;
-    user_save.value  = uin;
+    user_name_t.innerHTML = name;
+    user_name.value       = name;
+    user_email.value      = email;
+    user_phone.value      = phone;
+    user_save.value       = uin;
     addToDropdownOneOption(user_job, jobName, jobUin);
     addToDropdown(user_job, "jobs_list");
 
