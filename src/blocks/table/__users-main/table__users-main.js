@@ -57,12 +57,12 @@ const addUsersRow = (num, name, job, email, phone, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo  = newRow.insertCell(0); cellInfo.classList  = "td";
-    let cellNum   = newRow.insertCell(1); cellNum.classList   = "td";
+    let cellInfo  = newRow.insertCell(0); cellInfo.classList  = "td td__text_align_center";
+    let cellNum   = newRow.insertCell(1); cellNum.classList   = "td td__text_align_center";
     let cellName  = newRow.insertCell(2); cellName.classList  = "td";
     let cellJob   = newRow.insertCell(3); cellJob.classList   = "td";
     let cellEmail = newRow.insertCell(4); cellEmail.classList = "td";
-    let cellPhone = newRow.insertCell(5); cellPhone.classList = "td";
+    let cellPhone = newRow.insertCell(5); cellPhone.classList = "td td__text_align_center";
     let cellBtn   = newRow.insertCell(6); cellBtn.classList   = "td";
 
     cellInfo.innerHTML  = `<button class="button__control button__control_modal-users-main" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;

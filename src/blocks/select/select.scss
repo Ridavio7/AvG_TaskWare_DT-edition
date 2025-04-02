@@ -38,6 +38,7 @@
         margin-right: 5px;
         height: 40px;
         border: 1px solid var(--border);
+        padding: 0px;
 
         &_visible .select__items{
             display: flex;
@@ -68,9 +69,9 @@
         background-color: var(--background_sidebar);
     }
 
-    & option:nth-child(1){
+    /*& option:nth-child(1){
         display: none;
-    }
+    }*/
 
     option{
         background-color: var(--background_second);
