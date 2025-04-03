@@ -3,10 +3,13 @@ import {funcProcessInfoComponentsModalAdd, funcInfoComponentsOpenModal} from '..
 import {funcInfoComponentsTransferOpenModal} from '../../modal/__transfer-comp/modal__transfer-comp.js';
 import {funcFoundComponents} from '../__comp-found/table__comp-found.js';
 import {funcFoundPlusOpenModal} from '../../modal/__found-plus/modal__found-plus.js';
+import {TreeBuilder} from '../../_tree/tree.js';
 
 let found_select = document.getElementById("found_main_select");
 let found_button = document.getElementById("found_main_button");
 let found_button_modal = document.getElementById("found_main_button_modal_plus");
+
+let uinCatc = null;
 
 found_button.onclick = function(){
     funcFoundComponents("found_main_input", "found_main_select", "found_main_table", "tb_components_tree", "jstree_div", "component_name_");
@@ -28,58 +31,21 @@ const funcProcessGetComponentsTree = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Дерево:", respobj);
 
-    $('#jstree_div').jstree({
-        core: {
-            data: respobj.answ
-        },
-        "plugins" : [ "state", "unique", "contextmenu" ],
-    }).bind("loaded.jstree", function () {
-        $(this).jstree("open_all");
-    })
+    const tree = new TreeBuilder('jstree_div', ["contextmenu", "openall"]);
+    tree.build(respobj.answ);
+    //tree.openFullTree();
 
-    $('#jstree_div').on('changed.jstree', function (e, data) {
-        let objNode = data.instance.get_node(data.selected);
-
-        if(objNode.id != undefined){
-            let uin = objNode.id;
-            localStorage.setItem("uincatC", uin);
+    document.getElementById('jstree_div').addEventListener('click', () => {
+        let node = tree.get();
+        uinCatc = node.getAttribute('data-id');
         
-            let tb_id = "tb_components_tree";
-            clearTableAll(tb_id);
-        
-            let table = document.getElementById(tb_id);
-            let row_head   = table.insertRow(-1);
-            row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uin}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
-        
-            funcGetComponents(uin);
-        
-            funcMarkNode(respobj.answDop);
+        funcGetComponents(uinCatc);
     
-            let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-tree");
-            button_control_add_comp_tree.addEventListener("click", (elem) => {
-                funcProcessInfoComponentsModalAdd(elem.value);
-            })
-        }
+        let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-tree");
+        button_control_add_comp_tree.addEventListener("click", (elem) => {
+            funcProcessInfoComponentsModalAdd(elem.value);
+        })
     })
-
-    $('#jstree_div').on('click.jstree', function (){
-        funcMarkNode(respobj.answDop);
-    });
-}
-
-/* пометка папки */
-const funcMarkNode = (arr) => {
-    for(let i in arr){
-        let id  = arr[i].id;
-        let del = arr[i].del;
-    
-        if(del === 1){
-            let node = document.getElementById(`${id}_anchor`);
-            if(node != null){
-                node.style.color = "red";
-            }
-        }
-    }
 }
 
 /* каталог комплектующих */
@@ -90,10 +56,14 @@ export const funcGetComponents = (uin) => {
 
 const funcProcessGetComponents = (result, respobj) => {
     if( result === 0 ) return;
-    console.log("Директория:", respobj);
+    //console.log("Директория:", respobj);
 
     let tb_id = "tb_components_tree"
-    clearTable(tb_id);
+    clearTableAll(tb_id);
+
+    let table = document.getElementById(tb_id);
+    let row_head   = table.insertRow(-1);
+    row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
 
     for (let key in respobj.answ){
         let set = respobj.answ[key];

@@ -5,17 +5,20 @@ import {funcFoundComponents, funcFoundComponents1C} from '../../table/__comp-fou
 import {funcFoundPlusOpenModal} from '../__found-plus/modal__found-plus.js';
 import {funcInfoComponentsOpenModal} from '../__info-comp/modal__info-comp.js';
 import {funcInfoComponentsTransferOpenModal} from '../__transfer-comp/modal__transfer-comp.js';
+import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_select_comp = document.getElementById("modal_select_component");
 let span_select_comp  = document.getElementById("close_component_select");
+
+let uinCatc = null;
 
 span_select_comp.addEventListener("click", () => {
     modal_select_comp.style.display = "none";
 
     removeOptionsSetValue("found_select", "-- Выберите тип --");
 
-    $('#modal_select_component_tree').off();
-    $('#modal_select_component_tree').jstree("destroy");
+    //$('#modal_select_component_tree').off();
+    //$('#modal_select_component_tree').jstree("destroy");
 })
 
 dragElement(modal_select_comp);
@@ -48,29 +51,18 @@ export const funcGetComponentsTreeSelect = () => {
 function funcProcessGetComponentsTreeSelect(result, respobj){
     if( result === 0 ) return;
 
-    $('#modal_select_component_tree').jstree({
-        core: {
-            data: respobj.answ
-        },
-        "plugins" : ["state"],
-    }).bind("loaded.jstree", function () {
-        $(this).jstree("open_all");
-    })
+    const tree = new TreeBuilder('modal_select_component_tree', ["openall"]);
+    tree.build(respobj.answ);
 
-    $('#modal_select_component_tree').on('changed.jstree', function (e, data) {
-        let objNode = data.instance.get_node(data.selected);
-        let uin = objNode.id;
-        localStorage.setItem("uincatC", uin);
-
+    document.getElementById('modal_select_component_tree').addEventListener('click', () => {
+        let node = tree.get();
+        uinCatc = node.getAttribute('data-id');
+    
         let tb_id = "tb_component_select";
         clearTableAll(tb_id);
     
-        funcGetDirC(uin);
+        funcGetDirC(uinCatc);
     })
-    
-    $('#modal_select_component_tree').on('click.jstree', function (){
-        funcMarkNode(respobj.answDop);
-    });
 }
 
 export const funcGetDirC = (uin) => {
@@ -83,10 +75,9 @@ function funcProcessGetComponentsSelect(result, respobj){
 
     let tb_id = "tb_component_select";
     clearTableAll(tb_id);
-    let uincatC        = localStorage.getItem("uincatC");
     let tableRef       = document.getElementById(tb_id);
     let row_head       = tableRef.insertRow(0);
-    row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-select" value="${uincatC}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
+    row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
 
     let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-select");
     button_control_add_comp_tree.addEventListener("click", (elem) => {

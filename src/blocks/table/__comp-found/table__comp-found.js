@@ -6,7 +6,7 @@ let found_table_comp;
 let found_input_id;
 
 export const funcFoundComponents = (input, select, tb_id, tb_id_comp, tree_id, input_id) => {
-    let body =  {"user":"demo", "obj":"components", "meth":"found", "name":"", "uintype":"", "count":"10"};
+    let body =  {"user":"demo", "obj":"components", "meth":"found", "name":"", "uintype":"", "count":"100"};
 
     let name = document.getElementById(input).value;
     name === "" ? body.name = " " : body.name = name;
@@ -22,7 +22,7 @@ export const funcFoundComponents = (input, select, tb_id, tb_id_comp, tree_id, i
 }
 
 export const funcFoundComponents1C = (input, tb_id, tb_id_comp, tree_id, input_id) => {
-    let body =  {"user":"demo", "obj":"components", "meth":"found1c", "name":"", "count":"10"};
+    let body =  {"user":"demo", "obj":"components", "meth":"found1c", "name":"", "count":"100"};
 
     let name = document.getElementById(input).value;
     name === "" ? body.name = " " : body.name = name;
@@ -50,7 +50,7 @@ export const funcFoundOneComponent = (nameComp) => {
 }
 
 export const funcFoundPlusComponents = (input, select, props, tb_id, tb_id_comp, tree_id, input_id) => {
-    let body =  {"user":"demo", "obj":"components", "meth":"found", "name":"", "uintype":"", "props": props, "count":"15"};
+    let body =  {"user":"demo", "obj":"components", "meth":"found", "name":"", "uintype":"", "props": props, "count":"100"};
 
     let name = document.getElementById(input).value;
     name === "" ? body.name = " " : body.name = name;
@@ -127,22 +127,28 @@ const addFoundComponentsEmpty = (found_table) => {
 }
 
 export const funcFindAnchor = (value, name) => {
-    let anchors = document.getElementById(found_tree).getElementsByClassName(`jstree-anchor`);
-
+    let anchors = document.getElementById(found_tree).getElementsByClassName(`summary`);
     for(let i in anchors){
         let obj = anchors[i];
-        let id = obj.id;
-        if(id === `${value}_anchor`){
+        let id  = obj.id;
+        if(id === `summary_${value}`){
             anchors[i].click();
+            if(!anchors[i].closest('details').hasAttribute("open")) anchors[i].closest('details').setAttribute("open", '');
+            anchors[i].scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
         }
     }
 
     setTimeout(() => {
-        document.getElementById(`${found_input_id}${name}`).parentElement.className += " tr_mark";
+        let tr = document.getElementById(`${found_input_id}${name}`);
+        if(tr != null){
+            document.getElementById(`${found_input_id}${name}`).parentElement.className += " tr_mark";
+            document.getElementById(`${found_input_id}${name}`).parentElement.scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
+        }
     }, 300)
 
     setTimeout(() => {
         let tr = document.getElementById(`${found_input_id}${name}`);
+        if(tr != null)
         tr.parentElement.className = tr.parentElement.className.replace(" tr_mark", "");
     }, 3000)
 }

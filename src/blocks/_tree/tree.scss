@@ -1,0 +1,109 @@
+.details{
+    margin: 3px 0;
+    position: relative;
+
+    &__container{
+        margin: 0px 22px;
+    }
+
+    &__context-menu{
+        position: absolute;
+        background: var(--background_first);
+        border: 1px solid var(--border);
+        z-index: 1000;
+        display: none;
+
+        & button{
+            display: block;
+            width: 100%;
+            padding: 8px 16px;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--font-color);
+            font-family: Roboto, sans-serif;
+            font-size: 16px;
+
+            &:hover{
+                background-color: var(--border);
+                color: var(--font-color_active);
+            }
+        }
+    }
+}
+
+.summary{
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    border: none;
+    padding: 3px 10px;
+    background-color: inherit;
+    color: var(--font-color);
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+
+    &_active{
+        background: var(--expand-button-active);
+        color: var(--font-color_active);
+        outline: none;
+        border: none;
+    }
+
+    &_deleted{
+        text-decoration: line-through var(--red);
+        color: var(--font-color);
+
+        &:hover{
+            color: var(--font-color_active);
+        }
+    }
+
+    &:hover{
+        background: var(--expand-button-active);
+        color: var(--font-color_active);
+        outline: none;
+        border: none;
+    }
+
+    &:before{
+        content: url(../_tree/img/folder.svg);
+        position: relative;
+        transition: transform 0.2s;
+        margin-right: 5px;
+        filter: var(--img_color);
+        -webkit-filter: var(--img_color);
+    }
+
+    &_no-arrow::marker{
+        color: var(--background_second);
+    }
+}
+
+.summary:hover.summary_no-arrow::marker{
+    color: var(--expand-button-active);
+}
+
+.summary:hover.summary_deleted.summary_no-arrow::marker{
+    color: var(--border);
+}
+
+.summary_active.summary_no-arrow::marker{
+    color: var(--expand-button-active);
+}
+
+.summary_active.summary_deleted.summary_no-arrow::marker{
+    color: var(--border);
+}
+
+.summary_active.summary_deleted{
+    color: var(--font-color_active);
+    background: var(--border);
+}
+
+.summary:hover.summary_deleted{
+    background: var(--border);
+}

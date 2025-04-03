@@ -26,7 +26,6 @@ import '../blocks/select/_modal/select_modal.scss';
 /* модальные окна */
 import '../blocks/modal/modal.scss';
 /* дерево */
-import '../blocks/tree/jstree.scss';
-import '../blocks/tree/jstree.js';
+
 /* таблицы */
 import '../blocks/table/table.scss';

@@ -1,6 +1,6 @@
 const url = "https://apitw.avantguard.pro:32100/json";
 
-export const funcCommand = (body, callbackfunc) => {
+export const funcCommand = (body, callbackfunc, func) => {
     fetch(url, {
         method: 'POST',
         body: JSON.stringify(body),
@@ -21,6 +21,7 @@ export const funcCommand = (body, callbackfunc) => {
         .then((data) => {
             callbackfunc(1, data)
         })
+        .then(func)
 }
 
 export const funcProcessOnlyInfo = (result, respobj) => {
@@ -356,7 +357,7 @@ export const funcMarkNode = (arr) => {
         if(del === 1){
             let node = document.getElementById(`${id}_anchor`);
             if(node != null){
-                node.style.color = "red";
+                node.style.color = "var(--red)";
             }
         }
     }
