@@ -4,11 +4,12 @@ import {funcInfoCatcTransferOpenModal} from '../modal/__transfer-comp/modal__tra
 
 export class Tree {
     constructor(dataItem) {
-        this.id       = dataItem.id;
-        this.text     = dataItem.text;
-        this.deleted  = dataItem.del === 1;
-        this.children = dataItem.children || [];
-        this.parentId = null;
+        this.id         = dataItem.id;
+        this.text       = dataItem.text;
+        this.deleted    = dataItem.del === 1;
+        this.children   = dataItem.children || [];
+        this.contentNum = dataItem.contentNum;
+        this.parentId   = null;
     }
 
     hasChildren() {
@@ -70,7 +71,7 @@ export class TreeBuilder {
         details.setAttribute('data-id', item.id);
 
         const summary = Object.assign(document.createElement('summary'), {
-            textContent: item.text,
+            textContent: `${item.text} (${item.contentNum} шт.)`,
             id: `summary_${item.id}`,
             classList: 'summary'
         });
