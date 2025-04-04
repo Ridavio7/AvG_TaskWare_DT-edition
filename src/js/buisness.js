@@ -20,6 +20,7 @@ import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
 import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
 import '../blocks/input/__type-radio/input__type-radio.scss';
+import '../blocks/input/__type-file/input__type-file.scss';
 /* select */
 import '../blocks/select/select.scss';
 import '../blocks/select/select.js';
@@ -98,9 +99,11 @@ const returnTabsBuisness = () => {
 
         if(sidebar_tab_second_active.className.includes("sidebar__menu__link_no-child")){localStorage.removeItem("buisness_tabcontent_tab_active")};
     
-        let buisness_sidebar_arrow_active = localStorage.getItem("buisness_sidebar_arrow_active");
-        document.getElementById(buisness_sidebar_arrow_active).className += " sidebar__wrapper_menu-visibale";
+        //let buisness_sidebar_arrow_active = localStorage.getItem("buisness_sidebar_arrow_active");
+        //document.getElementById(buisness_sidebar_arrow_active).className += " sidebar__wrapper_menu-visibale";
     }
+
+    document.getElementById("sidebar_tablink_6").className += " sidebar__wrapper_menu-visibale";
 
     let tabcontent_tab_active = document.getElementsByClassName(localStorage.getItem("buisness_tabcontent_tab_active"));
     tabcontent_tab_active[0].click();
