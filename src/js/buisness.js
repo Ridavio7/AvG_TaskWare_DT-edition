@@ -21,6 +21,7 @@ import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
 import '../blocks/input/__type-radio/input__type-radio.scss';
 import '../blocks/input/__type-file/input__type-file.scss';
+import '../blocks/input/__type-file/input__type-file.js';
 /* select */
 import '../blocks/select/select.scss';
 import '../blocks/select/select.js';
@@ -32,6 +33,9 @@ import '../blocks/_tree/tree.js';
 import '../blocks/_tree/tree.scss';
 /* таблицы */
 import '../blocks/table/table.scss';
+/* карусель */
+import '../blocks/carousel/carousel.scss';
+import '../blocks/carousel/carousel.js';
 
 /* Отгрузка */
 import {funcGetGrfShipSets} from '../blocks/table/__schedule/table__schedule.js';

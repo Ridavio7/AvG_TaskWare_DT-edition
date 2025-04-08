@@ -33,18 +33,13 @@ const funcProcessGetComponentsTree = (result, respobj) => {
 
     const tree = new TreeBuilder('jstree_div', ["contextmenu", "openall"]);
     tree.build(respobj.answ);
-    //tree.openFullTree();
 
     document.getElementById('jstree_div').addEventListener('click', () => {
         let node = tree.get();
         uinCatc = node.getAttribute('data-id');
+        localStorage.setItem("uincatC", uinCatc);
         
         funcGetComponents(uinCatc);
-    
-        let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-tree");
-        button_control_add_comp_tree.addEventListener("click", (elem) => {
-            funcProcessInfoComponentsModalAdd(elem.value);
-        })
     })
 }
 
@@ -103,6 +98,11 @@ const funcProcessGetComponents = (result, respobj) => {
         elem.addEventListener("click", () => {
             funcInfoComponentsTransferOpenModal(elem.value, elem.name);
         })
+    })
+
+    let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-tree");
+    button_control_add_comp_tree.addEventListener("click", (elem) => {
+        funcProcessInfoComponentsModalAdd(elem.value);
     })
 }
 

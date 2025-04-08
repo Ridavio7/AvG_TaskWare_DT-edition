@@ -1,8 +1,10 @@
 .input__type-file{
-    display: block;
+    display: inline-block;
     width: 200px;
     height: 27px;
     text-align: center;
     cursor: pointer;
     padding-top: 3px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

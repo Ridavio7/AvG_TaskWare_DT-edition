@@ -42,12 +42,12 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
 
     let select_unic = document.getElementById("component_unic");
     let inputs = document.getElementsByClassName("component_info_input");
-    if(select_unic.checked === true){
+    /*if(select_unic.checked === true){
         for(i of inputs){i.disabled = false};
     } else {
         select_unic.checked = false;
         for(i of inputs){i.disabled = true};
-    }
+    }*/
 
     /* функция удаления */
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-compontsprops");
@@ -83,9 +83,9 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
                 body.value = prop_value.value;
             }
 
-            body.d1          = findForUpdateInput(`component_info_d1_${elem.value}`, target_table);
-            body.d2          = findForUpdateInput(`component_info_d2_${elem.value}`, target_table);
-            body.perc        = findForUpdateInput(`component_info_perc_${elem.value}`, target_table);
+            body.d1   = 0//findForUpdateInput(`component_info_d1_${elem.value}`, target_table);
+            body.d2   = 0//findForUpdateInput(`component_info_d2_${elem.value}`, target_table);
+            body.perc = 0//findForUpdateInput(`component_info_perc_${elem.value}`, target_table);
 
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
@@ -111,10 +111,10 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     let cellProps   = newRow.insertCell(1); cellProps.classList   = "td";
     let cellMeas    = newRow.insertCell(2); cellMeas.classList    = "td";
     let cellPropVal = newRow.insertCell(3); cellPropVal.classList = "td";
-    let cellPerc    = newRow.insertCell(4); cellPerc.classList    = "td";
-    let cellD1      = newRow.insertCell(5); cellD1.classList      = "td";
-    let cellD2      = newRow.insertCell(6); cellD2.classList      = "td";
-    let cellBtn     = newRow.insertCell(7); cellBtn.classList     = "td";
+    //let cellPerc    = newRow.insertCell(4); cellPerc.classList    = "td";
+    //let cellD1      = newRow.insertCell(5); cellD1.classList      = "td";
+    //let cellD2      = newRow.insertCell(6); cellD2.classList      = "td";
+    let cellBtn     = newRow.insertCell(4); cellBtn.classList     = "td";
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-props-info" value="${propsUin}" name="${props}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
 
@@ -139,9 +139,9 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
         }
     }
 
-    cellPerc.innerHTML  = `<input class="input__type-text" type="text" name="component_info_perc_${uin}" value="${perc}">`;
-    cellD1.innerHTML    = `<input class="input__type-text" type="text" name="component_info_d1_${uin}" value="${d1}">`;
-    cellD2.innerHTML    = `<input class="input__type-text" type="text" name="component_info_d2_${uin}" value="${d2}">`;
+    //cellPerc.innerHTML  = `<input class="input__type-text" type="text" name="component_info_perc_${uin}" value="${perc}">`;
+    //cellD1.innerHTML    = `<input class="input__type-text" type="text" name="component_info_d1_${uin}" value="${d1}">`;
+    //cellD2.innerHTML    = `<input class="input__type-text" type="text" name="component_info_d2_${uin}" value="${d2}">`;
 
     let select = document.getElementById(`component_info_props_select__${uin}`);
     select.addEventListener("change", function (){
@@ -167,9 +167,9 @@ button_control_add.addEventListener("click", () => {
         value = prop_input_value.value;
     }
 
-    let d1_value       = document.getElementById(`component_info_add_d1`).value;
-    let d2_value       = document.getElementById(`component_info_add_d2`).value;
-    let perc_value     = document.getElementById(`component_info_add_perc`).value;
+    let d1_value       = 0//document.getElementById(`component_info_add_d1`).value;
+    let d2_value       = 0//document.getElementById(`component_info_add_d2`).value;
+    let perc_value     = 0//document.getElementById(`component_info_add_perc`).value;
 
     if(uinprops_value === "" || value === "" || perc_value === ""){
         alert("Вы не заполнили все поля!");
@@ -183,9 +183,9 @@ button_control_add.addEventListener("click", () => {
         removeOptionsSetValue(`component_info_add_props_select`, "---");
         removeOptionsSetValue(`component_info_add_props_value_select`, "---");
         document.getElementById(`component_info_add_props_value_input`).value = "";
-        document.getElementById(`component_info_add_d1`).value = "0";
-        document.getElementById(`component_info_add_d2`).value = "0";
-        document.getElementById(`component_info_add_perc`).value = "0";
+        //document.getElementById(`component_info_add_d1`).value = "0";
+        //document.getElementById(`component_info_add_d2`).value = "0";
+        //document.getElementById(`component_info_add_perc`).value = "0";
         
         funcCommand(body, funcProcessOnlyInfo);
         

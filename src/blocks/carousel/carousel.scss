@@ -1,0 +1,102 @@
+.carousel{
+    padding: 10px;
+    border: 1px solid var(--border);
+    margin-right: 10px;
+    max-width: 725px;
+
+    &__container{
+        position: relative;
+        width: 700px;
+        height: 400px;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+
+    &__main-image{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    &__nav-button{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        color: var(--font-color_active);
+        background-color: inherit;
+        border: none;
+        border-radius: 50%;
+        font-size: 22px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: all 0.3s ease;
+
+        &_prev{
+            left: 15px;
+        }
+
+        &_next{
+            right: 15px;
+        }
+
+        &:hover{
+            background-color: var(--expand-button-active);
+        }
+    }
+
+    &__container-thumbnail{
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--border);
+            border-radius: 5px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: var(--font-color);
+            border-radius: 5px;
+        }
+    }
+
+    &__thumbnail{
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        margin-bottom: 5px;
+
+        &:hover{
+            border-color: var(--expand-button-active);
+        }
+
+        &.active {
+            border-color: var(--expand-button-active);
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .main-image-container {
+        height: 300px;
+    }
+    
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
