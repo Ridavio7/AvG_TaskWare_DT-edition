@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js.js';
+import {funcCommand, clearTableAll, addToDropdown, addToDropdownOneOption, removeOptionsSetValue} from '../../../js/common/common.js.js';
 import {addToDropdownPsevdoFoundPlus, psevdoSelect} from '../../select/select.js';
 import {dragElement} from '../modal.js';
 import {funcFoundPlusComponents} from '../../table/__comp-found/table__comp-found.js';
@@ -28,6 +28,7 @@ export const funcFoundPlusOpenModal = (tb_id, tb_id_comp, tree_id, input_id) => 
     found_plus_modal.style.display = "block";
 
     removeOptionsSetValue("found_plus_select", "-- Выберите тип --");
+    addToDropdownOneOption(found_plus_select, "Все", '');
     addToDropdown(found_plus_select, 'typelm_list');
 
     found_table      = tb_id;
@@ -78,11 +79,16 @@ found_plus_button.onclick = function(){
 }
 
 found_plus_select.addEventListener("change", (elem) => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"typesprops", "count":"100", "uintypes":`${elem.target.value}`};
-    funcCommand(body, funcProcessGetTypesProps);
+    if(elem.target.value != ''){
+        let body  =  {"user":"demo", "meth":"view", "obj":"typesprops", "count":"100", "uintypes":`${elem.target.value}`};
+        funcCommand(body, funcProcessGetTypesPropsFetch);
+    } else {
+        let respobj = JSON.parse(localStorage.getItem("props_list"));
+        funcProcessGetTypesPropsStorage(respobj);
+    }
 })
 
-const funcProcessGetTypesProps = (result, respobj) => {
+const funcProcessGetTypesPropsFetch = (result, respobj) => {
     if( result === 0 ) return;
     console.log("TypesProps поиска:", respobj);
 
@@ -91,6 +97,20 @@ const funcProcessGetTypesProps = (result, respobj) => {
 
     for (let key in respobj.answ){
         let obj      = respobj.answ[key];
+        let name     = obj.name;
+        let uin      = obj.uin;
+        addFoundTypesProps(name, uin, tb_id);
+    }
+}
+
+const funcProcessGetTypesPropsStorage = (respobj) => {
+    console.log("TypesProps поиска:", respobj);
+
+    let tb_id = "found_plus_tb";
+    clearTableAll(tb_id);
+
+    for (let key in respobj){
+        let obj      = respobj[key];
         let name     = obj.name;
         let uin      = obj.uin;
         addFoundTypesProps(name, uin, tb_id);
@@ -120,7 +140,7 @@ const addFoundTypesProps = (name, uin, tb_id) => {
             cellValue.innerHTML = `<input class="input__type-text input__type-text_title input__type-text_types-props-value" type="text" value="">`;
         } else {
             cellValue.innerHTML = `<div class="select select__filter select-props-value" id="list_enums_prop_${uin}" tabindex="100">
-                        <span class="select__anchor">-- Выберите значения --</span>
+                        <span class="select__anchor">Значения <img class="select__img" src="assets/images/filter.svg" alt=""></span>
                         <ul class="select__items" id="list_enums_prop_${uin}_items"></ul>
                     </div>`
 
