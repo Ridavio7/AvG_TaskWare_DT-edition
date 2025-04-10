@@ -158,8 +158,10 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
             modal_select_component.style.display = "block";
             
             funcGetComponentsTreeSelect();
-            funcFoundOneComponent(elem.name)
-            localStorage.setItem("button_select_component_id", elem.id);
+            setTimeout(() => {
+                funcFoundOneComponent(elem.name)
+                localStorage.setItem("button_select_component_id", elem.id);
+            }, 150)
         })
     })
 }

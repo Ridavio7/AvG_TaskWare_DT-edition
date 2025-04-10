@@ -140,15 +140,12 @@ export const funcFindAnchor = (value, name) => {
 
     setTimeout(() => {
         let tr = document.getElementById(`${found_input_id}${name}`);
-        if(tr != null){
-            document.getElementById(`${found_input_id}${name}`).parentElement.className += " tr_mark";
-            document.getElementById(`${found_input_id}${name}`).parentElement.scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
-        }
+        tr .parentElement.className += " tr_mark";
+        tr .parentElement.scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
     }, 300)
 
     setTimeout(() => {
         let tr = document.getElementById(`${found_input_id}${name}`);
-        if(tr != null)
         tr.parentElement.className = tr.parentElement.className.replace(" tr_mark", "");
     }, 3000)
 }

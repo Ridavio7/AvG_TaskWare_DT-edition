@@ -129,8 +129,6 @@ const addComponents = (name, fUnic, typelm, del, uin, tb_id) => {
 }
 
 document.getElementById("sort_components").addEventListener('change', function(){
-    $('#jstree_div').jstree("destroy");
-
     let option = this.selectedIndex;
     switch (option){
         case 0:

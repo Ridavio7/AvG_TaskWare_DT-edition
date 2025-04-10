@@ -39,6 +39,7 @@ let count = 0;
 modals.forEach((elem) => {
     elem.addEventListener("click", (elem) => {
         count += 2;
+        if(elem.target.offsetParent != null) 
         elem.target.offsetParent.offsetParent.style.zIndex = count;
     })
 })

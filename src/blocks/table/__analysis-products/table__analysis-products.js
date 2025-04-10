@@ -10,7 +10,7 @@ export const funcGetShipProducts = () => {
 
 const funcProcessGetShipProducts = (result, respobj) => {
     if( result === 0 ) return;
-    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); funcGetShipProducts()};
+    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_products_reset").click()};
     console.log("Анализ изделий:", respobj);
 
     let tb_id = "tb_analysis_products";

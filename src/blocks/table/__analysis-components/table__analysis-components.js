@@ -10,7 +10,7 @@ export const funcGetShipComponentsAll = () => {
 
 const funcProcessGetShipComponentsAll = (result, respobj) => {
     if( result === 0 ) return;
-    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); funcGetShipComponentsAll()};
+    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_components_reset").click()};
     console.log("Анализ всех комплектующих:", respobj);
 
     let tb_id = "tb_analysis_components_all";

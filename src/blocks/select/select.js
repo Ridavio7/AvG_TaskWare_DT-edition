@@ -1,13 +1,8 @@
 /* select фильтра анимация */
 export const psevdoSelect = (id) => {
     let checkList = document.getElementById(id);
-    let select__items = document.getElementsByClassName("select-props-value");
     checkList.addEventListener('click', function(event) {
-        for (let i = 0; i < select__items.length; i++) {
-            select__items[i].className = select__items[i].className.replace(" select__filter_visible", "");
-        }
-
-        checkList.classList.add('select__filter_visible');
+        checkList.className.includes('select__filter_visible') ? checkList.classList.remove('select__filter_visible') : checkList.classList.add('select__filter_visible');
         event.stopPropagation();
     });
     window.addEventListener('click', function() {
@@ -20,18 +15,20 @@ export const addToDropdownPsevdo = (select_id, arr) => {
     let psevdoSelect = document.getElementById(select_id);
     for (let key in arr) {
         if(arr[key].del === 0){
-            let li = document.createElement("li");
-            let input = document.createElement("input");
-            input.type = "checkbox";
-            input.className = "checkbox";
-            input.value = arr[key].uin;
-            input.id = `checkbox_${select_id}_${arr[key].uin}`;
-            let label = document.createElement("label");
-            label.htmlFor = `checkbox_${select_id}_${arr[key].uin}`;
-            label.textContent = arr[key].name;
-            li.append(input);
-            li.append(label);
-            psevdoSelect.append(li);
+            let input = makeCheckboxForPsevdo(psevdoSelect, "checkbox", "checkbox", arr[key].uin, `checkbox_${select_id}_${arr[key].uin}`, `checkbox_${select_id}_${arr[key].uin}`, arr[key].name);
+
+            input.addEventListener("change", () => {
+                let filter = input.parentElement.parentElement.previousElementSibling;
+                if(!filter.textContent.includes(arr[key].name)){
+                    if(filter.textContent.includes(`<img class="select__img" src="assets/images/filter.svg" alt=""></img>`)){
+                        filter.innerHTML = ""; filter.innerHTML = `${arr[key].name}, `;
+                    } else {
+                        filter.innerHTML += `${arr[key].name}, `;
+                    }
+                } else {
+                    filter.innerHTML = filter.textContent.replace(`${arr[key].name},`, '');
+                }
+            })
         }
     }
 }
@@ -39,17 +36,20 @@ export const addToDropdownPsevdo = (select_id, arr) => {
 export const addToDropdownPsevdoFoundPlus = (select_id, arr) => {
     let psevdoSelect = document.getElementById(select_id);
     for (let key in arr) {
-            let li = document.createElement("li");
-            let input = document.createElement("input");
-            input.type = "checkbox";
-            input.className = "checkbox";
-            input.id = `checkbox_${select_id}_${arr[key]}`;
-            let label = document.createElement("label");
-            label.htmlFor = `checkbox_${select_id}_${arr[key]}`;
-            label.textContent = arr[key];
-            li.append(input);
-            li.append(label);
-            psevdoSelect.append(li);
+        let input = makeCheckboxForPsevdo(psevdoSelect, "checkbox", "checkbox", '', `checkbox_${select_id}_${arr[key]}`, `checkbox_${select_id}_${arr[key]}`, arr[key]);
+
+        input.addEventListener("change", () => {
+            let filter = input.parentElement.parentElement.previousElementSibling;
+            if(!filter.textContent.includes(arr[key])){
+                if(filter.textContent.includes(`Значения`)){
+                    filter.innerHTML = ""; filter.innerHTML = `${arr[key]}, `;
+                } else {
+                    filter.innerHTML += `${arr[key]}, `;
+                }
+            } else {
+                filter.innerHTML = filter.textContent.replace(`${arr[key]},`, '');
+            }
+        })
     }
 }
 
@@ -57,17 +57,25 @@ export const addToDropdownPsevdoFoundPlus = (select_id, arr) => {
 export const addToDropdownPsevdoAnotherList = (selec, arr, other) => {
     let psevdoSelect = document.getElementById(selec);
     for (let key in arr) {
-        let li = document.createElement("li");
-        let input = document.createElement("input");
-        input.type = "checkbox";
-        input.className = "checkbox";
-        input.value = arr[key];
-        input.id = `${other}${arr[key]}`;
-        let label = document.createElement('label');
-        label.htmlFor = `${other}${arr[key]}`;
-        label.textContent = arr[key];
-        li.append(input);
-        li.append(label);
-        psevdoSelect.append(li);
+        makeCheckboxForPsevdo(psevdoSelect, "checkbox", "checkbox", arr[key], `${other}${arr[key]}`, `${other}${arr[key]}`, arr[key]);
     }
+}
+
+const makeCheckboxForPsevdo = (select, input_type, input_class, input_val, input_id, label_for, label_text) => {
+    let input = document.createElement("input");
+    input.type = input_type;
+    input.className = input_class;
+    input.value = input_val;
+    input.id = input_id;
+
+    let label = document.createElement('label');
+    label.htmlFor = label_for;
+    label.textContent = label_text;
+
+    let li = document.createElement("li");
+    li.append(input);
+    li.append(label);
+    select.append(li);
+
+    return input;
 }

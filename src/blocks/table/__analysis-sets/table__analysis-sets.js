@@ -10,7 +10,7 @@ export const funcGetShipSets = () => {
 
 const funcProcessGetShipSets = (result, respobj) => {
     if( result === 0 ) return;
-    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); funcGetShipSets()};
+    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_sets_reset").click()};
     console.log("Анализ комплектов:", respobj);
 
     let tb_id = "tb_analysis_sets";

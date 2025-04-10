@@ -71,7 +71,7 @@ export class TreeBuilder {
         details.setAttribute('data-id', item.id);
 
         const summary = Object.assign(document.createElement('summary'), {
-            textContent: `${item.text} (${item.contentNum} шт.)`,
+            textContent: `${item.text} (${item.contentNum})`,
             id: `summary_${item.id}`,
             classList: 'summary'
         });
