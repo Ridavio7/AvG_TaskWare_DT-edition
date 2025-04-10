@@ -29,7 +29,7 @@
     background-color: var(--background_second);
     margin: auto;
     padding: 0px 10px;
-    padding-top: 5px;
+    padding-top: 10px;
     border: 1px solid var(--blue);
     border-top: none;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
@@ -80,7 +80,10 @@
   &__body{
     display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
+
+    &-wrapper{
+      width: 600px;
+    }
   }
 
   &__table{
@@ -105,8 +108,7 @@
   &__table-wrapper_ost{
     overflow-y: scroll;
     max-height: 137px;
-    margin-bottom: 5px;
-    margin-left: 5px;
+    margin: 5px 0px;
   }
 
   &__button-wrapper{
@@ -181,19 +183,11 @@
   z-index: 20;
 }
 
-#modal_typeselem{
-  z-index: 30;
-}
-
-#enums_modal{
-  z-index: 30;
-}
-
-#found_plus_modal{
-  z-index: 30;
-}
-
-#modal_transfer_component{
+#modal_typeselem,
+#enums_modal,
+#found_plus_modal,
+#modal_transfer_component,
+#comp_edit_imgs_modal{
   z-index: 30;
 }
 

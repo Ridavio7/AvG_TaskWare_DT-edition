@@ -7,7 +7,7 @@
     background-color: initial;
     border: none;
     height: 27px;
-    max-width: 200px;
+    width: 100%;
     padding: 0px 10px;
     border: 1px solid var(--border);
 
@@ -20,6 +20,8 @@
         padding: 0px;
         border: none;
         text-align: center;
+        width: 60px;
+        margin-left: -5px;
     }
 
     &__label{
@@ -33,11 +35,7 @@
     }
 }
 
-input[type="time"]::-webkit-calendar-picker-indicator{
-    filter: var(--img_color);
-    cursor: pointer;
-}
-
+input[type="time"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-calendar-picker-indicator{
     filter: var(--img_color);
     cursor: pointer;

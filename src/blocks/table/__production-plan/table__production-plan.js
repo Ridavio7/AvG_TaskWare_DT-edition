@@ -79,7 +79,7 @@ const addPlanRow = (uinprod, nameprod, count, date, prim, del, uin, tb_id) => {
 
     makeSelect("plan_product_select_", uin, nameprod, uinprod, "products_list", "select", cellProd);
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="plan_count_${uin}">`
-    cellDate.innerHTML  = `<input class="input__type-text" type="date" value="${date}" name="plan_date_${uin}">`
+    cellDate.innerHTML  = `<input class="input__type-text input__type-date" type="date" value="${date}" name="plan_date_${uin}">`
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="plan_prim_${uin}">`
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";

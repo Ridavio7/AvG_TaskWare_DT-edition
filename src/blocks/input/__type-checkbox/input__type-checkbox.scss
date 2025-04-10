@@ -8,13 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    user-select: none;
     color: var(--font-color_active);
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-    margin: 2.5px 0px;
+    margin-bottom: 3px;
 }
 
 .checkbox + label::before {
@@ -23,18 +18,12 @@
     width: 18px;
     height: 18px;
     flex-shrink: 0;
-    flex-grow: 0;
     border: 1px solid var(--border);
-    outline: 1px solid var(--border);
     border-radius: 2px;
-    margin: 5px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 100% 60%;
+    margin: 3px;
 }
 
 .checkbox:checked + label::before {
     border-color: var(--expand-button-active);
-    background-color: var(--expand-button-active);
-    background-image: url(../__type-checkbox/img/arrow.svg);
+    background: var(--expand-button-active) var(--checkbox-arrow-img) no-repeat center;
 }

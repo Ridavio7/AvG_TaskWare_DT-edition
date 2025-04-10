@@ -60,28 +60,28 @@ const addDocpostRow =
     newRow.classList = "tr";
 
     let cellInfo        = newRow.insertCell(0);  cellInfo.classList        = "td";
-    let cellStatdocName = newRow.insertCell(1);  cellStatdocName.classList = "td";
-    let cellNumb        = newRow.insertCell(2);  cellNumb.classList        = "td";
-    let cellDate        = newRow.insertCell(3);  cellDate.classList        = "td";
-    let cellNumb1c      = newRow.insertCell(4);  cellNumb1c.classList      = "td";
-    let cellDate1c      = newRow.insertCell(5);  cellDate1c.classList      = "td";
-    let cellContrName   = newRow.insertCell(6);  cellContrName.classList   = "td";
-    let cellStorageName = newRow.insertCell(7);  cellStorageName.classList = "td";
-    let cellUserName    = newRow.insertCell(8);  cellUserName.classList    = "td";
-    let cellPrim        = newRow.insertCell(9);  cellPrim.classList        = "td";
-    let cellBtn         = newRow.insertCell(10); cellBtn.classList         = "td";
+    //let cellStatdocName = newRow.insertCell(1);  cellStatdocName.classList = "td";
+    let cellNumb        = newRow.insertCell(1);  cellNumb.classList        = "td";
+    let cellDate        = newRow.insertCell(2);  cellDate.classList        = "td";
+    let cellNumb1c      = newRow.insertCell(3);  cellNumb1c.classList      = "td";
+    let cellDate1c      = newRow.insertCell(4);  cellDate1c.classList      = "td";
+    let cellContrName   = newRow.insertCell(5);  cellContrName.classList   = "td";
+    let cellStorageName = newRow.insertCell(6);  cellStorageName.classList = "td";
+    let cellUserName    = newRow.insertCell(7);  cellUserName.classList    = "td";
+    let cellPrim        = newRow.insertCell(8);  cellPrim.classList        = "td";
+    let cellBtn         = newRow.insertCell(9); cellBtn.classList         = "td";
 
     if(statdocName === "Готов"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-ready" value="${uin}"><img class="button__control__img button__control_docpost-ready_img" src="assets/images/info.svg" alt=""></button>`;
+        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-ready" value="${uin}"><img class="button__control__img button__control_docpost-ready_img" src="assets/images/info.svg" alt=""></button> Готов`;
     } else if (statdocName === "Обработка"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-process" value="${uin}"><img class="button__control__img button__control_docpost-process_img" src="assets/images/info.svg" alt=""></button>`;
+        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-process" value="${uin}"><img class="button__control__img button__control_docpost-process_img" src="assets/images/info.svg" alt=""></button> Обработка`;
     } else if (statdocName === "Новый"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-new" value="${uin}"><img class="button__control__img button__control_docpost-new_img" src="assets/images/info.svg" alt=""></button>`;
+        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-new" value="${uin}"><img class="button__control__img button__control_docpost-new_img" src="assets/images/info.svg" alt=""></button> Новый`;
     } else {
         cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
     }
 
-    cellStatdocName.innerHTML = statdocName;
+    //cellStatdocName.innerHTML = statdocName;
     cellNumb.innerHTML        = numb;
     cellDate.innerHTML        = date;
     cellNumb1c.innerHTML      = numb1c;

@@ -145,7 +145,7 @@
             height: 100%;
 
             &:target{
-                display: block;
+                display: contents;
             }
         }
 
@@ -160,7 +160,6 @@
             flex-wrap: wrap;
             justify-content: flex-start;
             align-items: center;
-            margin-bottom: 5px;
 
             &_task{
                 justify-content: space-between;

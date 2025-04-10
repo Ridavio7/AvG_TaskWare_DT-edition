@@ -4,9 +4,8 @@
     font-size: 16px;
     background-color: initial;
     border: none;
-    padding: 0px 16px;
     height: 27px;
-    max-width: 230px;
+    width: 100%;
     border: 1px solid var(--border);
 
     &__wrapper{
@@ -25,18 +24,22 @@
     &__sort{
         color: var(--font-color);
         background-color: var(--background_second);
-        margin: 5px;
-        margin-left: 0px;
+        margin-right: 5px;
+        margin-bottom: 5px;
         padding: 0px 10px;
         height: 40px;
+        width: 160px;
         border: 1px solid var(--border);
     }
 
     &__filter{
-        display: inline-block;
+        display: block;
         background-color: var(--background_second);
         margin-right: 5px;
+        margin-bottom: 5px;
         height: 40px;
+        width: 100%;
+        max-width: 170px;
         border: 1px solid var(--border);
         padding: 0px;
 
@@ -49,19 +52,23 @@
 
     &__anchor{
         cursor: pointer;
+        user-select: none;
         display: flex;
+        justify-content: center;
         padding: 10px;
         white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     &__items{
         display: none;
-        position: fixed;
+        position: relative;
         z-index: 5;
         background-color: var(--background_second);
         border: 1px solid var(--border);
-        border-radius: 7px;
-        padding: 5px 10px;
+        border-radius: 5px;
+        padding: 5px;
         list-style: none;
     }
 
