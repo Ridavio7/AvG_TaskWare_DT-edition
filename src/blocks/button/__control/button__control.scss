@@ -14,9 +14,9 @@
         cursor: no-drop;
     }
 
-    &:hover{
+    /*&:hover{
         background-color: var(--expand-button-active);
-    }
+    }*/
 
     &_update{
         background-color: inherit;
@@ -55,13 +55,13 @@
             filter: var(--green__img-filter);
         }
 
-        &:hover{
+        /*&:hover{
             background-color: var(--green_hover);
         }
 
         &:hover &_img{
             filter: var(--green__img-filter_hover);
-        }
+        }*/
     }
 
     &_docpost-process{
@@ -71,13 +71,13 @@
             filter: var(--yellow__img-filter);
         }
         
-        &:hover{
+        /*&:hover{
             background-color: var(--yellow_hover);
         }
 
         &:hover &_img{
             filter: var(--yellow__img-filter_hover);
-        }
+        }*/
     }
 
     &_docpost-new{
@@ -87,13 +87,13 @@
             filter: var(--red__img-filter);
         }
 
-        &:hover{
+        /*&:hover{
             background-color: var(--red_hover);
         }
 
         &:hover &_img{
             filter: var(--red__img-filter_hover);
-        }
+        }*/
     }
 
     &_active{

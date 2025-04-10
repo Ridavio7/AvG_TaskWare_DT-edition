@@ -10,22 +10,20 @@
     --white: #ffffff;
     --blue: #294f74;
     --font-color-button: #ffffff;
-    /*--green: #96d05d;
-    --yellow: #ffff00;
-    --red: #ed4833;*/
-    --green: #2d8646;
+
+    --green: #9cca5e;
     --green_hover: #49df73;
-    --green__img-filter: invert(85%) sepia(17%) saturate(1003%) hue-rotate(70deg) brightness(90%) contrast(90%);
+    --green__img-filter: invert(14%) sepia(37%) saturate(0%) hue-rotate(272deg) brightness(94%) contrast(103%);
     --green__img-filter_hover: invert(44%) sepia(19%) saturate(1418%) hue-rotate(84deg) brightness(93%) contrast(88%);
 
     --yellow: #f7f501;
     --yellow_hover: #bd8421;
-    --yellow__img-filter: invert(43%) sepia(98%) saturate(526%) hue-rotate(4deg) brightness(100%) contrast(91%);
+    --yellow__img-filter: invert(14%) sepia(37%) saturate(0%) hue-rotate(272deg) brightness(94%) contrast(103%);
     --yellow__img-filter_hover: invert(100%) sepia(77%) saturate(7500%) hue-rotate(358deg) brightness(97%) contrast(102%);
 
-    --red: #f59494;
-    --red_hover: #892a2a;
-    --red__img-filter: invert(12%) sepia(91%) saturate(4134%) hue-rotate(351deg) brightness(79%) contrast(91%);
+    --red: #ff6666;
+    --red_hover: #DF4C2F;
+    --red__img-filter: invert(14%) sepia(37%) saturate(0%) hue-rotate(272deg) brightness(94%) contrast(103%);
     --red__img-filter_hover: invert(87%) sepia(36%) saturate(1810%) hue-rotate(297deg) brightness(97%) contrast(98%);
 }
 
@@ -42,6 +40,7 @@
     --box-shadow: #cecece;
     --img_color: invert(14%) sepia(37%) saturate(0%) hue-rotate(272deg) brightness(94%) contrast(103%);
     --img-button_color: invert(14%) sepia(37%) saturate(0%) hue-rotate(272deg) brightness(94%) contrast(103%);
+    --checkbox-arrow-img: url(../input/__type-checkbox/img/arrow_dark.svg);
 }
 
 .theme-dark {
@@ -57,6 +56,7 @@
     --border: #575757;
     --img_color: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
     --img-button_color: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
+    --checkbox-arrow-img: url(../input/__type-checkbox/img/arrow.svg);
 }
 
 *{
