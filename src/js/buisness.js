@@ -51,6 +51,7 @@ import {funcGetShipComponentsAll} from '../blocks/table/__analysis-components/ta
 /* монтаж/сборка */
 import {funcGetLentapp} from '../blocks/table/__production-lentapp/table__production-lentapp.js';
 import {funcGetPlan} from '../blocks/table/__production-plan/table__production-plan.js';
+import {funcGetPivTablepp} from '../blocks/table/__production-pivtablepp/table__production-pivtablepp.js';
 import {funcGetTechproc} from '../blocks/table/__production-techproc/table__production-techproc.js';
 
 /* поставка */
@@ -234,7 +235,7 @@ const updateDirectory = () => {
 const addEventButtonTab = (button_tab, func) => {
     button_tab.forEach((elem) => {
         elem.addEventListener("click", () => {
-            func();
+            func;
         })
     })
 }
@@ -262,6 +263,9 @@ addEventButtonTab(button_tab_prod_lentapp, funcGetLentapp);
 
 let button_tab_prod_plan       = document.querySelectorAll(".button__tab__first_plan");
 addEventButtonTab(button_tab_prod_plan, funcGetPlan);
+
+let button_tab_prod_pivtablepp       = document.querySelectorAll(".button__tab__first_pivtablepp");
+addEventButtonTab(button_tab_prod_pivtablepp, funcGetPivTablepp('', new Date().toISOString().split('T')[0].replace(/[\.\-/\\\s]/g, '')));
 
 let button_tab_prod_techproc   = document.querySelectorAll(".button__tab__first_process");
 addEventButtonTab(button_tab_prod_techproc, funcGetTechproc);

@@ -535,7 +535,7 @@
             <div class="sidebar__tabcontent__first-tabs">
                 <a href="#production/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
                 <a href="#production/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                <a href="#production/analysis"><button class="button__tab__first button__tab__first_analysis"><img class="button__tab__first__img" src="../blocks/sidebar/img/production.svg">Анализ</button></a>
+                <a href="#production/pivtablepp"><button class="button__tab__first button__tab__first_pivtablepp"><img class="button__tab__first__img" src="../blocks/sidebar/img/production.svg">Анализ</button></a>
                 <a href="#production/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
                 <a href="#production/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
             </div>
@@ -625,12 +625,31 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Тех. упаковка -->
-            <div id="production/install_coil" class="sidebar__tabcontent__container">
+            <!-- Анализ -->
+            <div id="production/pivtablepp" class="sidebar__tabcontent__container">
+                <div class="sidebar__tabcontent__header">
+                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="pivtablepp_analysis_date_first">
+                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="pivtablepp_analysis_date_second">
+                    <button class="button__control" id="button_pivtablepp_analysis_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
+                    <button class="button__control" id="button_pivtablepp_analysis_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                </div>
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_pivtablepp">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <tbody id="tb_pivtablepp">
 
+                    </tbody>
+                </table>
             </div>
             <!-- Тех. упаковка -->
-            <div id="production/dir_coil" class="sidebar__tabcontent__container">
+            <div id="production/install_coil" class="sidebar__tabcontent__container">
 
             </div>
         </div>

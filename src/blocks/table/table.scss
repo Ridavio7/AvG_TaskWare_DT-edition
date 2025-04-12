@@ -17,7 +17,7 @@
 }
 
 .thead {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border) !important;
 }
 
 .table tr:nth-child(odd) {
@@ -45,6 +45,12 @@
         border-top: 1px solid var(--border);
         border-left: 1px solid var(--border);
         text-align: center;
+        color: var(--font-color_active);
+    }
+
+    &_active-cell{
+        background-color: var(--background_sidebar);
+        border: 1px solid var(--border);
         color: var(--font-color_active);
     }
 
