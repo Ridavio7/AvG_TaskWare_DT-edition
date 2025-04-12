@@ -66,9 +66,13 @@
                 <ul>
                     <li class="sidebar__wrapper" id="sidebar_tablink_3">
                         <a href="#shipment">
-                            <div class="sidebar__link shipment sidebar__link_shipment sidebar__link_no-child" id="link_shipment">
+                            <div class="sidebar__link shipment sidebar__link_task sidebar__link_no-child" id="link_shipment">
                                 <div class="sidebar__title">
-                                    <img class="sidebar__img" src="../blocks/table/__snprod/img/ellipse_green.svg" alt="">
+                                    <img class="sidebar__img" src="../blocks/sidebar/img/task_green.svg" alt="">
+                                    <div class="sidebar__block-task-time">
+                                        <span class="sidebar__name">13:00</span>
+                                        <span class="sidebar__name sidebar__name_time">Сегодня</span>
+                                    </div>
                                     <span class="sidebar__name">Отгрузка</span>
                                 </div>
                             </div>
@@ -76,10 +80,14 @@
                     </li>
                     <li class="sidebar__wrapper" id="sidebar_tablink_5">
                         <a href="#mount">
-                            <div class="sidebar__link mount sidebar__link_no-child" id="link_mount">
+                            <div class="sidebar__link mount sidebar__link_task sidebar__link_no-child" id="link_mount">
                                 <div class="sidebar__title">
-                                    <img class="sidebar__img" src="../blocks/table/__snprod/img/ellipse_green.svg" alt="">
-                                    <span class="sidebar__name">Монтаж печатных плат</span>
+                                    <img class="sidebar__img" src="../blocks/sidebar/img/task_red.svg" alt="">
+                                    <div class="sidebar__block-task-time">
+                                        <span class="sidebar__name">10:00</span>
+                                        <span class="sidebar__name sidebar__name_time">Вчера</span>
+                                    </div>
+                                    <span class="sidebar__name">Монтаж ПП</span>
                                 </div>
                             </div>
                         </a>
@@ -195,19 +203,19 @@
                 <div class="modal__table-wrapper_task">
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_date_first">Срок:</label>
-                        <input class="input__type-text input__type-text_modal" type="date" id="task_date_first" value="2024-07-05">
+                        <input class="input__type-text input__type-date input__type-date_margin-left-wrapper input__type-text_modal" type="date" id="task_date_first" value="2024-07-05">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_time_first"></label>
-                        <input class="input__type-text input__type-text_modal" type="time" id="task_time_first" value="15:00">
+                        <input class="input__type-text input__type-date input__type-text_modal" type="time" id="task_time_first" value="15:00">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_date_second"></label>
-                        <input class="input__type-text input__type-text_modal" type="date" id="task_date_second" value="2024-07-10">
+                        <input class="input__type-text input__type-date input__type-text_modal" type="date" id="task_date_second" value="2024-07-10">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="task_time_second"></label>
-                        <input class="input__type-text input__type-text_modal" type="time" id="task_time_second" value="15:00">
+                        <input class="input__type-text input__type-date input__type-text_modal" type="time" id="task_time_second" value="15:00">
                     </div>
                 </div>
             </div>

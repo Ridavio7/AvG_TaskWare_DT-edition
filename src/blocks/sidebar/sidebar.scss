@@ -56,6 +56,11 @@
         transition: 0.3s;
         cursor: pointer;
 
+        &_task{
+            padding: 0px;
+            height: 50px;
+        }
+
         &:hover{
             background-color: var(--background_second);
         }
@@ -84,9 +89,21 @@
         }
     }
 
+    &__block-task-time{
+        width: 55px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 5px;
+    }
+
     &__name{
         font-family: 'Roboto', sans-serif;
         color: var(--font-color);
+
+        &_time{
+            font-size: 13px;
+        }
     }
 
     &__arrow{
@@ -152,6 +169,7 @@
         &__header{
             display: flex;
             justify-content: center;
+            align-items: center;
             margin-bottom: 5px;
         }
 
