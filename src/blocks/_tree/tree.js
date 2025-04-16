@@ -1,6 +1,4 @@
 import { funcCommand, funcProcessOnlyInfo} from "../../js/common/common.js";
-import {funcGetComponentsTree, funcGetComponents} from '../table/__comp-main/table__comp-main.js';
-import {funcInfoCatcTransferOpenModal} from '../modal/__transfer-comp/modal__transfer-comp.js';
 
 export class Tree {
     constructor(dataItem) {
@@ -22,12 +20,17 @@ export class Tree {
 }
 
 export class TreeBuilder {
-    constructor(containerId, options) {
-        this.container       = document.getElementById(containerId);
-        this.contextMenuDiv  = document.getElementById('contextMenu');
-        this.selectedItem    = null;
-        this.activeSummary   = null;
-        this.options = options;
+    constructor(containerId, obj, objPar, funcTree, funcItem, funcTrans, options) {
+        this.container      = document.getElementById(containerId);
+        this.contextMenuDiv = document.getElementById('contextMenu');
+        this.selectedItem   = null;
+        this.activeSummary  = null;
+        this.obj            = obj;
+        this.objPar         = objPar;
+        this.funcTree       = funcTree;
+        this.funcItem       = funcItem;
+        this.funcTrans      = funcTrans;
+        this.options        = options;
     }
 
     build(data) {
@@ -100,7 +103,7 @@ export class TreeBuilder {
         this.activeSummary.classList.add('summary_active');
 
         this.saveState();
-        funcGetComponents(this.activeSummary.closest('details').getAttribute('data-id'))
+        this.funcItem(this.activeSummary.closest('details').getAttribute('data-id'))
     }
 
     saveState() {
@@ -195,9 +198,9 @@ export class TreeBuilder {
         if(dataItem != null){
             let newName = prompt('Введите название папки:', '');
             if(newName != null){
-                let body  =  {"user":"demo", "meth":"add", "obj":"dirC", "uinparent":`${dataItem.id}`, "name":`${newName}`};
+                let body  =  {"user":"demo", "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
                 console.log(body)
-                funcCommand(body, funcProcessOnlyInfo, funcGetComponentsTree);
+                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
     }
@@ -206,8 +209,8 @@ export class TreeBuilder {
         if(dataItem != null){
             let newName = prompt('Введите новое название папки:', '');
             if(newName != null){
-                let body  =  {"user":"demo", "meth":"update", "obj":"dirC", "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
-                funcCommand(body, funcProcessOnlyInfo, funcGetComponentsTree);
+                let body  =  {"user":"demo", "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
+                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
     }
@@ -216,15 +219,15 @@ export class TreeBuilder {
         if(dataItem != null){
             let result = confirm('Подтвердите удаление');
             if(result){
-                let body = {"user":"demo", "meth":"mdel", "obj":"catC", "uin":`${dataItem.id}`};
-                funcCommand(body, funcProcessOnlyInfo, funcGetComponentsTree);
+                let body = {"user":"demo", "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`};
+                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
     }
 
     move(dataItem){
         if(dataItem != null){
-            funcInfoCatcTransferOpenModal(dataItem.id, dataItem.text);
+            this.funcTrans(dataItem.id, dataItem.text);
         }
     }
 

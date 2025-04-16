@@ -348,17 +348,3 @@ export const clearCheckboxes = (select_id) => {
         inputs[i].checked = false;
     }
 }
-
-export const funcMarkNode = (arr) => {
-    for(let i in arr){
-        let id  = arr[i].id;
-        let del = arr[i].del;
-    
-        if(del === 1){
-            let node = document.getElementById(`${id}_anchor`);
-            if(node != null){
-                node.style.color = "var(--red)";
-            }
-        }
-    }
-}

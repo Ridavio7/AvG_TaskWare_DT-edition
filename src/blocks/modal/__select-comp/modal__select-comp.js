@@ -1,5 +1,6 @@
-import {funcCommand, clearTableAll, funcMarkNode, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js.js';
+import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js.js';
 import {dragElement} from '../modal.js';
+import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcProcessInfoComponentsModalAdd} from '../__info-comp/modal__info-comp.js';
 import {funcFoundComponents, funcFoundComponents1C} from '../../table/__comp-found/table__comp-found.js';
 import {funcFoundPlusOpenModal} from '../__found-plus/modal__found-plus.js';
@@ -16,9 +17,6 @@ span_select_comp.addEventListener("click", () => {
     modal_select_comp.style.display = "none";
 
     removeOptionsSetValue("found_select", "-- Выберите тип --");
-
-    //$('#modal_select_component_tree').off();
-    //$('#modal_select_component_tree').jstree("destroy");
 })
 
 dragElement(modal_select_comp);
@@ -51,7 +49,7 @@ export const funcGetComponentsTreeSelect = () => {
 function funcProcessGetComponentsTreeSelect(result, respobj){
     if( result === 0 ) return;
 
-    const tree = new TreeBuilder('modal_select_component_tree', ["openall"]);
+    const tree = new TreeBuilder('modal_select_component_tree', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, ["openall"]);
     tree.build(respobj.answ);
 
     document.getElementById('modal_select_component_tree').addEventListener('click', () => {

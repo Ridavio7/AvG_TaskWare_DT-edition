@@ -1,6 +1,5 @@
-import {funcCommand, addToDropdown, removeOptionsSetValue, funcProcessOnlyInfo} from '../../../js/common/common.js';
-import {funcGetComponentsTree} from '../../table/__comp-main/table__comp-main.js';
-import {funcGetDirC} from '../__select-comp/modal__select-comp.js';
+import {funcCommand, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {dragElement} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
@@ -36,7 +35,7 @@ export const funcInfoComponentsTransferOpenModal = (uin, name) => {
 const funcProcessGetComponentsTree = (result, respobj) => {
     if( result === 0 ) return;
 
-    const tree = new TreeBuilder('modal_transfer_component_tree', ["openall"]);
+    const tree = new TreeBuilder('modal_transfer_component_tree', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);
 
     document.getElementById('modal_transfer_component_tree').addEventListener('click', () => {

@@ -1,5 +1,6 @@
-import {funcCommand, clearTable, clearTableAll, funcProcessOnlyInfo, removeOptionsSetValue, addToDropdown} from '../../../js/common/common.js';
+import {funcCommand, clearTableAll, funcProcessOnlyInfo, removeOptionsSetValue, addToDropdown} from '../../../js/common/common.js';
 import {funcProcessInfoComponentsModalAdd, funcInfoComponentsOpenModal} from '../../modal/__info-comp/modal__info-comp.js';
+import {funcInfoCatcTransferOpenModal} from '../../modal/__transfer-comp/modal__transfer-comp.js';
 import {funcInfoComponentsTransferOpenModal} from '../../modal/__transfer-comp/modal__transfer-comp.js';
 import {funcFoundComponents} from '../__comp-found/table__comp-found.js';
 import {funcFoundPlusOpenModal} from '../../modal/__found-plus/modal__found-plus.js';
@@ -31,8 +32,11 @@ const funcProcessGetComponentsTree = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Дерево:", respobj);
 
-    const tree = new TreeBuilder('jstree_div', ["contextmenu", "openall"]);
+    const tree = new TreeBuilder('jstree_div', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ["contextmenu", "openall"]);
     tree.build(respobj.answ);
+    let node = tree.get();
+    uinCatc = node.getAttribute('data-id');
+    localStorage.setItem("uincatC", uinCatc);
 
     document.getElementById('jstree_div').addEventListener('click', () => {
         let node = tree.get();
@@ -51,7 +55,7 @@ export const funcGetComponents = (uin) => {
 
 const funcProcessGetComponents = (result, respobj) => {
     if( result === 0 ) return;
-    //console.log("Директория:", respobj);
+    console.log("Директория:", respobj);
 
     let tb_id = "tb_components_tree"
     clearTableAll(tb_id);
@@ -61,12 +65,12 @@ const funcProcessGetComponents = (result, respobj) => {
     row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
 
     for (let key in respobj.answ){
-        let set = respobj.answ[key];
-        let name = set.name;
-        let fUnic = set.fUnic;
+        let set    = respobj.answ[key];
+        let name   = set.name;
+        let fUnic  = set.fUnic;
         let typelm = set.typelm.name;
-        let del = set.del;
-        let uin = set.uin;
+        let del    = set.del;
+        let uin    = set.uin;
         addComponents(name, fUnic, typelm, del, uin, tb_id);
     }
 
