@@ -57,6 +57,9 @@ import {funcGetTechproc} from '../blocks/table/__production-techproc/table__prod
 /* поставка */
 import {funcGetDocpost} from '../blocks/table/__provider/table__provider.js';
 
+/* склад */
+import {funcGetProductsTree} from '../blocks/table/__storage-main/table__storage-main.js';
+
 /* вкладка комплекты */
 import {funcGetSets} from '../blocks/table/__sets-main/table__sets-main.js';
 import {funcGetFormulaSets} from '../blocks/table/__sets-formula/table__sets-formula.js';
@@ -235,7 +238,7 @@ const updateDirectory = () => {
 const addEventButtonTab = (button_tab, func) => {
     button_tab.forEach((elem) => {
         elem.addEventListener("click", () => {
-            func;
+            func();
         })
     })
 }
@@ -266,6 +269,9 @@ addEventButtonTab(button_tab_prod_plan, funcGetPlan);
 
 let button_tab_prod_pivtablepp       = document.querySelectorAll(".button__tab__first_pivtablepp");
 addEventButtonTab(button_tab_prod_pivtablepp, funcGetPivTablepp('', new Date().toISOString().split('T')[0].replace(/[\.\-/\\\s]/g, '')));
+
+let button_tab_storage_main   = document.querySelectorAll(".button__tab__first_storage_main");
+addEventButtonTab(button_tab_storage_main, funcGetProductsTree);
 
 let button_tab_prod_techproc   = document.querySelectorAll(".button__tab__first_process");
 addEventButtonTab(button_tab_prod_techproc, funcGetTechproc);

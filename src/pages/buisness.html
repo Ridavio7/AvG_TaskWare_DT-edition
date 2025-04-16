@@ -684,7 +684,60 @@
         </div>
         <!-- склад -->
         <div class="sidebar__tabcontent" id="storage">
-            <h2>Здесь будут вкладки и таблицы склада</h2>
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#storage/main"><button class="button__tab__first button__tab__first_storage_main"><img class="button__tab__first__img" src="../blocks/sidebar/img/storage.svg">Главная</button></a>
+            </div>
+            <!-- склад главная -->
+            <div id="storage/main" class="sidebar__tabcontent__container">
+                <div class="modal__body">
+                    <div class="modal__tree">
+                        <div class="select__wrapper">
+                            <select class="select select__sort" id="sort_storage_main">
+                                <option value="">Сортировка &#8661;</option>
+                                <option value="">По названию &#8659;</option>
+                                <option value="">По названию &#8657;</option>
+                            </select>
+                        </div>
+                        <div id="tree_storage_main"></div>
+                    </div>
+                    <div class="modal__table-wrapper">
+                        <div class="modal__table">
+                            <table class="table">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td td_active">Инфо</td>
+                                        <td class="td td_active">Отгр.</td>
+                                        <td class="td td_active">Изделие</td>
+                                        <td class="td td_active"></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb_storage_main_tree">
+                
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal__table">
+                            <table class="table">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td">Поиск</td>
+                                        <td class="td"></td>
+                                        <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class="td td_active"><select class="select" id="found_main_select"></select></td>
+                                        <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_main_input" value="" placeholder="Комплектующее"></td>
+                                        <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="found_main_table">
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- справочники -->
         <div class="sidebar__tabcontent" id="directory_all">
@@ -1002,10 +1055,6 @@
                     <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
                 </div>
                 <div class="modal__body">
-                    <div style="display: none;">
-                        <button id="sub_rename_node"></button>
-                        <button id="sub_create_node"></button>
-                    </div>
                     <div class="modal__tree">
                         <div class="select__wrapper">
                             <select class="select select__sort" id="sort_components">
@@ -1480,6 +1529,85 @@
             </div>
         </div>
     </div>
+    <!-- мод. окно инфо изделия -->
+    <div class="modal" id="modal_info_product">
+        <div class="modal__moving" id="modal_info_product_moving">
+            <span class="modal__title">Изделие <span class="modal__title" id="info_product_name_title"></span></span>
+            <span class="modal__close" id="info_product_close">&times;</span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__header">
+                
+            </div>
+            <div class="modal__body">
+                <div class="modal__body-wrapper">
+                    <div class="modal__table-wrapper_task">
+                        <div class="modal__input-wrapper">
+                            <label class="input__type-text__label" for="info_product_name">Название:</label>
+                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_name" value="">
+                        </div>
+                        <div class="modal__input-wrapper">
+                            <label class="input__type-text__label" for="info_product_color">Цвет:</label>
+                            <select class="select select_modal" id="info_product_color"></select>
+                        </div>
+                        <div class="modal__input-wrapper">
+                            <input class="checkbox" type="checkbox" id="info_product_fship" disabled>
+                            <label for="info_product_fship">Отгружен</label>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active">Изделие</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_info_product_prod">
+                                <tr class="tr">
+                                    <td class="td"></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="button_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active">Комплектующее</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_info_product_comp">
+                                <tr class="tr">
+                                    <td class="td"></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="button_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>            
+                    <div class="modal__table-wrapper_ost">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active">Остаток</td>
+                                    <td class="td td_active">Склад</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_info_product_ost">
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="button__control button__control_modal" id="button_info_product_save" style="display: none;" value="">Сохранить</button>
+                <button class="button__control button__control_modal" id="button_info_product_add" style="display: none;" value="">Добавить</button>
+            </div>
+        </div>
+    </div>
     <!-- мод. окно выбора комлектующего -->
     <div class="modal" id="modal_select_component">
         <div class="modal__moving" id="modal_select_component_moving">
@@ -1555,6 +1683,28 @@
             <div class="modal__footer">
                 <button class="button__control button__control_modal" id="component_transfer_comp" value="" style="display: none;">Переместить</button>
                 <button class="button__control button__control_modal" id="component_transfer_catc" value="" style="display: none;">Переместить</button>
+            </div>
+        </div>
+    </div>
+    <!-- мод. окно перемещения изделия -->
+    <div class="modal" id="modal_transfer_product">
+        <div class="modal__moving" id="modal_transfer_product_moving">
+            <span class="modal__title">Перемещение комплектующего</span>
+            <span class="modal__close" id="close_product_transfer">&times;</span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__body">
+                <div class="">
+                    <input class="input__type-text input__type-text_modal" type="text" id="product_transfer_name" value="" name="" disabled>
+                    <label class="input__type-text__label" for="product_transfer_name">переместить в</label>
+                </div>
+                <div class="modal__tree">
+                    <div id="modal_transfer_product_tree"></div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="button__control button__control_modal" id="product_transfer_comp" value="" style="display: none;">Переместить</button>
+                <button class="button__control button__control_modal" id="product_transfer_catp" value="" style="display: none;">Переместить</button>
             </div>
         </div>
     </div>
