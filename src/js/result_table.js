@@ -1,3 +1,4 @@
+import 'normalize.css';
 /* общие */
 import '../blocks/#common/common.styles.scss';
 /* шапка */
