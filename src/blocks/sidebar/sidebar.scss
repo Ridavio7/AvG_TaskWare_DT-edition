@@ -62,13 +62,27 @@
         }
 
         &:hover{
-            background-color: var(--background_second);
+            background-color: var(--expand-button-active);
+            color: var(--font-color-button) !important;
+        }
+
+        &:hover .sidebar__img_filter,
+        &_active .sidebar__img_filter{
+            filter: var(--img-button_color_white);
+            -webkit-filter: var(--img-button_color_white);
+        }
+
+        &:hover .sidebar__name,
+        &:hover .sidebar__name_time,
+        &_active .sidebar__name,
+        &_active .sidebar__name_time{
+            color: var(--font-color-button);
         }
 
         &_active{
-            background-color: var(--background_second);
+            background-color: var(--expand-button-active);
             box-shadow: 3px 3px 5px 0px var(--box-shadow);
-            color: var(--font-color_active) !important;
+            color: var(--font-color-button) !important;
             text-decoration: none;
         }
     }
@@ -84,6 +98,7 @@
 
         &_filter{
             width: 25px;
+            height: 25px;
             filter: var(--img_color);
             -webkit-filter: var(--img_color);
         }
@@ -93,8 +108,9 @@
         width: 55px;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         margin-right: 5px;
+        margin-left: -5px;
     }
 
     &__name{
@@ -103,6 +119,8 @@
 
         &_time{
             font-size: 13px;
+            font-family: 'Roboto', sans-serif;
+            color: var(--font-color);
         }
     }
 
@@ -191,10 +209,6 @@
     }
 }
 
-.sidebar__link_active .sidebar__name{
-    color: var(--font-color_active);
-}
-
 body.collapsed .sidebar {
     min-width: 49px;
     display: flex;
@@ -206,11 +220,16 @@ body.collapsed .sidebar__link {
 
 body.collapsed .sidebar__img {
     margin-right: 0px;
+    margin-left: 2px;
 }
 
 body.collapsed .sidebar__expand-button__img {
     transform: rotate(-360deg);
     transition: 0.3s;
+}
+
+body.collapsed .sidebar__block-task-time {
+    margin-left: 0px;
 }
 
 body.collapsed .sidebar__arrow,

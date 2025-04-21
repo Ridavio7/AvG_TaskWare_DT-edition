@@ -8,6 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
     color: var(--font-color_active);
     margin-bottom: 3px;
 }
@@ -25,5 +27,5 @@
 
 .checkbox:checked + label::before {
     border-color: var(--expand-button-active);
-    background: var(--expand-button-active) var(--checkbox-arrow-img) no-repeat center;
+    background: var(--expand-button-active) url(../__type-checkbox/img/arrow.svg) no-repeat center;
 }

@@ -1,4 +1,4 @@
-.button__tab__first {
+.button__tab__first{
     float: left;
     background-color: var(--expand-button);
     border: none;
@@ -21,7 +21,13 @@
     &:hover,
     &_active{
         background-color: var(--expand-button-active);
-        color: var(--font-color_active);
+        color: var(--font-color-button);
+    }
+
+    &:hover &__img,
+    &_active &__img{
+        filter: var(--img-button_color_white);
+        -webkit-filter: var(--img-button_color_white);
     }
 
     &__img{

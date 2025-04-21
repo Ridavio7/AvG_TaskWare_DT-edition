@@ -101,4 +101,9 @@
         border: none;
         outline: none;
     }
+
+    &_active &__img {
+        filter: var(--img-button_color_white);
+        -webkit-filter: var(--img-button_color_white);
+    }
 }

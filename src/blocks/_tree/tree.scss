@@ -48,7 +48,7 @@
 
     &_active{
         background: var(--expand-button-active);
-        color: var(--font-color_active);
+        color: var(--font-color-button);
         outline: none;
         border: none;
     }
@@ -64,7 +64,7 @@
 
     &:hover{
         background: var(--expand-button-active);
-        color: var(--font-color_active);
+        color: var(--font-color-button);
         outline: none;
         border: none;
     }
