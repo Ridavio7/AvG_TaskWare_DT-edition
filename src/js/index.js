@@ -139,27 +139,41 @@ const funcProcessGetProc = (result, respobj) => {
 document.getElementById("mount_button").addEventListener("click", () => {
     let body  =  {"user":"demo", "meth":"fixprocpp", "uinuser":"", "uinproduct":"", "uintechproc":"", "count":"", "datetm":"", "prim":""};
 
-    body.uinuser     = document.getElementById("mount_users").value;
-    body.uinproduct  = document.getElementById("mount_prod").value;
-    body.uintechproc = document.getElementById("mount_procc").value;
-    body.count       = document.getElementById("mount_count").value;
-    body.prim        = document.getElementById("mount_prim").value;
-    let date_value   = document.getElementById("mount_date").value.split('-').join("");
-    let time_value   = document.getElementById("mount_time").value;
-    body.datetm      = `${date_value} ${time_value}`;
-    
-    funcCommand(body, funcProcessOnlyInfo);
+    let uinuser     = document.getElementById("mount_users").value;
+    let uinproduct  = document.getElementById("mount_prod").value;
+    let uintechproc = document.getElementById("mount_procc").value;
+    let count       = document.getElementById("mount_count").value;
+    let prim        = document.getElementById("mount_prim").value;
+    let date        = document.getElementById("mount_date").value.split('-').join("");
+    let time        = document.getElementById("mount_time").value;
 
-    removeOptionsSetValue("mount_users", "-- Пользователи --");
-    funcGetUsers();
-    removeOptionsSetValue("mount_prod", "-- Изделия --");
-    funcGetProductpp();
-    removeOptionsSetValue("mount_procc", "-- Тех. процесс --");
-    document.getElementById("mount_count").value = "";
-    document.getElementById("mount_prim").value = "";
-    document.getElementById("mount_date").value = "";
-    document.getElementById("mount_time").value = "";
+    if(uinuser === '' || uinproduct === '' || uintechproc === '' || count === ''){
+        alert('Вы не заполнили все необходимые поля!');
+    } else {
+        body.uinuser     = uinuser;
+        body.uinproduct  = uinproduct;
+        body.uintechproc = uintechproc;
+        body.count       = count;
+        body.prim        = prim;
+        body.datetm      = `${date} ${time}`;
+
+        funcCommand(body, funcProcessOnlyInfo, funcFetchSucc);
+
+        removeOptionsSetValue("mount_users", "Пользователи");
+        funcGetUsers();
+        removeOptionsSetValue("mount_prod", "Изделия");
+        funcGetProductpp();
+        removeOptionsSetValue("mount_procc", "Тех. процесс");
+        document.getElementById("mount_count").value = "";
+        document.getElementById("mount_prim").value  = "";
+        document.getElementById("mount_date").value  = new Date().toISOString().split('T')[0];
+        document.getElementById("mount_time").value  = new Date().toLocaleTimeString();
+    }
 })
+
+const funcFetchSucc = () => {
+    alert("Успешно отправлено!");
+}
 
 document.getElementById("mount_count_minus").addEventListener("click", () => {
     document.getElementById("mount_count").stepDown();
