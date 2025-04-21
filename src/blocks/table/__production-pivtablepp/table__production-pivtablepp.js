@@ -25,6 +25,11 @@ export const funcGetPivTablepp = (date1, date2) => {
     funcCommand(body, funcProcessGetPivTablepp);
 }
 
+export const funcGetPivTableppTab = () => {
+    let body  =  {"user":"demo", "meth":"view", "obj":"pivTablepp", "count":"1000", "date1":"", "date2":`${new Date().toISOString().split('T')[0].replace(/[\.\-/\\\s]/g, '')}`, "asort":"name"};
+    funcCommand(body, funcProcessGetPivTablepp);
+}
+
 const funcProcessGetPivTablepp = (result_piv, respobj_piv) => {
     if( result_piv === 0 ) return;
     console.log("СТ Печатных Плат:", respobj_piv);

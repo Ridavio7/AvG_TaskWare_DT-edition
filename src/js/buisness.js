@@ -41,6 +41,8 @@ import '../blocks/carousel/carousel.js';
 import {funcGetGrfShipSets} from '../blocks/table/__schedule/table__schedule.js';
 import '../blocks/table/__schedule/table__schedule.scss'
 import {funcGetSNProd} from '../blocks/table/__snprod/table__snprod.js';
+import {funcGetStatuses} from '../blocks/table/__status-shipment/table__status-shipment.js';
+import {funcGetStatussn} from '../blocks/table/__status-sn/table__status-sn.js';
 import {funcGetShipSets} from '../blocks/table/__analysis-sets/table__analysis-sets.js';
 import '../blocks/table/__analysis-sets/table__analysis-sets.scss';
 import {funcGetShipProducts} from '../blocks/table/__analysis-products/table__analysis-products.js';
@@ -51,14 +53,18 @@ import {funcGetShipComponentsAll} from '../blocks/table/__analysis-components/ta
 /* монтаж/сборка */
 import {funcGetLentapp} from '../blocks/table/__production-lentapp/table__production-lentapp.js';
 import {funcGetPlan} from '../blocks/table/__production-plan/table__production-plan.js';
-import {funcGetPivTablepp} from '../blocks/table/__production-pivtablepp/table__production-pivtablepp.js';
+import {funcGetPivTableppTab} from '../blocks/table/__production-pivtablepp/table__production-pivtablepp.js';
 import {funcGetTechproc} from '../blocks/table/__production-techproc/table__production-techproc.js';
 
 /* поставка */
 import {funcGetDocpost} from '../blocks/table/__provider/table__provider.js';
+import {funcGetStatusDoc} from '../blocks/table/__status-document/table__status-document.js';
 
 /* склад */
 import {funcGetProductsTree} from '../blocks/table/__storage-main/table__storage-main.js';
+import {funcGetColors} from '../blocks/table/__products-colors/table__products-colors.js';
+import {funcGetVerapp} from '../blocks/table/__products-verapp/table__products-verapp.js';
+import {funcGetVerpp} from '../blocks/table/__products-verpp/table__products-verpp.js';
 
 /* вкладка комплекты */
 import {funcGetSets} from '../blocks/table/__sets-main/table__sets-main.js';
@@ -67,9 +73,7 @@ import {funcGetFormulaSets} from '../blocks/table/__sets-formula/table__sets-for
 /* вкладка изделия */
 import {funcGetProducts} from '../blocks/table/__products-main/table__products-main.js';
 import {funcGetFormulaProducts} from '../blocks/table/__products-formula/table__products-formula.js';
-import {funcGetColors} from '../blocks/table/__products-colors/table__products-colors.js';
-import {funcGetVerapp} from '../blocks/table/__products-verapp/table__products-verapp.js';
-import {funcGetVerpp} from '../blocks/table/__products-verpp/table__products-verpp.js';
+
 
 /* вкладка комплектующие */
 import {funcGetComponentsTree} from '../blocks/table/__comp-main/table__comp-main.js';
@@ -85,9 +89,8 @@ import {funcGetContragents} from '../blocks/table/__contragents/table__contragen
 import {funcGetStorages} from '../blocks/table/__storages/table__storages.js';
 
 /* статусы */
-import {funcGetStatuses} from '../blocks/table/__status-shipment/table__status-shipment.js';
-import {funcGetStatussn} from '../blocks/table/__status-sn/table__status-sn.js';
-import {funcGetStatusDoc} from '../blocks/table/__status-document/table__status-document.js';
+
+
 
 window.onload = function(){
     updateDirectory();
@@ -111,7 +114,7 @@ const returnTabsBuisness = () => {
         //document.getElementById(buisness_sidebar_arrow_active).className += " sidebar__wrapper_menu-visibale";
     }
 
-    document.getElementById("sidebar_tablink_6").className += " sidebar__wrapper_menu-visibale";
+    //document.getElementById("sidebar_tablink_6").className += " sidebar__wrapper_menu-visibale";
 
     let tabcontent_tab_active = document.getElementsByClassName(localStorage.getItem("buisness_tabcontent_tab_active"));
     tabcontent_tab_active[0].click();
@@ -243,89 +246,42 @@ const addEventButtonTab = (button_tab, func) => {
     })
 }
 
-let button_tab_schedule        = document.querySelectorAll(".button__tab__first_schedule");
-addEventButtonTab(button_tab_schedule, funcGetGrfShipSets);
+// отгрузка
+addEventButtonTab(document.querySelectorAll(".button__tab__first_shipment-schedule"), funcGetGrfShipSets);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_shipment-snprod"), funcGetSNProd);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_shipment-statussn"), funcGetStatussn);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_shipment-statusship"), funcGetStatuses);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_shipment-analysis-sets"), funcGetShipSets);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_shipment-analysis-products"), funcGetShipProducts);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_shipment-analysis-components"), funcGetShipComponentsAll);
 
-let button_tab_snprod          = document.querySelectorAll(".button__tab__first_snprod");
-addEventButtonTab(button_tab_snprod, funcGetSNProd);
+// монтаж
+addEventButtonTab(document.querySelectorAll(".button__tab__first_production-events"), funcGetLentapp);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_production-plan"), funcGetPlan);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_production-pivtablepp"), funcGetPivTableppTab);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_production-process"), funcGetTechproc);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_production-install-coil"), '');
 
-let button_tab_analysis_sets   = document.querySelectorAll(".button__tab__first_analysis_sets");
-addEventButtonTab(button_tab_analysis_sets, funcGetShipSets);
+// поставка
+addEventButtonTab(document.querySelectorAll(".button__tab__first_provider-main"), funcGetDocpost);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_provider-statusdoc"), funcGetStatusDoc);
 
-let button_tab_analysis_prod   = document.querySelectorAll(".button__tab__first_analysis_products");
-addEventButtonTab(button_tab_analysis_prod, funcGetShipProducts);
+// проектирование
+addEventButtonTab(document.querySelectorAll(".button__tab__first_development-begunok"), '');
 
-let button_tab_analysis_comp   = document.querySelectorAll(".button__tab__first_analysis_components");
-addEventButtonTab(button_tab_analysis_comp, funcGetShipComponentsAll);
+// склад
+addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-main"), funcGetProductsTree);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-storages"), funcGetStorages);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-colors"), funcGetColors);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-verapp"), funcGetVerapp);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-verpp"), funcGetVerpp);
 
-let button_tab_sets_main       = document.querySelectorAll(".button__tab__first_sets_main");
-addEventButtonTab(button_tab_sets_main, funcGetSets);
+// комплектующие
+addEventButtonTab(document.querySelectorAll(".button__tab__first_components-main"), funcGetComponentsTree);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_components-measurement"), funcGetMeas);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_components-coeffs"), funcGetCoeffs);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_components-props"), funcGetProps);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_components-typeselem"), funcGetTypeselem);
 
-let button_tab_prod_lentapp    = document.querySelectorAll(".button__tab__first_events");
-addEventButtonTab(button_tab_prod_lentapp, funcGetLentapp);
-
-let button_tab_prod_plan       = document.querySelectorAll(".button__tab__first_plan");
-addEventButtonTab(button_tab_prod_plan, funcGetPlan);
-
-let button_tab_prod_pivtablepp       = document.querySelectorAll(".button__tab__first_pivtablepp");
-addEventButtonTab(button_tab_prod_pivtablepp, funcGetPivTablepp('', new Date().toISOString().split('T')[0].replace(/[\.\-/\\\s]/g, '')));
-
-let button_tab_storage_main   = document.querySelectorAll(".button__tab__first_storage_main");
-addEventButtonTab(button_tab_storage_main, funcGetProductsTree);
-
-let button_tab_prod_techproc   = document.querySelectorAll(".button__tab__first_process");
-addEventButtonTab(button_tab_prod_techproc, funcGetTechproc);
-
-let button_tab_sets_formula    = document.querySelectorAll(".button__tab__first_sets_formula");
-addEventButtonTab(button_tab_sets_formula, funcGetFormulaSets);
-
-let button_tab_product_main    = document.querySelectorAll(".button__tab__first_product_main");
-addEventButtonTab(button_tab_product_main, funcGetProducts);
-
-let button_tab_product_formula = document.querySelectorAll(".button__tab__first_product_formula");
-addEventButtonTab(button_tab_product_formula, funcGetFormulaProducts);
-
-let button_tab_product_colors  = document.querySelectorAll(".button__tab__first_product_colors");
-addEventButtonTab(button_tab_product_colors, funcGetColors);
-
-let button_tab_product_verapp  = document.querySelectorAll(".button__tab__first_product_verapp");
-addEventButtonTab(button_tab_product_verapp, funcGetVerapp);
-
-let button_tab_product_verpp   = document.querySelectorAll(".button__tab__first_product_verpp");
-addEventButtonTab(button_tab_product_verpp, funcGetVerpp);
-
-let button_tab_components      = document.querySelectorAll(".button__tab__first_components");
-addEventButtonTab(button_tab_components, funcGetComponentsTree);
-
-let button_tab_measurement     = document.querySelectorAll(".button__tab__first_measurement");
-addEventButtonTab(button_tab_measurement, funcGetMeas);
-
-let button_tab_coeffs          = document.querySelectorAll(".button__tab__first_coeffs");
-addEventButtonTab(button_tab_coeffs, funcGetCoeffs);
-
-let button_tab_props           = document.querySelectorAll(".button__tab__first_props");
-addEventButtonTab(button_tab_props, funcGetProps);
-
-let button_tab_typeselem       = document.querySelectorAll(".button__tab__first_typeselem");
-addEventButtonTab(button_tab_typeselem, funcGetTypeselem);
-
-let button_tab_shipment        = document.querySelectorAll(".button__tab__first_shipment");
-addEventButtonTab(button_tab_shipment, funcGetStatuses);
-
-let button_tab_statussn        = document.querySelectorAll(".button__tab__first_statussn");
-addEventButtonTab(button_tab_statussn, funcGetStatussn);
-
-let button_tab_document        = document.querySelectorAll(".button__tab__first_document");
-addEventButtonTab(button_tab_document, funcGetStatusDoc);
-
-let sidebar_menu_schedule      = document.querySelectorAll(".sidebar__menu__link_schedule");
-addEventButtonTab(sidebar_menu_schedule, funcGetGrfShipSets);
-
-let sidebar_menu_provider      = document.querySelectorAll(".sidebar__link_provider");
-addEventButtonTab(sidebar_menu_provider, funcGetDocpost);
-
-let sidebar_menu_contr         = document.querySelectorAll(".sidebar__menu__link_contr");
-addEventButtonTab(sidebar_menu_contr, funcGetContragents);
-
-let sidebar_menu_storages      = document.querySelectorAll(".sidebar__menu__link_storages");
-addEventButtonTab(sidebar_menu_storages, funcGetStorages);
+// контрагенты
+addEventButtonTab(document.querySelectorAll(".sidebar__link_contragents"), funcGetContragents);

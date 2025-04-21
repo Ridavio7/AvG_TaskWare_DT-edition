@@ -29,29 +29,15 @@
                 </ul>
             </div>
             <div class="header__user">
-                <ul>
-                    <li class="header__user__container">
-                        <div class="header__user__wrapper">
-                            <div class="header__user__user">
-                                <img class="header__user__avatar" src="../blocks/header/img/user.svg" alt="user">
-                                <a class="header__user__name">Иванов И. И.</a>
-                            </div>
-                            <img class="header__user__arrow" src="../blocks/header/img/arrow_user.svg" alt="arow">
-                        </div>
-                        <ul class="header__user__menu">
-                            <li><a class="header__user__link" href="notifications.html">Уведомления</a></li>
-                            <li><a class="header__user__link" href="rules.html">Права</a></li>
-                            <li><a class="header__user__link" href="change_pass.html">Смена пароля</a></li>
-                            <li><a class="header__user__link header__user__link_leave-site">Выход</a></li>
-                            <li>
-                                <label class="header__user__switch" id="switch">
-                                <input class="header__user__switch-input" type="checkbox">
-                                <span class="header__user__slider header__user__slider_round"></span>
-                                </label>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="header__user__wrapper">
+                    <div class="header__user__user">
+                        <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user">
+                        <input class="header__user__switch-theme-input" type="checkbox" id="switch_theme_input">
+                        <label class="header__user__switch-theme" for="switch_theme_input"></label>
+                        <a class="header__user__name">Иванов И. И.</a>
+                        <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user">
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -64,7 +50,7 @@
             </div>
             <div class="sidebar__container">
                 <ul>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_1">
+                    <li class="sidebar__wrapper">
                         <a href="#shipment">
                             <div class="sidebar__link shipment sidebar__link_shipment sidebar__link_no-child" id="link_shipment">
                                 <div class="sidebar__title">
@@ -74,7 +60,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_2">
+                    <li class="sidebar__wrapper">
                         <a href="#production">
                             <div class="sidebar__link production sidebar__link_production sidebar__link_no-child" id="link_production">
                                 <div class="sidebar__title">
@@ -84,7 +70,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_3">
+                    <li class="sidebar__wrapper">
                         <a href="#provider">
                             <div class="sidebar__link provider sidebar__link_provider sidebar__link_no-child" id="link_provider">
                                 <div class="sidebar__title">
@@ -94,7 +80,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_4">
+                    <li class="sidebar__wrapper">
                         <a href="#development">
                             <div class="sidebar__link development sidebar__link_development sidebar__link_no-child" id="link_development">
                                 <div class="sidebar__title">
@@ -104,7 +90,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_5">
+                    <li class="sidebar__wrapper">
                         <a href="#storage">
                             <div class="sidebar__link storage sidebar__link_storage sidebar__link_no-child" id="link_storage">
                                 <div class="sidebar__title">
@@ -114,7 +100,27 @@
                             </div>
                         </a>
                     </li>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_6">
+                    <li class="sidebar__wrapper">
+                        <a href="#components">
+                            <div class="sidebar__link components sidebar__link_components sidebar__link_no-child" id="link_components">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/button/__tab/img/components.svg" alt="">
+                                    <span class="sidebar__name">Комплектующее</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="sidebar__wrapper">
+                        <a href="#contragents">
+                            <div class="sidebar__link contragents sidebar__link_contragents sidebar__link_no-child" id="link_contragents">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/button/__tab/img/users.svg" alt="">
+                                    <span class="sidebar__name">Контрагенты</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <!--<li class="sidebar__wrapper" id="sidebar_tablink_6">
                         <div class="sidebar__link directory_all" id="link_directory_all">
                             <div class="sidebar__title">
                                 <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/directory.svg" alt="">
@@ -125,23 +131,21 @@
                         <ul class="sidebar__menu">
                             <li><a class="sidebar__menu__link" id="link_dir_sets" href="#dir_sets">Комплекты</a></li>
                             <li><a class="sidebar__menu__link" id="link_dir_product" href="#dir_product">Изделия</a></li>
-                            <li><a class="sidebar__menu__link" id="link_dir_components" href="#dir_components">Комплектующие</a></li>
-                            <li><a class="sidebar__menu__link sidebar__menu__link_contr sidebar__menu__link_no-child" id="link_dir_contr" name="non_child" href="#dir_contr">Контрагенты</a></li>
-                            <li><a class="sidebar__menu__link sidebar__menu__link_storages sidebar__menu__link_no-child" id="link_dir_storages" name="non_child" href="#dir_storages">Склады</a></li>
-                            <li><a class="sidebar__menu__link" id="link_dir_statuses" href="#dir_statuses">Статусы</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </nav>
         <!-- отгрузка -->
         <div class="sidebar__tabcontent" id="shipment">
             <div class="sidebar__tabcontent__first-tabs">
-                <a href="#shipment/schedule"><button class="button__tab__first button__tab__first_schedule"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Графики</button></a>
-                <a href="#shipment/SNProd"><button class="button__tab__first button__tab__first_snprod"><img class="button__tab__first__img" src="../blocks/button/__tab/img/snprod.svg">SN изделий</button></a>
-                <a href="#shipment/analysis_sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Анализ<br>комплектов</button></a>
-                <a href="#shipment/analysis_products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Анализ<br>изделий</button></a>
-                <a href="#shipment/analysis_components"><button class="button__tab__first button__tab__first_analysis_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Анализ<br>комплектующих</button></a>
+                <a href="#shipment/schedule"><button class="button__tab__first button__tab__first_shipment-schedule"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Графики</button></a>
+                <a href="#shipment/SNProd"><button class="button__tab__first button__tab__first_shipment-snprod"><img class="button__tab__first__img" src="../blocks/button/__tab/img/snprod.svg">SN изделий</button></a>
+                <a href="#shipment/statussn"><button class="button__tab__first button__tab__first_shipment-statussn"><img class="button__tab__first__img" src="../blocks/button/__tab/img/status.svg">Статус SN</button></a>
+                <a href="#shipment/statusship"><button class="button__tab__first button__tab__first_shipment-statusship"><img class="button__tab__first__img" src="../blocks/button/__tab/img/status.svg">Статус отгр.</button></a>
+                <a href="#shipment/analysis_sets"><button class="button__tab__first button__tab__first_shipment-analysis-sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Анализ<br>комплектов</button></a>
+                <a href="#shipment/analysis_products"><button class="button__tab__first button__tab__first_shipment-analysis-products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Анализ<br>изделий</button></a>
+                <a href="#shipment/analysis_components"><button class="button__tab__first button__tab__first_shipment-analysis-components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Анализ<br>комплектующих</button></a>
             </div>
             <!-- график -->
             <div id="shipment/schedule" class="sidebar__tabcontent__container">
@@ -202,7 +206,7 @@
                     <tbody class="tbody" id="tb_grf">
                         <tr class="tr">
                             <td class="td td_even-column-active"></td>
-                            <td class="td td_even-column-active"><select class="select" id="select_add_grf_set"><option value="">-- Выберите --</option></select></td>
+                            <td class="td td_even-column-active"><select class="select" id="select_add_grf_set"><option value="">Выберите</option></select></td>
                             <td class="td td_odd-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m1" value="0"/></td>
                             <td class="td td_odd-column-active">---</td>
                             <td class="td td_even-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m2" value="0"/></td>
@@ -234,7 +238,7 @@
                     </tbody>
                 </table>
             </div>
-            <!-- справочники SN изделия -->
+            <!-- SN изделия -->
             <div id="shipment/SNProd" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_SNProd">
@@ -271,13 +275,65 @@
                     <tbody id="tb_products_SNProd">
                         <tr class="tr">
                             <td class="td td__text_align_center">---</td>
-                            <td class="td"><select class="select" id="select_add_SNProd_product"><option value="">-- Выберите изделие --</option></select></td>
+                            <td class="td"><select class="select" id="select_add_SNProd_product"><option value="">Выберите изделие</option></select></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_SN"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count_use"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="date" id="input_add_SNProd_date"></td>
-                            <td class="td"><select class="select" id="select_add_SNProd_status"><option value="">-- Выберите статус --</option></select></td>
+                            <td class="td"><select class="select" id="select_add_SNProd_status"><option value="">Выберите статус</option></select></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-snprod"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- SN статусы -->
+            <div id="shipment/statussn" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_statuses_statussn">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_statuses_statussn">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statussn_name"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statussn"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- статусы отгрузки -->
+            <div id="shipment/statusship" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_statuses_shipment">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_statuses_shipment">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statuses_shipment_name"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-shipment"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -533,11 +589,11 @@
         <!-- мотаж/сборка -->
         <div class="sidebar__tabcontent" id="production">
             <div class="sidebar__tabcontent__first-tabs">
-                <a href="#production/events"><button class="button__tab__first button__tab__first_events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
-                <a href="#production/plan"><button class="button__tab__first button__tab__first_plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
-                <a href="#production/pivtablepp"><button class="button__tab__first button__tab__first_pivtablepp"><img class="button__tab__first__img" src="../blocks/sidebar/img/production.svg">Анализ</button></a>
-                <a href="#production/process"><button class="button__tab__first button__tab__first_process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
-                <a href="#production/install_coil"><button class="button__tab__first button__tab__first_install_coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
+                <a href="#production/events"><button class="button__tab__first button__tab__first_production-events"><img class="button__tab__first__img" src="../blocks/button/__tab/img/events.svg">Лента</button></a>
+                <a href="#production/plan"><button class="button__tab__first button__tab__first_production-plan"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">План</button></a>
+                <a href="#production/pivtablepp"><button class="button__tab__first button__tab__first_production-pivtablepp"><img class="button__tab__first__img" src="../blocks/sidebar/img/production.svg">Анализ</button></a>
+                <a href="#production/process"><button class="button__tab__first button__tab__first_production-process"><img class="button__tab__first__img" src="../blocks/button/__tab/img/process.svg">Тех. операция</button></a>
+                <a href="#production/install_coil"><button class="button__tab__first button__tab__first_production-install-coil"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coil.svg">Тех. упаковка</button></a>
             </div>
             <!-- лента -->
             <div id="production/events" class="sidebar__tabcontent__container">
@@ -588,7 +644,7 @@
                     </thead>
                     <tbody id="tb_plan">
                         <tr class="tr">
-                            <td class="td"><select class="select" id="select_add_plan_product"><option value="">-- Выберите изделие --</option></select></td>
+                            <td class="td"><select class="select" id="select_add_plan_product"><option value="">Выберите изделие</option></select></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_count" value=""></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-date input__type-text_title" type="date" id="input_add_plan_date" value=""></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_prim" value=""></td>
@@ -655,37 +711,74 @@
         </div>
         <!-- поставка -->
         <div class="sidebar__tabcontent" id="provider">
-            <table class="table">
-                <thead class="thead">
-                    <tr class="tr">
-                        <td class="td td_active">Статус</td>
-
-                        <td class="td td_active">№</td>
-                        <td class="td td_active">Дата</td>
-                        <td class="td td_active">№ 1С</td>
-                        <td class="td td_active">Дата 1С</td>
-                        <td class="td td_active">Контрагент</td>
-                        <td class="td td_active">Склад</td>
-                        <td class="td td_active">Пользователь</td>
-                        <td class="td td_active">Примечание</td>
-                        <td class="td td_active"></td>
-                    </tr>
-                </thead>
-                <tbody id="tb_docpost">
-        
-                </tbody>
-            </table>
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#provider/main"><button class="button__tab__first button__tab__first_provider-main"><img class="button__tab__first__img" src="../blocks/sidebar/img/provider.svg">Главная</button></a>
+                <a href="#provider/statusdoc"><button class="button__tab__first button__tab__first_provider-statusdoc"><img class="button__tab__first__img" src="../blocks/button/__tab/img/status.svg">Статус док.</button></a>
+            </div>
+            <!-- главная -->
+            <div id="provider/main" class="sidebar__tabcontent__container">
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Статус</td>
+    
+                            <td class="td td_active">№</td>
+                            <td class="td td_active">Дата</td>
+                            <td class="td td_active">№ 1С</td>
+                            <td class="td td_active">Дата 1С</td>
+                            <td class="td td_active">Контрагент</td>
+                            <td class="td td_active">Склад</td>
+                            <td class="td td_active">Пользователь</td>
+                            <td class="td td_active">Примечание</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_docpost">
+            
+                    </tbody>
+                </table>
+            </div>
+            <!-- статус -->
+            <div id="provider/statusdoc" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_statuses_statusdoc">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_statuses_statusdoc">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statusdoc_name"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statusdoc"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- проектирование -->
         <div class="sidebar__tabcontent" id="development">
             <div class="sidebar__tabcontent__first-tabs">
-                <a href="#development/begunok"><button class="button__tab__first button__tab__first_begunok"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Бегунок</button></a>
+                <a href="#development/begunok"><button class="button__tab__first button__tab__first_development-begunok"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Бегунок</button></a>
             </div>
         </div>
         <!-- склад -->
         <div class="sidebar__tabcontent" id="storage">
             <div class="sidebar__tabcontent__first-tabs">
-                <a href="#storage/main"><button class="button__tab__first button__tab__first_storage_main"><img class="button__tab__first__img" src="../blocks/sidebar/img/storage.svg">Главная</button></a>
+                <a href="#storage/main"><button class="button__tab__first button__tab__first_storage-main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/tree.svg">Дерево ГП</button></a>
+                <a href="#storage/storages"><button class="button__tab__first button__tab__first_storage-storages"><img class="button__tab__first__img" src="../blocks/button/__tab/img/status.svg">Склады</button></a>
+                <a href="#storage/colors"><button class="button__tab__first button__tab__first_storage-colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
+                <a href="#storage/verapp"><button class="button__tab__first button__tab__first_storage-verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
+                <a href="#storage/verpp"><button class="button__tab__first button__tab__first_storage-verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
             </div>
             <!-- склад главная -->
             <div id="storage/main" class="sidebar__tabcontent__container">
@@ -717,6 +810,172 @@
                             </table>
                         </div>
                         <div class="modal__table">
+                            <!--<table class="table">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td">Поиск</td>
+                                        <td class="td"></td>
+                                        <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class="td td_active"><select class="select" id="found_main_select"></select></td>
+                                        <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_main_input" value="" placeholder="Комплектующее"></td>
+                                        <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="found_main_table">
+    
+                                </tbody>
+                            </table>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- склад статус -->
+            <div id="storage/storages" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_storages">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название склада</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_storages">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_storages_name"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-storages"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- склад цвета -->
+            <div id="storage/colors" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_colors">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_products_colors">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_colors"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-color"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- склад версии плат -->
+            <div id="storage/verapp" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_verapp">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_products_verapp">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verapp"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-verapp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- склад версии ПО -->
+            <div id="storage/verpp" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_verpp">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_products_verpp">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verpp"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-verpp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- комплектующие -->
+        <div class="sidebar__tabcontent" id="components">
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#components/main"><button class="button__tab__first button__tab__first_components-main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/tree.svg">Дерево компл.</button></a>
+                <a href="#components/measurement"><button class="button__tab__first button__tab__first_components-measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
+                <a href="#components/coeffs"><button class="button__tab__first button__tab__first_components-coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
+                <a href="#components/props"><button class="button__tab__first button__tab__first_components-props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
+                <a href="#components/typeselem"><button class="button__tab__first button__tab__first_components-typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
+            </div>
+            <!-- комплектующие главная -->
+            <div id="components/main" class="sidebar__tabcontent__container">
+                <div class="modal__body">
+                    <div class="modal__tree">
+                        <div class="select__wrapper">
+                            <select class="select select__sort" id="sort_components">
+                                <option value="">Сортировка &#8661;</option>
+                                <option value="">По названию &#8659;</option>
+                                <option value="">По названию &#8657;</option>
+                            </select>
+                        </div>
+                        <div id="jstree_div"></div>
+                    </div>
+                    <div class="modal__table-wrapper">
+                        <div class="modal__table">
+                            <table class="table">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td td_active">Инфо</td>
+                                        <td class="td td_active">Абстр.</td>
+                                        <td class="td td_active">Комплектующее</td>
+                                        <td class="td td_active">Тип</td>
+                                        <td class="td td_active"></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb_components_tree">
+                
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal__table">
                             <table class="table">
                                 <thead class="thead">
                                     <tr class="tr">
@@ -738,6 +997,158 @@
                     </div>
                 </div>
             </div>
+            <!-- комплектующие ед. изм. -->
+            <div id="components/measurement" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_measurement">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Единица измерения</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_componenets_measurement">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_measurement"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-measurement"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- комплектующие приставки си -->
+            <div id="components/coeffs" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_coeffs">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active">Степень числа 10</td>
+                            <td class="td td_active">Символ-обозначение</td>
+                            <td class="td td_active">Подсказка</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_componenets_coeffs">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_name"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_coeff"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_smv"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_help"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-coeffs"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- комплектующие свойства -->
+            <div id="components/props" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_props">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Значения св-ва</td>
+                            <td class="td td_active">Свойства</td>
+                            <td class="td td_active">Ед. изм.</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_componenets_props">
+                        <tr class="tr">
+                            <td class="td"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_props"></td>
+                            <td class="td td__text_align_center"><select class="select" id="select_add_props"><option value="">Выберите ед. изм.</option></select></td>
+                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-props"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- комплектующие типы -->
+            <div id="components/typeselem" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_typeselem">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Св-ва типа</td>
+                            <td class="td td_active">Типы</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_componenets_typeselem">
+                        <tr class="tr">
+                            <td class="td"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_typeselem"></td>
+                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-typeselem"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- контрагенты -->
+        <div class="sidebar__tabcontent" id="contragents">
+            <div class="select__wrapper">
+                <select class="select select__sort" id="sort_contragents">
+                    <option value="">Сортировка &#8661;</option>
+                    <option value="">По названию &#8659;</option>
+                    <option value="">По названию &#8657;</option>
+                    <option value="">По новизне &#8659;</option>
+                    <option value="">По новизне &#8657;</option>
+                </select>
+            </div>
+            <table class="table">
+                <thead class="thead">
+                    <tr class="tr">
+                        <td class="td td_active">Контрагент</td>
+                        <td class="td td_active">Покупатель</td>
+                        <td class="td td_active">Поставщик</td>
+                        <td class="td td_active">КПП</td>
+                        <td class="td td_active">ИНН</td>
+                        <td class="td td_active">Адрес</td>
+                        <td class="td td_active"></td>
+                    </tr>
+                </thead>
+                <tbody id="tb_contragents">
+                    <tr class="tr">
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_name"></td>
+                        <td class="td"><input class="checkbox" type="checkbox" id="input_add_contragents_buy"><label for="input_add_contragents_buy"></label></td>
+                        <td class="td"><input class="checkbox" type="checkbox" id="input_add_contragents_vend"><label for="input_add_contragents_vend"></label></td>
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_kpp"></td>
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_inn"></td>
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_address"></td>
+                        <td class="td td_buttons-control"><button class="button__control button__control_add-contragents"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <!-- справочники -->
         <div class="sidebar__tabcontent" id="directory_all">
@@ -831,8 +1242,8 @@
                     </thead>
                     <tbody id="tb_sets_formula_info">
                         <tr class="tr">
-                            <td class="td"><select class="select" id="select_add_formula_sets_set"><option value="">-- Выберите комплект --</option></select></td>
-                            <td class="td"><select class="select" id="select_add_formula_sets_prod"><option value="">-- Выберите изделие --</option></select></td>
+                            <td class="td"><select class="select" id="select_add_formula_sets_set"><option value="">Выберите комплект</option></select></td>
+                            <td class="td"><select class="select" id="select_add_formula_sets_prod"><option value="">Выберите изделие</option></select></td>
                             <td class="td"><button class="button__select button__select_component" id="button_add_sets_formula_component" value="">Выберите комплектующее</button></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_formula_sets_count" value=""></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-set-formula"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
@@ -846,9 +1257,6 @@
                 <div class="sidebar__tabcontent__first-tabs">
                     <a href="#dir_product/product_main"><button class="button__tab__first button__tab__first_product_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
                     <a href="#dir_product/product_formula"><button class="button__tab__first button__tab__first_product_formula"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Состав</button></a>
-                    <a href="#dir_product/product_colors"><button class="button__tab__first button__tab__first_product_colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
-                    <a href="#dir_product/product_verapp"><button class="button__tab__first button__tab__first_product_verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
-                    <a href="#dir_product/product_verpp"><button class="button__tab__first button__tab__first_product_verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
                 </div>
             </div>
             <!-- справочники изделия главная -->
@@ -856,9 +1264,6 @@
                 <div class="sidebar__tabcontent__first-tabs">
                     <a href="#dir_product/product_main"><button class="button__tab__first button__tab__first_product_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
                     <a href="#dir_product/product_formula"><button class="button__tab__first button__tab__first_product_formula"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Состав</button></a>
-                    <a href="#dir_product/product_colors"><button class="button__tab__first button__tab__first_product_colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
-                    <a href="#dir_product/product_verapp"><button class="button__tab__first button__tab__first_product_verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
-                    <a href="#dir_product/product_verpp"><button class="button__tab__first button__tab__first_product_verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
                 </div>
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_products">
@@ -891,9 +1296,6 @@
                 <div class="sidebar__tabcontent__first-tabs">
                     <a href="#dir_product/product_main"><button class="button__tab__first button__tab__first_product_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
                     <a href="#dir_product/product_formula"><button class="button__tab__first button__tab__first_product_formula"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Состав</button></a>
-                    <a href="#dir_product/product_colors"><button class="button__tab__first button__tab__first_product_colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
-                    <a href="#dir_product/product_verapp"><button class="button__tab__first button__tab__first_product_verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
-                    <a href="#dir_product/product_verpp"><button class="button__tab__first button__tab__first_product_verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
                 </div>
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_products_formula">
@@ -926,490 +1328,11 @@
                     </thead>
                     <tbody id="tb_products_formula">
                         <tr class="tr">
-                            <td class="td"><select class="select" id="select_add_products_formula_product"><option value="">-- Выберите изделие --</option></select></td>
-                            <td class="td"><select class="select" id="select_add_products_formula_innproduct"><option value="">-- Выберите изделие --</option></select></td>
+                            <td class="td"><select class="select" id="select_add_products_formula_product"><option value="">Выберите изделие</option></select></td>
+                            <td class="td"><select class="select" id="select_add_products_formula_innproduct"><option value="">Выберите изделие</option></select></td>
                             <td class="td"><button class="button__select button__select_component" id="button_add_products_formula_component" value=" ">Выберите комплектующее</button></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_products_formula"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-product-formula"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники изделия цвета -->
-            <div id="dir_product/product_colors" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_product/product_main"><button class="button__tab__first button__tab__first_product_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
-                    <a href="#dir_product/product_formula"><button class="button__tab__first button__tab__first_product_formula"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Состав</button></a>
-                    <a href="#dir_product/product_colors"><button class="button__tab__first button__tab__first_product_colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
-                    <a href="#dir_product/product_verapp"><button class="button__tab__first button__tab__first_product_verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
-                    <a href="#dir_product/product_verpp"><button class="button__tab__first button__tab__first_product_verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_colors">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_products_colors">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_colors"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-color"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники изделия версии плат -->
-            <div id="dir_product/product_verapp" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_product/product_main"><button class="button__tab__first button__tab__first_product_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
-                    <a href="#dir_product/product_formula"><button class="button__tab__first button__tab__first_product_formula"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Состав</button></a>
-                    <a href="#dir_product/product_colors"><button class="button__tab__first button__tab__first_product_colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
-                    <a href="#dir_product/product_verapp"><button class="button__tab__first button__tab__first_product_verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
-                    <a href="#dir_product/product_verpp"><button class="button__tab__first button__tab__first_product_verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_verapp">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_products_verapp">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verapp"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-verapp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники изделия версии ПО -->
-            <div id="dir_product/product_verpp" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_product/product_main"><button class="button__tab__first button__tab__first_product_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
-                    <a href="#dir_product/product_formula"><button class="button__tab__first button__tab__first_product_formula"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Состав</button></a>
-                    <a href="#dir_product/product_colors"><button class="button__tab__first button__tab__first_product_colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
-                    <a href="#dir_product/product_verapp"><button class="button__tab__first button__tab__first_product_verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
-                    <a href="#dir_product/product_verpp"><button class="button__tab__first button__tab__first_product_verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_verpp">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_products_verpp">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verpp"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-verpp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- ///// -->
-            <!-- справочники комплектующие -->
-            <div id="dir_components" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_components/components"><button class="button__tab__first button__tab__first_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                    <a href="#dir_components/measurement"><button class="button__tab__first button__tab__first_measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
-                    <a href="#dir_components/coeffs"><button class="button__tab__first button__tab__first_coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
-                    <a href="#dir_components/props"><button class="button__tab__first button__tab__first_props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
-                    <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
-                </div>
-            </div>
-            <!-- справочники комплектующие главная -->
-            <div id="dir_components/components" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_components/components"><button class="button__tab__first button__tab__first_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                    <a href="#dir_components/measurement"><button class="button__tab__first button__tab__first_measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
-                    <a href="#dir_components/coeffs"><button class="button__tab__first button__tab__first_coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
-                    <a href="#dir_components/props"><button class="button__tab__first button__tab__first_props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
-                    <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
-                </div>
-                <div class="modal__body">
-                    <div class="modal__tree">
-                        <div class="select__wrapper">
-                            <select class="select select__sort" id="sort_components">
-                                <option value="">Сортировка &#8661;</option>
-                                <option value="">По названию &#8659;</option>
-                                <option value="">По названию &#8657;</option>
-                            </select>
-                        </div>
-                        <div id="jstree_div"></div>
-                    </div>
-                    <div class="modal__table-wrapper">
-                        <div class="modal__table">
-                            <table class="table">
-                                <thead class="thead">
-                                    <tr class="tr">
-                                        <td class="td td_active">Инфо</td>
-                                        <td class="td td_active">Абстр.</td>
-                                        <td class="td td_active">Комплектующее</td>
-                                        <td class="td td_active">Тип</td>
-                                        <td class="td td_active"></td>
-                                    </tr>
-                                </thead>
-                                <tbody id="tb_components_tree">
-                
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal__table">
-                            <table class="table">
-                                <thead class="thead">
-                                    <tr class="tr">
-                                        <td class="td">Поиск</td>
-                                        <td class="td"></td>
-                                        <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
-                                    </tr>
-                                    <tr class="tr">
-                                        <td class="td td_active"><select class="select" id="found_main_select"></select></td>
-                                        <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_main_input" value="" placeholder="Комплектующее"></td>
-                                        <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
-                                    </tr>
-                                </thead>
-                                <tbody id="found_main_table">
-    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- справочники комплектующие ед. изм. -->
-            <div id="dir_components/measurement" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_components/components"><button class="button__tab__first button__tab__first_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                    <a href="#dir_components/measurement"><button class="button__tab__first button__tab__first_measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
-                    <a href="#dir_components/coeffs"><button class="button__tab__first button__tab__first_coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
-                    <a href="#dir_components/props"><button class="button__tab__first button__tab__first_props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
-                    <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_measurement">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Единица измерения</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_componenets_measurement">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_measurement"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-measurement"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники комплектующие приставки си -->
-            <div id="dir_components/coeffs" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_components/components"><button class="button__tab__first button__tab__first_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                    <a href="#dir_components/measurement"><button class="button__tab__first button__tab__first_measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
-                    <a href="#dir_components/coeffs"><button class="button__tab__first button__tab__first_coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
-                    <a href="#dir_components/props"><button class="button__tab__first button__tab__first_props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
-                    <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_coeffs">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название</td>
-                            <td class="td td_active">Степень числа 10</td>
-                            <td class="td td_active">Символ-обозначение</td>
-                            <td class="td td_active">Подсказка</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_componenets_coeffs">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_name"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_coeff"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_smv"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_help"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-coeffs"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники комплектующие свойства -->
-            <div id="dir_components/props" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_components/components"><button class="button__tab__first button__tab__first_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                    <a href="#dir_components/measurement"><button class="button__tab__first button__tab__first_measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
-                    <a href="#dir_components/coeffs"><button class="button__tab__first button__tab__first_coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
-                    <a href="#dir_components/props"><button class="button__tab__first button__tab__first_props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
-                    <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_props">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Значения св-ва</td>
-                            <td class="td td_active">Свойства</td>
-                            <td class="td td_active">Ед. изм.</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_componenets_props">
-                        <tr class="tr">
-                            <td class="td"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_props"></td>
-                            <td class="td td__text_align_center"><select class="select" id="select_add_props"><option value="">-- Выберите ед. изм. --</option></select></td>
-                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-props"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники комплектующие типы -->
-            <div id="dir_components/typeselem" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_components/components"><button class="button__tab__first button__tab__first_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
-                    <a href="#dir_components/measurement"><button class="button__tab__first button__tab__first_measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
-                    <a href="#dir_components/coeffs"><button class="button__tab__first button__tab__first_coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
-                    <a href="#dir_components/props"><button class="button__tab__first button__tab__first_props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
-                    <a href="#dir_components/typeselem"><button class="button__tab__first button__tab__first_typeselem"><img class="button__tab__first__img" src="../blocks/button/__tab/img/typeselem.svg">Типы</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_typeselem">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Св-ва типа</td>
-                            <td class="td td_active">Типы</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_componenets_typeselem">
-                        <tr class="tr">
-                            <td class="td"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_typeselem"></td>
-                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-typeselem"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- ///// -->
-            <!-- справочники контрагенты -->
-            <div id="dir_contr" class="sidebar__tabcontent__container">
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_contragents">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Контрагент</td>
-                            <td class="td td_active">Покупатель</td>
-                            <td class="td td_active">Поставщик</td>
-                            <td class="td td_active">КПП</td>
-                            <td class="td td_active">ИНН</td>
-                            <td class="td td_active">Адрес</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_contragents">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_name"></td>
-                            <td class="td"><input class="checkbox" type="checkbox" id="input_add_contragents_buy"><label for="input_add_contragents_buy"></label></td>
-                            <td class="td"><input class="checkbox" type="checkbox" id="input_add_contragents_vend"><label for="input_add_contragents_vend"></label></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_kpp"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_inn"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_address"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-contragents"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- ///// -->
-            <!-- справочники склады -->
-            <div id="dir_storages" class="sidebar__tabcontent__container">
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_storages">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название склада</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_storages">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_storages_name"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-storages"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- ///// -->
-            <!-- справочники статусы -->
-            <div id="dir_statuses" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_statuses/shipment"><button class="button__tab__first button__tab__first_shipment"><img class="button__tab__first__img" src="../blocks/sidebar/img/shipment.svg">Отгрузка</button></a>
-                    <a href="#dir_statuses/statussn"><button class="button__tab__first button__tab__first_statussn"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Статус SN</button></a>
-                    <a href="#dir_statuses/document"><button class="button__tab__first button__tab__first_document"><img class="button__tab__first__img" src="../blocks/button/__tab/img/document.svg">Документы</button></a>
-                </div>
-            </div>
-            <!-- справочники статусы отгрузки -->
-            <div id="dir_statuses/shipment" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_statuses/shipment"><button class="button__tab__first button__tab__first_shipment"><img class="button__tab__first__img" src="../blocks/sidebar/img/shipment.svg">Отгрузка</button></a>
-                    <a href="#dir_statuses/statussn"><button class="button__tab__first button__tab__first_statussn"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Статус SN</button></a>
-                    <a href="#dir_statuses/document"><button class="button__tab__first button__tab__first_document"><img class="button__tab__first__img" src="../blocks/button/__tab/img/document.svg">Документы</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_statuses_shipment">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_statuses_shipment">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statuses_shipment_name"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-shipment"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники статусы SN -->
-            <div id="dir_statuses/statussn" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_statuses/shipment"><button class="button__tab__first button__tab__first_shipment"><img class="button__tab__first__img" src="../blocks/sidebar/img/shipment.svg">Отгрузка</button></a>
-                    <a href="#dir_statuses/statussn"><button class="button__tab__first button__tab__first_statussn"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Статус SN</button></a>
-                    <a href="#dir_statuses/document"><button class="button__tab__first button__tab__first_document"><img class="button__tab__first__img" src="../blocks/button/__tab/img/document.svg">Документы</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_statuses_statussn">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_statuses_statussn">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statussn_name"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statussn"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- справочники статусы документов -->
-            <div id="dir_statuses/document" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#dir_statuses/shipment"><button class="button__tab__first button__tab__first_shipment"><img class="button__tab__first__img" src="../blocks/sidebar/img/shipment.svg">Отгрузка</button></a>
-                    <a href="#dir_statuses/statussn"><button class="button__tab__first button__tab__first_statussn"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Статус SN</button></a>
-                    <a href="#dir_statuses/document"><button class="button__tab__first button__tab__first_document"><img class="button__tab__first__img" src="../blocks/button/__tab/img/document.svg">Документы</button></a>
-                </div>
-                <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_statuses_statusdoc">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active">Название</td>
-                            <td class="td td_active"></td>
-                        </tr>
-                    </thead>
-                    <tbody id="tb_statuses_statusdoc">
-                        <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statusdoc_name"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statusdoc"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
                 </table>
