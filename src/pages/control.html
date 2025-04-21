@@ -29,29 +29,15 @@
                 </ul>
             </div>
             <div class="header__user">
-                <ul>
-                    <li class="header__user__container">
-                        <div class="header__user__wrapper">
-                            <div class="header__user__user">
-                                <img class="header__user__avatar" src="../blocks/header/img/user.svg" alt="user">
-                                <a class="header__user__name">Иванов И. И.</a>
-                            </div>
-                            <img class="header__user__arrow" src="../blocks/header/img/arrow_user.svg" alt="arow">
-                        </div>
-                        <ul class="header__user__menu">
-                            <li><a class="header__user__link" href="notifications.html">Уведомления</a></li>
-                            <li><a class="header__user__link" href="rules.html">Права</a></li>
-                            <li><a class="header__user__link" href="change_pass.html">Смена пароля</a></li>
-                            <li><a class="header__user__link header__user__link_leave-site">Выход</a></li>
-                            <li>
-                                <label class="header__user__switch" id="switch">
-                                <input class="header__user__switch-input" type="checkbox">
-                                <span class="header__user__slider header__user__slider_round"></span>
-                                </label>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="header__user__wrapper">
+                    <div class="header__user__user">
+                        <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user">
+                        <input class="header__user__switch-theme-input" type="checkbox" id="switch_theme_input">
+                        <label class="header__user__switch-theme" for="switch_theme_input"></label>
+                        <a class="header__user__name">Иванов И. И.</a>
+                        <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user">
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -64,19 +50,27 @@
             </div>
             <div class="sidebar__container">
                 <ul>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_1">
-                        <div class="sidebar__link settings" id="link_settings">
-                            <div class="sidebar__title">
-                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/settings.svg" alt="">
-                                <span class="sidebar__name">Настройки</span>
+                    <li class="sidebar__wrapper">
+                        <a href="#users">
+                            <div class="sidebar__link users" id="link_users">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/button/__tab/img/users.svg" alt="">
+                                    <span class="sidebar__name">Пользователи</span>
+                                </div>
                             </div>
-                            <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
-                        </div>
-                        <ul class="sidebar__menu">
-                            <li><a class="sidebar__menu__link" id="link_users" href="#users">Пользователи</a></li>
-                        </ul>
+                        </a>
                     </li>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_2">
+                    <li class="sidebar__wrapper">
+                        <a href="#settings">
+                            <div class="sidebar__link settings" id="link_settings">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/settings.svg" alt="">
+                                    <span class="sidebar__name">Пользователи</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="sidebar__wrapper">
                         <a href="#template_task">
                             <div class="sidebar__link template_task" id="link_template_task">
                                 <div class="sidebar__title">
@@ -86,7 +80,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="sidebar__wrapper" id="sidebar_tablink_2">
+                    <li class="sidebar__wrapper">
                         <a href="#control_task">
                             <div class="sidebar__link control_task" id="link_control_task">
                                 <div class="sidebar__title">
@@ -99,22 +93,15 @@
                 </ul>
             </div>
         </nav>
-        <div class="sidebar__tabcontent" id="settings">
-            <!-- пользователи -->
-            <div id="users" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#users/users_main"><button class="button__tab__first button__tab__first_user_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/users.svg">Пользователи</button></a>
-                    <a href="#users/users_jobs"><button class="button__tab__first button__tab__first_users_jobs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_jobs.svg">Должности</button></a>
-                    <a href="#users/users_rights"><button class="button__tab__first button__tab__first_users_rights"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_rights.svg">Права</button></a>
-                </div>
+        <!-- пользователи -->
+        <div class="sidebar__tabcontent" id="users">
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#users/users_main"><button class="button__tab__first button__tab__first_user_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/users.svg">Главная</button></a>
+                <a href="#users/users_jobs"><button class="button__tab__first button__tab__first_users_jobs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_jobs.svg">Должности</button></a>
+                <a href="#users/users_rights"><button class="button__tab__first button__tab__first_users_rights"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_rights.svg">Права</button></a>
             </div>
             <!-- пользователи главная -->
             <div id="users/users_main" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#users/users_main"><button class="button__tab__first button__tab__first_user_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/users.svg">Пользователи</button></a>
-                    <a href="#users/users_jobs"><button class="button__tab__first button__tab__first_users_jobs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_jobs.svg">Должности</button></a>
-                    <a href="#users/users_rights"><button class="button__tab__first button__tab__first_users_rights"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_rights.svg">Права</button></a>
-                </div>
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_users">
                         <option value="">Сортировка &#8661;</option>
@@ -151,11 +138,6 @@
             </div>
             <!-- пользователи должности -->
             <div id="users/users_jobs" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#users/users_main"><button class="button__tab__first button__tab__first_user_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/users.svg">Пользователи</button></a>
-                    <a href="#users/users_jobs"><button class="button__tab__first button__tab__first_users_jobs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_jobs.svg">Должности</button></a>
-                    <a href="#users/users_rights"><button class="button__tab__first button__tab__first_users_rights"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_rights.svg">Права</button></a>
-                </div>
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_jobs">
                         <option value="">Сортировка &#8661;</option>
@@ -182,11 +164,6 @@
             </div>
             <!-- пользователи права -->
             <div id="users/users_rights" class="sidebar__tabcontent__container">
-                <div class="sidebar__tabcontent__first-tabs">
-                    <a href="#users/users_main"><button class="button__tab__first button__tab__first_user_main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/users.svg">Пользователи</button></a>
-                    <a href="#users/users_jobs"><button class="button__tab__first button__tab__first_users_jobs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_jobs.svg">Должности</button></a>
-                    <a href="#users/users_rights"><button class="button__tab__first button__tab__first_users_rights"><img class="button__tab__first__img" src="../blocks/button/__tab/img/user_rights.svg">Права</button></a>
-                </div>
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_rights">
                         <option value="">Сортировка &#8661;</option>
@@ -211,6 +188,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="sidebar__tabcontent" id="settings">
+            <p>Настройки</p>
         </div>
         <div class="sidebar__tabcontent" id="template_task">
             <p>Шаблоны задач</p>

@@ -15,7 +15,7 @@
         background-color: var(--background_second);
         z-index: 2;
         margin: 0px auto;
-        border-bottom: 1px solid var(--border);
+        /*border-bottom: 1px solid var(--border);*/
     }
 
     &__body{
@@ -24,7 +24,7 @@
         justify-content: space-between;
         height: 45px;
         align-items: center;
-        margin: 0px 20px;
+        margin: 0px 10px;
     }
 
     &__logo{
@@ -37,8 +37,7 @@
     &__main-logo{
         max-width: 100%;
         width: 268px;
-        height: 23px;
-        margin-right: 60px;
+        height: 22px;
         filter: var(--img_color);
         -webkit-filter: var(--img_color);
     }
@@ -55,7 +54,7 @@
         position: relative;
         z-index: 2;
         align-items: center;
-        margin-left: 20px;
+        margin-left: 100px;
         list-style: none;
     }
 
@@ -69,9 +68,9 @@
 
     &__link:hover,
     &__link_check{
-        text-decoration: underline solid var(--font-color_active) 1px;
+        text-decoration: underline solid var(--expand-button-active) 2px;
         color: var(--font-color_active);
-        text-underline-offset: 17px;
+        text-underline-offset: 14px;
     }
 
     &__user{
@@ -87,13 +86,14 @@
         &__wrapper{
             display: flex;
             align-items: center;
-            border: 1px solid var(--border);
-            padding: 5px 30px;
+            /*border: 1px solid var(--border);*/
+            padding: 5px 15px;
         }
 
         &__container_menu-visibale &__wrapper{
             position: relative;
             top: 115px;
+            border: 1px solid var(--border);
         }
 
         &__user{
@@ -102,10 +102,8 @@
         }
 
         &__avatar{
-            width: 35px;
-            height: 35px;
+            width: 17px;
             cursor: pointer;
-            margin-right: 5px;
             filter: var(--img_color);
             -webkit-filter: var(--img_color);
         }
@@ -113,6 +111,15 @@
         &__name{
             font-family: 'Roboto', sans-serif;
             color: var(--font-color);
+            margin-left: 60px;
+            margin-right: 5px;
+            user-select: none;
+
+            &:hover{
+                text-decoration: underline var(--expand-button-active) 2px;
+                color: var(--font-color_active);
+                text-underline-offset: 14px;
+            }
         }
 
         &__arrow{
@@ -158,65 +165,27 @@
             }
         }
 
-        &__switch{
-            position: relative;
-            display: inline-block;
-            width: 54px;
-            height: 30px;
-            margin-left: 40px;
-            margin-top: 10px;
-        }
-
-        &__switch-input{
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        &__slider{
-            position: absolute;
+        &__switch-theme{
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--white);
-            border: 1px solid var(--border);
-            -webkit-transition: 0.4s;
-            transition: 0.4s;
-
-            &:before{
-                position: absolute;
+            &::after{
                 content: "";
-                height: 28px;
-                width: 28px;
-                left: 0px;
-                bottom: 4px;
-                top: 0;
-                bottom: 0;
-                margin: auto 0;
-                -webkit-transition: 0.3s;
-                transition: 0.3s;
-                background: var(--blue);
-                background-repeat: no-repeat;
-                background-position: center;
+                position: absolute;
+                width: 17px;
+                height: 17px;
+                background: url("../header/img/drop_light.svg") no-repeat center;
+                transition: 0.5s;
+                margin-left: 20px;
+                top: 15px;
             }
-        }
 
-        &__switch-input:checked + &__slider:before {
-            -webkit-transform: translateX(24px);
-            -ms-transform: translateX(24px);
-            transform: translateX(24px);
-            background: var(--blue);
-            background-repeat: no-repeat;
-            background-position: center;
-        }
+            &-input{
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
 
-        &__slider_round{
-            border-radius: 30px;
-
-            &::before{
-                border-radius: 50%;
+            &-input:checked + &::after{
+                background: url("../header/img/drop_dark.svg") no-repeat center;
             }
         }
     }
