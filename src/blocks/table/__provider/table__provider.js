@@ -59,7 +59,7 @@ const addDocpostRow =
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo        = newRow.insertCell(0);  cellInfo.classList        = "td";
+    let cellInfo        = newRow.insertCell(0);  cellInfo.classList        = "td td_nowrap-content";
     //let cellStatdocName = newRow.insertCell(1);  cellStatdocName.classList = "td";
     let cellNumb        = newRow.insertCell(1);  cellNumb.classList        = "td";
     let cellDate        = newRow.insertCell(2);  cellDate.classList        = "td";

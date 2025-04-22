@@ -64,4 +64,10 @@
     &__text_align_center{
         text-align: center;
     }
+
+    &_nowrap-content{
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
 }
