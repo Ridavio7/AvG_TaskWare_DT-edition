@@ -155,13 +155,12 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
     let button_select_component = document.querySelectorAll(".button__select_docpost");
     button_select_component.forEach((elem) => {
         elem.addEventListener("click", () => {
-            modal_select_component.style.display = "block";
-            
             funcGetComponentsTreeSelect();
             setTimeout(() => {
                 funcFoundOneComponent(elem.name)
-                localStorage.setItem("button_select_component_id", elem.id);
-            }, 150)
+            }, 300)
+            localStorage.setItem("button_select_component_id", elem.id);
+            modal_select_component.style.display = "block";
         })
     })
 }
@@ -172,7 +171,7 @@ const addDocpostInfoTable = (name, compontName, compontUin, measName, measUin, s
     newRow.classList = "tr";
 
     let cellName    = newRow.insertCell(0); cellName.classList    = "td";
-    let cellCompont = newRow.insertCell(1); cellCompont.classList = "td";
+    let cellCompont = newRow.insertCell(1); cellCompont.classList = "td td_nowrap-content";
     let cellCount   = newRow.insertCell(2); cellCount.classList   = "td";
     let cellMeas    = newRow.insertCell(3); cellMeas.classList    = "td";
     let cellStorage = newRow.insertCell(4); cellStorage.classList = "td";

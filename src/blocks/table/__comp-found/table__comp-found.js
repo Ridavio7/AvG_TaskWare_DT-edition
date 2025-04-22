@@ -127,13 +127,12 @@ const addFoundComponentsEmpty = (found_table) => {
 }
 
 export const funcFindAnchor = (value, name) => {
-    let anchors = document.getElementById(found_tree).getElementsByClassName(`summary`);
+    let anchors = document.getElementById(found_tree).getElementsByClassName(`tree-catalog__header`);
     for(let i in anchors){
         let obj = anchors[i];
         let id  = obj.id;
         if(id === `summary_${value}`){
             anchors[i].click();
-            if(!anchors[i].closest('details').hasAttribute("open")) anchors[i].closest('details').setAttribute("open", '');
             anchors[i].scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
         }
     }
@@ -147,5 +146,5 @@ export const funcFindAnchor = (value, name) => {
     setTimeout(() => {
         let tr = document.getElementById(`${found_input_id}${name}`);
         tr.parentElement.className = tr.parentElement.className.replace(" tr_mark", "");
-    }, 3000)
+    }, 1000)
 }

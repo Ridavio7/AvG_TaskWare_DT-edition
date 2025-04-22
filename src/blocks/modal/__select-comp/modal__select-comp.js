@@ -14,8 +14,8 @@ let span_select_comp  = document.getElementById("close_component_select");
 let uinCatc = null;
 
 span_select_comp.addEventListener("click", () => {
+    document.getElementById('modal_select_component_tree').innerHTML = '';
     modal_select_comp.style.display = "none";
-
     removeOptionsSetValue("found_select", "-- Выберите тип --");
 })
 
@@ -49,18 +49,8 @@ export const funcGetComponentsTreeSelect = () => {
 function funcProcessGetComponentsTreeSelect(result, respobj){
     if( result === 0 ) return;
 
-    const tree = new TreeBuilder('modal_select_component_tree', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, ["openall"]);
+    const tree = new TreeBuilder('modal_select_component_tree', 'dirC', 'catC', funcGetComponentsTreeSelect, funcGetDirC, '', ["openall"]);
     tree.build(respobj.answ);
-
-    document.getElementById('modal_select_component_tree').addEventListener('click', () => {
-        let node = tree.get();
-        uinCatc = node.getAttribute('data-id');
-    
-        let tb_id = "tb_component_select";
-        clearTableAll(tb_id);
-    
-        funcGetDirC(uinCatc);
-    })
 }
 
 export const funcGetDirC = (uin) => {
@@ -70,7 +60,7 @@ export const funcGetDirC = (uin) => {
 
 function funcProcessGetComponentsSelect(result, respobj){
     if( result === 0 ) return;
-
+    console.log(respobj)
     let tb_id = "tb_component_select";
     clearTableAll(tb_id);
     let tableRef       = document.getElementById(tb_id);
@@ -99,9 +89,11 @@ function funcProcessGetComponentsSelect(result, respobj){
                 modal_select_component.style.display = "none";
 
                 let button = document.getElementById(localStorage.getItem("button_select_component_id"));
-                button.value = elem.value;
+                button.value     = elem.value;
+                button.name      = elem.name;
                 button.innerText = elem.name;
             }
+            localStorage.removeItem("button_select_component_id");
         })
     })
 

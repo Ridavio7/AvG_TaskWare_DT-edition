@@ -32,7 +32,7 @@ const funcProcessGetComponentsTree = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Дерево:", respobj);
 
-    const tree = new TreeBuilder('jstree_div', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ["contextmenu", "openall"]);
+    const tree = new TreeBuilder('jstree_div', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ['contextmenu', 'openall']);
     tree.build(respobj.answ);
     let node = tree.get();
     uinCatc = node.getAttribute('data-id');

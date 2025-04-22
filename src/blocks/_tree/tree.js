@@ -36,84 +36,102 @@ export class TreeBuilder {
     build(data) {
         this.container.innerHTML = '';
 
-        const root_item = new Tree(data);
-        const root_branch = this.createBranch(root_item);
-        this.container.append(root_branch);
-
-        this.buildTree(root_item.children, root_branch, root_item.id);
+        this.buildTree(data.children, this.container, 0);
 
         if(this.options.includes("contextmenu")){this.contextMenu()} else {this.contextMenuDiv = null};
-        if(this.options.includes("openall")){this.openFullTree()};
+        if(this.options.includes("openall")){this.openFullTree()} else {null}
         this.initStorage();
     }
 
     buildTree(items, parentElement, parentId) {
-        const container = document.createElement('div');
-        container.classList.add('details__container');
-        
         items.forEach(dataItem => {
             const item = new Tree(dataItem);
             item.parentId = parentId;
             
             const details = this.createBranch(item);
-            container.append(details);
-            
-            if (item.hasChildren()) {
-                this.buildTree(item.children, details, item.id);
-            }
+            parentElement.append(details);
         });
-        
-        parentElement.append(container);
     }
 
     createBranch(item) {
-        const details = Object.assign(document.createElement('details'), {
-            id: `details_${item.id}`,
-            classList: 'details'
-        });
-        details.setAttribute('data-id', item.id);
+        const itemContainer = document.createElement('div');
+        itemContainer.className = 'tree-catalog__item';
 
-        const summary = Object.assign(document.createElement('summary'), {
-            textContent: `${item.text} (${item.contentNum})`,
-            id: `summary_${item.id}`,
-            classList: 'summary'
-        });
+        const itemHeader = document.createElement('div');
+        itemHeader.className = 'tree-catalog__header';
+        itemHeader.id = `summary_${item.id}`;
+        itemHeader.setAttribute('data-id', item.id);
 
-        if (!item.isValid()) summary.classList.add('summary_deleted');
-        
-        if (!item.hasChildren()) summary.classList.add('summary_no-arrow');
-
-        details.addEventListener('toggle', () => this.saveState());
-
-        summary.addEventListener('contextmenu', (e) => {
+        itemHeader.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            this.selectItem(itemHeader);
             this.showContextMenu(e, item);
-            this.selectItem(e.target);
         });
+        itemHeader.addEventListener('click', () => {
+            this.selectItem(itemHeader);
+        });
+        
+        const arrow = document.createElement('span');
+        arrow.className = 'tree-catalog__arrow';
+        arrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleItemChildren(itemContainer);
+        });
+        
+        const textSpan = document.createElement('span');
+        textSpan.className = 'tree-catalog__text';
+        textSpan.textContent = `${item.text} (${item.contentNum})`;
+        
+        itemHeader.appendChild(arrow);
+        itemHeader.appendChild(textSpan);
 
-        summary.addEventListener('click', e => this.selectItem(e.target))
+        const childrenContainer = document.createElement('div');
+        childrenContainer.className = 'tree-catalog__children-container';
+        
+        itemContainer.appendChild(itemHeader);
+        itemContainer.appendChild(childrenContainer);
+        
+        if (item.hasChildren()) {
+            this.buildTree(item.children, childrenContainer, item.id);
+        } else {
+            itemHeader.classList.add('tree-catalog__header_no-children');
+        }
 
-        details.append(summary);
-        return details;
+        if (!item.isValid()) itemHeader.classList.add('tree-catalog__header_deleted');
+        
+        return itemContainer;
+    }
+
+    toggleItemChildren(itemContainer) {
+        const arrow = itemContainer.querySelector('.tree-catalog__arrow');
+        const childrenContainer = itemContainer.querySelector('.tree-catalog__children-container');
+        const header = arrow.parentElement
+        
+        arrow.classList.toggle('collapsed');
+        childrenContainer.classList.toggle('collapsed');
+        header.classList.toggle('tree-catalog__header_open');
+        
+        this.saveState();
     }
 
     selectItem(summaryElement) {
-        if (this.activeSummary) this.activeSummary.classList.remove('summary_active');
+        if (this.activeSummary) this.activeSummary.classList.remove('tree-catalog__header_active');
         
         this.activeSummary = summaryElement;
-        this.activeSummary.classList.add('summary_active');
+        this.activeSummary.classList.add('tree-catalog__header_active');
 
         this.saveState();
-        this.funcItem(this.activeSummary.closest('details').getAttribute('data-id'))
+        this.funcItem(this.activeSummary.getAttribute('data-id'));
     }
 
     saveState() {
-        const openDetails = Array.from(this.container.querySelectorAll('details[open]'));
-        const openItems = openDetails.map(detail => detail.getAttribute('data-id'));
+        //const openDetails = Array.from(this.container.querySelectorAll('.tree-catalog__header_open'));
+        //const openItems = openDetails.map(detail => detail.getAttribute('data-id'));
         const activeItemId = this.activeSummary ? 
-            this.activeSummary.closest('details').getAttribute('data-id') : null;
+            this.activeSummary.getAttribute('data-id') : null;
 
         localStorage.setItem('treeState', JSON.stringify({
-            openItems,
+            //openItems,
             activeItemId
         }));
     }
@@ -127,12 +145,12 @@ export class TreeBuilder {
             if (openItems) {
                 openItems.forEach(id => {
                     const element = this.container.querySelector(`[data-id="${id}"]`);
-                    if (element) element.setAttribute('open', '');
+                    if (element) element.firstChild.click();
                 });
             }
 
             if (activeItemId) {
-                const activeElement = this.container.querySelector(`[data-id="${activeItemId}"] summary`);
+                const activeElement = this.container.querySelector(`[data-id="${activeItemId}"]`);
                 if (activeElement) this.selectItem(activeElement);
             }
         }
@@ -141,12 +159,14 @@ export class TreeBuilder {
     }
 
     openFullTree() {
-        const items = this.container.querySelectorAll('.details');
+        /*const items = this.container.querySelectorAll('.tree-catalog__header');
         if (items) {
             items.forEach(element => {
-                if (element) element.setAttribute('open', '');
+                console.log(element)
+                element.firstChild.click();
+                //if (!element.classList.contains('tree-catalog__header_no-children')) element.firstChild.click();
             });
-        }
+        }*/
     }
 
     contextMenu() {
@@ -199,7 +219,6 @@ export class TreeBuilder {
             let newName = prompt('Введите название папки:', '');
             if(newName != null){
                 let body  =  {"user":"demo", "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
-                console.log(body)
                 funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
@@ -232,6 +251,6 @@ export class TreeBuilder {
     }
 
     get() {
-        return this.activeSummary.closest('details');
+        return this.activeSummary;
     }
 }
