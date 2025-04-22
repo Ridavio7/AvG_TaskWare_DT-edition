@@ -1,7 +1,12 @@
 /* select фильтра анимация */
 export const psevdoSelect = (id) => {
     let checkList = document.getElementById(id);
+    let select__items = document.getElementsByClassName("select-props-value");
     checkList.addEventListener('click', function(event) {
+        for (let i = 0; i < select__items.length; i++) {
+            select__items[i].className = select__items[i].className.replace(" select__filter_visible", "");
+        }
+
         checkList.className.includes('select__filter_visible') ? checkList.classList.remove('select__filter_visible') : checkList.classList.add('select__filter_visible');
         event.stopPropagation();
     });

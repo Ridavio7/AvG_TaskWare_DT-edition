@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcGetComponentInfoProps, addEventSelectProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
@@ -33,17 +33,12 @@ let selectIsChange = false;
 
 span_info_component.onclick = function(){
     if(inputIsChange === true || selectIsChange === true){
-        let res = confirm("Вы не сохранили все изменения! Все равно выйти?");
-        if(res === true){
-            inputIsChange = false;
-            selectIsChange = false;
-
-            modal_info_component.style.display = "none";
-        }
-    } else {
-        inputIsChange = false;
+        inputIsChange  = false;
         selectIsChange = false;
-        
+
+        let res = confirm("Вы не сохранили все изменения! Все равно выйти?");
+        if(res === true) modal_info_component.style.display = "none";
+    } else {
         modal_info_component.style.display = "none";
     }
 }
@@ -136,7 +131,7 @@ const funcProcessGetComponentInfo = (result, respobj) => {
     for (let key in respobj.answ){
         let obj       = respobj.answ[key];
         let name      = obj.name;
-        let typelm    = obj.typelm.name;
+        let typelm    = obj.typelm.name === '' ? '---' : obj.typelm.name;
         let typelmUin = obj.typelm.uin;
         let fUnic     = obj.fUnic;
         let tpack     = obj.tpack;
@@ -154,14 +149,9 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, tpack, comment, ost, u
     document.getElementById('component_edit_imgs_img').onclick = () => funcEditImgsOpenModal(uin, name);
 
     funcGetComponentInfoTypesProps(typelmUin);
-
-    let select = component_select_type;
-    let option = document.createElement("option");
-    if(typelm === ''){typelm = "---"}
-    option.text = typelm;
-    option.value = typelmUin;
-    select.appendChild(option);
-    addToDropdown(select, "typelm_list");
+    
+    addToDropdownOneOption(component_select_type, typelm, typelmUin);
+    addToDropdown(component_select_type, "typelm_list");
 
     component_checkbox_tpack.checked = tpack === 1 ? true : false;
 
