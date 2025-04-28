@@ -111,9 +111,17 @@
     margin: 5px 0px;
   }
 
+  &__table-wrapper-info-prod{
+    overflow-y: scroll;
+    height: 225px;
+    margin-bottom: 10px;
+    resize: vertical;
+  }
+
   &__button-wrapper{
     position: relative;
     top: 233px;
+    display: flex;
   }
 
   &__tree{

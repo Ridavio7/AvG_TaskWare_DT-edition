@@ -1,0 +1,243 @@
+import {funcCommand, clearTable, funcProcessOnlyInfo, highlightButtonSave, findForUpdateInput} from '../../../js/common/common.js';
+import {funcGetProductsTreeSelect} from '../../modal/__select-prod/modal__select-prod.js';
+import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
+import {funcFoundOneComponent} from '../__comp-found/table__comp-found.js';
+
+let button__control_add_prod = document.getElementById('button__control_info_product_add_prod');
+let button__control_add_comp = document.getElementById('button__control_info_product_add_comp');
+
+let uinMainProd  = null;
+let nameMainProd = null;
+
+export const funcGetProductViewInside = (uin) => {
+    let body  =  {"user":"demo", "meth":"viewInside", "obj":"formula_products", "uinproduct":`${uin}`};
+    funcCommand(body, funcProcessGetProductViewInside);
+}
+
+const funcProcessGetProductViewInside = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log("viewInside:", respobj);
+
+    uinMainProd  = respobj.uinprod;
+    nameMainProd = respobj.nameprod;
+
+    button__control_add_prod.value = uinMainProd;
+    button__control_add_comp.value = uinMainProd;
+
+    let tb_id_prod = 'tb_info_product_prod';
+    clearTable(tb_id_prod)
+    for (let key in respobj.insP){
+        let obj    = respobj.insP[key];
+        let namepr = obj.namepr;
+        let uinpr  = obj.uinpr;
+        let count  = obj.count;
+        let uin    = obj.uin;
+        let del    = obj.del;
+        addProducts(namepr, uinpr, count, uin, del, tb_id_prod);
+    }
+
+    /* функция удаления */
+    let button_control_mdel_product = document.querySelectorAll(".button__control_mdel_formula-product-innprod");
+    button_control_mdel_product.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
+
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
+            } else {
+                elem.classList.add('button__control_mdel_active');
+            }
+        
+            funcCommand(body, funcProcessOnlyInfo);
+        })
+    })
+    
+    /* функция обновления */
+    let button_control_update_product = document.querySelectorAll(".button__control_update_formula-product-innprod");
+    button_control_update_product.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"update", "obj":"formula_products", "innprod":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
+
+            let target_table = tb_info_product_prod;
+            
+            body.innprod = document.getElementById(`formula_product_select_innprod_${elem.value}`).value;
+            body.count = findForUpdateInput(`formula_product_innprod_count_${elem.value}`, target_table);
+        
+            funcCommand(body, funcProcessOnlyInfo);
+            highlightButtonSave(elem);
+            setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+        })
+    })
+
+    /* выбор изделия */
+    let button_select_innprod = document.querySelectorAll(".button__select_product_innprod");
+    button_select_innprod.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            funcGetProductsTreeSelect();
+            /*setTimeout(() => {
+                funcFoundOneComponent(elem.name)
+            }, 300)*/
+            localStorage.setItem("button_select_product_id", elem.id);
+            modal_select_products.style.display = "block";
+        })
+    })
+
+    let tb_id_comp = 'tb_info_product_comp';
+    clearTable(tb_id_comp)
+    for (let key in respobj.insC){
+        let obj       = respobj.insC[key];
+        let nameType  = obj.typename;
+        let uinType   = obj.type;
+        let countType = obj.typecount;
+        let typeArr   = obj.typearr;
+        addComponentsType(nameType, uinType, countType, typeArr, tb_id_comp);
+    }
+
+    /* функция удаления */
+    let button_control_mdel_comp = document.querySelectorAll(".button__control_mdel_formula-product-componenet");
+    button_control_mdel_comp.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
+
+            if(elem.classList[3] === 'button__control_mdel_active'){
+                elem.classList.remove('button__control_mdel_active');
+            } else {
+                elem.classList.add('button__control_mdel_active');
+            }
+        
+            funcCommand(body, funcProcessOnlyInfo);
+        })
+    })
+    
+    /* функция обновления */
+    let button_control_update_comp = document.querySelectorAll(".button__control_update_formula-product-componenet");
+    button_control_update_comp.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":"demo", "meth":"update", "obj":"formula_products", "uincompont":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
+
+            let target_table = tb_info_product_comp;
+            
+            body.uincompont = document.getElementById(`formula_product_select_componenet_${elem.value}`).value;
+            body.count = findForUpdateInput(`formula_product_componenet_count_${elem.value}`, target_table);
+        
+            funcCommand(body, funcProcessOnlyInfo);
+            highlightButtonSave(elem);
+            setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+        })
+    })
+
+    /* выбор комлпектующего */
+    let button_select_component = document.querySelectorAll(".button__select_product_componenet");
+    button_select_component.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            funcGetComponentsTreeSelect();
+            setTimeout(() => {
+                funcFoundOneComponent(elem.name)
+            }, 300)
+            localStorage.setItem("button_select_component_id", elem.id);
+            modal_select_component.style.display = "block";
+        })
+    })
+}
+
+/* таблица изделия */
+const addProducts = (namepr, uinpr, count, uin, del, tb_id_prod) => {
+    let tableRef = document.getElementById(tb_id_prod);
+    let newRow = tableRef.insertRow(-1);
+    newRow.classList = "tr";
+
+    let cellProduct = newRow.insertCell(0); cellProduct.classList = "td";
+    let cellCount   = newRow.insertCell(1); cellCount.classList   = "td td__text_align_center";
+    let cellBtn     = newRow.insertCell(2); cellBtn.classList     = "td";
+
+    cellProduct.innerHTML = `<button class="button__select button__select_product_innprod" id="formula_product_select_innprod_${uin}" value="${uinpr}" name="${namepr}">${namepr}</button>`;
+    cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="formula_product_innprod_count_${uin}">`;
+
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-innprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-innprod${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+}
+
+/* добавление изделия */
+button__control_add_prod.addEventListener("click", () => {
+    let body  =  {"user":"demo", "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "innprod":"", "count":""};
+
+    let innprod_value = document.getElementById("button_info_product_add_prod");
+    let count_value   = document.getElementById("input_info_product_add_prod");
+    
+    if(innprod_value.value === "" || count_value.value === ""){
+        alert("Вы не заполнили все поля!");
+    } else {
+        body.innprod = innprod_value.value;
+        body.count      = count_value.value;
+    
+        innprod_value.innerText = "Выберите изделие";
+        innprod_value.value = "";
+        count_value.value = "";
+    
+        funcCommand(body, funcProcessOnlyInfo);
+        setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+    }
+})
+
+/* таблица комлпектующего */
+const addComponentsType = (nameType, uinType, countType, typeArr, tb_id_comp) => {
+    let tableRef = document.getElementById(tb_id_comp);
+    let newRow = tableRef.insertRow(-1);
+    newRow.classList = "tr";
+
+    let cellType  = newRow.insertCell(0); cellType.classList  = "td";
+    let cellComp  = newRow.insertCell(1); cellComp.classList  = "td";
+    let cellCount = newRow.insertCell(2); cellCount.classList = "td";
+    let cellBtn   = newRow.insertCell(3); cellBtn.classList   = "td";
+
+    cellType.innerHTML = nameType === '' ? "Нет" : nameType;
+
+    for (let i in typeArr){
+        let obj         = typeArr[i];
+        let nameCompont = obj.name;
+        let uinCompont  = obj.uincompont;
+        let count       = obj.count;
+        let uin         = obj.uin;
+        let del         = obj.del;
+        addComponents(nameCompont, uinCompont, count, uin, del, tb_id_comp);
+    }
+}
+
+const addComponents = (nameCompont, uinCompont, count, uin, del, tb_id_comp) => {
+    let tableRef = document.getElementById(tb_id_comp);
+    let newRow = tableRef.insertRow(-1);
+    newRow.classList = "tr";
+
+    let cellType  = newRow.insertCell(0); cellType.classList  = "td";
+    let cellComp  = newRow.insertCell(1); cellComp.classList  = "td";
+    let cellCount = newRow.insertCell(2); cellCount.classList = "td";
+    let cellBtn   = newRow.insertCell(3); cellBtn.classList   = "td";
+
+    cellComp.innerHTML = `<button class="button__select button__select_product_componenet" id="formula_product_select_componenet_${uin}" value="${uinCompont}" name="${nameCompont}">${nameCompont}</button>`;
+    cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="formula_product_componenet_count_${uin}">`;
+
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-componenet" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-componenet${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+}
+
+/* добавление комлпектующего */
+button__control_add_comp.addEventListener("click", () => {
+    let body  =  {"user":"demo", "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "uincompont":"", "count":""};
+
+    let uincompont_value = document.getElementById("button_info_product_add_comp");
+    let count_value      = document.getElementById("input_info_product_add_comp");
+    
+    if(uincompont_value.value === "" || count_value.value === ""){
+        alert("Вы не заполнили все поля!");
+    } else {
+        body.uincompont = uincompont_value.value;
+        body.count      = count_value.value;
+    
+        uincompont_value.innerText = "Выберите комплектующее";
+        uincompont_value.value = "";
+        count_value.value = "";
+    
+        funcCommand(body, funcProcessOnlyInfo);
+        setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+    }
+})

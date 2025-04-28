@@ -105,7 +105,7 @@
                             <div class="sidebar__link components sidebar__link_components sidebar__link_no-child" id="link_components">
                                 <div class="sidebar__title">
                                     <img class="sidebar__img sidebar__img_filter" src="../blocks/button/__tab/img/components.svg" alt="">
-                                    <span class="sidebar__name">Комплектующее</span>
+                                    <span class="sidebar__name">Комплектующие</span>
                                 </div>
                             </div>
                         </a>
@@ -759,7 +759,7 @@
                     <tbody id="tb_statuses_statusdoc">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statusdoc_name"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statusdoc"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statusdoc" disabled><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -769,13 +769,46 @@
         <div class="sidebar__tabcontent" id="development">
             <div class="sidebar__tabcontent__first-tabs">
                 <a href="#development/begunok"><button class="button__tab__first button__tab__first_development-begunok"><img class="button__tab__first__img" src="../blocks/button/__tab/img/formula.svg">Бегунок</button></a>
+                <a href="#development/coordination"><button class="button__tab__first button__tab__first_development-coordination"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coordination.svg">Участки согл.</button></a>
+            </div>
+            <!-- бегунок -->
+            <div id="development/begunok" class="sidebar__tabcontent__container">
+
+            </div>
+            <!-- участки согл. -->
+            <div id="development/coordination" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_prof">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По номеру &#8659;</option>
+                        <option value="">По номеру &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Номер</td>
+                            <td class="td td_active">Название участка</td>
+                            <td class="td td_active">Отмечать кол-во</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_prof">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_prof_numb" value=""></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_prof_name" value=""></td>
+                            <td class="td"><input class="checkbox" type="checkbox" id="input_add_prof_fc"><label for="input_add_prof_fc"></label></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-prof"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- склад -->
         <div class="sidebar__tabcontent" id="storage">
             <div class="sidebar__tabcontent__first-tabs">
-                <a href="#storage/main"><button class="button__tab__first button__tab__first_storage-main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/tree.svg">Дерево ГП</button></a>
-                <a href="#storage/storages"><button class="button__tab__first button__tab__first_storage-storages"><img class="button__tab__first__img" src="../blocks/button/__tab/img/status.svg">Склады</button></a>
+                <a href="#storage/main"><button class="button__tab__first button__tab__first_storage-main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/tree.svg">Продукция</button></a>
+                <a href="#storage/storages"><button class="button__tab__first button__tab__first_storage-storages"><img class="button__tab__first__img" src="../blocks/sidebar/img/storage.svg">Склады</button></a>
                 <a href="#storage/colors"><button class="button__tab__first button__tab__first_storage-colors"><img class="button__tab__first__img" src="../blocks/button/__tab/img/colors.svg">Цвета</button></a>
                 <a href="#storage/verapp"><button class="button__tab__first button__tab__first_storage-verapp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verapp.svg">Версии плат</button></a>
                 <a href="#storage/verpp"><button class="button__tab__first button__tab__first_storage-verpp"><img class="button__tab__first__img" src="../blocks/button/__tab/img/verpp.svg">Версии ПО</button></a>
@@ -799,7 +832,7 @@
                                 <thead class="thead">
                                     <tr class="tr">
                                         <td class="td td_active">Инфо</td>
-                                        <td class="td td_active">Отгр.</td>
+                                        <td class="td td_active">Отгружаемое</td>
                                         <td class="td td_active">Изделие</td>
                                         <td class="td td_active"></td>
                                     </tr>
@@ -939,7 +972,7 @@
         <!-- комплектующие -->
         <div class="sidebar__tabcontent" id="components">
             <div class="sidebar__tabcontent__first-tabs">
-                <a href="#components/main"><button class="button__tab__first button__tab__first_components-main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/tree.svg">Дерево компл.</button></a>
+                <a href="#components/main"><button class="button__tab__first button__tab__first_components-main"><img class="button__tab__first__img" src="../blocks/button/__tab/img/tree.svg">Комплектующие</button></a>
                 <a href="#components/measurement"><button class="button__tab__first button__tab__first_components-measurement"><img class="button__tab__first__img" src="../blocks/button/__tab/img/measurement.svg">Ед. изм.</button></a>
                 <a href="#components/coeffs"><button class="button__tab__first button__tab__first_components-coeffs"><img class="button__tab__first__img" src="../blocks/button/__tab/img/coeffs.svg">Приставки СИ</button></a>
                 <a href="#components/props"><button class="button__tab__first button__tab__first_components-props"><img class="button__tab__first__img" src="../blocks/button/__tab/img/props.svg">Свойства</button></a>
@@ -1471,55 +1504,48 @@
                         </div>
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="info_product_color">Цвет:</label>
-                            <select class="select select_modal" id="info_product_color"></select>
+                            <select class="select select_modal" id="info_product_color" disabled></select>
                         </div>
                         <div class="modal__input-wrapper">
                             <input class="checkbox" type="checkbox" id="info_product_fship" disabled>
-                            <label for="info_product_fship">Отгружен</label>
+                            <label for="info_product_fship">Отгружаемое</label>
                         </div>
                     </div>
-                    <div>
+                    <div class="modal__table-wrapper-info-prod">
                         <table class="table">
                             <thead class="thead">
                                 <tr class="tr">
                                     <td class="td td_active">Изделие</td>
+                                    <td class="td td_active">Кол-во</td>
                                     <td class="td td_active"></td>
                                 </tr>
                             </thead>
                             <tbody id="tb_info_product_prod">
                                 <tr class="tr">
-                                    <td class="td"></td>
-                                    <td class="td td_buttons-control"><button class="button__control" id="button_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                    <td class="td"><button class="button__select button__select_product_innprod" id="button_info_product_add_prod" value="">Выберите изделие</button></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_prod"></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div>
+                    <div class="modal__table-wrapper-info-prod">
                         <table class="table">
                             <thead class="thead">
                                 <tr class="tr">
+                                    <td class="td td_active">Тип</td>
                                     <td class="td td_active">Комплектующее</td>
+                                    <td class="td td_active">Кол-во</td>
                                     <td class="td td_active"></td>
                                 </tr>
                             </thead>
                             <tbody id="tb_info_product_comp">
                                 <tr class="tr">
                                     <td class="td"></td>
-                                    <td class="td td_buttons-control"><button class="button__control" id="button_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                    <td class="td"><button class="button__select button__select_component button__select_product_componenet" id="button_info_product_add_comp" value="">Выберите комплектующее</button></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_comp"></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>            
-                    <div class="modal__table-wrapper_ost">
-                        <table class="table">
-                            <thead class="thead">
-                                <tr class="tr">
-                                    <td class="td td_active">Остаток</td>
-                                    <td class="td td_active">Склад</td>
-                                </tr>
-                            </thead>
-                            <tbody id="tb_info_product_ost">
-    
                             </tbody>
                         </table>
                     </div>
@@ -1583,6 +1609,61 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- мод. окно выбора изделия -->
+    <div class="modal" id="modal_select_products">
+        <div class="modal__moving" id="modal_select_products_moving">
+            <span class="modal__title">Выбор изделия</span>
+            <span class="modal__close" id="close_products_select">&times;</span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__body">
+                <div class="modal__tree">
+                    <div id="modal_select_products_tree"></div>
+                </div>
+                <div class="modal__table-wrapper">
+                    <div class="modal__table">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active">Отгружаемое</td>
+                                    <td class="td td_active">Изделие</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_products_select">
+                
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--<div class="modal__table">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td">Поиск</td>
+                                    <td class="td"></td>
+                                    <td class="td"><button class="button__control button__control_active" id="found_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active"><select class="select" id="found_select"></select></td>
+                                    <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_input" value="" placeholder="Комплектующее"></td>
+                                    <td class="td td_active"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_1c_input" value="" placeholder="Комплектующее 1C"></td>
+                                    <td class="td td_active"><button class="button__control button__control_active" id="found_1c_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                </tr>
+                            </thead>
+                            <tbody id="found_table">
+                                
+                            </tbody>
+                        </table>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -1691,6 +1772,8 @@
                             <td class="td td_active">Комплектующее 1С</td>
                             <td class="td td_active">Комплектующее TW</td>
                             <td class="td td_active">Кол-во</td>
+                            <td class="td td_active">Цена</td>
+                            <td class="td td_active">Сумма</td>
                             <td class="td td_active">Ед. изм</td>
                             <td class="td td_active">Склад</td>
                             <td class="td td_active"></td>
