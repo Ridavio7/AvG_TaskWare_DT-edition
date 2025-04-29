@@ -30,7 +30,7 @@ const optimization = () => {
   return configObj;
 };
 
-const pages = ['index', 'buisness', 'control', 'change_pass', 'notifications', 'result_table', 'rules'];
+const pages = ['index', 'tasks', 'buisness', 'control', 'change_pass', 'notifications', 'result_table', 'rules'];
 
 const plugins = () => {
   const basePlugins = [

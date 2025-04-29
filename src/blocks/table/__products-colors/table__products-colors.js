@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
 
 export const funcGetColors = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"colors", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"100"};
     funcCommand(body, funcProcessGetColors);
 }
 
@@ -25,7 +25,7 @@ const funcProcessGetColors = (result, respobj) => {
     let button_control_mdel_product_color = document.querySelectorAll(".button__control_mdel-product-color");
     button_control_mdel_product_color.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"colors", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"colors", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -41,7 +41,7 @@ const funcProcessGetColors = (result, respobj) => {
     let button_control_update_product_color = document.querySelectorAll(".button__control_update-product-color");
     button_control_update_product_color.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"colors", "name":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"colors", "name":"", "uin":`${elem.value}`};
 
             let target_table = tb_products_colors;
             body.name = findForUpdateInput(`color_name_${elem.value}`, target_table);
@@ -69,7 +69,7 @@ const addColorsRow = (name, del, uin, tb_id) => {
 
 let button_control_add_product_color = document.querySelector(".button__control_add-color");
 button_control_add_product_color.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"colors", "name":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"colors", "name":""};
 
     let name_value = document.getElementById("input_add_colors").value
 

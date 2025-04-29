@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, addToDropdown} from '../../../js/common/common.js';
 
 export const funcGetContragents = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"contragents", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"contragents", "count":"100"};
     funcCommand(body, funcProcessGetContragents);
 }
 
@@ -32,7 +32,7 @@ const funcProcessGetContragents = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-contragents");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"contragents", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"contragents", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -48,7 +48,7 @@ const funcProcessGetContragents = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-contragents");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"contragents", "name":"", "inn":"", "kpp":"", "address":"", "uin":`${elem.value}`, "buy":"", "vend":""};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"contragents", "name":"", "inn":"", "kpp":"", "address":"", "uin":`${elem.value}`, "buy":"", "vend":""};
 
             let target_table = tb_contragents;
             body.name    = findForUpdateInput(`name_${elem.value}`, target_table);
@@ -95,7 +95,7 @@ const addContragentsRow = (name, buy, vend, kpp, inn, address, del, uin, tb_id) 
 
 let button_control_add = document.querySelector(".button__control_add-contragents");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"contragents", "name":"", "inn":"", "kpp":"", "address":"", "buy":"", "vend":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"contragents", "name":"", "inn":"", "kpp":"", "address":"", "buy":"", "vend":""};
 
     let name_value    = document.getElementById("input_add_contragents_name").value;
     let buy_value     = document.getElementById("input_add_contragents_buy").value;

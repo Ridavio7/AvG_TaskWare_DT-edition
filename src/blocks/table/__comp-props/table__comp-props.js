@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelec
 import {funcInfoEnumsOpenModal} from '../../modal/__enums/modal__enums.js';
 
 export const funcGetProps = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"props", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"100"};
     funcCommand(body, funcProcessGetProps);
 }
 
@@ -32,7 +32,7 @@ const funcProcessGetProps = (result, respobj) => {
     let button_control_mdel_product = document.querySelectorAll(".button__control_mdel-prop");
     button_control_mdel_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"props", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"props", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -48,7 +48,7 @@ const funcProcessGetProps = (result, respobj) => {
     let button_control_update_product = document.querySelectorAll(".button__control_update-prop");
     button_control_update_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"props", "name":"", "uin":`${elem.value}`, "uinmeas":""};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"props", "name":"", "uin":`${elem.value}`, "uinmeas":""};
 
             let target_table = tb_componenets_props;
             body.name = findForUpdateInput(`props_name_${elem.value}`, target_table);
@@ -88,7 +88,7 @@ const addPropsRow = (name, del, uin, meas, uinmeas, tb_id) => {
 
 let button_control_add_product = document.querySelector(".button__control_add-props");
 button_control_add_product.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"props", "name":"", "uinmeas":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"props", "name":"", "uinmeas":""};
 
     let name_value = document.getElementById("input_add_props").value;
     let uinmeas_value = document.getElementById("select_add_props").value;

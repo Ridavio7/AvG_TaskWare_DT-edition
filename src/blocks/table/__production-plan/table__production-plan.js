@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, removeOptionsSetValue, addToDropdown, findForUpdateSelect, clearTableAll} from '../../../js/common/common.js';
 
 export const funcGetPlan = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"1000", "sort":"date"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"1000", "sort":"date"};
     funcCommand(body, funcProcessGetPlan);
 }
 
@@ -34,7 +34,7 @@ const funcProcessGetPlan = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-plan");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"planpp", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"planpp", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -50,7 +50,7 @@ const funcProcessGetPlan = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-plan");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"planpp", "uinproduct":"", "count":"", "date":"", "prim":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"planpp", "uinproduct":"", "count":"", "date":"", "prim":"", "uin":`${elem.value}`};
 
             let target_table = tb_plan;
 
@@ -88,7 +88,7 @@ const addPlanRow = (uinprod, nameprod, count, date, prim, del, uin, tb_id) => {
 
 let button_control_add_product = document.querySelector(".button__control_add-plan");
 button_control_add_product.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"planpp", "uinproduct":"", "count":"", "date":"", "prim":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"planpp", "uinproduct":"", "count":"", "date":"", "prim":""};
 
     let prod_value  = document.getElementById("select_add_plan_product").value;
     let count_value = document.getElementById("input_add_plan_count").value;
@@ -119,27 +119,27 @@ document.getElementById("sort_plan").addEventListener('change', function(){
     let option = this.selectedIndex;
     switch (option){
         case 0:
-        let body0  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
+        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
         funcCommand(body0, funcProcessGetPlan);
         break;
 
         case 1:
-        let body1  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "asort":"name"};
+        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "asort":"name"};
         funcCommand(body1, funcProcessGetPlan);
         break;
 
         case 2:
-        let body2  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "sort":"name"};
+        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"name"};
         funcCommand(body2, funcProcessGetPlan);
         break;
 
         case 3:
-        let body3  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "asort":"date"};
+        let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "asort":"date"};
         funcCommand(body3, funcProcessGetPlan);
         break;
 
         case 4:
-        let body4  =  {"user":"demo", "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
+        let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
         funcCommand(body4, funcProcessGetPlan);
         break;
     }

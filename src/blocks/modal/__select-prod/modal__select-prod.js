@@ -16,7 +16,7 @@ span_select_prod.onclick = () => {
 dragElement(modal_select_prod);
 
 export const funcGetProductsTreeSelect = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"catP", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
     funcCommand(body, funcProcessGetProductsTreeSelect);
 }
 
@@ -28,7 +28,7 @@ function funcProcessGetProductsTreeSelect(result, respobj){
 }
 
 export const funcGetDirP = (uin) => {
-    let body  =  {"user":"demo", "meth":"view","obj":"dirP", "uin":`${uin}`, "count":"5000"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view","obj":"dirP", "uin":`${uin}`, "count":"5000"};
     funcCommand(body, funcProcessGetProductsSelect);
 }
 

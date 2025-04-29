@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, addToDropdown, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js.js';
 
 export const funcGetMeas = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"meas", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"meas", "count":"100"};
     funcCommand(body, funcProcessGetMeas);
 }
 
@@ -26,7 +26,7 @@ const funcProcessGetMeas = (result, respobj) => {
     let button_control_mdel_measurement = document.querySelectorAll(".button__control_mdel-measurement");
     button_control_mdel_measurement.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"meas", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"meas", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -42,7 +42,7 @@ const funcProcessGetMeas = (result, respobj) => {
     let button_control_update_measurement = document.querySelectorAll(".button__control_update-measurement");
     button_control_update_measurement.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"meas", "name":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"meas", "name":"", "uin":`${elem.value}`};
 
             let target_table = document.getElementById("tb_componenets_measurement");
             body.name = findForUpdateInput(`measurement_name_${elem.value}`, target_table);
@@ -70,7 +70,7 @@ const addMeasRow = (name, del, uin, tb_id) => {
 
 let button_control_add_measurement = document.querySelector(".button__control_add-measurement");
 button_control_add_measurement.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"meas", "name":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"meas", "name":""};
 
     let name_value = document.getElementById("input_add_measurement").value
 

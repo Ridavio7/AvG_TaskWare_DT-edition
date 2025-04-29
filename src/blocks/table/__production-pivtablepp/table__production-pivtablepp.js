@@ -21,12 +21,12 @@ button_reset.addEventListener('click', () => {
 })
 
 export const funcGetPivTablepp = (date1, date2) => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"pivTablepp", "count":"1000", "date1":`${date1}`, "date2":`${date2}`, "asort":"name"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "date1":`${date1}`, "date2":`${date2}`, "asort":"name"};
     funcCommand(body, funcProcessGetPivTablepp);
 }
 
 export const funcGetPivTableppTab = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"pivTablepp", "count":"1000", "date1":"", "date2":`${new Date().toISOString().split('T')[0].replace(/[\.\-/\\\s]/g, '')}`, "asort":"name"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "date1":"", "date2":`${new Date().toISOString().split('T')[0].replace(/[\.\-/\\\s]/g, '')}`, "asort":"name"};
     funcCommand(body, funcProcessGetPivTablepp);
 }
 
@@ -36,7 +36,7 @@ const funcProcessGetPivTablepp = (result_piv, respobj_piv) => {
 
     let tproc_arr = [];
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"techproc", "count":"100", "sort":"numb"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"100", "sort":"numb"};
     funcCommand(body, funcProcessGetTechproc);
 
     function funcProcessGetTechproc(result_tech, respobj_tech){
@@ -105,19 +105,19 @@ document.getElementById("sort_pivtablepp").addEventListener('change', function()
     let option = this.selectedIndex;
     switch (option){
         case 0:
-        let body0  =  {"user":"demo", "meth":"view", "obj":"pivTablepp", "count":"1000", "asort":"name"};
+        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "asort":"name"};
         funcCommand(body0, funcProcessGetPivTablepp);
         break;
         case 1:
-        let body1  =  {"user":"demo", "meth":"view", "obj":"pivTablepp", "count":"1000", "sort":"name"};
+        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "sort":"name"};
         funcCommand(body1, funcProcessGetPivTablepp);
         break;
         case 2:
-        let body2  =  {"user":"demo", "meth":"view", "obj":"pivTablepp", "count":"1000", "asort":"uin"};
+        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "asort":"uin"};
         funcCommand(body2, funcProcessGetPivTablepp);
         break;
         case 3:
-        let body3  =  {"user":"demo", "meth":"view", "obj":"pivTablepp", "count":"1000", "sort":"uin"};
+        let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "sort":"uin"};
         funcCommand(body3, funcProcessGetPivTablepp);
         break;
     }

@@ -218,7 +218,7 @@ export class TreeBuilder {
         if(dataItem != null){
             let newName = prompt('Введите название папки:', '');
             if(newName != null){
-                let body  =  {"user":"demo", "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
                 funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
@@ -228,7 +228,7 @@ export class TreeBuilder {
         if(dataItem != null){
             let newName = prompt('Введите новое название папки:', '');
             if(newName != null){
-                let body  =  {"user":"demo", "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
                 funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
@@ -238,7 +238,7 @@ export class TreeBuilder {
         if(dataItem != null){
             let result = confirm('Подтвердите удаление');
             if(result){
-                let body = {"user":"demo", "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`};
+                let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`};
                 funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }

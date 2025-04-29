@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
 
 export const funcGetRights = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"rights", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"rights", "count":"100"};
     funcCommand(body, funcProcessGetRights);
 }
 
@@ -27,7 +27,7 @@ const funcProcessGetRights = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-users-rights");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"rights", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"rights", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -43,7 +43,7 @@ const funcProcessGetRights = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-users-rights");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"rights", "name":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"rights", "name":"", "uin":`${elem.value}`};
 
             let target_table = tb_rights;
             body.name = findForUpdateInput(`right_name_${elem.value}`, target_table);
@@ -71,7 +71,7 @@ const addRightsRow = (name, del, uin, tb_id) => {
 
 let button_control_add = document.querySelector(".button__control_add-users-rights");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"rights", "name":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"rights", "name":""};
 
     let name_value = document.getElementById("input_add_rights").value;
 

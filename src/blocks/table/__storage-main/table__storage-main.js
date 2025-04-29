@@ -6,7 +6,7 @@ import {TreeBuilder} from '../../_tree/tree.js';
 let uinCatc = null;
 
 export const funcGetProductsTree = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"catP", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
     funcCommand(body, funcProcessGetProductsTree);
 }
 
@@ -22,7 +22,7 @@ const funcProcessGetProductsTree = (result, respobj) => {
 
 /* каталог изделий */
 export const funcGetProducts = (uin) => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"dirP", "uin":`${uin}`, "count":"5000"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"dirP", "uin":`${uin}`, "count":"5000"};
     funcCommand(body, funcProcessGetProducts);
 }
 
@@ -52,7 +52,7 @@ const funcProcessGetProducts = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-products");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"products", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"products", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');

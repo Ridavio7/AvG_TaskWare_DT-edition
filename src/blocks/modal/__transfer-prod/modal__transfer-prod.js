@@ -28,7 +28,7 @@ export const funcInfoProductsTransferOpenModal = (uin, name) => {
     button_transfer_dirP.style.display = "none";
     button_transfer_comp.style.display = "flex";
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"catP", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
     funcCommand(body, funcProcessGetProductsTree);
 }
 
@@ -45,7 +45,7 @@ const funcProcessGetProductsTree = (result, respobj) => {
 }
 
 button_transfer_comp.onclick = () => {
-    let body  =  {"user":"demo", "meth":"update", "obj":"products", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`};
 
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){
@@ -64,12 +64,12 @@ export const funcInfocatPTransferOpenModal = (uin, name) => {
     button_transfer_dirP.style.display = "flex";
     button_transfer_comp.style.display = "none";
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"catP", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
     funcCommand(body, funcProcessGetProductsTree);
 }
 
 button_transfer_dirP.onclick = () => {
-    let body  =  {"user":"demo", "meth":"update", "obj":"dirP", "name":`${nameItem}`, "uin":`${uinItem}`, "uinparent":`${uinCatp}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirP", "name":`${nameItem}`, "uin":`${uinItem}`, "uinparent":`${uinCatp}`};
 
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){

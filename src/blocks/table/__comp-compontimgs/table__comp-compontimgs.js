@@ -6,7 +6,7 @@ let productImages = [];
 export const funcGetCompontimgs = (uin) => {
     productImages = [];
 
-    let body  =  {"user":"demo", "obj":"compontimgBS", "meth":"view", "uincompont":`${uin}`, "count":"100", "sort":"name"}
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "obj":"compontimgBS", "meth":"view", "uincompont":`${uin}`, "count":"100", "sort":"name"}
     funcCommand(body, funcProcessGetCompontimgs);
 }
 
@@ -22,7 +22,7 @@ const funcProcessGetCompontimgs = (result, respobj) => {
         let obj   = respobj.answ[key];
         let uin   = obj.uin;
 
-        let body  =  {"user":"demo", "meth":"viewBS", "obj":"compontimgBS", "uin":`${uin}`};
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewBS", "obj":"compontimgBS", "uin":`${uin}`};
         funcCommand(body, funcProcessGetCompontimgBS);
     }
 }

@@ -5,7 +5,7 @@ import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__sele
 let modal_select_component = document.getElementById("modal_select_component");
 
 export const funcGetFormulaSets = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"formula_sets", "count":"100", "filt":`${JSON.stringify(filt_formula_sets)}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"formula_sets", "count":"100", "filt":`${JSON.stringify(filt_formula_sets)}`};
     funcCommand(body, funcProcessGetFormulaSets);
 }
 
@@ -43,7 +43,7 @@ const funcProcessGetFormulaSets = (result, respobj) => {
     let button_control_mdel_set_formula = document.querySelectorAll(".button__control_mdel-set-formula");
     button_control_mdel_set_formula.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"formula_sets", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"formula_sets", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -59,7 +59,7 @@ const funcProcessGetFormulaSets = (result, respobj) => {
     let button_control_update_set = document.querySelectorAll(".button__control_update-set-formula");
     button_control_update_set.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"formula_sets", "uinset":"", "uinproduct":"", "uincompont":"", "count":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_sets", "uinset":"", "uinproduct":"", "uincompont":"", "count":"", "uin":`${elem.value}`};
 
             let target_table = tb_sets_formula_info;
         
@@ -148,7 +148,7 @@ listenSelect(select_3, filt_3, val_3, filt_formula_sets);
 
 let button_control_add_set_formula = document.querySelector(".button__control_add-set-formula");
 button_control_add_set_formula.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"formula_sets", "uinset":"", "uinproduct":"", "count":"" };
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_sets", "uinset":"", "uinproduct":"", "count":"" };
 
     let uinset_value = document.getElementById("select_add_formula_sets_set").value;
     let uinproduct_value = document.getElementById("select_add_formula_sets_prod").value;

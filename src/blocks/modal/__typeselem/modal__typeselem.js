@@ -18,7 +18,7 @@ export const funcInfoTypeselemOpenModal = (uin) => {
 }
 
 const funcGetInfoTypeselem = (uin) => {
-    let body  =  {"user":"demo", "meth":"view","obj":"typesprops", "count":"100", "uintypes":`${uin}`}
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view","obj":"typesprops", "count":"100", "uintypes":`${uin}`}
     funcCommand(body, funcProcessGetInfoTypeselem);
 }
 
@@ -60,7 +60,7 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-typeselem-info");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"typesprops", "uintypes":`${elem.value}`, "uinprops":`${elem.name}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"typesprops", "uintypes":`${elem.value}`, "uinprops":`${elem.name}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -74,7 +74,7 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
 
     let button_control_add = document.getElementById('typeselem_add_button');
     button_control_add.onclick = () => {
-        let body  =  {"user":"demo", "meth":"add", "obj":"typesprops", "uintypes":`${typeUinForAdd}`, "uinprops":""};
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"typesprops", "uintypes":`${typeUinForAdd}`, "uinprops":""};
 
         let uinprops_value = document.getElementById("typeselem_add_props_select").value;
 

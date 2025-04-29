@@ -153,39 +153,39 @@ export const listenSortSelect = (select, tb, obj, func, filt) => {
         let option = this.selectedIndex;
         switch (option){
             case 0:
-            let body0  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "filt":`${JSON.stringify(filt)}`};
+            let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body0, func);
             break;
             case 1:
-            let body1  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"name", "filt":`${JSON.stringify(filt)}`};
+            let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "sort":"name", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body1, func);
             break;
             case 2:
-            let body2  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"name", "filt":`${JSON.stringify(filt)}`};
+            let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "asort":"name", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body2, func);
             break;
             case 3:
-            let body3  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"uin", "filt":`${JSON.stringify(filt)}`};
+            let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "sort":"uin", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body3, func);
             break;
             case 4:
-            let body4  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"uin", "filt":`${JSON.stringify(filt)}`};
+            let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "asort":"uin", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body4, func);
             break;
             case 5:
-            let body5  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"uinset", "filt":`${JSON.stringify(filt)}`};
+            let body5  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "sort":"uinset", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body5, func);
             break;
             case 6:
-            let body6  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"uinset", "filt":`${JSON.stringify(filt)}`};
+            let body6  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "asort":"uinset", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body6, func);
             break;
             case 7: 
-            let body7  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "sort":"datechange", "filt":`${JSON.stringify(filt)}`};
+            let body7  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "sort":"datechange", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body7, func);
             break;
             case 8:
-            let body8  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "asort":"datechange", "filt":`${JSON.stringify(filt)}`};
+            let body8  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"500", "asort":"datechange", "filt":`${JSON.stringify(filt)}`};
             funcCommand(body8, func);
             break;
         }
@@ -259,7 +259,7 @@ export const sendFiltAnalisys = (filt, tb_id, obj, func) => {
     let filt_filter = Array.from(new Set(filt.map(filt => JSON.stringify(filt)))).map(filt => JSON.parse(filt));
     let filt_str = JSON.stringify(filt_filter);
     clearTableAll(tb_id);
-    let body  =  {"user":"demo", "meth":"view", "obj":obj, "count":"5000", "filt":`${filt_str}`, "asotr": "uin"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"5000", "filt":`${filt_str}`, "asotr": "uin"};
     funcCommand(body, func);
 }
 
@@ -291,31 +291,31 @@ export const sortAnalisys = (selec, tb_id, filt, obj, func) => {
         let option = this.selectedIndex;
         switch (option){
             case 0:
-            let body0  =  {"user":"demo", "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000"};
+            let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000"};
             funcCommand(body0, func);
             break;
             case 1:
-            let body1  =  {"user":"demo", "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"uin"};
+            let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"uin"};
             funcCommand(body1, func);
             break;
             case 2:
-            let body2  =  {"user":"demo", "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"uin"};
+            let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"uin"};
             funcCommand(body2, func);
             break;
             case 3:
-            let body3  =  {"user":"demo", "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"name"};
+            let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"name"};
             funcCommand(body3, func);
             break;
             case 4:
-            let body4  =  {"user":"demo", "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"name"};
+            let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"name"};
             funcCommand(body4, func);
             break;
             case 5:
-            let body5  =  {"user":"demo", "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"datechange"};
+            let body5  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"datechange"};
             funcCommand(body5, func);
             break;
             case 6:
-            let body6  =  {"user":"demo", "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"datechange"};
+            let body6  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"datechange"};
             funcCommand(body6, func);
             break;
         }
@@ -326,7 +326,7 @@ export const sortAnalisys = (selec, tb_id, filt, obj, func) => {
 export const sendFilt = (filt, tb_id, obj, func) => {
     let filt_str = JSON.stringify(filt);
     clearTable(tb_id);
-    let body  =  {"user":"demo", "meth":"view", "obj":obj, "count":"500", "filt":`${filt_str}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj": `${obj}`, "count":"500", "filt":`${filt_str}`};
     funcCommand(body, func);
 }
 

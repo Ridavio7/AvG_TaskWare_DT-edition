@@ -44,7 +44,7 @@ export const funcInfoProductOpenModal = (uin) => {
 
 /* инфо о комплектующем в модальном окне */
 export const funcGetProductInfo = (uin) => {
-    let body  =  {"user":"demo", "meth":"view","obj":"products", "count":"1", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view","obj":"products", "count":"1", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
     funcCommand(body, funcProcessGetProductInfo);
 }
 
@@ -94,7 +94,7 @@ const addProductInfo = (name, colorName, colorUin, fship, uin, uincat) => {
 button_info_product_save.onclick = (elem) => {
     inputIsChange  = false;
 
-    let body  =  {"user":"demo", "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":"", "uincat":`${elem.target.name}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":"", "uincat":`${elem.target.name}`};
     body.name = input_info_product_name.value;
 
     funcCommand(body, funcProcessOnlyInfo);
@@ -127,7 +127,7 @@ export const funcProcessInfoProductsModalAdd = () => {
 }
 
 button_info_product_add.onclick = (elem) => {
-    let body = {"user":"demo", "meth":"add", "obj":"products", "name":"", "uincat":`${elem.target.value}`};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"products", "name":"", "uincat":`${elem.target.value}`};
 
     if(input_info_product_name.value === ""){
         alert("Вы не заполнили все поля!");

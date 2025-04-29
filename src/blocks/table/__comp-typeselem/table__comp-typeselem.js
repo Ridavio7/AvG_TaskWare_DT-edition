@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listen
 import {funcInfoTypeselemOpenModal} from '../../modal/__typeselem/modal__typeselem.js';
 
 export const funcGetTypeselem = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"typeselem", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"100"};
     funcCommand(body, funcProcessGetTypeselem);
 }
 
@@ -26,7 +26,7 @@ const funcProcessGetTypeselem = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-typeselem");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"typeselem", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"typeselem", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -42,7 +42,7 @@ const funcProcessGetTypeselem = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-typeselem");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"typeselem", "name":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"typeselem", "name":"", "uin":`${elem.value}`};
 
             let target_table = tb_componenets_typeselem;
             body.name = findForUpdateInput(`typeselem_name_${elem.value}`, target_table);
@@ -79,7 +79,7 @@ const addTypeselemRow = (name, del, uin, tb_id) => {
 
 let button_control_add_product = document.querySelector(".button__control_add-typeselem");
 button_control_add_product.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"typeselem", "name":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"typeselem", "name":""};
 
     let name_value = document.getElementById("input_add_typeselem").value
 

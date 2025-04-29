@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, clearTableAll} from '../../../js/commo
 import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js';
 
 export const funcGetDocpost = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"docpost", "count":"10000"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000"};
     funcCommand(body, funcProcessGetDocpost);
 }
 
@@ -33,7 +33,7 @@ const funcProcessGetDocpost = (result, respobj) => {
     let button_control_mdel_docpost = document.querySelectorAll(".button__control_mdel-docpost");
     button_control_mdel_docpost.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"docpost", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"docpost", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');

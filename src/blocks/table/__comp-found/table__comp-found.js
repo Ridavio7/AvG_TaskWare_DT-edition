@@ -6,7 +6,7 @@ let found_table_comp;
 let found_input_id;
 
 export const funcFoundComponents = (input, select, tb_id, tb_id_comp, tree_id, input_id) => {
-    let body =  {"user":"demo", "obj":"components", "meth":"found", "name":"", "uintype":"", "count":"100"};
+    let body =  {"user":`${localStorage.getItem('srtf')}`, "obj":"components", "meth":"found", "name":"", "uintype":"", "count":"100"};
 
     let name = document.getElementById(input).value;
     name === "" ? body.name = " " : body.name = name;
@@ -22,7 +22,7 @@ export const funcFoundComponents = (input, select, tb_id, tb_id_comp, tree_id, i
 }
 
 export const funcFoundComponents1C = (input, tb_id, tb_id_comp, tree_id, input_id) => {
-    let body =  {"user":"demo", "obj":"components", "meth":"found1c", "name":"", "count":"100"};
+    let body =  {"user":`${localStorage.getItem('srtf')}`, "obj":"components", "meth":"found1c", "name":"", "count":"100"};
 
     let name = document.getElementById(input).value;
     name === "" ? body.name = " " : body.name = name;
@@ -35,7 +35,7 @@ export const funcFoundComponents1C = (input, tb_id, tb_id_comp, tree_id, input_i
 }
 
 export const funcFoundOneComponent = (nameComp) => {
-    let body =  {"user":"demo", "obj":"components", "meth":"found", "name":`${nameComp}`, "uintype":"", "count":"1"};
+    let body =  {"user":`${localStorage.getItem('srtf')}`, "obj":"components", "meth":"found", "name":`${nameComp}`, "uintype":"", "count":"1"};
     funcCommand(body, funcProcessFoundComponents);
 
     found_table      = "found_table";
@@ -50,7 +50,7 @@ export const funcFoundOneComponent = (nameComp) => {
 }
 
 export const funcFoundPlusComponents = (input, select, props, tb_id, tb_id_comp, tree_id, input_id) => {
-    let body =  {"user":"demo", "obj":"components", "meth":"found", "name":"", "uintype":"", "props": props, "count":"100"};
+    let body =  {"user":`${localStorage.getItem('srtf')}`, "obj":"components", "meth":"found", "name":"", "uintype":"", "props": props, "count":"100"};
 
     let name = document.getElementById(input).value;
     name === "" ? body.name = " " : body.name = name;

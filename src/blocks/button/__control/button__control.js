@@ -15,7 +15,7 @@ btn_previous_year.addEventListener("click", () => {
     document.getElementById("grf_year").value = "";
     document.getElementById("grf_year").value = currYear;
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"grfShipSets", "count":"100", "filt":`[{"fld":"year","val":["${currYear}"]}]`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"grfShipSets", "count":"100", "filt":`[{"fld":"year","val":["${currYear}"]}]`};
     funcCommand(body, funcProcessGetGrfShipSets);
 })
 
@@ -28,6 +28,6 @@ btn_next_year.addEventListener("click", () => {
     document.getElementById("grf_year").value = "";
     document.getElementById("grf_year").value = currYear;
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"grfShipSets", "count":"100", "filt":`[{"fld":"year","val":["${currYear}"]}]`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"grfShipSets", "count":"100", "filt":`[{"fld":"year","val":["${currYear}"]}]`};
     funcCommand(body, funcProcessGetGrfShipSets);
 })

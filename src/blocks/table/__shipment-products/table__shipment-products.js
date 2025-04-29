@@ -1,7 +1,7 @@
 import {funcCommand} from '../../../js/common/common.js';
 
 export const funcGetProducts = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"products", "count":"100" };
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"products", "count":"100" };
     funcCommand( body, funcProcessGetProducts );
 }
 

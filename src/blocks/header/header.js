@@ -32,6 +32,7 @@ let header_user_link_leave = document.getElementsByClassName("header__user__link
 header_user_link_leave[0].addEventListener("click", ()=>{
     let result = confirm("Вы уверены, что хотите выйти?");
     if(result === true){
-        window.location = 'https://dev.proektit.ru';
+        localStorage.removeItem('srtf');
+        window.location = 'index.html';
     }
 });

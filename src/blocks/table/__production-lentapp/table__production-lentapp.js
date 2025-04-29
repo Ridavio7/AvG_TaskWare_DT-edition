@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, highlightButtonSave, makeSelect, clearTableAll} from '../../../js/common/common.js';
 
 export const funcGetLentapp = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"lentapp", "count":"100", "asort":"datetm"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"100", "asort":"datetm"};
     funcCommand(body, funcProcessGetLentapp);
 }
 
@@ -34,7 +34,7 @@ const funcProcessGetLentapp = (result, respobj) => {
     let button_control_mdel_lentapp = document.querySelectorAll(".button__control_mdel-lentapp");
     button_control_mdel_lentapp.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"lentapp", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"lentapp", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -50,7 +50,7 @@ const funcProcessGetLentapp = (result, respobj) => {
     let button_control_update_lentapp = document.querySelectorAll(".button__control_update-lentapp");
     button_control_update_lentapp.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"lentapp", "uinuser":"", "uinproduct":"", "uintechproc":"", "count":"", "datetm":"", "prim":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"lentapp", "uinuser":"", "uinproduct":"", "uintechproc":"", "count":"", "datetm":"", "prim":"", "uin":`${elem.value}`};
 
             let target_table = tb_events;
             body.uinuser     = findForUpdateSelect(target_table, "lentapp_user_select_", elem.value);
@@ -101,15 +101,15 @@ document.getElementById("sort_events").addEventListener('change', function(){
     let option = this.selectedIndex;
     switch (option){
         case 0:
-        let body0  =  {"user":"demo", "meth":"view", "obj":"lentapp", "count":"5000", "asort":"datetm"};
+        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "asort":"datetm"};
         funcCommand(body0, funcProcessGetLentapp);
         break;
         case 1:
-        let body1  =  {"user":"demo", "meth":"view", "obj":"lentapp", "count":"5000", "sort":"datetm"};
+        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "sort":"datetm"};
         funcCommand(body1, funcProcessGetLentapp);
         break;
         case 2:
-        let body2  =  {"user":"demo", "meth":"view", "obj":"lentapp", "count":"5000", "asort":"datetm"};
+        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "asort":"datetm"};
         funcCommand(body2, funcProcessGetLentapp);
         break;
     }

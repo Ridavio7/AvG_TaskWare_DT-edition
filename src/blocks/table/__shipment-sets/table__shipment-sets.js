@@ -1,7 +1,7 @@
 import {funcCommand} from '../../../js/common/common.js';
 
 export const funcGetSets = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"sets", "count":"100" };
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"sets", "count":"100" };
     funcCommand( body, funcProcessGetSets );
 }
 

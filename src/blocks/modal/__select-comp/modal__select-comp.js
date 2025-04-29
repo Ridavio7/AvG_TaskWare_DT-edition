@@ -39,7 +39,7 @@ found_button_modal.onclick = function(){
 }
 
 export const funcGetComponentsTreeSelect = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"100"};
     funcCommand(body, funcProcessGetComponentsTreeSelect);
 
     removeOptionsSetValue("found_select", "-- Выберите тип --");
@@ -54,7 +54,7 @@ function funcProcessGetComponentsTreeSelect(result, respobj){
 }
 
 export const funcGetDirC = (uin) => {
-    let body  =  {"user":"demo", "meth":"view","obj":"dirC", "uin":`${uin}`, "count":"5000" };
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view","obj":"dirC", "uin":`${uin}`, "count":"5000" };
     funcCommand(body, funcProcessGetComponentsSelect);
 }
 

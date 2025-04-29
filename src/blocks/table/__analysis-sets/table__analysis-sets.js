@@ -4,13 +4,13 @@ import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 let filt_analysis_sets = [];
 
 export const funcGetShipSets = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"shipSets", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_sets)}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipSets", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_sets)}`};
     funcCommand(body, funcProcessGetShipSets);
 }
 
 const funcProcessGetShipSets = (result, respobj) => {
     if( result === 0 ) return;
-    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_sets_reset").click()};
+    if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_sets_reset").click()};
     console.log("Анализ комплектов:", respobj);
 
     let tb_id = "tb_analysis_sets";
@@ -34,7 +34,7 @@ const funcProcessGetShipSets = (result, respobj) => {
     let button_control_update_ananlysis_set = document.querySelectorAll(".button__control_update-ananlysis-set");
     button_control_update_ananlysis_set.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"shipSets", "uinstatus":"", "date":"", "prim":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"shipSets", "uinstatus":"", "date":"", "prim":"", "uin":`${elem.value}`};
 
             let target_table = tb_analysis_sets;
 

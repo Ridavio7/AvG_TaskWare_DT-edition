@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, sendFi
 import {addToDropdownPsevdo, addToDropdownPsevdoAnotherList, psevdoSelect} from '../../select/select.js';
 
 export const funcGetSets = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"sets", "count":"100", "filt":`${JSON.stringify(filt_sets)}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"sets", "count":"100", "filt":`${JSON.stringify(filt_sets)}`};
     funcCommand(body, funcProcessGetSets);
 }
 
@@ -39,7 +39,7 @@ const funcProcessGetSets = (result, respobj) => {
     let button_control_mdel_set = document.querySelectorAll(".button__control_mdel-set");
     button_control_mdel_set.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"sets", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"sets", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -55,7 +55,7 @@ const funcProcessGetSets = (result, respobj) => {
     let button_control_update_set = document.querySelectorAll(".button__control_update-set");
     button_control_update_set.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"sets", "name":"", "model_train":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"sets", "name":"", "model_train":"", "uin":`${elem.value}`};
 
             let target_table = tb_sets_info;
             body.name = findForUpdateInput(`set_name_${elem.value}`, target_table);
@@ -115,7 +115,7 @@ listenSelect(select_2, filt_2, val_2, filt_sets);
 /* функция добавления */
 let button_control_add_set = document.querySelector(".button__control_add-set");
 button_control_add_set.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"sets", "name":"", "model_train":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"sets", "name":"", "model_train":""};
 
     let name_value = document.getElementById("input_add_sets").value
     let model_train_value = document.getElementById("input_add_sets_mt").value

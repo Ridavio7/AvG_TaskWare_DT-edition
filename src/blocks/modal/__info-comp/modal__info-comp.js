@@ -70,7 +70,7 @@ export const funcProcessInfoComponentsModalAdd = (uin) => {
 
 component_button_add.onclick = () => {
     let uincatC = localStorage.getItem("uincatC");
-    let body  =  {"user":"demo", "meth":"add", "obj":"components", "name":"", "uincatC":`${uincatC}`, "uintypes":"", "fUnic":"0", "comment":"", "tpack":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"components", "name":"", "uincatC":`${uincatC}`, "uintypes":"", "fUnic":"0", "comment":"", "tpack":""};
 
     let name_value = component_input_name.value;
     let type_value = component_select_type.value;
@@ -110,7 +110,7 @@ export const funcInfoComponentsOpenModal = (uin) => {
 
 /* инфо о комплектующем в модальном окне */
 export const funcGetComponentInfo = (uin) => {
-    let body  =  {"user":"demo", "meth":"view","obj":"components", "count":"1", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view","obj":"components", "count":"1", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
     funcCommand(body, funcProcessGetComponentInfo);
 }
 
@@ -228,7 +228,7 @@ component_type.onchange = () => {
         if(result === true){
             setTimeout(function(){
                 for (let i of component_select_add_props){
-                    let body  =  {"user":"demo", "meth":"fulldel", "obj":"compontsprops", "uincompont":`${component_button_add_props.value}`};
+                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"fulldel", "obj":"compontsprops", "uincompont":`${component_button_add_props.value}`};
                     funcCommand(body, funcProcessOnlyInfo);
                 }
                 clearTable("tb_modal_info_component");
@@ -262,7 +262,7 @@ component_select_add_props.onchange = () => {
 }
 
 const addEventSelectOrInputProps = (select, select_value_id) => {
-    let body_1  =  {"user":"demo", "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
+    let body_1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
@@ -270,7 +270,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
-    let body_2  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin", "all":"0"};
+    let body_2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin", "all":"0"};
     funcCommand(body_2, funcSelectAddEnumsOnTable);
 
     let select_value = document.getElementById(select_value_id);
@@ -317,7 +317,7 @@ component_button_save.onclick = () => {
     inputIsChange = false;
     selectIsChange = false;
 
-    let body  =  {"user":"demo", "meth":"update", "obj":"components", "name":"", "uin":`${component_button_save.value}`, "fUnic":"0", "uintypes":"", "comment":"", "tpack":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"components", "name":"", "uin":`${component_button_save.value}`, "fUnic":"0", "uintypes":"", "comment":"", "tpack":""};
 
     let name_value     = document.getElementById("component_name").value;
     let uintypes_value = document.getElementById("component_type").value;

@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, addToDropdown, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js.js';
 
 export const funcGetCoeffs = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"coeffs", "count":"100","sort":"uin"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"coeffs", "count":"100","sort":"uin"};
     funcCommand(body, funcProcessGetCoeffs);
 }
 
@@ -29,7 +29,7 @@ const funcProcessGetCoeffs = (result, respobj) => {
     let button_control_mdel_Coeffsurement = document.querySelectorAll(".button__control_mdel-coeffs");
     button_control_mdel_Coeffsurement.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"coeffs", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"coeffs", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -45,7 +45,7 @@ const funcProcessGetCoeffs = (result, respobj) => {
     let button_control_update_Coeffsurement = document.querySelectorAll(".button__control_update-coeffs");
     button_control_update_Coeffsurement.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"coeffs", "uin":`${elem.value}`, "name":"", "help":"", "smv":""};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"coeffs", "uin":`${elem.value}`, "name":"", "help":"", "smv":""};
 
             let target_table = document.getElementById("tb_componenets_coeffs");
             body.name = findForUpdateInput(`coeff_name_${elem.value}`, target_table);
@@ -81,7 +81,7 @@ const addCoeffsRow = (name, coeff, smv, help, del, uin, tb_id) => {
 
 let button_control_add = document.querySelector(".button__control_add-coeffs");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":"demo", "obj":"coeffs", "meth":"add", "name":"", "coeff":"", "smv":"", "help":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "obj":"coeffs", "meth":"add", "name":"", "coeff":"", "smv":"", "help":""};
 
     let name_value  = document.getElementById("input_add_coeffs_name").value
     let coeff_value = document.getElementById("input_add_coeffs_coeff").value

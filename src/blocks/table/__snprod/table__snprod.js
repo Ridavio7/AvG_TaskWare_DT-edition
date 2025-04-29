@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelec
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
 export const funcGetSNProd = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"snprod", "count":"100", "filt":`${JSON.stringify(filt_snprod)}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"100", "filt":`${JSON.stringify(filt_snprod)}`};
     funcCommand( body, funcProcessGetSNProd );
 }
 
@@ -38,7 +38,7 @@ const funcProcessGetSNProd = (result, respobj) => {
     let button_control_mdel_snprod = document.querySelectorAll(".button__control_mdel-snprod");
     button_control_mdel_snprod.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"snprod", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"snprod", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -54,7 +54,7 @@ const funcProcessGetSNProd = (result, respobj) => {
     let button_control_update_snprod = document.querySelectorAll(".button__control_update-snprod");
     button_control_update_snprod.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"snprod", "uinproduct":"", "SN":"", "count":"", "count_use":"", "date":"", "uinstatus":"",  "uin":`${elem.value}` };
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"snprod", "uinproduct":"", "SN":"", "count":"", "count_use":"", "date":"", "uinstatus":"",  "uin":`${elem.value}` };
 
             let target_table = tb_products_SNProd;
         
@@ -135,7 +135,7 @@ listenSelect(select_2, filt_2, val_2, filt_snprod);
 
 let button_control_add_snprod = document.querySelector(".button__control_add-snprod");
 button_control_add_snprod.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"snprod", "uinproduct":"", "SN":"", "count":"", "count_use":"", "date":"", "uinstatus":"" };
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"snprod", "uinproduct":"", "SN":"", "count":"", "count_use":"", "date":"", "uinstatus":"" };
 
     let uinproduct_value = document.getElementById("select_add_SNProd_product").value
     let SN_value = document.getElementById("input_add_SNProd_SN").value

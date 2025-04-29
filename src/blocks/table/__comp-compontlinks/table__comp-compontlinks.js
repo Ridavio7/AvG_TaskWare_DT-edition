@@ -1,7 +1,7 @@
 import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, addToDropdown, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
 
 export const funcGetCompontlinks = (uin) => {
-    let body  =  {"user":"demo", "obj":"compontlinks", "meth":"view", "uincompont":`${uin}`, "count":"100", "sort":"name"}
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "obj":"compontlinks", "meth":"view", "uincompont":`${uin}`, "count":"100", "sort":"name"}
     funcCommand(body, funcProcessGetCompontlinks);
 }
 
@@ -26,7 +26,7 @@ const funcProcessGetCompontlinks = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-compontlinks");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"compontlinks", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"compontlinks", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -42,7 +42,7 @@ const funcProcessGetCompontlinks = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-compontlinks");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"compontlinks", "uincompont":`${elem.name}`, "name":"", "link":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"compontlinks", "uincompont":`${elem.name}`, "name":"", "link":"", "uin":`${elem.value}`};
 
             let target_table = tb_modal_link;
             body.name = findForUpdateInput(`component_info_link_name_${elem.value}`, target_table);
@@ -75,7 +75,7 @@ const addCompontlinks = (name, link, uincompont, del, uin, tb_id) => {
 
 let button_control_add = document.getElementById("component_info_add_button_link");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"compontlinks", "name":"", "link":"", "uincompont":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"compontlinks", "name":"", "link":"", "uincompont":""};
 
     let name_value = document.getElementById("component_info_add_link_name").value
     let link_value = document.getElementById("component_info_add_link_link").value

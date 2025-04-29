@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listen
 import {funcInfoUserOpenModal} from '../../modal/__users/modal__users.js';
 
 export const funcGetUsers = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"users", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"100"};
     funcCommand(body, funcProcessGetUsers);
 }
 
@@ -32,7 +32,7 @@ const funcProcessGetUsers = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-users-main");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"users", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"users", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');

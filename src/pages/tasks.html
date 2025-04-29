@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <title>Задачи</title>
+    <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon">
+</head>
+<body>
+    <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" style="display: none;"/>
+        <label class="menu__btn" for="menu__toggle">
+            <span></span>
+        </label>
+        <ul class="menu__box">
+    
+        </ul>
+    </div>
+    <header class="header">
+        <div class="header__body">
+            <div class="header__logo">
+                <img class="header__main-logo" src="../blocks/header/img/logo.svg" alt="logo">
+                <img class="header__main-logo-little" src="../blocks/header/img/logo_lt.svg" alt="logo">
+                <ul class="header__list">
+                    <li><a class="header__link header__link_check" href="tasks.html">Задачи</a></li>
+                    <li><a class="header__link" href="buisness.html">Бизнес управление</a></li>
+                    <li><a class="header__link" href="control.html">Контроль</a></li>
+                    <li><a class="header__link" href="#">Чат</a></li>
+                </ul>
+            </div>
+            <div class="header__user">
+                <div class="header__user__wrapper">
+                    <div class="header__user__user">
+                        <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user">
+                        <input class="header__user__switch-theme-input" type="checkbox" id="switch_theme_input">
+                        <label class="header__user__switch-theme" for="switch_theme_input"></label>
+                        <a class="header__user__name">Иванов И. И.</a>
+                        <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <nav class="sidebar">
+            <div>
+                <button class="sidebar__expand-button" type="button">
+                    <img class="sidebar__expand-button__img" src="../blocks/sidebar/img/arrow_sidebar_1.svg" alt="">
+                </button>
+            </div>
+            <div class="sidebar__container">
+                <ul>
+                    <li class="sidebar__wrapper" id="sidebar_tablink_3">
+                        <a href="#shipment">
+                            <div class="sidebar__link shipment sidebar__link_task sidebar__link_no-child" id="link_shipment">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img" src="../blocks/sidebar/img/task_green.svg" alt="">
+                                    <div class="sidebar__block-task-time">
+                                        <span class="sidebar__name_time">13:00</span>
+                                        <span class="sidebar__name_time">Сегодня</span>
+                                    </div>
+                                    <span class="sidebar__name">Отгрузка</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="sidebar__wrapper" id="sidebar_tablink_5">
+                        <a href="#mount">
+                            <div class="sidebar__link mount sidebar__link_task sidebar__link_no-child" id="link_mount">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img" src="../blocks/sidebar/img/task_red.svg" alt="">
+                                    <div class="sidebar__block-task-time">
+                                        <span class="sidebar__name_time">10:00</span>
+                                        <span class="sidebar__name_time">Вчера</span>
+                                    </div>
+                                    <span class="sidebar__name">Монтаж ПП</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="sidebar__wrapper" id="sidebar_tablink_5">
+                        <a href="#">
+                            <div class="sidebar__link  sidebar__link_task sidebar__link_no-child" id="">
+                                <div class="sidebar__title">
+                                    <img class="sidebar__img" src="../blocks/sidebar/img/task_green.svg" alt="">
+                                    <div class="sidebar__block-task-time">
+                                        <span class="sidebar__name_time">09:00</span>
+                                        <span class="sidebar__name_time">14.04.25</span>
+                                    </div>
+                                    <span class="sidebar__name">Сборка ПП</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="sidebar__tabcontent" id="shipment">
+            <div class="modal__header modal__header_task">
+                <div class="modal__table-wrapper_task">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_admin">Админ:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_admin" value="Иванов Иван Иванович">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_name">Название:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Отгрузка">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_status">Статус:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_status" value="В работе">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_comment">Комментарий:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_comment" value="Главная задача">
+                    </div>
+                </div>
+                <div class="modal__table-wrapper_task">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_date_first">Срок:</label>
+                        <input class="input__type-text input__type-date input__type-date_margin-left-wrapper input__type-text_modal" type="date" id="task_date_first" value="2024-07-05">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_time_first"></label>
+                        <input class="input__type-text input__type-date input__type-text_modal" type="time" id="task_time_first" value="15:00">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_date_second"></label>
+                        <input class="input__type-text input__type-date input__type-text_modal" type="date" id="task_date_second" value="2024-07-10">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_time_second"></label>
+                        <input class="input__type-text input__type-date input__type-text_modal" type="time" id="task_time_second" value="15:00">
+                    </div>
+                </div>
+            </div>
+            <div style="flex-direction: column;">
+                <div>
+                    <label class="input__type-text__label" for="task_contragents">Контрагент:</label>
+                    <select class="select select_modal" id="task_contragents"><option value=" ">Контрагент</option></select>
+                </div>
+                <div class="sidebar__tabcontent__first-tabs sidebar__tabcontent__first-tabs_task">
+                    <div>
+                        <a href="#sets"><button class="button__tab__first button__tab__first_analysis_sets"><img class="button__tab__first__img" src="../blocks/button/__tab/img/sets.svg">Комплекты</button></a>
+                        <a href="#products"><button class="button__tab__first button__tab__first_analysis_products"><img class="button__tab__first__img" src="../blocks/button/__tab/img/products.svg">Изделия</button></a>
+                        <a href="#components"><button class="button__tab__first button__tab__first_analysis_components"><img class="button__tab__first__img" src="../blocks/button/__tab/img/components.svg">Комплектующие</button></a>
+                    </div>
+                    <button class="button__control button__control_modal" id="shipment_button">Отгрузить</button>
+                </div>
+                <div id="sets" class="sidebar__tabcontent__container sidebar__task__tabcontent__container">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr class="tr">
+                                <td class="td td_active">Выбранные</td>
+                                <td class="td td_active">Название</td>
+                                <td class="td td_active">Количество</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tb_sets">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="products" class="sidebar__tabcontent__container sidebar__task__tabcontent__container">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr class="tr">
+                                <td class="td td_active">Выбранные</td>
+                                <td class="td td_active">Название</td>
+                                <td class="td td_active">Количество</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tb_products">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="components" class="sidebar__tabcontent__container sidebar__task__tabcontent__container">
+                    <p>Комплектующие</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar__tabcontent" id="mount">
+            <div class="modal__header modal__header_task">
+                <div class="modal__table-wrapper_task">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_admin">Админ:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_admin" value="Петров Петр Петрович">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_name">Название:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_name" value="Монтаж печатных плат">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_status">Статус:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_status" value="В работе">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_comment">Комментарий:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="task_comment" value="Главная задача">
+                    </div>
+                </div>
+                <div class="modal__table-wrapper_task">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_date_first">Срок:</label>
+                        <input class="input__type-text input__type-date input__type-date_margin-left-wrapper input__type-text_modal" type="date" id="task_date_first" value="2024-07-05">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_time_first"></label>
+                        <input class="input__type-text input__type-date input__type-text_modal" type="time" id="task_time_first" value="15:00">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_date_second"></label>
+                        <input class="input__type-text input__type-date input__type-text_modal" type="date" id="task_date_second" value="2024-07-10">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="task_time_second"></label>
+                        <input class="input__type-text input__type-date input__type-text_modal" type="time" id="task_time_second" value="15:00">
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body">
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_users">Пользователи:</label>
+                        <select class="select select_modal" id="mount_users"><option value="">Пользователи</option></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_date">Дата:</label>
+                        <input class="input__type-text input__type-text_modal" type="date" id="mount_date">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_time">Время:</label>
+                        <input class="input__type-text input__type-text_modal" type="time" id="mount_time" step="1">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_prod">Изделия:</label>
+                        <select class="select select_modal" id="mount_prod"><option value="">Изделия</option></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_procc">Тех. операция:</label>
+                        <select class="select select_modal" id="mount_procc"><option value="">Тех. операция</option></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_count">Количество:</label>
+                        <input class="input__type-text input__type-text_modal" type="number" id="mount_count" min="0">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="mount_prim">Примечание:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="mount_prim">
+                    </div>
+                </div>
+                <div class="modal__button-wrapper">
+                    <button class="button__control" id="mount_count_minus"><img class="button__control__img" src="../blocks/button/__control/img/minus.svg" alt=""></button>
+                    <button class="button__control" id="mount_count_plus"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button>
+                </div>
+            </div>
+            <button class="button__control button__control_modal" id="mount_button">Сохранить</button>
+        </div>
+    </div>
+    <div class="modal" id="shipment_modal">
+        <div class="modal__moving" id="shipment_modal_moving">
+            <span class="modal__title">Подтвердите выбранное</span>
+            <span class="modal__close" id="shipment_close">&times;</span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__header">
+
+            </div>
+            <div class="modal__body">
+                <table class="table" id="shipment_main_tb_modal">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active">Количество</td>
+                        </tr>
+                    </thead>
+                    <tbody id="shipment_tb_modal">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal__footer">
+                <button class="button__control button__control_modal" id="shipment_button_sub">Подтвердить</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

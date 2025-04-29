@@ -20,7 +20,7 @@ export const funcEditImgsOpenModal = (uin, name) => {
 }
 
 export const funcGetCompontimgsEdit = (uin) => {
-    let body  =  {"user":"demo", "obj":"compontimgBS", "meth":"view", "uincompont":`${uin}`, "count":"100", "sort":"name"}
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "obj":"compontimgBS", "meth":"view", "uincompont":`${uin}`, "count":"100", "sort":"name"}
     funcCommand(body, funcProcessGetCompontimgs);
 }
 
@@ -44,7 +44,7 @@ const funcProcessGetCompontimgs = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-compontimgs");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"compontimgBS", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"compontimgBS", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -60,7 +60,7 @@ const funcProcessGetCompontimgs = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-compontimgs");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"compontimgs", "uincompont":`${elem.name}`, "name":"", "img":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"compontimgs", "uincompont":`${elem.name}`, "name":"", "img":"", "uin":`${elem.value}`};
 
             let target_table = tb_modal_img;
             body.name = findForUpdateInput(`component_info_img_name_${elem.value}`, target_table);
@@ -76,7 +76,7 @@ const funcProcessGetCompontimgs = (result, respobj) => {
     let button_control_open = document.querySelectorAll(".button__control_open-compontimgs");
     button_control_open.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"viewBS", "obj":"compontimgBS", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewBS", "obj":"compontimgBS", "uin":`${elem.value}`};
             funcCommand(body, funcProcessOpenCompontimgs);
         })
     })
@@ -110,7 +110,7 @@ const funcProcessOpenCompontimgs = (result, respobj) => {
 
 let button_control_add = document.getElementById("component_info_add_button_img");
 button_control_add.onclick = () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"compontimgBS", "name":"", "fname":"", "uincompont":"", "bs":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"compontimgBS", "name":"", "fname":"", "uincompont":"", "bs":""};
 
     let name_value  = document.getElementById("component_info_add_img_name").value;
     let fname_value = document.getElementById("component_info_add_img_img");

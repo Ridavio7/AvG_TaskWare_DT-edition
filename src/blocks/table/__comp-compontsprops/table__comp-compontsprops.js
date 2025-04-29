@@ -4,7 +4,7 @@ import {funcInfoEnumsOpenModal} from '../../modal/__enums/modal__enums.js';
 
 /* св-ва комплектующего в модальном окне */
 export const funcGetComponentInfoProps = (uin) => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"compontsprops", "count":"100", "uincompont":`${uin}`}
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"compontsprops", "count":"100", "uincompont":`${uin}`}
     funcCommand(body, funcProcessGetComponentInfoProps);
 }
 
@@ -53,7 +53,7 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-compontsprops");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"compontsprops", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"compontsprops", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -69,7 +69,7 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-compontsprops");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"compontsprops", "uin":`${elem.value}`, "uincompont":`${elem.name}`, "uinprops":"", "value":"", "d1":"", "d2":"", "perc":""};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"compontsprops", "uin":`${elem.value}`, "uincompont":`${elem.name}`, "uinprops":"", "value":"", "d1":"", "d2":"", "perc":""};
 
             let target_table = main_tb_modal_info_component;
             body.uinprops    = findForUpdateSelect(target_table, "component_info_props_select_", elem.value);
@@ -121,7 +121,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     makeSelect("component_info_props_select_", uin, props, propsUin, "typesprops_list", "select", cellProps);
     cellMeas.innerHTML  = meas;
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${propsUin}`, "count":"100", "sort":"uin"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"enums", "uinprops":`${propsUin}`, "count":"100", "sort":"uin"};
     funcCommand(body, funcProcessGetInfoEnumsForModalComp);
 
     function funcProcessGetInfoEnumsForModalComp(result, respobj){
@@ -154,7 +154,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
 
 let button_control_add = document.getElementById("component_info_add_button");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"compontsprops", "uincompont":`${button_control_add.value}`, "uinprops":"", "value":"", "d1":"", "d2":"", "perc":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"compontsprops", "uincompont":`${button_control_add.value}`, "uinprops":"", "value":"", "d1":"", "d2":"", "perc":""};
 
     let uinprops_value = document.getElementById(`component_info_add_props_select`).value;
 
@@ -195,7 +195,7 @@ button_control_add.addEventListener("click", () => {
 })
 
 export const addEventSelectProps = (select, select_value_id) => {
-    let body_1  =  {"user":"demo", "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
+    let body_1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
@@ -204,7 +204,7 @@ export const addEventSelectProps = (select, select_value_id) => {
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
-    let body_2  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin", "all":"0"};
+    let body_2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin", "all":"0"};
     funcCommand(body_2, funcSelectAddEnumsOnTable);
 
     let select_value = document.getElementById(select_value_id);

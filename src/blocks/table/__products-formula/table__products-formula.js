@@ -5,7 +5,7 @@ import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__sele
 let modal_select_component = document.getElementById("modal_select_component");
 
 export const funcGetFormulaProducts = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"formula_products", "count":"100", "filt":`${JSON.stringify(filt_formula_products)}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"formula_products", "count":"100", "filt":`${JSON.stringify(filt_formula_products)}`};
     funcCommand(body, funcProcessGetFormulaProducts);
 }
 
@@ -46,7 +46,7 @@ const funcProcessGetFormulaProducts = (result, respobj) => {
     let button_control_mdel_product = document.querySelectorAll(".button__control_mdel-product-formula");
     button_control_mdel_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -62,7 +62,7 @@ const funcProcessGetFormulaProducts = (result, respobj) => {
     let button_control_update_set = document.querySelectorAll(".button__control_update-product-formula");
     button_control_update_set.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"formula_products", "uincompont":"", "innprod":"", "uinproduct":"", "count":"",  "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_products", "uincompont":"", "innprod":"", "uinproduct":"", "count":"",  "uin":`${elem.value}`};
 
             let target_table = tb_products_formula;
             
@@ -141,7 +141,7 @@ listenSelect(select_2, filt_2, val_2, filt_formula_products);
 
 let button_control_add_product_formula = document.querySelector(".button__control_add-product-formula");
 button_control_add_product_formula.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add",  "obj":"formula_products", "uinproduct":"", "innprod":"", "uincompont":"", "count":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add",  "obj":"formula_products", "uinproduct":"", "innprod":"", "uincompont":"", "count":""};
 
     let uinproduct_value = document.getElementById("select_add_products_formula_product").value;
     let innprod_value    = document.getElementById("select_add_products_formula_innproduct").value;

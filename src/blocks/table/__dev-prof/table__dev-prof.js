@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
 
 export const funcGetProf = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"prof", "count":"100", "sort":"numb"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"100", "sort":"numb"};
     funcCommand(body, funcProcessGetProf);
 }
 
@@ -28,7 +28,7 @@ const funcProcessGetProf = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-prof");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"prof", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"prof", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -44,7 +44,7 @@ const funcProcessGetProf = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-prof");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"prof", "name":"", "fcount":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"prof", "name":"", "fcount":"", "uin":`${elem.value}`};
 
             let target_table = tb_prof;
             body.name    = findForUpdateInput(`prof_name_${elem.value}`, target_table);
@@ -79,7 +79,7 @@ const addProfRow = (numb, name, fc, del, uin, tb_id) => {
 
 let button_control_add = document.querySelector(".button__control_add-prof");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"prof", "name":"", "numb":"", "fcount":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"prof", "name":"", "numb":"", "fcount":""};
 
     let numb_value = document.getElementById("input_add_prof_numb").value;
     let name_value = document.getElementById("input_add_prof_name").value;
@@ -107,15 +107,15 @@ document.getElementById("sort_prof").addEventListener('change', function(){
     let option = this.selectedIndex;
     switch (option){
         case 0:
-        let body0  =  {"user":"demo", "meth":"view", "obj":"prof", "count":"5000", "sort":"numb"};
+        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "sort":"numb"};
         funcCommand(body0, funcProcessGetProf);
         break;
         case 1:
-        let body1  =  {"user":"demo", "meth":"view", "obj":"prof", "count":"5000", "asort":"numb"};
+        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "asort":"numb"};
         funcCommand(body1, funcProcessGetProf);
         break;
         case 2:
-        let body2  =  {"user":"demo", "meth":"view", "obj":"prof", "count":"5000", "sort":"numb"};
+        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "sort":"numb"};
         funcCommand(body2, funcProcessGetProf);
         break;
     }

@@ -80,7 +80,7 @@ found_plus_button.onclick = function(){
 
 found_plus_select.addEventListener("change", (elem) => {
     if(elem.target.value != ''){
-        let body  =  {"user":"demo", "meth":"view", "obj":"typesprops", "count":"100", "uintypes":`${elem.target.value}`};
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typesprops", "count":"100", "uintypes":`${elem.target.value}`};
         funcCommand(body, funcProcessGetTypesPropsFetch);
     } else {
         let respobj = JSON.parse(localStorage.getItem("props_list"));
@@ -128,8 +128,8 @@ const addFoundTypesProps = (name, uin, tb_id) => {
 
     cellName.innerHTML  = `<input class="input__type-text input__type-text_types-props-name" type="text" value="${name}" name=${uin} disabled>`;
 
-    //let body  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${uin}`, "count":"100", "sort":"uin", "all":"0"}
-    let body = {"user":"demo", "meth":"view", "obj":"propsvals", "uintypes":"", "uinprops":`${uin}`, "count":"100"}
+    //let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"enums", "uinprops":`${uin}`, "count":"100", "sort":"uin", "all":"0"}
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"propsvals", "uintypes":"", "uinprops":`${uin}`, "count":"100"}
     funcCommand(body, funcProcessGetInfoEnums);
 
     function funcProcessGetInfoEnums(result, respobj){

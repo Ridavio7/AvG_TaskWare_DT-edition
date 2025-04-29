@@ -21,7 +21,7 @@ found_button_modal.onclick = function(){
 }
 
 export const funcGetComponentsTree = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"100"};
     funcCommand(body, funcProcessGetComponentsTree);
 
     removeOptionsSetValue("found_main_select", "-- Выберите тип --");
@@ -47,7 +47,7 @@ const funcProcessGetComponentsTree = (result, respobj) => {
 
 /* каталог комплектующих */
 export const funcGetComponents = (uin) => {
-    let body  =  {"user":"demo", "meth":"view","obj":"dirC", "uin":`${uin}`, "count":"5000"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view","obj":"dirC", "uin":`${uin}`, "count":"5000"};
     funcCommand(body, funcProcessGetComponents);
 }
 
@@ -76,7 +76,7 @@ const funcProcessGetComponents = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-component");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"components", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"components", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -134,15 +134,15 @@ document.getElementById("sort_components").addEventListener('change', function()
     let option = this.selectedIndex;
     switch (option){
         case 0:
-        let body0  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"1000"};
+        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"1000"};
         funcCommand(body0, funcProcessGetComponentsTree);
         break;
         case 1:
-        let body1  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"1000", "sort":"name"};
+        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"1000", "sort":"name"};
         funcCommand(body1, funcProcessGetComponentsTree);
         break;
         case 2:
-        let body2  =  {"user":"demo", "meth":"view", "obj":"catC", "count":"1000", "asort":"name"};
+        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"1000", "asort":"name"};
         funcCommand(body2, funcProcessGetComponentsTree);
         break;
     }

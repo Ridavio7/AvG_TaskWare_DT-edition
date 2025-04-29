@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
 
 export const funcGetVerapp = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"verapp", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verapp", "count":"100"};
     funcCommand(body, funcProcessGetVerapp);
 }
 
@@ -25,7 +25,7 @@ const funcProcessGetVerapp = (result, respobj) => {
     let button_control_mdel_product = document.querySelectorAll(".button__control_mdel-verapp");
     button_control_mdel_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"verapp", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"verapp", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -41,7 +41,7 @@ const funcProcessGetVerapp = (result, respobj) => {
     let button_control_update_product = document.querySelectorAll(".button__control_update-verapp");
     button_control_update_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"verapp", "name":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"verapp", "name":"", "uin":`${elem.value}`};
 
             let target_table = tb_products_verapp;
             body.name = findForUpdateInput(`verapp_name_${elem.value}`, target_table);
@@ -69,7 +69,7 @@ const addVerappRow = (name, del, uin, tb_id) => {
 
 let button_control_add_product = document.querySelector(".button__control_add-verapp");
 button_control_add_product.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"verapp", "name":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"verapp", "name":""};
 
     let name_value = document.getElementById("input_add_verapp").value
 

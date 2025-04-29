@@ -20,7 +20,7 @@ export const funcInfoTcardprodsOpenModal = (uin) => {
 const funcGetInfoTcardprod = (uin) => {
     uinProdForAdd = uin;
     
-    let body  =  {"user":"demo", "meth":"view", "obj":"tcardprods", "uinproduct":`${uin}`, "count":"100", "sort":"numb"}
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"tcardprods", "uinproduct":`${uin}`, "count":"100", "sort":"numb"}
     funcCommand(body, funcProcessGetInfoTcardprod);
 }
 
@@ -54,7 +54,7 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     /* кнопка добавления */
     let button_control_add = document.getElementById('tcardprods_add_button');
     button_control_add.onclick = () => {
-        let body  =  {"user":"demo", "meth":"add", "obj":"tcardprods", "uinproduct":`${uinProdForAdd}`, "uintechproc":"", "numb":"", "fix":""};
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"tcardprods", "uinproduct":`${uinProdForAdd}`, "uintechproc":"", "numb":"", "fix":""};
 
         let uintechproc_value = document.getElementById("tcardprods_add_select_proc").value;
         let numb_value        = document.getElementById("tcardprods_add_input_num").value;
@@ -79,7 +79,7 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-tcardprods");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"tcardprods", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"tcardprods", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -95,7 +95,7 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-tcardprods");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"tcardprods", "uinproduct":"", "uintechproc":"", "numb":"", "fix":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"tcardprods", "uinproduct":"", "uintechproc":"", "numb":"", "fix":"", "uin":`${elem.value}`};
 
             let target_table = tb_modal_tcardprods;
             body.uinproduct  = uinProdForAdd;

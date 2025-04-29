@@ -4,13 +4,13 @@ import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 let filt_analysis_components_all = [];
 
 export const funcGetShipComponentsAll = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"shipCompontsAll", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_components_all)}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipCompontsAll", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_components_all)}`};
     funcCommand(body, funcProcessGetShipComponentsAll);
 }
 
 const funcProcessGetShipComponentsAll = (result, respobj) => {
     if( result === 0 ) return;
-    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_components_reset").click()};
+    if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_components_reset").click()};
     console.log("Анализ всех комплектующих:", respobj);
 
     let tb_id = "tb_analysis_components_all";

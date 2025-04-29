@@ -5,7 +5,7 @@ export const funcGetGrfShipSets = () => {
     document.getElementById("grf_year").value = "";
     document.getElementById("grf_year").value = currYear;
 
-    let body  =  {"user":"demo", "meth":"view", "obj":"grfShipSets", "count":"100", "filt":`[{"fld":"year","val":["${currYear}"]}]`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"grfShipSets", "count":"100", "filt":`[{"fld":"year","val":["${currYear}"]}]`};
     funcCommand(body, funcProcessGetGrfShipSets);
 }
 
@@ -66,7 +66,7 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-schedule");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"grfShipSets", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"grfShipSets", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -82,7 +82,7 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-schedule");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"grfShipSets", "uin":`${elem.value}`, "uinset":"", "year":"" ,"m1":"", "m2":"", "m3":"", "m4":"", "m5":"", "m6":"", "m7":"", "m8":"", "m9":"", "m10":"", "m11":"", "m12":""};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"grfShipSets", "uin":`${elem.value}`, "uinset":"", "year":"" ,"m1":"", "m2":"", "m3":"", "m4":"", "m5":"", "m6":"", "m7":"", "m8":"", "m9":"", "m10":"", "m11":"", "m12":""};
 
             body.uinset = document.getElementById(`grf_set_select__${elem.value}`).value;
             body.year   = document.getElementById("grf_year").value;
@@ -167,7 +167,7 @@ function addGrfShipSetsRow(num, msum, rsum, uinSet, nameSet, del, uin, tb_id,
 /* функция добавления графика */
 let button_control_add_product = document.querySelector(".button__control_add-schedule");
 button_control_add_product.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"grfShipSets", "uinset":"", "year":"" , "m1":"", "m2":"", "m3":"", "m4":"", "m5":"", "m6":"", "m7":"", "m8":"", "m9":"", "m10":"", "m11":"", "m12":""};;
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"grfShipSets", "uinset":"", "year":"" , "m1":"", "m2":"", "m3":"", "m4":"", "m5":"", "m6":"", "m7":"", "m8":"", "m9":"", "m10":"", "m11":"", "m12":""};;
 
     let uinset_value = document.getElementById("select_add_grf_set").value;
     let year_value = document.getElementById("grf_year").value;

@@ -46,7 +46,7 @@ function funcGetResTable(){
     let zapros_products = localStorage.getItem("zapros_product_value");
     let contragent      = localStorage.getItem("contragent_uin");
 
-    let body  =  {"user":"demo", "meth":"ship", "contr":`${contragent}`, "zaprS":`${zapros_sets}`, "zaprP":`${zapros_products}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ship", "contr":`${contragent}`, "zaprS":`${zapros_sets}`, "zaprP":`${zapros_products}`};
     funcCommand( body, funcProcessGetResTable );
 }
 
@@ -144,7 +144,7 @@ function funcProcessGetResTableSets(result, respobj){
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
             let arrpr_val  = JSON.stringify(findForUpdateSelectProdInSet(elem.value));
-            let body  =  {"user":"demo", "meth":"update", "obj":"shipSets", "uinstatus":"", "date":"", "prim":"", "arrpr":`${arrpr_val}`, "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"shipSets", "uinstatus":"", "date":"", "prim":"", "arrpr":`${arrpr_val}`, "uin":`${elem.value}`};
         
             let target_table = wrapper_tb_shipment_sets;
         
@@ -292,7 +292,7 @@ function funcProcessGetResTableProducts(result, respobj){
     let button_control_update = document.querySelectorAll(".button__control_update-ship-prod");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"shipProducts", "uincolor":"", "uinvapp":"", "uinvpp":"", "mac":"", "nprod":"","uinstatus":"", "date":"","prim":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"shipProducts", "uincolor":"", "uinvapp":"", "uinvpp":"", "mac":"", "nprod":"","uinstatus":"", "date":"","prim":"", "uin":`${elem.value}`};
 
             let target_table = wrapper_tb_shipment_products;
             body.uincolor  = findForUpdateSelect(target_table, "ship_product_color_select_", elem.value);
@@ -364,7 +364,7 @@ function addProductsRowChild(SNprod, nprod, NPset, name, color, colorUin, vapp, 
 }
 
 export const funcGetUpdateStatuses = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"statuses", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"100"};
     funcCommand(body, funcProcessGetUpdateStatuses);
 }
 
@@ -377,7 +377,7 @@ const funcProcessGetUpdateStatuses = (result, respobj) => {
 }
 
 export const funcGetUpdateColors = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"colors", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"100"};
     funcCommand(body, funcProcessGetUpdateColors);
 }
 
@@ -390,7 +390,7 @@ const funcProcessGetUpdateColors = (result, respobj) => {
 }
 
 export const funcGetUpdateVerapp = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"verapp", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verapp", "count":"100"};
     funcCommand(body, funcProcessGetUpdateVerapp);
 }
 
@@ -403,7 +403,7 @@ const funcProcessGetUpdateVerapp = (result, respobj) => {
 }
 
 export const funcGetUpdateVerpp = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"verpp", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verpp", "count":"100"};
     funcCommand(body, funcProcessGetUpdateVerpp);
 }
 

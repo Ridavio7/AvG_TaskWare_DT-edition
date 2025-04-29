@@ -39,7 +39,7 @@ export const funcInfoUserOpenModal = (uin) => {
 
 /* права для мод. окна пользователя */
 const funcGetRightsUsersInfo = () => {
-    let body = {"user":"demo", "meth":"view", "obj":"rights", "count":"100"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"rights", "count":"100"};
     funcCommand(body, funcProcessGetRightsUsersInfo);
 }
 
@@ -74,7 +74,7 @@ const addRightsUsersInfo = (name, uin, tb_id) => {
 
 /* инфо пользователя в мод. окне */
 const funcGetUserInfo = (uin) => {
-    let body = {"user":"demo", "meth":"view", "obj":"users", "count":"1", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"1", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
     funcCommand(body, funcProcessGetUserInfo);
 }
 
@@ -134,7 +134,7 @@ user_pass_s.addEventListener("change", () => {
 
 /* функция обновления пользователи */
 user_save.addEventListener("click", (evt) => {
-    let body1  =  {"user":"demo", "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
+    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
 
     body1.name   = user_name.value;
     body1.uinjob = user_job.value;
@@ -154,7 +154,7 @@ user_save.addEventListener("click", (evt) => {
     funcCommand(body1, funcProcessOnlyInfo);
     setTimeout(function(){funcGetUsers()}, 100);
 
-    let body2 = { "user":"demo", "meth":"update", "obj":"uslog", "log":"", "psw1":"", "psw2":"", "uinuser":`${evt.currentTarget.value}`};
+    let body2 = { "user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"uslog", "log":"", "psw1":"", "psw2":"", "uinuser":`${evt.currentTarget.value}`};
 
     if(user_pass_f.value != user_pass_s.value){
         alert("Введенные пароли не совпадают!");
@@ -199,7 +199,7 @@ function funcProcessInfoUserOpenModalAdd(){
 }
 
 user_add.onclick = () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
 
     if(user_name.value === "" && user_job.value === ""){
         alert("Вы не заполнили все поля!");

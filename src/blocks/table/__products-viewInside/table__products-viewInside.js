@@ -10,7 +10,7 @@ let uinMainProd  = null;
 let nameMainProd = null;
 
 export const funcGetProductViewInside = (uin) => {
-    let body  =  {"user":"demo", "meth":"viewInside", "obj":"formula_products", "uinproduct":`${uin}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":"formula_products", "uinproduct":`${uin}`};
     funcCommand(body, funcProcessGetProductViewInside);
 }
 
@@ -40,7 +40,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     let button_control_mdel_product = document.querySelectorAll(".button__control_mdel_formula-product-innprod");
     button_control_mdel_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -56,7 +56,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     let button_control_update_product = document.querySelectorAll(".button__control_update_formula-product-innprod");
     button_control_update_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"formula_products", "innprod":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_products", "innprod":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
 
             let target_table = tb_info_product_prod;
             
@@ -97,7 +97,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     let button_control_mdel_comp = document.querySelectorAll(".button__control_mdel_formula-product-componenet");
     button_control_mdel_comp.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -113,7 +113,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     let button_control_update_comp = document.querySelectorAll(".button__control_update_formula-product-componenet");
     button_control_update_comp.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"formula_products", "uincompont":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_products", "uincompont":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
 
             let target_table = tb_info_product_comp;
             
@@ -159,7 +159,7 @@ const addProducts = (namepr, uinpr, count, uin, del, tb_id_prod) => {
 
 /* добавление изделия */
 button__control_add_prod.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "innprod":"", "count":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "innprod":"", "count":""};
 
     let innprod_value = document.getElementById("button_info_product_add_prod");
     let count_value   = document.getElementById("input_info_product_add_prod");
@@ -222,7 +222,7 @@ const addComponents = (nameCompont, uinCompont, count, uin, del, tb_id_comp) => 
 
 /* добавление комлпектующего */
 button__control_add_comp.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "uincompont":"", "count":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "uincompont":"", "count":""};
 
     let uincompont_value = document.getElementById("button_info_product_add_comp");
     let count_value      = document.getElementById("input_info_product_add_comp");

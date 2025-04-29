@@ -4,13 +4,13 @@ import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 let filt_analysis_products = [];
 
 export const funcGetShipProducts = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"shipProducts", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_products)}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipProducts", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_products)}`};
     funcCommand(body, funcProcessGetShipProducts);
 }
 
 const funcProcessGetShipProducts = (result, respobj) => {
     if( result === 0 ) return;
-    if(respobj.answ === ""){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_products_reset").click()};
+    if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_products_reset").click()};
     console.log("Анализ изделий:", respobj);
 
     let tb_id = "tb_analysis_products";
@@ -38,7 +38,7 @@ const funcProcessGetShipProducts = (result, respobj) => {
     let button_control_update_ananlysis_product = document.querySelectorAll(".button__control_update-ananlysis-product");
     button_control_update_ananlysis_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"shipProducts", "uinstatus":"", "date":"", "prim":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"shipProducts", "uinstatus":"", "date":"", "prim":"", "uin":`${elem.value}`};
 
             let target_table = tb_analysis_products;
 

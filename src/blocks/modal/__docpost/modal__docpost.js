@@ -35,7 +35,7 @@ export const funcInfoDocpostOpenModal = (uin) => {
 }
 
 const funcGetInfoInputsDocpost = (uin) => {
-    let body_inputs  =  {"user":"demo", "meth":"view", "obj":"docpost", "count":"1", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
+    let body_inputs  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"1", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
     funcCommand(body_inputs, funcProcessGetInfoInputsDocpost);
 }
 
@@ -93,7 +93,7 @@ const addDocpostInfoInputs =
 }
 
 const funcGetInfoTableDocpost = (uin) => {
-    let body_table  =  {"user":"demo", "meth":"view", "obj":"compontpost", "count":"100", "uindoc":`${uin}`};
+    let body_table  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"compontpost", "count":"100", "uindoc":`${uin}`};
     funcCommand(body_table, funcProcessGetInfoTableDocpost);
 }
 
@@ -125,7 +125,7 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-docpost");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"compontpost", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"compontpost", "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -141,7 +141,7 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-docpost");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"compontpost", "uin":`${elem.value}`, "uincompont":"", "uinstorage":"", "uinmeas":"", "count":""};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"compontpost", "uin":`${elem.value}`, "uincompont":"", "uinstorage":"", "uinmeas":"", "count":""};
 
             let target_table = tb_modal_docpost;
             body.uincompont  = document.getElementById(`docpost_component_${elem.value}`).value;
@@ -200,7 +200,7 @@ const addDocpostInfoTable = (name, compontName, compontUin, price, sum, measName
 
 /* функция сохранения обновления поставки */
 docpost_save.onclick = () => {
-    let body  =  {"user":"demo", "meth":"update", "obj":"docpost","uin":"", "numb":"", "date":"", "prim":"", "uinstatus":"", "uinuser":"", "uinstorage":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"docpost","uin":"", "numb":"", "date":"", "prim":"", "uinstatus":"", "uinuser":"", "uinstorage":""};
 
     body.uin        = localStorage.getItem("docpost_uin");
     body.numb       = docpost_numb.value;

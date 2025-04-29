@@ -23,7 +23,7 @@ export const funcInfoEnumsOpenModal = (uin, name) => {
 }
 
 const funcGetInfoEnums = (uin) => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"enums", "uinprops":`${uin}`, "count":"100", "sort":"uin"}
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"enums", "uinprops":`${uin}`, "count":"100", "sort":"uin"}
     funcCommand(body, funcProcessGetInfoEnums);
 }
 
@@ -50,7 +50,7 @@ const funcProcessGetInfoEnums = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-enums");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"enums", "uin":`${elem.value}`}
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"enums", "uin":`${elem.value}`}
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -67,7 +67,7 @@ const funcProcessGetInfoEnums = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-enums");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update","obj":"enums", "uin":`${elem.value}`, "uinprops":`${propUinForAdd}`, "name":""};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update","obj":"enums", "uin":`${elem.value}`, "uinprops":`${propUinForAdd}`, "name":""};
             
             let target_table = enums_tb_modal;
             body.name = findForUpdateInput(`enum_name_${elem.value}`, target_table);
@@ -80,7 +80,7 @@ const funcProcessGetInfoEnums = (result, respobj) => {
 
     let button_control_add = document.getElementById('enums_add_button');
     button_control_add.onclick = () => {
-        let body  =  {"user":"demo", "meth":"add", "obj":"enums", "uinprops":`${propUinForAdd}`, "name":""}
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"enums", "uinprops":`${propUinForAdd}`, "name":""}
 
         let name_value = document.getElementById("enums_add_input").value;
 

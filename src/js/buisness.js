@@ -98,7 +98,7 @@ import {funcGetStorages} from '../blocks/table/__storages/table__storages.js';
 
 window.onload = function(){
     updateDirectory();
-    funcGetShipProductsAll();
+    //funcGetShipProductsAll();
     returnTabsBuisness();
 }
 
@@ -125,7 +125,7 @@ const returnTabsBuisness = () => {
 }
 
 const updateDirectory = () => {
-    let body_1 = {"user":"demo", "meth":"view", "obj":"sets", "count":"5000"};
+    let body_1 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"sets", "count":"5000"};
     funcCommand(body_1, funcProcessGetSets);
     function funcProcessGetSets(result, respobj){
         if( result === 0 ) return;
@@ -143,98 +143,98 @@ const updateDirectory = () => {
         localStorage.setItem("model_train", JSON.stringify(model_train));
     }
 
-    let body_2 = {"user":"demo", "meth":"view", "obj":"products", "count":"5000"};
+    let body_2 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"products", "count":"5000"};
     funcCommand(body_2, funcProcessGetProducts);
     function funcProcessGetProducts(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("products_list", JSON.stringify(respobj.answ));
     }
 
-    let body_3 = {"user":"demo", "meth":"view", "obj":"colors", "count":"5000"};
+    let body_3 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"5000"};
     funcCommand(body_3, funcProcessGetColors);
     function funcProcessGetColors(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("colors_list", JSON.stringify(respobj.answ));
     }
 
-    let body_4 = {"user":"demo", "meth":"view", "obj":"verapp", "count":"5000"};
+    let body_4 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verapp", "count":"5000"};
     funcCommand(body_4, funcProcessGetVerapp);
     function funcProcessGetVerapp(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("verapp_list", JSON.stringify(respobj.answ));
     }
 
-    let body_5 = {"user":"demo", "meth":"view", "obj":"verpp", "count":"5000"};
+    let body_5 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verpp", "count":"5000"};
     funcCommand(body_5, funcProcessGetVerpp);
     function funcProcessGetVerpp(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("verpp_list", JSON.stringify(respobj.answ));
     }
 
-    let body_6 = {"user":"demo", "meth":"view", "obj":"meas", "count":"5000"};
+    let body_6 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"meas", "count":"5000"};
     funcCommand(body_6, funcProcessGetMeas);
     function funcProcessGetMeas(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("meas_list", JSON.stringify(respobj.answ));
     }
 
-    let body_7 = {"user":"demo", "meth":"view", "obj":"coeffs", "count":"5000", "sort":"uin"};
+    let body_7 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"coeffs", "count":"5000", "sort":"uin"};
     funcCommand(body_7, funcProcessGetCoeffs);
     function funcProcessGetCoeffs(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("coeffs_list", JSON.stringify(respobj.answ));
     }
 
-    let body_8 = {"user":"demo", "meth":"view", "obj":"props", "count":"5000"};
+    let body_8 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"5000"};
     funcCommand(body_8, funcProcessGetProps);
     function funcProcessGetProps(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("props_list", JSON.stringify(respobj.answ));
     }
 
-    let body_9 = {"user":"demo", "meth":"view", "obj":"typeselem", "count":"5000"};
+    let body_9 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"5000"};
     funcCommand(body_9, funcProcessGetTypeselem);
     function funcProcessGetTypeselem(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("typelm_list", JSON.stringify(respobj.answ));
     }
 
-    let body_10 = {"user":"demo", "meth":"view", "obj":"contragents", "count":"5000"};
+    let body_10 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"contragents", "count":"5000"};
     funcCommand(body_10, funcProcessGetContragents);
     function funcProcessGetContragents(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("contragents_list", JSON.stringify(respobj.answ));
     }
 
-    let body_11 = {"user":"demo", "meth":"view", "obj":"storages", "count":"5000"};
+    let body_11 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"storages", "count":"5000"};
     funcCommand(body_11, funcProcessGetStorages);
     function funcProcessGetStorages(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("storages_list", JSON.stringify(respobj.answ));
     }
 
-    let body_12 = {"user":"demo", "meth":"view", "obj":"statuses", "count":"5000"};
+    let body_12 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"5000"};
     funcCommand(body_12, funcProcessGetStatuses);
     function funcProcessGetStatuses(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("statuses_list", JSON.stringify(respobj.answ));
     }
 
-    let body_13 = {"user":"demo", "meth":"view", "obj":"statussn", "count":"5000"};
+    let body_13 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statussn", "count":"5000"};
     funcCommand(body_13, funcProcessGetStatussn);
     function funcProcessGetStatussn(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("statussn_list", JSON.stringify(respobj.answ));
     }
 
-    let body_14 = {"user":"demo", "meth":"view", "obj":"statusdoc", "count":"5000"};
+    let body_14 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statusdoc", "count":"5000"};
     funcCommand(body_14, funcProcessGetStatusDoc);
     function funcProcessGetStatusDoc(result, respobj){
         if( result === 0 ) return;
         localStorage.setItem("statusdoc_list", JSON.stringify(respobj.answ));
     }
 
-    let body_15 = {"user":"demo", "meth":"view", "obj":"users", "count":"5000"};
+    let body_15 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000"};
     funcCommand(body_15, funcProcessGetUsers);
     function funcProcessGetUsers(result, respobj){
         if( result === 0 ) return;

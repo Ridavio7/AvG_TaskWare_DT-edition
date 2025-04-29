@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
 
 export const funcGetStatuses = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"statuses", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"100"};
     funcCommand(body, funcProcessGetStatuses);
 }
 
@@ -26,7 +26,7 @@ const funcProcessGetStatuses = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-statuses");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"mdel", "obj":"statuses", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"statuses", "uin":`${elem.value}`};
     
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -42,7 +42,7 @@ const funcProcessGetStatuses = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-statuses");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":"demo", "meth":"update", "obj":"statuses", "name":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"statuses", "name":"", "uin":`${elem.value}`};
     
             let target_table = tb_statuses_shipment;
             body.name = findForUpdateInput(`statuses_name_${elem.value}`, target_table);
@@ -70,7 +70,7 @@ const addStatusesRow = (name, del, uin, tb_id) => {
 
 let button_control_add = document.querySelector(".button__control_add-statuses-shipment");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":"demo", "meth":"add", "obj":"statuses", "name":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"statuses", "name":""};
     
     let name_value = document.getElementById("input_add_statuses_shipment_name").value
 
