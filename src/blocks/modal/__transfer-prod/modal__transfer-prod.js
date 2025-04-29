@@ -38,13 +38,13 @@ const funcProcessGetProductsTree = (result, respobj) => {
     const tree = new TreeBuilder('modal_transfer_product_tree', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfocatPTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);
 
-    document.getElementById('modal_transfer_product_tree').addEventListener('click', () => {
+    document.getElementById('modal_transfer_product_tree').onclick = () => {
         let node = tree.get();
         uinCatp = node.getAttribute('data-id');
-    })
+    }
 }
 
-button_transfer_comp.addEventListener("click", () => {
+button_transfer_comp.onclick = () => {
     let body  =  {"user":"demo", "meth":"update", "obj":"products", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`};
 
     funcCommand(body, funcProcessOnlyInfo);
@@ -53,7 +53,7 @@ button_transfer_comp.addEventListener("click", () => {
     }, 100);
 
     modal_transfer.style.display = "none";
-})
+}
 
 export const funcInfocatPTransferOpenModal = (uin, name) => {
     modal_transfer.style.display = "block";
@@ -68,7 +68,7 @@ export const funcInfocatPTransferOpenModal = (uin, name) => {
     funcCommand(body, funcProcessGetProductsTree);
 }
 
-button_transfer_dirP.addEventListener("click", () => {
+button_transfer_dirP.onclick = () => {
     let body  =  {"user":"demo", "meth":"update", "obj":"dirP", "name":`${nameItem}`, "uin":`${uinItem}`, "uinparent":`${uinCatp}`};
 
     funcCommand(body, funcProcessOnlyInfo);
@@ -77,4 +77,4 @@ button_transfer_dirP.addEventListener("click", () => {
     }, 100);
 
     modal_transfer.style.display = "none";
-})
+}

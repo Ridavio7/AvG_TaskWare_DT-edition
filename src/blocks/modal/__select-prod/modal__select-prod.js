@@ -9,9 +9,9 @@ let span_select_prod  = document.getElementById("close_products_select");
 
 let uinCatc = null;
 
-span_select_prod.addEventListener("click", () => {
+span_select_prod.onclick = () => {
     modal_select_prod.style.display = "none";
-})
+}
 
 dragElement(modal_select_prod);
 

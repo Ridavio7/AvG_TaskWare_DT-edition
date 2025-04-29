@@ -8,10 +8,10 @@ let task_contragents = document.getElementById("task_contragents");
 
 let zapros_set = [], forModal_set = [], zapros_product = [], forModal_product = [];
 
-shipment_close.addEventListener("click", () => {
+shipment_close.onclick = () => {
     shipment_modal.style.display = "none";
     clearModalTable();
-})
+}
 
 dragElement(shipment_modal);
 
@@ -35,7 +35,7 @@ const clearModalTable  = () => {
     table.replaceChild(newTbody, table.getElementsByTagName('tbody')[0]);
 }
 
-shipment_button.addEventListener("click", () => {
+shipment_button.onclick = () => {
     if(task_contragents.value === " "){
         alert("Вы не выбрали контрагента!");
     } else {
@@ -44,15 +44,15 @@ shipment_button.addEventListener("click", () => {
         getCheckbox(tb_products, "input_product_", zapros_product, forModal_product, "zapros_product_value");
         shipment_modal.style.display = "block";
     }
-})
+}
 
-shipment_button_sub.addEventListener("click", () => {
+shipment_button_sub.onclick = () => {
     if(zapros_set.length === 0 && zapros_product.length === 0){
         alert("Вы ничего не выбрали!");
     } else {
         window.location='result_table.html';
     }
-})
+}
 
 const getCheckbox = (tb_id, input_id, zapros, forModal, storage_arr) => {
     let checkbox_set = tb_id.getElementsByClassName("checkbox");

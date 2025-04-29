@@ -2,7 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, clearTableAll} from '../../../js/commo
 import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js';
 
 export const funcGetDocpost = () => {
-    let body  =  {"user":"demo", "meth":"view", "obj":"docpost", "count":"1000"};
+    let body  =  {"user":"demo", "meth":"view", "obj":"docpost", "count":"10000"};
     funcCommand(body, funcProcessGetDocpost);
 }
 
@@ -69,7 +69,7 @@ const addDocpostRow =
     let cellStorageName = newRow.insertCell(6);  cellStorageName.classList = "td";
     let cellUserName    = newRow.insertCell(7);  cellUserName.classList    = "td";
     let cellPrim        = newRow.insertCell(8);  cellPrim.classList        = "td";
-    let cellBtn         = newRow.insertCell(9); cellBtn.classList         = "td";
+    let cellBtn         = newRow.insertCell(9); cellBtn.classList          = "td";
 
     if(statdocName === "Готов"){
         cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-ready" value="${uin}"><img class="button__control__img button__control_docpost-ready_img" src="assets/images/info.svg" alt=""></button> Готов`;

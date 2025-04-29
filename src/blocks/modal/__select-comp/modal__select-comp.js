@@ -13,11 +13,11 @@ let span_select_comp  = document.getElementById("close_component_select");
 
 let uinCatc = null;
 
-span_select_comp.addEventListener("click", () => {
+span_select_comp.onclick = () => {
     document.getElementById('modal_select_component_tree').innerHTML = '';
     modal_select_comp.style.display = "none";
     removeOptionsSetValue("found_select", "-- Выберите тип --");
-})
+}
 
 dragElement(modal_select_comp);
 
@@ -60,9 +60,10 @@ export const funcGetDirC = (uin) => {
 
 function funcProcessGetComponentsSelect(result, respobj){
     if( result === 0 ) return;
-    console.log(respobj)
+
     let tb_id = "tb_component_select";
     clearTableAll(tb_id);
+    
     let tableRef       = document.getElementById(tb_id);
     let row_head       = tableRef.insertRow(0);
     row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
@@ -86,7 +87,7 @@ function funcProcessGetComponentsSelect(result, respobj){
         elem.addEventListener("click", () => {
             result = confirm("Подтверждаете выбор комплектующего?");
             if(result === true){
-                modal_select_component.style.display = "none";
+                modal_select_comp.style.display = "none";
 
                 let button = document.getElementById(localStorage.getItem("button_select_component_id"));
                 button.value     = elem.value;

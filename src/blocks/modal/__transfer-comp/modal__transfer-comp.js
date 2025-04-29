@@ -38,13 +38,13 @@ const funcProcessGetComponentsTree = (result, respobj) => {
     const tree = new TreeBuilder('modal_transfer_component_tree', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);
 
-    document.getElementById('modal_transfer_component_tree').addEventListener('click', () => {
+    document.getElementById('modal_transfer_component_tree').onclick = () => {
         let node = tree.get();
         uinCatc = node.getAttribute('data-id');
-    })
+    }
 }
 
-button_transfer_comp.addEventListener("click", () => {
+button_transfer_comp.onclick = () => {
     let body  =  {"user":"demo", "meth":"update", "obj":"components", "name":`${nameItem}`, "uin":`${uinItem}`, "uincatC":`${uinCatc}`};
 
     funcCommand(body, funcProcessOnlyInfo);
@@ -53,7 +53,7 @@ button_transfer_comp.addEventListener("click", () => {
     }, 100);
 
     modal_transfer.style.display = "none";
-})
+}
 
 export const funcInfoCatcTransferOpenModal = (uin, name) => {
     modal_transfer.style.display = "block";
@@ -68,7 +68,7 @@ export const funcInfoCatcTransferOpenModal = (uin, name) => {
     funcCommand(body, funcProcessGetComponentsTree);
 }
 
-button_transfer_dirc.addEventListener("click", () => {
+button_transfer_dirc.onclick = () => {
     let body  =  {"user":"demo", "meth":"update", "obj":"dirC", "name":`${nameItem}`, "uin":`${uinItem}`, "uinparent":`${uinCatc}`};
 
     funcCommand(body, funcProcessOnlyInfo);
@@ -77,4 +77,4 @@ button_transfer_dirc.addEventListener("click", () => {
     }, 100);
 
     modal_transfer.style.display = "none";
-})
+}

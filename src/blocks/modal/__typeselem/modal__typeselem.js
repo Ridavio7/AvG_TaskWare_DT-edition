@@ -5,9 +5,9 @@ let modal_typeselem = document.getElementById("modal_typeselem");
 let span_typeselem  = document.getElementById("close_typeselem");
 let typeUinForAdd   = null;
 
-span_typeselem.addEventListener("click", () => {
+span_typeselem.onclick = () => {
     modal_typeselem.style.display = "none";
-})
+}
 
 dragElement(modal_typeselem);
 

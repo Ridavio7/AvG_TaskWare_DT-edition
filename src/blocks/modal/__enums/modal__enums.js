@@ -6,9 +6,9 @@ let enums_close = document.getElementById("enums_close");
 let enums_title = document.getElementById("enums_title");
 let propUinForAdd = null;
 
-enums_close.addEventListener("click", () => {
+enums_close.onclick = () => {
     enums_modal.style.display = "none";
-})
+}
 
 dragElement(enums_modal);
 

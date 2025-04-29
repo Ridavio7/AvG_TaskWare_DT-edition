@@ -95,16 +95,18 @@ const funcProcessGetUserInfo = (result, respobj) => {
     let email   = obj.email;
     let phone   = obj.phone;
     let rights  = obj.rights;
+    let login   = obj.log
     let uin     = obj.uin;
 
-    addUserInfo(name, jobName, jobUin, email, phone, rights, uin);
+    addUserInfo(name, jobName, jobUin, email, phone, rights, login, uin);
 }
 
-const addUserInfo = (name, jobName, jobUin, email, phone, rights, uin) => {
+const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, uin) => {
     user_name_t.innerHTML = name;
     user_name.value       = name;
     user_email.value      = email;
     user_phone.value      = phone;
+    user_login.value      = login;
     user_save.value       = uin;
     addToDropdownOneOption(user_job, jobName, jobUin);
     addToDropdown(user_job, "jobs_list");
@@ -196,7 +198,7 @@ function funcProcessInfoUserOpenModalAdd(){
     addToDropdown(user_job, "jobs_list");
 }
 
-user_add.addEventListener("click", () => {
+user_add.onclick = () => {
     let body  =  {"user":"demo", "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
 
     if(user_name.value === "" && user_job.value === ""){
@@ -211,4 +213,4 @@ user_add.addEventListener("click", () => {
         setTimeout(function(){funcGetUsers()}, 100);
         setTimeout(function(){user_modal.style.display  = "none"}, 150);
     }
-})
+}

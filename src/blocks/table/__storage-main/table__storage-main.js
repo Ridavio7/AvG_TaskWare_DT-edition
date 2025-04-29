@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll, funcProcessOnlyInfo, removeOptionsSetValue, addToDropdown} from '../../../js/common/common.js';
+import {funcCommand, clearTableAll, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {funcInfoProductOpenModal, funcProcessInfoProductsModalAdd} from '../../modal/__info-prod/modal__info-prod.js';
 import {funcInfoProductsTransferOpenModal} from '../../modal/__transfer-prod/modal__transfer-prod.js';
 import {TreeBuilder} from '../../_tree/tree.js';
@@ -19,11 +19,11 @@ const funcProcessGetProductsTree = (result, respobj) => {
     let node = tree.get();
     uinCatc = node.getAttribute('data-id');
 
-    document.getElementById('tree_storage_main').addEventListener('click', () => {
+    document.getElementById('tree_storage_main').onclick = () => {
         let node = tree.get();
         uinCatc = node.getAttribute('data-id');
         funcGetProducts(uinCatc);
-    })
+    }
 }
 
 /* каталог изделий */
@@ -42,6 +42,8 @@ const funcProcessGetProducts = (result, respobj) => {
     let table = document.getElementById(tb_id);
     let row_head   = table.insertRow(-1);
     row_head.innerHTML = `<tr><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
+
+    document.getElementById("button_info_product_add").value = uinCatc;
 
     for (let key in respobj.answ){
         let set   = respobj.answ[key];
@@ -83,8 +85,8 @@ const funcProcessGetProducts = (result, respobj) => {
     })
 
     let button_control_add = document.querySelector(".button__control_add-prod-tree");
-    button_control_add.addEventListener("click", (elem) => {
-        funcProcessInfoProductsModalAdd(elem.value);
+    button_control_add.addEventListener("click", () => {
+        funcProcessInfoProductsModalAdd();
     })
 }
 

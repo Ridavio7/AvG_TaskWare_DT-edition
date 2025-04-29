@@ -109,6 +109,8 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
         let name        = obj.name;
         let compontName = obj.compont.name;
         let compontUin  = obj.compont.uin;
+        let price       = obj.price;
+        let sum         = obj.sum;
         let measName    = obj.meas.name;
         let measUin     = obj.meas.uin;
         let storageName = obj.storage.name;
@@ -116,7 +118,7 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
         let count       = obj.count;
         let del         = obj.del;
         let uin         = obj.uin;
-        addDocpostInfoTable(name, compontName, compontUin, measName, measUin, storageName, storageUin, count, del, uin, tb_id);
+        addDocpostInfoTable(name, compontName, compontUin, price, sum, measName, measUin, storageName, storageUin, count, del, uin, tb_id);
     }
 
     /* функция удаления */
@@ -165,7 +167,7 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
     })
 }
 
-const addDocpostInfoTable = (name, compontName, compontUin, measName, measUin, storageName, storageUin, count, del, uin, tb_id) => {
+const addDocpostInfoTable = (name, compontName, compontUin, price, sum, measName, measUin, storageName, storageUin, count, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
@@ -173,9 +175,11 @@ const addDocpostInfoTable = (name, compontName, compontUin, measName, measUin, s
     let cellName    = newRow.insertCell(0); cellName.classList    = "td";
     let cellCompont = newRow.insertCell(1); cellCompont.classList = "td td_nowrap-content";
     let cellCount   = newRow.insertCell(2); cellCount.classList   = "td";
-    let cellMeas    = newRow.insertCell(3); cellMeas.classList    = "td";
-    let cellStorage = newRow.insertCell(4); cellStorage.classList = "td";
-    let cellBtn     = newRow.insertCell(5); cellBtn.classList     = "td";
+    let cellPrice   = newRow.insertCell(3); cellPrice.classList   = "td";
+    let cellSum     = newRow.insertCell(4); cellSum.classList     = "td";
+    let cellMeas    = newRow.insertCell(5); cellMeas.classList    = "td";
+    let cellStorage = newRow.insertCell(6); cellStorage.classList = "td";
+    let cellBtn     = newRow.insertCell(7); cellBtn.classList     = "td";
 
     cellName.innerHTML = name;
     if(compontName === ''){
@@ -187,13 +191,15 @@ const addDocpostInfoTable = (name, compontName, compontUin, measName, measUin, s
     makeSelect("docpost_meas_select_", uin, measName, measUin, "meas_list", "select", cellMeas);
     makeSelect("docpost_storage_select_", uin, storageName, storageUin, "storages_list", "select", cellStorage);
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="docpost_count_${uin}">`;
+    cellPrice.innerHTML = price;
+    cellSum.innerHTML   = sum;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-docpost" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
-/* функция обновления поставки */
-docpost_save.addEventListener("click", () => {
+/* функция сохранения обновления поставки */
+docpost_save.onclick = () => {
     let body  =  {"user":"demo", "meth":"update", "obj":"docpost","uin":"", "numb":"", "date":"", "prim":"", "uinstatus":"", "uinuser":"", "uinstorage":""};
 
     body.uin        = localStorage.getItem("docpost_uin");
@@ -218,4 +224,4 @@ docpost_save.addEventListener("click", () => {
     setTimeout(function(){funcGetInfoTableDocpost(localStorage.getItem("docpost_uin"))}, 150);
     setTimeout(function(){clearTableAll("tb_docpost")}, 200);
     setTimeout(function(){funcGetDocpost()}, 250);
-})
+}

@@ -65,7 +65,7 @@
                             <div class="sidebar__link settings" id="link_settings">
                                 <div class="sidebar__title">
                                     <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/settings.svg" alt="">
-                                    <span class="sidebar__name">Пользователи</span>
+                                    <span class="sidebar__name">Настройки</span>
                                 </div>
                             </div>
                         </a>
@@ -183,14 +183,15 @@
                     <tbody id="tb_rights">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_rights"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-users-rights"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-users-rights" disabled><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="sidebar__tabcontent" id="settings">
-            <p>Настройки</p>
+            <input class="checkbox" type="checkbox" id="update_unputs_1c">
+            <label for="update_unputs_1c">Обновлять поля 1С при загрузке из 1С</label>
         </div>
         <div class="sidebar__tabcontent" id="template_task">
             <p>Шаблоны задач</p>

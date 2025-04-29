@@ -1,9 +1,8 @@
 import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
-import {funcGetComponentInfoProps, addEventSelectProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
+import {funcGetComponentInfoProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
 import {funcGetComponentInfoTypesProps} from '../../table/__comp-typesprops/table__comp-typesprops.js';
-import {funcGetDirC} from '../__select-comp/modal__select-comp.js';
 import {funcInfoTypeselemOpenModal} from '../../modal/__typeselem/modal__typeselem.js';
 import {funcGetCompontlinks} from '../../table/__comp-compontlinks/table__comp-compontlinks.js';
 import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table__comp-compontimgs.js';
@@ -69,7 +68,7 @@ export const funcProcessInfoComponentsModalAdd = (uin) => {
     component_button_save.style.display = "none";
 }
 
-component_button_add.addEventListener("click", () => {
+component_button_add.onclick = () => {
     let uincatC = localStorage.getItem("uincatC");
     let body  =  {"user":"demo", "meth":"add", "obj":"components", "name":"", "uincatC":`${uincatC}`, "uintypes":"", "fUnic":"0", "comment":"", "tpack":""};
 
@@ -98,7 +97,7 @@ component_button_add.addEventListener("click", () => {
         setTimeout(function(){funcGetComponentsTree()}, 100);
         setTimeout(function(){modal_info_component.style.display = "none";}, 150);
     }
-})
+}
 
 /* открытие модального окна */
 export const funcInfoComponentsOpenModal = (uin) => {
@@ -140,6 +139,16 @@ const funcProcessGetComponentInfo = (result, respobj) => {
         let uin       = obj.uin;
         addComponentInfo(name, typelm, typelmUin, fUnic, tpack, comment, ost, uin);
     }
+
+    setTimeout(() => {
+        modal_info_component.querySelectorAll(".input__type-text").forEach((elem) => {
+            elem.addEventListener('change', () => {inputIsChange = true});
+        });
+    
+        modal_info_component.querySelectorAll(".select").forEach((elem) => {
+            elem.addEventListener('change', () => {selectIsChange = true});
+        });
+    }, 500)
 }
 
 const addComponentInfo = (name, typelm, typelmUin, fUnic, tpack, comment, ost, uin) => {
@@ -198,16 +207,6 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, tpack, comment, ost, u
 
     component_button_add.style.display = "none";
     component_button_save.style.display = "flex";
-
-    setTimeout(() => {
-        modal_info_component.querySelectorAll(".input__type-text").forEach((elem) => {
-            elem.addEventListener('change', () => {inputIsChange = true});
-        });
-    
-        modal_info_component.querySelectorAll(".select").forEach((elem) => {
-            elem.addEventListener('change', () => {selectIsChange = true});
-        });
-    }, 500)
 }
 
 const addComponentOst = (count, store, tb_id) => {
@@ -223,7 +222,7 @@ const addComponentOst = (count, store, tb_id) => {
 }
 
 /* переключение типа комплектующего с удалением всех его свойств */
-component_type.addEventListener("change", function (){
+component_type.onchange = () => {
     if(component_save.style.display === "flex"){
         let result = confirm("Вы меняете тип! Если вы подтверждаете, то все свойства будут удалены! Подтвердить?");
         if(result === true){
@@ -246,21 +245,21 @@ component_type.addEventListener("change", function (){
             }, 300);
         }
     }
-})
+}
 
 /* открытие модального окна типа комплектующего */
-component_button_type_info.addEventListener("click", (elem) => {
+component_button_type_info.onclick = (elem) => {
     if(elem.target.className === "button__control__img"){
         funcInfoTypeselemOpenModal(elem.target.parentElement.value);
     } else {
         funcInfoTypeselemOpenModal(elem.target.value);
     }
-})
+}
 
 /* в строке добавленя комплектующего при изменении св-ва меняется ед. изм. и select/input */
-component_select_add_props.addEventListener("change", function (){
+component_select_add_props.onchange = () => {
     addEventSelectOrInputProps(component_select_add_props, 'component_info_add_props_value_select');
-})
+}
 
 const addEventSelectOrInputProps = (select, select_value_id) => {
     let body_1  =  {"user":"demo", "meth":"view", "obj":"props", "count":"100", "filt":`[{"fld":"uin","val":["${select.value}"]}]`};
@@ -268,7 +267,6 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
 
     function funcSelectAddMeasOnTable(result, respobj){
         if( result === 0 ) return;
-
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
@@ -315,7 +313,7 @@ component_unic.addEventListener('click', function () {
 })*/
 
 /* кнопка сохранения комплектующего */
-component_button_save.addEventListener('click', function () {
+component_button_save.onclick = () => {
     inputIsChange = false;
     selectIsChange = false;
 
@@ -342,4 +340,4 @@ component_button_save.addEventListener('click', function () {
         })
     }, 100);
     setTimeout(function(){funcGetComponentsTree()}, 150);
-})
+}

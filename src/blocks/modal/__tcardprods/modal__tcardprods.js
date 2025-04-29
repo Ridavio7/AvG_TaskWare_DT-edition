@@ -5,9 +5,9 @@ let modal_tcardprods = document.getElementById("modal_tcardprods");
 let span_tcardprods  = document.getElementById("close_tcardprods");
 let uinProdForAdd;
 
-span_tcardprods.addEventListener("click", () => {
+span_tcardprods.onclick = () => {
     modal_tcardprods.style.display = "none";
-})
+}
 
 dragElement(modal_tcardprods);
 

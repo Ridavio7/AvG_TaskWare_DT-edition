@@ -6,9 +6,9 @@ let edit_imgs_modal = document.getElementById("comp_edit_imgs_modal");
 let edit_imgs_close = document.getElementById("comp_edit_imgs_close");
 let edit_imgs_title = document.getElementById("comp_edit_imgs_title");
 
-edit_imgs_close.addEventListener("click", () => {
+edit_imgs_close.onclick = () => {
     edit_imgs_modal.style.display = "none";
-})
+}
 
 dragElement(edit_imgs_modal);
 
@@ -109,7 +109,7 @@ const funcProcessOpenCompontimgs = (result, respobj) => {
 }
 
 let button_control_add = document.getElementById("component_info_add_button_img");
-button_control_add.addEventListener("click", () => {
+button_control_add.onclick = () => {
     let body  =  {"user":"demo", "meth":"add", "obj":"compontimgBS", "name":"", "fname":"", "uincompont":"", "bs":""};
 
     let name_value  = document.getElementById("component_info_add_img_name").value;
@@ -140,4 +140,4 @@ button_control_add.addEventListener("click", () => {
         }
     }
     reader.readAsDataURL(file);
-})
+}

@@ -14,13 +14,13 @@ let found_table;
 let found_table_comp;
 let found_input_id;
 
-found_plus_close.addEventListener("click", () => {
+found_plus_close.onclick = () => {
     found_plus_modal.style.display = "none";
 
     removeOptionsSetValue("found_plus_select", "-- Выберите тип --");
     clearTableAll("found_plus_tb");
     found_plus_input.value = "";
-})
+}
 
 dragElement(found_plus_modal);
 

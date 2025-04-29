@@ -65,7 +65,7 @@ const addStatusDocRow = (name, del, uin, tb_id) => {
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="statusdoc_name_${uin}">`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-statusdoc" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-statusdoc${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-statusdoc" value="${uin}" disabled><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-statusdoc${bx_color}" value="${uin}" disabled><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 let button_control_add = document.querySelector(".button__control_add-statuses-statusdoc");

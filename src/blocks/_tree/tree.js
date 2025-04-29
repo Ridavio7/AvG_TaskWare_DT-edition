@@ -72,7 +72,7 @@ export class TreeBuilder {
         });
         
         const arrow = document.createElement('span');
-        arrow.className = 'tree-catalog__arrow';
+        arrow.className = 'tree-catalog__arrow collapsed';
         arrow.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleItemChildren(itemContainer);
@@ -139,15 +139,15 @@ export class TreeBuilder {
     initStorage() {
         const savedState = localStorage.getItem('treeState');
         if (savedState) {
-            const openItems = JSON.parse(savedState).openItems;
+            //const openItems = JSON.parse(savedState).openItems;
             const activeItemId = JSON.parse(savedState).activeItemId;
 
-            if (openItems) {
+            /*if (openItems) {
                 openItems.forEach(id => {
                     const element = this.container.querySelector(`[data-id="${id}"]`);
                     if (element) element.firstChild.click();
                 });
-            }
+            }*/
 
             if (activeItemId) {
                 const activeElement = this.container.querySelector(`[data-id="${activeItemId}"]`);
