@@ -38,13 +38,11 @@ const funcProcessGetComponentsTree = (result, respobj) => {
     uinCatc = node.getAttribute('data-id');
     localStorage.setItem("uincatC", uinCatc);
 
-    document.getElementById('jstree_div').addEventListener('click', () => {
+    document.getElementById('jstree_div').onclick = () => {
         let node = tree.get();
         uinCatc = node.getAttribute('data-id');
         localStorage.setItem("uincatC", uinCatc);
-        
-        funcGetComponents(uinCatc);
-    })
+    }
 }
 
 /* каталог комплектующих */

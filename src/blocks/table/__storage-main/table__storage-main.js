@@ -18,12 +18,6 @@ const funcProcessGetProductsTree = (result, respobj) => {
     tree.build(respobj.answ);
     let node = tree.get();
     uinCatc = node.getAttribute('data-id');
-
-    document.getElementById('tree_storage_main').onclick = () => {
-        let node = tree.get();
-        uinCatc = node.getAttribute('data-id');
-        funcGetProducts(uinCatc);
-    }
 }
 
 /* каталог изделий */
