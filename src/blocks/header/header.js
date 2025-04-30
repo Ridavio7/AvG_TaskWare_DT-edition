@@ -24,15 +24,18 @@ header__user__switch[0].addEventListener("click", (e)=>{
 })();
 
 let header_user_link_not = document.getElementsByClassName("header__user__link_notifications");
-header_user_link_not[0].addEventListener("click", ()=>{
+header_user_link_not[0].onclick = () => {
     window.location = 'notifications.html';
-});
+}
 
 let header_user_link_leave = document.getElementsByClassName("header__user__link_leave-site");
-header_user_link_leave[0].addEventListener("click", ()=>{
+header_user_link_leave[0].onclick = () => {
     let result = confirm("Вы уверены, что хотите выйти?");
     if(result === true){
         localStorage.removeItem('srtf');
+        localStorage.removeItem('user_name');
         window.location = 'index.html';
     }
-});
+}
+
+document.getElementById("user_name").textContent = localStorage.getItem('user_name');

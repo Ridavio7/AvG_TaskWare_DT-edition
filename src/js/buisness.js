@@ -98,7 +98,7 @@ import {funcGetStorages} from '../blocks/table/__storages/table__storages.js';
 
 window.onload = function(){
     updateDirectory();
-    //funcGetShipProductsAll();
+    funcGetShipProductsAll();
     returnTabsBuisness();
 }
 
