@@ -27,15 +27,13 @@ import '../blocks/modal/modal.scss';
 /* таблицы */
 import '../blocks/table/table.scss';
 
+import {addEventButtonTab} from '../js/common/common.js.js';
+
 import {funcGetUsers} from '../blocks/table/__users-main/table__users-main.js';
 import {funcGetJobs} from '../blocks/table/__users-jobs/table__users-jobs.js';
 import {funcGetRights} from '../blocks/table/__users-rights/table__users-rights.js';
 
 window.onload = function(){
-    funcGetUsers();
-    funcGetJobs();
-    funcGetRights();
-
     returnTabsBuisness();
 }
 
@@ -58,3 +56,7 @@ const returnTabsBuisness = () => {
     let tabcontent_tab_active = document.getElementsByClassName(localStorage.getItem("buisness_tabcontent_tab_active"));
     tabcontent_tab_active[0].click();
 }
+
+addEventButtonTab(document.querySelectorAll(".button__tab__first_user_main"), funcGetUsers);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_users_jobs"), funcGetJobs);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_users_rights"), funcGetRights);

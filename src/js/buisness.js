@@ -38,6 +38,8 @@ import '../blocks/table/table.scss';
 import '../blocks/carousel/carousel.scss';
 import '../blocks/carousel/carousel.js';
 
+import {addEventButtonTab} from '../js/common/common.js.js';
+
 /* Отгрузка */
 import {funcGetGrfShipSets} from '../blocks/table/__schedule/table__schedule.js';
 import '../blocks/table/__schedule/table__schedule.scss'
@@ -240,14 +242,6 @@ const updateDirectory = () => {
         if( result === 0 ) return;
         localStorage.setItem("users_list", JSON.stringify(respobj.answ));
     }
-}
-
-const addEventButtonTab = (button_tab, func) => {
-    button_tab.forEach((elem) => {
-        elem.addEventListener("click", () => {
-            func();
-        })
-    })
 }
 
 // отгрузка

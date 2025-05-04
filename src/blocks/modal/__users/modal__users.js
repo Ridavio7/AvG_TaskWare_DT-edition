@@ -4,7 +4,7 @@ import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 
 let user_modal  = document.getElementById("user_modal");
 let user_close  = document.getElementById("user_close");
-let user_name   = document.getElementById("user_name");
+let user_name   = document.getElementById("user_name_modal");
 let user_name_t = document.getElementById("user_name_title");
 let user_job    = document.getElementById("user_job");
 let user_email  = document.getElementById("user_email");
@@ -20,6 +20,9 @@ let log_pass_change = 0;
 
 user_close.onclick = function(){
     user_modal.style.display = "none";
+
+    user_pass_f.value = '';
+    user_pass_s.value = '';
 }
 
 dragElement(user_modal);

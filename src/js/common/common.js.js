@@ -348,3 +348,12 @@ export const clearCheckboxes = (select_id) => {
         inputs[i].checked = false;
     }
 }
+
+/* события на кнопки */
+export const addEventButtonTab = (button_tab, func) => {
+    button_tab.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            func();
+        })
+    })
+}
