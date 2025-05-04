@@ -189,9 +189,29 @@
                 </table>
             </div>
         </div>
+        <!-- настройки -->
         <div class="sidebar__tabcontent" id="settings">
-            <input class="checkbox" type="checkbox" id="update_unputs_1c">
-            <label for="update_unputs_1c">Обновлять поля 1С при загрузке из 1С</label>
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#settings/settings_server"><button class="button__tab__first button__tab__first_settings_server"><img class="button__tab__first__img" src="../blocks/sidebar/img/settings.svg">Сервер</button></a>
+                <a href="#settings/settings_user"><button class="button__tab__first button__tab__first_settings_user"><img class="button__tab__first__img" src="../blocks/sidebar/img/settings.svg">Клиент</button></a>
+            </div>
+            <!-- настройки сервера -->
+            <div id="settings/settings_server" class="sidebar__tabcontent__container">
+                <table class="table">
+                    <tbody id="tb_settings_server">
+                        <tr class="tr">
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="modal__footer">
+                    <button class="button__control button__control_modal" id="button__control_save_settings_server">Сохранить</button>
+                </div>
+            </div>
+            <!-- настройки клиента -->
+            <div id="settings/settings_user" class="sidebar__tabcontent__container">
+
+            </div>
         </div>
         <div class="sidebar__tabcontent" id="template_task">
             <p>Шаблоны задач</p>
@@ -210,7 +230,7 @@
                 <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="user_name">ФИО:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="user_name" value="">
+                        <input class="input__type-text input__type-text_modal" type="text" id="user_name_modal" value="">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="user_job">Должность:</label>
@@ -234,11 +254,11 @@
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="user_pass_first">Пароль:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="user_pass_first" value="">
+                        <input class="input__type-text input__type-text_modal" type="password" id="user_pass_first" value="">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="user_pass_second">Пароль:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="user_pass_second" value="">
+                        <input class="input__type-text input__type-text_modal" type="password" id="user_pass_second" value="">
                     </div>
                 </div>
                 <table class="table">

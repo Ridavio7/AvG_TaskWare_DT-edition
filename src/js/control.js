@@ -29,9 +29,13 @@ import '../blocks/table/table.scss';
 
 import {addEventButtonTab} from '../js/common/common.js.js';
 
+/* пользователи */
 import {funcGetUsers} from '../blocks/table/__users-main/table__users-main.js';
 import {funcGetJobs} from '../blocks/table/__users-jobs/table__users-jobs.js';
 import {funcGetRights} from '../blocks/table/__users-rights/table__users-rights.js';
+
+/* настройки */
+import {funcGetSysopt} from '../blocks/table/__settings-server/table__settings-server.js';
 
 window.onload = function(){
     returnTabsBuisness();
@@ -60,3 +64,6 @@ const returnTabsBuisness = () => {
 addEventButtonTab(document.querySelectorAll(".button__tab__first_user_main"), funcGetUsers);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_users_jobs"), funcGetJobs);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_users_rights"), funcGetRights);
+
+addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_server"), funcGetSysopt);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user"), '');
