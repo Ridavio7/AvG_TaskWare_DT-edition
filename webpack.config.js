@@ -50,6 +50,7 @@ const plugins = () => {
         { from: "src/blocks/table/__snprod/img/ellipse_orange.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_white.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_red.svg", to: "assets/images/" },
+        { from: "src/blocks/entrance/img/entrance_eye_off.svg", to: "assets/images/" },
       ],
     }),
     new webpack.ProvidePlugin({

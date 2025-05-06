@@ -5,11 +5,105 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
+        background: #2a2a2c url('../entrance/img/entrance_logo.svg') no-repeat center / contain;
+        color: #ffffff;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+    }
+
+    &__title{
+        font-weight: 600;
+        font-size: 22px;
+        margin-bottom: 40px;
     }
 
     &__form{
         display: flex;
         align-items: center;
+        flex-direction: column;
+        padding: 30px 150px;
+        background-color: #2a2a2c;
+        box-shadow: 0px 0px 60px -10px #000000;
+        border-radius: 30px;
+    }
+
+    &__input-wrapper{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    &__label{
+        margin-bottom: 10px;
+    }
+
+    &__input-container{
+        position: relative;
+    }
+
+    &__input{
+        color: #3b3b3d;
+        background-color: #e9e9e9;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        height: 50px;
+        width: 300px;
+        padding: 15px 35px;
+        position: relative;
+        z-index: 1;
+
+        &_icon{
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 16px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            width: 18px;
+            height: 20px;
+            
+            &-login{
+                background-image: url('../entrance/img/entrance_user.svg');
+            }
+    
+            &-pass{
+                background-image: url('../entrance/img/entrance_lock.svg');
+            }
+
+            &-eye{
+                left: 273px;
+                background-image: url('../entrance/img/entrance_eye_on.svg');
+            }
+        }
+    }
+
+    &__button{
+        background: linear-gradient(to right, #154A7B, #2687E1, #154A7B);
+        background-size: 200% auto;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-position 0.5s;
+        color: #ffffff;
+        width: 260px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+
+        &:hover{
+            background-position: 100% 0;
+        }
+
+        &:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     }
 }

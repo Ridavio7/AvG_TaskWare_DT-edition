@@ -7,45 +7,25 @@
     <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon">
 </head>
 <body>
-    <div class="hamburger-menu">
-        <input id="menu__toggle" type="checkbox" style="display: none;"/>
-        <label class="menu__btn" for="menu__toggle">
-            <span></span>
-        </label>
-        <ul class="menu__box">
-    
-        </ul>
-    </div>
-    <header class="header">
-        <div class="header__body">
-            <div class="header__logo">
-                <img class="header__main-logo" src="../blocks/header/img/logo.svg" alt="logo">
-                <img class="header__main-logo-little" src="../blocks/header/img/logo_lt.svg" alt="logo">
-            </div>
-            <div class="header__user">
-                <div class="header__user__wrapper">
-                    <div class="header__user__user">
-                        <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user" style="display: none;">
-                        <input class="header__user__switch-theme-input" type="checkbox" id="switch_theme_input">
-                        <label class="header__user__switch-theme" for="switch_theme_input"></label>
-                        <a class="header__user__name" id="user_name"></a>
-                        <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user" style="display: none;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
     <div class="entrance__container">
         <form class="entrance__form" id="logon">
-            <div class="modal__input-wrapper">
-                <label class="input__type-text__label" for="logon_login">Логин:</label>
-                <input class="input__type-text input__type-text_modal" type="text" id="logon_login" value="">
+            <label class="entrance__title" for="logon">Вход</label>
+            <div class="entrance__input-wrapper">
+                <label class="entrance__label" for="logon_login">Введите логин:</label>
+                <div class="entrance__input-container">
+                    <span class="entrance__input_icon entrance__input_icon-login"></span>
+                    <input class="entrance__input" type="text" id="logon_login" value="" autocomplete="off">
+                </div>
             </div>
-            <div class="modal__input-wrapper">
-                <label class="input__type-text__label" for="logon_pass">Пароль:</label>
-                <input class="input__type-text input__type-text_modal" type="password" id="logon_pass" value="">
+            <div class="entrance__input-wrapper">
+                <label class="entrance__label" for="logon_pass">Введите пароль:</label>
+                <div class="entrance__input-container">
+                    <span class="entrance__input_icon entrance__input_icon-pass"></span>
+                    <input class="entrance__input" type="password" id="logon_pass" value="" autocomplete="off">
+                    <span class="entrance__input_icon entrance__input_icon-eye" id="logon_pass_toggle"></span>
+                </div>
             </div>
-            <button type="submit" class="button__control button__control_modal">Войти</button>
+            <button type="submit" class="entrance__button">Войти</button>
         </form>
     </div>
 </body>
