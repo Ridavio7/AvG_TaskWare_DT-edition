@@ -25,13 +25,16 @@ export const addToDropdownPsevdo = (select_id, arr) => {
             input.addEventListener("change", () => {
                 let filter = input.parentElement.parentElement.previousElementSibling;
                 if(!filter.textContent.includes(arr[key].name)){
-                    if(filter.textContent.includes(`<img class="select__img" src="assets/images/filter.svg" alt=""></img>`)){
-                        filter.innerHTML = ""; filter.innerHTML = `${arr[key].name}, `;
+                    if(filter.textContent.includes('Комплекты') || filter.textContent.includes('Изделия') ||
+                        filter.textContent.includes('Контрагенты') || filter.textContent.includes('Статусы')){ //filter.textContent.includes(`<img class="select__img" src="assets/images/filter.svg" alt=""></img>`)
+                        filter.textContent = ""; filter.textContent = `${arr[key].name}, `;
                     } else {
-                        filter.innerHTML += `${arr[key].name}, `;
+                        filter.textContent += `${arr[key].name}, `;
                     }
+                } else if(filter.textContent.includes('')) {
+                    filter.textContent = 'Фильтр';
                 } else {
-                    filter.innerHTML = filter.textContent.replace(`${arr[key].name},`, '');
+                    filter.textContent = filter.textContent.replace(`${arr[key].name},`, '');
                 }
             })
         }

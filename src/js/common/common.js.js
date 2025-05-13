@@ -326,7 +326,7 @@ export const sortAnalisys = (selec, tb_id, filt, obj, func) => {
 export const sendFilt = (filt, tb_id, obj, func) => {
     let filt_str = JSON.stringify(filt);
     clearTable(tb_id);
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj": `${obj}`, "count":"500", "filt":`${filt_str}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj": `${obj}`, "count":"10000", "filt":`${filt_str}`};
     funcCommand(body, func);
 }
 

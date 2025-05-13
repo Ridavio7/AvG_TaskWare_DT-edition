@@ -1,5 +1,6 @@
-import {funcCommand, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTableAll, sendFilt, clearFilt, listenSelect} from '../../../js/common/common.js';
 import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js';
+import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
 export const funcGetDocpost = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000"};
@@ -93,4 +94,74 @@ const addDocpostRow =
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+}
+
+document.getElementById("sort_docpost").onchange = (elem) => {
+    clearTableAll("tb_docpost");
+    console.log(elem)
+
+    let option = elem.target.selectedIndex;
+    switch (option){
+        case 0:
+        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "filt":`${JSON.stringify(filt_docpost)}`};
+        funcCommand(body0, funcProcessGetDocpost);
+        break;
+        case 1:
+        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
+        funcCommand(body1, funcProcessGetDocpost);
+        break;
+        case 2:
+        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
+        funcCommand(body2, funcProcessGetDocpost);
+        break;
+        case 3:
+        let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
+        funcCommand(body3, funcProcessGetDocpost);
+        break;
+        case 4:
+        let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
+        funcCommand(body4, funcProcessGetDocpost);
+        break;
+    }
+}
+
+addToDropdownPsevdo("filt_docpost_contragents_items", JSON.parse(localStorage.getItem("contragents_list")));
+psevdoSelect("filt_docpost_contragents");
+
+addToDropdownPsevdo("filt_docpost_status_items", JSON.parse(localStorage.getItem("statusdoc_list")));
+psevdoSelect("filt_docpost_status");
+
+let button_filt_choose = document.getElementById("button_docpost_choose");
+button_filt_choose.addEventListener("click", () => {
+    sendFilt(filt_docpost, 'tb_docpost', 'docpost', funcProcessGetDocpost);
+});
+
+let button_filt_reset = document.getElementById("button_docpost_reset");
+button_filt_reset.addEventListener("click", () => {
+    filt_docpost.length = 0;
+    clearFilt(filt_docpost, 'filt_docpost_contragents_items', 'filt_docpost_status_items', 'filt_docpost_status_items', 'tb_docpost', funcGetDocpost());
+
+    document.getElementById('filt_docpost_contragents').firstChild.innerHTML = 'Контрагенты <img class="select__img" src="assets/images/filter.svg" alt="">';
+    document.getElementById('filt_docpost_status').firstChild.innerHTML = 'Статусы <img class="select__img" src="assets/images/filter.svg" alt="">';
+});
+
+let select_1 = document.getElementById("filt_docpost_contragents_items");
+let select_2 = document.getElementById("filt_docpost_status_items");
+let filt_docpost = [], val_1 = [], val_2 = [],
+filt_1 = {fld: "uincontr"}, filt_2 = {fld: "uinstatus"};
+
+listenSelect(select_1, filt_1, val_1, filt_docpost);
+listenSelect(select_2, filt_2, val_2, filt_docpost);
+
+document.getElementById("founddoc_button").onclick = () => {
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"founddoc", "obj":"docpost", "count":"10000", "name":"", "filt":`${JSON.stringify(filt_docpost)}`};
+    body.name = document.getElementById('founddoc_name').value;
+    funcCommand(body, funcProcessGetDocpost);
+}
+
+document.getElementById("founddoc_reset_button").onclick = () => {
+    funcGetDocpost();
+    document.getElementById('founddoc_name').value = '';
+    document.getElementById('filt_docpost_contragents').firstChild.innerHTML = 'Контрагенты <img class="select__img" src="assets/images/filter.svg" alt="">';
+    document.getElementById('filt_docpost_status').firstChild.innerHTML = 'Статусы <img class="select__img" src="assets/images/filter.svg" alt="">';
 }

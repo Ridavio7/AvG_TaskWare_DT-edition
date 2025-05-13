@@ -547,7 +547,7 @@
                         <span class="select__anchor">Изделия <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
                         <ul class="select__items" id="filt_analysis_components_all_products_items"></ul>
                     </div>
-                    <div class="select select__filter" id="filt_analysis_components_all_components" tabindex="100">
+                    <div class="select select__filter" id="filt_analysis_components_all_components" tabindex="100" style="display: none;">
                         <span class="select__anchor">Комплектующие <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
                         <ul class="select__items" id="filt_analysis_components_all_components_items"></ul>
                     </div>
@@ -717,6 +717,31 @@
             </div>
             <!-- главная -->
             <div id="provider/main" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_docpost">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По номеру 1С &#8657;</option>
+                        <option value="">По номеру 1С &#8659;</option>
+                        <option value="">По дате 1С &#8657;</option>
+                        <option value="">По дате 1С &#8659;</option>
+                    </select>
+                    <div class="select select__filter" id="filt_docpost_contragents" tabindex="100">
+                        <span class="select__anchor">Контрагенты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
+                        <ul class="select__items" id="filt_docpost_contragents_items"></ul>
+                    </div>
+                    <div class="select select__filter" id="filt_docpost_status" tabindex="100">
+                        <span class="select__anchor">Статусы <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
+                        <ul class="select__items" id="filt_docpost_status_items"></ul>
+                    </div>
+                    <button class="button__control" id="button_docpost_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
+                    <button class="button__control" id="button_docpost_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="founddoc_name">Поиск по комплектующему:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="founddoc_name" value="" placeholder="Введите название комплектующего">
+                        <button class="button__control button__control_active" id="founddoc_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button>
+                        <button class="button__control button__control_active" id="founddoc_reset_button"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    </div>
+                </div>
                 <table class="table">
                     <thead class="thead">
                         <tr class="tr">
