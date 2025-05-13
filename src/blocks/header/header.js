@@ -1,3 +1,5 @@
+import {funcCommand, funcProcessOnlyInfo} from '../../js/common/common.js';
+
 /* переключение темы */
 function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
@@ -28,13 +30,19 @@ header_user_link_not[0].onclick = () => {
     window.location = 'notifications.html';
 }
 
+const funcUserLogOff = () => {
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"logoff"};
+    funcCommand(body, funcProcessOnlyInfo);
+}
+
 let header_user_link_leave = document.getElementsByClassName("header__user__link_leave-site");
 header_user_link_leave[0].onclick = () => {
     let result = confirm("Вы уверены, что хотите выйти?");
     if(result === true){
+        funcUserLogOff();
+        window.location = 'index.html';
         localStorage.removeItem('srtf');
         localStorage.removeItem('user_name');
-        window.location = 'index.html';
     }
 }
 
