@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect, togglePassword, validateForm} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 
@@ -174,14 +174,20 @@ user_pass_s.addEventListener("change", () => {
 user_save.addEventListener("click", (evt) => {
     let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
 
-    body1.name   = user_name.value;
-    body1.uinjob = user_job.value;
-    body1.email  = user_email.value;
-    body1.phone  = user_phone.value;
-    body1.rights = `${JSON.stringify(searchUserRights())}`;
+    validateForm('user_name_modal', 'user_email', 'user_phone').then(result => {
+        if(result === true){
+            body1.name   = user_name.value;
+            body1.uinjob = user_job.value;
+            body1.email  = user_email.value;
+            body1.phone  = user_phone.value;
+            body1.rights = `${JSON.stringify(searchUserRights())}`;
 
-    funcCommand(body1, funcProcessOnlyInfo);
-    setTimeout(function(){funcGetUsers()}, 100);
+            funcCommand(body1, funcProcessOnlyInfo);
+            setTimeout(function(){funcGetUsers()}, 100);
+        } else {
+            console.log('Ошибка валидации полей!');
+        }
+    })
 
     let body2 = { "user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"uslog", "log":"", "psw1":"", "psw2":"", "uinuser":`${evt.currentTarget.value}`};
 
@@ -228,19 +234,21 @@ function funcProcessInfoUserOpenModalAdd(){
 user_add.onclick = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
 
-    if(user_name.value === "" && user_job.value === ""){
-        alert("Вы не заполнили все поля!");
-    } else {
-        body.name   = user_name.value;
-        body.uinjob = user_job.value;
-        body.email  = user_email.value;
-        body.phone  = user_phone.value;
-        body.rights = `${JSON.stringify(searchUserRights())}`;
+    validateForm('user_name_modal', 'user_email', 'user_phone').then(result => {
+        if(result === true){
+            body.name   = user_name.value;
+            body.uinjob = user_job.value;
+            body.email  = user_email.value;
+            body.phone  = user_phone.value;
+            body.rights = `${JSON.stringify(searchUserRights())}`;
 
-        funcCommand(body, funcProcessOnlyInfo);
-        setTimeout(function(){funcGetUsers()}, 100);
-        setTimeout(function(){user_modal.style.display  = "none"}, 150);
-    }
+            funcCommand(body, funcProcessOnlyInfo);
+            setTimeout(function(){funcGetUsers()}, 100);
+            setTimeout(function(){user_modal.style.display  = "none"}, 150);
+        } else {
+            console.log('Ошибка валидации полей!');
+        }
+    })
 }
 
 const searchUserRights = () => {
@@ -267,3 +275,6 @@ const searchUserRights = () => {
 
     return rights;
 }
+
+document.getElementById('user_pass_first_toggle').addEventListener('click', (elem) => togglePassword(elem, 'user_pass_first'));
+document.getElementById('user_pass_second_toggle').addEventListener('click', (elem) => togglePassword(elem, 'user_pass_second'));

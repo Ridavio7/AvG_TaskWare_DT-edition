@@ -13,4 +13,9 @@
     align-items: center;
     justify-content: center;
     padding-top: 0px;
+
+    &:active {
+        transform: scale(0.95);
+        box-shadow: 0 2px 4px var(--box-shadow);
+    }
 }

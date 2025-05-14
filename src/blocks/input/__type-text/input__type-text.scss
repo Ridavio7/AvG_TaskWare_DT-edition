@@ -33,6 +33,27 @@
         width: 100%;
         max-width: none;
     }
+
+    &_pass{
+        position: relative;
+    }
+
+    &_icon-eye{
+        background-image: url('../../entrance/img/entrance_eye_on.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 16px;
+        cursor: pointer;
+        position: absolute;
+        z-index: 2;
+        width: 18px;
+        height: 20px;
+        left: 280px;
+    }
+
+    &_error{
+        border: 2px solid var(--red_hover) !important;
+    }
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator,
@@ -43,7 +64,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none; // Yeah, yeah everybody write about it
+    -webkit-appearance: none;
 }
 
 input[type='number'],
