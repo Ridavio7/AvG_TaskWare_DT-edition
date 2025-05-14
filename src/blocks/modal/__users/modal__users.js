@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 
@@ -42,7 +42,7 @@ export const funcInfoUserOpenModal = (uin) => {
 
 /* права для мод. окна пользователя */
 const funcGetRightsUsersInfo = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"rights", "count":"100"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"rights", "count":"100", "sort":"uin"};
     funcCommand(body, funcProcessGetRightsUsersInfo);
 }
 
@@ -56,8 +56,8 @@ const funcProcessGetRightsUsersInfo = (result, respobj) => {
     for (let key in respobj.answ){
         let obj   = respobj.answ[key];
         if(obj.del === 0){
-            let name  = obj.name;
-            let uin   = obj.uin;
+            let name = obj.name;
+            let uin  = obj.uin;
             addRightsUsersInfo(name, uin, tb_id);
         }
     }
@@ -68,11 +68,19 @@ const addRightsUsersInfo = (name, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellCheckbox  = newRow.insertCell(0); cellCheckbox.classList  = "td";
-    let cellRightname = newRow.insertCell(1); cellRightname.classList = "td";
+    let cellRightName = newRow.insertCell(0); cellRightName.classList = "td";
+    let cellRightAcc  = newRow.insertCell(1); cellRightAcc.classList  = "td";
 
-    cellCheckbox.innerHTML  = `<input class="checkbox" type="checkbox" id="right_${uin}" value="${uin}"><label for="right_${uin}"></label>`;
-    cellRightname.innerHTML = name;
+    cellRightName.innerHTML = name;
+    if(name === 'Полные права' || name === 'Удаление помеченных'){
+        cellRightAcc.innerHTML  = `<input class="checkbox user-right__for-find" type="checkbox" id="right_${uin}" value="${uin}"><label for="right_${uin}"></label>`;
+    } else {
+        makeSelect("right", uin, '---', ' ', '', "select select__user-right user-right__for-find", cellRightAcc);
+        document.getElementById(`right_${uin}`).setAttribute('data-value', uin);
+        addToDropdownOneOption(document.getElementById(`right_${uin}`), 'Нет доступа', 0);
+        addToDropdownOneOption(document.getElementById(`right_${uin}`), 'Просмотр', 1);
+        addToDropdownOneOption(document.getElementById(`right_${uin}`), 'Редактирование', 2);
+    }
 }
 
 /* инфо пользователя в мод. окне */
@@ -98,13 +106,18 @@ const funcProcessGetUserInfo = (result, respobj) => {
     let email   = obj.email;
     let phone   = obj.phone;
     let rights  = obj.rights;
-    let login   = obj.log
+    let login   = obj.log;
+    let fpsw    = obj.fpsw;
     let uin     = obj.uin;
 
-    addUserInfo(name, jobName, jobUin, email, phone, rights, login, uin);
+    addUserInfo(name, jobName, jobUin, email, phone, rights, login, fpsw, uin);
 }
 
-const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, uin) => {
+const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, fpsw, uin) => {
+    user_login.parentElement.style.display  = "flex";
+    user_pass_f.parentElement.style.display = "flex";
+    user_pass_s.parentElement.style.display = "flex";
+
     user_name_t.innerHTML = name;
     user_name.value       = name;
     user_email.value      = email;
@@ -114,13 +127,35 @@ const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, uin) =>
     addToDropdownOneOption(user_job, jobName, jobUin);
     addToDropdown(user_job, "jobs_list");
 
+    if(fpsw === 1){user_pass_f.value = 'password'; user_pass_s.value = 'password';}
+
     for(let key in rights){
         let obj  = rights[key];
-        let uin  =  obj.uin;
+        let name = obj.name;
+        let acc  = obj.acc;
+        let uin  = obj.uin;
     
-        let checkbox = document.getElementById(`right_${uin}`);
-        checkbox === null ? alert("Одно из установленных прав пользователя удалено! Снимите пометку удаления права!") : checkbox.checked = true;
+        let right = document.getElementById(`right_${uin}`);
+        if(name === 'Полные права' || name === 'Удаление помеченных'){
+            right.checked = acc === '0' ? false : true;
+        } else {
+            let acc_name;
+            if(acc === 0){
+                acc_name = 'Нет доступа'
+            } else if(acc === 1){
+                acc_name = 'Просмотр'
+            } else if(acc === 2){
+                acc_name = 'Редактирование'
+            }
+            right.options[ right.selectedIndex ].textContent = acc_name;
+            right.options[ right.selectedIndex ].value       = acc;
+        }
     }
+
+    /*if(document.getElementById(`right_5`).checked === true){
+        let selects = document.querySelectorAll('.select__user-right');
+        for(let i=0; i<selects.length; i++) selects[i].disabled = true;
+    }*/
 }
 
 user_login.addEventListener("change", () => {
@@ -143,16 +178,7 @@ user_save.addEventListener("click", (evt) => {
     body1.uinjob = user_job.value;
     body1.email  = user_email.value;
     body1.phone  = user_phone.value;
-
-    let checkboxs = user_modal.getElementsByClassName("checkbox");
-    let arr_rights = [];
-
-    for(let chb in checkboxs){
-        if(checkboxs[chb].checked === true){
-            arr_rights.push(+checkboxs[chb].value);
-        }
-    }
-    body1.rights = `[${arr_rights}]`;
+    body1.rights = `${JSON.stringify(searchUserRights())}`;
 
     funcCommand(body1, funcProcessOnlyInfo);
     setTimeout(function(){funcGetUsers()}, 100);
@@ -162,7 +188,6 @@ user_save.addEventListener("click", (evt) => {
     if(user_pass_f.value != user_pass_s.value){
         alert("Введенные пароли не совпадают!");
     } else if(log_pass_change > 0) {
-        console.log(log_pass_change);
         body2.log  = user_login.value;
         body2.psw1 = user_pass_f.value;
         body2.psw2 = user_pass_s.value;
@@ -182,8 +207,6 @@ button__control_add.addEventListener("click", () => {
 
     user_add.style.display  = "flex";
     user_save.style.display = "none";
-    user_login.parentElement.parentElement.style.display = "none";
-    user_table.parentElement.style.display = "none";
 
     funcProcessInfoUserOpenModalAdd();
     setTimeout(function(){funcGetRightsUsersInfo()}, 100);
@@ -193,12 +216,13 @@ function funcProcessInfoUserOpenModalAdd(){
     user_name.value   = "";
     user_email.value  = "";
     user_phone.value  = "";
-    user_login.value  = "";
-    user_pass_f.value = "";
-    user_pass_s.value = "";
     removeOptions(user_job)
     addToDropdownOneOption(user_job, "---", "");
     addToDropdown(user_job, "jobs_list");
+
+    user_login.parentElement.style.display  = "none";
+    user_pass_f.parentElement.style.display = "none";
+    user_pass_s.parentElement.style.display = "none";
 }
 
 user_add.onclick = () => {
@@ -211,9 +235,35 @@ user_add.onclick = () => {
         body.uinjob = user_job.value;
         body.email  = user_email.value;
         body.phone  = user_phone.value;
-    
+        body.rights = `${JSON.stringify(searchUserRights())}`;
+
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetUsers()}, 100);
         setTimeout(function(){user_modal.style.display  = "none"}, 150);
     }
+}
+
+const searchUserRights = () => {
+    let user_rights = document.querySelectorAll('.user-right__for-find');
+    let rights = [];
+
+    for(let elem of user_rights){
+        let data_right = {};
+
+        if(elem.tagName === 'INPUT'){
+            if(elem.checked === true){
+                data_right.uin = elem.value;
+                data_right.acc = '1';
+            }
+        } else {
+            if(elem.value !== ' '){
+                data_right.uin = elem.dataset.value;
+                data_right.acc = elem.value;
+            }
+        }
+
+        if(Object.keys(data_right).length > 0) rights.push(data_right);
+    }
+
+    return rights;
 }

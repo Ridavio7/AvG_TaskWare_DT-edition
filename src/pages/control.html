@@ -227,6 +227,9 @@
         </div>
         <div class="modal__content">
             <div class="modal__header">
+                
+            </div>
+            <div class="modal__body">
                 <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="user_name">ФИО:</label>
@@ -236,8 +239,6 @@
                         <label class="input__type-text__label" for="user_job">Должность:</label>
                         <select class="select select_modal" id="user_job"></select>
                     </div>
-                </div>
-                <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="user_email">Почта:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="user_email" value="" autocomplete="off">
@@ -246,8 +247,6 @@
                         <label class="input__type-text__label" for="user_phone">Телефон:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="user_phone" value="" autocomplete="off">
                     </div>
-                </div>
-                <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="user_login">Логин:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="user_login" value="" autocomplete="off">
@@ -263,16 +262,13 @@
                 </div>
                 <table class="table">
                     <thead class="thead">
-                        <td class="td td_active"></td>
                         <td class="td td_active">Права</td>
+                        <td class="td td_active">Опции</td>
                     </thead>
                     <tbody id="tb_user_rights">
         
                     </tbody>
                 </table>
-            </div>
-            <div class="modal__body">
-
             </div>
             <div class="modal__footer">
                 <button class="button__control button__control_modal" id="user_save" style="display: none;" value="">Сохранить</button>
