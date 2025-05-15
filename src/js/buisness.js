@@ -29,6 +29,8 @@ import '../blocks/select/select.js';
 import '../blocks/select/_modal/select_modal.scss';
 /* модальные окна */
 import '../blocks/modal/modal.scss';
+import '../blocks/modal/__notification/modal__notification.scss';
+import '../blocks/modal/__notification/modal__notification.js';
 /* дерево */
 import '../blocks/_tree/tree.js';
 import '../blocks/_tree/tree.scss';
@@ -127,120 +129,57 @@ const returnTabsBuisness = () => {
 }
 
 const updateDirectory = () => {
-    let body_1 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"sets", "count":"5000"};
-    funcCommand(body_1, funcProcessGetSets);
-    function funcProcessGetSets(result, respobj){
-        if( result === 0 ) return;
+    const user = localStorage.getItem('srtf');
+    const requests = [
+        { obj: "sets", callback: processSets, sort: null },
+        { obj: "products", callback: processResponse("products") },
+        { obj: "colors", callback: processResponse("colors") },
+        { obj: "verapp", callback: processResponse("verapp") },
+        { obj: "verpp", callback: processResponse("verpp") },
+        { obj: "meas", callback: processResponse("meas") },
+        { obj: "coeffs", callback: processResponse("coeffs"), sort: "uin" },
+        { obj: "props", callback: processResponse("props") },
+        { obj: "typeselem", callback: processResponse("typelm") },
+        { obj: "contragents", callback: processResponse("contragents") },
+        { obj: "storages", callback: processResponse("storages") },
+        { obj: "statuses", callback: processResponse("statuses") },
+        { obj: "statussn", callback: processResponse("statussn") },
+        { obj: "statusdoc", callback: processResponse("statusdoc") },
+        { obj: "users", callback: processResponse("users") }
+    ];
+
+    requests.forEach(({ obj, callback, sort }) => {
+        const body = { 
+            user, 
+            meth: "view", 
+            obj, 
+            count: "5000",
+            ...(sort && { sort })
+        };
+        funcCommand(body, callback);
+    });
+
+    function processResponse(storageKey) {
+        return function(result, respobj) {
+            if (result === 0) return;
+            localStorage.setItem(`${storageKey}_list`, JSON.stringify(respobj.answ));
+        };
+    }
+
+    function processSets(result, respobj) {
+        if (result === 0) return;
         localStorage.setItem("sets_list", JSON.stringify(respobj.answ));
         
-        let model_tain_nf = [];
-        for(let key in respobj.answ){
-            let set = respobj.answ[key];
-            if(set.del === 0){
-                let model = set.model_train;
-                model_tain_nf.push(model);
+        const model_tain_nf = [];
+        for (const key in respobj.answ) {
+            const set = respobj.answ[key];
+            if (set.del === 0) {
+                model_tain_nf.push(set.model_train);
             }
         }
-        let model_train = Array.from(new Set(model_tain_nf.map(model_tain_nf => JSON.stringify(model_tain_nf)))).map(model_tain_nf => JSON.parse(model_tain_nf));
+        
+        const model_train = Array.from(new Set(model_tain_nf.map(model => JSON.stringify(model)))).map(model => JSON.parse(model));
         localStorage.setItem("model_train", JSON.stringify(model_train));
-    }
-
-    let body_2 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"products", "count":"5000"};
-    funcCommand(body_2, funcProcessGetProducts);
-    function funcProcessGetProducts(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("products_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_3 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"5000"};
-    funcCommand(body_3, funcProcessGetColors);
-    function funcProcessGetColors(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("colors_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_4 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verapp", "count":"5000"};
-    funcCommand(body_4, funcProcessGetVerapp);
-    function funcProcessGetVerapp(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("verapp_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_5 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verpp", "count":"5000"};
-    funcCommand(body_5, funcProcessGetVerpp);
-    function funcProcessGetVerpp(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("verpp_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_6 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"meas", "count":"5000"};
-    funcCommand(body_6, funcProcessGetMeas);
-    function funcProcessGetMeas(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("meas_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_7 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"coeffs", "count":"5000", "sort":"uin"};
-    funcCommand(body_7, funcProcessGetCoeffs);
-    function funcProcessGetCoeffs(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("coeffs_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_8 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"5000"};
-    funcCommand(body_8, funcProcessGetProps);
-    function funcProcessGetProps(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("props_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_9 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"5000"};
-    funcCommand(body_9, funcProcessGetTypeselem);
-    function funcProcessGetTypeselem(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("typelm_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_10 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"contragents", "count":"5000"};
-    funcCommand(body_10, funcProcessGetContragents);
-    function funcProcessGetContragents(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("contragents_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_11 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"storages", "count":"5000"};
-    funcCommand(body_11, funcProcessGetStorages);
-    function funcProcessGetStorages(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("storages_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_12 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"5000"};
-    funcCommand(body_12, funcProcessGetStatuses);
-    function funcProcessGetStatuses(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("statuses_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_13 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statussn", "count":"5000"};
-    funcCommand(body_13, funcProcessGetStatussn);
-    function funcProcessGetStatussn(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("statussn_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_14 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statusdoc", "count":"5000"};
-    funcCommand(body_14, funcProcessGetStatusDoc);
-    function funcProcessGetStatusDoc(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("statusdoc_list", JSON.stringify(respobj.answ));
-    }
-
-    let body_15 = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000"};
-    funcCommand(body_15, funcProcessGetUsers);
-    function funcProcessGetUsers(result, respobj){
-        if( result === 0 ) return;
-        localStorage.setItem("users_list", JSON.stringify(respobj.answ));
     }
 }
 

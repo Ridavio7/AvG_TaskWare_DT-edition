@@ -1,0 +1,82 @@
+@import url(../../#common/common.styles.scss);
+
+.notification{
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    background-color: var(--background_second);
+    border-left: 5px solid var(--green);
+    box-shadow: 0 2px 10px var(--box-shadow);
+    padding: 15px 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+    max-width: 300px;
+    animation: slideIn 0.3s ease-out;
+    position: relative;
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 0.3s ease;
+
+    &-container{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        z-index: 1000;
+    }
+
+    &-title {
+        color: var(--font-color_active);
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    &-message {
+        font-size: 16px;
+        color: var(--font-color_active);
+    }
+
+    &-close {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 25px;
+        cursor: pointer;
+        color: var(--border);
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    &.hide{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    &.error{
+        border-left-color: var(--red);
+    }
+
+    &.warning{
+        border-left-color: var(--yellow);
+    }
+
+    &.info{
+        border-left-color: var(--expand-button-active);
+    }
+}
+
+.notification-container-entrance .notification{
+    background-color: #ffffff;
+}

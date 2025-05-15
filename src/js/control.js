@@ -24,6 +24,8 @@ import '../blocks/select/select.js';
 import '../blocks/select/_modal/select_modal.scss';
 /* модальные окна */
 import '../blocks/modal/modal.scss';
+import '../blocks/modal/__notification/modal__notification.scss';
+import '../blocks/modal/__notification/modal__notification.js';
 /* таблицы */
 import '../blocks/table/table.scss';
 

@@ -27,6 +27,8 @@ import '../blocks/select/_modal/select_modal.scss';
 /* модальные окна */
 import '../blocks/modal/modal.scss';
 import '../blocks/modal/__shipment/modal__shipment.js';
+import '../blocks/modal/__notification/modal__notification.scss';
+import '../blocks/modal/__notification/modal__notification.js';
 /* таблицы */
 import '../blocks/table/table.scss';
 
@@ -75,7 +77,7 @@ const funcGetUsers = () => {
 
 const funcProcessGetUsers = (result, respobj) => {
     if( result === 0 ) return;
-    console.log("Контрагенты:", respobj);
+    console.log("Пользователи:", respobj);
     let select_id = "mount_users";
 
     for (let key in respobj.answ) {
@@ -158,7 +160,7 @@ document.getElementById("mount_button").addEventListener("click", () => {
         body.prim        = prim;
         body.datetm      = `${date} ${time}`;
 
-        funcCommand(body, funcProcessOnlyInfo, funcFetchSucc);
+        funcCommand(body, funcProcessOnlyInfo);
 
         removeOptionsSetValue("mount_users", "Пользователи");
         funcGetUsers();
@@ -171,10 +173,6 @@ document.getElementById("mount_button").addEventListener("click", () => {
         document.getElementById("mount_time").value  = new Date().toLocaleTimeString();
     }
 })
-
-const funcFetchSucc = () => {
-    alert("Успешно отправлено!");
-}
 
 document.getElementById("mount_count_minus").addEventListener("click", () => {
     document.getElementById("mount_count").stepDown();

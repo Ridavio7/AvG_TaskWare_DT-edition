@@ -1,5 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect, togglePassword, validateForm} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
+import {showNotification} from '../__notification/modal__notification.js';
 import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 
 let user_modal  = document.getElementById("user_modal");
@@ -184,8 +185,9 @@ user_save.addEventListener("click", (evt) => {
 
             funcCommand(body1, funcProcessOnlyInfo);
             setTimeout(function(){funcGetUsers()}, 100);
+            showNotification('success', 'Успех!', 'Операция выполнена успешно.');
         } else {
-            console.log('Ошибка валидации полей!');
+            showNotification('error', 'Ошибка!', 'Произошла ошибка при выполнении.');
         }
     })
 

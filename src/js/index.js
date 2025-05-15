@@ -1,7 +1,7 @@
 import 'normalize.css';
 /* общие */
 import '../blocks/#common/common.styles.scss';
-import {funcCommand, togglePassword} from './common/common.js.js';
+import {funcCommand, togglePassword, responseProcessor} from './common/common.js.js';
 /* шапка */
 import '../blocks/header/header.scss';
 /* кнопки */
@@ -16,6 +16,9 @@ import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
 import '../blocks/input/__type-radio/input__type-radio.scss';
 import '../blocks/input/__type-file/input__type-file.scss';
+/* модальные окна */
+import '../blocks/modal/__notification/modal__notification.scss';
+import '../blocks/modal/__notification/modal__notification.js';
 
 import '../blocks/entrance/entrance.scss';
 
@@ -30,28 +33,11 @@ const handleFormSubmit = (event) => {
 
 const funcGetToken = (result, respobj) => {
     if( result === 0 ) return;
-    if(respobj.succ === 0){
-        alert('Ошибка авторизации!');
-    } else {
+    if(responseProcessor(respobj.succ) === true){
         localStorage.setItem('srtf', respobj.srtf);
-
-        funcGetUserInfo(respobj.uinuser);
+        localStorage.setItem('user_name', respobj.name);
+        window.location = 'tasks.html';
     }
-}
-
-const funcGetUserInfo = (uin) => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"1", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
-    funcCommand(body, funcProcessGetUserInfo);
-}
-
-const funcProcessGetUserInfo = (result, respobj) => {
-    if( result === 0 ) return;
-    console.log("Пользователь:", respobj);
-
-    let name = respobj.answ[0].name;
-    localStorage.setItem('user_name', name);
-    alert(`${name}, добро пожаловать на платформу TW! Вы успешно авторизованы!`)
-    window.location = 'tasks.html';
 }
 
 document.getElementById('logon').addEventListener('submit', handleFormSubmit);
