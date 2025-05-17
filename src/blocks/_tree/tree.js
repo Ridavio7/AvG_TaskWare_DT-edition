@@ -36,7 +36,9 @@ export class TreeBuilder {
     build(data) {
         this.container.innerHTML = '';
 
-        this.buildTree(data.children, this.container, 0);
+        const root_item = new Tree(data);
+        const root_branch = this.createBranch(root_item);
+        this.container.append(root_branch);
 
         if(this.options.includes("contextmenu")){this.contextMenu()} else {this.contextMenuDiv = null};
         if(this.options.includes("openall")){this.openFullTree()} else {null}
