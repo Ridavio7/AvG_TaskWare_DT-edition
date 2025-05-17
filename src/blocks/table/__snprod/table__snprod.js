@@ -9,6 +9,7 @@ export const funcGetSNProd = () => {
 const funcProcessGetSNProd = (result, respobj) => {
     if( result === 0 ) return;
     console.log("SNProd:", respobj);
+    
     let tb_id = "tb_products_SNProd";
     clearTable(tb_id);
 

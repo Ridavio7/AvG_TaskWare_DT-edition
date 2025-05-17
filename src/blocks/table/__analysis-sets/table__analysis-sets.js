@@ -54,8 +54,8 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellNPset  = newRow.insertCell(0); cellNPset.classList  = "td td__text_align_center";
-    let cellSNset  = newRow.insertCell(1); cellSNset.classList  = "td td__text_align_center";
+    let cellSNset  = newRow.insertCell(0); cellSNset.classList  = "td td__text_align_center";
+    let cellNPset  = newRow.insertCell(1); cellNPset.classList  = "td td__text_align_center";
     let cellname   = newRow.insertCell(2); cellname.classList   = "td";
     let cellcomp   = newRow.insertCell(3);
     let cellstatus = newRow.insertCell(4); cellstatus.classList = "td td__text_align_center";

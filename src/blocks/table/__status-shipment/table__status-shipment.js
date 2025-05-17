@@ -8,6 +8,7 @@ export const funcGetStatuses = () => {
 const funcProcessGetStatuses = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Статусы:", respobj);
+    
     let tb_id = "tb_statuses_shipment";
     clearTable(tb_id);
 

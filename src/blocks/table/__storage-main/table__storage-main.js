@@ -1,6 +1,6 @@
 import {funcCommand, clearTableAll, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {funcInfoProductOpenModal, funcProcessInfoProductsModalAdd} from '../../modal/__info-prod/modal__info-prod.js';
-import {funcInfoProductsTransferOpenModal} from '../../modal/__transfer-prod/modal__transfer-prod.js';
+import {funcInfocatPTransferOpenModal} from '../../modal/__transfer-prod/modal__transfer-prod.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let uinCatc = null;
@@ -14,7 +14,7 @@ const funcProcessGetProductsTree = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Дерево:", respobj);
 
-    const tree = new TreeBuilder('tree_storage_main', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfoProductsTransferOpenModal, ["contextmenu", "openall"]);
+    const tree = new TreeBuilder('tree_storage_main', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfocatPTransferOpenModal, ["contextmenu", "openall"]);
     tree.build(respobj.answ);
     let node = tree.get();
     uinCatc = node.getAttribute('data-id');
