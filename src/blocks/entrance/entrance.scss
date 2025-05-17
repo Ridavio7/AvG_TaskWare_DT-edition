@@ -5,7 +5,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #2a2a2c url('../entrance/img/entrance_logo.svg') no-repeat 50% / 50% 98%;
+        background: #2a2a2c url('../entrance/img/entrance_logo.svg') no-repeat center / contain;
         color: #ffffff;
         font-family: "Roboto", sans-serif;
         font-size: 16px;
@@ -23,7 +23,7 @@
         flex-direction: column;
         padding: 30px 150px;
         background-color: #2a2a2c;
-        box-shadow: 0px 0px 60px -10px #000000;
+        box-shadow: 0px 0px 60px -10px #212121;
         border-radius: 30px;
     }
 
@@ -83,7 +83,7 @@
     &__button{
         background: linear-gradient(to right, #154A7B, #2687E1, #154A7B);
         background-size: 200% auto;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 4px 8px #212121;
         transition: background-position 0.5s;
         color: #ffffff;
         width: 260px;
@@ -103,7 +103,7 @@
 
         &:active {
             transform: scale(0.98);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px #212121;
         }
     }
 }

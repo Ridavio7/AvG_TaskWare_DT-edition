@@ -28,7 +28,7 @@
         }
 
         &_active{
-            background-color: var(--green);
+            background-color: var(--green_hover);
         }
     }
 
@@ -36,7 +36,7 @@
         background-color: inherit;
 
         &:hover{
-            background-color: var(--red);
+            background-color: var(--red_hover);
         }
 
         &_active{
