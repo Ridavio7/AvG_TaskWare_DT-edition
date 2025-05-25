@@ -8,6 +8,8 @@ let span_info_product             = document.getElementById("info_product_close"
 let input_info_product_name_title = document.getElementById("info_product_name_title");
 let input_info_product_name       = document.getElementById("info_product_name");
 let select_info_product_color     = document.getElementById("info_product_color");
+let input_info_product_train      = document.getElementById("info_product_train");
+let select_info_product_type      = document.getElementById("info_product_type");
 let chb_info_product_fship        = document.getElementById("info_product_fship");
 let tb_info_product_prod          = document.getElementById("tb_info_product_prod");
 let tb_info_product_comp          = document.getElementById("tb_info_product_comp");
@@ -35,16 +37,17 @@ span_info_product.onclick = function(){
 dragElement(modal_info_product);
 
 /* открытие модального окна */
-export const funcInfoProductOpenModal = (uin) => {
+export const funcInfoProductOpenModal = (uin, fset) => {
     modal_info_product.style.display = "block";
 
-    funcGetProductInfo(uin);
-    setTimeout(function(){funcGetProductViewInside(uin)}, 100);
+    funcGetProductInfo(uin, fset);
+    setTimeout(function(){funcGetProductViewInside(uin, fset)}, 100);
 }
 
 /* инфо о комплектующем в модальном окне */
-export const funcGetProductInfo = (uin) => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view","obj":"products", "count":"1", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
+export const funcGetProductInfo = (uin, fset) => {
+    let type = fset == 0 ? "products" : "sets";
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":`${type}`, "count":"1", "sort":"uin", "filt":`[{"fld":"uin","val":["${uin}"]}]`};
     funcCommand(body, funcProcessGetProductInfo);
 }
 
@@ -53,16 +56,18 @@ const funcProcessGetProductInfo = (result, respobj) => {
     console.log("Изделие ИНФО:", respobj);
 
     while (select_info_product_color.options.length) {select_info_product_color.options[0] = null};
+    input_info_product_train.value = '';
 
     for (let key in respobj.answ){
         let obj       = respobj.answ[key];
         let name      = obj.name;
-        let colorName = obj.color.name === '' ? '---' : obj.color.name;
-        let colorUin  = obj.color.uin;
+        let dopName   = obj.dopname;
+        let dopUin    = obj.dopuin;
         let fship     = obj.fship;
         let uin       = obj.uin;
         let uincat    = obj.uincat;
-        addProductInfo(name, colorName, colorUin, fship, uin, uincat);
+        let fset      = obj.fset;
+        addProductInfo(name, dopName, dopUin, fship, uin, uincat, fset);
     }
 
     setTimeout(() => {
@@ -72,31 +77,47 @@ const funcProcessGetProductInfo = (result, respobj) => {
     }, 500)
 }
 
-const addProductInfo = (name, colorName, colorUin, fship, uin, uincat) => {
+const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
     input_info_product_name_title.innerHTML = name;
     input_info_product_name.value           = name;
 
-    addToDropdownOneOption(select_info_product_color, colorName, colorUin);
+    addToDropdownOneOption(select_info_product_color, dopName, dopUin);
     addToDropdown(select_info_product_color, "colors_list");
+    input_info_product_train.value = dopName;
 
     chb_info_product_fship.checked = fship === 1 ? true : false;
 
-    select_info_product_color.parentElement.style.display          = "block";
-    tb_info_product_prod.parentElement.parentElement.style.display = "block";
-    tb_info_product_comp.parentElement.parentElement.style.display = "block";
+    if(fset == 0){
+        select_info_product_color.parentElement.classList.remove("modal__input-wrapper_display-none");
+        input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
+    } else {
+        select_info_product_color.parentElement.classList.add("modal__input-wrapper_display-none");
+        input_info_product_train.parentElement.classList.remove("modal__input-wrapper_display-none");
+    }
+    
+    select_info_product_type.parentElement.classList.add("modal__input-wrapper_display-none");
+    tb_info_product_prod.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+    tb_info_product_comp.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
 
     button_info_product_save.value         = uin;
     button_info_product_save.name          = uincat;
+    button_info_product_save.setAttribute("data-value", fset)
     button_info_product_save.style.display = "flex";
     button_info_product_add.style.display  = "none";
 }
 
 button_info_product_save.onclick = (elem) => {
     inputIsChange  = false;
+    let type = button_info_product_save.getAttribute("data-value");
+    let name = input_info_product_name.value;
+    let dopC = select_info_product_color.value;
+    let dopM = input_info_product_train.value;
 
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":"", "uincat":`${elem.target.name}`};
-    body.name = input_info_product_name.value;
+    let body = type == 0 ?
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopuin":`${dopC}`} :
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"sets", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopname":`${dopM}`};
 
+    console.log(body)
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){
         let button_control_update_prod = document.querySelectorAll(".button__control_update_formula-product-innprod");
@@ -113,26 +134,32 @@ export const funcProcessInfoProductsModalAdd = () => {
 
     input_info_product_name_title.innerHTML = "";
     input_info_product_name.value           = "";
-    chb_info_product_fship.parentElement.style.display  = "none";
+    chb_info_product_fship.parentElement.classList.add("modal__input-wrapper_display-none");
 
     removeOptionsSetValue("info_product_color", "---");
     addToDropdown(select_info_product_color, "colors_list");
 
-    select_info_product_color.parentElement.style.display          = "none";
-    tb_info_product_prod.parentElement.parentElement.style.display = "none";
-    tb_info_product_comp.parentElement.parentElement.style.display = "none";
+    select_info_product_type.parentElement.classList.remove("modal__input-wrapper_display-none");
+    select_info_product_color.parentElement.classList.add("modal__input-wrapper_display-none");
+    input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
+    tb_info_product_prod.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    tb_info_product_comp.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
 
     button_info_product_add.style.display  = "flex";
     button_info_product_save.style.display = "none";
 }
 
 button_info_product_add.onclick = (elem) => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"products", "name":"", "uincat":`${elem.target.value}`};
+    let name = input_info_product_name.value;
+    let type = select_info_product_type.value;
 
-    if(input_info_product_name.value === ""){
+    let body = type == 0 ?
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"products", "name":`${name}`, "uincat":`${elem.target.value}`} :
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"sets", "name":`${name}`, "uincat":`${elem.target.value}`};
+
+    if(name === "" || type === " "){
         alert("Вы не заполнили все поля!");
     } else {
-        body.name = input_info_product_name.value;
 
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetProductsTree()}, 100);

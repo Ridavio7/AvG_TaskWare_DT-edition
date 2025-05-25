@@ -857,8 +857,9 @@
                                 <thead class="thead">
                                     <tr class="tr">
                                         <td class="td td_active">Инфо</td>
-                                        <td class="td td_active">Отгружаемое</td>
-                                        <td class="td td_active">Изделие</td>
+                                        <td class="td td_active">Отгр.</td>
+                                        <td class="td td_active">Тип</td>
+                                        <td class="td td_active">Комплект/Изделие</td>
                                         <td class="td td_active"></td>
                                     </tr>
                                 </thead>
@@ -1529,11 +1530,23 @@
                         </div>
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="info_product_color">Цвет:</label>
-                            <select class="select select_modal" id="info_product_color" disabled></select>
+                            <select class="select select_modal" id="info_product_color"></select>
+                        </div>
+                        <div class="modal__input-wrapper">
+                            <label class="input__type-text__label" for="info_product_train">Вагон:</label>
+                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_train" value="">
                         </div>
                         <div class="modal__input-wrapper">
                             <input class="checkbox" type="checkbox" id="info_product_fship" disabled>
                             <label for="info_product_fship">Отгружаемое</label>
+                        </div>
+                        <div class="modal__input-wrapper">
+                            <label class="input__type-text__label" for="info_product_type">Тип:</label>
+                            <select class="select select_modal" id="info_product_type">
+                                <option value=" ">---</option>
+                                <option value="0">Изделие</option>
+                                <option value="1">Комплект</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal__table-wrapper-info-prod">
@@ -1655,8 +1668,9 @@
                             <thead class="thead">
                                 <tr class="tr">
                                     <td class="td td_active"></td>
-                                    <td class="td td_active">Отгружаемое</td>
-                                    <td class="td td_active">Изделие</td>
+                                    <td class="td td_active">Отгр.</td>
+                                    <td class="td td_active">Тип</td>
+                                    <td class="td td_active">Комплект/Изделие</td>
                                     <td class="td td_active"></td>
                                 </tr>
                             </thead>

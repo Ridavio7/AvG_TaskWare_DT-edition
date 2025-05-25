@@ -6,7 +6,7 @@ import {TreeBuilder} from '../../_tree/tree.js';
 let uinCatc = null;
 
 export const funcGetProductsTree = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
     funcCommand(body, funcProcessGetProductsTree);
 }
 
@@ -35,7 +35,7 @@ const funcProcessGetProducts = (result, respobj) => {
 
     let table = document.getElementById(tb_id);
     let row_head   = table.insertRow(-1);
-    row_head.innerHTML = `<tr><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
+    row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
 
     document.getElementById("button_info_product_add").value = uinCatc;
 
@@ -43,9 +43,10 @@ const funcProcessGetProducts = (result, respobj) => {
         let set   = respobj.answ[key];
         let name  = set.name;
         let fship = set.fship;
+        let fset  = set.fset;
         let del   = set.del;
         let uin   = set.uin;
-        addProducts(name, fship, del, uin, tb_id);
+        addProducts(name, fship, fset, del, uin, tb_id);
     }
 
     // функция удаления
@@ -67,7 +68,7 @@ const funcProcessGetProducts = (result, respobj) => {
     let button_modal = document.querySelectorAll(".button__control_modal-product");
     button_modal.forEach((elem) => {
         elem.addEventListener("click", () => {
-            funcInfoProductOpenModal(elem.value);
+            funcInfoProductOpenModal(elem.value, elem.name);
         })
     })
 
@@ -84,19 +85,21 @@ const funcProcessGetProducts = (result, respobj) => {
     })
 }
 
-const addProducts = (name, fship, del, uin, tb_id) => {
+const addProducts = (name, fship, fset, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo  = newRow.insertCell(0); cellInfo.classList   = "td";
-    let cellFship = newRow.insertCell(1); cellFship.classList  = "td";
-    let cellName  = newRow.insertCell(2); cellName.classList   = "td";
-    let cellBtn   = newRow.insertCell(3); cellBtn.classList    = "td";
+    let cellInfo  = newRow.insertCell(0); cellInfo.classList  = "td";
+    let cellFship = newRow.insertCell(1); cellFship.classList = "td";
+    let cellType  = newRow.insertCell(2); cellType.classList  = "td";
+    let cellName  = newRow.insertCell(3); cellName.classList  = "td";
+    let cellBtn   = newRow.insertCell(4); cellBtn.classList   = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-product" value="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-product" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
     fship === 1 ? cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_${uin}" disabled checked><label for="chb_fship_${uin}"></label>` : 
                     cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_${uin}" disabled><label for="chb_fship_${uin}"></label>`;
+    cellType.innerHTML = fset === 1 ? "Комлект" : "Изделие";
     cellName.innerHTML = `${name}`;
     cellName.id = `product_name_${uin}`;
 

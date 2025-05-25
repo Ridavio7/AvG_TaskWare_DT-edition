@@ -6,11 +6,14 @@ import {funcFoundOneComponent} from '../__comp-found/table__comp-found.js';
 let button__control_add_prod = document.getElementById('button__control_info_product_add_prod');
 let button__control_add_comp = document.getElementById('button__control_info_product_add_comp');
 
-let uinMainProd  = null;
-let nameMainProd = null;
+let uinMainProd = null;
+let uinMainSet  = null;
+let fsetMain    = null;
 
-export const funcGetProductViewInside = (uin) => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":"formula_products", "uinproduct":`${uin}`};
+export const funcGetProductViewInside = (uin, fset) => {
+    let obj = fset == 0 ? "formula_products" : "formula_sets";
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":`${obj}`};
+    if(fset == 0){body.uinproduct = `${uin}`} else {body.uinset = `${uin}`}
     funcCommand(body, funcProcessGetProductViewInside);
 }
 
@@ -18,14 +21,14 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     if( result === 0 ) return;
     console.log("viewInside:", respobj);
 
-    uinMainProd  = respobj.uinprod;
-    nameMainProd = respobj.nameprod;
-
-    button__control_add_prod.value = uinMainProd;
-    button__control_add_comp.value = uinMainProd;
+    uinMainProd = respobj.uinprod;
+    uinMainSet  = respobj.uinset;
+    fsetMain    = respobj.fset;
+    let fset    = respobj.fset;
 
     let tb_id_prod = 'tb_info_product_prod';
     clearTable(tb_id_prod)
+
     for (let key in respobj.insP){
         let obj    = respobj.insP[key];
         let namepr = obj.namepr;
@@ -33,14 +36,15 @@ const funcProcessGetProductViewInside = (result, respobj) => {
         let count  = obj.count;
         let uin    = obj.uin;
         let del    = obj.del;
-        addProducts(namepr, uinpr, count, uin, del, tb_id_prod);
+        addProducts(namepr, uinpr, count, fset, uin, del, tb_id_prod);
     }
 
     /* функция удаления */
     let button_control_mdel_product = document.querySelectorAll(".button__control_mdel_formula-product-innprod");
     button_control_mdel_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
+            let obj   = elem.name == 0 ? "formula_products" : "formula_sets";
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${obj}`, "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -56,16 +60,20 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     let button_control_update_product = document.querySelectorAll(".button__control_update_formula-product-innprod");
     button_control_update_product.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_products", "innprod":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
+            let uin  = elem.name == 0 ? uinMainProd : uinMainSet;
+            let body = elem.name == 0 ?
+            {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "innprod":"", "count":"", "uin":`${elem.value}`} :
+            {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_sets", "uinset":`${uinMainSet}`, "uinproduct":"", "count":"", "uin":`${elem.value}`};
 
             let target_table = tb_info_product_prod;
             
-            body.innprod = document.getElementById(`formula_product_select_innprod_${elem.value}`).value;
-            body.count = findForUpdateInput(`formula_product_innprod_count_${elem.value}`, target_table);
-        
+            body.innprod    = document.getElementById(`formula_product_select_innprod_${elem.value}`).value;
+            body.uinproduct = document.getElementById(`formula_product_select_innprod_${elem.value}`).value;
+            body.count      = findForUpdateInput(`formula_product_innprod_count_${elem.value}`, target_table);
+            
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
-            setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+            setTimeout(function(){funcGetProductViewInside(uin, elem.name)}, 100);
         })
     })
 
@@ -82,6 +90,8 @@ const funcProcessGetProductViewInside = (result, respobj) => {
         })
     })
 
+//////////////////////////////////////////////////////////////////////////////
+
     let tb_id_comp = 'tb_info_product_comp';
     clearTable(tb_id_comp)
     for (let key in respobj.insC){
@@ -90,14 +100,15 @@ const funcProcessGetProductViewInside = (result, respobj) => {
         let uinType   = obj.type;
         let countType = obj.typecount;
         let typeArr   = obj.typearr;
-        addComponentsType(nameType, uinType, countType, typeArr, tb_id_comp);
+        addComponentsType(nameType, uinType, countType, typeArr, fset, tb_id_comp);
     }
 
     /* функция удаления */
     let button_control_mdel_comp = document.querySelectorAll(".button__control_mdel_formula-product-componenet");
     button_control_mdel_comp.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"formula_products", "uin":`${elem.value}`};
+            let obj   = elem.name == 0 ? "formula_products" : "formula_sets";
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${obj}`, "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -113,7 +124,10 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     let button_control_update_comp = document.querySelectorAll(".button__control_update_formula-product-componenet");
     button_control_update_comp.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_products", "uincompont":"", "uinproduct":`${uinMainProd}`, "count":"",  "uin":`${elem.value}`};
+            let uin  = elem.name == 0 ? uinMainProd : uinMainSet;
+            let body = elem.name == 0 ?
+            {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_products", "uincompont":`${uinMainProd}`, "innprod":"", "count":"", "uin":`${elem.value}`} :
+            {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"formula_sets", "uinset":`${uinMainSet}`, "uincompont":"", "count":"", "uin":`${elem.value}`};
 
             let target_table = tb_info_product_comp;
             
@@ -122,7 +136,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
         
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
-            setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+            setTimeout(function(){funcGetProductViewInside(uin, elem.name)}, 100);
         })
     })
 
@@ -141,7 +155,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
 }
 
 /* таблица изделия */
-const addProducts = (namepr, uinpr, count, uin, del, tb_id_prod) => {
+const addProducts = (namepr, uinpr, count, fset, uin, del, tb_id_prod) => {
     let tableRef = document.getElementById(tb_id_prod);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
@@ -154,12 +168,15 @@ const addProducts = (namepr, uinpr, count, uin, del, tb_id_prod) => {
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="formula_product_innprod_count_${uin}">`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-innprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-innprod${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-innprod" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-innprod${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 /* добавление изделия */
-button__control_add_prod.addEventListener("click", () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "innprod":"", "count":""};
+button__control_add_prod.onclick = () => {
+    let uin  = fsetMain == 0 ? uinMainProd : uinMainSet;
+    let body = fsetMain == 0 ? 
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "innprod":"", "count":""} : 
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_sets", "uinset":`${uinMainSet}`, "uinproduct":"", "count":"" };
 
     let innprod_value = document.getElementById("button_info_product_add_prod");
     let count_value   = document.getElementById("input_info_product_add_prod");
@@ -167,20 +184,23 @@ button__control_add_prod.addEventListener("click", () => {
     if(innprod_value.value === "" || count_value.value === ""){
         alert("Вы не заполнили все поля!");
     } else {
-        body.innprod = innprod_value.value;
+        body.innprod    = innprod_value.value;
+        body.uinproduct = innprod_value.value;
         body.count      = count_value.value;
     
         innprod_value.innerText = "Выберите изделие";
-        innprod_value.value = "";
-        count_value.value = "";
+        innprod_value.value     = "";
+        count_value.value       = "";
+        
+        console.log(body)
     
         funcCommand(body, funcProcessOnlyInfo);
-        setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+        setTimeout(function(){funcGetProductViewInside(uin, fsetMain)}, 100);
     }
-})
+}
 
 /* таблица комлпектующего */
-const addComponentsType = (nameType, uinType, countType, typeArr, tb_id_comp) => {
+const addComponentsType = (nameType, uinType, countType, typeArr, fset, tb_id_comp) => {
     let tableRef = document.getElementById(tb_id_comp);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
@@ -199,11 +219,11 @@ const addComponentsType = (nameType, uinType, countType, typeArr, tb_id_comp) =>
         let count       = obj.count;
         let uin         = obj.uin;
         let del         = obj.del;
-        addComponents(nameCompont, uinCompont, count, uin, del, tb_id_comp);
+        addComponents(nameCompont, uinCompont, count, fset, uin, del, tb_id_comp);
     }
 }
 
-const addComponents = (nameCompont, uinCompont, count, uin, del, tb_id_comp) => {
+const addComponents = (nameCompont, uinCompont, count, fset, uin, del, tb_id_comp) => {
     let tableRef = document.getElementById(tb_id_comp);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
@@ -217,12 +237,15 @@ const addComponents = (nameCompont, uinCompont, count, uin, del, tb_id_comp) => 
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="formula_product_componenet_count_${uin}">`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-componenet" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-componenet${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-componenet" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-componenet${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 /* добавление комлпектующего */
-button__control_add_comp.addEventListener("click", () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "uincompont":"", "count":""};
+button__control_add_comp.onclick = () => {
+    let uin  = fsetMain == 0 ? uinMainProd : uinMainSet;
+    let body = fsetMain == 0 ? 
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_products", "uinproduct":`${uinMainProd}`, "uincompont":"", "count":""} : 
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"formula_sets", "uinset":`${uinMainSet}`, "uincompont":"", "count":"" };
 
     let uincompont_value = document.getElementById("button_info_product_add_comp");
     let count_value      = document.getElementById("input_info_product_add_comp");
@@ -234,10 +257,10 @@ button__control_add_comp.addEventListener("click", () => {
         body.count      = count_value.value;
     
         uincompont_value.innerText = "Выберите комплектующее";
-        uincompont_value.value = "";
-        count_value.value = "";
+        uincompont_value.value     = "";
+        count_value.value          = "";
     
         funcCommand(body, funcProcessOnlyInfo);
-        setTimeout(function(){funcGetProductViewInside(uinMainProd)}, 100);
+        setTimeout(function(){funcGetProductViewInside(uin, fsetMain)}, 100);
     }
-})
+}

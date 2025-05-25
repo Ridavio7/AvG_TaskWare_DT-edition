@@ -41,7 +41,7 @@ function funcProcessGetProductsSelect(result, respobj){
     
     let tableRef       = document.getElementById(tb_id);
     let row_head       = tableRef.insertRow(0);
-    row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
+    row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
 
     let button_control_add_prod_tree = document.querySelector(".button__control_add-prod-select");
     button_control_add_prod_tree.addEventListener("click", () => {
@@ -52,9 +52,10 @@ function funcProcessGetProductsSelect(result, respobj){
         let set    = respobj.answ[key];
         let name  = set.name;
         let fship = set.fship;
+        let fset  = set.fset;
         let del   = set.del;
         let uin   = set.uin;
-        addProductsSelect(name, fship, del, uin, tb_id);
+        addProductsSelect(name, fship, fset, del, uin, tb_id);
     }
 
     let button_control_select_product = document.querySelectorAll(".button__control_select-product");
@@ -74,15 +75,16 @@ function funcProcessGetProductsSelect(result, respobj){
     })
 }
 
-function addProductsSelect(name, fship, del, uin, tb_id){
+function addProductsSelect(name, fship, fset, del, uin, tb_id){
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
     let cellSelect = newRow.insertCell(0); cellSelect.classList = "td";
     let cellFship  = newRow.insertCell(1); cellFship.classList  = "td";
-    let cellName   = newRow.insertCell(2); cellName.classList   = "td";
-    let cellBtn    = newRow.insertCell(3); cellBtn.classList    = "td";
+    let cellType   = newRow.insertCell(2); cellType.classList  = "td";
+    let cellName   = newRow.insertCell(3); cellName.classList   = "td";
+    let cellBtn    = newRow.insertCell(4); cellBtn.classList    = "td";
 
     del != 0 ?
         cellSelect.innerHTML = `<button class="button__control" disabled><img class="button__control__img" src="assets/images/plus.svg" alt=""></button>` :
@@ -90,7 +92,7 @@ function addProductsSelect(name, fship, del, uin, tb_id){
 
     fship === 1 ? cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_select_${uin}" disabled checked><label for="chb_fship_select_${uin}"></label>` : 
                     cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_select_${uin}" disabled><label for="chb_fship_select_${uin}"></label>`;
-
+    cellType.innerHTML = fset === 1 ? "Комлект" : "Изделие";
     cellName.innerHTML = `${name}`;
     cellName.id = `select_product_name_${uin}`;
 
