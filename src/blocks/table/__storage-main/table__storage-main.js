@@ -35,7 +35,7 @@ const funcProcessGetProducts = (result, respobj) => {
 
     let table = document.getElementById(tb_id);
     let row_head   = table.insertRow(-1);
-    row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
+    row_head.innerHTML = `<tr><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree" value="${uinCatc}">Создать</button></td></tr>`;
 
     document.getElementById("button_info_product_add").value = uinCatc;
 

@@ -73,13 +73,11 @@ const addPropsRow = (name, del, uin, meas, uinmeas, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td__text_align_center";
-    let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
-    let cellMeas = newRow.insertCell(2); cellMeas.classList = "td td__text_align_center";
-    let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
+    let cellName = newRow.insertCell(0); cellName.classList = "td td__text_align_center td_nowrap-content";
+    let cellMeas = newRow.insertCell(1); cellMeas.classList = "td td__text_align_center";
+    let cellBtn  = newRow.insertCell(2); cellBtn.classList  = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-enums" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
-    cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="props_name_${uin}">`;
+    cellName.innerHTML = `<button class="button__control button__control_modal-enums" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button><input class="input__type-text" type="text" value="${name}" name="props_name_${uin}">`;
     makeSelect("props_select_", uin, meas, uinmeas, "meas_list", "select", cellMeas);
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
