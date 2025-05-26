@@ -39,6 +39,10 @@ import {funcGetRights} from '../blocks/table/__users-rights/table__users-rights.
 /* настройки */
 import {funcGetSysopt} from '../blocks/table/__settings-server/table__settings-server.js';
 
+/* шаблоны */
+import {funcGetContents} from '../blocks/table/__template-task-contents/table__template-task-contents.js';
+import {funcGetStartstep} from '../blocks/table/__template-task-startstep/table__template-task-startstep.js';
+
 window.onload = function(){
     returnTabsBuisness();
 }
@@ -69,3 +73,6 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_users_rights"),
 
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_server"), funcGetSysopt);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user"), '');
+
+addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_contents"), funcGetContents);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_startstep"), funcGetStartstep);

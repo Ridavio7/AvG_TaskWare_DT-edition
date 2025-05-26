@@ -213,8 +213,69 @@
 
             </div>
         </div>
+        <!-- шаблоны -->
         <div class="sidebar__tabcontent" id="template_task">
-            <p>Шаблоны задач</p>
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#template_task/template_task_shablons"><button class="button__tab__first button__tab__first_template_task_shablons"><img class="button__tab__first__img" src="../blocks/sidebar/img/template_task.svg">Шаблоны задач</button></a>
+                <a href="#template_task/template_task_contents"><button class="button__tab__first button__tab__first_template_task_contents"><img class="button__tab__first__img" src="../blocks/sidebar/img/template_task.svg">Контенты задач</button></a>
+                <a href="#template_task/template_task_startstep"><button class="button__tab__first button__tab__first_template_task_startstep"><img class="button__tab__first__img" src="../blocks/sidebar/img/template_task.svg">Типы запуска</button></a>
+            </div>
+            <!-- шаблоны -->
+            <div id="template_task/template_task_shablons" class="sidebar__tabcontent__container">
+
+            </div>
+            <!-- контенты -->
+            <div id="template_task/template_task_contents" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_contents">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_contents">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contents"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-contents"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- типы запуска шаго задач -->
+            <div id="template_task/template_task_startstep" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_startstep">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_startstep">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_startstep"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-startstep"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="sidebar__tabcontent" id="control_task">
             <p>Контроль задач</p>
