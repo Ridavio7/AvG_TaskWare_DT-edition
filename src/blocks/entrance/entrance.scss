@@ -12,8 +12,8 @@
     }
 
     &__title{
-        font-weight: 600;
-        font-size: 22px;
+        filter: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
+        -webkit-filter: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
         margin-bottom: 40px;
     }
 
