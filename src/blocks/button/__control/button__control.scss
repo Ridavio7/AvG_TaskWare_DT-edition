@@ -11,6 +11,9 @@
     cursor: pointer;
     margin-right: 5px;
     transition: 0.3s;
+    color: var(--font-color);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
 
     &:disabled{
         cursor: no-drop;

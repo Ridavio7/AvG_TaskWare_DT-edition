@@ -29,7 +29,6 @@
     background-color: var(--background_second);
     margin: auto;
     padding: 0px 10px;
-    padding-top: 10px;
     border: 1px solid var(--blue);
     border-top: none;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
@@ -71,6 +70,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 5px 0px;
 
     &_center{
       margin: 0px 25px;

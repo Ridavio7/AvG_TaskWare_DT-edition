@@ -2,6 +2,7 @@ import {funcCommand, removeOptionsSetValue, addToDropdown, addToDropdownOneOptio
 import {dragElement} from '../modal.js';
 import {funcGetProductsTree} from '../../table/__storage-main/table__storage-main.js';
 import {funcGetProductViewInside} from '../../table/__products-viewInside/table__products-viewInside.js';
+import {funcInfoTcardprodsOpenModal} from '../__tcardprods/modal__tcardprods.js';
 
 let modal_info_product            = document.getElementById("modal_info_product");
 let span_info_product             = document.getElementById("info_product_close");
@@ -10,6 +11,7 @@ let input_info_product_name       = document.getElementById("info_product_name")
 let select_info_product_color     = document.getElementById("info_product_color");
 let input_info_product_train      = document.getElementById("info_product_train");
 let select_info_product_type      = document.getElementById("info_product_type");
+let button_info_product_tcard     = document.getElementById("info_product_tcardprods");
 let chb_info_product_fship        = document.getElementById("info_product_fship");
 let tb_info_product_prod          = document.getElementById("tb_info_product_prod");
 let tb_info_product_comp          = document.getElementById("tb_info_product_comp");
@@ -89,9 +91,11 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
 
     if(fset == 0){
         select_info_product_color.parentElement.classList.remove("modal__input-wrapper_display-none");
+        button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
     } else {
         select_info_product_color.parentElement.classList.add("modal__input-wrapper_display-none");
+        button_info_product_tcard.parentElement.classList.add("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.remove("modal__input-wrapper_display-none");
     }
     
@@ -99,11 +103,16 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
     tb_info_product_prod.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
     tb_info_product_comp.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
 
+    button_info_product_tcard.value        = uin;
     button_info_product_save.value         = uin;
     button_info_product_save.name          = uincat;
     button_info_product_save.setAttribute("data-value", fset)
     button_info_product_save.style.display = "flex";
     button_info_product_add.style.display  = "none";
+}
+
+button_info_product_tcard.onclick = (elem) => {
+    funcInfoTcardprodsOpenModal(elem.target.value);
 }
 
 button_info_product_save.onclick = (elem) => {
