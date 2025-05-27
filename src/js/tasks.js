@@ -42,7 +42,7 @@ window.onload = function(){
     funcGetUsers();
     funcGetProductpp();
 
-    document.getElementById("link_shipment").click();
+    document.querySelector(".shipment").click();
 
     document.getElementById("mount_date").value = new Date().toISOString().split('T')[0];
     document.getElementById("mount_time").value = new Date().toLocaleTimeString();

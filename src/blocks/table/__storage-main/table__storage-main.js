@@ -1,6 +1,6 @@
 import {funcCommand, clearTableAll, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {funcInfoProductOpenModal, funcProcessInfoProductsModalAdd} from '../../modal/__info-prod/modal__info-prod.js';
-import {funcInfocatPTransferOpenModal} from '../../modal/__transfer-prod/modal__transfer-prod.js';
+import {funcInfocatPTransferOpenModal, funcInfoProductsTransferOpenModal} from '../../modal/__transfer-prod/modal__transfer-prod.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let uinCatc = null;

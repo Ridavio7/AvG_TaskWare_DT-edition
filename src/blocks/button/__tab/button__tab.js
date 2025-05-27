@@ -12,6 +12,6 @@ button_tab_first.forEach((elem) => {
             tablinks_2[i].className += " button__tab__first_active";
         }
     
-        localStorage.setItem("buisness_tabcontent_tab_active", elem.classList[1]);
+        localStorage.setItem("tabcontent_tab_active", elem.classList[1]);
     })
 });

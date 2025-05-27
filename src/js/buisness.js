@@ -40,7 +40,7 @@ import '../blocks/table/table.scss';
 import '../blocks/carousel/carousel.scss';
 import '../blocks/carousel/carousel.js';
 
-import {addEventButtonTab} from '../js/common/common.js.js';
+import {addEventButtonTab, returnTabs} from '../js/common/common.js.js';
 
 /* Отгрузка */
 import {funcGetGrfShipSets} from '../blocks/table/__schedule/table__schedule.js';
@@ -99,39 +99,15 @@ import {funcGetStorages} from '../blocks/table/__storages/table__storages.js';
 /* статусы */
 
 
-
 window.onload = function(){
     updateDirectory();
     funcGetShipProductsAll();
-    returnTabsBuisness();
-}
-
-const returnTabsBuisness = () => {
-    let sidebar_tab_first_active = document.getElementById(localStorage.getItem("buisness_sidebar_tab_first_active"));
-    sidebar_tab_first_active.click();
-    if(sidebar_tab_first_active.className.includes("sidebar__link_no-child")){localStorage.removeItem("buisness_sidebar_tab_second_active"); /*localStorage.removeItem("buisness_tabcontent_tab_active")*/};
-
-    let sidebar_tab_second_active = document.getElementById(localStorage.getItem("buisness_sidebar_tab_second_active"));
-    if(sidebar_tab_second_active != null){
-        sidebar_tab_second_active.parentElement.parentElement.previousElementSibling.click();
-        sidebar_tab_second_active.click();
-
-        if(sidebar_tab_second_active.className.includes("sidebar__menu__link_no-child")){localStorage.removeItem("buisness_tabcontent_tab_active")};
-    
-        //let buisness_sidebar_arrow_active = localStorage.getItem("buisness_sidebar_arrow_active");
-        //document.getElementById(buisness_sidebar_arrow_active).className += " sidebar__wrapper_menu-visibale";
-    }
-
-    //document.getElementById("sidebar_tablink_6").className += " sidebar__wrapper_menu-visibale";
-
-    let tabcontent_tab_active = document.getElementsByClassName(localStorage.getItem("buisness_tabcontent_tab_active"));
-    tabcontent_tab_active[0].click();
+    returnTabs();
 }
 
 const updateDirectory = () => {
     const user = localStorage.getItem('srtf');
     const requests = [
-        { obj: "sets", callback: processSets, sort: null },
         { obj: "products", callback: processResponse("products") },
         { obj: "colors", callback: processResponse("colors") },
         { obj: "verapp", callback: processResponse("verapp") },
@@ -164,22 +140,6 @@ const updateDirectory = () => {
             if (result === 0) return;
             localStorage.setItem(`${storageKey}_list`, JSON.stringify(respobj.answ));
         };
-    }
-
-    function processSets(result, respobj) {
-        if (result === 0) return;
-        localStorage.setItem("sets_list", JSON.stringify(respobj.answ));
-        
-        const model_tain_nf = [];
-        for (const key in respobj.answ) {
-            const set = respobj.answ[key];
-            if (set.del === 0) {
-                model_tain_nf.push(set.model_train);
-            }
-        }
-        
-        const model_train = Array.from(new Set(model_tain_nf.map(model => JSON.stringify(model)))).map(model => JSON.parse(model));
-        localStorage.setItem("model_train", JSON.stringify(model_train));
     }
 }
 

@@ -43,28 +43,10 @@ import {funcGetSysopt} from '../blocks/table/__settings-server/table__settings-s
 import {funcGetContents} from '../blocks/table/__template-task-contents/table__template-task-contents.js';
 import {funcGetStartstep} from '../blocks/table/__template-task-startstep/table__template-task-startstep.js';
 
+import {returnTabs} from '../js/common/common.js.js';
+
 window.onload = function(){
-    returnTabsBuisness();
-}
-
-const returnTabsBuisness = () => {
-    let sidebar_tab_first_active = document.getElementById(localStorage.getItem("buisness_sidebar_tab_first_active"));
-    sidebar_tab_first_active.click();
-    if(sidebar_tab_first_active.className.includes("sidebar__link_no-child")){localStorage.removeItem("buisness_sidebar_tab_second_active"); localStorage.removeItem("buisness_tabcontent_tab_active")};
-
-    let sidebar_tab_second_active = document.getElementById(localStorage.getItem("buisness_sidebar_tab_second_active"));
-    if(sidebar_tab_second_active != null){
-        sidebar_tab_second_active.parentElement.parentElement.previousElementSibling.click();
-        sidebar_tab_second_active.click();
-
-        if(sidebar_tab_second_active.className.includes("sidebar__menu__link_no-child")){localStorage.removeItem("buisness_tabcontent_tab_active")};
-    
-        let buisness_sidebar_arrow_active = localStorage.getItem("buisness_sidebar_arrow_active");
-        document.getElementById(buisness_sidebar_arrow_active).className += " sidebar__wrapper_menu-visibale";
-    }
-
-    let tabcontent_tab_active = document.getElementsByClassName(localStorage.getItem("buisness_tabcontent_tab_active"));
-    tabcontent_tab_active[0].click();
+    returnTabs();
 }
 
 addEventButtonTab(document.querySelectorAll(".button__tab__first_user_main"), funcGetUsers);

@@ -448,3 +448,11 @@ export async function validateForm(name, email, phone){
         return false;
     }
 }
+
+/* пометка вкладко */
+export const returnTabs = () => {
+    /* помечаем кнопки боковой панели */
+    document.getElementById(localStorage.getItem("sidebar_tab_active")).click();
+    /* помечаем кнопки вкладок контента */
+    document.getElementsByClassName(localStorage.getItem("tabcontent_tab_active"))[0].click();
+}
