@@ -217,12 +217,45 @@
         <div class="sidebar__tabcontent" id="template_task">
             <div class="sidebar__tabcontent__first-tabs">
                 <a href="#template_task/template_task_shablons"><button class="button__tab__first button__tab__first_template_task_shablons"><img class="button__tab__first__img" src="../blocks/sidebar/img/template_task.svg">Шаблоны задач</button></a>
-                <a href="#template_task/template_task_contents"><button class="button__tab__first button__tab__first_template_task_contents"><img class="button__tab__first__img" src="../blocks/sidebar/img/template_task.svg">Контенты задач</button></a>
+                <a href="#template_task/template_task_contents"><button class="button__tab__first button__tab__first_template_task_contents"><img class="button__tab__first__img" src="../blocks/sidebar/img/template_task.svg">Тип контента</button></a>
                 <a href="#template_task/template_task_startstep"><button class="button__tab__first button__tab__first_template_task_startstep"><img class="button__tab__first__img" src="../blocks/sidebar/img/template_task.svg">Типы запуска</button></a>
             </div>
             <!-- шаблоны -->
             <div id="template_task/template_task_shablons" class="sidebar__tabcontent__container">
-
+                <div class="modal__body">
+                    <div>
+                        <div class="select__wrapper">
+                            <select class="select select__sort" id="sort_shablons">
+                                <option value="">Сортировка &#8661;</option>
+                                <option value="">По названию &#8659;</option>
+                                <option value="">По названию &#8657;</option>
+                                <option value="">По новизне &#8659;</option>
+                                <option value="">По новизне &#8657;</option>
+                            </select>
+                        </div>
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active">Название</td>
+                                    <td class="td td_active">Администратор</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_shablons">
+                                <tr class="tr">
+                                    <td class="td"></td>
+                                    <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_shablons_name"></td>
+                                    <td class="td"><select class="select" id="select_add_shablons_user"><option value="">Выберите администратора</option></select></td>
+                                    <td class="td td_buttons-control"><button class="button__control button__control_add-shablons"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal__tree modal__tree_width-auto">
+                        <div id="tree_shablons"></div>
+                    </div>
+                </div>
             </div>
             <!-- контенты -->
             <div id="template_task/template_task_contents" class="sidebar__tabcontent__container">
@@ -281,6 +314,7 @@
             <p>Контроль задач</p>
         </div>
     </div>
+    <!-- мод. окно инфо пользователя -->
     <div class="modal" id="user_modal">
         <div class="modal__moving" id="user_modal_moving">
             <span class="modal__title">Пользователь <span class="modal__title" id="user_name_title"></span></span>
@@ -338,6 +372,76 @@
                 <button class="button__control button__control_modal" id="user_add" style="display: none;" value="">Добавить</button>
             </div>
         </div>
+    </div>
+    <!-- мод. окно инфо шаблона -->
+    <div class="modal" id="shablons_modal">
+        <div class="modal__moving" id="shablons_modal_moving">
+            <span class="modal__title"><span class="modal__title" id="shablons_name_title"></span></span>
+            <span class="modal__close" id="shablons_close">&times;</span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_name">Название:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="shablons_name" value="">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_numb_inlevel">Порядковый номер:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="shablons_numb_inlevel" value="">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_mission">Описание:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="shablons_mission" value="">
+                    </div>
+                </div>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_user">Исполнитель:</label>
+                        <select class="select select_modal" id="shablons_user"></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_areaprof">Участок:</label>
+                        <select class="select select_modal" id="shablons_areaprof"></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_prim">Примечание:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="shablons_prim" value="">
+                    </div>
+                </div>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_content">Тип контента:</label>
+                        <select class="select select_modal" id="shablons_content"></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="shablons_start">Тип запуска:</label>
+                        <select class="select select_modal" id="shablons_start"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body">
+                <div class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start">
+                    <label class="input__type-text__label" for="shablons_dl_d">Длительность:</label>
+                    <input class="input__type-text input__type-text_modal input__type-text_short" type="text" id="shablons_dl_d" value="">
+                    <label class="input__type-text__label" for="shablons_dl_d">дней</label>
+                    <input class="input__type-text input__type-text_modal input__type-text_short" type="text" id="shablons_dl_h" value="">
+                    <label class="input__type-text__label" for="shablons_dl_h">часов</label>
+                    <input class="input__type-text input__type-text_modal input__type-text_short" type="text" id="shablons_dl_m" value="">
+                    <label class="input__type-text__label" for="shablons_dl_m">минут</label>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="button__control button__control_modal" id="shablons_save" value="">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <!-- контекстное меню дерева -->
+    <div id="contextMenu" class="details__context-menu">
+        <button id="addBtn">Добавить</button>
+        <button id="renameBtn">Переименовать</button>
+        <button id="deleteBtn">Удалить</button>
+        <button id="moveBtn">Переместить</button>
     </div>
     <div class="notification-container" id="notificationContainer"></div>
 </body>

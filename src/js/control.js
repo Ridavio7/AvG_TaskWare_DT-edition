@@ -28,8 +28,11 @@ import '../blocks/modal/__notification/modal__notification.scss';
 import '../blocks/modal/__notification/modal__notification.js';
 /* таблицы */
 import '../blocks/table/table.scss';
+/* дерево */
+import '../blocks/_tree/tree.js';
+import '../blocks/_tree/tree.scss';
 
-import {addEventButtonTab} from '../js/common/common.js.js';
+import {addEventButtonTab,updateDirectory} from '../js/common/common.js.js';
 
 /* пользователи */
 import {funcGetUsers} from '../blocks/table/__users-main/table__users-main.js';
@@ -40,6 +43,7 @@ import {funcGetRights} from '../blocks/table/__users-rights/table__users-rights.
 import {funcGetSysopt} from '../blocks/table/__settings-server/table__settings-server.js';
 
 /* шаблоны */
+import {funcGetShablons} from '../blocks/table/__template-task-shablons/table__template-task-shablons.js';
 import {funcGetContents} from '../blocks/table/__template-task-contents/table__template-task-contents.js';
 import {funcGetStartstep} from '../blocks/table/__template-task-startstep/table__template-task-startstep.js';
 
@@ -47,14 +51,19 @@ import {returnTabs} from '../js/common/common.js.js';
 
 window.onload = function(){
     returnTabs();
+    updateDirectory();
 }
 
+/* пользователи */
 addEventButtonTab(document.querySelectorAll(".button__tab__first_user_main"), funcGetUsers);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_users_jobs"), funcGetJobs);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_users_rights"), funcGetRights);
 
+/* настройки */
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_server"), funcGetSysopt);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user"), '');
 
+/* шаблоны */
+addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_shablons"), funcGetShablons);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_contents"), funcGetContents);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_startstep"), funcGetStartstep);

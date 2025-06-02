@@ -1,4 +1,5 @@
-import { funcCommand, funcProcessOnlyInfo} from "../../js/common/common.js";
+import {funcCommand, funcProcessOnlyInfo} from "../../js/common/common.js";
+import {funcGetShablons} from '../table/__template-task-shablons/table__template-task-shablons.js';
 
 export class Tree {
     constructor(dataItem) {
@@ -7,6 +8,9 @@ export class Tree {
         this.deleted    = dataItem.del === 1;
         this.children   = dataItem.children || [];
         this.contentNum = dataItem.contentNum;
+        this.uinShablon = dataItem.uinShablon;
+        this.username   = dataItem.username;
+        this.dl         = dataItem.dl;
         this.parentId   = null;
     }
 
@@ -41,8 +45,8 @@ export class TreeBuilder {
         this.container.append(root_branch);
 
         if(this.options.includes("contextmenu")){this.contextMenu()} else {this.contextMenuDiv = null};
-        if(this.options.includes("openall")){this.openFullTree()} else {null}
-        this.initStorage();
+        if(this.options.includes("openall")){this.openFullTree()} else {null};
+        if(!this.options.includes("noOpenFolder")){this.initStorage()} else {null};
     }
 
     buildTree(items, parentElement, parentId) {
@@ -66,26 +70,50 @@ export class TreeBuilder {
 
         itemHeader.addEventListener('contextmenu', (e) => {
             e.preventDefault();
-            this.selectItem(itemHeader);
+            //this.selectItem(itemHeader);
             this.showContextMenu(e, item);
-        });
+        })
         itemHeader.addEventListener('click', () => {
             this.selectItem(itemHeader);
-        });
+        })
         
         const arrow = document.createElement('span');
         arrow.className = 'tree-catalog__arrow collapsed';
         arrow.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleItemChildren(itemContainer);
-        });
-        
+        })
+
+        itemHeader.appendChild(arrow);
+
         const textSpan = document.createElement('span');
         textSpan.className = 'tree-catalog__text';
-        textSpan.textContent = `${item.text} (${item.contentNum})`;
-        
-        itemHeader.appendChild(arrow);
-        itemHeader.appendChild(textSpan);
+
+        if(!document.URL.includes("control.html#template_task")){
+            textSpan.textContent = `${item.text} (${item.contentNum})`;
+            itemHeader.appendChild(textSpan);
+        } else {
+            const textSpanContainer = document.createElement('div');
+            textSpanContainer.className = 'tree-catalog__text-container';
+
+            const textSpanName = document.createElement('span');
+            textSpanName.className = 'tree-catalog__text tree-catalog__text_span';
+            textSpanName.textContent = item.text != '' ? item.text : '---';
+            textSpanContainer.appendChild(textSpanName);
+
+            const textSpanUser = document.createElement('span');
+            textSpanUser.className = 'tree-catalog__text tree-catalog__text_span';
+            textSpanUser.textContent = item.username != '' ? item.username : '---';
+            textSpanContainer.appendChild(textSpanUser);
+
+            const textSpanDate = document.createElement('span');
+            textSpanDate.className = 'tree-catalog__text tree-catalog__text_span';
+            textSpanDate.textContent = item.dl != '' ? item.dl : '---';
+            textSpanContainer.appendChild(textSpanDate);
+
+            itemHeader.appendChild(textSpanContainer);
+            itemHeader.classList.add('tree-catalog__header_no-icon');
+        }
 
         const childrenContainer = document.createElement('div');
         childrenContainer.className = 'tree-catalog__children-container';
@@ -218,20 +246,33 @@ export class TreeBuilder {
 
     add(dataItem) {
         if(dataItem != null){
-            let newName = prompt('Введите название папки:', '');
+            let newName = prompt('Введите название:', '');
             if(newName != null){
-                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
-                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
+                if(!document.URL.includes("control.html#template_task")){
+                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
+                    funcCommand(body, funcProcessOnlyInfo, this.funcTree);
+                } else {
+                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`, "uinShablon":`${dataItem.uinShablon}`};
+                    funcCommand(body, funcProcessOnlyInfo);
+                    setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
+                }
             }
         }
     }
 
     rename(dataItem) {
         if(dataItem != null){
-            let newName = prompt('Введите новое название папки:', '');
+            let newName = prompt('Введите новое название:', '');
             if(newName != null){
-                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
-                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
+                if(!document.URL.includes("control.html#template_task")){
+                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
+                    funcCommand(body, funcProcessOnlyInfo, this.funcTree);
+                } else {
+                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`, "uinShablon":`${dataItem.uinShablon}`};
+                    funcCommand(body, funcProcessOnlyInfo);
+                    setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
+                    setTimeout(() => {funcGetShablons()}, 150); 
+                }
             }
         }
     }
@@ -240,8 +281,15 @@ export class TreeBuilder {
         if(dataItem != null){
             let result = confirm('Подтвердите удаление');
             if(result){
-                let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`};
-                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
+                if(!document.URL.includes("control.html#template_task")){
+                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`};
+                    funcCommand(body, funcProcessOnlyInfo, this.funcTree);
+                } else {
+                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
+                    funcCommand(body, funcProcessOnlyInfo);
+                    setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
+                    setTimeout(function(){funcGetShablons()}, 100); 
+                }
             }
         }
     }

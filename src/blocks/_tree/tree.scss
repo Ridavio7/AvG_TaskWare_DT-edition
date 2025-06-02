@@ -101,6 +101,10 @@
         &_no-children .tree-catalog__arrow:before{
             content: none;
         }
+
+        &_no-icon:before{
+            content: none;
+        }
     }
 
     &__header &__arrow{
@@ -113,11 +117,21 @@
         transform: rotate(90deg);
     }
 
+    &__text-container{
+        display: flex;
+        gap: 5px;
+    }
+
     &__text{
         color: var(--font-color);
         font-family: Roboto, sans-serif;
         font-size: 16px;
         font-weight: 400;
+
+        &_span{
+            border: 1px solid var(--border);
+            padding: 3px;
+        }
     }
 
     &__children-container{
