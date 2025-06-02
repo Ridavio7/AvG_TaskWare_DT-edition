@@ -129,6 +129,11 @@ export const addToDropdownOneOption = (select, text, uin) => {
     select.appendChild(option);
 }
 
+export const insertDataInSelect = (select, text, uin, arr_obj) => {
+    addToDropdownOneOption(select, text, uin);
+    addToDropdown(select, arr_obj);
+}
+
 /* создание и заполнение select для составов */
 export const makeSelect = 
 (determinant, uin, optionText, optionUin, list, className, cell) => {
@@ -455,4 +460,45 @@ export const returnTabs = () => {
     document.getElementById(localStorage.getItem("sidebar_tab_active")).click();
     /* помечаем кнопки вкладок контента */
     document.getElementsByClassName(localStorage.getItem("tabcontent_tab_active"))[0].click();
+}
+
+export const updateDirectory = () => {
+    const user = localStorage.getItem('srtf');
+    const requests = [
+        { obj: "products", callback: processResponse("products") },
+        { obj: "colors", callback: processResponse("colors") },
+        { obj: "verapp", callback: processResponse("verapp") },
+        { obj: "verpp", callback: processResponse("verpp") },
+        { obj: "meas", callback: processResponse("meas") },
+        { obj: "coeffs", callback: processResponse("coeffs"), sort: "uin" },
+        { obj: "props", callback: processResponse("props") },
+        { obj: "typeselem", callback: processResponse("typelm") },
+        { obj: "contragents", callback: processResponse("contragents") },
+        { obj: "storages", callback: processResponse("storages") },
+        { obj: "statuses", callback: processResponse("statuses") },
+        { obj: "statussn", callback: processResponse("statussn") },
+        { obj: "statusdoc", callback: processResponse("statusdoc") },
+        { obj: "users", callback: processResponse("users") },
+        { obj: "prof", callback: processResponse("prof") },
+        { obj: "contents", callback: processResponse("contents") },
+        { obj: "startstep", callback: processResponse("startstep") }
+    ];
+
+    requests.forEach(({ obj, callback, sort }) => {
+        const body = { 
+            user, 
+            meth: "view", 
+            obj, 
+            count: "5000",
+            ...(sort && { sort })
+        };
+        funcCommand(body, callback);
+    });
+
+    function processResponse(storageKey) {
+        return function(result, respobj) {
+            if (result === 0) return;
+            localStorage.setItem(`${storageKey}_list`, JSON.stringify(respobj.answ));
+        };
+    }
 }

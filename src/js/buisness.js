@@ -40,7 +40,7 @@ import '../blocks/table/table.scss';
 import '../blocks/carousel/carousel.scss';
 import '../blocks/carousel/carousel.js';
 
-import {addEventButtonTab, returnTabs} from '../js/common/common.js.js';
+import {addEventButtonTab, returnTabs, updateDirectory} from '../js/common/common.js.js';
 
 /* Отгрузка */
 import {funcGetGrfShipSets} from '../blocks/table/__schedule/table__schedule.js';
@@ -103,44 +103,6 @@ window.onload = function(){
     updateDirectory();
     funcGetShipProductsAll();
     returnTabs();
-}
-
-const updateDirectory = () => {
-    const user = localStorage.getItem('srtf');
-    const requests = [
-        { obj: "products", callback: processResponse("products") },
-        { obj: "colors", callback: processResponse("colors") },
-        { obj: "verapp", callback: processResponse("verapp") },
-        { obj: "verpp", callback: processResponse("verpp") },
-        { obj: "meas", callback: processResponse("meas") },
-        { obj: "coeffs", callback: processResponse("coeffs"), sort: "uin" },
-        { obj: "props", callback: processResponse("props") },
-        { obj: "typeselem", callback: processResponse("typelm") },
-        { obj: "contragents", callback: processResponse("contragents") },
-        { obj: "storages", callback: processResponse("storages") },
-        { obj: "statuses", callback: processResponse("statuses") },
-        { obj: "statussn", callback: processResponse("statussn") },
-        { obj: "statusdoc", callback: processResponse("statusdoc") },
-        { obj: "users", callback: processResponse("users") }
-    ];
-
-    requests.forEach(({ obj, callback, sort }) => {
-        const body = { 
-            user, 
-            meth: "view", 
-            obj, 
-            count: "5000",
-            ...(sort && { sort })
-        };
-        funcCommand(body, callback);
-    });
-
-    function processResponse(storageKey) {
-        return function(result, respobj) {
-            if (result === 0) return;
-            localStorage.setItem(`${storageKey}_list`, JSON.stringify(respobj.answ));
-        };
-    }
 }
 
 // отгрузка

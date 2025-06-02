@@ -12,8 +12,8 @@ const funcProcessGetProf = (result, respobj) => {
     let tb_id = "tb_prof";
     clearTable(tb_id);
 
-    //let prof_list = respobj.answ;
-    //localStorage.setItem("prof_list", JSON.stringify(prof_list));
+    let prof_list = respobj.answ;
+    localStorage.setItem("prof_list", JSON.stringify(prof_list));
     for (let key in respobj.answ){
         let obj  = respobj.answ[key];
         let numb = obj.numb;
