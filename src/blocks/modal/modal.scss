@@ -71,6 +71,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 5px 0px;
+    margin-right: 5px;
 
     &_center{
       margin: 0px 25px;
@@ -78,6 +79,10 @@
 
     &_display-none{
       display: none;
+    }
+
+    &_justify-content_flex-start{
+      justify-content: flex-start;
     }
   }
 
@@ -131,8 +136,14 @@
   &__tree{
     height: 710px;
     width: 500px;
+    min-width: 350px;
     overflow-y: scroll;
     resize: both;
+    padding: 0px 10px;
+
+    &_width-auto{
+      width: auto;
+    }
   }
 
   &__footer{

@@ -502,3 +502,10 @@ export const updateDirectory = () => {
         };
     }
 }
+
+export const treeSpanFactory = (container, data, text, style) => {
+    const textSpan = document.createElement('span');
+    textSpan.className = style;
+    textSpan.textContent = data != '' ? `${text}${data}` : '---';
+    container.appendChild(textSpan);
+}

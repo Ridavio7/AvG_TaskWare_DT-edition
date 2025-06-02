@@ -1,5 +1,5 @@
-import {funcCommand, funcProcessOnlyInfo} from "../../js/common/common.js";
-import {funcGetShablons} from '../table/__template-task-shablons/table__template-task-shablons.js';
+import {funcCommand, funcProcessOnlyInfo, treeSpanFactory} from "../../js/common/common.js";
+//import {funcGetShablons} from '../table/__template-task-shablons/table__template-task-shablons.js';
 
 export class Tree {
     constructor(dataItem) {
@@ -9,8 +9,10 @@ export class Tree {
         this.children   = dataItem.children || [];
         this.contentNum = dataItem.contentNum;
         this.uinShablon = dataItem.uinShablon;
+        this.number     = dataItem.numb;
         this.username   = dataItem.username;
         this.dl         = dataItem.dl;
+        this.lv         = dataItem.lv;
         this.parentId   = null;
     }
 
@@ -96,20 +98,17 @@ export class TreeBuilder {
             const textSpanContainer = document.createElement('div');
             textSpanContainer.className = 'tree-catalog__text-container';
 
-            const textSpanName = document.createElement('span');
-            textSpanName.className = 'tree-catalog__text tree-catalog__text_span';
-            textSpanName.textContent = item.text != '' ? item.text : '---';
-            textSpanContainer.appendChild(textSpanName);
-
-            const textSpanUser = document.createElement('span');
-            textSpanUser.className = 'tree-catalog__text tree-catalog__text_span';
-            textSpanUser.textContent = item.username != '' ? item.username : '---';
-            textSpanContainer.appendChild(textSpanUser);
-
-            const textSpanDate = document.createElement('span');
-            textSpanDate.className = 'tree-catalog__text tree-catalog__text_span';
-            textSpanDate.textContent = item.dl != '' ? item.dl : '---';
-            textSpanContainer.appendChild(textSpanDate);
+            if(item.lv === 0){
+                treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+            } else {
+                treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span');
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span');
+                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span');
+                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span');
+            }
 
             itemHeader.appendChild(textSpanContainer);
             itemHeader.classList.add('tree-catalog__header_no-icon');
@@ -220,6 +219,16 @@ export class TreeBuilder {
             this.hideContextMenu();
         });
 
+        document.getElementById('shablonUpBtn').addEventListener('click', () => {
+            this.shablonUp(this.selectedItem);
+            this.hideContextMenu();
+        });
+
+        document.getElementById('shablonDownBtn').addEventListener('click', () => {
+            this.shablonDown(this.selectedItem);
+            this.hideContextMenu();
+        });
+
         document.addEventListener('click', (e) => {
             if (e.target.closest('.context-menu') === null) {
                 this.hideContextMenu();
@@ -271,7 +280,7 @@ export class TreeBuilder {
                     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`, "uinShablon":`${dataItem.uinShablon}`};
                     funcCommand(body, funcProcessOnlyInfo);
                     setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
-                    setTimeout(() => {funcGetShablons()}, 150); 
+                    //setTimeout(() => {funcGetShablons()}, 150); 
                 }
             }
         }
@@ -288,7 +297,7 @@ export class TreeBuilder {
                     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
                     funcCommand(body, funcProcessOnlyInfo);
                     setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
-                    setTimeout(function(){funcGetShablons()}, 100); 
+                    //setTimeout(function(){funcGetShablons()}, 100); 
                 }
             }
         }
@@ -296,7 +305,27 @@ export class TreeBuilder {
 
     move(dataItem){
         if(dataItem != null){
-            this.funcTrans(dataItem.id, dataItem.text);
+            if(!document.URL.includes("control.html#template_task")){
+                this.funcTrans(dataItem.id, dataItem.text);
+            } else{
+                this.funcTrans(dataItem.id, dataItem.text, dataItem.uinShablon);
+            }
+        }
+    }
+
+    shablonUp(dataItem){
+        if(dataItem != null){
+            let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"up", "obj":"dirSh", "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
+            funcCommand(body, funcProcessOnlyInfo);
+            setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
+        }
+    }
+
+    shablonDown(dataItem){
+        if(dataItem != null){
+            let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"down", "obj":"dirSh", "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
+            funcCommand(body, funcProcessOnlyInfo);
+            setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
         }
     }
 

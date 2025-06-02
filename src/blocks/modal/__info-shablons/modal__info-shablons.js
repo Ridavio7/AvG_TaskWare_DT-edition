@@ -69,7 +69,7 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     let obj          = respobj.answ;
     let name         = obj.name;
     let mission      = obj.mission;
-    let numb_i       = obj.numb_inlevel;
+    let numb_i       = obj.numb_inlevel != undefined ? obj.numb_inlevel : '0';
     let prim         = obj.prim;
     let dl           = obj.dl;
     let nameShablon  = obj.shablon.name;
@@ -89,7 +89,7 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
 
 const addShablonsInfo =
 (name, mission, numb_i, prim, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, uin, del) => {
-    shablons_title.innerHTML = `Шаблон: ${nameShablon}. Шаг: ${name}`;
+    shablons_title.innerHTML = `Шаблон: ${nameShablon}. Номер: ${numb_i}. Название: ${name}`;
     shablons_name.value      = name;
     shablons_numb_i.value    = numb_i;
     shablons_mission.value   = mission;
