@@ -436,6 +436,27 @@
             </div>
         </div>
     </div>
+    <!-- мод. окно перемещения шаблона -->
+    <div class="modal" id="modal_transfer_shablons">
+        <div class="modal__moving" id="modal_transfer_shablons_moving">
+            <span class="modal__title">Перемещение комплектующего</span>
+            <span class="modal__close" id="close_shablons_transfer">&times;</span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__body">
+                <div class="">
+                    <input class="input__type-text input__type-text_modal" type="text" id="shablons_transfer_name" value="" name="" disabled>
+                    <label class="input__type-text__label" for="shablons_transfer_name">переместить в</label>
+                </div>
+                <div class="modal__tree">
+                    <div id="modal_transfer_shablons_tree"></div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="button__control button__control_modal" id="shablons_transfer" value="">Переместить</button>
+            </div>
+        </div>
+    </div>
     <!-- контекстное меню дерева -->
     <div id="contextMenu" class="details__context-menu">
         <button id="addBtn">Добавить</button>

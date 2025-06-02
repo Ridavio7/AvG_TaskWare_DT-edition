@@ -1,6 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, findForUpdateSelect, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 import {funcGetShablonsSteps} from '../../modal/__info-shablons/modal__info-shablons.js';
+import {funcInfoShablonsTransferOpenModal} from '../../modal/__transfer-shablons/modal__transfer-shablons.js';
 
 export const funcGetShablons = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"100", "sort":"name"};
@@ -103,6 +104,6 @@ const funcProcessGetShablonsTree = (result, respobj) => {
 
     localStorage.setItem("uinShablon", respobj.answ.uinShablon)
 
-    const tree = new TreeBuilder('tree_shablons', 'dirSh', 'catSh', funcGetShablonsTree, funcGetShablonsSteps, '', ["contextmenu", "noContentNum", "noOpenFolder"]);
+    const tree = new TreeBuilder('tree_shablons', 'dirSh', 'catSh', funcGetShablonsTree, funcGetShablonsSteps, funcInfoShablonsTransferOpenModal, ["contextmenu", "noOpenFolder"]);
     tree.build(respobj.answ);
 }
