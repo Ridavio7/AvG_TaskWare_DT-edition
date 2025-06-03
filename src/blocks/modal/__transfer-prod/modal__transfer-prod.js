@@ -45,7 +45,10 @@ const funcProcessGetProductsTree = (result, respobj) => {
 }
 
 button_transfer_comp.onclick = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`};
+    let type = document.getElementById("button_info_product_save").getAttribute("data-value");
+    let body = type == 0 ?
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`} :
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"sets", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`};
 
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){

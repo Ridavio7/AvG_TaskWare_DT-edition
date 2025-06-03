@@ -99,7 +99,6 @@ export class TreeBuilder {
             textSpanContainer.className = 'tree-catalog__text-container';
 
             if(item.lv === 0){
-                treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
                 treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
                 treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
                 treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
