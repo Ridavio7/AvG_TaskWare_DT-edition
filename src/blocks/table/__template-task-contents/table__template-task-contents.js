@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetContents = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"contents", "count":"100"};
@@ -6,7 +6,7 @@ export const funcGetContents = () => {
 }
 
 const funcProcessGetContents = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Контенты:", respobj);
 
     let tb_id = "tb_contents";

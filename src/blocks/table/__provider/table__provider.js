@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, clearTableAll, sendFilt, clearFilt, listenSelect} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTableAll, sendFilt, clearFilt, listenSelect, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
@@ -8,7 +8,7 @@ export const funcGetDocpost = () => {
 }
 
 const funcProcessGetDocpost = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Док. поступления:", respobj);
 
     let tb_id = "tb_docpost";

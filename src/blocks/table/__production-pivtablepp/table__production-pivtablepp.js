@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, highlightButtonSave, makeSelect, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, clearTableAll, responseProcessor} from '../../../js/common/common.js';
 
 let date_first    = document.getElementById('pivtablepp_analysis_date_first');
 let date_second   = document.getElementById('pivtablepp_analysis_date_second');
@@ -31,7 +31,7 @@ export const funcGetPivTableppTab = () => {
 }
 
 const funcProcessGetPivTablepp = (result_piv, respobj_piv) => {
-    if( result_piv === 0 ) return;
+    responseProcessor(result_piv, respobj_piv.succ);
     console.log("СТ Печатных Плат:", respobj_piv);
 
     let tproc_arr = [];

@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcGetComponentInfoProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
@@ -115,7 +115,7 @@ export const funcGetComponentInfo = (uin) => {
 }
 
 const funcProcessGetComponentInfo = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Комплектующее ИНФО:", respobj);
 
     document.getElementById("component_name").value      = "";
@@ -266,7 +266,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
-        if( result === 0 ) return;
+        responseProcessor(result, respobj.succ);
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
@@ -277,7 +277,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
     let input_value = document.getElementById("component_info_add_props_value_input");
 
     function funcSelectAddEnumsOnTable(result, respobj){
-        if( result === 0 ) return;
+        responseProcessor(result, respobj.succ);
         console.log(respobj.answ)
 
         removeOptions(select_value);

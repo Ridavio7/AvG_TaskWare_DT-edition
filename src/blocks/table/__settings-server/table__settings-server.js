@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetSysopt = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"sysopt", "count":"100"};
@@ -6,7 +6,7 @@ export const funcGetSysopt = () => {
 }
 
 const funcProcessGetSysopt = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Настр.сервера:", respobj);
 
     let tb_id = "tb_settings_server";

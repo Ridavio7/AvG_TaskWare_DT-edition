@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetProductsTree, funcGetProducts} from '../../table/__storage-main/table__storage-main.js';
 import {dragElement} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
@@ -33,7 +33,7 @@ export const funcInfoProductsTransferOpenModal = (uin, name) => {
 }
 
 const funcProcessGetProductsTree = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_transfer_product_tree', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfocatPTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);

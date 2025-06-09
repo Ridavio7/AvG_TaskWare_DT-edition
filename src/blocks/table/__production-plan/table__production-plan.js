@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, removeOptionsSetValue, addToDropdown, findForUpdateSelect, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, highlightButtonSave, makeSelect, removeOptionsSetValue, addToDropdown, findForUpdateSelect, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetPlan = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"1000", "sort":"date"};
@@ -6,7 +6,7 @@ export const funcGetPlan = () => {
 }
 
 const funcProcessGetPlan = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("План:", respobj);
 
     let tb_id = "tb_plan";

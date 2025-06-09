@@ -27,37 +27,37 @@ export const funcCommand = (body, callbackfunc, func) => {
 }
 
 export const funcProcessOnlyInfo = (result, respobj) => {
-    if( result === 0 ) return;
     console.log(respobj);
-    responseProcessor(respobj.succ);
+    responseProcessor(result, respobj.succ);
 }
 
-export const responseProcessor = (resp) => {
+export const responseProcessor = (res, respobj) => {
+    if( res === 0 ) return;
     let result;
-    switch (resp) {
+    switch (respobj) {
         case 1:
-            showNotification('success', 'Успех!', 'Операция выполнена успешно.');
+            showNotification('success', 'Успех!', 'Операция выполнена успешно');
             result = true;
             break
         case 2:
-            showNotification('success', 'Успех!', 'Операция выполнена успешно.');
+            showNotification('success', 'Успех!', 'Операция выполнена успешно');
             result = true;
             break
         case -113:
-            showNotification('info', 'Информация', 'Пройдите авторизацию на сайте.');
+            showNotification('info', 'Предупреждение!', 'Пройдите авторизацию на сайте');
             result = true;
             break
         case 0:
-            showNotification('error', 'Ошибка!', 'Произошла ошибка при выполнении.');
+            showNotification('error', 'Ошибка!', 'Произошла ошибка при выполнении');
             result = false;
             break
         case -123:
-            showNotification('warning', 'Предупреждение', 'Недостаточно прав доступа.');
+            showNotification('warning', 'Предупреждение!', 'Недостаточно прав доступа');
             result = false;
             break
         default:
-            showNotification('error', 'Ошибка!', 'Неизвестная ошибка.');
-            result = false;
+            showNotification('success', 'Успех!', 'Операция выполнена успешно');
+            result = true;
             break
     }
 

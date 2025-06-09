@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll} from '../../../js/common/common.js.js';
+import {funcCommand, clearTableAll, responseProcessor} from '../../../js/common/common.js.js';
 
 let found_tree;
 let found_table;
@@ -66,7 +66,7 @@ export const funcFoundPlusComponents = (input, select, props, tb_id, tb_id_comp,
 }
 
 const funcProcessFoundComponents = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     clearTableAll(found_table);
 

@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetShablonsTree} from '../../table/__template-task-shablons/table__template-task-shablons.js';
 import {funcGetShablonsSteps} from '../__info-shablons/modal__info-shablons.js';
 import {dragElement} from '../modal.js';
@@ -31,7 +31,7 @@ export const funcInfoShablonsTransferOpenModal = (uin, name, uinShablon) => {
 }
 
 const funcProcessGetShablonsTree = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_transfer_shablons_tree', 'dirSh', 'catSh', funcGetShablonsTree, funcGetShablonsSteps, '', []);
     tree.build(respobj.answ);

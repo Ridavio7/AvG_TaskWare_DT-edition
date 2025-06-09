@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, clearTable, removeOptionsSetValue, makeSelect, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, clearTable, removeOptionsSetValue, makeSelect, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 
@@ -10,8 +10,9 @@ export const funcGetFormulaSets = () => {
 }
 
 const funcProcessGetFormulaSets = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Состав комплектов:", respobj);
+
     let tb_id = "tb_sets_formula_info";
     clearTable(tb_id);
 

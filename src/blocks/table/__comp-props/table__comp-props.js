@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, addToDropdown, makeSelect, clearTable, listenSortSelect, highlightButtonSave, removeOptionsSetValue} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, addToDropdown, makeSelect, clearTable, listenSortSelect, highlightButtonSave, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoEnumsOpenModal} from '../../modal/__enums/modal__enums.js';
 
 export const funcGetProps = () => {
@@ -7,8 +7,9 @@ export const funcGetProps = () => {
 }
 
 const funcProcessGetProps = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Свойства:", respobj);
+
     let tb_id = "tb_componenets_props";
     clearTable(tb_id);
 

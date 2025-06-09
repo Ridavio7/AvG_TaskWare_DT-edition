@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, clearTableAll, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoProductOpenModal, funcProcessInfoProductsModalAdd} from '../../modal/__info-prod/modal__info-prod.js';
 import {funcInfocatPTransferOpenModal, funcInfoProductsTransferOpenModal} from '../../modal/__transfer-prod/modal__transfer-prod.js';
 import {TreeBuilder} from '../../_tree/tree.js';
@@ -11,7 +11,7 @@ export const funcGetProductsTree = () => {
 }
 
 const funcProcessGetProductsTree = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Дерево:", respobj);
 
     const tree = new TreeBuilder('tree_storage_main', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfocatPTransferOpenModal, ["contextmenu", "openall"]);
@@ -27,7 +27,7 @@ export const funcGetProducts = (uin) => {
 }
 
 const funcProcessGetProducts = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Директория:", respobj);
 
     let tb_id = "tb_storage_main_tree"

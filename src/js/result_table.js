@@ -31,7 +31,7 @@ import '../blocks/modal/__notification/modal__notification.js';
 import '../blocks/table/table.scss';
 import '../blocks/table/__task/table__task.scss';
 
-import {funcCommand, makeSelect, findForUpdateSelect, findForUpdateInput, addToDropdown, funcProcessOnlyInfo} from '../js/common/common.js.js';
+import {funcCommand, makeSelect, findForUpdateSelect, findForUpdateInput, addToDropdown, funcProcessOnlyInfo, responseProcessor} from '../js/common/common.js.js';
 
 window.onload = function(){
     funcGetUpdateStatuses();
@@ -56,7 +56,7 @@ function funcGetResTable(){
 function funcProcessGetResTable(result, respobj){
     //localStorage.removeItem("zapros_set_value"); 
     //localStorage.removeItem("zapros_product_value");
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log(respobj);
 
     if(respobj.succ === 1){
@@ -82,7 +82,7 @@ function funcProcessGetResTable(result, respobj){
 
 /* отправка запроса для выбранных сетов/изделий */
 function funcProcessGetResTableSets(result, respobj){
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log(respobj.answS);
     
     let div_tb_id = "wrapper_tb_shipment_sets";
@@ -227,7 +227,7 @@ function addSetsRowChild(prod, SNprod, color, colorUin, uinPr, table_content){
 }
 
 function funcProcessGetResTableProducts(result, respobj){
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log(respobj.answP);
     let div_tb_id = "wrapper_tb_shipment_products";
     let div = document.getElementById(div_tb_id);
@@ -371,7 +371,7 @@ export const funcGetUpdateStatuses = () => {
 }
 
 const funcProcessGetUpdateStatuses = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Статусы:", respobj);
 
     let statuses_list = respobj.answ;
@@ -384,7 +384,7 @@ export const funcGetUpdateColors = () => {
 }
 
 const funcProcessGetUpdateColors = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Цвета:", respobj);
 
     let colors_list = respobj.answ;
@@ -397,7 +397,7 @@ export const funcGetUpdateVerapp = () => {
 }
 
 const funcProcessGetUpdateVerapp = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("verapp:", respobj);
 
     let verapp_list = respobj.answ;
@@ -410,7 +410,7 @@ export const funcGetUpdateVerpp = () => {
 }
 
 const funcProcessGetUpdateVerpp = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("verpp:", respobj);
 
     let verpp_list = respobj.answ;

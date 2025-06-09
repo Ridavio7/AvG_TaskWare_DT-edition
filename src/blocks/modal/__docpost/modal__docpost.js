@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll, clearTable, addToDropdownOneOption, addToDropdown, funcProcessOnlyInfo, removeOptions, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, highlightButtonSaveModal} from '../../../js/common/common.js';
+import {funcCommand, clearTableAll, clearTable, addToDropdownOneOption, addToDropdown, funcProcessOnlyInfo, removeOptions, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 import {funcGetDocpost} from '../../table/__provider/table__provider.js';
@@ -40,7 +40,7 @@ const funcGetInfoInputsDocpost = (uin) => {
 }
 
 const funcProcessGetInfoInputsDocpost = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Док. поступления 1:", respobj);
 
     removeOptions(docpost_status);
@@ -98,7 +98,7 @@ const funcGetInfoTableDocpost = (uin) => {
 }
 
 const funcProcessGetInfoTableDocpost = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Таблица док. поступления 1:", respobj);
 
     let tb_id = "tb_modal_docpost";

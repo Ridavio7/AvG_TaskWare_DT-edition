@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave,responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetStatussn = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statussn", "count":"100"};
@@ -6,7 +6,7 @@ export const funcGetStatussn = () => {
 }
 
 const funcProcessGetStatussn = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("SN статус:", respobj);
 
     let statussn_list = respobj.answ;

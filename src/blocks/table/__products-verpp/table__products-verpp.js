@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetVerpp = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"verpp", "count":"100"};
@@ -6,8 +6,9 @@ export const funcGetVerpp = () => {
 }
 
 const funcProcessGetVerpp = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("verpp:", respobj);
+    
     let tb_id = "tb_products_verpp";
     clearTable(tb_id);
 

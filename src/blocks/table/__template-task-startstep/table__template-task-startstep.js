@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave,responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetStartstep = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"startstep", "count":"100"};
@@ -6,7 +6,7 @@ export const funcGetStartstep = () => {
 }
 
 const funcProcessGetStartstep = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Контенты:", respobj);
 
     let tb_id = "tb_startstep";

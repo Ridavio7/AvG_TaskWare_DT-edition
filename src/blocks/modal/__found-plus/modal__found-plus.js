@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll, addToDropdown, addToDropdownOneOption, removeOptionsSetValue} from '../../../js/common/common.js.js';
+import {funcCommand, clearTableAll, addToDropdown, addToDropdownOneOption, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js.js';
 import {addToDropdownPsevdoFoundPlus, psevdoSelect} from '../../select/select.js';
 import {dragElement} from '../modal.js';
 import {funcFoundPlusComponents} from '../../table/__comp-found/table__comp-found.js';
@@ -89,7 +89,7 @@ found_plus_select.addEventListener("change", (elem) => {
 })
 
 const funcProcessGetTypesPropsFetch = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("TypesProps поиска:", respobj);
 
     let tb_id = "found_plus_tb";
@@ -133,7 +133,7 @@ const addFoundTypesProps = (name, uin, tb_id) => {
     funcCommand(body, funcProcessGetInfoEnums);
 
     function funcProcessGetInfoEnums(result, respobj){
-        if( result === 0 ) return;
+        responseProcessor(result, respobj.succ);
         console.log("Значения в поиске:", respobj);
 
         if(respobj.answ === ''){

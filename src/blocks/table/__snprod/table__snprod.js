@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, makeSelect, clearTable, removeOptionsSetValue, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, makeSelect, clearTable, removeOptionsSetValue, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown, responseProcessor} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
 export const funcGetSNProd = () => {
@@ -7,7 +7,7 @@ export const funcGetSNProd = () => {
 }
 
 const funcProcessGetSNProd = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("SNProd:", respobj);
     
     let tb_id = "tb_products_SNProd";

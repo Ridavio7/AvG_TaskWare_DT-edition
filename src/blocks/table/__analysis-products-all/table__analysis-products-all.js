@@ -1,4 +1,4 @@
-import {funcCommand, listenFiltSelectAnalisys, sendFiltAnalisys, clearFiltAnalisys, sortAnalisys, makeSelect} from '../../../js/common/common.js';
+import {funcCommand, listenFiltSelectAnalisys, sendFiltAnalisys, clearFiltAnalisys, sortAnalisys, makeSelect, responseProcessor} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
 let filt_analysis_products_all = [];
@@ -9,7 +9,7 @@ export const funcGetShipProductsAll = () => {
 }
 
 const funcProcessGetShipProductsAll = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_products_all_reset").click()};
     console.log("Анализ всех изделий:", respobj);
 

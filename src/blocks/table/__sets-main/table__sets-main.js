@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, sendFilt, clearFilt, listenSelect, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, sendFilt, clearFilt, listenSelect, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, addToDropdownPsevdoAnotherList, psevdoSelect} from '../../select/select.js';
 
 export const funcGetSets = () => {
@@ -7,8 +7,9 @@ export const funcGetSets = () => {
 }
 
 const funcProcessGetSets = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Комплекты:", respobj);
+
     let tb_id = "tb_sets_info";
     clearTable(tb_id);
 

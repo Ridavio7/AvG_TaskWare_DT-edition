@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateInput} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateInput, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 
 let enums_modal = document.getElementById("enums_modal");
@@ -28,7 +28,7 @@ const funcGetInfoEnums = (uin) => {
 }
 
 const funcProcessGetInfoEnums = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Значения:", respobj);
 
     let tb_id = "enums_tb_modal";

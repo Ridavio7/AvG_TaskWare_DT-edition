@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, highlightButtonSave, makeSelect, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, highlightButtonSave, makeSelect, clearTableAll, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetLentapp = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"100", "asort":"datetm"};
@@ -6,7 +6,7 @@ export const funcGetLentapp = () => {
 }
 
 const funcProcessGetLentapp = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Лента:", respobj);
     
     let tb_id = "tb_events";

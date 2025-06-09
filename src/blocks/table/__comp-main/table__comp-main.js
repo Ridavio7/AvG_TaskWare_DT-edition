@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll, funcProcessOnlyInfo, removeOptionsSetValue, addToDropdown} from '../../../js/common/common.js';
+import {funcCommand, clearTableAll, funcProcessOnlyInfo, removeOptionsSetValue, addToDropdown, responseProcessor} from '../../../js/common/common.js';
 import {funcProcessInfoComponentsModalAdd, funcInfoComponentsOpenModal} from '../../modal/__info-comp/modal__info-comp.js';
 import {funcInfoCatcTransferOpenModal} from '../../modal/__transfer-comp/modal__transfer-comp.js';
 import {funcInfoComponentsTransferOpenModal} from '../../modal/__transfer-comp/modal__transfer-comp.js';
@@ -29,7 +29,7 @@ export const funcGetComponentsTree = () => {
 }
 
 const funcProcessGetComponentsTree = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Дерево:", respobj);
 
     const tree = new TreeBuilder('jstree_div', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ['contextmenu', 'openall']);
@@ -52,7 +52,7 @@ export const funcGetComponents = (uin) => {
 }
 
 const funcProcessGetComponents = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Директория:", respobj);
 
     let tb_id = "tb_components_tree"

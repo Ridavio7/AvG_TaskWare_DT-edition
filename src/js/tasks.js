@@ -48,7 +48,7 @@ window.onload = function(){
     document.getElementById("mount_time").value = new Date().toLocaleTimeString();
 }
 
-import {funcCommand, removeOptionsSetValue, funcProcessOnlyInfo} from './common/common.js.js';
+import {funcCommand, removeOptionsSetValue, funcProcessOnlyInfo, responseProcessor} from './common/common.js.js';
 
 const funcGetContragents = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"contragents", "count":"1000"};
@@ -56,10 +56,10 @@ const funcGetContragents = () => {
 }
 
 const funcProcessGetContragents = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Контрагенты:", respobj);
-    let select_id = "task_contragents";
 
+    let select_id = "task_contragents";
     for (let key in respobj.answ) {
         let obj  = respobj.answ[key];
         let name = obj.name;
@@ -76,10 +76,10 @@ const funcGetUsers = () => {
 }
 
 const funcProcessGetUsers = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Пользователи:", respobj);
-    let select_id = "mount_users";
 
+    let select_id = "mount_users";
     for (let key in respobj.answ) {
         let obj  = respobj.answ[key];
         let name = obj.name;
@@ -104,10 +104,10 @@ const funcGetProductpp = () => {
 }
 
 const funcProcessGetProductpp = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Изделия монтаж:", respobj);
+    
     let select_id = "mount_prod";
-
     for (let key in respobj.answ) {
         let obj  = respobj.answ[key];
         let name = obj.name;
@@ -124,7 +124,7 @@ document.getElementById("mount_prod").addEventListener("change", (event) => {
 })
 
 const funcProcessGetProc = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Тех.проц.:", respobj);
 
     let select_id = "mount_procc";

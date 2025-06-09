@@ -1,6 +1,5 @@
-import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js.js';
+import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js.js';
 import {dragElement} from '../modal.js';
-import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcProcessInfoComponentsModalAdd} from '../__info-comp/modal__info-comp.js';
 import {funcFoundComponents, funcFoundComponents1C} from '../../table/__comp-found/table__comp-found.js';
 import {funcFoundPlusOpenModal} from '../__found-plus/modal__found-plus.js';
@@ -47,7 +46,7 @@ export const funcGetComponentsTreeSelect = () => {
 }
 
 function funcProcessGetComponentsTreeSelect(result, respobj){
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_select_component_tree', 'dirC', 'catC', funcGetComponentsTreeSelect, funcGetDirC, '', ["openall"]);
     tree.build(respobj.answ);
@@ -59,7 +58,7 @@ export const funcGetDirC = (uin) => {
 }
 
 function funcProcessGetComponentsSelect(result, respobj){
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     let tb_id = "tb_component_select";
     clearTableAll(tb_id);

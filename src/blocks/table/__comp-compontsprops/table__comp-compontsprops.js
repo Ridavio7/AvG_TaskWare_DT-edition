@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, removeOptions, addToDropdown, makeSelect, highlightButtonSave, findForUpdateSelect, findForUpdateInput, removeOptionsSetValue, funcProcessOnlyInfo } from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptions, addToDropdown, makeSelect, highlightButtonSave, findForUpdateSelect, removeOptionsSetValue, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetComponentInfo} from '../../modal/__info-comp/modal__info-comp.js';
 import {funcInfoEnumsOpenModal} from '../../modal/__enums/modal__enums.js';
 
@@ -9,7 +9,7 @@ export const funcGetComponentInfoProps = (uin) => {
 }
 
 const funcProcessGetComponentInfoProps = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Комплектующее св-ва:", respobj);
 
     let select = document.getElementById("component_info_add_props_select");
@@ -125,7 +125,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     funcCommand(body, funcProcessGetInfoEnumsForModalComp);
 
     function funcProcessGetInfoEnumsForModalComp(result, respobj){
-        if( result === 0 ) return;
+        responseProcessor(result, respobj.succ);
 
         if(respobj.answ != ''){
             localStorage.setItem("prop_enums_list", JSON.stringify(respobj.answ))
@@ -199,7 +199,7 @@ export const addEventSelectProps = (select, select_value_id) => {
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
-        if( result === 0 ) return;
+        responseProcessor(result, respobj.succ);
 
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
@@ -209,7 +209,7 @@ export const addEventSelectProps = (select, select_value_id) => {
 
     let select_value = document.getElementById(select_value_id);
     function funcSelectAddEnumsOnTable(result, respobj){
-        if( result === 0 ) return;
+        responseProcessor(result, respobj.succ);
         console.log(respobj)
 
         if(respobj.answ != 0){

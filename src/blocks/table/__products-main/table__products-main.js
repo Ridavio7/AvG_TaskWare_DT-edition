@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoTcardprodsOpenModal} from '../../modal/__tcardprods/modal__tcardprods.js';
 
 export const funcGetProducts = () => {
@@ -7,8 +7,9 @@ export const funcGetProducts = () => {
 }
 
 const funcProcessGetProducts = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Изделия:", respobj);
+
     let tb_id = "tb_products_main";
     clearTable(tb_id);
 

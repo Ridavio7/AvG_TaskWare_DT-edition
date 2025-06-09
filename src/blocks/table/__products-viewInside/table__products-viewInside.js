@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, funcProcessOnlyInfo, highlightButtonSave, findForUpdateInput} from '../../../js/common/common.js';
+import {funcCommand, clearTable, funcProcessOnlyInfo, highlightButtonSave, findForUpdateInput, responseProcessor} from '../../../js/common/common.js';
 import {funcGetProductsTreeSelect} from '../../modal/__select-prod/modal__select-prod.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 import {funcFoundOneComponent} from '../__comp-found/table__comp-found.js';
@@ -18,7 +18,7 @@ export const funcGetProductViewInside = (uin, fset) => {
 }
 
 const funcProcessGetProductViewInside = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("viewInside:", respobj);
 
     uinMainProd = respobj.uinprod;

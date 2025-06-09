@@ -1,4 +1,4 @@
-import {funcCommand, removeOptionsSetValue, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, removeOptionsSetValue, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetProductsTree} from '../../table/__storage-main/table__storage-main.js';
 import {funcGetProductViewInside} from '../../table/__products-viewInside/table__products-viewInside.js';
@@ -54,7 +54,7 @@ export const funcGetProductInfo = (uin, fset) => {
 }
 
 const funcProcessGetProductInfo = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Изделие ИНФО:", respobj);
 
     while (select_info_product_color.options.length) {select_info_product_color.options[0] = null};

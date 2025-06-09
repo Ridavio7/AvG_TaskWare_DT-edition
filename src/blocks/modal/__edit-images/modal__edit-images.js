@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table__comp-compontimgs.js';
 
@@ -25,7 +25,7 @@ export const funcGetCompontimgsEdit = (uin) => {
 }
 
 const funcProcessGetCompontimgs = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Картинки:", respobj);
 
     let tb_id = "tb_modal_img";
@@ -102,7 +102,7 @@ const addCompontimgs = (name, fname, del, uin, tb_id) => {
 }
 
 const funcProcessOpenCompontimgs = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Картинка:", respobj);
 
     var win = window.open();

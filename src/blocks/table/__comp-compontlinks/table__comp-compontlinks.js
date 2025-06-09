@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, addToDropdown, funcProcessOnlyInfo, clearTableAll} from '../../../js/common/common.js';
+import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetCompontlinks = (uin) => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "obj":"compontlinks", "meth":"view", "uincompont":`${uin}`, "count":"100", "sort":"name"}
@@ -6,7 +6,7 @@ export const funcGetCompontlinks = (uin) => {
 }
 
 const funcProcessGetCompontlinks = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Сылки:", respobj);
 
     let tb_id = "tb_modal_link";

@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, listenFiltSelectAnalisys, sendFiltAnalisys, clearFiltAnalisys, sortAnalisys, clearTableAll, makeSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, listenFiltSelectAnalisys, sendFiltAnalisys, clearFiltAnalisys, sortAnalisys, makeSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 
 let filt_analysis_sets = [];
@@ -9,7 +9,7 @@ export const funcGetShipSets = () => {
 }
 
 const funcProcessGetShipSets = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_sets_reset").click()};
     console.log("Анализ комплектов:", respobj);
 

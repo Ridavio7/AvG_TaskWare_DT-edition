@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo} from '../../../js/common/common.js.js';
+import {funcCommand, responseProcessor} from '../../../js/common/common.js.js';
 import {createCarousel} from '../../carousel/carousel.js';
 
 let productImages = [];
@@ -11,7 +11,7 @@ export const funcGetCompontimgs = (uin) => {
 }
 
 const funcProcessGetCompontimgs = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     if(respobj.answ === ''){
         document.getElementById('mainImage').src = "https://imgholder.ru/700x400/fff/212121&text=Фото+отсутствует";
@@ -28,7 +28,7 @@ const funcProcessGetCompontimgs = (result, respobj) => {
 }
 
 const funcProcessGetCompontimgBS = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     let data_bs = `data:image/jpg;base64,${respobj.answ.bs}`;
     productImages.push(data_bs);

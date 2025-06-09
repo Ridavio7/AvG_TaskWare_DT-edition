@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {dragElement} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
@@ -33,7 +33,7 @@ export const funcInfoComponentsTransferOpenModal = (uin, name) => {
 }
 
 const funcProcessGetComponentsTree = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_transfer_component_tree', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);

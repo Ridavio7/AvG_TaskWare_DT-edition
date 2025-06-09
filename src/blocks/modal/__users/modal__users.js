@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect, togglePassword, validateForm} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect, togglePassword, validateForm, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {showNotification} from '../__notification/modal__notification.js';
 import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
@@ -48,7 +48,7 @@ const funcGetRightsUsersInfo = () => {
 }
 
 const funcProcessGetRightsUsersInfo = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Права:", respobj);
 
     let tb_id = "tb_user_rights";
@@ -91,7 +91,7 @@ const funcGetUserInfo = (uin) => {
 }
 
 const funcProcessGetUserInfo = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Пользователь:", respobj);
 
     user_name_t.innerHTML = "";

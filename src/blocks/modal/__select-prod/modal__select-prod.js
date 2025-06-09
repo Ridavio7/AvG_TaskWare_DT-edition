@@ -1,8 +1,7 @@
-import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js.js';
+import {funcCommand, clearTableAll, responseProcessor} from '../../../js/common/common.js.js';
 import {dragElement} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
-import {funcProcessInfoProductsModalAdd, funcInfoProductOpenModal} from '../../modal/__info-prod/modal__info-prod.js';
-import {funcInfoProductsTransferOpenModal} from '../../modal/__transfer-prod/modal__transfer-prod.js';
+import {funcProcessInfoProductsModalAdd} from '../../modal/__info-prod/modal__info-prod.js';
 
 let modal_select_prod = document.getElementById("modal_select_products");
 let span_select_prod  = document.getElementById("close_products_select");
@@ -21,7 +20,7 @@ export const funcGetProductsTreeSelect = () => {
 }
 
 function funcProcessGetProductsTreeSelect(result, respobj){
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_select_products_tree', 'dirP', 'catP', funcGetProductsTreeSelect, funcGetDirP, '', ["openall"]);
     tree.build(respobj.answ);
@@ -33,7 +32,7 @@ export const funcGetDirP = (uin) => {
 }
 
 function funcProcessGetProductsSelect(result, respobj){
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log(respobj)
 
     let tb_id = "tb_products_select";

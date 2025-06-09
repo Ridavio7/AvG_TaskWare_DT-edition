@@ -1,4 +1,4 @@
-import {funcCommand} from '../../../js/common/common.js';
+import {funcCommand, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetProducts = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"products", "count":"100" };
@@ -6,7 +6,7 @@ export const funcGetProducts = () => {
 }
 
 const funcProcessGetProducts = ( result, respobj ) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     let tb_id = "tb_products";
 
     console.log("Изделия:", respobj);

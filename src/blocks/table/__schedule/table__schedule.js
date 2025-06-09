@@ -1,4 +1,4 @@
-import {funcCommand, addToDropdown, clearTable, makeSelect, removeOptionsSetValue, funcProcessOnlyInfo, highlightButtonSave} from '../../../js/common/common.js'
+import {funcCommand, addToDropdown, clearTable, makeSelect, removeOptionsSetValue, funcProcessOnlyInfo, highlightButtonSave, responseProcessor} from '../../../js/common/common.js'
 
 export const funcGetGrfShipSets = () => {
     let currYear = localStorage.getItem("curr_year");
@@ -10,7 +10,7 @@ export const funcGetGrfShipSets = () => {
 }
 
 export const funcProcessGetGrfShipSets = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("График:", respobj);
 
     let select_sets = document.getElementById("select_add_grf_set");

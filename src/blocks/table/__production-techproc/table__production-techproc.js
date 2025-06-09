@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 
 export const funcGetTechproc = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"100", "sort":"numb"};
@@ -6,7 +6,7 @@ export const funcGetTechproc = () => {
 }
 
 const funcProcessGetTechproc = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Тех.процесс:", respobj);
 
     let tb_id = "tb_techproc";

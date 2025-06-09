@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, addToDropdown, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js.js';
 
 export const funcGetMeas = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"meas", "count":"100"};
@@ -6,8 +6,9 @@ export const funcGetMeas = () => {
 }
 
 const funcProcessGetMeas = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Ед. изм.:", respobj);
+
     let tb_id = "tb_componenets_measurement";
     clearTable(tb_id);
 

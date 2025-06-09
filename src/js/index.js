@@ -32,8 +32,7 @@ const handleFormSubmit = (event) => {
 }
 
 const funcGetToken = (result, respobj) => {
-    if( result === 0 ) return;
-    if(responseProcessor(respobj.succ) === true){
+    if(responseProcessor(result, respobj.succ)){
         localStorage.setItem('srtf', respobj.srtf);
         localStorage.setItem('user_name', respobj.name);
         window.location = 'tasks.html';

@@ -75,16 +75,13 @@ button_control_add.addEventListener("click", () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"shablons", "name":"", "uinadmin":""};
 
     let name_value = document.getElementById("input_add_shablons_name").value;
-    let user_value = document.getElementById("select_add_shablons_user").value;
 
     if(name_value === ""){
         alert("Вы не заполнили все поля!");
     } else {
         body.name     = name_value;
-        body.uinadmin = user_value;
 
         document.getElementById("input_add_shablons_name").value = "";
-        removeOptionsSetValue("select_add_shablons_user", "Выберите администратора");
     
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetShablons()}, 100);

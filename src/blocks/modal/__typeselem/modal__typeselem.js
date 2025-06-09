@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 
 let modal_typeselem = document.getElementById("modal_typeselem");
@@ -23,7 +23,7 @@ const funcGetInfoTypeselem = (uin) => {
 }
 
 const funcProcessGetInfoTypeselem = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Св-ва типа:", respobj);
 
     document.getElementById("typeselem_title").innerHTML = "";

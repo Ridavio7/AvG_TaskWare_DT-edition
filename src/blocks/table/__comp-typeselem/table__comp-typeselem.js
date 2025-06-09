@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoTypeselemOpenModal} from '../../modal/__typeselem/modal__typeselem.js';
 
 export const funcGetTypeselem = () => {
@@ -7,8 +7,9 @@ export const funcGetTypeselem = () => {
 }
 
 const funcProcessGetTypeselem = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Типы элем.:", respobj);
+
     let tb_id = "tb_componenets_typeselem";
     clearTable(tb_id);
 

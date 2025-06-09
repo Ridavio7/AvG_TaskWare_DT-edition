@@ -1,6 +1,5 @@
-import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect, togglePassword, validateForm, insertDataInSelect} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, removeOptions, insertDataInSelect, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
-import {showNotification} from '../__notification/modal__notification.js';
 import {funcGetShablons, funcGetShablonsTree} from '../../table/__template-task-shablons/table__template-task-shablons.js';
 
 let shablons_modal    = document.getElementById("shablons_modal");
@@ -31,7 +30,7 @@ export const funcGetShablonsSteps = (uin) => {
 }
 
 const funcProcessGetShablonsSteps = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Инфо шага:", respobj);
 
     shablons_name.value    = '';

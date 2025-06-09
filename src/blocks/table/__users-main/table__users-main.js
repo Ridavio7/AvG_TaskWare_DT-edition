@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoUserOpenModal} from '../../modal/__users/modal__users.js';
 
 export const funcGetUsers = () => {
@@ -7,7 +7,7 @@ export const funcGetUsers = () => {
 }
 
 const funcProcessGetUsers = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Пользователи:", respobj);
 
     let tb_id = "tb_users";
