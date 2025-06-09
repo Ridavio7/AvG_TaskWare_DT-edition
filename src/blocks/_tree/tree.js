@@ -1,5 +1,4 @@
 import {funcCommand, funcProcessOnlyInfo, treeSpanFactory} from "../../js/common/common.js";
-//import {funcGetShablons} from '../table/__template-task-shablons/table__template-task-shablons.js';
 
 export class Tree {
     constructor(dataItem) {
@@ -8,11 +7,7 @@ export class Tree {
         this.deleted    = dataItem.del === 1;
         this.children   = dataItem.children || [];
         this.contentNum = dataItem.contentNum;
-        this.uinShablon = dataItem.uinShablon;
-        this.number     = dataItem.numb;
-        this.username   = dataItem.username;
-        this.dl         = dataItem.dl;
-        this.lv         = dataItem.lv;
+        this.del        = dataItem.del;
         this.parentId   = null;
     }
 
@@ -46,9 +41,9 @@ export class TreeBuilder {
         const root_branch = this.createBranch(root_item);
         this.container.append(root_branch);
 
+        this.initStorage()
+
         if(this.options.includes("contextmenu")){this.contextMenu()} else {this.contextMenuDiv = null};
-        if(this.options.includes("openall")){this.openFullTree()} else {null};
-        if(!this.options.includes("noOpenFolder")){this.initStorage()} else {null};
     }
 
     buildTree(items, parentElement, parentId) {
@@ -62,56 +57,36 @@ export class TreeBuilder {
     }
 
     createBranch(item) {
-        const itemContainer = document.createElement('div');
+        const itemContainer     = document.createElement('div');
         itemContainer.className = 'tree-catalog__item';
 
-        const itemHeader = document.createElement('div');
+        const itemHeader     = document.createElement('div');
         itemHeader.className = 'tree-catalog__header';
-        itemHeader.id = `summary_${item.id}`;
+        itemHeader.id        = `summary_${item.id}`;
         itemHeader.setAttribute('data-id', item.id);
 
         itemHeader.addEventListener('contextmenu', (e) => {
             e.preventDefault();
-            //this.selectItem(itemHeader);
+            this.selectItem(itemHeader);
             this.showContextMenu(e, item);
         })
+
         itemHeader.addEventListener('click', () => {
             this.selectItem(itemHeader);
         })
         
-        const arrow = document.createElement('span');
+        const arrow     = document.createElement('span');
         arrow.className = 'tree-catalog__arrow collapsed';
         arrow.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleItemChildren(itemContainer);
         })
-
         itemHeader.appendChild(arrow);
 
-        const textSpan = document.createElement('span');
-        textSpan.className = 'tree-catalog__text';
-
-        if(!document.URL.includes("control.html#template_task")){
-            textSpan.textContent = `${item.text} (${item.contentNum})`;
-            itemHeader.appendChild(textSpan);
-        } else {
-            const textSpanContainer = document.createElement('div');
-            textSpanContainer.className = 'tree-catalog__text-container';
-
-            if(item.lv === 0){
-                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-            } else {
-                treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span');
-                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span');
-                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span');
-                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span');
-            }
-
-            itemHeader.appendChild(textSpanContainer);
-            itemHeader.classList.add('tree-catalog__header_no-icon');
-        }
+        const textSpan       = document.createElement('span');
+        textSpan.className   = 'tree-catalog__text';
+        textSpan.textContent = `${item.text} (${item.contentNum})`;
+        itemHeader.appendChild(textSpan);
 
         const childrenContainer = document.createElement('div');
         childrenContainer.className = 'tree-catalog__children-container';
@@ -131,9 +106,9 @@ export class TreeBuilder {
     }
 
     toggleItemChildren(itemContainer) {
-        const arrow = itemContainer.querySelector('.tree-catalog__arrow');
+        const arrow             = itemContainer.querySelector('.tree-catalog__arrow');
         const childrenContainer = itemContainer.querySelector('.tree-catalog__children-container');
-        const header = arrow.parentElement
+        const header            = arrow.parentElement
         
         arrow.classList.toggle('collapsed');
         childrenContainer.classList.toggle('collapsed');
@@ -153,86 +128,54 @@ export class TreeBuilder {
     }
 
     saveState() {
-        //const openDetails = Array.from(this.container.querySelectorAll('.tree-catalog__header_open'));
-        //const openItems = openDetails.map(detail => detail.getAttribute('data-id'));
         const activeItemId = this.activeSummary ? 
             this.activeSummary.getAttribute('data-id') : null;
-
-        localStorage.setItem('treeState', JSON.stringify({
-            //openItems,
-            activeItemId
-        }));
+        localStorage.setItem('treeState', JSON.stringify(activeItemId));
     }
 
     initStorage() {
         const savedState = localStorage.getItem('treeState');
         if (savedState) {
-            //const openItems = JSON.parse(savedState).openItems;
-            const activeItemId = JSON.parse(savedState).activeItemId;
-
-            /*if (openItems) {
-                openItems.forEach(id => {
-                    const element = this.container.querySelector(`[data-id="${id}"]`);
-                    if (element) element.firstChild.click();
-                });
-            }*/
-
+            const activeItemId = JSON.parse(savedState);
             if (activeItemId) {
                 const activeElement = this.container.querySelector(`[data-id="${activeItemId}"]`);
                 if (activeElement) this.selectItem(activeElement);
             }
         }
-        
         window.addEventListener('beforeunload', () => this.saveState());
-    }
-
-    openFullTree() {
-        /*const items = this.container.querySelectorAll('.tree-catalog__header');
-        if (items) {
-            items.forEach(element => {
-                console.log(element)
-                element.firstChild.click();
-                //if (!element.classList.contains('tree-catalog__header_no-children')) element.firstChild.click();
-            });
-        }*/
     }
 
     contextMenu() {
         document.getElementById('addBtn').addEventListener('click', () => {
             this.add(this.selectedItem);
             this.hideContextMenu();
-        });
+        })
         
         document.getElementById('renameBtn').addEventListener('click', (e) => {
             this.rename(this.selectedItem);
             this.hideContextMenu();
-        });
+        })
         
         document.getElementById('deleteBtn').addEventListener('click', () => {
             this.delete(this.selectedItem);
             this.hideContextMenu();
-        });
+        })
+
+        document.getElementById('deleteForeverBtn').addEventListener('click', () => {
+            this.deleteForever(this.selectedItem);
+            this.hideContextMenu();
+        })
         
         document.getElementById('moveBtn').addEventListener('click', () => {
             this.move(this.selectedItem);
             this.hideContextMenu();
-        });
-
-        document.getElementById('shablonUpBtn').addEventListener('click', () => {
-            this.shablonUp(this.selectedItem);
-            this.hideContextMenu();
-        });
-
-        document.getElementById('shablonDownBtn').addEventListener('click', () => {
-            this.shablonDown(this.selectedItem);
-            this.hideContextMenu();
-        });
+        })
 
         document.addEventListener('click', (e) => {
             if (e.target.closest('.context-menu') === null) {
                 this.hideContextMenu();
             }
-        });
+        })
     }
 
     showContextMenu(e, item) {
@@ -240,7 +183,7 @@ export class TreeBuilder {
         this.selectedItem = item;
 
         const deleteBtn = document.getElementById('deleteBtn');
-        this.selectedItem.deleted ? deleteBtn.textContent = 'Восстановить' : deleteBtn.textContent = 'Удалить';
+        this.selectedItem.deleted ? deleteBtn.textContent = 'Снять пометку' : deleteBtn.textContent = 'Пометить на удаление';
         
         this.contextMenuDiv.style.display = 'block';
         this.contextMenuDiv.style.left = `${e.pageX}px`;
@@ -256,14 +199,8 @@ export class TreeBuilder {
         if(dataItem != null){
             let newName = prompt('Введите название:', '');
             if(newName != null){
-                if(!document.URL.includes("control.html#template_task")){
-                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
-                    funcCommand(body, funcProcessOnlyInfo, this.funcTree);
-                } else {
-                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`, "uinShablon":`${dataItem.uinShablon}`};
-                    funcCommand(body, funcProcessOnlyInfo);
-                    setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
-                }
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":`${this.obj}`, "uinparent":`${dataItem.id}`, "name":`${newName}`};
+                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
     }
@@ -272,59 +209,34 @@ export class TreeBuilder {
         if(dataItem != null){
             let newName = prompt('Введите новое название:', '');
             if(newName != null){
-                if(!document.URL.includes("control.html#template_task")){
-                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
-                    funcCommand(body, funcProcessOnlyInfo, this.funcTree);
-                } else {
-                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`, "uinShablon":`${dataItem.uinShablon}`};
-                    funcCommand(body, funcProcessOnlyInfo);
-                    setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
-                    //setTimeout(() => {funcGetShablons()}, 150); 
-                }
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinparent":`${dataItem.parentId}`, "name":`${newName}`};
+                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
             }
         }
     }
 
     delete(dataItem) {
         if(dataItem != null){
-            let result = confirm('Подтвердите удаление');
+            let result = dataItem.del === 0 ? confirm('Подтвердите пометку на удаление') : confirm('Подтвердите снятие пометки на удаление');
             if(result){
-                if(!document.URL.includes("control.html#template_task")){
-                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`};
-                    funcCommand(body, funcProcessOnlyInfo, this.funcTree);
-                } else {
-                    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
-                    funcCommand(body, funcProcessOnlyInfo);
-                    setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
-                    //setTimeout(function(){funcGetShablons()}, 100); 
-                }
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${this.objPar}`, "uin":`${dataItem.id}`};
+                funcCommand(body, funcProcessOnlyInfo, this.funcTree);
+            }
+        }
+    }
+
+    deleteForever(dataItem) {
+        if(dataItem != null){
+            let result = confirm('Вы уверены, что ходите удалить навсегда?');
+            if(result){
+                
             }
         }
     }
 
     move(dataItem){
         if(dataItem != null){
-            if(!document.URL.includes("control.html#template_task")){
-                this.funcTrans(dataItem.id, dataItem.text);
-            } else{
-                this.funcTrans(dataItem.id, dataItem.text, dataItem.uinShablon);
-            }
-        }
-    }
-
-    shablonUp(dataItem){
-        if(dataItem != null){
-            let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"up", "obj":"dirSh", "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
-            funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
-        }
-    }
-
-    shablonDown(dataItem){
-        if(dataItem != null){
-            let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"down", "obj":"dirSh", "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
-            funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(() => {this.funcTree(dataItem.uinShablon)}, 100); 
+            this.funcTrans(dataItem.id, dataItem.text);
         }
     }
 
