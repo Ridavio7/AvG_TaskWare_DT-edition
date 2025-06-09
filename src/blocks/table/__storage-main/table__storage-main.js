@@ -53,7 +53,8 @@ const funcProcessGetProducts = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-products");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"products", "uin":`${elem.value}`};
+            let type = elem.name == 0 ? "products" : "sets";
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":`${type}`, "uin":`${elem.value}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -104,5 +105,5 @@ const addProducts = (name, fship, fset, del, uin, tb_id) => {
     cellName.id = `product_name_${uin}`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-products${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-products" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-products${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-products" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
 }
