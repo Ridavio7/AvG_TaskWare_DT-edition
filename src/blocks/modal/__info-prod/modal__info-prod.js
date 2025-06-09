@@ -80,7 +80,7 @@ const funcProcessGetProductInfo = (result, respobj) => {
 }
 
 const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
-    input_info_product_name_title.innerHTML = name;
+    input_info_product_name_title.innerHTML = fset == 0 ? `Изделие ${name}` : `Комплект ${name}`
     input_info_product_name.value           = name;
 
     addToDropdownOneOption(select_info_product_color, dopName, dopUin);

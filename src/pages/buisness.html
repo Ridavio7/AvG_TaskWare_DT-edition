@@ -1512,7 +1512,7 @@
     <!-- мод. окно инфо изделия -->
     <div class="modal" id="modal_info_product">
         <div class="modal__moving" id="modal_info_product_moving">
-            <span class="modal__title">Изделие <span class="modal__title" id="info_product_name_title"></span></span>
+            <span class="modal__title"><span class="modal__title" id="info_product_name_title"></span></span>
             <span class="modal__close" id="info_product_close">&times;</span>
         </div>
         <div class="modal__content">
@@ -1535,7 +1535,7 @@
                             <input class="input__type-text input__type-text_modal" type="text" id="info_product_train" value="">
                         </div>
                         <div class="modal__input-wrapper">
-                            <button class="button__control" id="info_product_tcardprods" value="">Тех. карта</button>
+                            <button class="button__control" id="info_product_tcardprods" value="">Тех. процесс</button>
                         </div>
                         <div class="modal__input-wrapper">
                             <input class="checkbox" type="checkbox" id="info_product_fship" disabled>
@@ -1996,10 +1996,9 @@
     <div id="contextMenu" class="details__context-menu">
         <button id="addBtn">Добавить</button>
         <button id="renameBtn">Переименовать</button>
-        <button id="deleteBtn">Удалить</button>
+        <button id="deleteBtn">Пометить на удаление</button>
+        <button id="deleteForeverBtn">Удалить навсегда</button>
         <button id="moveBtn">Переместить</button>
-        <button id="shablonUpBtn" style="display: none;">Вверх (по уровню)</button>
-        <button id="shablonDownBtn" style="display: none;">Вниз (по уровню)</button>
     </div>
     <div class="notification-container" id="notificationContainer"></div>
 </body>

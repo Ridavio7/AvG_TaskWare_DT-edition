@@ -158,6 +158,9 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
+    client: {  
+      overlay: false  
+    },
     open: true,
   },
 };
