@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, findForUpdateSelect, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js';
-import {TreeBuilder} from '../../_tree/tree.js';
+import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetShablonsSteps} from '../../modal/__info-shablons/modal__info-shablons.js';
 import {funcInfoShablonsTransferOpenModal} from '../../modal/__transfer-shablons/modal__transfer-shablons.js';
 
@@ -14,9 +14,6 @@ const funcProcessGetShablons = (result, respobj) => {
 
     let tb_id = "tb_shablons";
     clearTable(tb_id);
-
-    let select = document.getElementById("select_add_shablons_user");
-    addToDropdown(select, "users_list");
 
     for (let key in respobj.answ){
         let obj      = respobj.answ[key];
@@ -47,7 +44,10 @@ const funcProcessGetShablons = (result, respobj) => {
     let button_modal = document.querySelectorAll(".button__control_modal-shablons-catSh");
     button_modal.forEach((elem) => {
         elem.addEventListener("click", () => {
+            let btn = tb_shablons.querySelector('.button__control_active');
+            if(btn != null){btn.classList.remove('button__control_active');}
             funcGetShablonsTree(elem.value);
+            elem.classList.add('button__control_active');
         })
     })
 }
@@ -58,13 +58,13 @@ const addShablonsRow = (name, nameUser, uin, del, tb_id) => {
     newRow.classList = "tr";
 
     let cellInfo = newRow.insertCell(0); cellInfo.classList = "td";
-    let cellName = newRow.insertCell(1); cellName.classList = "td";
-    let cellUser = newRow.insertCell(2); cellUser.classList = "td";
+    let cellRel  = newRow.insertCell(1); cellRel.classList  = "td";
+    let cellName = newRow.insertCell(2); cellName.classList = "td";
     let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-shablons-catSh" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+    cellRel.innerHTML  = `<button class="button__control button__control_modal-shablons-release" value="${uin}">Выпустить</button>`;
     cellName.innerHTML = name;
-    cellUser.innerHTML = nameUser;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-shablons${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
@@ -104,6 +104,6 @@ const funcProcessGetShablonsTree = (result, respobj) => {
 
     localStorage.setItem("uinShablon", respobj.answ.uinShablon)
 
-    const tree = new TreeBuilder('tree_shablons', 'dirSh', 'catSh', funcGetShablonsTree, funcGetShablonsSteps, funcInfoShablonsTransferOpenModal, ["contextmenu", "noOpenFolder"]);
+    const tree = new TreeTaskBuilder('tree_shablons', 'dirSh', 'catSh', funcGetShablonsTree, funcGetShablonsSteps, funcInfoShablonsTransferOpenModal, funcGetShablons, ["contextmenu"]);
     tree.build(respobj.answ);
 }

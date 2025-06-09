@@ -7,9 +7,7 @@ let shablons_modal    = document.getElementById("shablons_modal");
 let shablons_close    = document.getElementById("shablons_close");
 let shablons_title    = document.getElementById("shablons_name_title");
 let shablons_name     = document.getElementById("shablons_name");
-let shablons_numb_i   = document.getElementById("shablons_numb_inlevel");
 let shablons_mission  = document.getElementById("shablons_mission");
-let shablons_prim     = document.getElementById("shablons_prim");
 let shablons_dl_d     = document.getElementById("shablons_dl_d");
 let shablons_dl_h     = document.getElementById("shablons_dl_h");
 let shablons_dl_m     = document.getElementById("shablons_dl_m");
@@ -36,30 +34,24 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Инфо шага:", respobj);
 
-    shablons_name.value      = '';
-    shablons_numb_i.value    = '';
-    shablons_mission.value   = '';
-    shablons_prim.value      = '';
-    shablons_dl_d.value      = '';
-    shablons_dl_h.value      = '';
-    shablons_dl_m.value      = '';
+    shablons_name.value    = '';
+    shablons_mission.value = '';
+    shablons_dl_d.value    = '';
+    shablons_dl_h.value    = '';
+    shablons_dl_m.value    = '';
     removeOptions(shablons_user);
     removeOptions(shablons_areaprof);
     removeOptions(shablons_content);
     removeOptions(shablons_start);
 
     if(respobj.answ.uin === '0'){
-        shablons_numb_i.parentElement.classList.add("modal__input-wrapper_display-none");
         shablons_mission.parentElement.classList.add("modal__input-wrapper_display-none");
-        shablons_prim.parentElement.classList.add("modal__input-wrapper_display-none");
         shablons_areaprof.parentElement.classList.add("modal__input-wrapper_display-none");
         shablons_content.parentElement.classList.add("modal__input-wrapper_display-none");
         shablons_start.parentElement.classList.add("modal__input-wrapper_display-none");
         shablons_dl_d.parentElement.classList.add("modal__input-wrapper_display-none");
     } else {
-        shablons_numb_i.parentElement.classList.remove("modal__input-wrapper_display-none");
         shablons_mission.parentElement.classList.remove("modal__input-wrapper_display-none");
-        shablons_prim.parentElement.classList.remove("modal__input-wrapper_display-none");
         shablons_areaprof.parentElement.classList.remove("modal__input-wrapper_display-none");
         shablons_content.parentElement.classList.remove("modal__input-wrapper_display-none");
         shablons_start.parentElement.classList.remove("modal__input-wrapper_display-none");
@@ -70,7 +62,6 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     let name         = obj.name;
     let mission      = obj.mission;
     let numb_i       = obj.numb_inlevel != undefined ? obj.numb_inlevel : '0';
-    let prim         = obj.prim;
     let dl           = obj.dl;
     let nameShablon  = obj.shablon.name;
     let uinShablon   = obj.shablon.uin;
@@ -84,16 +75,14 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     let uinContent   = obj.content  != undefined ? obj.content.uin : '';
     let uin          = obj.uin;
     let del          = obj.del;
-    addShablonsInfo(name, mission, numb_i, prim, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, uin, del);
+    addShablonsInfo(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, uin, del);
 }
 
 const addShablonsInfo =
-(name, mission, numb_i, prim, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, uin, del) => {
+(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, uin, del) => {
     shablons_title.innerHTML = `Шаблон: ${nameShablon}. Номер: ${numb_i}. Название: ${name}`;
     shablons_name.value      = name;
-    shablons_numb_i.value    = numb_i;
     shablons_mission.value   = mission;
-    shablons_prim.value      = prim;
     shablons_dl_d.value      = dl.dl_d;
     shablons_dl_h.value      = dl.dl_h;
     shablons_dl_m.value      = dl.dl_m;
@@ -116,9 +105,7 @@ shablons_save.onclick = (elem) => {
     body.uinareaprof  = shablons_areaprof.value;
     body.uincontent   = shablons_content.value;
     body.uinstart     = shablons_start.value;
-    body.numb_inlevel = shablons_numb_i.value;
     body.mission      = shablons_mission.value;
-    body.prim         = shablons_prim.value;
     body.dl_d         = shablons_dl_d.value;
     body.dl_h         = shablons_dl_h.value;
     body.dl_m         = shablons_dl_m.value;

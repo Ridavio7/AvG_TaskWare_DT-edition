@@ -1,9 +1,17 @@
 .input__type-text_modal{
     background-color: var(--background_second);
     margin: 5px;
-    padding: 0px 10px;
+    padding: 0px 5px;
     max-height: 40px;
     height: 40px;
     width: 200px;
     border: 1px solid var(--border);
+
+    &_long{
+        width: 550px;
+    }
+
+    &_short{
+        width: 45px;
+    }
 }

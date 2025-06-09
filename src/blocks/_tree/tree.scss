@@ -134,12 +134,31 @@
 
             &-main{
                 font-weight: 600;
+                text-wrap: nowrap;
+            }
+
+            &-number{
+                min-width: 40px;
+                text-wrap: nowrap;
+            }
+
+            &-text{
+                width: 250px;
+            }
+
+            &-user{
+                width: 200px;
+            }
+
+            &-dl{
+                min-width: 90px;
+                text-wrap: nowrap;
             }
         }
     }
 
     &__children-container{
-        padding-left: 20px;
+        padding-left: 30px;
         overflow: hidden;
         transition: max-height 0.3s ease-out;
 
