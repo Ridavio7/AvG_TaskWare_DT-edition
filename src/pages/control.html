@@ -310,8 +310,40 @@
                 </table>
             </div>
         </div>
+        <!-- Контроль задач -->
         <div class="sidebar__tabcontent" id="control_task">
-            <p>Контроль задач</p>
+            <div class="sidebar__tabcontent__first-tabs">
+                <a href="#control_task/control_task_control"><button class="button__tab__first button__tab__first_control_task_control"><img class="button__tab__first__img" src="../blocks/sidebar/img/control_task.svg">Контроль задач</button></a>
+                <a href="#control_task/control_task_statustask"><button class="button__tab__first button__tab__first_control_task_statustask"><img class="button__tab__first__img" src="../blocks/sidebar/img/control_task.svg">Тип контента</button></a>
+            </div>
+            <div id="control_task/control_task_control" class="sidebar__tabcontent__container">
+
+            </div>
+            <div id="control_task/control_task_statustask" class="sidebar__tabcontent__container">
+                <div class="select__wrapper">
+                    <select class="select select__sort" id="sort_statustask">
+                        <option value="">Сортировка &#8661;</option>
+                        <option value="">По названию &#8659;</option>
+                        <option value="">По названию &#8657;</option>
+                        <option value="">По новизне &#8659;</option>
+                        <option value="">По новизне &#8657;</option>
+                    </select>
+                </div>
+                <table class="table">
+                    <thead class="thead">
+                        <tr class="tr">
+                            <td class="td td_active">Название</td>
+                            <td class="td td_active"></td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_statustask">
+                        <tr class="tr">
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statustask"></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-color"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <!-- мод. окно инфо пользователя -->

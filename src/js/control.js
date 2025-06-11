@@ -47,6 +47,10 @@ import {funcGetShablons} from '../blocks/table/__template-task-shablons/table__t
 import {funcGetContents} from '../blocks/table/__template-task-contents/table__template-task-contents.js';
 import {funcGetStartstep} from '../blocks/table/__template-task-startstep/table__template-task-startstep.js';
 
+/* контроль */
+//import {funcGetShablons} from '../blocks/table/__template-task-shablons/table__template-task-shablons.js';
+import {funcGetStatustask} from '../blocks/table/__control-task-statustask/table__control-task-statustask.js';
+
 import {returnTabs} from '../js/common/common.js.js';
 
 window.onload = function(){
@@ -67,3 +71,6 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user")
 addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_shablons"), funcGetShablons);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_contents"), funcGetContents);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_startstep"), funcGetStartstep);
+
+/* контроль */
+addEventButtonTab(document.querySelectorAll(".button__tab__first_control_task_statustask"), funcGetStatustask);
