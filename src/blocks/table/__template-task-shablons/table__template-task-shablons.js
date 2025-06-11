@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, makeSelect, findForUpdateSelect, addToDropdown, removeOptionsSetValue} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTable, listenSortSelect, responseProcessor} from '../../../js/common/common.js';
 import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetShablonsSteps} from '../../modal/__info-shablons/modal__info-shablons.js';
 import {funcInfoShablonsTransferOpenModal} from '../../modal/__transfer-shablons/modal__transfer-shablons.js';
@@ -9,7 +9,7 @@ export const funcGetShablons = () => {
 }
 
 const funcProcessGetShablons = (result, respobj) => {
-    if( result === 0 ) return;
+    responseProcessor(result, respobj.succ);
     console.log("Шаблоны:", respobj);
 
     let tb_id = "tb_shablons";
@@ -18,10 +18,9 @@ const funcProcessGetShablons = (result, respobj) => {
     for (let key in respobj.answ){
         let obj      = respobj.answ[key];
         let name     = obj.name;
-        let nameUser = obj.admin.name;
         let del      = obj.del;
         let uin      = obj.uin;
-        addShablonsRow(name, nameUser, uin, del, tb_id);
+        addShablonsRow(name, uin, del, tb_id);
     }
 
     /* функция удаления */
@@ -62,7 +61,7 @@ const funcProcessGetShablons = (result, respobj) => {
     })
 }
 
-const addShablonsRow = (name, nameUser, uin, del, tb_id) => {
+const addShablonsRow = (name, uin, del, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";

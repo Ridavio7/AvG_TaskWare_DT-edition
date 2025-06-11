@@ -48,7 +48,7 @@ import {funcGetContents} from '../blocks/table/__template-task-contents/table__t
 import {funcGetStartstep} from '../blocks/table/__template-task-startstep/table__template-task-startstep.js';
 
 /* контроль */
-//import {funcGetShablons} from '../blocks/table/__template-task-shablons/table__template-task-shablons.js';
+import {funcGetTasks} from '../blocks/table/__control-task-control/table__control-task-control.js';
 import {funcGetStatustask} from '../blocks/table/__control-task-statustask/table__control-task-statustask.js';
 
 import {returnTabs} from '../js/common/common.js.js';
@@ -73,4 +73,5 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_c
 addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_startstep"), funcGetStartstep);
 
 /* контроль */
+addEventButtonTab(document.querySelectorAll(".button__tab__first_control_task_control"), funcGetTasks);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_control_task_statustask"), funcGetStatustask);

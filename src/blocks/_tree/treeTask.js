@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, treeSpanFactory} from "../../js/common/common.js";
+import {funcCommand, funcProcessOnlyInfo, treeSpanFactory, formatDate} from "../../js/common/common.js";
 
 export class Tree {
     constructor(dataItem) {
@@ -12,6 +12,8 @@ export class Tree {
         this.username   = dataItem.username;
         this.dl         = dataItem.dl;
         this.lv         = dataItem.lv;
+        this.datebegin  = dataItem.datebegin;
+        this.uinstatus  = dataItem.uinstatus;
         this.del        = dataItem.del;
         this.parentId   = null;
     }
@@ -78,16 +80,31 @@ export class TreeTaskBuilder {
 
         const textSpanContainer     = document.createElement('div');
         textSpanContainer.className = 'tree-catalog__text-container';
-        if(item.lv === 0){
-            treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-            treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-            treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+        if(document.URL.includes('#template_task/template_task_shablons')){
+            if(item.lv === 0){
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+            } else {
+                treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
+                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user');
+                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-dl');
+            }
         } else {
-            treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
-            treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
-            treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user');
-            treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-dl');
+            if(item.lv === 0){
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+            } else {
+                treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
+                treeSpanFactory(textSpanContainer, item.uinstatus, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
+                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user');
+                treeSpanFactory(textSpanContainer, item.datebegin != '' ? formatDate(item.datebegin) : '---', '', 'tree-catalog__text tree-catalog__text_span');
+            }
         }
+        
         itemHeader.appendChild(textSpanContainer);
         itemHeader.classList.add('tree-catalog__header_no-icon');
         itemContainer.appendChild(itemHeader);

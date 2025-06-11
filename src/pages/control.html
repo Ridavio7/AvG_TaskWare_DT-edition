@@ -314,11 +314,41 @@
         <div class="sidebar__tabcontent" id="control_task">
             <div class="sidebar__tabcontent__first-tabs">
                 <a href="#control_task/control_task_control"><button class="button__tab__first button__tab__first_control_task_control"><img class="button__tab__first__img" src="../blocks/sidebar/img/control_task.svg">Контроль задач</button></a>
-                <a href="#control_task/control_task_statustask"><button class="button__tab__first button__tab__first_control_task_statustask"><img class="button__tab__first__img" src="../blocks/sidebar/img/control_task.svg">Тип контента</button></a>
+                <a href="#control_task/control_task_statustask"><button class="button__tab__first button__tab__first_control_task_statustask"><img class="button__tab__first__img" src="../blocks/sidebar/img/control_task.svg">Статусы задач</button></a>
             </div>
+            <!-- Контроль задач -->
             <div id="control_task/control_task_control" class="sidebar__tabcontent__container">
+                <div class="modal__body">
+                    <div>
+                        <div class="select__wrapper">
+                            <select class="select select__sort" id="sort_tasks">
+                                <option value="">Сортировка &#8661;</option>
+                                <option value="">По названию &#8659;</option>
+                                <option value="">По названию &#8657;</option>
+                                <option value="">По новизне &#8659;</option>
+                                <option value="">По новизне &#8657;</option>
+                            </select>
+                        </div>
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active">Статус</td>
+                                    <td class="td td_active">Название</td>
+                                    <td class="td td_active">Начало</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb_tasks">
 
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal__tree modal__tree_width-auto">
+                        <div id="tree_tasks"></div>
+                    </div>
+                </div>
             </div>
+            <!-- Статус задач -->
             <div id="control_task/control_task_statustask" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
                     <select class="select select__sort" id="sort_statustask">
@@ -459,6 +489,75 @@
             </div>
             <div class="modal__footer">
                 <button class="button__control button__control_modal" id="shablons_save" value="">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <!-- мод. окно инфо задачи -->
+    <div class="modal" id="tasks_modal">
+        <div class="modal__moving" id="tasks_modal_moving">
+            <span class="modal__title"><span class="modal__title" id="tasks_name_title"></span></span>
+            <span class="modal__close" id="tasks_close">&times;</span>
+        </div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_name">Название:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="tasks_name" value="">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_status">Статус:</label>
+                        <select class="select select_modal" id="tasks_status"></select>
+                    </div>
+                </div>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_user">Исполнитель:</label>
+                        <select class="select select_modal" id="tasks_user"></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_areaprof">Участок:</label>
+                        <select class="select select_modal" id="tasks_areaprof"></select>
+                    </div>
+                </div>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_content">Тип контента:</label>
+                        <select class="select select_modal" id="tasks_content"></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_start">Тип запуска:</label>
+                        <select class="select select_modal" id="tasks_start"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body">
+                <div class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_datebegin">Дата запуска:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="tasks_datebegin" value="">
+                    </div>
+                </div>
+                <div class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start">
+                    <label class="input__type-text__label" for="tasks_dl_d">Длительность:</label>
+                    <input class="input__type-text input__type-text_modal input__type-text_modal_short" type="text" id="tasks_dl_d" value="">
+                    <label class="input__type-text__label" for="tasks_dl_d">дней</label>
+                    <input class="input__type-text input__type-text_modal input__type-text_modal_short" type="text" id="tasks_dl_h" value="">
+                    <label class="input__type-text__label" for="tasks_dl_h">часов</label>
+                    <input class="input__type-text input__type-text_modal input__type-text_modal_short" type="text" id="tasks_dl_m" value="">
+                    <label class="input__type-text__label" for="shablons_dl_m">минут</label>
+                </div>
+            </div>
+            <div class="modal__body">
+                <div class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start">
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="tasks_mission">Описание:</label>
+                        <input class="input__type-text input__type-text_modal input__type-text_modal_long" type="text" id="tasks_mission" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="modal__footer">
+
             </div>
         </div>
     </div>
