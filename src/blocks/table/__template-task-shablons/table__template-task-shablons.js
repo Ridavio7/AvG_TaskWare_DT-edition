@@ -41,6 +41,7 @@ const funcProcessGetShablons = (result, respobj) => {
         })
     })
 
+    /* открытие модального окна */
     let button_modal = document.querySelectorAll(".button__control_modal-shablons-catSh");
     button_modal.forEach((elem) => {
         elem.addEventListener("click", () => {
@@ -48,6 +49,15 @@ const funcProcessGetShablons = (result, respobj) => {
             if(btn != null){btn.classList.remove('button__control_active');}
             funcGetShablonsTree(elem.value);
             elem.classList.add('button__control_active');
+        })
+    })
+
+    /* запуск шаблона */
+    let button_control_rel = document.querySelectorAll(".button__control_modal-shablons-release");
+    button_control_rel.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"starttask", "obj":"tasks", "uinShablon":`${elem.value}`};
+            funcCommand(body, funcProcessOnlyInfo);
         })
     })
 }
@@ -63,7 +73,7 @@ const addShablonsRow = (name, nameUser, uin, del, tb_id) => {
     let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-shablons-catSh" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
-    cellRel.innerHTML  = `<button class="button__control button__control_modal-shablons-release" value="${uin}">Выпустить</button>`;
+    cellRel.innerHTML  = `<button class="button__control button__control_modal-shablons-release" value="${uin}">Запуск</button>`;
     cellName.innerHTML = name;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
