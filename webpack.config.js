@@ -51,6 +51,11 @@ const plugins = () => {
         { from: "src/blocks/table/__snprod/img/ellipse_white.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_red.svg", to: "assets/images/" },
         { from: "src/blocks/entrance/img/entrance_eye_off.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/active.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/complete.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/no_start.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/time_fail_active.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/time_fail_complete.svg", to: "assets/images/" },
       ],
     }),
     new webpack.ProvidePlugin({

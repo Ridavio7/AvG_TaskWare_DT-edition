@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, treeSpanFactory, formatDate} from "../../js/common/common.js";
+import {funcCommand, funcProcessOnlyInfo, treeSpanFactory, treeSpanFactoryStatusTree, formatDate, setStatus} from "../../js/common/common.js";
 
 export class Tree {
     constructor(dataItem) {
@@ -98,7 +98,7 @@ export class TreeTaskBuilder {
                 treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
             } else {
                 treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
-                treeSpanFactory(textSpanContainer, item.uinstatus, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
+                treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
                 treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
                 treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user');
                 treeSpanFactory(textSpanContainer, item.datebegin != '' ? formatDate(item.datebegin) : '---', '', 'tree-catalog__text tree-catalog__text_span');
@@ -158,7 +158,7 @@ export class TreeTaskBuilder {
             this.hideContextMenu();
         });
         
-        document.getElementById('renameBtn').addEventListener('click', (e) => {
+        document.getElementById('renameBtn').addEventListener('click', () => {
             this.rename(this.selectedItem);
             this.hideContextMenu();
         });

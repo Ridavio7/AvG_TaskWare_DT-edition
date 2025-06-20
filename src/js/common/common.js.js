@@ -510,6 +510,13 @@ export const treeSpanFactory = (container, data, text, style) => {
     container.appendChild(textSpan);
 }
 
+export const treeSpanFactoryStatusTree = (container, data, style) => {
+    const textSpan = document.createElement('span');
+    textSpan.className = style;
+    textSpan.innerHTML = data;
+    container.appendChild(textSpan);
+}
+
 export const formatDate = (dateString) => {
     const date = new Date(dateString);
 
@@ -520,4 +527,30 @@ export const formatDate = (dateString) => {
     const mins  = String(date.getMinutes()).padStart(2, '0');
 
     return `${day}.${month}.${year} ${hours}:${mins}`;
+}
+
+export const setStatus = (status) => {
+    let img;
+    switch (status) {
+        case 1:
+            img = '<img class="" src="assets/images/no_start.svg">';
+            break
+        case 2:
+            img = '<img class="" src="assets/images/active.svg">';
+            break
+        case 3:
+            img = '<img class="" src="assets/images/time_fail_active.svg">';
+            break
+        case 4:
+            img = '<img class="" src="assets/images/complete.svg">';
+            break
+        case 5:
+            img = '<img class="" src="assets/images/time_fail_complete.svg">';
+            break
+        default:
+            img = '???';
+            break
+    }
+
+    return img;
 }

@@ -1,4 +1,4 @@
-import {funcCommand} from '../../../js/common/common.js';
+import {funcCommand, responseProcessor} from '../../../js/common/common.js';
 
 /* соответствия типов елементов-комплектующих и свойств комплект-х */
 export const funcGetComponentInfoTypesProps = (uin) => {
