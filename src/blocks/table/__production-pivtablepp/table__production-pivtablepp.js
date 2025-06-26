@@ -99,7 +99,7 @@ const addPivTableppRow = (name, plan, tcard, del, uin, tb_id) => {
     }
 }
 
-document.getElementById("sort_pivtablepp").addEventListener('change', function(){
+/*document.getElementById("sort_pivtablepp").addEventListener('change', function(){
     clearTableAll("tb_pivtablepp");
 
     let option = this.selectedIndex;
@@ -121,4 +121,4 @@ document.getElementById("sort_pivtablepp").addEventListener('change', function()
         funcCommand(body3, funcProcessGetPivTablepp);
         break;
     }
-});
+});*/

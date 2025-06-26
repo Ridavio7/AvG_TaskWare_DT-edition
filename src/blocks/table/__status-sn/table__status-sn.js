@@ -58,6 +58,7 @@ const funcProcessGetStatussn = (result, respobj) => {
 const addStatussnRow = (name, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
+    newRow.classList = "tr";
 
     let cellName = newRow.insertCell(0); cellName.classList = "td td__text_align_center";
     let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td";

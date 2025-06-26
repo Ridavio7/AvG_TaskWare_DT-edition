@@ -26,11 +26,9 @@ const addProductsRow = (uin, name, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellCheckbox = newRow.insertCell(0); cellCheckbox.classList = "td";
-    let cellName     = newRow.insertCell(1); cellName.classList     = "td";
-    let cellInput    = newRow.insertCell(2); cellInput.classList    = "td";
+    let cellName     = newRow.insertCell(0); cellName.classList     = "td td_nowrap-content";
+    let cellInput    = newRow.insertCell(1); cellInput.classList    = "td";
 
-    cellCheckbox.innerHTML = `<input type="checkbox" class="checkbox" id="product_${uin}" name="${uin}" value="${name}"><label for="product_${uin}"></label>`;
-    cellName.innerHTML = name;
+    cellName.innerHTML = `<input type="checkbox" class="checkbox" id="product_${uin}" name="${uin}" value="${name}"><label for="product_${uin}">${name}</label>`;
     cellInput.innerHTML = `<input class="input__type-text input__type-text_title" type="text" id="input_product_${uin}" name="${uin}">`;
 }

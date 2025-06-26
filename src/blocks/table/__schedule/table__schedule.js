@@ -111,6 +111,7 @@ function addGrfShipSetsRow(num, msum, rsum, uinSet, nameSet, del, uin, tb_id,
                             r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12){
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
+    newRow.classList = "tr";
 
     let cellNum  = newRow.insertCell(0);  cellNum.classList = "td td_even-column-active";
     let cellName = newRow.insertCell(1);  cellName.classList = "td td_even-column-active";

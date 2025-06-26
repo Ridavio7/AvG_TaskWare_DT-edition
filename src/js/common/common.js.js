@@ -46,6 +46,7 @@ export const responseProcessor = (res, respobj) => {
         case -113:
             showNotification('info', 'Предупреждение!', 'Пройдите авторизацию на сайте');
             result = true;
+            window.location = 'index.html';
             break
         case 0:
             showNotification('error', 'Ошибка!', 'Произошла ошибка при выполнении');
@@ -465,6 +466,7 @@ export const returnTabs = () => {
 export const updateDirectory = () => {
     const user = localStorage.getItem('srtf');
     const requests = [
+        { obj: "sets", callback: processResponse("sets") },
         { obj: "products", callback: processResponse("products") },
         { obj: "colors", callback: processResponse("colors") },
         { obj: "verapp", callback: processResponse("verapp") },
@@ -481,7 +483,8 @@ export const updateDirectory = () => {
         { obj: "users", callback: processResponse("users") },
         { obj: "prof", callback: processResponse("prof") },
         { obj: "contents", callback: processResponse("contents") },
-        { obj: "startstep", callback: processResponse("startstep") }
+        { obj: "startstep", callback: processResponse("startstep") },
+        { obj: "statustask", callback: processResponse("statustask") }
     ];
 
     requests.forEach(({ obj, callback, sort }) => {
@@ -539,13 +542,16 @@ export const setStatus = (status) => {
             img = '<img class="" src="assets/images/active.svg">';
             break
         case 3:
-            img = '<img class="" src="assets/images/time_fail_active.svg">';
+            img = '<img class="" src="assets/images/time_fail.svg">';
             break
         case 4:
             img = '<img class="" src="assets/images/complete.svg">';
             break
         case 5:
-            img = '<img class="" src="assets/images/time_fail_complete.svg">';
+            img = '<img class="" src="assets/images/complete_error.svg">';
+            break
+        case 6:
+            img = '<img class="" src="assets/images/cancel.svg">';
             break
         default:
             img = '???';

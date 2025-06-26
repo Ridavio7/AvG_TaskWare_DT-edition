@@ -225,7 +225,7 @@ function funcProcessInfoUserOpenModalAdd(){
     user_email.value  = "";
     user_phone.value  = "";
     removeOptions(user_job)
-    addToDropdownOneOption(user_job, "---", "");
+    addToDropdownOneOption(user_job, "Выберите должность", "");
     addToDropdown(user_job, "jobs_list");
 
     user_login.parentElement.style.display  = "none";
