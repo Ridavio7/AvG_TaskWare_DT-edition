@@ -54,8 +54,8 @@ const plugins = () => {
         { from: "src/blocks/table/__control-task-control/img/active.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/complete.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/no_start.svg", to: "assets/images/" },
-        { from: "src/blocks/table/__control-task-control/img/time_fail_active.svg", to: "assets/images/" },
-        { from: "src/blocks/table/__control-task-control/img/time_fail_complete.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/time_fail.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/complete_error.svg", to: "assets/images/" },
       ],
     }),
     new webpack.ProvidePlugin({
