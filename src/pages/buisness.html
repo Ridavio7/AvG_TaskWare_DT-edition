@@ -276,9 +276,9 @@
                         <tr class="tr">
                             <td class="td td__text_align_center">---</td>
                             <td class="td"><select class="select" id="select_add_SNProd_product"><option value="">Выберите изделие</option></select></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_SN"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count_use"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_SN" placeholder="Введите SN"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count" placeholder="Введите кол-во всего"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count_use" placeholder="Введите кол-во использованных"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="date" id="input_add_SNProd_date"></td>
                             <td class="td"><select class="select" id="select_add_SNProd_status"><option value="">Выберите статус</option></select></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-snprod"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
@@ -306,7 +306,7 @@
                     </thead>
                     <tbody id="tb_statuses_statussn">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statussn_name"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statussn_name" placeholder="Введите название статуса"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statussn"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -332,7 +332,7 @@
                     </thead>
                     <tbody id="tb_statuses_shipment">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statuses_shipment_name"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statuses_shipment_name" placeholder="Введите название статуса"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-shipment"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -645,9 +645,9 @@
                     <tbody id="tb_plan">
                         <tr class="tr">
                             <td class="td"><select class="select" id="select_add_plan_product"><option value="">Выберите изделие</option></select></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_count" value=""></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_count" value="" placeholder="Введите кол-во"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-date input__type-text_title" type="date" id="input_add_plan_date" value=""></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_prim" value=""></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_prim" value="" placeholder="Введите примечание"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-plan"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -673,8 +673,8 @@
                     </thead>
                     <tbody id="tb_techproc">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_numb" value=""></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_name" value=""></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_numb" value="" placeholder="Введите номер тех. процесса"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_name" value="" placeholder="Введите название тех. процесса"></td>
                             <td class="td"><input class="checkbox" type="checkbox" id="input_add_techproc_fix"><label for="input_add_techproc_fix"></label></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-techproc"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
@@ -689,7 +689,7 @@
                     <button class="button__control" id="button_pivtablepp_analysis_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                     <button class="button__control" id="button_pivtablepp_analysis_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                 </div>
-                <div class="select__wrapper">
+                <!--<div class="select__wrapper">
                     <select class="select select__sort" id="sort_pivtablepp">
                         <option value="">Сортировка &#8661;</option>
                         <option value="">По названию &#8659;</option>
@@ -697,7 +697,7 @@
                         <option value="">По новизне &#8659;</option>
                         <option value="">По новизне &#8657;</option>
                     </select>
-                </div>
+                </div>-->
                 <table class="table">
                     <tbody id="tb_pivtablepp">
 
@@ -783,7 +783,7 @@
                     </thead>
                     <tbody id="tb_statuses_statusdoc">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statusdoc_name"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statusdoc_name" placeholder="Введите название статуса"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statusdoc" disabled><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -820,8 +820,8 @@
                     </thead>
                     <tbody id="tb_prof">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_prof_numb" value=""></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_prof_name" value=""></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_prof_numb" value="" placeholder="Введите номер участка"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_prof_name" value="" placeholder="Введите название участка"></td>
                             <td class="td"><input class="checkbox" type="checkbox" id="input_add_prof_fc"><label for="input_add_prof_fc"></label></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-prof"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
@@ -910,7 +910,7 @@
                     </thead>
                     <tbody id="tb_storages">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_storages_name"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_storages_name" placeholder="Введите название статуса"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-storages"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -936,7 +936,7 @@
                     </thead>
                     <tbody id="tb_products_colors">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_colors"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_colors" placeholder="Введите название цвета"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-color"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -962,7 +962,7 @@
                     </thead>
                     <tbody id="tb_products_verapp">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verapp"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verapp" placeholder="Введите название версии"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-verapp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -988,7 +988,7 @@
                     </thead>
                     <tbody id="tb_products_verpp">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verpp"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verpp" placeholder="Введите название версии"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-verpp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -1070,13 +1070,13 @@
                 <table class="table">
                     <thead class="thead">
                         <tr class="tr">
-                            <td class="td td_active">Единица измерения</td>
+                            <td class="td td_active">Название</td>
                             <td class="td td_active"></td>
                         </tr>
                     </thead>
                     <tbody id="tb_componenets_measurement">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_measurement"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_measurement" placeholder="Введите название ед. изм."></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-measurement"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -1105,10 +1105,10 @@
                     </thead>
                     <tbody id="tb_componenets_coeffs">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_name"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_coeff"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_smv"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_help"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_name" placeholder="Введите название приставки"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_coeff" placeholder="Введите степень"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_smv" placeholder="Введите обозначение"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_help" placeholder="Введите подсказку"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-coeffs"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -1135,7 +1135,7 @@
                     </thead>
                     <tbody id="tb_componenets_props">
                         <tr class="tr">
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_props"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_props" placeholder="Введите название свойства"></td>
                             <td class="td td__text_align_center"><select class="select" id="select_add_props"><option value="">Выберите ед. изм.</option></select></td>
                             <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-props"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
@@ -1164,7 +1164,7 @@
                     <tbody id="tb_componenets_typeselem">
                         <tr class="tr">
                             <td class="td"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_typeselem"></td>
+                            <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_typeselem" placeholder="Введите название типа"></td>
                             <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-typeselem"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -1196,12 +1196,12 @@
                 </thead>
                 <tbody id="tb_contragents">
                     <tr class="tr">
-                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_name"></td>
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_name" placeholder="Введите название контрагента"></td>
                         <td class="td"><input class="checkbox" type="checkbox" id="input_add_contragents_buy"><label for="input_add_contragents_buy"></label></td>
                         <td class="td"><input class="checkbox" type="checkbox" id="input_add_contragents_vend"><label for="input_add_contragents_vend"></label></td>
-                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_kpp"></td>
-                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_inn"></td>
-                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_address"></td>
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_kpp" placeholder="Введите КПП"></td>
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_inn" placeholder="Введите ИНН"></td>
+                        <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_address" placeholder="Введите адрес"></td>
                         <td class="td td_buttons-control"><button class="button__control button__control_add-contragents"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                     </tr>
                 </tbody>
@@ -1424,7 +1424,7 @@
                     <div class="modal__table-wrapper_task">
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="component_name">Название:</label>
-                            <input class="input__type-text input__type-text_modal" type="text" id="component_name" value="">
+                            <input class="input__type-text input__type-text_modal" type="text" id="component_name" value="" placeholder="Введите название">
                         </div>
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="component_type">Тип:</label>
@@ -1433,7 +1433,7 @@
                         </div>
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="component_comment">Примечание:</label>
-                            <textarea class="input__type-text input__type-text_modal" id="component_comment" value=""></textarea>
+                            <textarea class="input__type-text input__type-text_modal" id="component_comment" value="" placeholder="Введите примечание"></textarea>
                         </div>
                         <div class="modal__input-wrapper">
                             <input class="checkbox" type="checkbox" id="component_tpack">
@@ -1494,8 +1494,8 @@
                             <tbody id="tb_modal_link">
                                 <tr class="tr">
                                     <td class="td"></td>
-                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_name"></td>
-                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_link"></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_name" placeholder="Введите название"></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_link" placeholder="Введите ссылку"></td>
                                     <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_link" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                                 </tr>
                             </tbody>
@@ -1524,7 +1524,7 @@
                     <div class="modal__table-wrapper_task">
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="info_product_name">Название:</label>
-                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_name" value="">
+                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_name" value="" placeholder="Введите название">
                         </div>
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="info_product_color">Цвет:</label>
@@ -1532,7 +1532,7 @@
                         </div>
                         <div class="modal__input-wrapper">
                             <label class="input__type-text__label" for="info_product_train">Вагон:</label>
-                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_train" value="">
+                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_train" value="" placeholder="Введите № вагона">
                         </div>
                         <div class="modal__input-wrapper">
                             <button class="button__control" id="info_product_tcardprods" value="">Тех. процесс</button>
@@ -1562,7 +1562,7 @@
                             <tbody id="tb_info_product_prod">
                                 <tr class="tr">
                                     <td class="td"><button class="button__select button__select_product_innprod" id="button_info_product_add_prod" value="">Выберите изделие</button></td>
-                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_prod"></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_prod" placeholder="Введите кол-во"></td>
                                     <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                                 </tr>
                             </tbody>
@@ -1582,7 +1582,7 @@
                                 <tr class="tr">
                                     <td class="td"></td>
                                     <td class="td"><button class="button__select button__select_component button__select_product_componenet" id="button_info_product_add_comp" value="">Выберите комплектующее</button></td>
-                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_comp"></td>
+                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_comp" placeholder="Введите кол-во"></td>
                                     <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                                 </tr>
                             </tbody>
@@ -1771,17 +1771,17 @@
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="docpost_prim">Примечание:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_prim" value="">
+                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_prim" value="" placeholder="Введите примечание">
                     </div>
                 </div>
                 <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="docpost_numb">Номер:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_numb" value="">
+                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_numb" value="" placeholder="Введите номер">
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="docpost_date">Дата:</label>
-                        <input class="input__type-text input__type-text_modal" type="date" id="docpost_date" value="">
+                        <input class="input__type-text input__type-text_modal" type="date" id="docpost_date" value="" placeholder="Введите дату">
                     </div>
                 </div>
                 <div>
@@ -1884,7 +1884,7 @@
                     </thead>
                     <tbody id="tb_modal_tcardprods">
                         <tr class="tr">
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="tcardprods_add_input_num" value=""></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="tcardprods_add_input_num" value="" placeholder="Введите номер операции"></td>
                             <td class="td"><select class="select" id="tcardprods_add_select_proc"></select></td>
                             <td class="td"><input class="checkbox" type="checkbox" id="tcardprods_add_chb_fix"><label for="tcardprods_add_chb_fix"></label></td>
                             <td class="td td_buttons-control"><button class="button__control" id="tcardprods_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
@@ -1917,7 +1917,7 @@
                     </thead>
                     <tbody id="enums_tb_modal">
                         <tr class="tr">
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="enums_add_input" value=""></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="enums_add_input" value="" placeholder="Введите значение"></td>
                             <td class="td td_buttons-control"><button class="button__control" id="enums_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
                     </tbody>
@@ -1980,7 +1980,7 @@
                     <tbody id="tb_modal_img">
                         <tr class="tr">
                             <td class="td"></td>
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_img_name"></td>
+                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_img_name" placeholder="Введите название"></td>
                             <td class="td"><input type="file" class="input__type-file_img" id="component_info_add_img_img" accept="image/*" hidden><label class="input__type-text input__type-file" for="component_info_add_img_img">Выберите файл</label></td>
                             <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_img" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
@@ -1993,7 +1993,7 @@
         </div>
     </div>
     <!-- контекстное меню дерева -->
-    <div id="contextMenu" class="details__context-menu">
+    <div class="details__context-menu" id="contextMenu">
         <button id="addBtn">Добавить</button>
         <button id="renameBtn">Переименовать</button>
         <button id="deleteBtn">Пометить на удаление</button>
