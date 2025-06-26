@@ -13,6 +13,7 @@ let shablons_dl_m     = document.getElementById("shablons_dl_m");
 let shablons_user     = document.getElementById("shablons_user");
 let shablons_areaprof = document.getElementById("shablons_areaprof");
 let shablons_content  = document.getElementById("shablons_content");
+let shablons_autor    = document.getElementById("shablons_autoready")
 let shablons_start    = document.getElementById("shablons_start");
 let shablons_save     = document.getElementById("shablons_save");
 
@@ -72,13 +73,14 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     let uinStart     = obj.start    != undefined ? obj.start.uin : '';
     let nameContent  = obj.content  != undefined ? obj.content.name : '';
     let uinContent   = obj.content  != undefined ? obj.content.uin : '';
+    let autoready    = obj.autoready;
     let uin          = obj.uin;
     let del          = obj.del;
-    addShablonsInfo(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, uin, del);
+    addShablonsInfo(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del);
 }
 
 const addShablonsInfo =
-(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, uin, del) => {
+(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del) => {
     shablons_title.innerHTML = `Шаблон: ${nameShablon}. Номер: ${numb_i}. Название: ${name}`;
     shablons_name.value      = name;
     shablons_mission.value   = mission;
@@ -89,6 +91,7 @@ const addShablonsInfo =
     insertDataInSelect(shablons_areaprof, nameAreaprof, uinAreaprof, "prof_list");
     insertDataInSelect(shablons_content, nameContent, uinContent, "contents_list");
     insertDataInSelect(shablons_start, nameStart, uinStart, "startstep_list");
+    shablons_autor.checked = autoready === 1 ? true : false;
     shablons_save.value = uin;
     shablons_save.name = uinShablon;
 }
@@ -96,8 +99,8 @@ const addShablonsInfo =
 shablons_save.onclick = (elem) => {
     let body;
     elem.target.value === 0 ? 
-    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`, "name":"", "uinuser":"", "uinShablon":`${localStorage.getItem('uinShablon')}`} :
-    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`, "name":"", "uinuser":"", "uinareaprof":"", "uincontent":"", "uinstart":"", "numb_inlevel":"", "mission":"", "prim":"", "dl_d":"", "dl_h":"", "dl_m":"", "uinShablon":`${localStorage.getItem('uinShablon')}`};
+    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`, "name":"", "uinuser":"", "autoready":"", "uinShablon":`${localStorage.getItem('uinShablon')}`} :
+    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`, "name":"", "uinuser":"", "uinareaprof":"", "uincontent":"", "uinstart":"", "numb_inlevel":"", "mission":"", "prim":"", "dl_d":"", "dl_h":"", "dl_m":"", "autoready":"", "uinShablon":`${localStorage.getItem('uinShablon')}`};
 
     body.name         = shablons_name.value;
     body.uinuser      = shablons_user.value;
@@ -108,6 +111,7 @@ shablons_save.onclick = (elem) => {
     body.dl_d         = shablons_dl_d.value;
     body.dl_h         = shablons_dl_h.value;
     body.dl_m         = shablons_dl_m.value;
+    body.autoready    = shablons_autor.checked === true ? "1" : "0";
 
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){funcGetShablonsTree(elem.target.name)}, 100);
