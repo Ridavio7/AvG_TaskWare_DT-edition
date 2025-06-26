@@ -1,4 +1,4 @@
-import {funcCommand, setStatus, clearTable, listenSortSelect, responseProcessor, formatDate} from '../../../js/common/common.js';
+import {funcCommand, setStatus, responseProcessor, formatDate} from '../../../js/common/common.js';
 import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetTasksSteps} from '../../modal/__info-task/modal__info-task.js';
 
@@ -11,33 +11,23 @@ const funcProcessGetTasks = (result, respobj) => {
     responseProcessor(result, respobj.succ);
     console.log("Задачи:", respobj);
 
-    let tb_id = "tb_tasks";
-    clearTable(tb_id);
-
-    for (let i in respobj.answ){
-        let obi = respobj.answ[i];
-        let task = obi.tasks;
-
-        for (let j in task){
-            let obj    = task[j];
-            let name   = obj.name;
-            let date   = obj.datebegin;
-            let status = obj.status.uin;
-            let del    = obj.del;
-            let uin    = obj.uin;
-            addTasksRow(name, date, status, uin, del, tb_id);
-        }
-    }
+    const container = document.getElementById('tb_tasks');
+    container.innerHTML = '';
+    buildStructure(respobj.answ, container)
 
     /* открытие модального окна */
     let button_modal = document.querySelectorAll(".button__control_modal-tasks-catTask");
     button_modal.forEach((elem) => {
         elem.addEventListener("click", () => {
             let btn = tb_tasks.querySelector('.button__control_active');
-            if(btn != null) btn.classList.remove('button__control_active')
+            if(btn != null){
+                btn.classList.remove('button__control_active');
+                btn.parentElement.parentElement.classList.remove('tr_mark');
+            }
 
             funcGetTasksTree(elem.value);
             elem.classList.add('button__control_active');
+            elem.parentElement.parentElement.classList.add('tr_mark');
         })
     })
 
@@ -52,25 +42,62 @@ const funcProcessGetTasks = (result, respobj) => {
     })
 }
 
-const addTasksRow = (name, date, status, uin, del, tb_id) => {
-    let tableRef = document.getElementById(tb_id);
-    let newRow = tableRef.insertRow(-1);
-    newRow.classList = "tr";
+function buildStructure(data, container) {
+    for (const item of data) {
+        const title = document.createElement('h3');
+        title.textContent = item.nameshablon;
+        title.classList.add('table__title');
+        container.appendChild(title);
 
-    let cellInfo   = newRow.insertCell(0); cellInfo.classList   = "td";
-    let cellStatus = newRow.insertCell(1); cellStatus.classList = "td td__text_align_center";
-    let cellName   = newRow.insertCell(2); cellName.classList   = "td";
-    let cellDate   = newRow.insertCell(3); cellDate.classList   = "td";
-    let cellDel    = newRow.insertCell(4); cellDel.classList    = "td";
+        const table = document.createElement('table');
+        table.classList.add('table');
+        const thead = document.createElement('thead');
+        thead.classList.add('thead');
+        const trHead = document.createElement('tr');
+        trHead.classList.add('tr');
 
-    cellInfo.innerHTML   = `<button class="button__control button__control_modal-tasks-catTask" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
-    cellStatus.innerHTML = setStatus(status);
-    cellName.innerHTML   = name;
-    cellDate.innerHTML   = formatDate(date);
-    cellDel.innerHTML    = `<button class="button__control button__control_modal-shablons-del" value="${uin}" name="${name}">Отозвать</button>`;
+        ['', 'Название', 'Начало', ''].forEach(text => {
+            const td = document.createElement('td');
+            td.className = 'td td_active';
+            td.textContent = text;
+            trHead.appendChild(td);
+        });
+        //thead.appendChild(trHead);
+        //table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        for (const task of item.tasks) {
+            const tr = document.createElement('tr');
+            tr.classList.add('tr');
+
+            const tdStatus = document.createElement('td');
+            tdStatus.classList.add('td');
+            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin)}</button>`;
+
+            const tdName = document.createElement('td');
+            tdName.classList.add('td');
+            tdName.innerHTML = `<button class="button__control button__control_action button__control_action_text button__control_modal-tasks-catTask" value="${task.uin}">${task.name}</button>`;
+
+            const tdDateBegin = document.createElement('td');
+            tdDateBegin.classList.add('td');
+            tdDateBegin.innerHTML = `<button class="button__control button__control_action button__control_action_date button__control_modal-tasks-catTask" value="${task.uin}">${formatDate(task.datebegin)}</button>`;
+
+            const tdBtn = document.createElement('td');
+            tdBtn.classList.add('td');
+            tdBtn.innerHTML = `<button class="button__control button__control_modal-shablons-del" value="${task.uin}" name="${task.name}">Отозвать</button>`;
+
+            tr.appendChild(tdStatus);
+            tr.appendChild(tdName);
+            tr.appendChild(tdDateBegin);
+            tr.appendChild(tdBtn);
+
+            tbody.appendChild(tr);
+        }
+
+        table.appendChild(tbody);
+        container.appendChild(table);
+    }
 }
-
-listenSortSelect("sort_tasks", "tb_tasks", "tasks", funcProcessGetTasks);
 
 export const funcGetTasksTree = (uin) => {
     let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catTask", "uinTask":`${uin}`};
