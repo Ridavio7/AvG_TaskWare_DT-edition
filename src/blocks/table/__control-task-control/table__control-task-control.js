@@ -1,4 +1,4 @@
-import {funcCommand, setStatus, responseProcessor, formatDate} from '../../../js/common/common.js';
+import {funcCommand, setStatus, responseProcessor, formatDate, funcProcessOnlyConsole, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetTasksSteps} from '../../modal/__info-task/modal__info-task.js';
 
@@ -33,12 +33,15 @@ const funcProcessGetTasks = (result, respobj) => {
         })
     })
 
-    let button_control_del = document.querySelectorAll(".button__control_modal-shablons-del");
+    let button_control_del = document.querySelectorAll(".button__control_modal-tasks-del");
     button_control_del.forEach((elem) => {
         elem.addEventListener("click", () => {
             let result = confirm(`Отозвать задачу "${elem.name}"?`);
             if(result === true){
-
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"stoptask", "obj":"tasks", "uintask":`${elem.value}`};
+                funcCommand(body, funcProcessOnlyInfo);
+                setTimeout(function(){ funcGetTasks() }, 100);
+                setTimeout(function(){ funcGetTasksTree(`${localStorage.getItem('uinTask')}`) }, 200);
             }
         })
     })
@@ -86,7 +89,7 @@ function buildStructure(data, container) {
 
             const tdBtn = document.createElement('td');
             tdBtn.classList.add('td');
-            tdBtn.innerHTML = `<button class="button__control button__control_modal-shablons-del" value="${task.uin}" name="${task.name}">Отозвать</button>`;
+            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}">Отозвать</button>`;
 
             tr.appendChild(tdStatus);
             tr.appendChild(tdName);
