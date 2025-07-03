@@ -8,6 +8,7 @@ let tasks_title    = document.getElementById("tasks_name_title");
 let tasks_name     = document.getElementById("tasks_name");
 let tasks_status   = document.getElementById("tasks_status");
 let tasks_datebeg  = document.getElementById("tasks_datebegin");
+let tasks_dateend  = document.getElementById("tasks_dateend");
 let tasks_mission  = document.getElementById("tasks_mission");
 let tasks_prim     = document.getElementById("tasks_prim");
 let tasks_dl_d     = document.getElementById("tasks_dl_d");
@@ -73,6 +74,7 @@ const funcProcessGetTasksSteps = (result, respobj) => {
     let nameStatus   = obj.status.name;
     let uinStatus    = obj.status.uin;
     let datebegin    = obj.datebegin;
+    let dateend      = obj.dateend;
     let nameUser     = obj.user.name;
     let uinUser      = obj.user.uin;
     let nameAreaprof = obj.areaprof != undefined ? obj.areaprof.name : '';
@@ -84,14 +86,15 @@ const funcProcessGetTasksSteps = (result, respobj) => {
     let autoready    = obj.autoready;
     let uin          = obj.uin;
     let del          = obj.del;
-    addTasksInfo(name, mission, prim, numb_i, dl, nameStatus, uinStatus, datebegin, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del);
+    addTasksInfo(name, mission, prim, numb_i, dl, nameStatus, uinStatus, datebegin, dateend, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del);
 }
 
 const addTasksInfo =
-(name, mission, prim, numb_i, dl, nameStatus, uinStatus, datebegin, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del) => {
+(name, mission, prim, numb_i, dl, nameStatus, uinStatus, datebegin, dateend, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del) => {
     tasks_title.innerHTML = `Задача: ${name}. Номер: ${numb_i}`;
     tasks_name.value      = name;
     tasks_datebeg.value   = datebegin != '' ? formatDate(datebegin) : '---';
+    tasks_dateend.value   = dateend != '' ? formatDate(dateend) : '---';
     tasks_mission.value   = mission;
     tasks_prim.value      = prim;
     tasks_dl_d.value      = dl.dl_d;

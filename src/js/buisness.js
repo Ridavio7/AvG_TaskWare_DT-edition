@@ -67,7 +67,6 @@ import {funcGetDocpost} from '../blocks/table/__provider/table__provider.js';
 import {funcGetStatusDoc} from '../blocks/table/__status-document/table__status-document.js';
 
 /* проектирование */
-import {funcGetProf} from '../blocks/table/__dev-prof/table__dev-prof.js';
 
 /* склад */
 import {funcGetProductsTree} from '../blocks/table/__storage-main/table__storage-main.js';
@@ -123,7 +122,6 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_production-proc
 addEventButtonTab(document.querySelectorAll(".button__tab__first_production-install-coil"), '');
 
 // проектирование
-addEventButtonTab(document.querySelectorAll(".button__tab__first_development-coordination"), funcGetProf);
 
 // поставка
 addEventButtonTab(document.querySelectorAll(".button__tab__first_provider-main"), funcGetDocpost);
