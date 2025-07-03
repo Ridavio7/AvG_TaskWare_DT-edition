@@ -1,5 +1,6 @@
 import {funcCommand, removeOptions, insertDataInSelect, responseProcessor, formatDate, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
+import {funcGetTasks, funcGetTasksTree} from '../../table/__control-task-control/table__control-task-control.js';
 
 let tasks_modal    = document.getElementById("tasks_modal");
 let tasks_close    = document.getElementById("tasks_close");
@@ -108,23 +109,39 @@ const addTasksInfo =
 
 /* кнопка сохранения */
 tasks_save.onclick = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirTask", "uin":`${tasks_save.value}`, "uinstatus":"", "uinuser":"", "uinareaprof":"", "prim":"", "dl_d":"", "dl_h":"", "dl_m":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirTask", "uinTask":`${localStorage.getItem('uinTask')}`, "uin":`${tasks_save.value}`, "name":"", "mission":"", "uinstatus":"", "uinuser":"", "uinareaprof":"", "prim":"", "dl_d":"", "dl_h":"", "dl_m":""};
 
+    let tasks_name     = document.getElementById("tasks_name").value;
     let tasks_status   = document.getElementById("tasks_status").value;
     let tasks_user     = document.getElementById("tasks_user").value;
     let tasks_areaprof = document.getElementById("tasks_areaprof").value;
     let tasks_prim     = document.getElementById("tasks_prim").value;
+    let tasks_mission  = document.getElementById("tasks_mission").value;
     let tasks_dl_d     = document.getElementById("tasks_dl_d").value;
     let tasks_dl_h     = document.getElementById("tasks_dl_h").value;
     let tasks_dl_m     = document.getElementById("tasks_dl_m").value;
 
+    body.name        = tasks_name;
     body.uinstatus   = tasks_status;
     body.uinuser     = tasks_user;
     body.uinareaprof = tasks_areaprof;
     body.prim        = tasks_prim;
+    body.mission     = tasks_mission;
     body.dl_d        = tasks_dl_d;
     body.dl_h        = tasks_dl_h;
     body.dl_m        = tasks_dl_m;
 
     funcCommand(body, funcProcessOnlyInfo);
+    setTimeout(function(){ funcGetTasks() }, 100);
+    setTimeout(function(){ funcGetTasksTree(`${localStorage.getItem('uinTask')}`) }, 150);
+    setTimeout(function(){ funcGetTasksSteps(`${tasks_save.value}`) }, 200);
+    setTimeout(() => {
+        let buttons = document.querySelectorAll(".button__control_action_status.button__control_modal-tasks-catTask");
+        let uin     = localStorage.getItem('button-active__tasks-catTask');
+        buttons.forEach(button => {
+            if (button.value === uin) {
+                button.click();
+            }
+        })
+    }, 250)
 }
