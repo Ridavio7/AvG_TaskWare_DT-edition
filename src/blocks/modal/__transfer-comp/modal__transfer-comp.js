@@ -33,7 +33,7 @@ export const funcInfoComponentsTransferOpenModal = (uin, name) => {
 }
 
 const funcProcessGetComponentsTree = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_transfer_component_tree', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);

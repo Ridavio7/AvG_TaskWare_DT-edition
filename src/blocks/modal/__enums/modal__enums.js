@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateInput, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateInput, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 
 let enums_modal = document.getElementById("enums_modal");
@@ -28,7 +28,7 @@ const funcGetInfoEnums = (uin) => {
 }
 
 const funcProcessGetInfoEnums = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Значения:", respobj);
 
     let tb_id = "enums_tb_modal";
@@ -72,7 +72,7 @@ const funcProcessGetInfoEnums = (result, respobj) => {
             let target_table = enums_tb_modal;
             body.name = findForUpdateInput(`enum_name_${elem.value}`, target_table);
         
-            funcCommand(body, funcProcessOnlyInfo);
+            funcCommand(body, funcProcessOnlyConsole);
             highlightButtonSave(elem);
             setTimeout(function(){funcGetInfoEnums(propUinForAdd)}, 100);
         })

@@ -66,7 +66,7 @@ export const funcFoundPlusComponents = (input, select, props, tb_id, tb_id_comp,
 }
 
 const funcProcessFoundComponents = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
 
     clearTableAll(found_table);
 

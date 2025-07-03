@@ -11,7 +11,7 @@ export const funcGetProductsTree = () => {
 }
 
 const funcProcessGetProductsTree = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Дерево:", respobj);
 
     const tree = new TreeBuilder('tree_storage_main', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfocatPTransferOpenModal, ["contextmenu", "openall"]);
@@ -27,7 +27,7 @@ export const funcGetProducts = (uin) => {
 }
 
 const funcProcessGetProducts = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Директория:", respobj);
 
     let tb_id = "tb_storage_main_tree"

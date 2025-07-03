@@ -33,7 +33,7 @@ export const funcInfoProductsTransferOpenModal = (uin, name) => {
 }
 
 const funcProcessGetProductsTree = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_transfer_product_tree', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfocatPTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);

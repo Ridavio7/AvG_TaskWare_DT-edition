@@ -46,7 +46,7 @@ export const funcGetComponentsTreeSelect = () => {
 }
 
 function funcProcessGetComponentsTreeSelect(result, respobj){
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
 
     const tree = new TreeBuilder('modal_select_component_tree', 'dirC', 'catC', funcGetComponentsTreeSelect, funcGetDirC, '', ["openall"]);
     tree.build(respobj.answ);
@@ -58,7 +58,7 @@ export const funcGetDirC = (uin) => {
 }
 
 function funcProcessGetComponentsSelect(result, respobj){
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
 
     let tb_id = "tb_component_select";
     clearTableAll(tb_id);

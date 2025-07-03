@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcGetComponentInfoProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
@@ -115,7 +115,7 @@ export const funcGetComponentInfo = (uin) => {
 }
 
 const funcProcessGetComponentInfo = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Комплектующее ИНФО:", respobj);
 
     document.getElementById("component_name").value      = "";
@@ -229,7 +229,7 @@ component_type.onchange = () => {
             setTimeout(function(){
                 for (let i of component_select_add_props){
                     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"fulldel", "obj":"compontsprops", "uincompont":`${component_button_add_props.value}`};
-                    funcCommand(body, funcProcessOnlyInfo);
+                    funcCommand(body, funcProcessOnlyConsole);
                 }
                 clearTable("tb_modal_info_component");
             }, 100);
@@ -266,7 +266,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
-        responseProcessor(result, respobj.succ);
+        //responseProcessor(result, respobj.succ);
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
@@ -277,7 +277,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
     let input_value = document.getElementById("component_info_add_props_value_input");
 
     function funcSelectAddEnumsOnTable(result, respobj){
-        responseProcessor(result, respobj.succ);
+        //responseProcessor(result, respobj.succ);
         console.log(respobj.answ)
 
         removeOptions(select_value);

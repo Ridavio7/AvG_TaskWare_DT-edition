@@ -23,7 +23,7 @@ const funcGetInfoTypeselem = (uin) => {
 }
 
 const funcProcessGetInfoTypeselem = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Св-ва типа:", respobj);
 
     document.getElementById("typeselem_title").innerHTML = "";

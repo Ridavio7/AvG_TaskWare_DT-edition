@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table__comp-compontimgs.js';
 
@@ -25,7 +25,7 @@ export const funcGetCompontimgsEdit = (uin) => {
 }
 
 const funcProcessGetCompontimgs = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Картинки:", respobj);
 
     let tb_id = "tb_modal_img";
@@ -67,7 +67,7 @@ const funcProcessGetCompontimgs = (result, respobj) => {
             body.name = findForUpdateInput(`component_info_img_name_${elem.value}`, target_table);
             body.img = findForUpdateInput(`component_info_img_img_${elem.value}`, target_table);
 
-            funcCommand(body, funcProcessOnlyInfo);
+            funcCommand(body, funcProcessOnlyConsole);
             highlightButtonSave(elem);
             setTimeout(function(){funcGetCompontimgsEdit(`${elem.name}`)}, 100);
         })
@@ -102,7 +102,7 @@ const addCompontimgs = (name, fname, del, uin, tb_id) => {
 }
 
 const funcProcessOpenCompontimgs = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Картинка:", respobj);
 
     var win = window.open();

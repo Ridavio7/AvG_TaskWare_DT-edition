@@ -31,6 +31,11 @@ export const funcProcessOnlyInfo = (result, respobj) => {
     responseProcessor(result, respobj.succ);
 }
 
+export const funcProcessOnlyConsole = (result, respobj) => {
+    if( result === 0 ) return;
+    console.log(respobj);
+}
+
 export const responseProcessor = (res, respobj) => {
     if( res === 0 ) return;
     let result;
@@ -525,11 +530,11 @@ export const formatDate = (dateString) => {
 
     const day   = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year  = date.getFullYear();
+    const year  = parseInt(date.getFullYear().toString().slice(-2));
     const hours = String(date.getHours()).padStart(2, '0');
     const mins  = String(date.getMinutes()).padStart(2, '0');
 
-    return `${day}.${month}.${year} ${hours}:${mins}`;
+    return `${hours}:${mins} ${day}.${month}.${year}`;
 }
 
 export const setStatus = (status) => {

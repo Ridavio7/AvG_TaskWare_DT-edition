@@ -89,7 +89,7 @@ found_plus_select.addEventListener("change", (elem) => {
 })
 
 const funcProcessGetTypesPropsFetch = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("TypesProps поиска:", respobj);
 
     let tb_id = "found_plus_tb";
@@ -133,7 +133,7 @@ const addFoundTypesProps = (name, uin, tb_id) => {
     funcCommand(body, funcProcessGetInfoEnums);
 
     function funcProcessGetInfoEnums(result, respobj){
-        responseProcessor(result, respobj.succ);
+        //responseProcessor(result, respobj.succ);
         console.log("Значения в поиске:", respobj);
 
         if(respobj.answ === ''){

@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor} from '../../../js/common/common.js.js';
+import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js.js';
 import {dragElement} from '../modal.js';
 
 let modal_tcardprods = document.getElementById("modal_tcardprods");
@@ -25,7 +25,7 @@ const funcGetInfoTcardprod = (uin) => {
 }
 
 const funcProcessGetInfoTcardprod = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Тех.карта:", respobj);
 
     let tb_id = "tb_modal_tcardprods";
@@ -104,7 +104,7 @@ const funcProcessGetInfoTcardprod = (result, respobj) => {
             let checkbox     = document.getElementById(`tcardprods_fix_${elem.value}`);
             body.fix         = checkbox.checked === true ? "1" : "0";
         
-            funcCommand(body, funcProcessOnlyInfo);
+            funcCommand(body, funcProcessOnlyConsole);
             highlightButtonSave(elem);
             setTimeout(function(){funcGetInfoTcardprod(uinProdForAdd)}, 100);
         })

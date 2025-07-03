@@ -9,7 +9,7 @@ export const funcGetShablons = () => {
 }
 
 const funcProcessGetShablons = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Шаблоны:", respobj);
 
     let tb_id = "tb_shablons";

@@ -1,4 +1,4 @@
-import {funcCommand, clearTableAll, clearTable, addToDropdownOneOption, addToDropdown, funcProcessOnlyInfo, removeOptions, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, clearTableAll, clearTable, addToDropdownOneOption, addToDropdown, funcProcessOnlyInfo, removeOptions, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 import {funcGetDocpost} from '../../table/__provider/table__provider.js';
@@ -40,7 +40,7 @@ const funcGetInfoInputsDocpost = (uin) => {
 }
 
 const funcProcessGetInfoInputsDocpost = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Док. поступления 1:", respobj);
 
     removeOptions(docpost_status);
@@ -98,7 +98,7 @@ const funcGetInfoTableDocpost = (uin) => {
 }
 
 const funcProcessGetInfoTableDocpost = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Таблица док. поступления 1:", respobj);
 
     let tb_id = "tb_modal_docpost";
@@ -149,7 +149,7 @@ const funcProcessGetInfoTableDocpost = (result, respobj) => {
             body.uinstorage  = findForUpdateSelect(target_table, "docpost_storage_select_", elem.value);
             body.count       = findForUpdateInput(`docpost_count_${elem.value}`, target_table);
 
-            funcCommand(body, funcProcessOnlyInfo);
+            funcCommand(body, funcProcessOnlyConsole);
             highlightButtonSave(elem);
         })
     })
@@ -210,7 +210,7 @@ docpost_save.onclick = () => {
     body.uinuser    = docpost_user.value;
     body.uinstorage = docpost_storage.value;
 
-    funcCommand(body, funcProcessOnlyInfo);
+    funcCommand(body, funcProcessOnlyConsole);
 
     setTimeout(function(){
         let button_control_update = document.querySelectorAll(".button__control_update-docpost");

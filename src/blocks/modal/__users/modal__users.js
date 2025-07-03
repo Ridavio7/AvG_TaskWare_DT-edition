@@ -48,7 +48,7 @@ const funcGetRightsUsersInfo = () => {
 }
 
 const funcProcessGetRightsUsersInfo = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Права:", respobj);
 
     let tb_id = "tb_user_rights";
@@ -185,7 +185,6 @@ user_save.addEventListener("click", (evt) => {
 
             funcCommand(body1, funcProcessOnlyInfo);
             setTimeout(function(){funcGetUsers()}, 100);
-            showNotification('success', 'Успех!', 'Операция выполнена успешно.');
         } else {
             showNotification('error', 'Ошибка!', 'Произошла ошибка при выполнении.');
         }

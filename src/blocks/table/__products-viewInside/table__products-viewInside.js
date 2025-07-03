@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, funcProcessOnlyInfo, highlightButtonSave, findForUpdateInput, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, clearTable, funcProcessOnlyInfo, highlightButtonSave, findForUpdateInput, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
 import {funcGetProductsTreeSelect} from '../../modal/__select-prod/modal__select-prod.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 import {funcFoundOneComponent} from '../__comp-found/table__comp-found.js';
@@ -18,7 +18,7 @@ export const funcGetProductViewInside = (uin, fset) => {
 }
 
 const funcProcessGetProductViewInside = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("viewInside:", respobj);
 
     uinMainProd = respobj.uinprod;
@@ -72,7 +72,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
             body.count      = findForUpdateInput(`formula_product_innprod_count_${elem.value}`, tb_info_product_prod);
             
             console.log(body)
-            funcCommand(body, funcProcessOnlyInfo);
+            funcCommand(body, funcProcessOnlyConsole);
             highlightButtonSave(elem);
             setTimeout(function(){funcGetProductViewInside(uin, elem.name)}, 100);
         })
@@ -133,7 +133,7 @@ const funcProcessGetProductViewInside = (result, respobj) => {
             body.uincompont = document.getElementById(`formula_product_select_componenet_${elem.value}`).value;
             body.count = findForUpdateInput(`formula_product_componenet_count_${elem.value}`, tb_info_product_comp);
         
-            funcCommand(body, funcProcessOnlyInfo);
+            funcCommand(body, funcProcessOnlyConsole);
             highlightButtonSave(elem);
             setTimeout(function(){funcGetProductViewInside(uin, elem.name)}, 100);
         })

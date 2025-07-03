@@ -54,7 +54,7 @@ export const funcGetProductInfo = (uin, fset) => {
 }
 
 const funcProcessGetProductInfo = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Изделие ИНФО:", respobj);
 
     while (select_info_product_color.options.length) {select_info_product_color.options[0] = null};
@@ -92,6 +92,7 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
     if(fset == 0){
         select_info_product_color.parentElement.classList.remove("modal__input-wrapper_display-none");
         button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
+        button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
     } else {
         select_info_product_color.parentElement.classList.add("modal__input-wrapper_display-none");
@@ -100,6 +101,7 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
     }
     
     select_info_product_type.parentElement.classList.add("modal__input-wrapper_display-none");
+    chb_info_product_fship.parentElement.classList.remove("modal__input-wrapper_display-none");
     tb_info_product_prod.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
     tb_info_product_comp.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
 
@@ -153,6 +155,7 @@ export const funcProcessInfoProductsModalAdd = () => {
     input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_prod.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_comp.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    button_info_product_tcard.parentElement.classList.add("modal__input-wrapper_display-none");
 
     button_info_product_add.style.display  = "flex";
     button_info_product_save.style.display = "none";

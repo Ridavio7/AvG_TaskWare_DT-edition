@@ -7,7 +7,7 @@ export const funcGetComponentInfoTypesProps = (uin) => {
 }
 
 const funcProcessGetComponentInfoTypesProps = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Комплектующее TypesProps:", respobj);
 
     let typesprops_list = respobj.answ;

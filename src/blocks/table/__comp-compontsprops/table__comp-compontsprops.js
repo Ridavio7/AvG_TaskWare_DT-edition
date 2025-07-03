@@ -1,4 +1,4 @@
-import {funcCommand, clearTable, removeOptions, addToDropdown, makeSelect, highlightButtonSave, findForUpdateSelect, removeOptionsSetValue, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, clearTable, removeOptions, addToDropdown, makeSelect, highlightButtonSave, findForUpdateSelect, removeOptionsSetValue, funcProcessOnlyInfo, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
 import {funcGetComponentInfo} from '../../modal/__info-comp/modal__info-comp.js';
 import {funcInfoEnumsOpenModal} from '../../modal/__enums/modal__enums.js';
 
@@ -9,7 +9,7 @@ export const funcGetComponentInfoProps = (uin) => {
 }
 
 const funcProcessGetComponentInfoProps = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Комплектующее св-ва:", respobj);
 
     let select = document.getElementById("component_info_add_props_select");
@@ -87,7 +87,7 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
             body.d2   = 0//findForUpdateInput(`component_info_d2_${elem.value}`, target_table);
             body.perc = 0//findForUpdateInput(`component_info_perc_${elem.value}`, target_table);
 
-            funcCommand(body, funcProcessOnlyInfo);
+            funcCommand(body, funcProcessOnlyConsole);
             highlightButtonSave(elem);
             funcGetComponentInfo(elem.name);
             setTimeout(function(){funcGetComponentInfoProps(elem.name)}, 100);
@@ -125,7 +125,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     funcCommand(body, funcProcessGetInfoEnumsForModalComp);
 
     function funcProcessGetInfoEnumsForModalComp(result, respobj){
-        responseProcessor(result, respobj.succ);
+        //responseProcessor(result, respobj.succ);
 
         if(respobj.answ != ''){
             localStorage.setItem("prop_enums_list", JSON.stringify(respobj.answ))
@@ -199,7 +199,7 @@ export const addEventSelectProps = (select, select_value_id) => {
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
-        responseProcessor(result, respobj.succ);
+        //responseProcessor(result, respobj.succ);
 
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
@@ -209,7 +209,7 @@ export const addEventSelectProps = (select, select_value_id) => {
 
     let select_value = document.getElementById(select_value_id);
     function funcSelectAddEnumsOnTable(result, respobj){
-        responseProcessor(result, respobj.succ);
+        //responseProcessor(result, respobj.succ);
         console.log(respobj)
 
         if(respobj.answ != 0){

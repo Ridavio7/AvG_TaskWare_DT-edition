@@ -29,7 +29,7 @@ export const funcGetComponentsTree = () => {
 }
 
 const funcProcessGetComponentsTree = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Дерево:", respobj);
 
     const tree = new TreeBuilder('jstree_div', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ['contextmenu', 'openall']);
@@ -52,7 +52,7 @@ export const funcGetComponents = (uin) => {
 }
 
 const funcProcessGetComponents = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Директория:", respobj);
 
     let tb_id = "tb_components_tree"

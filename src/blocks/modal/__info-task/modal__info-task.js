@@ -33,7 +33,7 @@ export const funcGetTasksSteps = (uin) => {
 }
 
 const funcProcessGetTasksSteps = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Инфо шага:", respobj);
 
     tasks_name.value    = '';
