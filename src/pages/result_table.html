@@ -1,54 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0" />
     <title>Задачи</title>
-    <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon">
-</head>
-<body>
+    <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon" />
+  </head>
+  <body>
     <div class="hamburger-menu">
-        <input id="menu__toggle" type="checkbox" style="display: none;"/>
-        <label class="menu__btn" for="menu__toggle">
-            <span></span>
-        </label>
-        <ul class="menu__box">
-    
-        </ul>
+      <input id="menu__toggle" type="checkbox" style="display: none" />
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+      <ul class="menu__box"></ul>
     </div>
     <header class="header">
-        <div class="header__body">
-            <div class="header__logo">
-                <img class="header__main-logo" src="../blocks/header/img/logo.svg" alt="logo">
-                <img class="header__main-logo-little" src="../blocks/header/img/logo_lt.svg" alt="logo">
-                <ul class="header__list">
-                    <li><a class="header__link header__link_check" href="tasks.html">Задачи</a></li>
-                    <li><a class="header__link" href="buisness.html">Бизнес управление</a></li>
-                    <li><a class="header__link" href="control.html">Контроль</a></li>
-                    <li><a class="header__link" href="#">Чат</a></li>
-                </ul>
-            </div>
-            <div class="header__user">
-                <div class="header__user__wrapper">
-                    <div class="header__user__user">
-                        <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user">
-                        <input class="header__user__switch-theme-input" type="checkbox" id="switch_theme_input">
-                        <label class="header__user__switch-theme" for="switch_theme_input"></label>
-                        <a class="header__user__name" id="user_name"></a>
-                        <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user">
-                    </div>
-                </div>
-            </div>
+      <div class="header__body">
+        <div class="header__logo">
+          <img
+            class="header__main-logo"
+            src="../blocks/header/img/logo.svg"
+            alt="logo"
+          />
+          <img
+            class="header__main-logo-little"
+            src="../blocks/header/img/logo_lt.svg"
+            alt="logo"
+          />
+          <ul class="header__list">
+            <li>
+              <a class="header__link header__link_check" href="tasks.html"
+                >Задачи</a
+              >
+            </li>
+            <li>
+              <a class="header__link" href="buisness.html">Бизнес управление</a>
+            </li>
+            <li><a class="header__link" href="control.html">Контроль</a></li>
+          </ul>
         </div>
+        <div class="header__user">
+          <div class="header__user__wrapper">
+            <div class="header__user__user">
+              <img
+                class="header__user__avatar header__user__link_notifications"
+                src="../blocks/header/img/notifications.svg"
+                alt="user"
+              />
+              <input
+                class="header__user__switch-theme-input"
+                type="checkbox"
+                id="switch_theme_input"
+              />
+              <label
+                class="header__user__switch-theme"
+                for="switch_theme_input"
+              ></label>
+              <a class="header__link header__user__name" id="user_name"></a>
+              <img
+                class="header__user__avatar header__user__link_leave-site"
+                src="../blocks/header/img/exit.svg"
+                alt="user"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
     <div class="container container__tables-shipment">
-        <div class="" id="wrapper_tb_shipment_sets">
-            <label class="table table__label">Отгрузка комплектов</label>
-        </div>
-        <div class="" id="wrapper_tb_shipment_products">
-            <label class="table table__label">Отгрузка изделий</label>
-        </div>
+      <div class="" id="wrapper_tb_shipment_sets">
+        <label class="table table__label">Отгрузка комплектов</label>
+      </div>
+      <div class="" id="wrapper_tb_shipment_products">
+        <label class="table table__label">Отгрузка изделий</label>
+      </div>
     </div>
-    <div class="notification-container notification-container" id="notificationContainer"></div>
-</body>
+    <div
+      class="notification-container notification-container"
+      id="notificationContainer"
+    ></div>
+  </body>
 </html>
