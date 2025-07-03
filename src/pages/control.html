@@ -110,32 +110,15 @@
               </a>
             </li>
             <li class="sidebar__wrapper">
-              <a href="#template_task">
-                <div
-                  class="sidebar__link template_task"
-                  id="link_template_task"
-                >
-                  <div class="sidebar__title">
-                    <img
-                      class="sidebar__img sidebar__img_filter"
-                      src="../blocks/sidebar/img/template_task.svg"
-                      alt=""
-                    />
-                    <span class="sidebar__name">Шаблоны</span>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="sidebar__wrapper">
-              <a href="#control_task">
-                <div class="sidebar__link control_task" id="link_control_task">
+              <a href="#tasks">
+                <div class="sidebar__link tasks" id="link_tasks">
                   <div class="sidebar__title">
                     <img
                       class="sidebar__img sidebar__img_filter"
                       src="../blocks/sidebar/img/control_task.svg"
                       alt=""
                     />
-                    <span class="sidebar__name">Контроль</span>
+                    <span class="sidebar__name">Задачи</span>
                   </div>
                 </div>
               </a>
@@ -185,8 +168,7 @@
           <table class="table">
             <thead class="thead">
               <tr class="tr">
-                <td class="td td_active"></td>
-                <td class="td td_active">№</td>
+                <td class="td td_active" style="width: 70px">№</td>
                 <td class="td td_active">ФИО</td>
                 <td class="td td_active">Должность</td>
                 <td class="td td_active">Почта</td>
@@ -201,16 +183,11 @@
                 <td class="td"></td>
                 <td class="td"></td>
                 <td class="td"></td>
-                <td class="td"></td>
                 <td class="td td_buttons-control">
                   <button
                     class="button__control button__control_add-users-main"
                   >
-                    <img
-                      class="button__control__img"
-                      src="../blocks/button/__control/img/plus.svg"
-                      alt=""
-                    />
+                    Создать
                   </button>
                 </td>
               </tr>
@@ -231,7 +208,7 @@
           <table class="table">
             <thead class="thead">
               <tr class="tr">
-                <td class="td td_active">Должность</td>
+                <td class="td td_active">Название</td>
                 <td class="td td_active"></td>
               </tr>
             </thead>
@@ -242,6 +219,7 @@
                     class="input__type-text input__type-text_title"
                     type="text"
                     id="input_add_jobs"
+                    placeholder="Введите название должности"
                   />
                 </td>
                 <td class="td td_buttons-control">
@@ -273,7 +251,7 @@
           <table class="table">
             <thead class="thead">
               <tr class="tr">
-                <td class="td td_active">Право</td>
+                <td class="td td_active">Название</td>
                 <td class="td td_active"></td>
               </tr>
             </thead>
@@ -284,6 +262,7 @@
                     class="input__type-text input__type-text_title"
                     type="text"
                     id="input_add_rights"
+                    placeholder="Введите название права"
                   />
                 </td>
                 <td class="td td_buttons-control">
@@ -333,9 +312,14 @@
           class="sidebar__tabcontent__container"
         >
           <table class="table">
-            <tbody id="tb_settings_server">
-              <tr class="tr"></tr>
-            </tbody>
+            <thead class="thead">
+              <tr class="tr">
+                <td class="td td_active">Настройки</td>
+                <td class="td td_active"></td>
+                <td class="td td_active"></td>
+              </tr>
+            </thead>
+            <tbody id="tb_settings_server"></tbody>
           </table>
           <div class="modal__footer">
             <button
@@ -353,11 +337,21 @@
         ></div>
       </div>
       <!-- шаблоны -->
-      <div class="sidebar__tabcontent" id="template_task">
+      <div class="sidebar__tabcontent" id="tasks">
         <div class="sidebar__tabcontent__first-tabs">
-          <a href="#template_task/template_task_shablons"
+          <a href="#tasks/tasks_control"
             ><button
-              class="button__tab__first button__tab__first_template_task_shablons"
+              class="button__tab__first button__tab__first_tasks_control"
+            >
+              <img
+                class="button__tab__first__img"
+                src="../blocks/sidebar/img/control_task.svg"
+              />Контроль задач
+            </button></a
+          >
+          <a href="#tasks/tasks_shablons"
+            ><button
+              class="button__tab__first button__tab__first_tasks_shablons"
             >
               <img
                 class="button__tab__first__img"
@@ -365,32 +359,46 @@
               />Шаблоны задач
             </button></a
           >
-          <a href="#template_task/template_task_contents"
+          <a href="#tasks/tasks_status"
+            ><button class="button__tab__first button__tab__first_tasks_status">
+              <img
+                class="button__tab__first__img"
+                src="../blocks/button/__tab/img/status.svg"
+              />Статусы задач
+            </button></a
+          >
+          <a href="#tasks/tasks_contents"
             ><button
-              class="button__tab__first button__tab__first_template_task_contents"
+              class="button__tab__first button__tab__first_tasks_contents"
             >
               <img
                 class="button__tab__first__img"
-                src="../blocks/sidebar/img/template_task.svg"
+                src="../blocks/button/__tab/img/typeselem.svg"
               />Тип контента
             </button></a
           >
-          <a href="#template_task/template_task_startstep"
+          <a href="#tasks/tasks_startstep"
             ><button
-              class="button__tab__first button__tab__first_template_task_startstep"
+              class="button__tab__first button__tab__first_tasks_startstep"
             >
               <img
                 class="button__tab__first__img"
-                src="../blocks/sidebar/img/template_task.svg"
+                src="../blocks/button/__tab/img/typeselem.svg"
               />Типы запуска
             </button></a
           >
         </div>
+        <!-- Контроль задач -->
+        <div id="tasks/tasks_control" class="sidebar__tabcontent__container">
+          <div class="modal__body">
+            <div id="tb_tasks"></div>
+            <div class="modal__tree modal__tree_width-auto">
+              <div id="tree_tasks"></div>
+            </div>
+          </div>
+        </div>
         <!-- шаблоны -->
-        <div
-          id="template_task/template_task_shablons"
-          class="sidebar__tabcontent__container"
-        >
+        <div id="tasks/tasks_shablons" class="sidebar__tabcontent__container">
           <div class="modal__body">
             <div>
               <div class="select__wrapper">
@@ -398,28 +406,25 @@
                   <option value="">Сортировка &#8661;</option>
                   <option value="">По названию &#8659;</option>
                   <option value="">По названию &#8657;</option>
-                  <option value="">По новизне &#8659;</option>
-                  <option value="">По новизне &#8657;</option>
+                  <option value="">По дате &#8659;</option>
+                  <option value="">По дате &#8657;</option>
                 </select>
               </div>
               <table class="table">
                 <thead class="thead">
                   <tr class="tr">
-                    <td class="td td_active"></td>
-                    <td class="td td_active"></td>
                     <td class="td td_active">Название</td>
                     <td class="td td_active"></td>
                   </tr>
                 </thead>
                 <tbody id="tb_shablons">
                   <tr class="tr">
-                    <td class="td"></td>
-                    <td class="td"></td>
                     <td class="td td__text_align_center">
                       <input
                         class="input__type-text input__type-text_title"
                         type="text"
                         id="input_add_shablons_name"
+                        placeholder="Введите название шаблона"
                       />
                     </td>
                     <td class="td td_buttons-control">
@@ -442,156 +447,8 @@
             </div>
           </div>
         </div>
-        <!-- контенты -->
-        <div
-          id="template_task/template_task_contents"
-          class="sidebar__tabcontent__container"
-        >
-          <div class="select__wrapper">
-            <select class="select select__sort" id="sort_contents">
-              <option value="">Сортировка &#8661;</option>
-              <option value="">По названию &#8659;</option>
-              <option value="">По названию &#8657;</option>
-              <option value="">По новизне &#8659;</option>
-              <option value="">По новизне &#8657;</option>
-            </select>
-          </div>
-          <table class="table">
-            <thead class="thead">
-              <tr class="tr">
-                <td class="td td_active">Название</td>
-                <td class="td td_active"></td>
-              </tr>
-            </thead>
-            <tbody id="tb_contents">
-              <tr class="tr">
-                <td class="td td__text_align_center">
-                  <input
-                    class="input__type-text input__type-text_title"
-                    type="text"
-                    id="input_add_contents"
-                  />
-                </td>
-                <td class="td td_buttons-control">
-                  <button class="button__control button__control_add-contents">
-                    <img
-                      class="button__control__img"
-                      src="../blocks/button/__control/img/plus.svg"
-                      alt=""
-                    />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- типы запуска шаго задач -->
-        <div
-          id="template_task/template_task_startstep"
-          class="sidebar__tabcontent__container"
-        >
-          <div class="select__wrapper">
-            <select class="select select__sort" id="sort_startstep">
-              <option value="">Сортировка &#8661;</option>
-              <option value="">По названию &#8659;</option>
-              <option value="">По названию &#8657;</option>
-              <option value="">По новизне &#8659;</option>
-              <option value="">По новизне &#8657;</option>
-            </select>
-          </div>
-          <table class="table">
-            <thead class="thead">
-              <tr class="tr">
-                <td class="td td_active">Название</td>
-                <td class="td td_active"></td>
-              </tr>
-            </thead>
-            <tbody id="tb_startstep">
-              <tr class="tr">
-                <td class="td td__text_align_center">
-                  <input
-                    class="input__type-text input__type-text_title"
-                    type="text"
-                    id="input_add_startstep"
-                  />
-                </td>
-                <td class="td td_buttons-control">
-                  <button class="button__control button__control_add-startstep">
-                    <img
-                      class="button__control__img"
-                      src="../blocks/button/__control/img/plus.svg"
-                      alt=""
-                    />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- Контроль задач -->
-      <div class="sidebar__tabcontent" id="control_task">
-        <div class="sidebar__tabcontent__first-tabs">
-          <a href="#control_task/control_task_control"
-            ><button
-              class="button__tab__first button__tab__first_control_task_control"
-            >
-              <img
-                class="button__tab__first__img"
-                src="../blocks/sidebar/img/control_task.svg"
-              />Контроль задач
-            </button></a
-          >
-          <a href="#control_task/control_task_statustask"
-            ><button
-              class="button__tab__first button__tab__first_control_task_statustask"
-            >
-              <img
-                class="button__tab__first__img"
-                src="../blocks/sidebar/img/control_task.svg"
-              />Статусы задач
-            </button></a
-          >
-        </div>
-        <!-- Контроль задач -->
-        <div
-          id="control_task/control_task_control"
-          class="sidebar__tabcontent__container"
-        >
-          <div class="modal__body">
-            <div>
-              <div class="select__wrapper">
-                <select class="select select__sort" id="sort_tasks">
-                  <option value="">Сортировка &#8661;</option>
-                  <option value="">По названию &#8659;</option>
-                  <option value="">По названию &#8657;</option>
-                  <option value="">По новизне &#8659;</option>
-                  <option value="">По новизне &#8657;</option>
-                </select>
-              </div>
-              <table class="table">
-                <thead class="thead">
-                  <tr class="tr">
-                    <td class="td td_active"></td>
-                    <td class="td td_active">Статус</td>
-                    <td class="td td_active">Название</td>
-                    <td class="td td_active">Начало</td>
-                    <td class="td td_active"></td>
-                  </tr>
-                </thead>
-                <tbody id="tb_tasks"></tbody>
-              </table>
-            </div>
-            <div class="modal__tree modal__tree_width-auto">
-              <div id="tree_tasks"></div>
-            </div>
-          </div>
-        </div>
         <!-- Статус задач -->
-        <div
-          id="control_task/control_task_statustask"
-          class="sidebar__tabcontent__container"
-        >
+        <div id="tasks/tasks_status" class="sidebar__tabcontent__container">
           <div class="select__wrapper">
             <select class="select select__sort" id="sort_statustask">
               <option value="">Сортировка &#8661;</option>
@@ -615,10 +472,93 @@
                     class="input__type-text input__type-text_title"
                     type="text"
                     id="input_add_statustask"
+                    placeholder="Введите название статуса"
                   />
                 </td>
                 <td class="td td_buttons-control">
                   <button class="button__control button__control_add-color">
+                    <img
+                      class="button__control__img"
+                      src="../blocks/button/__control/img/plus.svg"
+                      alt=""
+                    />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- контенты -->
+        <div id="tasks/tasks_contents" class="sidebar__tabcontent__container">
+          <div class="select__wrapper">
+            <select class="select select__sort" id="sort_contents">
+              <option value="">Сортировка &#8661;</option>
+              <option value="">По названию &#8659;</option>
+              <option value="">По названию &#8657;</option>
+              <option value="">По новизне &#8659;</option>
+              <option value="">По новизне &#8657;</option>
+            </select>
+          </div>
+          <table class="table">
+            <thead class="thead">
+              <tr class="tr">
+                <td class="td td_active">Название</td>
+                <td class="td td_active"></td>
+              </tr>
+            </thead>
+            <tbody id="tb_contents">
+              <tr class="tr">
+                <td class="td td__text_align_center">
+                  <input
+                    class="input__type-text input__type-text_title"
+                    type="text"
+                    id="input_add_contents"
+                    placeholder="Введите название контента"
+                  />
+                </td>
+                <td class="td td_buttons-control">
+                  <button class="button__control button__control_add-contents">
+                    <img
+                      class="button__control__img"
+                      src="../blocks/button/__control/img/plus.svg"
+                      alt=""
+                    />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- типы запуска шаго задач -->
+        <div id="tasks/tasks_startstep" class="sidebar__tabcontent__container">
+          <div class="select__wrapper">
+            <select class="select select__sort" id="sort_startstep">
+              <option value="">Сортировка &#8661;</option>
+              <option value="">По названию &#8659;</option>
+              <option value="">По названию &#8657;</option>
+              <option value="">По новизне &#8659;</option>
+              <option value="">По новизне &#8657;</option>
+            </select>
+          </div>
+          <table class="table">
+            <thead class="thead">
+              <tr class="tr">
+                <td class="td td_active">Название</td>
+                <td class="td td_active"></td>
+              </tr>
+            </thead>
+            <tbody id="tb_startstep">
+              <tr class="tr">
+                <td class="td td__text_align_center">
+                  <input
+                    class="input__type-text input__type-text_title"
+                    type="text"
+                    id="input_add_startstep"
+                    placeholder="Введите название типа"
+                  />
+                </td>
+                <td class="td td_buttons-control">
+                  <button class="button__control button__control_add-startstep">
                     <img
                       class="button__control__img"
                       src="../blocks/button/__control/img/plus.svg"
@@ -654,6 +594,7 @@
                 id="user_name_modal"
                 value=""
                 autocomplete="off"
+                placeholder="Введите ФИО"
               />
             </div>
             <div class="modal__input-wrapper">
@@ -672,6 +613,7 @@
                 id="user_email"
                 value=""
                 autocomplete="off"
+                placeholder="Введите почту"
               />
             </div>
             <div class="modal__input-wrapper">
@@ -684,6 +626,7 @@
                 id="user_phone"
                 value=""
                 autocomplete="off"
+                placeholder="Введите телефон"
               />
             </div>
             <div class="modal__input-wrapper">
@@ -696,6 +639,7 @@
                 id="user_login"
                 value=""
                 autocomplete="off"
+                placeholder="Введите логин"
               />
             </div>
             <div class="modal__input-wrapper">
@@ -708,6 +652,7 @@
                 id="user_pass_first"
                 value=""
                 autocomplete="off"
+                placeholder="Введите пароль"
               />
               <span
                 class="input__type-text_icon-eye"
@@ -724,6 +669,7 @@
                 id="user_pass_second"
                 value=""
                 autocomplete="off"
+                placeholder="Повторите пароль"
               />
               <span
                 class="input__type-text_icon-eye"
@@ -779,6 +725,7 @@
                 type="text"
                 id="shablons_name"
                 value=""
+                placeholder="Введите название"
               />
             </div>
           </div>
@@ -818,10 +765,19 @@
           </div>
         </div>
         <div class="modal__body">
+          <div class="modal__input-wrapper">
+            <input class="checkbox" type="checkbox" id="shablons_autoready" />
+            <label for="shablons_autoready"
+              >Автоматически переводится в "Готов" при готовности всех
+              подшагов</label
+            >
+          </div>
+        </div>
+        <div class="modal__body">
           <div
             class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start"
           >
-            <div class="modal__input-wrapper">
+            <div>
               <label class="input__type-text__label" for="shablons_mission"
                 >Описание:</label
               >
@@ -830,6 +786,7 @@
                 type="text"
                 id="shablons_mission"
                 value=""
+                placeholder="Введите описание"
               />
             </div>
           </div>
@@ -844,6 +801,7 @@
               type="text"
               id="shablons_dl_d"
               value=""
+              placeholder="0"
             />
             <label class="input__type-text__label" for="shablons_dl_d"
               >дней</label
@@ -853,6 +811,7 @@
               type="text"
               id="shablons_dl_h"
               value=""
+              placeholder="0"
             />
             <label class="input__type-text__label" for="shablons_dl_h"
               >часов</label
@@ -862,6 +821,7 @@
               type="text"
               id="shablons_dl_m"
               value=""
+              placeholder="0"
             />
             <label class="input__type-text__label" for="shablons_dl_m"
               >минут</label
@@ -899,6 +859,8 @@
                 type="text"
                 id="tasks_name"
                 value=""
+                placeholder="Введите название"
+                disabled
               />
             </div>
             <div class="modal__input-wrapper">
@@ -919,7 +881,11 @@
               <label class="input__type-text__label" for="tasks_areaprof"
                 >Участок:</label
               >
-              <select class="select select_modal" id="tasks_areaprof"></select>
+              <select
+                class="select select_modal"
+                id="tasks_areaprof"
+                disabled
+              ></select>
             </div>
           </div>
           <div>
@@ -927,13 +893,21 @@
               <label class="input__type-text__label" for="tasks_content"
                 >Тип контента:</label
               >
-              <select class="select select_modal" id="tasks_content"></select>
+              <select
+                class="select select_modal"
+                id="tasks_content"
+                disabled
+              ></select>
             </div>
             <div class="modal__input-wrapper">
               <label class="input__type-text__label" for="tasks_start"
                 >Тип запуска:</label
               >
-              <select class="select select_modal" id="tasks_start"></select>
+              <select
+                class="select select_modal"
+                id="tasks_start"
+                disabled
+              ></select>
             </div>
           </div>
         </div>
@@ -950,6 +924,8 @@
                 type="text"
                 id="tasks_datebegin"
                 value=""
+                placeholder="Введите дату"
+                disabled
               />
             </div>
           </div>
@@ -964,6 +940,7 @@
               type="text"
               id="tasks_dl_d"
               value=""
+              placeholder="0"
             />
             <label class="input__type-text__label" for="tasks_dl_d">дней</label>
             <input
@@ -971,6 +948,7 @@
               type="text"
               id="tasks_dl_h"
               value=""
+              placeholder="0"
             />
             <label class="input__type-text__label" for="tasks_dl_h"
               >часов</label
@@ -980,6 +958,7 @@
               type="text"
               id="tasks_dl_m"
               value=""
+              placeholder="0"
             />
             <label class="input__type-text__label" for="shablons_dl_m"
               >минут</label
@@ -987,10 +966,19 @@
           </div>
         </div>
         <div class="modal__body">
+          <div>
+            <input class="checkbox" type="checkbox" id="tasks_autoready" />
+            <label for="tasks_autoready"
+              >Автоматически переводится в "Готов" при готовности всех
+              подшагов</label
+            >
+          </div>
+        </div>
+        <div class="modal__body">
           <div
             class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start"
           >
-            <div class="modal__input-wrapper">
+            <div>
               <label class="input__type-text__label" for="tasks_mission"
                 >Описание:</label
               >
@@ -999,11 +987,39 @@
                 type="text"
                 id="tasks_mission"
                 value=""
+                placeholder="Введите описание"
+                disabled
               />
             </div>
           </div>
         </div>
-        <div class="modal__footer"></div>
+        <div class="modal__body">
+          <div
+            class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start"
+          >
+            <div>
+              <label class="input__type-text__label" for="tasks_mission"
+                >Примечание:</label
+              >
+              <input
+                class="input__type-text input__type-text_modal input__type-text_modal_long"
+                type="text"
+                id="tasks_prim"
+                value=""
+                placeholder="Введите примечание"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="button__control button__control_modal"
+            id="tasks_save"
+            value=""
+          >
+            Сохранить
+          </button>
+        </div>
       </div>
     </div>
     <!-- мод. окно перемещения шаблона -->
