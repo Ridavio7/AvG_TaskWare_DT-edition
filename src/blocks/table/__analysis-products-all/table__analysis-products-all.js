@@ -67,7 +67,7 @@ const addRowColumsShipProductsAll =
     cellverpp.innerHTML   = verpp;
     cellmac.innerHTML     = mac
     cellkontr.innerHTML   = kontr;
-    celldate.innerHTML    = `<input class="input__type-text" type="date" value="${date}" name="shipproducts_all_date_${uin}">`;
+    celldate.innerHTML    = `<input class="input__type-text input__type-date" type="date" value="${date}" name="shipproducts_all_date_${uin}">`;
     cellprim.innerHTML    = `<input class="input__type-text" type="text" value="${prim}" name="shipproducts_all_prim_${uin}">`;
 }
 

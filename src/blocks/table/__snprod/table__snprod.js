@@ -101,7 +101,7 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
     cellSN.innerHTML       = `<input class="input__type-text" type="text" value="${SN}" name="SN_${uin}">`;
     cellCount.innerHTML    = `<input class="input__type-text" type="text" value="${count}" name="count_${uin}">`;
     cellCountUse.innerHTML = `<input class="input__type-text" type="text" value="${count_use}" name="count_use_${uin}">`;
-    cellDate.innerHTML     = `<input class="input__type-text" type="date" value="${date}" name="date_${uin}">`;
+    cellDate.innerHTML     = `<input class="input__type-text input__type-date" type="date" value="${date}" name="date_${uin}">`;
 
     makeSelect("snprod_status_select_", uin, status, uinstatus, "statussn_list", "select", cellStatus);
 

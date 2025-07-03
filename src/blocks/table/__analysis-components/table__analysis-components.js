@@ -61,7 +61,7 @@ function addRowColumsShipComponentsAll(SNset, NPset, set, product, innproduct, c
     cellComp.innerHTML       = component;
     cellInnproduct.innerHTML = innproduct;
     cellKontr.innerHTML      = kontr
-    cellDate.innerHTML       = `<input class="input__type-text" type="date" value="${date}" name="shipcomponents_all_date_${uin}">`;
+    cellDate.innerHTML       = `<input class="input__type-text input__type-date" type="date" value="${date}" name="shipcomponents_all_date_${uin}">`;
     cellPrim.innerHTML       = `<input class="input__type-text" type="text" value="${prim}" name="shipcomponents_all_prim_${uin}">`;
 }
 

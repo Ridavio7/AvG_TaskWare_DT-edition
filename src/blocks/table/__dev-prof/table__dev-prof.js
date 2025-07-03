@@ -63,7 +63,7 @@ const addProfRow = (numb, name, fc, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellNumb = newRow.insertCell(0); cellNumb.classList = "td td__text_align_center";
+    let cellNumb = newRow.insertCell(0); cellNumb.classList = "td td_small";
     let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
     let cellFc   = newRow.insertCell(2); cellFc.classList   = "td";
     let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";

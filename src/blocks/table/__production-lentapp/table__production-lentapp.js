@@ -88,7 +88,7 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="lentapp_count_${uin}">`;
     let date = datetm.split(" ")[0];
     let time = datetm.split(" ")[1];
-    cellDate.innerHTML  = `<input class="input__type-text input__type-date" type="date" value="${date}" name="lentapp_date_${uin}"><input class="input__type-text input__type-date" type="time" value="${time}" name="lentapp_time_${uin}" step="1">`;
+    cellDate.innerHTML  = `<input class="input__type-text input__type-date" type="date" value="${date}" name="lentapp_date_${uin}"><input class="input__type-text input__type-time" type="time" value="${time}" name="lentapp_time_${uin}" step="1">`;
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="lentapp_prim_${uin}">`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";

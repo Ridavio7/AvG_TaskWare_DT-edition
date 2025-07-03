@@ -89,7 +89,7 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
     cellSNset.innerHTML = SNset;
     cellname.innerHTML  = name;
     cellkontr.innerHTML = kontr;
-    celldate.innerHTML  = `<input class="input__type-text" type="date" value="${date}" name="shipsets_date_${uin}">`;
+    celldate.innerHTML  = `<input class="input__type-text input__type-date" type="date" value="${date}" name="shipsets_date_${uin}">`;
     cellprim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="shipsets_prim_${uin}">`;
     cellBtn.innerHTML   = `<button class="button__control button__control_update button__control_update-ananlysis-set" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 }

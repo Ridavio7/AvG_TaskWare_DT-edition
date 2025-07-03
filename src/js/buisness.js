@@ -20,6 +20,7 @@ import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
 import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
+import '../blocks/input/__type-time/input__type-time.scss';
 import '../blocks/input/__type-radio/input__type-radio.scss';
 import '../blocks/input/__type-file/input__type-file.scss';
 import '../blocks/input/__type-file/input__type-file.js';
