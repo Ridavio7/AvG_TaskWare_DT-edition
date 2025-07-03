@@ -80,11 +80,11 @@ export class TreeTaskBuilder {
 
         const textSpanContainer     = document.createElement('div');
         textSpanContainer.className = 'tree-catalog__text-container';
-        if(document.URL.includes('#template_task/template_task_shablons')){
+        if(document.URL.includes('#tasks/tasks_shablons')){
             if(item.lv === 0){
                 treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
                 treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main tree-catalog__text_span-dl');
             } else {
                 treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
                 treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
@@ -101,7 +101,7 @@ export class TreeTaskBuilder {
                 treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
                 treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
                 treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user');
-                treeSpanFactory(textSpanContainer, item.datebegin != '' ? formatDate(item.datebegin) : '---', '', 'tree-catalog__text tree-catalog__text_span');
+                treeSpanFactory(textSpanContainer, item.datebegin != '' ? formatDate(item.datebegin) : '---', '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
             }
         }
         
@@ -132,8 +132,6 @@ export class TreeTaskBuilder {
         arrow.classList.toggle('collapsed');
         childrenContainer.classList.toggle('collapsed');
         header.classList.toggle('tree-catalog__header_open');
-        
-        this.saveState();
     }
 
     selectItem(summaryElement) {

@@ -67,11 +67,24 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_users_rights"),
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_server"), funcGetSysopt);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user"), '');
 
-/* шаблоны */
-addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_shablons"), funcGetShablons);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_contents"), funcGetContents);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_template_task_startstep"), funcGetStartstep);
+/* задачи */
+addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_control"), funcGetTasks);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_shablons"), funcGetShablons);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_status"), funcGetStatustask);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_contents"), funcGetContents);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_startstep"), funcGetStartstep);
 
-/* контроль */
-addEventButtonTab(document.querySelectorAll(".button__tab__first_control_task_control"), funcGetTasks);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_control_task_statustask"), funcGetStatustask);
+/* обновление контроля задач */
+setInterval(function() {
+    funcGetTasks();
+
+    setTimeout(() => {
+        let buttons = document.querySelectorAll(".button__control_action_status.button__control_modal-tasks-catTask");
+        let uin     = localStorage.getItem('button-active__tasks-catTask');
+        buttons.forEach(button => {
+            if (button.value === uin) {
+                button.click();
+            }
+        })
+    }, 100)
+}, 60000)

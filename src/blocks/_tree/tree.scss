@@ -23,7 +23,7 @@
             cursor: pointer;
             color: var(--font-color);
             font-family: Roboto, sans-serif;
-            font-size: 16px;
+            font-size: var(--font_size);
 
             &:hover{
                 background-color: var(--border);
@@ -53,6 +53,7 @@
         cursor: pointer;
         position: relative;
         padding-left: 25px;
+        padding-right: 3px;
         padding-top: 3px;
         padding-bottom: 3px;
         user-select: none;
@@ -125,7 +126,7 @@
     &__text{
         color: var(--font-color);
         font-family: Roboto, sans-serif;
-        font-size: 16px;
+        font-size: var(--font_size);
         font-weight: 400;
 
         &_span{
@@ -151,7 +152,7 @@
             }
 
             &-dl{
-                min-width: 90px;
+                min-width: 95px;
                 text-wrap: nowrap;
             }
         }
