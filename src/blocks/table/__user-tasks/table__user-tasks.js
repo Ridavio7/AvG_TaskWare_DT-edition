@@ -22,36 +22,36 @@ function buildStructure(data, container) {
         title.classList.add('table__title');
         container.append(title);
 
-        const li = document.createElement('li');
-        li.classList.add('sidebar__wrapper');
-        
-        const a = document.createElement('a');
-        const div_block = document.createElement('div');
-
-        const div_title = document.createElement('div');
-        div_title.classList.add('sidebar__title');
-
-        const div_img = document.createElement('div');
-
-        const div_time = document.createElement('div');
-        div_time.classList.add('sidebar__block-task-time');
-
-        const span_time = document.createElement('span');
-        span_time.classList.add('sidebar__name_time');
-
-        const span_date = document.createElement('span');
-        span_date.classList.add('sidebar__name_time');
-
-        const span_name = document.createElement('span');
-        span_name.classList.add('sidebar__name');
-
         for (const steps of item.steps) {
+            const li = document.createElement('li');
+            li.classList.add('sidebar__wrapper');
+            
+            const a = document.createElement('a');
+            const div_block = document.createElement('div');
+
+            const div_title = document.createElement('div');
+            div_title.classList.add('sidebar__title');
+
+            const div_img = document.createElement('div');
+
+            const div_time = document.createElement('div');
+            div_time.classList.add('sidebar__block-task-time');
+
+            const span_time = document.createElement('span');
+            span_time.classList.add('sidebar__name_time');
+
+            const span_date = document.createElement('span');
+            span_date.classList.add('sidebar__name_time');
+
+            const span_name = document.createElement('span');
+            span_name.classList.add('sidebar__name');
+
             a.href = `#user_task_link_${steps.uin}`;
             div_block.className = `sidebar__link user_task_link_${steps.uin} sidebar__link_task sidebar__link_no-child`;
             div_img.innerHTML = setStatus(steps.status.uin);
             div_img.firstChild.classList.add('sidebar__img');
 
-            span_time.innerHTML = formatDate(steps.datebegin);
+            span_time.innerHTML = steps.datebegin != '' ? formatDate(steps.datebegin) : "---";
             span_name.innerHTML = steps.name;
 
             div_time.append(span_time);
@@ -64,11 +64,11 @@ function buildStructure(data, container) {
             div_block.append(div_title);
             a.append(div_block);
 
-            document.querySelector('.container').insertAdjacentHTML('beforeend', userTasksContent(`user_task_link_${steps.uin}`, steps.name, '', steps.datebegin, '', '', steps.prim, steps.uin))
-        }
+            document.querySelector('.container').insertAdjacentHTML('beforeend', userTasksContent(`user_task_link_${steps.uin}`, steps.name, steps.admin.name, steps.datebegin, steps.dateend, steps.mission, steps.prim, steps.uin));
 
-        li.append(a);
-        container.append(li);
+            li.append(a);
+            container.append(li);
+        }
     }
 
     /* функция готовности */
@@ -93,7 +93,7 @@ function buildStructure(data, container) {
     })
 }
 
-const userTasksContent = (tabcontent_id, name, admin, datebegin, diedline, mission, prim, uin) => {
+const userTasksContent = (tabcontent_id, name, admin, datebegin, dateend, mission, prim, uin) => {
     return `
     <div class="sidebar__tabcontent" id="${tabcontent_id}">
         <div class="modal__header modal__header_task">
@@ -108,6 +108,7 @@ const userTasksContent = (tabcontent_id, name, admin, datebegin, diedline, missi
                   type="text"
                   id="task_name_${uin}"
                   value="${name}"
+                  disabled
                 />
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
@@ -119,6 +120,7 @@ const userTasksContent = (tabcontent_id, name, admin, datebegin, diedline, missi
                   type="text"
                   id="task_admin_${uin}"
                   value="${admin}"
+                  disabled
                 />
               </div>
             </div>
@@ -147,7 +149,7 @@ const userTasksContent = (tabcontent_id, name, admin, datebegin, diedline, missi
                   class="input__type-text input__type-date input__type-text_task"
                   type="date"
                   id="task_date_second_${uin}"
-                  value=""
+                  value="${dateend.split("T")[0]}"
                 />
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
@@ -155,7 +157,7 @@ const userTasksContent = (tabcontent_id, name, admin, datebegin, diedline, missi
                   class="input__type-text input__type-time input__type-text_task"
                   type="time"
                   id="task_time_second_${uin}"
-                  value=""
+                  value="${dateend.split("T")[1]}"
                 />
               </div>
             </div>
@@ -169,6 +171,7 @@ const userTasksContent = (tabcontent_id, name, admin, datebegin, diedline, missi
                   type="text"
                   id="task_mission_${uin}"
                   value="${mission}"
+                  disabled
                 />
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
