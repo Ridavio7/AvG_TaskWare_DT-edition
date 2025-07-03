@@ -32,9 +32,11 @@ const handleFormSubmit = (event) => {
 }
 
 const funcGetToken = (result, respobj) => {
+    console.log(respobj)
     if(responseProcessor(result, respobj.succ)){
         localStorage.setItem('srtf', respobj.srtf);
         localStorage.setItem('user_name', respobj.name);
+        localStorage.setItem('user_uin', respobj.uinuser);
         window.location = 'tasks.html';
     }
 }

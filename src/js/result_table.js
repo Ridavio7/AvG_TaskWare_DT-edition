@@ -29,7 +29,7 @@ import '../blocks/modal/__notification/modal__notification.scss';
 import '../blocks/modal/__notification/modal__notification.js';
 /* таблицы */
 import '../blocks/table/table.scss';
-import '../blocks/table/__task/table__task.scss';
+import '../blocks/table/__user-tasks/table__user-tasks.scss';
 
 import {funcCommand, makeSelect, findForUpdateSelect, findForUpdateInput, addToDropdown, funcProcessOnlyInfo, responseProcessor} from '../js/common/common.js.js';
 

@@ -17,13 +17,16 @@ import '../blocks/button/__select/button__select.scss'
 /* input */
 import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
+import '../blocks/input/__type-text/_task/input__type-text_task.scss';
 import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
+import '../blocks/input/__type-time/input__type-time.scss';
 import '../blocks/input/__type-radio/input__type-radio.scss';
 /* select */
 import '../blocks/select/select.scss';
 import '../blocks/select/select.js';
 import '../blocks/select/_modal/select_modal.scss';
+import '../blocks/select/_task/select_task.scss';
 /* модальные окна */
 import '../blocks/modal/modal.scss';
 import '../blocks/modal/__shipment/modal__shipment.js';
@@ -34,15 +37,15 @@ import '../blocks/table/table.scss';
 
 import {funcGetSets} from '../blocks/table/__shipment-sets/table__shipment-sets.js';
 import {funcGetProducts} from '../blocks/table/__shipment-products/table__shipment-products.js';
+import {funcGetUserTasks} from '../blocks/table/__user-tasks/table__user-tasks.js';
 
 window.onload = function(){
-    funcGetSets();
-    funcGetProducts();
-    funcGetContragents();
-    funcGetUsers();
-    funcGetProductpp();
-
-    document.querySelector(".shipment").click();
+    funcGetUserTasks();
+    //funcGetSets();
+    //funcGetProducts();
+    //funcGetContragents();
+    //funcGetUsers();
+    //funcGetProductpp();
 
     document.getElementById("mount_date").value = new Date().toISOString().split('T')[0];
     document.getElementById("mount_time").value = new Date().toLocaleTimeString();
