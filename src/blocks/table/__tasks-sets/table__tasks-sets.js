@@ -1,4 +1,4 @@
-import {funcCommand, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, responseProcessor} from '../../../js/common/common.js.js';
 
 export const funcGetSets = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"sets", "count":"100" };
@@ -6,7 +6,6 @@ export const funcGetSets = () => {
 }
 
 const funcProcessGetSets = ( result, respobj ) => {
-    responseProcessor(result, respobj.succ);
     let tb_id = "tb_sets";
 
     console.log("Комплекты:", respobj);

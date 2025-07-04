@@ -1,12 +1,10 @@
 import {dragElement} from '../modal.js';
 
-let shipment_modal   = document.getElementById("shipment_modal");
-let shipment_close   = document.getElementById("shipment_close");
-let shipment_button  = document.getElementById("shipment_button");
-let shipment_button_sub  = document.getElementById("shipment_button_sub");
-let task_contragents = document.getElementById("task_contragents");
+let shipment_modal      = document.getElementById("shipment_modal");
+let shipment_close      = document.getElementById("shipment_close");
+let shipment_button_sub = document.getElementById("shipment_button_sub");
 
-let zapros_set = [], forModal_set = [], zapros_product = [], forModal_product = [];
+export let zapros_set = [], forModal_set = [], zapros_product = [], forModal_product = [];
 
 shipment_close.onclick = () => {
     shipment_modal.style.display = "none";
@@ -35,17 +33,6 @@ const clearModalTable  = () => {
     table.replaceChild(newTbody, table.getElementsByTagName('tbody')[0]);
 }
 
-shipment_button.onclick = () => {
-    if(task_contragents.value === " "){
-        alert("Вы не выбрали контрагента!");
-    } else {
-        localStorage.setItem("contragent_uin", task_contragents.value);
-        getCheckbox(tb_sets, "input_set_", zapros_set, forModal_set, "zapros_set_value");
-        getCheckbox(tb_products, "input_product_", zapros_product, forModal_product, "zapros_product_value");
-        shipment_modal.style.display = "block";
-    }
-}
-
 shipment_button_sub.onclick = () => {
     if(zapros_set.length === 0 && zapros_product.length === 0){
         alert("Вы ничего не выбрали!");
@@ -54,7 +41,7 @@ shipment_button_sub.onclick = () => {
     }
 }
 
-const getCheckbox = (tb_id, input_id, zapros, forModal, storage_arr) => {
+export const getCheckbox = (tb_id, input_id, zapros, forModal, storage_arr) => {
     let checkbox_set = tb_id.getElementsByClassName("checkbox");
     for (let key of checkbox_set) {
         if(key.checked === true){
@@ -90,7 +77,7 @@ const addRowInModal = (name, count, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName  = newRow.insertCell(0); cellName.classList = "td";
+    let cellName  = newRow.insertCell(0); cellName.classList  = "td";
     let cellCount = newRow.insertCell(1); cellCount.classList = "td";
 
     cellName.innerHTML  = name;

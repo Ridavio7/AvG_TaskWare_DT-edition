@@ -82,7 +82,6 @@ function funcProcessGetResTable(result, respobj){
 
 /* отправка запроса для выбранных сетов/изделий */
 function funcProcessGetResTableSets(result, respobj){
-    responseProcessor(result, respobj.succ);
     console.log(respobj.answS);
     
     let div_tb_id = "wrapper_tb_shipment_sets";
@@ -227,7 +226,6 @@ function addSetsRowChild(prod, SNprod, color, colorUin, uinPr, table_content){
 }
 
 function funcProcessGetResTableProducts(result, respobj){
-    responseProcessor(result, respobj.succ);
     console.log(respobj.answP);
     let div_tb_id = "wrapper_tb_shipment_products";
     let div = document.getElementById(div_tb_id);
@@ -371,7 +369,6 @@ export const funcGetUpdateStatuses = () => {
 }
 
 const funcProcessGetUpdateStatuses = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Статусы:", respobj);
 
     let statuses_list = respobj.answ;
@@ -384,7 +381,6 @@ export const funcGetUpdateColors = () => {
 }
 
 const funcProcessGetUpdateColors = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Цвета:", respobj);
 
     let colors_list = respobj.answ;
@@ -397,7 +393,6 @@ export const funcGetUpdateVerapp = () => {
 }
 
 const funcProcessGetUpdateVerapp = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("verapp:", respobj);
 
     let verapp_list = respobj.answ;
@@ -410,7 +405,6 @@ export const funcGetUpdateVerpp = () => {
 }
 
 const funcProcessGetUpdateVerpp = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("verpp:", respobj);
 
     let verpp_list = respobj.answ;

@@ -1,6 +1,9 @@
 import {funcCommand, setStatus, responseProcessor, formatDate, funcProcessOnlyInfo} from '../../../js/common/common.js.js';
 import {showNotification} from '../../modal/__notification/modal__notification.js';
 
+import {funcTaskContentShipment, funcTaskContentShipmentHelpers} from '../../task-contents/__shipment/task-contents__shipment.js';
+import {funcTaskContentMount, funcTaskContentMountHelpers} from '../../task-contents/__mount/task-contents__mount.js';
+
 export const funcGetUserTasks = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "count":"100", "sort":"datebegin"};
     funcCommand(body, funcProcessGetUserTasks);
@@ -68,6 +71,18 @@ function buildStructure(data, container) {
 
             li.append(a);
             container.append(li);
+
+            switch (steps.content.uin) {
+                case 2:
+                    document.getElementById(`user_task_link_${steps.uin}`).insertAdjacentHTML('beforeend', funcTaskContentShipment());
+                    funcTaskContentShipmentHelpers();
+                    break
+                case 3:
+                    document.getElementById(`user_task_link_${steps.uin}`).insertAdjacentHTML('beforeend', funcTaskContentMount());
+                    funcTaskContentMountHelpers();
+                default:
+                    break
+            }
         }
     }
 

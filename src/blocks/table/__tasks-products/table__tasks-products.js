@@ -1,4 +1,4 @@
-import {funcCommand, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand} from '../../../js/common/common.js.js';
 
 export const funcGetProducts = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"products", "count":"100" };
@@ -6,7 +6,6 @@ export const funcGetProducts = () => {
 }
 
 const funcProcessGetProducts = ( result, respobj ) => {
-    responseProcessor(result, respobj.succ);
     let tb_id = "tb_products";
 
     console.log("Изделия:", respobj);
@@ -26,8 +25,8 @@ const addProductsRow = (uin, name, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName     = newRow.insertCell(0); cellName.classList     = "td td_nowrap-content";
-    let cellInput    = newRow.insertCell(1); cellInput.classList    = "td";
+    let cellName     = newRow.insertCell(0); cellName.classList  = "td td_nowrap-content";
+    let cellInput    = newRow.insertCell(1); cellInput.classList = "td";
 
     cellName.innerHTML = `<input type="checkbox" class="checkbox" id="product_${uin}" name="${uin}" value="${name}"><label for="product_${uin}">${name}</label>`;
     cellInput.innerHTML = `<input class="input__type-text input__type-text_title" type="text" id="input_product_${uin}" name="${uin}">`;

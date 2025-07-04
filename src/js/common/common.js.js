@@ -155,6 +155,14 @@ export const makeSelect =
     addToDropdown(select, list);
 }
 
+export const addToDropdownTaskSelect = (name, buy, del, uin, select_id) => {
+    let select = document.getElementById(select_id);
+    if(del === 0 && buy === 1){
+        let newOption = new Option(name, uin);
+        select.append(newOption);
+    }
+}
+
 /* очистка и установка опции select */
 export const removeOptionsSetValue = (selec, text) => {
     let mySelect = document.getElementById(selec);
