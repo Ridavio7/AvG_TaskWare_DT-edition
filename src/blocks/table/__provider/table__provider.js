@@ -1,6 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, clearTableAll, sendFilt, clearFilt, listenSelect, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
+import {funcInfoDocpostSubstdocOpenModal} from '../../modal/__docpost-substdoc/modal__docpost-substdoc.js';
 
 export const funcGetDocpost = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000"};
@@ -164,4 +165,8 @@ document.getElementById("founddoc_reset_button").onclick = () => {
     document.getElementById('founddoc_name').value = '';
     document.getElementById('filt_docpost_contragents').firstChild.innerHTML = 'Контрагенты <img class="select__img" src="assets/images/filter.svg" alt="">';
     document.getElementById('filt_docpost_status').firstChild.innerHTML = 'Статусы <img class="select__img" src="assets/images/filter.svg" alt="">';
+}
+
+document.getElementById('docpost_substdoc_button').onclick = () => {
+    funcInfoDocpostSubstdocOpenModal();
 }
