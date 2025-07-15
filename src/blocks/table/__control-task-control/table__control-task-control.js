@@ -8,7 +8,7 @@ export const funcGetTasks = () => {
 }
 
 const funcProcessGetTasks = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
+    //responseProcessor(result, respobj.succ);
     console.log("Задачи:", respobj);
 
     const container = document.getElementById('tb_tasks');
@@ -45,6 +45,18 @@ const funcProcessGetTasks = (result, respobj) => {
             }
         })
     })
+    
+    let button_control_archive = document.querySelectorAll(".button__control_modal-tasks-archive");
+    button_control_archive.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let result = confirm(`Убрать в архив задачу "${elem.name}"?`);
+            if(result === true){
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"archive", "obj":"tasks", "uinTask":`${elem.value}`};
+                funcCommand(body, funcProcessOnlyInfo);
+                setTimeout(function(){ funcGetTasks() }, 100);
+            }
+        })
+    })
 }
 
 function buildStructure(data, container) {
@@ -55,8 +67,8 @@ function buildStructure(data, container) {
         container.appendChild(title);
 
         const table = document.createElement('table');
-        table.classList.add('table');
-        const thead = document.createElement('thead');
+        table.classList = 'table table_no-rotation';
+        /*const thead = document.createElement('thead');
         thead.classList.add('thead');
         const trHead = document.createElement('tr');
         trHead.classList.add('tr');
@@ -67,8 +79,8 @@ function buildStructure(data, container) {
             td.textContent = text;
             trHead.appendChild(td);
         });
-        //thead.appendChild(trHead);
-        //table.appendChild(thead);
+        thead.appendChild(trHead);
+        table.appendChild(thead);*/
 
         const tbody = document.createElement('tbody');
         for (const task of item.tasks) {
@@ -77,7 +89,7 @@ function buildStructure(data, container) {
 
             const tdStatus = document.createElement('td');
             tdStatus.classList.add('td');
-            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin)}</button>`;
+            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin)}</button>`
 
             const tdName = document.createElement('td');
             tdName.classList.add('td');
@@ -87,13 +99,25 @@ function buildStructure(data, container) {
             tdDateBegin.classList.add('td');
             tdDateBegin.innerHTML = `<button class="button__control button__control_action button__control_action_date button__control_modal-tasks-catTask" value="${task.uin}">${formatDate(task.datebegin)}</button>`;
 
+            const tdDateEnd = document.createElement('td');
+            tdDateEnd.classList.add('td');
+            tdDateEnd.innerHTML = `<button class="button__control button__control_action button__control_action_date button__control_modal-tasks-catTask" value="${task.uin}">${formatDate(task.dateend)}</button>`;
+
             const tdBtn = document.createElement('td');
-            tdBtn.classList.add('td');
-            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}">Отозвать</button>`;
+            tdBtn.classList = 'td td_nowrap-content';
+            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}">Отозвать</button><button class="button__control button__control_modal-tasks-archive" value="${task.uin}" name="${task.name}">В архив</button>`;
+
+            if(task.fproblem != 0){
+                tr.style.backgroundColor = '#ffdbdb';
+                tdName.firstChild.style.color = '#ff3131';
+                tdDateBegin.firstChild.style.color = '#ff3131';
+                tdDateEnd.firstChild.style.color = '#ff3131';
+            }
 
             tr.appendChild(tdStatus);
             tr.appendChild(tdName);
             tr.appendChild(tdDateBegin);
+            tr.appendChild(tdDateEnd);
             tr.appendChild(tdBtn);
 
             tbody.appendChild(tr);

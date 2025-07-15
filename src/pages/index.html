@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Авторизация TW</title>
-    <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon">
-</head>
-<body>
+    <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon" />
+  </head>
+  <body>
     <div class="entrance__container">
-        <form class="entrance__form" id="logon">
-            <img class="entrance__title" src="../blocks/header/img/logo.svg" alt="logo">
-            <div class="entrance__input-wrapper">
-                <label class="entrance__label" for="logon_login">Введите логин:</label>
-                <div class="entrance__input-container">
-                    <span class="entrance__input_icon entrance__input_icon-login"></span>
-                    <input class="entrance__input" type="text" id="logon_login" value="" autocomplete="off">
-                </div>
-            </div>
-            <div class="entrance__input-wrapper">
-                <label class="entrance__label" for="logon_pass">Введите пароль:</label>
-                <div class="entrance__input-container">
-                    <span class="entrance__input_icon entrance__input_icon-pass"></span>
-                    <input class="entrance__input" type="password" id="logon_pass" value="" autocomplete="off">
-                    <span class="entrance__input_icon entrance__input_icon-eye" id="logon_pass_toggle"></span>
-                </div>
-            </div>
-            <button type="submit" class="entrance__button">Войти</button>
-        </form>
+      <form class="entrance__form" id="logon">
+        <img
+          class="entrance__title entrance__logo"
+          src="../blocks/header/img/logo.svg"
+          alt="logo"
+        />
+        <div class="entrance__input-wrapper">
+          <label class="entrance__label" for="logon_login"
+            >Введите логин:</label
+          >
+          <div class="entrance__input-container">
+            <span
+              class="entrance__input_icon entrance__input_icon-login"
+            ></span>
+            <input
+              class="entrance__input"
+              type="text"
+              id="logon_login"
+              value=""
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="entrance__input-wrapper">
+          <label class="entrance__label" for="logon_pass"
+            >Введите пароль:</label
+          >
+          <div class="entrance__input-container">
+            <span class="entrance__input_icon entrance__input_icon-pass"></span>
+            <input
+              class="entrance__input"
+              type="password"
+              id="logon_pass"
+              value=""
+              autocomplete="off"
+            />
+            <span
+              class="entrance__input_icon entrance__input_icon-eye"
+              id="logon_pass_toggle"
+            ></span>
+          </div>
+        </div>
+        <button type="submit" class="entrance__button">Войти</button>
+      </form>
     </div>
-    <div class="notification-container notification-container-entrance" id="notificationContainer"></div>
-</body>
+    <div
+      class="notification-container notification-container-entrance"
+      id="notificationContainer"
+    ></div>
+  </body>
 </html>

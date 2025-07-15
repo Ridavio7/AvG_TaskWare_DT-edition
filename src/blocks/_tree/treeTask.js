@@ -13,7 +13,9 @@ export class Tree {
         this.dl         = dataItem.dl;
         this.lv         = dataItem.lv;
         this.datebegin  = dataItem.datebegin;
+        this.dateend    = dataItem.dateend;
         this.uinstatus  = dataItem.uinstatus;
+        this.fproblem   = dataItem.fproblem;
         this.del        = dataItem.del;
         this.parentId   = null;
     }
@@ -82,9 +84,9 @@ export class TreeTaskBuilder {
         textSpanContainer.className = 'tree-catalog__text-container';
         if(document.URL.includes('#tasks/tasks_shablons')){
             if(item.lv === 0){
-                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main tree-catalog__text_span-dl');
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span');
+                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span');
+                treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-dl');
             } else {
                 treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
                 treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
@@ -93,15 +95,36 @@ export class TreeTaskBuilder {
             }
         } else {
             if(item.lv === 0){
-                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
-                treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-main');
+                if(item.fproblem != 0){
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, formatDate(item.dateend), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date tree-catalog__text_span-warning');
+                } else {
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
+                    treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span');
+                    treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span');
+                    treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
+                    treeSpanFactory(textSpanContainer, formatDate(item.dateend), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
+                }
             } else {
-                treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
-                treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
-                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
-                treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user');
-                treeSpanFactory(textSpanContainer, item.datebegin != '' ? formatDate(item.datebegin) : '---', '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
+                if(item.fproblem != 0){
+                    treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number tree-catalog__text_span-warning');
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date tree-catalog__text_span-warning');
+                    treeSpanFactory(textSpanContainer, formatDate(item.dateend), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date tree-catalog__text_span-warning');
+                } else {
+                    treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
+                    treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
+                    treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-user');
+                    treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
+                    treeSpanFactory(textSpanContainer, formatDate(item.dateend), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
+                }
+                
             }
         }
         

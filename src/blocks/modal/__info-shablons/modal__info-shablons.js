@@ -45,33 +45,27 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     removeOptions(shablons_start);
 
     if(respobj.answ.uin === '0'){
-        shablons_mission.parentElement.classList.add("modal__input-wrapper_display-none");
-        shablons_areaprof.parentElement.classList.add("modal__input-wrapper_display-none");
-        shablons_content.parentElement.classList.add("modal__input-wrapper_display-none");
-        shablons_start.parentElement.classList.add("modal__input-wrapper_display-none");
-        shablons_dl_d.parentElement.classList.add("modal__input-wrapper_display-none");
+        shablons_areaprof.disabled = true;
+        shablons_content.disabled  = true;
     } else {
-        shablons_mission.parentElement.classList.remove("modal__input-wrapper_display-none");
-        shablons_areaprof.parentElement.classList.remove("modal__input-wrapper_display-none");
-        shablons_content.parentElement.classList.remove("modal__input-wrapper_display-none");
-        shablons_start.parentElement.classList.remove("modal__input-wrapper_display-none");
-        shablons_dl_d.parentElement.classList.remove("modal__input-wrapper_display-none");
+        shablons_areaprof.disabled = false;
+        shablons_content.disabled  = false;
     }
 
     let obj          = respobj.answ;
     let name         = obj.name;
-    let mission      = obj.mission;
+    let mission      = obj.mission != undefined ? obj.mission : '---';
     let numb_i       = obj.numb_inlevel != undefined ? obj.numb_inlevel : '0';
     let dl           = obj.dl;
     let nameShablon  = obj.shablon.name;
     let uinShablon   = obj.shablon.uin;
     let nameUser     = obj.user.name;
     let uinUser      = obj.user.uin;
-    let nameAreaprof = obj.areaprof != undefined ? obj.areaprof.name : '';
+    let nameAreaprof = obj.areaprof != undefined ? obj.areaprof.name : '---';
     let uinAreaprof  = obj.areaprof != undefined ? obj.areaprof.uin : '';
-    let nameStart    = obj.start    != undefined ? obj.start.name : '';
+    let nameStart    = obj.start    != undefined ? obj.start.name : '---';
     let uinStart     = obj.start    != undefined ? obj.start.uin : '';
-    let nameContent  = obj.content  != undefined ? obj.content.name : '';
+    let nameContent  = obj.content  != undefined ? obj.content.name : '---';
     let uinContent   = obj.content  != undefined ? obj.content.uin : '';
     let autoready    = obj.autoready;
     let uin          = obj.uin;
@@ -88,6 +82,7 @@ const addShablonsInfo =
     shablons_dl_h.value      = dl.dl_h;
     shablons_dl_m.value      = dl.dl_m;
     insertDataInSelect(shablons_user, nameUser, uinUser, "users_list");
+    uin === "0" ? shablons_user.previousElementSibling.textContent = "Администратор:" : shablons_user.previousElementSibling.textContent = "Исполнитель:";
     insertDataInSelect(shablons_areaprof, nameAreaprof, uinAreaprof, "prof_list");
     insertDataInSelect(shablons_content, nameContent, uinContent, "contents_list");
     insertDataInSelect(shablons_start, nameStart, uinStart, "startstep_list");

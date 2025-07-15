@@ -1,6 +1,7 @@
 import 'normalize.css';
 /* общие */
 import '../blocks/#common/common.styles.scss';
+import '../blocks/table/__control-task-control/table__control-task-control.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
@@ -51,6 +52,7 @@ import {funcGetStartstep} from '../blocks/table/__template-task-startstep/table_
 /* контроль */
 import {funcGetTasks} from '../blocks/table/__control-task-control/table__control-task-control.js';
 import {funcGetStatustask} from '../blocks/table/__control-task-statustask/table__control-task-statustask.js';
+import {funcGetTasksArchive} from '../blocks/table/__control-task-archive/table__control-task-archive.js';
 
 import {returnTabs} from '../js/common/common.js.js';
 
@@ -75,6 +77,7 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_shablons"
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_status"), funcGetStatustask);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_contents"), funcGetContents);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_startstep"), funcGetStartstep);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_archive"), funcGetTasksArchive);
 
 /* обновление контроля задач */
 setInterval(function() {

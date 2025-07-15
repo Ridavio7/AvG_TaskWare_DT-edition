@@ -542,29 +542,39 @@ export const formatDate = (dateString) => {
     const hours = String(date.getHours()).padStart(2, '0');
     const mins  = String(date.getMinutes()).padStart(2, '0');
 
-    return `${hours}:${mins} ${day}.${month}.${year}`;
+    if(hours != 'NaN' && mins != 'NaN' && day != 'NaN' && month != 'NaN' && year != 'NaN'){
+        return `${hours}:${mins} ${day}.${month}.${year}`;
+    } else {
+        return `-:- -.-.-`;
+    }
 }
 
 export const setStatus = (status) => {
     let img;
     switch (status) {
-        case 1:
-            img = '<img class="" src="assets/images/no_start.svg">';
+        case 1: // не начато
+            img = '---';
             break
-        case 2:
-            img = '<img class="" src="assets/images/active.svg">';
+        case 2: // активно
+            img = '<img class="control-task__img-status" src="assets/images/active.svg" title="Активно">';
             break
-        case 3:
-            img = '<img class="" src="assets/images/time_fail.svg">';
+        case 3: // Активно Просрочено
+            img = '<img class="control-task__img-status" src="assets/images/active_time_fail.svg" title="Активно просрочено">';
             break
-        case 4:
-            img = '<img class="" src="assets/images/complete.svg">';
+        case 4: // Активно Принят
+            img = '<img class="control-task__img-status" src="assets/images/active_accept.svg" title="Активно принято">';
             break
-        case 5:
-            img = '<img class="" src="assets/images/complete_error.svg">';
+        case 5: // Активно Принят Просрочено
+            img = '<img class="control-task__img-status" src="assets/images/active_accept_time_fail.svg" title="Активно принято просрочено">';
             break
-        case 6:
-            img = '<img class="" src="assets/images/cancel.svg">';
+        case 10: // Завершено
+            img = '<img class="control-task__img-status" src="assets/images/complete.svg" title="Завершено">';
+            break
+        case 11: // Завершено с опозданием
+            img = '<img class="control-task__img-status" src="assets/images/complete_time_fail.svg" title="Завершено с опозданием">';
+            break
+        case 15: // Отменено
+            img = '<img class="control-task__img-status" src="assets/images/cancel.svg" title="Отменено">';
             break
         default:
             img = '???';
