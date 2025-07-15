@@ -8,7 +8,7 @@ export const funcGetDocpost = () => {
     funcCommand(body, funcProcessGetDocpost);
 }
 
-const funcProcessGetDocpost = (result, respobj) => {
+export const funcProcessGetDocpost = (result, respobj) => {
     responseProcessor(result, respobj.succ);
     console.log("Док. поступления:", respobj);
 

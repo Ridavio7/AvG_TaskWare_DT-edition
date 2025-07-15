@@ -1976,43 +1976,81 @@
         </div>
         <div class="modal__content">
             <div class="modal__header">
-                <div class="modal__input-wrapper">
-                    <label class="input__type-text__label" for="docpost_substdoc_name_1c">Поиск наименования 1С:</label>
-                    <input class="input__type-text input__type-text_modal" type="text" id="docpost_substdoc_name_1c" placeholder="Введите наименования">
-                </div>
-            </div>
-            <div class="modal__body">
-                <span class="modal__title">Найдено: <span class="modal__title" id="docpost_substdoc_name_1c_show"></span></span>
-            </div>
-            <div class="modal__header">
-                <div class="modal__input-wrapper">
-                    <label class="input__type-text__label" for="docpost_substdoc_component">Поиск комплектующего:</label>
-                    <input class="input__type-text input__type-text_modal" type="text" id="docpost_substdoc_component" placeholder="Введите наименования">
-                </div>
-            </div>
-            <div class="modal__body">
-                <span class="modal__title">Найдено: <span class="modal__title" id="docpost_substdoc_component_show"></span></span>
-            </div>
-            <div class="modal__header">
-                <div class="modal__input-wrapper">
-                    <input class="checkbox" type="checkbox" id="docpost_substdoc_status_ready" checked>
-                    <label for="docpost_substdoc_status_ready">Статус поставки "Готов"</label>
-                </div>
-                <div class="modal__input-wrapper">
-                    <input class="checkbox" type="checkbox" id="docpost_substdoc_status_process">
-                    <label for="docpost_substdoc_status_process">Статус поставки "Обработка"</label>
+                <div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="docpost_substdoc_name_1c">Поиск комплектующего 1С в поставке:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_substdoc_name_1c" placeholder="Введите наименования">
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="docpost_substdoc_name_1c_select">Найденые комплектующие 1С:</label>
+                        <select class="select select_modal select_modal_active" id="docpost_substdoc_name_1c_select"></select>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="docpost_substdoc_component">Поиск комплектующего в базе TW:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_substdoc_component" placeholder="Введите наименования">
+                    </div>
                 </div>
             </div>
             <div class="modal__header">
+                <div>
+                    <div class="modal__input-wrapper">
+                        <span class="modal__title">Поиск в поставках со статусом:</span>
+                    </div>
+                </div>
+                <div class="switch-table">
+                    <div class="modal__input-wrapper">
+                        <input class="checkbox" type="checkbox" id="docpost_substdoc_status_ready" checked>
+                        <label for="docpost_substdoc_status_ready">"Новый"</label>
+                    </div>
+                    <div class="modal__input-wrapper">
+                        <input class="checkbox" type="checkbox" id="docpost_substdoc_status_process">
+                        <label for="docpost_substdoc_status_process">"Обработка"</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__header">
+                <div>
+                    <div class="modal__input-wrapper">
+                        <span class="modal__title">Поиск комплектующего 1С по:</span>
+                    </div>
+                </div>
                 <div class="switch-table">
                     <div class="switch-table__elem">
-                        <input class="input__type-radio" type="radio" name="switch-table__radio" id="docpost_substdoc_full_find" checked>
-                        <label class="input__type-radio__label" for="docpost_substdoc_full_find">Поиск по полному соответствию</label>
+                        <input class="input__type-radio" name="docpost_substdoc_switch-table__radio" type="radio" id="docpost_substdoc_nofull_find">
+                        <label class="input__type-radio__label" for="docpost_substdoc_nofull_find">Подстроке</label>
                     </div>
                     <div class="switch-table__elem">
-                        <input class="input__type-radio" name="switch-table__radio" type="radio" id="docpost_substdoc_nofull_find">
-                        <label class="input__type-radio__label" for="docpost_substdoc_nofull_find">Поиск по вхождению подстроки</label>
+                        <input class="input__type-radio" type="radio" name="docpost_substdoc_switch-table__radio" id="docpost_substdoc_full_find" checked>
+                        <label class="input__type-radio__label" for="docpost_substdoc_full_find">Полному соответствию</label>
                     </div>
+                </div>
+            </div>
+            <div class="modal__header">
+                <div class="modal__table-wrapper-substdoc">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr class="tr">
+                                <td class="td td_active">Комплектующие 1С, сопоставимые с комплектующим TW</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tb_docpost_substdoc_1c">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal__table-wrapper-substdoc">
+                    <table class="table">
+                        <thead class="thead">
+                            <tr class="tr">
+                                <td class="td td_active">Выберите комплектующее TW</td>
+                            </tr>
+                        </thead>
+                        <tbody id="">
+                            <tr class="tr">
+                                <td class="td "><select class="select" id="docpost_substdoc_component_select"></select></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal__footer">
