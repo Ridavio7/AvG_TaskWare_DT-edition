@@ -53,7 +53,6 @@ function buildStructure(data, container) {
             a.href = `#user_task_link_${steps.uin}`;
             div_block.className = `sidebar__link user_task_link_${steps.uin} sidebar__link_task sidebar__link_no-child`;
             div_img.innerHTML = setStatus(steps.status.uin);
-            div_img.firstChild.classList.add('sidebar__img');
             if(steps.fproblem === 1) div_img.classList.add('sidebar__img_container-warning');
 
             span_time.innerHTML = steps.datebegin != '' ? formatDate(steps.datebegin) : "---";
@@ -88,6 +87,16 @@ function buildStructure(data, container) {
         }
     }
 
+    /* функция обновления задачи */
+    let button_update_main = document.querySelectorAll(".button__control_usersteps_update_main");
+    button_update_main.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "primTask":""};
+            body.primTask = document.getElementById(`task_primtask_${elem.value}`).value;
+            funcCommand(body, funcProcessOnlyInfo);
+        })
+    })
+
     /* функция готовности */
     let button_ready = document.querySelectorAll(".button__control_usersteps_ready");
     button_ready.forEach((elem) => {
@@ -98,7 +107,7 @@ function buildStructure(data, container) {
         })
     })
 
-    /* функция обновления */
+    /* функция обновления шага */
     let button_update = document.querySelectorAll(".button__control_usersteps_update");
     button_update.forEach((elem) => {
         elem.addEventListener("click", () => {
@@ -175,13 +184,15 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                 <label class="input__type-text__label" for="task_primtask"
                   >Описание задачи:</label
                 >
-                <input
+                <div class="modal__input-wrapper">
+                  <input
                   class="input__type-text input__type-text_task input__type-text_modal_long"
                   type="text"
                   id="task_primtask_${uin}"
                   value="${primtask}"
-                  disabled
-                />
+                  />
+                  <button class="button__control button__control_usersteps_update_main" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>
+                </div>
               </div>
             </div>
           </div>
@@ -260,12 +271,15 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                 <label class="input__type-text__label" for="task_comment"
                   >Комментарий:</label
                 >
-                <input
-                  class="input__type-text input__type-text_task input__type-text_modal_long"
-                  type="text"
-                  id="task_comment_${uin}"
-                  value="${prim}"
-                />
+                <div class="modal__input-wrapper">
+                  <input
+                    class="input__type-text input__type-text_task input__type-text_modal_long"
+                    type="text"
+                    id="task_comment_${uin}"
+                    value="${prim}"
+                  />
+                  <button class="button__control button__control_usersteps_update" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>
+                </div>
               </div>
             </div>
           </div>
@@ -275,12 +289,6 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
               value="${uin}"
             >
               Принял
-            </button>
-            <button
-              class="button__control button__control_ready button__control_usersteps_update"
-              value="${uin}"
-            >
-              Обновить
             </button>
             <button
               class="button__control button__control_ready button__control_usersteps_problem"

@@ -1,6 +1,7 @@
 import 'normalize.css';
 /* общие */
 import '../blocks/#common/common.styles.scss';
+import '../blocks/table/__control-task-control/table__control-task-control.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
