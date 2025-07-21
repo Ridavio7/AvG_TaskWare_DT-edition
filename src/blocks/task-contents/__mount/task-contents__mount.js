@@ -97,6 +97,7 @@ export const funcTaskContentMount = () => {
 
 export const funcTaskContentMountHelpers = () => {
     funcGetProductpp();
+    funcGetUsers();
 
     document.getElementById("mount_date").value = new Date().toISOString().split('T')[0];
     document.getElementById("mount_time").value = new Date().toLocaleTimeString();

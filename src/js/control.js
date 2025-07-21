@@ -59,6 +59,16 @@ import {returnTabs} from '../js/common/common.js.js';
 window.onload = function(){
     returnTabs();
     updateDirectory();
+
+    setTimeout(() => {
+        let buttons = document.querySelectorAll(".button__control_action_status.button__control_modal-tasks-catTask");
+        let uin     = localStorage.getItem('button-active__tasks-catTask');
+        buttons.forEach(button => {
+            if (button.value === uin) {
+                button.click();
+            }
+        })
+    }, 100)
 }
 
 /* пользователи */
@@ -92,4 +102,4 @@ setInterval(function() {
             }
         })
     }, 100)
-}, 60000)
+}, 10000)

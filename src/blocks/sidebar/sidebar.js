@@ -37,4 +37,4 @@ setTimeout(() => {
     sidebar_links.forEach((elem) => {
         setSidebarEvents(elem, "sidebar__tabcontent", "sidebar__link_task", "sidebar__link_active");
     })
-}, 500)
+}, 600)

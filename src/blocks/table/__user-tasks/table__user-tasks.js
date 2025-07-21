@@ -68,7 +68,7 @@ function buildStructure(data, container) {
             div_block.append(div_title);
             a.append(div_block);
 
-            document.querySelector('.container').insertAdjacentHTML('beforeend', userTasksContent(steps.task.name, steps.primtask, steps.count, `user_task_link_${steps.uin}`, steps.name, steps.admin.name, steps.datebegin, steps.dateend, steps.mission, steps.prim, steps.uin, steps.fproblem));
+            document.querySelector('.container').insertAdjacentHTML('beforeend', userTasksContent(steps.task.name, steps.primtask, steps.count, `user_task_link_${steps.uin}`, steps.name, steps.admin.name, steps.datebegin, steps.dateend, steps.mission, steps.prim, steps.uin, steps.fproblem, steps.status.uin));
 
             li.append(a);
             container.append(li);
@@ -138,7 +138,7 @@ function buildStructure(data, container) {
     })
 }
 
-const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin, datebegin, dateend, mission, prim, uin, fproblem) => {
+const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin, datebegin, dateend, mission, prim, uin, fproblem, status) => {
     return `
     <div class="sidebar__tabcontent" id="${tabcontent_id}">
         <div class="modal__header modal__header_task">
@@ -170,10 +170,10 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_count"
-                  >Количество:</label
+                  >Кол-во:</label
                 >
                 <input
-                  class="input__type-text input__type-text_task"
+                  class="input__type-text input__type-text__small input__type-text_task"
                   type="text"
                   id="task_count_${uin}"
                   value="${count}"
@@ -182,7 +182,7 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_primtask"
-                  >Описание задачи:</label
+                  >Комментарий:</label
                 >
                 <div class="modal__input-wrapper">
                   <input
@@ -287,6 +287,7 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
             <button
               class="button__control button__control_ready button__control_usersteps_accept"
               value="${uin}"
+              ${status >= 4 ? "disabled" : ''}
             >
               Принял
             </button>

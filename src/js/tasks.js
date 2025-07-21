@@ -38,7 +38,6 @@ import '../blocks/table/table.scss';
 
 
 import {funcGetUserTasks} from '../blocks/table/__user-tasks/table__user-tasks.js';
-import {funcGetProductpp} from '../blocks/task-contents/__mount/task-contents__mount.js';
 
 window.onload = function(){
     funcGetUserTasks();
