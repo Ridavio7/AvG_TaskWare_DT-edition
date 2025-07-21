@@ -1,9 +1,9 @@
-.td_odd-column-active{
-    background-color: var(--background_first);
+.td_left-border{
     height: 30px;
+    border-left: 1px solid var(--border);
 }
 
-.td_even-column-active{
-    background-color: var(--background_second);
+.td_right-border{
     height: 30px;
+    border-right: 1px solid var(--border);
 }
