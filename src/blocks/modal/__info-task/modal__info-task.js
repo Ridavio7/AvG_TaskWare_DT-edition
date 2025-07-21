@@ -33,6 +33,11 @@ tasks_close.onclick = function(){
     tasks_modal.style.display = "none";
 }
 
+tasks_close.ontouchend = (e) => {
+    e.preventDefault();
+    tasks_modal.style.display = "none";
+}
+
 dragElement(tasks_modal);
 
 export const funcGetTasksSteps = (uin) => {

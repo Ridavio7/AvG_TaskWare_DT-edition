@@ -9,6 +9,11 @@ span_tcardprods.onclick = () => {
     modal_tcardprods.style.display = "none";
 }
 
+span_tcardprods.ontouchend = (e) => {
+    e.preventDefault();
+    modal_tcardprods.style.display = "none";
+}
+
 dragElement(modal_tcardprods);
 
 export const funcInfoTcardprodsOpenModal = (uin) => {

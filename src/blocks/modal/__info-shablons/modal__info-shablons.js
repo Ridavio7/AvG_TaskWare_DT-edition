@@ -21,6 +21,11 @@ shablons_close.onclick = function(){
     shablons_modal.style.display = "none";
 }
 
+shablons_close.ontouchend = (e) => {
+    e.preventDefault();
+    shablons_modal.style.display = "none";
+}
+
 dragElement(shablons_modal);
 
 export const funcGetShablonsSteps = (uin) => {

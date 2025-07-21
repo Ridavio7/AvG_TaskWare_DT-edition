@@ -17,6 +17,11 @@ span_transfer.onclick = function(){
     modal_transfer.style.display = "none";
 }
 
+span_transfer.ontouchend = (e) => {
+    e.preventDefault();
+    modal_transfer.style.display = "none";
+}
+
 dragElement(modal_transfer);
 
 export const funcInfoShablonsTransferOpenModal = (uin, name, uinShablon) => {

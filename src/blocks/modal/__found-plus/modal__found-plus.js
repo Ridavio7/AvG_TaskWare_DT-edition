@@ -22,6 +22,15 @@ found_plus_close.onclick = () => {
     found_plus_input.value = "";
 }
 
+found_plus_close.ontouchend = (e) => {
+    e.preventDefault();
+    found_plus_modal.style.display = "none";
+
+    removeOptionsSetValue("found_plus_select", "-- Выберите тип --");
+    clearTableAll("found_plus_tb");
+    found_plus_input.value = "";
+}
+
 dragElement(found_plus_modal);
 
 export const funcFoundPlusOpenModal = (tb_id, tb_id_comp, tree_id, input_id) => {

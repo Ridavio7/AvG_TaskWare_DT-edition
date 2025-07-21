@@ -24,6 +24,11 @@ docpost_close.onclick = function(){
     docpost_modal.style.display = "none";
 }
 
+docpost_close.ontouchend = (e) => {
+    e.preventDefault();
+    docpost_modal.style.display = "none";
+}
+
 dragElement(docpost_modal);
 
 export const funcInfoDocpostOpenModal = (uin) => {

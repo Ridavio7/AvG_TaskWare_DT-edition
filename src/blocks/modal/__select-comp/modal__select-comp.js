@@ -18,6 +18,12 @@ span_select_comp.onclick = () => {
     removeOptionsSetValue("found_select", "-- Выберите тип --");
 }
 
+span_select_comp.ontouchend = (e) => {
+    document.getElementById('modal_select_component_tree').innerHTML = '';
+    modal_select_comp.style.display = "none";
+    removeOptionsSetValue("found_select", "-- Выберите тип --");
+}
+
 dragElement(modal_select_comp);
 
 let found_select       = document.getElementById("found_select");

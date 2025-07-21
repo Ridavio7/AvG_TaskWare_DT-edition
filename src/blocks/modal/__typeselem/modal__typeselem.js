@@ -9,6 +9,11 @@ span_typeselem.onclick = () => {
     modal_typeselem.style.display = "none";
 }
 
+span_typeselem.ontouchend = (e) => {
+    e.preventDefault();
+    modal_typeselem.style.display = "none";
+}
+
 dragElement(modal_typeselem);
 
 export const funcInfoTypeselemOpenModal = (uin) => {

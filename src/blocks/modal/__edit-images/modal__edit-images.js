@@ -10,6 +10,11 @@ edit_imgs_close.onclick = () => {
     edit_imgs_modal.style.display = "none";
 }
 
+edit_imgs_close.ontouchend = (e) => {
+    e.preventDefault();
+    edit_imgs_modal.style.display = "none";
+}
+
 dragElement(edit_imgs_modal);
 
 export const funcEditImgsOpenModal = (uin, name) => {
@@ -123,8 +128,8 @@ button_control_add.onclick = () => {
     reader.onload = () => {
         bs_value = reader.result.split(',')[1];
 
-        if(name_value === "" || file === undefined || file.size > 3145728){
-            alert("Вы не заполнили все поля и/или файл больше 3 Мб!");
+        if(name_value === "" || file === undefined || file.size > 1048576){
+            alert("Вы не заполнили все поля и/или файл больше 1 Мб!");
         } else {
             body.name       = name_value;
             body.fname      = file.name;

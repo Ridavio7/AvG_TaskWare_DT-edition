@@ -1,36 +1,50 @@
-
 export const dragElement = (elmnt) => {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    document.getElementById(elmnt.id + "_moving").onmousedown = dragMouseDown;
+    const mover = document.getElementById(elmnt.id + "_moving");
+
+    mover.onmousedown = dragMouseDown;
+    mover.ontouchstart = dragTouchStart;
 
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
-        // получить положение курсора мыши при запуске:
         pos3 = e.clientX;
         pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // вызов функции при каждом перемещении курсора:
+        document.onmouseup   = closeDragElement;
         document.onmousemove = elementDrag;
+    }
+
+    function dragTouchStart(e) {
+        e = e || window.event;
+        e.preventDefault();
+        const touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.ontouchend = closeDragElement;
+        document.ontouchmove = elementDrag;
     }
 
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // вычислить новую позицию курсора:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // установите новое положение элемента:
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        const isTouch = !!e.touches;
+        const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+        const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+        pos1 = pos3 - clientX;
+        pos2 = pos4 - clientY;
+        pos3 = clientX;
+        pos4 = clientY;
+
+        elmnt.style.top  = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
 
     function closeDragElement() {
-        // остановка перемещения при отпускании кнопки мыши:
-        document.onmouseup = null;
+        document.onmouseup   = null;
         document.onmousemove = null;
+        document.ontouchend  = null;
+        document.ontouchmove = null;
     }
 }
 

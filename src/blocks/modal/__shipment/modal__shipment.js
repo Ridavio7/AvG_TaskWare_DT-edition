@@ -11,6 +11,12 @@ shipment_close.onclick = () => {
     clearModalTable();
 }
 
+shipment_close.ontouchend = (e) => {
+    e.preventDefault();
+    shipment_modal.style.display = "none";
+    clearModalTable();
+}
+
 dragElement(shipment_modal);
 
 window.onclick = function(event) {

@@ -10,6 +10,11 @@ enums_close.onclick = () => {
     enums_modal.style.display = "none";
 }
 
+enums_close.ontouchend = (e) => {
+    e.preventDefault();
+    enums_modal.style.display = "none";
+}
+
 dragElement(enums_modal);
 
 export const funcInfoEnumsOpenModal = (uin, name) => {

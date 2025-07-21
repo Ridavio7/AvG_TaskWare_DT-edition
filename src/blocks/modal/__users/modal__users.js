@@ -26,6 +26,14 @@ user_close.onclick = function(){
     user_pass_s.value = '';
 }
 
+user_close.ontouchend = (e) => {
+    e.preventDefault();
+    user_modal.style.display = "none";
+
+    user_pass_f.value = '';
+    user_pass_s.value = '';
+}
+
 dragElement(user_modal);
 
 /* открытие инфо мод. окна пользователя */

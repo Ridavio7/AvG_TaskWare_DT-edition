@@ -42,6 +42,19 @@ span_info_component.onclick = function(){
     }
 }
 
+span_info_component.ontouchend = (e) => {
+    e.preventDefault();
+    if(inputIsChange === true || selectIsChange === true){
+        inputIsChange  = false;
+        selectIsChange = false;
+
+        let res = confirm("Вы не сохранили все изменения! Все равно выйти?");
+        if(res === true) modal_info_component.style.display = "none";
+    } else {
+        modal_info_component.style.display = "none";
+    }
+}
+
 dragElement(modal_info_component);
 
 /* функция добавления комплектующего */

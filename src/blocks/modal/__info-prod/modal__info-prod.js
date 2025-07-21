@@ -36,6 +36,23 @@ span_info_product.onclick = function(){
     document.getElementById("input_info_product_add_comp").value        = '';
 }
 
+span_info_product.ontouchend = (e) => {
+    e.preventDefault();
+    if(inputIsChange === true){
+        inputIsChange  = false;
+
+        let res = confirm("Вы не сохранили все изменения! Все равно выйти?");
+        if(res === true) modal_info_product.style.display = "none";
+    } else {
+        modal_info_product.style.display = "none";
+    }
+
+    document.getElementById("button_info_product_add_prod").textContent = 'Выберите изделие';
+    document.getElementById("input_info_product_add_prod").value        = '';
+    document.getElementById("button_info_product_add_comp").textContent = 'Выберите комплектующее';
+    document.getElementById("input_info_product_add_comp").value        = '';
+}
+
 dragElement(modal_info_product);
 
 /* открытие модального окна */

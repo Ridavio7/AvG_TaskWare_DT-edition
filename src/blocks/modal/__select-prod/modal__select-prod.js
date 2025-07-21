@@ -12,6 +12,11 @@ span_select_prod.onclick = () => {
     modal_select_prod.style.display = "none";
 }
 
+span_select_prod.ontouchend = (e) => {
+    e.preventDefault();
+    modal_select_prod.style.display = "none";
+}
+
 dragElement(modal_select_prod);
 
 export const funcGetProductsTreeSelect = () => {
