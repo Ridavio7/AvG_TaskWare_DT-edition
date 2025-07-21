@@ -270,9 +270,12 @@ export class TreeTaskBuilder {
 
     deleteForever(dataItem) {
         if(dataItem != null){
-            let result = confirm('Вы уверены, что ходите удалить навсегда?');
+            let result = confirm('Вы уверены, что ходите удалить навсегда? Также будут удалены дочерние элементы!');
             if(result){
-                
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"fulldel", "obj":`${this.obj}`, "uin":`${dataItem.id}`, "uinShablon":`${dataItem.uinShablon}`};
+                funcCommand(body, funcProcessOnlyInfo);
+                setTimeout(() => { this.funcTree(dataItem.uinShablon); this.funcDop() }, 100);
+                setTimeout(() => { this.markItem(document.getElementById(`summary_${dataItem.id}`)) }, 200);
             }
         }
     }
