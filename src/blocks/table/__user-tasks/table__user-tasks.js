@@ -52,7 +52,7 @@ function buildStructure(data, container) {
 
             a.href = `#user_task_link_${steps.uin}`;
             div_block.className = `sidebar__link user_task_link_${steps.uin} sidebar__link_task sidebar__link_no-child`;
-            div_img.innerHTML = setStatus(steps.status.uin);
+            div_img.innerHTML = setStatus(steps.status.uin, steps.fpart);
             if(steps.fproblem === 1) div_img.classList.add('sidebar__img_container-warning');
 
             span_time.innerHTML = steps.datebegin != '' ? formatDate(steps.datebegin) : "---";
@@ -101,7 +101,17 @@ function buildStructure(data, container) {
     let button_ready = document.querySelectorAll(".button__control_usersteps_ready");
     button_ready.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "fpart":"0"};
+            funcCommand(body, funcProcessOnlyInfo);
+            setTimeout(function(){location.reload()}, 100);
+        })
+    })
+
+    /* функция готовности частично */
+    let button_ready_part = document.querySelectorAll(".button__control_usersteps_ready_part");
+    button_ready_part.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "fpart":"1"};
             funcCommand(body, funcProcessOnlyInfo);
             setTimeout(function(){location.reload()}, 100);
         })
@@ -184,7 +194,7 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                 <label class="input__type-text__label" for="task_primtask"
                   >Комментарий:</label
                 >
-                <div class="modal__input-wrapper">
+                <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
                   <input
                   class="input__type-text input__type-text_task input__type-text_modal_long"
                   type="text"
@@ -259,19 +269,22 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                 <label class="input__type-text__label" for="task_mission"
                   >Описание:</label
                 >
-                <input
-                  class="input__type-text input__type-text_task input__type-text_modal_long"
-                  type="text"
-                  id="task_mission_${uin}"
-                  value="${mission}"
-                  disabled
-                />
+                <div class="modal__input-wrapper modal__input-wrapper_task-with-button">
+                  <input
+                    class="input__type-text input__type-text_task input__type-text_modal_long"
+                    type="text"
+                    id="task_mission_${uin}"
+                    value="${mission}"
+                    disabled
+                  />
+                  <button class="button__control button__control_usersteps_update" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>
+                </div>
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_comment"
                   >Комментарий:</label
                 >
-                <div class="modal__input-wrapper">
+                <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
                   <input
                     class="input__type-text input__type-text_task input__type-text_modal_long"
                     type="text"
@@ -302,6 +315,12 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
               value="${uin}"
             >
               Готов
+            </button>
+            <button
+              class="button__control button__control_ready button__control_usersteps_ready_part"
+              value="${uin}"
+            >
+              Частично готов
             </button>
           </div>
         </div>

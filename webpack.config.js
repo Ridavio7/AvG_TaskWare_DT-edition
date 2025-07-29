@@ -58,7 +58,9 @@ const plugins = () => {
         { from: "src/blocks/table/__control-task-control/img/active_accept_time_fail.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/complete.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/complete_time_fail.svg", to: "assets/images/" },
-        { from: "src/blocks/table/__control-task-control/img/cancel.svg", to: "assets/images/" }
+        { from: "src/blocks/table/__control-task-control/img/cancel.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/complete_part.svg", to: "assets/images/" },
+        { from: "src/blocks/table/__control-task-control/img/complete_time_fail_part.svg", to: "assets/images/" }
       ],
     }),
     new webpack.ProvidePlugin({

@@ -89,7 +89,7 @@ function buildStructure(data, container) {
 
             const tdStatus = document.createElement('td');
             tdStatus.classList.add('td');
-            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin)}</button>`
+            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin, 0)}</button>`
 
             const tdName = document.createElement('td');
             tdName.classList.add('td');
