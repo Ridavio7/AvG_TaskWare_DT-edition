@@ -44,10 +44,11 @@ const funcProcessGetTechproc = (result, respobj) => {
     let button_control_update = document.querySelectorAll(".button__control_update-techproc");
     button_control_update.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"techproc", "name":"", "fix":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"techproc", "name":"", "numb":"", "fix":"", "uin":`${elem.value}`};
 
             let target_table = tb_techproc;
             body.name    = findForUpdateInput(`techproc_name_${elem.value}`, target_table);
+            body.numb    = findForUpdateInput(`techproc_numb_${elem.value}`, target_table);
             let checkbox = document.getElementById(`techproc_fix_${elem.value}`);
             body.fix     = checkbox.checked === true ? "1" : "0";
         
@@ -68,7 +69,7 @@ const addTechprocRow = (numb, name, fix, del, uin, tb_id) => {
     let cellFix  = newRow.insertCell(2); cellFix.classList  = "td";
     let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
 
-    cellNumb.innerHTML = numb;
+    cellNumb.innerHTML = `<input class="input__type-text" type="text" value="${numb}" name="techproc_numb_${uin}">`;
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="techproc_name_${uin}">`;
     let fix_checked    = fix === 1 ? 'checked' : '';
     cellFix.innerHTML  = `<input class="checkbox" type="checkbox" id="techproc_fix_${uin}" ${fix_checked}><label for="techproc_fix_${uin}"></label>` 

@@ -15,7 +15,7 @@ const funcProcessGetTasks = (result, respobj) => {
     container.innerHTML = '';
     buildStructure(respobj.answ, container)
 
-    /* открытие модального окна */
+    /* открытие дерева */
     let button_modal = document.querySelectorAll(".button__control_modal-tasks-catTask");
     button_modal.forEach((elem) => {
         elem.addEventListener("click", () => {
@@ -24,7 +24,6 @@ const funcProcessGetTasks = (result, respobj) => {
                 btn.classList.remove('button__control_active');
                 btn.parentElement.parentElement.classList.remove('tr_mark');
             }
-
             localStorage.setItem('button-active__tasks-catTask', elem.value);
 
             funcGetTasksTree(elem.value);
@@ -89,7 +88,7 @@ function buildStructure(data, container) {
 
             const tdStatus = document.createElement('td');
             tdStatus.classList.add('td');
-            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin, 0)}</button>`
+            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin, task.fpart)}</button>`
 
             const tdName = document.createElement('td');
             tdName.classList.add('td');
@@ -105,10 +104,10 @@ function buildStructure(data, container) {
 
             const tdBtn = document.createElement('td');
             tdBtn.classList = 'td td_nowrap-content';
-            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}">Отозвать</button><button class="button__control button__control_modal-tasks-archive" value="${task.uin}" name="${task.name}">В архив</button>`;
+            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}">Отозвать</button><button class="button__control button__control_modal-tasks-archive" value="${task.uin}" name="${task.name}">Архивировать</button>`;
 
             if(task.fproblem != 0){
-                tr.style.backgroundColor = '#ffdbdb';
+                tr.classList.add('tr_mark-error');
                 tdName.firstChild.style.color = '#ff3131';
                 tdDateBegin.firstChild.style.color = '#ff3131';
                 tdDateEnd.firstChild.style.color = '#ff3131';

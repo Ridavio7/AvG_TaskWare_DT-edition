@@ -1,4 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
+import {funcInfoProfUsersOpenModal} from '../../modal/__prof-users/modal__prof-users.js';
 
 export const funcGetProf = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"100", "sort":"numb"};
@@ -19,9 +20,10 @@ const funcProcessGetProf = (result, respobj) => {
         let numb = obj.numb;
         let name = obj.name;
         let fc   = obj.fcount;
+        let user = obj.users;
         let del  = obj.del;
         let uin  = obj.uin;
-        addProfRow(numb, name, fc, del, uin, tb_id);
+        addProfRow(numb, name, fc, user, del, uin, tb_id);
     }
 
     /* функция удаления */
@@ -56,22 +58,31 @@ const funcProcessGetProf = (result, respobj) => {
             setTimeout(function(){funcGetProf()}, 100);
         })
     })
+
+    let button_modal_users = document.querySelectorAll(".button__control_modal-prof-users");
+    button_modal_users.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            funcInfoProfUsersOpenModal(elem.value, elem.name);
+        })
+    })
 }
 
-const addProfRow = (numb, name, fc, del, uin, tb_id) => {
+const addProfRow = (numb, name, fc, users, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellNumb = newRow.insertCell(0); cellNumb.classList = "td td_small";
-    let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
-    let cellFc   = newRow.insertCell(2); cellFc.classList   = "td";
-    let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
+    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td_small";
+    let cellNumb = newRow.insertCell(1); cellNumb.classList = "td td_small";
+    let cellName = newRow.insertCell(2); cellName.classList = "td td__text_align_center";
+    let cellFc   = newRow.insertCell(3); cellFc.classList   = "td";
+    let cellBtn  = newRow.insertCell(4); cellBtn.classList  = "td";
 
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-prof-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
     cellNumb.innerHTML = numb;
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="prof_name_${uin}">`;
     let fc_checked     = fc === 1 ? 'checked' : '';
-    cellFc.innerHTML  = `<input class="checkbox" type="checkbox" id="prof_fc_${uin}" ${fc_checked}><label for="prof_fc_${uin}"></label>` 
+    cellFc.innerHTML   = `<input class="checkbox" type="checkbox" id="prof_fc_${uin}" ${fc_checked}><label for="prof_fc_${uin}"></label>` 
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-prof${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;

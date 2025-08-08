@@ -1,5 +1,7 @@
 import {funcCommand, setStatus, responseProcessor, formatDate, funcProcessOnlyInfo} from '../../../js/common/common.js.js';
 import {showNotification} from '../../modal/__notification/modal__notification.js';
+import {funcInfoChatTaskOpenModal} from '../../modal/__chat-task/modal__chat-task.js';
+import {funcInfoDetailppOpenModal} from '../../modal/__detailpp/modal__detailpp.js';
 
 import {funcTaskContentShipment, funcTaskContentShipmentHelpers} from '../../task-contents/__shipment/task-contents__shipment.js';
 import {funcTaskContentMount, funcTaskContentMountHelpers} from '../../task-contents/__mount/task-contents__mount.js';
@@ -32,6 +34,10 @@ function buildStructure(data, container) {
             const a = document.createElement('a');
             const div_block = document.createElement('div');
 
+            const span_area = document.createElement('span');
+            span_area.classList.add('sidebar__name_time');
+            span_area.innerHTML = `От участка ${steps.areaprof.name}`;
+
             const div_title = document.createElement('div');
             div_title.classList.add('sidebar__title');
 
@@ -52,6 +58,7 @@ function buildStructure(data, container) {
 
             a.href = `#user_task_link_${steps.uin}`;
             div_block.className = `sidebar__link user_task_link_${steps.uin} sidebar__link_task sidebar__link_no-child`;
+            div_block.id = `link_task_active_${steps.uin}`;
             div_img.innerHTML = setStatus(steps.status.uin, steps.fpart);
             if(steps.fproblem === 1) div_img.classList.add('sidebar__img_container-warning');
 
@@ -68,8 +75,11 @@ function buildStructure(data, container) {
             div_block.append(div_title);
             a.append(div_block);
 
-            document.querySelector('.container').insertAdjacentHTML('beforeend', userTasksContent(steps.task.name, steps.primtask, steps.count, `user_task_link_${steps.uin}`, steps.name, steps.admin.name, steps.datebegin, steps.dateend, steps.mission, steps.prim, steps.uin, steps.fproblem, steps.status.uin));
+            document.querySelector('.container').insertAdjacentHTML('beforeend', userTasksContent(steps.task.name, steps.task.uin, steps.product.name,
+              steps.product.uin, steps.techproc.name, steps.techproc.uin, steps.count, `user_task_link_${steps.uin}`, steps.name, steps.admin.name,
+              steps.datebegin, steps.dateend, steps.mission, steps.prim, steps.uin, steps.fproblem, steps.status.uin, steps.countstep, steps.countreal));
 
+            if(steps.fareaprof === 1) { li.append(span_area); }
             li.append(a);
             container.append(li);
 
@@ -79,21 +89,30 @@ function buildStructure(data, container) {
                     funcTaskContentShipmentHelpers();
                     break
                 case 3:
-                    document.getElementById(`user_task_link_${steps.uin}`).insertAdjacentHTML('beforeend', funcTaskContentMount());
-                    funcTaskContentMountHelpers();
+                    document.getElementById(`user_task_link_${steps.uin}`).insertAdjacentHTML('beforeend', funcTaskContentMount(steps.uin));
+                    funcTaskContentMountHelpers(steps.uin);
+                      if(steps.content.uin == 5){
+                          document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+                          document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                      } else if(steps.content.uin == 3){
+                          document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+                          document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+                      } else {
+                          document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                          document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                      }
+                      break
                 default:
                     break
             }
         }
     }
 
-    /* функция обновления задачи */
-    let button_update_main = document.querySelectorAll(".button__control_usersteps_update_main");
-    button_update_main.forEach((elem) => {
+    /* чат задачи */
+    let button_chat_task = document.querySelectorAll(".button__control_chat_task");
+    button_chat_task.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "primTask":""};
-            body.primTask = document.getElementById(`task_primtask_${elem.value}`).value;
-            funcCommand(body, funcProcessOnlyInfo);
+            funcInfoChatTaskOpenModal(elem.value);
         })
     })
 
@@ -101,9 +120,12 @@ function buildStructure(data, container) {
     let button_ready = document.querySelectorAll(".button__control_usersteps_ready");
     button_ready.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "fpart":"0"};
-            funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(function(){location.reload()}, 100);
+            let result = confirm("Отметить это задание готовым?");
+            if(result){
+              let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "fpart":"0"};
+              funcCommand(body, funcProcessOnlyInfo);
+              setTimeout(function(){location.reload()}, 100);
+            }
         })
     })
 
@@ -111,9 +133,12 @@ function buildStructure(data, container) {
     let button_ready_part = document.querySelectorAll(".button__control_usersteps_ready_part");
     button_ready_part.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "fpart":"1"};
-            funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(function(){location.reload()}, 100);
+            let result = confirm("Отметить это задание частично готовым?");
+            if(result){
+              let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "fpart":"1"};
+              funcCommand(body, funcProcessOnlyInfo);
+              setTimeout(function(){location.reload()}, 100);
+            }
         })
     })
 
@@ -131,9 +156,12 @@ function buildStructure(data, container) {
     let button_accept = document.querySelectorAll(".button__control_usersteps_accept");
     button_accept.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"accept", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`};
-            funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(function(){location.reload()}, 100);
+            let result = confirm("Принять это задание?");
+            if(result){
+              let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"accept", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`};
+              funcCommand(body, funcProcessOnlyInfo);
+              setTimeout(function(){location.reload()}, 100);
+            }
         })
     })
 
@@ -141,14 +169,25 @@ function buildStructure(data, container) {
     let button_problem = document.querySelectorAll(".button__control_usersteps_problem");
     button_problem.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"problem", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`};
-            funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(function(){location.reload()}, 100);
+          let result = confirm("Установить проблему на этом задании?");
+            if(result){
+              let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"problem", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`};
+              funcCommand(body, funcProcessOnlyInfo);
+              setTimeout(function(){location.reload()}, 100);
+            }
+        })
+    })
+
+    /* открыть детализацию */
+    let button_detailpp = document.querySelectorAll(".button__control_detailpp");
+    button_detailpp.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            funcInfoDetailppOpenModal(elem.value);
         })
     })
 }
 
-const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin, datebegin, dateend, mission, prim, uin, fproblem, status) => {
+const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTechproc, count, tabcontent_id, name, admin, datebegin, dateend, mission, prim, uin, fproblem, status, countstep, countreal) => {
     return `
     <div class="sidebar__tabcontent" id="${tabcontent_id}">
         <div class="modal__header modal__header_task">
@@ -179,6 +218,19 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                 />
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
+                <label class="input__type-text__label" for="task_prod"
+                  >Изделие:</label
+                >
+                <input
+                  class="input__type-text input__type-text_task"
+                  type="text"
+                  id="task_prod_${uin}"
+                  value="${product}"
+                  name="${uinProd}"
+                  disabled
+                />
+              </div>
+              <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_count"
                   >Кол-во:</label
                 >
@@ -191,18 +243,7 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                 />
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
-                <label class="input__type-text__label" for="task_primtask"
-                  >Комментарий:</label
-                >
-                <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
-                  <input
-                  class="input__type-text input__type-text_task input__type-text_modal_long"
-                  type="text"
-                  id="task_primtask_${uin}"
-                  value="${primtask}"
-                  />
-                  <button class="button__control button__control_usersteps_update_main" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>
-                </div>
+                <button class="button__control button__control_chat_task" value="${task_uin}"><img class="button__control__img" src="assets/images/chat.svg" alt=""></button>
               </div>
             </div>
           </div>
@@ -212,7 +253,7 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
             <div class="modal__table-wrapper_task">
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_name"
-                  >Название подзадачи:</label
+                  >Название задания:</label
                 >
                 <input
                   class="input__type-text input__type-text_task"
@@ -264,10 +305,53 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                 />
               </div>
             </div>
+            <div class="modal__input-wrapper modal__input-wrapper_task">
+                <label class="input__type-text__label" for="task_techproc"
+                  >Тех. операция:</label
+                >
+                <input
+                  class="input__type-text input__type-text_task"
+                  type="text"
+                  id="task_techproc_${uin}"
+                  value="${techproc}"
+                  name="${uinTechproc}"
+                  disabled
+                />
+            </div>
+            <div class="modal__input-wrapper modal__input-wrapper_task">
+                <label class="input__type-text__label" for="task_countstep"
+                  >Кол-во план:</label
+                >
+                <input
+                  class="input__type-text input__type-text__small input__type-text_task"
+                  type="text"
+                  id="task_countstep_${uin}"
+                  value="${countstep}"
+                  disabled
+                />
+            </div>
+            <div class="modal__input-wrapper modal__input-wrapper_task">
+                <label class="input__type-text__label" for="task_countreal">&nbsp;</label>
+                <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
+                  <input
+                    class="input__type-text input__type-text__small input__type-text_task"
+                    type="text"
+                    id="task_countreal_${uin}"
+                    value="${countreal}"
+                    disabled
+                  />
+                  <button
+                    style="margin-left: 5px;"
+                    class="button__control button__control_detailpp"
+                    value="${uin}">
+                    <img class="button__control__img" src="assets/images/info.svg">
+                  </button>
+                </div>
+            </div>
             <div class="modal__table-wrapper_task">
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_mission"
-                  >Описание:</label
+                  >Комментарий администротора:</label
                 >
                 <div class="modal__input-wrapper modal__input-wrapper_task-with-button">
                   <input
@@ -277,12 +361,12 @@ const userTasksContent = (task_name, primtask, count, tabcontent_id, name, admin
                     value="${mission}"
                     disabled
                   />
-                  <button class="button__control button__control_usersteps_update" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>
+                  <button class="button__control modal__input-wrapper_display-none"></button>
                 </div>
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_comment"
-                  >Комментарий:</label
+                  >Комментарий исполнителя:</label
                 >
                 <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
                   <input

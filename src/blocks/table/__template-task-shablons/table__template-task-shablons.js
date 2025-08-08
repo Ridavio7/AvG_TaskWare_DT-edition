@@ -2,6 +2,7 @@ import {funcCommand, funcProcessOnlyInfo, clearTable, listenSortSelect, response
 import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetShablonsSteps} from '../../modal/__info-shablons/modal__info-shablons.js';
 import {funcInfoShablonsTransferOpenModal} from '../../modal/__transfer-shablons/modal__transfer-shablons.js';
+import {funcGetTasksSteps} from '../../modal/__info-task/modal__info-task.js';
 
 export const funcGetShablons = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"100", "sort":"name"};
@@ -36,7 +37,7 @@ const funcProcessGetShablons = (result, respobj) => {
             }
         
             funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(() => {funcGetShablonsTree(elem.value)}, 100);
+            setTimeout(() => {funcGetTasksSteps(elem.value)}, 100);
         })
     })
 
@@ -64,6 +65,7 @@ const funcProcessGetShablons = (result, respobj) => {
             if(result === true){
                 let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"starttask", "obj":"tasks", "uinShablon":`${elem.value}`};
                 funcCommand(body, funcProcessOnlyInfo);
+                setTimeout(() => {funcGetTasksSteps(0)}, 200);
             }
         })
     })
