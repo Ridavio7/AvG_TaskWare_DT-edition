@@ -21,6 +21,8 @@ const setSidebarEvents = (elem, tabcontent_name, tablinks_name, tablinks_active_
 
         if(!document.URL.includes("tasks.html")){
             localStorage.setItem("sidebar_tab_active", elem.id);
+        } else {
+            localStorage.setItem("sidebar_task_tab_active", elem.id);
         }
     })
 }
@@ -37,4 +39,4 @@ setTimeout(() => {
     sidebar_links.forEach((elem) => {
         setSidebarEvents(elem, "sidebar__tabcontent", "sidebar__link_task", "sidebar__link_active");
     })
-}, 600)
+}, 800)

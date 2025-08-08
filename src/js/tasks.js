@@ -2,6 +2,7 @@ import 'normalize.css';
 /* общие */
 import '../blocks/#common/common.styles.scss';
 import '../blocks/table/__control-task-control/table__control-task-control.scss';
+import '../blocks/hamburger-menu/hamburger.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
@@ -33,12 +34,17 @@ import '../blocks/modal/modal.scss';
 import '../blocks/modal/__shipment/modal__shipment.js';
 import '../blocks/modal/__notification/modal__notification.scss';
 import '../blocks/modal/__notification/modal__notification.js';
+import '../blocks/modal/__chat-task/modal__chat-task.scss';
 /* таблицы */
 import '../blocks/table/table.scss';
+/* дерево */
+import '../blocks/_tree/tree.scss';
 
 
 import {funcGetUserTasks} from '../blocks/table/__user-tasks/table__user-tasks.js';
 
 window.onload = function(){
     funcGetUserTasks();
+
+    setTimeout(() => { document.getElementById(localStorage.getItem("sidebar_task_tab_active")).click(); }, 1000);
 }

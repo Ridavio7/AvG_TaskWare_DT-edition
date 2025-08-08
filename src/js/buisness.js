@@ -1,7 +1,7 @@
 import 'normalize.css';
 /* общие */
 import '../blocks/#common/common.styles.scss';
-import {funcCommand} from '../js/common/common.js.js';
+import '../blocks/hamburger-menu/hamburger.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';

@@ -8,11 +8,55 @@
   </head>
   <body>
     <div class="hamburger-menu">
-      <input id="menu__toggle" type="checkbox" style="display: none" />
+      <input id="menu__toggle" type="checkbox" />
       <label class="menu__btn" for="menu__toggle">
         <span></span>
       </label>
-      <ul class="menu__box"></ul>
+      <ul class="menu__box">
+        <div class="header__body header__body_burger">
+          <div class="header__logo">
+            <ul class="header__list header__list_burger">
+              <li><a class="header__link" href="tasks.html">Мои задачи</a></li>
+              <li>
+                <a class="header__link" href="buisness.html"
+                  >Бизнес управление</a
+                >
+              </li>
+              <li>
+                <a class="header__link header__link_check" href="control.html"
+                  >Контроль</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="header__user header__user_burger">
+            <div class="header__user__wrapper">
+              <div class="header__user__user">
+                <img
+                  class="header__user__avatar header__user__link_notifications"
+                  src="../blocks/header/img/notifications.svg"
+                  alt="user"
+                />
+                <input
+                  class="header__user__switch-theme-input"
+                  type="checkbox"
+                  id="switch_theme_input_burger"
+                />
+                <label
+                  class="header__user__switch-theme"
+                  for="switch_theme_input_burger"
+                ></label>
+                <a class="header__link header__user__name"></a>
+                <img
+                  class="header__user__avatar header__user__link_leave-site"
+                  src="../blocks/header/img/exit.svg"
+                  alt="user"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </ul>
     </div>
     <header class="header">
       <div class="header__body">
@@ -300,6 +344,7 @@
           <table class="table">
             <thead class="thead">
               <tr class="tr">
+                <td class="td td_active"></td>
                 <td class="td td_active">Номер</td>
                 <td class="td td_active">Название участка</td>
                 <td class="td td_active">Отмечать кол-во</td>
@@ -308,13 +353,14 @@
             </thead>
             <tbody id="tb_prof">
               <tr class="tr">
+                <td class="td td_small"></td>
                 <td class="td td_small">
                   <input
                     class="input__type-text input__type-text_title"
                     type="text"
                     id="input_add_prof_numb"
                     value=""
-                    placeholder="Введите номер участка"
+                    placeholder="Введите №"
                   />
                 </td>
                 <td class="td td__text_align_center">
@@ -466,7 +512,7 @@
         <!-- Контроль задач -->
         <div id="tasks/tasks_control" class="sidebar__tabcontent__container">
           <div class="modal__body">
-            <div id="tb_tasks"></div>
+            <div class="modal__table-task" id="tb_tasks"></div>
             <div class="modal__tree modal__tree_width-auto">
               <div id="tree_tasks"></div>
             </div>
@@ -604,7 +650,7 @@
             </tbody>
           </table>
         </div>
-        <!-- типы запуска шаго задач -->
+        <!-- типы запуска шагов задач -->
         <div id="tasks/tasks_startstep" class="sidebar__tabcontent__container">
           <div class="select__wrapper">
             <select class="select select__sort" id="sort_startstep">
@@ -645,9 +691,10 @@
             </tbody>
           </table>
         </div>
+        <!-- архив задач -->
         <div id="tasks/tasks_archive" class="sidebar__tabcontent__container">
           <div class="modal__body">
-            <div id="tb_tasks_archive"></div>
+            <div class="modal__table-task" id="tb_tasks_archive"></div>
             <div class="modal__tree modal__tree_width-auto">
               <div id="tree_tasks_archive"></div>
             </div>
@@ -668,7 +715,7 @@
         <div class="modal__body">
           <div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="user_name_modal"
+              <label class="input__type-text_modal_label" for="user_name_modal"
                 >ФИО:</label
               >
               <input
@@ -681,13 +728,13 @@
               />
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="user_job"
+              <label class="input__type-text_modal_label" for="user_job"
                 >Должность:</label
               >
               <select class="select select_modal" id="user_job"></select>
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="user_email"
+              <label class="input__type-text_modal_label" for="user_email"
                 >Почта:</label
               >
               <input
@@ -700,7 +747,7 @@
               />
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="user_phone"
+              <label class="input__type-text_modal_label" for="user_phone"
                 >Телефон:</label
               >
               <input
@@ -713,7 +760,7 @@
               />
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="user_login"
+              <label class="input__type-text_modal_label" for="user_login"
                 >Логин:</label
               >
               <input
@@ -726,7 +773,7 @@
               />
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="user_pass_first"
+              <label class="input__type-text_modal_label" for="user_pass_first"
                 >Пароль:</label
               >
               <input
@@ -743,7 +790,7 @@
               ></span>
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="user_pass_second"
+              <label class="input__type-text_modal_label" for="user_pass_second"
                 >Пароль:</label
               >
               <input
@@ -792,15 +839,55 @@
     <div class="modal" id="shablons_modal">
       <div class="modal__moving" id="shablons_modal_moving">
         <span class="modal__title"
-          ><span class="modal__title" id="shablons_name_title"></span
+          ><span class="modal__title" id="shablons_name_shablon"></span
         ></span>
         <span class="modal__close" id="shablons_close">&times;</span>
       </div>
       <div class="modal__content">
+        <div class="modal__head">
+          <span class="modal__title"
+            ><span class="modal__title" id="shablons_name_title"></span
+          ></span>
+          <div class="">
+            <label class="input__type-text__label-blue" for="shablons_dl_d"
+              >Длительность:</label
+            >
+            <input
+              class="input__type-text input__type-text_modal input__type-text_modal_short"
+              type="text"
+              id="shablons_dl_d"
+              value=""
+              placeholder="0"
+            />
+            <label class="input__type-text_modal_label" for="shablons_dl_d"
+              >дней</label
+            >
+            <input
+              class="input__type-text input__type-text_modal input__type-text_modal_short"
+              type="text"
+              id="shablons_dl_h"
+              value=""
+              placeholder="0"
+            />
+            <label class="input__type-text_modal_label" for="shablons_dl_h"
+              >часов</label
+            >
+            <input
+              class="input__type-text input__type-text_modal input__type-text_modal_short"
+              type="text"
+              id="shablons_dl_m"
+              value=""
+              placeholder="0"
+            />
+            <label class="input__type-text_modal_label" for="shablons_dl_m"
+              >минут</label
+            >
+          </div>
+        </div>
         <div class="modal__header">
           <div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="shablons_name"
+              <label class="input__type-text_modal_label" for="shablons_name"
                 >Название:</label
               >
               <input
@@ -812,48 +899,124 @@
               />
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="shablons_user"
-                >Исполнитель:</label
-              >
-              <select class="select select_modal" id="shablons_user"></select>
+              <div class="switch-table">
+                <div class="switch-table__elem">
+                  <input
+                    class="input__type-radio"
+                    type="radio"
+                    name="switch-shablons-inputs"
+                    id="switch_shablons_inputs_1"
+                    checked=""
+                  />
+                  <label
+                    class="input__type-radio__label"
+                    for="switch_shablons_inputs_1"
+                    >Исполнитель</label
+                  >
+                </div>
+                <div class="switch-table__elem">
+                  <input
+                    class="input__type-radio"
+                    name="switch-shablons-inputs"
+                    type="radio"
+                    id="switch_shablons_inputs_2"
+                    checked=""
+                  />
+                  <label
+                    class="input__type-radio__label"
+                    for="switch_shablons_inputs_2"
+                    >Участок</label
+                  >
+                </div>
+              </div>
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="shablons_amount"
+              <label class="input__type-text_modal_label" for="shablons_user"
+                >Исполнитель:</label
+              >
+              <div class="custom-select">
+                <select class="select select_modal" id="shablons_user"></select>
+                <span class="select-text"></span>
+              </div>
+            </div>
+            <div class="modal__input-wrapper">
+              <label
+                class="input__type-text_modal_label"
+                for="shablons_areaprof"
+                >Участок:</label
+              >
+              <div class="custom-select">
+                <select
+                  class="select select_modal"
+                  id="shablons_areaprof"
+                ></select>
+                <span class="select-text"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="modal__input-wrapper">
+              <label class="input__type-text_modal_label" for="shablons_count"
                 >Количество:</label
               >
               <input
                 class="input__type-text input__type-text_modal"
                 type="text"
-                id="shablons_amount"
+                id="shablons_count"
                 value=""
                 placeholder="Введите количество"
               />
             </div>
-          </div>
-          <div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="shablons_areaprof"
-                >Участок:</label
-              >
-              <select
-                class="select select_modal"
-                id="shablons_areaprof"
-              ></select>
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="shablons_content"
+              <label class="input__type-text_modal_label" for="shablons_content"
                 >Тип контента:</label
               >
-              <select
-                class="select select_modal"
-                id="shablons_content"
-              ></select>
+              <div class="custom-select">
+                <select
+                  class="select select_modal"
+                  id="shablons_content"
+                ></select>
+                <span class="select-text"></span>
+              </div>
             </div>
             <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="shablons_start"
+              <label
+                class="input__type-text_modal_label"
+                for="shablons_content_product"
+                >Изделие:</label
+              >
+              <button
+                class="button__select button__select_docpost"
+                id="shablons_content_product"
+                value=""
+                name=""
+              ></button>
+            </div>
+            <div class="modal__input-wrapper">
+              <label
+                class="input__type-text_modal_label"
+                for="shablons_content_techproc"
+                >Тех. операция:</label
+              >
+              <div class="custom-select">
+                <select
+                  class="select select_modal"
+                  id="shablons_content_techproc"
+                ></select>
+                <span class="select-text"></span>
+              </div>
+            </div>
+            <div class="modal__input-wrapper">
+              <label class="input__type-text_modal_label" for="shablons_start"
                 >Тип запуска:</label
               >
-              <select class="select select_modal" id="shablons_start"></select>
+              <div class="custom-select">
+                <select
+                  class="select select_modal"
+                  id="shablons_start"
+                ></select>
+                <span class="select-text"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -866,59 +1029,19 @@
             >
           </div>
         </div>
+        <div class="modal__body"></div>
         <div class="modal__body">
           <div class="modal__input-wrapper">
-            <label class="input__type-text__label" for="shablons_dl_d"
-              >Длительность:</label
+            <label class="input__type-text_modal_label" for="shablons_mission"
+              >Описание:</label
             >
             <input
-              class="input__type-text input__type-text_modal input__type-text_modal_short"
+              class="input__type-text input__type-text_modal input__type-text_modal_long"
               type="text"
-              id="shablons_dl_d"
+              id="shablons_mission"
               value=""
-              placeholder="0"
+              placeholder="Введите описание"
             />
-            <label class="input__type-text__label" for="shablons_dl_d"
-              >дней</label
-            >
-            <input
-              class="input__type-text input__type-text_modal input__type-text_modal_short"
-              type="text"
-              id="shablons_dl_h"
-              value=""
-              placeholder="0"
-            />
-            <label class="input__type-text__label" for="shablons_dl_h"
-              >часов</label
-            >
-            <input
-              class="input__type-text input__type-text_modal input__type-text_modal_short"
-              type="text"
-              id="shablons_dl_m"
-              value=""
-              placeholder="0"
-            />
-            <label class="input__type-text__label" for="shablons_dl_m"
-              >минут</label
-            >
-          </div>
-        </div>
-        <div class="modal__body">
-          <div
-            class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start"
-          >
-            <div>
-              <label class="input__type-text__label" for="shablons_mission"
-                >Описание:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal input__type-text_modal_long"
-                type="text"
-                id="shablons_mission"
-                value=""
-                placeholder="Введите описание"
-              />
-            </div>
           </div>
         </div>
         <div class="modal__footer">
@@ -935,249 +1058,410 @@
     <!-- мод. окно инфо задачи -->
     <div class="modal" id="tasks_modal">
       <div class="modal__moving" id="tasks_modal_moving">
-        <span class="modal__title"
-          ><span class="modal__title" id="tasks_name_title"></span
-        ></span>
+        <div>
+          <span class="modal__title" id="tasks_name_title"></span>
+        </div>
         <span class="modal__close" id="tasks_close">&times;</span>
       </div>
       <div class="modal__content">
-        <div class="modal__header">
-          <div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_name"
-                >Название:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal"
-                type="text"
-                id="tasks_name"
-                value=""
-                placeholder="Введите название"
-              />
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_user"
-                >Исполнитель:</label
-              >
-              <select class="select select_modal" id="tasks_user"></select>
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_status"
-                >Статус:</label
-              >
-              <select class="select select_modal" id="tasks_status"></select>
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_amount"
-                >Количество:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal"
-                type="text"
-                id="tasks_amount"
-                value=""
-                placeholder="Введите количество"
-              />
-            </div>
-          </div>
-          <div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_datebegin"
-                >Дата запуска:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal"
-                type="text"
-                id="tasks_datebegin"
-                value=""
-                placeholder="Введите дату"
-                disabled
-              />
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_dateaccept"
-                >Дата принятия:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal"
-                type="text"
-                id="tasks_dateaccept"
-                value=""
-                placeholder="Введите дату"
-                disabled
-              />
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_dateend"
-                >Дата окончания:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal"
-                type="text"
-                id="tasks_dateend"
-                value=""
-                placeholder="Введите дату"
-                disabled
-              />
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_dateendpredel"
-                >Предельный срок:</label
-              >
-              <input
-                class="input__type-text input__type-text_title input__type-text_modal"
-                type="date"
-                id="tasks_dateendpredel"
-                value=""
-                placeholder="Введите дату"
-              />
-            </div>
-          </div>
-          <div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_areaprof"
-                >Участок:</label
-              >
-              <select
-                class="select select_modal"
-                id="tasks_areaprof"
-                disabled
-              ></select>
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_content"
-                >Тип контента:</label
-              >
-              <select
-                class="select select_modal"
-                id="tasks_content"
-                disabled
-              ></select>
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_start"
-                >Тип запуска:</label
-              >
-              <select class="select select_modal" id="tasks_start"></select>
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_datebegin"
-                >Дата старта:</label
-              >
-              <input
-                class="input__type-text input__type-text_title input__type-text_modal"
-                type="date"
-                id="tasks_datestart"
-                value=""
-                disabled
-              />
-            </div>
-          </div>
-        </div>
-        <div class="modal__body">
-          <div
-            class="modal__input-wrapper modal__input-wrapper_justify-content_flex-start"
-          >
-            <label class="input__type-text__label" for="tasks_dl_d"
-              >Длительность:</label
+        <div>
+          <div class="modal__tabs">
+            <button
+              class="modal__tab-button active"
+              data-tab="tab1"
+              style="border-top-left-radius: 15px"
             >
-            <input
-              class="input__type-text input__type-text_modal input__type-text_modal_short"
-              type="text"
-              id="tasks_dl_d"
-              value=""
-              placeholder="0"
-            />
-            <label class="input__type-text__label" for="tasks_dl_d">дней</label>
-            <input
-              class="input__type-text input__type-text_modal input__type-text_modal_short"
-              type="text"
-              id="tasks_dl_h"
-              value=""
-              placeholder="0"
-            />
-            <label class="input__type-text__label" for="tasks_dl_h"
-              >часов</label
+              Инфо
+            </button>
+            <button
+              class="modal__tab-button"
+              data-tab="tab2"
+              style="border-top-right-radius: 15px"
             >
-            <input
-              class="input__type-text input__type-text_modal input__type-text_modal_short"
-              type="text"
-              id="tasks_dl_m"
-              value=""
-              placeholder="0"
-            />
-            <label class="input__type-text__label" for="shablons_dl_m"
-              >минут</label
-            >
+              История действий
+            </button>
           </div>
-        </div>
-        <div class="modal__body">
-          <div>
-            <input class="checkbox" type="checkbox" id="tasks_autoready" />
-            <label for="tasks_autoready"
-              >Автоматически переводится в "Готов" при готовности всех
-              подшагов</label
-            >
+          <div class="modal__tab-content active" id="tab1">
+            <div class="modal__head">
+              <div>
+                <span class="modal__title" id="tasks_status_title"></span>
+                <span class="modal__title" id="tasks_name_title_numb"></span>
+              </div>
+              <div>
+                <label class="input__type-text__label-blue" for="tasks_dl_d"
+                  >Длительность:</label
+                >
+                <input
+                  class="input__type-text input__type-text_modal input__type-text_modal_short"
+                  type="text"
+                  id="tasks_dl_d"
+                />
+                <label class="input__type-text__label-blue" for="tasks_dl_d"
+                  >дней</label
+                >
+                <input
+                  class="input__type-text input__type-text_modal input__type-text_modal_short"
+                  type="text"
+                  id="tasks_dl_h"
+                />
+                <label class="input__type-text__label-blue" for="tasks_dl_h"
+                  >часов</label
+                >
+                <input
+                  class="input__type-text input__type-text_modal input__type-text_modal_short"
+                  type="text"
+                  id="tasks_dl_m"
+                />
+                <label class="input__type-text__label-blue" for="shablons_dl_m"
+                  >минут</label
+                >
+              </div>
+            </div>
+            <div class="modal__header">
+              <div>
+                <div class="modal__input-wrapper">
+                  <label class="input__type-text_modal_label" for="tasks_name"
+                    >Название:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal"
+                    type="text"
+                    id="tasks_name"
+                    value=""
+                    placeholder="Введите название"
+                  />
+                </div>
+                <div class="modal__input-wrapper">
+                  <div class="switch-table">
+                    <div class="switch-table__elem">
+                      <input
+                        class="input__type-radio"
+                        type="radio"
+                        name="switch-tasks-inputs"
+                        id="switch_tasks_inputs_1"
+                        checked=""
+                      />
+                      <label
+                        class="input__type-radio__label"
+                        for="switch_tasks_inputs_1"
+                        >Исполнитель</label
+                      >
+                    </div>
+                    <div class="switch-table__elem">
+                      <input
+                        class="input__type-radio"
+                        name="switch-tasks-inputs"
+                        type="radio"
+                        id="switch_tasks_inputs_2"
+                        checked=""
+                      />
+                      <label
+                        class="input__type-radio__label"
+                        for="switch_tasks_inputs_2"
+                        >Участок</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label class="input__type-text_modal_label" for="tasks_user"
+                    >Исполнитель:</label
+                  >
+                  <div class="custom-select">
+                    <select
+                      class="select select_modal"
+                      id="tasks_user"
+                    ></select>
+                    <span class="select-text"></span>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_areaprof"
+                    >Участок:</label
+                  >
+                  <div class="custom-select">
+                    <select
+                      class="select select_modal"
+                      id="tasks_areaprof"
+                    ></select>
+                    <span class="select-text"></span>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label class="input__type-text_modal_label" for="tasks_status"
+                    >Статус:</label
+                  >
+                  <div class="custom-select">
+                    <select
+                      class="select select_modal"
+                      id="tasks_status"
+                    ></select>
+                    <span class="select-text"></span>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <div>
+                    <input
+                      class="checkbox"
+                      type="checkbox"
+                      id="tasks_fproblem"
+                    />
+                    <label for="tasks_fproblem">ПРОБЛЕМА</label>
+                  </div>
+                  <div>
+                    <input class="checkbox" type="checkbox" id="tasks_fpart" />
+                    <label for="tasks_fpart">Частично готов</label>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label class="input__type-text_modal_label" for="tasks_amount"
+                    >Количество:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_date"
+                    type="text"
+                    id="tasks_amount"
+                    value=""
+                    placeholder="Введите количество"
+                  />
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_date"
+                    type="text"
+                    id="tasks_countreal"
+                    value=""
+                    placeholder="Введите количество"
+                    disabled
+                  />
+                  <button
+                    style="margin-left: 5px"
+                    class="button__control"
+                    id="task_detailpp"
+                    value=""
+                  >
+                    <img
+                      class="button__control__img"
+                      src="../blocks/button/__control/img/info.svg"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_datebegin"
+                    >Дата запуска:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_date"
+                    type="text"
+                    id="tasks_datebegin"
+                    value=""
+                    placeholder="Введите дату"
+                    disabled
+                  />
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_dateaccept"
+                    >Дата принятия:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_date"
+                    type="text"
+                    id="tasks_dateaccept"
+                    value=""
+                    placeholder="Введите дату"
+                    disabled
+                  />
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_dateend"
+                    >Дата окончания:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_date"
+                    type="text"
+                    id="tasks_dateend"
+                    value=""
+                    placeholder="Введите дату"
+                    disabled
+                  />
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_dateendpredel"
+                    >Предельный срок:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_date input__type-text_modal_no-pen"
+                    type="date"
+                    id="tasks_dateendpredel"
+                    value=""
+                    placeholder="Введите дату"
+                  />
+                </div>
+              </div>
+              <div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_content"
+                    >Тип контента:</label
+                  >
+                  <div class="custom-select">
+                    <select
+                      class="select select_modal"
+                      id="tasks_content"
+                    ></select>
+                    <span class="select-text"></span>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_content_product"
+                    >Изделие:</label
+                  >
+                  <button
+                    class="button__select button__select_docpost"
+                    id="tasks_content_product"
+                    value=""
+                    name=""
+                  ></button>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_content_techproc"
+                    >Тех. операция:</label
+                  >
+                  <div class="custom-select">
+                    <select
+                      class="select select_modal"
+                      id="tasks_content_techproc"
+                    ></select>
+                    <span class="select-text"></span>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label class="input__type-text_modal_label" for="tasks_start"
+                    >Тип запуска:</label
+                  >
+                  <div class="custom-select">
+                    <select
+                      class="select select_modal"
+                      id="tasks_start"
+                    ></select>
+                    <span class="select-text"></span>
+                  </div>
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_datebegin"
+                    >Дата старта:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_title input__type-text_modal"
+                    type="date"
+                    id="tasks_datestart"
+                    value=""
+                    disabled
+                  />
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_usermove"
+                    >Перенес в архив:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_title input__type-text_modal"
+                    type="text"
+                    id="tasks_usermove"
+                    value=""
+                    disabled
+                  />
+                </div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_datemove"
+                    >Дата переноса:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_title input__type-text_modal"
+                    type="text"
+                    id="tasks_datemove"
+                    value=""
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal__body">
+              <div class="modal__input-wrapper">
+                <input class="checkbox" type="checkbox" id="tasks_autoready" />
+                <label for="tasks_autoready"
+                  >Автоматически переводится в "Готов" при готовности всех
+                  подшагов</label
+                >
+              </div>
+            </div>
+            <div class="modal__header">
+              <div>
+                <div class="modal__input-wrapper">
+                  <label
+                    class="input__type-text_modal_label"
+                    for="tasks_mission"
+                    >Описание:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_long"
+                    type="text"
+                    id="tasks_mission"
+                    value=""
+                    placeholder="Введите описание"
+                  />
+                </div>
+                <div class="modal__input-wrapper">
+                  <label class="input__type-text_modal_label" for="tasks_prim"
+                    >Примечание:</label
+                  >
+                  <input
+                    class="input__type-text input__type-text_modal input__type-text_modal_long"
+                    type="text"
+                    id="tasks_prim"
+                    value=""
+                    placeholder="Введите примечание"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="modal__header">
-          <div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_mission"
-                >Описание:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal input__type-text_modal_long"
-                type="text"
-                id="tasks_mission"
-                value=""
-                placeholder="Введите описание"
-              />
+          <div class="modal__tab-content" id="tab2">
+            <div>
+              <div class="modal__table-wrapper-historystep">
+                <table class="table">
+                  <tbody id="tb_task_historystep">
+                    <tr class="tr">
+                      <td class="td td_active">Исполнитель</td>
+                      <td class="td td_active">Описание действия</td>
+                      <td class="td td_active">Дата и время действия</td>
+                      <td class="td td_active">Количество</td>
+                      <td class="td td_active">Примечание</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_prim"
-                >Примечание:</label
-              >
-              <input
-                class="input__type-text input__type-text_modal input__type-text_modal_long"
-                type="text"
-                id="tasks_prim"
-                value=""
-                placeholder="Введите примечание"
-              />
-            </div>
-          </div>
-          <div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_usermove"
-                >Перенес в архив:</label
-              >
-              <input
-                class="input__type-text input__type-text_title input__type-text_modal"
-                type="text"
-                id="tasks_usermove"
-                value=""
-                disabled
-              />
-            </div>
-            <div class="modal__input-wrapper">
-              <label class="input__type-text__label" for="tasks_datemove"
-                >Дата переноса:</label
-              >
-              <input
-                class="input__type-text input__type-text_title input__type-text_modal"
-                type="text"
-                id="tasks_datemove"
-                value=""
-                disabled
-              />
-            </div>
-          </div>
-        </div>
-        <div class="modal__body">
-          <div>
-            <input class="checkbox" type="checkbox" id="tasks_fproblem" />
-            <label for="tasks_fproblem">ПРОБЛЕМА</label>
           </div>
         </div>
         <div class="modal__footer">
@@ -1208,7 +1492,9 @@
               name=""
               disabled
             />
-            <label class="input__type-text__label" for="shablons_transfer_name"
+            <label
+              class="input__type-text_modal_label"
+              for="shablons_transfer_name"
               >переместить в</label
             >
           </div>
@@ -1224,6 +1510,108 @@
           >
             Переместить
           </button>
+        </div>
+      </div>
+    </div>
+    <!-- мод. окно пользователей в участке -->
+    <div class="modal" id="prof_users_modal">
+      <div class="modal__moving" id="prof_users_modal_moving">
+        <span class="modal__title"
+          >Участок <span class="modal__title" id="prof_users_title"></span
+        ></span>
+        <span class="modal__close" id="prof_users_close">&times;</span>
+      </div>
+      <div class="modal__content">
+        <div class="modal__header"></div>
+        <div class="modal__body">
+          <table class="table" id="prof_users_main_tb_modal">
+            <thead class="thead">
+              <tr class="tr">
+                <td class="td td_active">Значение</td>
+                <td class="td td_active"></td>
+              </tr>
+            </thead>
+            <tbody id="prof_users_tb_modal">
+              <tr class="tr">
+                <td class="td">
+                  <div class="custom-select">
+                    <select
+                      class="select select_modal"
+                      id="prof_users_add_user"
+                    ></select>
+                    <span class="select-text"></span>
+                  </div>
+                </td>
+                <td class="td td_buttons-control">
+                  <button
+                    class="button__control"
+                    id="prof_users_add_button"
+                    value=""
+                  >
+                    <img
+                      class="button__control__img"
+                      src="../blocks/button/__control/img/plus.svg"
+                      alt=""
+                    />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal__footer"></div>
+      </div>
+    </div>
+    <!-- мод. окно выбора изделия -->
+    <div class="modal" id="modal_select_products_unic">
+      <div class="modal__moving" id="modal_select_products_unic_moving">
+        <span class="modal__title">Выбор изделия</span>
+        <span class="modal__close" id="close_products_select_unic"
+          >&times;</span
+        >
+      </div>
+      <div class="modal__content">
+        <div class="modal__body">
+          <div class="modal__tree">
+            <div id="modal_select_products_tree_unic"></div>
+          </div>
+          <div class="modal__table-wrapper">
+            <div class="modal__table">
+              <table class="table">
+                <thead class="thead">
+                  <tr class="tr">
+                    <td class="td td_active"></td>
+                    <td class="td td_active">Отгр.</td>
+                    <td class="td td_active">Тип</td>
+                    <td class="td td_active">Комплект/Изделие</td>
+                    <td class="td td_active"></td>
+                  </tr>
+                </thead>
+                <tbody id="tb_products_select_unic"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- мод. окно детализации количества -->
+    <div class="modal" id="detailpp_modal">
+      <div class="modal__moving" id="detailpp_modal_moving">
+        <span class="modal__title">Дитализация количества</span>
+        <span class="modal__close" id="detailpp_close">&times;</span>
+      </div>
+      <div class="modal__content">
+        <div class="modal__body">
+          <table class="table" id="detailpp_main_tb_modal">
+            <thead class="thead">
+              <tr class="tr">
+                <td class="td td_active">Исполнитель</td>
+                <td class="td td_active">Количество</td>
+                <td class="td td_active">Дата</td>
+              </tr>
+            </thead>
+            <tbody id="detailpp_tb_modal"></tbody>
+          </table>
         </div>
       </div>
     </div>

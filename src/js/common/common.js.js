@@ -29,6 +29,11 @@ export const funcCommand = (body, callbackfunc, func) => {
 export const funcProcessOnlyInfo = (result, respobj) => {
     console.log(respobj);
     responseProcessor(result, respobj.succ);
+    
+    if(respobj.uintask != undefined) {
+        localStorage.setItem('uinTask', respobj.uintask);
+        localStorage.setItem('button-active__tasks-catTask', respobj.uintask);
+    }
 }
 
 export const funcProcessOnlyConsole = (result, respobj) => {
@@ -439,7 +444,7 @@ const validationBase = (input_id, pattern) => {
 }
 
 export const nameValidation = (input_id) => {
-    const name_pattern = /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+$/;
+    const name_pattern = /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+(?: [А-ЯЁ][а-яё]+)?$/;
     return validationBase(input_id, name_pattern);
 }
 
@@ -497,7 +502,8 @@ export const updateDirectory = () => {
         { obj: "prof", callback: processResponse("prof") },
         { obj: "contents", callback: processResponse("contents") },
         { obj: "startstep", callback: processResponse("startstep") },
-        { obj: "statustask", callback: processResponse("statustask") }
+        { obj: "statustask", callback: processResponse("statustask") },
+        { obj: "techproc", callback: processResponse("techproc") }
     ];
 
     requests.forEach(({ obj, callback, sort }) => {
@@ -549,7 +555,7 @@ export const formatDate = (dateString) => {
     }
 }
 
-export const setStatus = (status) => {
+export const setStatus = (status, fpart) => {
     let img;
     switch (status) {
         case 1: // не начато
@@ -568,10 +574,14 @@ export const setStatus = (status) => {
             img = '<img class="control-task__img-status" src="assets/images/active_accept_time_fail.svg" title="Активно принято просрочено">';
             break
         case 10: // Завершено
-            img = '<img class="control-task__img-status" src="assets/images/complete.svg" title="Завершено">';
+            fpart === 0
+            ? img = '<img class="control-task__img-status" src="assets/images/complete.svg" title="Завершено">'
+            : img = '<img class="control-task__img-status" src="assets/images/complete_part.svg" title="Завершено частично">';
             break
         case 11: // Завершено с опозданием
-            img = '<img class="control-task__img-status" src="assets/images/complete_time_fail.svg" title="Завершено с опозданием">';
+            fpart === 0
+            ? img = '<img class="control-task__img-status" src="assets/images/complete_time_fail.svg" title="Завершено с опозданием">'
+            : img = '<img class="control-task__img-status" src="assets/images/complete_time_fail_part.svg" title="Завершено с опозданием частично">';
             break
         case 15: // Отменено
             img = '<img class="control-task__img-status" src="assets/images/cancel.svg" title="Отменено">';

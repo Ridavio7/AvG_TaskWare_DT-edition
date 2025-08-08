@@ -2,6 +2,7 @@ import 'normalize.css';
 /* общие */
 import '../blocks/#common/common.styles.scss';
 import '../blocks/table/__control-task-control/table__control-task-control.scss';
+import '../blocks/hamburger-menu/hamburger.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
@@ -19,6 +20,8 @@ import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
+import '../blocks/input/__type-radio/input__type-radio.scss';
+import '../blocks/table/__analysis-products/table__analysis-products.scss';
 /* select */
 import '../blocks/select/select.scss';
 import '../blocks/select/select.js';

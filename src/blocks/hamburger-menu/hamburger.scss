@@ -1,8 +1,9 @@
-.hamburger-menu{
+.hamburger-menu,
+#menu__toggle{
     display: none;
 }
 
-@media (max-width: 990px){
+@media (max-width: 768px){
     .hamburger-menu{
         display: block;
     }
