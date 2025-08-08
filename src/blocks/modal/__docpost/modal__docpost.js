@@ -15,7 +15,6 @@ let docpost_date    = document.getElementById("docpost_date");
 let docpost_numb1c  = document.getElementById("docpost_numb1c");
 let docpost_date1c  = document.getElementById("docpost_date1c");
 let docpost_contr   = document.getElementById("docpost_contr");
-let docpost_contr_t = document.getElementById("docpost_contr_title");
 let docpost_storage = document.getElementById("docpost_storage");
 let docpost_save    = document.getElementById("docpost_save");
 let modal_select_component = document.getElementById("modal_select_component");
@@ -52,7 +51,6 @@ const funcProcessGetInfoInputsDocpost = (result, respobj) => {
     removeOptions(docpost_user);
     removeOptions(docpost_storage);
     docpost_numb_t.innerHTML  = "";
-    docpost_contr_t.innerHTML = "";
     docpost_contr.value       = "";
     docpost_numb.value        = "";
     docpost_date.value        = "";
@@ -87,8 +85,7 @@ const addDocpostInfoInputs =
     addToDropdown(docpost_storage, "storages_list");
     addToDropdownOneOption(docpost_user, userName, userUin);
     addToDropdown(docpost_user, "users_list");
-    docpost_numb_t.innerHTML  = numb;
-    docpost_contr_t.innerHTML = contrName;
+    docpost_numb_t.innerHTML  = `Поставка №${numb} от ${contrName}`;
     docpost_contr.value  = contrName;
     docpost_numb.value   = numb;
     docpost_date.value   = date;

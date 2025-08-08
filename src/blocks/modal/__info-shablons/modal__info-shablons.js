@@ -1,9 +1,11 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, insertDataInSelect, responseProcessor} from '../../../js/common/common.js';
 import {dragElement} from '../modal.js';
 import {funcGetShablons, funcGetShablonsTree} from '../../table/__template-task-shablons/table__template-task-shablons.js';
+import {funcGetProductsTreeSelectUnic} from '../__select-prod-unic/modal__select-prod-unic.js';
 
 let shablons_modal    = document.getElementById("shablons_modal");
 let shablons_close    = document.getElementById("shablons_close");
+let shablons_shablon  = document.getElementById("shablons_name_shablon");
 let shablons_title    = document.getElementById("shablons_name_title");
 let shablons_name     = document.getElementById("shablons_name");
 let shablons_mission  = document.getElementById("shablons_mission");
@@ -13,9 +15,14 @@ let shablons_dl_m     = document.getElementById("shablons_dl_m");
 let shablons_user     = document.getElementById("shablons_user");
 let shablons_areaprof = document.getElementById("shablons_areaprof");
 let shablons_content  = document.getElementById("shablons_content");
-let shablons_autor    = document.getElementById("shablons_autoready")
+let shablons_c_prod   = document.getElementById("shablons_content_product");
+let shablons_c_proc   = document.getElementById("shablons_content_techproc");
+let shablons_count    = document.getElementById("shablons_count");
+let shablons_autor    = document.getElementById("shablons_autoready");
 let shablons_start    = document.getElementById("shablons_start");
 let shablons_save     = document.getElementById("shablons_save");
+let switch_1          = document.getElementById("switch_shablons_inputs_1");
+let switch_2          = document.getElementById("switch_shablons_inputs_2");
 
 shablons_close.onclick = function(){
     shablons_modal.style.display = "none";
@@ -48,13 +55,22 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     removeOptions(shablons_areaprof);
     removeOptions(shablons_content);
     removeOptions(shablons_start);
+    removeOptions(shablons_c_proc);
 
     if(respobj.answ.uin === '0'){
         shablons_areaprof.disabled = true;
-        shablons_content.disabled  = true;
+        shablons_dl_d.disabled     = true;
+        shablons_dl_h.disabled     = true;
+        shablons_dl_m.disabled     = true;
+        shablons_start.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+        switch_1.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     } else {
         shablons_areaprof.disabled = false;
-        shablons_content.disabled  = false;
+        shablons_dl_d.disabled     = false;
+        shablons_dl_h.disabled     = false;
+        shablons_dl_m.disabled     = false;
+        shablons_start.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        switch_1.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
     }
 
     let obj          = respobj.answ;
@@ -72,26 +88,82 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
     let uinStart     = obj.start    != undefined ? obj.start.uin : '';
     let nameContent  = obj.content  != undefined ? obj.content.name : '---';
     let uinContent   = obj.content  != undefined ? obj.content.uin : '';
+    let nameProd     = obj.product  != undefined ? obj.product.name : '---';
+    let uinProd      = obj.product  != undefined ? obj.product.uin : '';
+    let nameProc     = obj.techproc != undefined ? obj.techproc.name : '---';
+    let uinProc      = obj.techproc != undefined ? obj.techproc.uin : '';
     let autoready    = obj.autoready;
+    let fareaprof    = obj.fareaprof;
+    let count        = obj.count;
     let uin          = obj.uin;
     let del          = obj.del;
-    addShablonsInfo(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del);
+    addShablonsInfo(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, nameProd, uinProd, nameProc, uinProc, autoready, fareaprof, count, uin, del);
+}
+
+shablons_c_prod.onclick = () => {
+    funcGetProductsTreeSelectUnic();
+    localStorage.setItem("button_select_product_unic_id", "shablons_content_product");
+    document.getElementById("modal_select_products_unic").style.display = "block";
 }
 
 const addShablonsInfo =
-(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, autoready, uin, del) => {
-    shablons_title.innerHTML = `Шаблон: ${nameShablon}. Номер: ${numb_i}. Название: ${name}`;
-    shablons_name.value      = name;
-    shablons_mission.value   = mission;
-    shablons_dl_d.value      = dl.dl_d;
-    shablons_dl_h.value      = dl.dl_h;
-    shablons_dl_m.value      = dl.dl_m;
+(name, mission, numb_i, dl, nameShablon, uinShablon, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, nameProd, uinProd, nameProc, uinProc, autoready, fareaprof, count, uin, del) => {
+    shablons_shablon.innerHTML = `Шаблон: ${nameShablon}`;
+    shablons_title.innerHTML   = `№ ${numb_i} ${name}`;
+    shablons_name.value        = name;
+    shablons_mission.value     = mission;
+    shablons_dl_d.value        = dl.dl_d;
+    shablons_dl_h.value        = dl.dl_h;
+    shablons_dl_m.value        = dl.dl_m;
+    shablons_count.value = count;
     insertDataInSelect(shablons_user, nameUser, uinUser, "users_list");
-    uin === "0" ? shablons_user.previousElementSibling.textContent = "Администратор:" : shablons_user.previousElementSibling.textContent = "Исполнитель:";
+    uin === "0" ? shablons_user.parentElement.previousElementSibling.textContent = "Администратор:" : shablons_user.parentElement.previousElementSibling.textContent = "Исполнитель:";
     insertDataInSelect(shablons_areaprof, nameAreaprof, uinAreaprof, "prof_list");
     insertDataInSelect(shablons_content, nameContent, uinContent, "contents_list");
+    if(uin === "0" && uinContent === 5){
+        shablons_c_prod.parentElement.classList.remove("modal__input-wrapper_display-none");
+        shablons_c_proc.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    } else if(uin === "0" && uinContent === 3) {
+        shablons_c_prod.parentElement.classList.remove("modal__input-wrapper_display-none");
+        shablons_c_proc.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    } else if(uin != "0" && uinContent === 5){
+        shablons_c_prod.parentElement.classList.add("modal__input-wrapper_display-none");
+        shablons_c_proc.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    } else if(uin != "0" && uinContent === 3){
+        shablons_c_prod.parentElement.classList.add("modal__input-wrapper_display-none");
+        shablons_c_proc.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+    } else {
+        shablons_c_prod.parentElement.classList.add("modal__input-wrapper_display-none");
+        shablons_c_proc.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    }
+    insertDataInSelect(shablons_c_proc, nameProc, uinProc, "techproc_list");
+    if(uinProd === ''){
+        shablons_c_prod.textContent = 'Выберите изделие';
+        shablons_c_prod.value = '';
+        shablons_c_prod.name  = '';
+    } else if(uinProd === 0){
+        shablons_c_prod.textContent = 'Выберите изделие';
+        shablons_c_prod.value = '';
+        shablons_c_prod.name  = '';
+    } else {
+        shablons_c_prod.textContent = nameProd;
+        shablons_c_prod.value = uinProd;
+        shablons_c_prod.name  = nameProd;
+    }
     insertDataInSelect(shablons_start, nameStart, uinStart, "startstep_list");
     shablons_autor.checked = autoready === 1 ? true : false;
+    if(fareaprof === 0){ 
+        switch_1.checked = true;
+        shablons_user.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+        shablons_areaprof.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    } else if(fareaprof === 1) {
+        switch_2.checked = true;
+        shablons_user.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        shablons_areaprof.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+    } else {
+        shablons_user.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+        shablons_areaprof.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    }
     shablons_save.value = uin;
     shablons_save.name = uinShablon;
 }
@@ -99,8 +171,12 @@ const addShablonsInfo =
 shablons_save.onclick = (elem) => {
     let body;
     elem.target.value === 0 ? 
-    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`, "name":"", "uinuser":"", "autoready":"", "uinShablon":`${localStorage.getItem('uinShablon')}`} :
-    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`, "name":"", "uinuser":"", "uinareaprof":"", "uincontent":"", "uinstart":"", "numb_inlevel":"", "mission":"", "prim":"", "dl_d":"", "dl_h":"", "dl_m":"", "autoready":"", "uinShablon":`${localStorage.getItem('uinShablon')}`};
+    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`,
+        "name":"", "uinuser":"", "autoready":"", "uincontent":"", "count":"",  "uinproduct":"", "uinShablon":`${localStorage.getItem('uinShablon')}`} :
+    body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"dirSh", "uin":`${elem.target.value}`,
+        "name":"", "uinuser":"", "uinareaprof":"", "uincontent":"", "uinstart":"", "numb_inlevel":"", "mission":"",
+        "prim":"", "dl_d":"", "dl_h":"", "dl_m":"", "count":"", "autoready":"", "fareaprof":"", "uinproduct":"",
+        "uintechproc":"", "uinShablon":`${localStorage.getItem('uinShablon')}`};
 
     body.name         = shablons_name.value;
     body.uinuser      = shablons_user.value;
@@ -111,9 +187,31 @@ shablons_save.onclick = (elem) => {
     body.dl_d         = shablons_dl_d.value;
     body.dl_h         = shablons_dl_h.value;
     body.dl_m         = shablons_dl_m.value;
+    body.count        = shablons_count.value;
     body.autoready    = shablons_autor.checked === true ? "1" : "0";
+    body.fareaprof    = switch_1.checked === true ? "0" : "1";
+    body.uinproduct   = shablons_c_prod.value;
+    body.uintechproc  = shablons_c_proc.value;
 
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){funcGetShablonsTree(elem.target.name)}, 100);
-    setTimeout(function(){funcGetShablons()}, 150); 
+    setTimeout(function(){funcGetShablons()}, 150);
+    setTimeout(function(){funcGetShablonsSteps(elem.target.value)}, 200);
 }
+
+/* переклуючение */
+const radioButtons = document.querySelectorAll(
+    'input[name="switch-shablons-inputs"]',
+)
+
+radioButtons.forEach(radio => {
+    radio.addEventListener('click', () => {
+        if (switch_1.checked) {
+            shablons_user.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+            shablons_areaprof.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        } else if(switch_2.checked) {
+            shablons_user.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+            shablons_areaprof.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+        }
+    })
+})
