@@ -50,8 +50,8 @@ const funcProcessGetProf = (result, respobj) => {
 
             let target_table = tb_prof;
             body.name    = findForUpdateInput(`prof_name_${elem.value}`, target_table);
-            let checkbox = document.getElementById(`prof_fc_${elem.value}`);
-            body.fcount  = checkbox.checked === true ? "1" : "0";
+            //let checkbox = document.getElementById(`prof_fc_${elem.value}`);
+            //body.fcount  = checkbox.checked === true ? "1" : "0";
         
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
@@ -73,16 +73,16 @@ const addProfRow = (numb, name, fc, users, del, uin, tb_id) => {
     newRow.classList = "tr";
 
     let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td_small";
-    let cellNumb = newRow.insertCell(1); cellNumb.classList = "td td_small";
-    let cellName = newRow.insertCell(2); cellName.classList = "td td__text_align_center";
-    let cellFc   = newRow.insertCell(3); cellFc.classList   = "td";
-    let cellBtn  = newRow.insertCell(4); cellBtn.classList  = "td";
+    //let cellNumb = newRow.insertCell(1); cellNumb.classList = "td td_small";
+    let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
+    //let cellFc   = newRow.insertCell(3); cellFc.classList   = "td";
+    let cellBtn  = newRow.insertCell(2); cellBtn.classList  = "td";
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-prof-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
-    cellNumb.innerHTML = numb;
+    //cellNumb.innerHTML = numb;
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="prof_name_${uin}">`;
-    let fc_checked     = fc === 1 ? 'checked' : '';
-    cellFc.innerHTML   = `<input class="checkbox" type="checkbox" id="prof_fc_${uin}" ${fc_checked}><label for="prof_fc_${uin}"></label>` 
+    //let fc_checked     = fc === 1 ? 'checked' : '';
+    //cellFc.innerHTML   = `<input class="checkbox" type="checkbox" id="prof_fc_${uin}" ${fc_checked}><label for="prof_fc_${uin}"></label>` 
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-prof${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
@@ -90,22 +90,22 @@ const addProfRow = (numb, name, fc, users, del, uin, tb_id) => {
 
 let button_control_add = document.querySelector(".button__control_add-prof");
 button_control_add.addEventListener("click", () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"prof", "name":"", "numb":"", "fcount":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"prof", "name":"", "numb":"0", "fcount":""};
 
-    let numb_value = document.getElementById("input_add_prof_numb").value;
+    //let numb_value = document.getElementById("input_add_prof_numb").value;
     let name_value = document.getElementById("input_add_prof_name").value;
-    let checkbox   = document.getElementById("input_add_prof_fc");
+    //let checkbox   = document.getElementById("input_add_prof_fc");
 
     if(name_value === ""){
         alert("Вы не заполнили все поля!");
     } else {
-        body.numb   = numb_value;
+        //body.numb   = numb_value;
         body.name   = name_value;
-        body.fcount = checkbox.checked === true ? "1" : "0";
+        //body.fcount = checkbox.checked === true ? "1" : "0";
 
-        document.getElementById("input_add_prof_numb").value = "";
+        //document.getElementById("input_add_prof_numb").value = "";
         document.getElementById("input_add_prof_name").value = "";
-        document.getElementById("input_add_prof_fc").checked = false;
+        //document.getElementById("input_add_prof_fc").checked = false;
 
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetProf()}, 100);
