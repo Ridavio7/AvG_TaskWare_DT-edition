@@ -24,7 +24,7 @@ export const funcGetComponentsTree = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"100"};
     funcCommand(body, funcProcessGetComponentsTree);
 
-    removeOptionsSetValue("found_main_select", "-- Выберите тип --");
+    removeOptionsSetValue("found_main_select", "Выберите тип");
     addToDropdown(found_select, 'typelm_list');
 }
 

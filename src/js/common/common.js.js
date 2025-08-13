@@ -148,14 +148,23 @@ export const insertDataInSelect = (select, text, uin, arr_obj) => {
 /* создание и заполнение select для составов */
 export const makeSelect = 
 (determinant, uin, optionText, optionUin, list, className, cell) => {
+    let div = document.createElement("div");
+    div.classList = 'custom-select';
+
     let select = document.createElement("select");
     select.id = `${determinant}_${uin}`;
     select.className = className;
     let option = document.createElement("option");
     option.text = optionText;
     option.value = optionUin;
-    select.appendChild(option);
-    cell.appendChild(select);
+    select.append(option);
+
+    let span = document.createElement("span");
+    span.classList = 'select-text';
+
+    div.append(select)
+    div.append(span);
+    cell.append(div);
 
     addToDropdown(select, list);
 }

@@ -14,7 +14,7 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
     console.log("График:", respobj);
 
     let select_sets = document.getElementById("select_add_grf_set");
-    removeOptionsSetValue("select_add_grf_set", "-- Выберите --");
+    removeOptionsSetValue("select_add_grf_set", "Выберите");
     addToDropdown(select_sets, "sets_list");
 
     let tb_id = "tb_grf";

@@ -13,7 +13,7 @@ const funcProcessGetPlan = (result, respobj) => {
     clearTable(tb_id);
 
     let select_products = document.getElementById("select_add_plan_product");
-    removeOptionsSetValue("select_add_plan_product", "-- Выберите изделие --");
+    removeOptionsSetValue("select_add_plan_product", "Выберите изделие");
     addToDropdown(select_products, "products_list");
 
     let plan_list = respobj.answ;

@@ -166,7 +166,7 @@ const funcProcessGetComponentInfo = (result, respobj) => {
 
 const addComponentInfo = (name, typelm, typelmUin, fUnic, tpack, comment, ost, uin) => {
     document.getElementById("component_name").value = name;
-    document.getElementById("component_name_title").innerHTML = name;
+    document.getElementById("component_name_title").innerHTML = `Комплектующее ${name}`;
 
     document.getElementById('component_edit_imgs_img').onclick = () => funcEditImgsOpenModal(uin, name);
 
@@ -280,7 +280,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
 
     function funcSelectAddMeasOnTable(result, respobj){
         //responseProcessor(result, respobj.succ);
-        select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
+        select.parentElement.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
     let body_2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"enums", "uinprops":`${select.value}`, "count":"100", "sort":"uin", "all":"0"};
@@ -290,12 +290,9 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
     let input_value = document.getElementById("component_info_add_props_value_input");
 
     function funcSelectAddEnumsOnTable(result, respobj){
-        //responseProcessor(result, respobj.succ);
-        console.log(respobj.answ)
-
         removeOptions(select_value);
         if(respobj.answ != ''){
-            select_value.style.display = "inline";
+            select_value.parentElement.style.display = "block";
             input_value.style.display  = "none";
             let arr = respobj.answ;
             for (let key in arr) {
@@ -306,7 +303,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
             }
         } else {
             input_value.style.display  = "block";
-            select_value.style.display = "none";
+            select_value.parentElement.style.display = "none";
         }
     }
 }

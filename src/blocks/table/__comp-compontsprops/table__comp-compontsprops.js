@@ -18,7 +18,7 @@ const funcProcessGetComponentInfoProps = (result, respobj) => {
     option.text = "---";
     select.appendChild(option);
 
-    component_info_add_props_select.parentElement.nextElementSibling.innerText = "---";
+    component_info_add_props_select.parentElement.parentElement.nextElementSibling.innerText = "---";
 
     addToDropdown(select, "typesprops_list");
     

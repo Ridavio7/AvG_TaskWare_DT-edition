@@ -107,17 +107,17 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
     chb_info_product_fship.checked = fship === 1 ? true : false;
 
     if(fset == 0){
-        select_info_product_color.parentElement.classList.remove("modal__input-wrapper_display-none");
+        select_info_product_color.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
         button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
         button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
     } else {
-        select_info_product_color.parentElement.classList.add("modal__input-wrapper_display-none");
+        select_info_product_color.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
         button_info_product_tcard.parentElement.classList.add("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.remove("modal__input-wrapper_display-none");
     }
     
-    select_info_product_type.parentElement.classList.add("modal__input-wrapper_display-none");
+    select_info_product_type.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     chb_info_product_fship.parentElement.classList.remove("modal__input-wrapper_display-none");
     tb_info_product_prod.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
     tb_info_product_comp.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
@@ -167,8 +167,8 @@ export const funcProcessInfoProductsModalAdd = () => {
     removeOptionsSetValue("info_product_color", "---");
     addToDropdown(select_info_product_color, "colors_list");
 
-    select_info_product_type.parentElement.classList.remove("modal__input-wrapper_display-none");
-    select_info_product_color.parentElement.classList.add("modal__input-wrapper_display-none");
+    select_info_product_type.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+    select_info_product_color.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_prod.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_comp.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
