@@ -1,8 +1,36 @@
 import {funcCommand, setStatus, responseProcessor, formatDate, funcProcessOnlyConsole, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetTasksArchiveSteps} from '../../modal/__info-task/modal__info-task.js';
+import {resizeModalWindow} from '../../modal/modal.js';
+
+resizeModalWindow(tb_tasks_archive, "whTaskTable");
+resizeModalWindow(wrapper_tree_tasks_archive, "whTaskTree"); 
+
+/* настройка размера окна */
+const funcGetResizeTb = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTable"};
+    funcCommand(body, funcProcessGetResizeTb)
+}
+
+const funcProcessGetResizeTb = (result, respobj) => {
+    document.getElementById("tb_tasks_archive").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("tb_tasks_archive").style.height = `${respobj.answ.val[1]}px`;
+}
+
+/* настройка размера окна */
+const funcGetResizeTree = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTree"};
+    funcCommand(body, funcProcessGetResizeTree)
+}
+
+const funcProcessGetResizeTree = (result, respobj) => {
+    document.getElementById("wrapper_tree_tasks_archive").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("wrapper_tree_tasks_archive").style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcGetTasksArchive = () => {
+    funcGetResizeTb();
+    funcGetResizeTree();
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"tasksarch", "count":"100", "asort":"datebegin"};
     funcCommand(body, funcProcessGetTasksArchive);
 }

@@ -1,89 +1,133 @@
-/* select фильтра анимация */
-export const psevdoSelect = (id) => {
-    let checkList = document.getElementById(id);
-    let select__items = document.getElementsByClassName("select-props-value");
-    checkList.addEventListener('click', function(event) {
-        for (let i = 0; i < select__items.length; i++) {
-            select__items[i].className = select__items[i].className.replace(" select__filter_visible", "");
-        }
+export const customSelect = (select_id, arr, text) => {
+    const dropdown    = document.getElementById(select_id);
+    const header      = dropdown.querySelector('.selectHeader');
+    const searchInput = dropdown.querySelector('.searchInput');
+    const optionsList = dropdown.querySelector('.optionsList');
+    const noResults   = dropdown.querySelector('.noResults');
 
-        checkList.className.includes('select__filter_visible') ? checkList.classList.remove('select__filter_visible') : checkList.classList.add('select__filter_visible');
-        event.stopPropagation();
-    });
-    window.addEventListener('click', function() {
-        checkList.classList.remove('select__filter_visible');
-    });
-}
-
-/* select фильтра заполенение */
-export const addToDropdownPsevdo = (select_id, arr) => {
-    let psevdoSelect = document.getElementById(select_id);
-    for (let key in arr) {
+    for(let key in arr){
         if(arr[key].del === 0){
-            let input = makeCheckboxForPsevdo(psevdoSelect, "checkbox", "checkbox", arr[key].uin, `checkbox_${select_id}_${arr[key].uin}`, `checkbox_${select_id}_${arr[key].uin}`, arr[key].name);
+            let label = document.createElement('label');
+            label.className = 'select-custom__option-item';
+            label.htmlFor = `checkbox_${select_id}_${arr[key].uin}`;
 
-            input.addEventListener("change", () => {
-                let filter = input.parentElement.parentElement.previousElementSibling;
-                if(!filter.textContent.includes(arr[key].name)){
-                    if(filter.textContent.includes('Комплекты') || filter.textContent.includes('Изделия') ||
-                        filter.textContent.includes('Контрагенты') || filter.textContent.includes('Статусы')){ //filter.textContent.includes(`<img class="select__img" src="assets/images/filter.svg" alt=""></img>`)
-                        filter.textContent = ""; filter.textContent = `${arr[key].name}, `;
-                    } else {
-                        filter.textContent += `${arr[key].name}, `;
-                    }
-                } else if(filter.textContent.includes('')) {
-                    filter.textContent = 'Фильтр';
-                } else {
-                    filter.textContent = filter.textContent.replace(`${arr[key].name},`, '');
-                }
-            })
+            let input = document.createElement('input');
+            input.type = "checkbox";
+            input.className = "checkbox";
+            input.value = arr[key].name;
+            input.setAttribute('data-value', (arr[key].uin));
+            input.id = `checkbox_${select_id}_${arr[key].uin}`;
+
+            let label_i = document.createElement('label');
+            label_i.htmlFor = `checkbox_${select_id}_${arr[key].uin}`;
+            label_i.append(arr[key].name);
+
+            label.append(input);
+            label.append(label_i);
+
+            optionsList.append(label)
         }
     }
-}
 
-export const addToDropdownPsevdoFoundPlus = (select_id, arr) => {
-    let psevdoSelect = document.getElementById(select_id);
-    for (let key in arr) {
-        let input = makeCheckboxForPsevdo(psevdoSelect, "checkbox", "checkbox", '', `checkbox_${select_id}_${arr[key]}`, `checkbox_${select_id}_${arr[key]}`, arr[key]);
+    // Все оригинальные опции (для фильтрации)
+    const optionItems = optionsList.querySelectorAll('.select-custom__option-item');
+    const checkboxes = optionsList.querySelectorAll('input[type="checkbox"]');
 
-        input.addEventListener("change", () => {
-            let filter = input.parentElement.parentElement.previousElementSibling;
-            if(!filter.textContent.includes(arr[key])){
-                if(filter.textContent.includes(`Значения`)){
-                    filter.innerHTML = ""; filter.innerHTML = `${arr[key]}, `;
-                } else {
-                    filter.innerHTML += `${arr[key]}, `;
-                }
+    // Переключение видимости
+    header.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+        if (dropdown.classList.contains('active')) {
+            searchInput.focus();
+            filterOptions();
+        }
+    })
+
+    // Закрытие при клике вне
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    })
+
+    // Фильтрация опций по поиску
+    searchInput.addEventListener('input', filterOptions);
+
+    function filterOptions() {
+        const query = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        optionItems.forEach(item => {
+            const text = item.textContent.trim();
+            if (text.toLowerCase().includes(query)) {
+                item.style.display = 'flex';
+                visibleCount++;
             } else {
-                filter.innerHTML = filter.textContent.replace(`${arr[key]},`, '');
+                item.style.display = 'none';
             }
         })
+
+        // Показать/скрыть сообщение "Ничего не найдено"
+        if (query && visibleCount === 0) {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
     }
+
+    // Обновление выбранных значений
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelection);
+    })
+
+    function updateSelection() {
+        const checked = Array.from(checkboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+
+        if (checked.length === 0) {
+            header.textContent = `Выберите ${text}`;
+        } else {
+            header.textContent = checked.length > 1 
+            ? `${checked.length} выбрано` 
+            : checked.join(', ');
+        }
+        header.insertAdjacentHTML('beforeend', '<span class="select-custom__icon"></span>');
+    }
+
+    // Очистка поиска при закрытии
+    dropdown.addEventListener('mouseleave', () => {
+      // Можно оставить, если хочется сбрасывать поиск при уходе
+    });
+
+    // По нажатию Esc — закрыть dropdown
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            dropdown.classList.remove('active');
+        }
+    })
 }
 
-/* select фильтра вне справ */
-export const addToDropdownPsevdoAnotherList = (selec, arr, other) => {
-    let psevdoSelect = document.getElementById(selec);
-    for (let key in arr) {
-        makeCheckboxForPsevdo(psevdoSelect, "checkbox", "checkbox", arr[key], `${other}${arr[key]}`, `${other}${arr[key]}`, arr[key]);
-    }
-}
+export const customSortSelect = (select_id) => {
+    const dropdown      = document.getElementById(select_id);
+    const selectHeader  = dropdown.querySelector('.selectHeader');
+    const options       = dropdown.querySelectorAll('li');
 
-const makeCheckboxForPsevdo = (select, input_type, input_class, input_val, input_id, label_for, label_text) => {
-    let input = document.createElement("input");
-    input.type = input_type;
-    input.className = input_class;
-    input.value = input_val;
-    input.id = input_id;
+    selectHeader.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+    })
 
-    let label = document.createElement('label');
-    label.htmlFor = label_for;
-    label.textContent = label_text;
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            selectHeader.textContent = option.textContent;
+            dropdown.classList.remove('active');
 
-    let li = document.createElement("li");
-    li.append(input);
-    li.append(label);
-    select.append(li);
+            selectHeader.insertAdjacentHTML('beforeend', '<span class="select-custom__icon"></span>');
+        })
+    })
 
-    return input;
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    })
 }

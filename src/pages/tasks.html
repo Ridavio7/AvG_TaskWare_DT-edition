@@ -136,12 +136,22 @@
     <!-- мод. окно чата задачи -->
     <div class="modal" id="modal_chat_task">
       <div class="modal__moving" id="modal_chat_task_moving">
-        <span class="modal__title">Групповой чат задачи</span>
+        <span class="modal__title"
+          >Чат&nbsp;<span class="modal__title" id="modal_chat_task_title"></span
+        ></span>
         <span class="modal__close" id="close_chat_task">&times;</span>
       </div>
-      <div class="modal__content">
-        <div class="chat-task__container">
+      <div class="modal__content" style="resize: none">
+        <div class="chat-task__container" id="modal_chat_task_resize">
           <div class="chat-task__messages" id="chat_task_messages"></div>
+          <div class="chat-task__scroll-to-bottom" id="chat_task_scroll">
+            <span class="chat-task__badge" id="chat_task_badge">0</span>
+            <img
+              class="chat-task__badge-img"
+              src="../blocks/sidebar/img/arrow_sidebar_2.svg"
+              alt=""
+            />
+          </div>
           <div class="chat-task__container-input">
             <textarea
               class="chat-task__input"
@@ -194,10 +204,10 @@
     <!-- мод. окно детализации количества -->
     <div class="modal" id="detailpp_modal">
       <div class="modal__moving" id="detailpp_modal_moving">
-        <span class="modal__title">Дитализация количества</span>
+        <span class="modal__title">Детализация количества</span>
         <span class="modal__close" id="detailpp_close">&times;</span>
       </div>
-      <div class="modal__content">
+      <div class="modal__content" id="detailpp_modal_resize">
         <div class="modal__body">
           <table class="table" id="detailpp_main_tb_modal">
             <thead class="thead">
@@ -216,6 +226,12 @@
     <div id="context_menu_chat_task" class="details__context-menu">
       <button id="context_menu_chat_task_change">Изменить</button>
       <button id="context_menu_chat_task_delete">Удалить</button>
+      <button id="context_menu_chat_task_read">
+        Просматривал
+        <div class="details__context-menu_tooltip">
+          <ul id="context_menu_chat_task_users"></ul>
+        </div>
+      </button>
     </div>
     <div class="notification-container" id="notificationContainer"></div>
   </body>

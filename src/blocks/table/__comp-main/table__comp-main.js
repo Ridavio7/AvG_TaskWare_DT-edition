@@ -5,6 +5,50 @@ import {funcInfoComponentsTransferOpenModal} from '../../modal/__transfer-comp/m
 import {funcFoundComponents} from '../__comp-found/table__comp-found.js';
 import {funcFoundPlusOpenModal} from '../../modal/__found-plus/modal__found-plus.js';
 import {TreeBuilder} from '../../_tree/tree.js';
+import {customSortSelect} from '../../select/select.js';
+import {resizeModalWindow} from '../../modal/modal.js';
+
+resizeModalWindow(wrapper_comp_tree, "whComponentTree");
+resizeModalWindow(wrapper_comp_table, "whComponentTable"); 
+resizeModalWindow(wrapper_comp_found, "whComponentFound");
+
+/* настройка размера окна */
+const funcGetResizeTree = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentTree"};
+    funcCommand(body, funcProcessGetResizeTree)
+}
+
+const funcProcessGetResizeTree = (result, respobj) => {
+    document.getElementById("wrapper_comp_tree").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("wrapper_comp_tree").style.height = `${respobj.answ.val[1]}px`;
+}
+
+/* настройка размера окна */
+const funcGetResizeTb = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentTable"};
+    funcCommand(body, funcProcessGetResizeTb)
+}
+
+const funcProcessGetResizeTb = (result, respobj) => {
+    document.getElementById("wrapper_comp_table").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("wrapper_comp_table").style.height = `${respobj.answ.val[1]}px`;
+}
+
+/* настройка размера окна */
+const funcGetResizeFound = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentFound"};
+    funcCommand(body, funcProcessGetResizeFound)
+}
+
+const funcProcessGetResizeFound = (result, respobj) => {
+    document.getElementById("wrapper_comp_found").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("wrapper_comp_found").style.height = `${respobj.answ.val[1]}px`;
+}
+
+export const funcGetTasks = () => {
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"tasks", "count":"100", "asort":"datebegin"};
+    funcCommand(body, funcProcessGetTasks);
+}
 
 let found_select = document.getElementById("found_main_select");
 let found_button = document.getElementById("found_main_button");
@@ -21,6 +65,9 @@ found_button_modal.onclick = function(){
 }
 
 export const funcGetComponentsTree = () => {
+    funcGetResizeTree();
+    funcGetResizeTb();
+    funcGetResizeFound();
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"100"};
     funcCommand(body, funcProcessGetComponentsTree);
 
@@ -60,7 +107,7 @@ const funcProcessGetComponents = (result, respobj) => {
 
     let table = document.getElementById(tb_id);
     let row_head   = table.insertRow(-1);
-    row_head.innerHTML = `<tr><td class="td"></td><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uinCatc}">Создать</button></td></tr>`;
+    row_head.innerHTML = `<tr class="tr"><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/create.svg"></button></td></tr>`;
 
     for (let key in respobj.answ){
         let set    = respobj.answ[key];
@@ -113,37 +160,35 @@ const addComponents = (name, fUnic, typelm, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo   = newRow.insertCell(0); cellInfo.classList   = "td";
-    let cellFUnic  = newRow.insertCell(1); cellFUnic.classList  = "td";
-    let cellName   = newRow.insertCell(2); cellName.classList   = "td";
-    let cellTypelm = newRow.insertCell(3); cellTypelm.classList = "td";
-    let cellBtn    = newRow.insertCell(4); cellBtn.classList    = "td";
+    let cellName   = newRow.insertCell(0); cellName.classList   = "td td_nowrap-content";
+    let cellTypelm = newRow.insertCell(1); cellTypelm.classList = "td";
+    let cellFUnic  = newRow.insertCell(2); cellFUnic.classList  = "td";
+    let cellBtn    = newRow.insertCell(3); cellBtn.classList    = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-component" value="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
+    cellName.innerHTML = `<button class="button__control button__control_modal-component" value="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button> ${name}`;
+    cellName.id = `component_name_${uin}`;
     fUnic === 1 ? cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled checked><label for="chb_funic_${uin}"></label>` : 
                   cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled><label for="chb_funic_${uin}"></label>`;
-    cellName.innerHTML = `${name}`;
-    cellName.id = `component_name_${uin}`;
     cellTypelm.innerHTML   = typelm;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-component${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
 }
 
-document.getElementById("sort_components").addEventListener('change', function(){
-    let option = this.selectedIndex;
-    switch (option){
-        case 0:
-        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"1000"};
-        funcCommand(body0, funcProcessGetComponentsTree);
-        break;
-        case 1:
-        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"1000", "sort":"name"};
-        funcCommand(body1, funcProcessGetComponentsTree);
-        break;
-        case 2:
-        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"1000", "asort":"name"};
-        funcCommand(body2, funcProcessGetComponentsTree);
-        break;
-    }
-});
+customSortSelect("sort_components");
+const dropdown = document.getElementById("sort_components");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetComponentsTree);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetComponentsTree);
+            break;
+        }
+    })
+})

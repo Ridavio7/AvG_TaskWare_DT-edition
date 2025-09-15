@@ -1,5 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoTypeselemOpenModal} from '../../modal/__typeselem/modal__typeselem.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetTypeselem = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"100"};
@@ -96,4 +97,28 @@ button_control_add_product.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_typeselem", "tb_componenets_typeselem", "typeselem", funcProcessGetTypeselem);
+customSortSelect("sort_typeselem");
+const dropdown = document.getElementById("sort_typeselem");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetTypeselem);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetTypeselem);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"5000", "sort":"uin"};
+                funcCommand(body3, funcProcessGetTypeselem);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"typeselem", "count":"5000", "asort":"uin"};
+                funcCommand(body4, funcProcessGetTypeselem);
+            break;
+        }
+    })
+})

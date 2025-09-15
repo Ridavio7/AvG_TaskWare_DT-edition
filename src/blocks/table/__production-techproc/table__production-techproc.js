@@ -1,4 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetTechproc = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"100", "sort":"numb"};
@@ -102,22 +103,20 @@ button_control_add_product.addEventListener("click", () => {
     }
 })
 
-document.getElementById("sort_techproc").addEventListener('change', function(){
-    clearTable("tb_techproc");
-
-    let option = this.selectedIndex;
-    switch (option){
-        case 0:
-        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"5000", "sort":"numb"};
-        funcCommand(body0, funcProcessGetTechproc);
-        break;
-        case 1:
-        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"5000", "asort":"numb"};
-        funcCommand(body1, funcProcessGetTechproc);
-        break;
-        case 2:
-        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"5000", "sort":"numb"};
-        funcCommand(body2, funcProcessGetTechproc);
-        break;
-    }
-});
+customSortSelect("sort_techproc");
+const dropdown = document.getElementById("sort_techproc");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"5000", "asort":"numb"};
+                funcCommand(body1, funcProcessGetTechproc);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"techproc", "count":"5000", "sort":"numb"};
+                funcCommand(body2, funcProcessGetTechproc);
+            break;
+        }
+    })
+})

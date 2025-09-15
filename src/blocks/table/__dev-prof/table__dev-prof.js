@@ -1,5 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoProfUsersOpenModal} from '../../modal/__prof-users/modal__prof-users.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetProf = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"100", "sort":"numb"};
@@ -72,15 +73,15 @@ const addProfRow = (numb, name, fc, users, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td_small";
+    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td_nowrap-content";
     //let cellNumb = newRow.insertCell(1); cellNumb.classList = "td td_small";
     let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
     //let cellFc   = newRow.insertCell(3); cellFc.classList   = "td";
     let cellBtn  = newRow.insertCell(2); cellBtn.classList  = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-prof-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-prof-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button><input class="input__type-text" type="text" value="${name}" name="prof_name_${uin}">`;
     //cellNumb.innerHTML = numb;
-    cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="prof_name_${uin}">`;
+    cellName.innerHTML = ``;
     //let fc_checked     = fc === 1 ? 'checked' : '';
     //cellFc.innerHTML   = `<input class="checkbox" type="checkbox" id="prof_fc_${uin}" ${fc_checked}><label for="prof_fc_${uin}"></label>` 
 
@@ -112,22 +113,28 @@ button_control_add.addEventListener("click", () => {
     }
 })
 
-document.getElementById("sort_prof").addEventListener('change', function(){
-    clearTable("tb_prof");
-
-    let option = this.selectedIndex;
-    switch (option){
-        case 0:
-        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "sort":"numb"};
-        funcCommand(body0, funcProcessGetProf);
-        break;
-        case 1:
-        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "asort":"numb"};
-        funcCommand(body1, funcProcessGetProf);
-        break;
-        case 2:
-        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "sort":"numb"};
-        funcCommand(body2, funcProcessGetProf);
-        break;
-    }
-});
+customSortSelect("sort_prof");
+const dropdown = document.getElementById("sort_prof");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetProf);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetProf);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "sort":"uin"};
+                funcCommand(body3, funcProcessGetProf);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "asort":"uin"};
+                funcCommand(body4, funcProcessGetProf);
+            break;
+        }
+    })
+})

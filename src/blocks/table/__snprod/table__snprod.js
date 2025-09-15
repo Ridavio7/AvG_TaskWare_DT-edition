@@ -1,5 +1,5 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, makeSelect, clearTable, removeOptionsSetValue, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown, responseProcessor} from '../../../js/common/common.js';
-import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, makeSelect, clearTable, removeOptionsSetValue, sendFilt, listenCustomSelect, clearCustomSelect, addToDropdown, responseProcessor} from '../../../js/common/common.js';
+import {customSelect, customSortSelect} from '../../select/select.js';
 
 export const funcGetSNProd = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"100", "filt":`${JSON.stringify(filt_snprod)}`};
@@ -101,7 +101,7 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
     cellSN.innerHTML       = `<input class="input__type-text" type="text" value="${SN}" name="SN_${uin}">`;
     cellCount.innerHTML    = `<input class="input__type-text" type="text" value="${count}" name="count_${uin}">`;
     cellCountUse.innerHTML = `<input class="input__type-text" type="text" value="${count_use}" name="count_use_${uin}">`;
-    cellDate.innerHTML     = `<input class="input__type-text input__type-date" type="date" value="${date}" name="date_${uin}">`;
+    cellDate.innerHTML     = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div>`;
 
     makeSelect("snprod_status_select_", uin, status, uinstatus, "statussn_list", "select", cellStatus);
 
@@ -109,30 +109,25 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-snprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-snprod${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
-addToDropdownPsevdo("filt_SNprod_products_items", JSON.parse(localStorage.getItem("products_list")));
-psevdoSelect("filt_SNprod_products");
+customSelect('SNProd_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
+customSelect('SNProd_status_customDropdown', JSON.parse(localStorage.getItem("statussn_list")), 'статус');
 
-addToDropdownPsevdo("filt_SNprod_status_items", JSON.parse(localStorage.getItem("statussn_list")));
-psevdoSelect("filt_SNprod_status");
-
-let button_SNprod_choose = document.getElementById("button_SNprod_choose");
-button_SNprod_choose.addEventListener("click", () => {
-    sendFilt(filt_snprod, 'tb_products_SNProd', 'snprod', funcProcessGetSNProd);
-});
-
-let button_SNprod_reset = document.getElementById("button_SNprod_reset");
-button_SNprod_reset.addEventListener("click", () => {
-    filt_snprod.length = 0;
-    clearFilt(filt_snprod, 'filt_SNprod_products_items', 'filt_SNprod_status_items', 'filt_SNprod_status_items', 'tb_products_SNProd', funcGetSNProd());
-});
-
-let select_1 = document.getElementById("filt_SNprod_products_items");
-let select_2 = document.getElementById("filt_SNprod_status_items");
 let filt_snprod = [], val_1 = [], val_2 = [],
 filt_1 = {fld: "uin", on: "products"}, filt_2 = {fld: "uin", on: "statussn"};
 
-listenSelect(select_1, filt_1, val_1, filt_snprod);
-listenSelect(select_2, filt_2, val_2, filt_snprod);
+listenCustomSelect("SNProd_prod_customDropdown", filt_1, val_1, filt_snprod);
+listenCustomSelect("SNProd_status_customDropdown", filt_2, val_2, filt_snprod);
+
+document.getElementById("button_SNprod_choose").addEventListener("click", () => {
+    sendFilt(filt_snprod, 'tb_products_SNProd', 'snprod', funcProcessGetSNProd);
+})
+
+document.getElementById("button_SNprod_reset").addEventListener("click", () => {
+    filt_snprod.length = 0;
+    clearCustomSelect('SNProd_prod_customDropdown', 'изделие');
+    clearCustomSelect('SNProd_status_customDropdown', 'статус');
+    funcGetSNProd();
+})
 
 let button_control_add_snprod = document.querySelector(".button__control_add-snprod");
 button_control_add_snprod.addEventListener("click", () => {
@@ -155,16 +150,40 @@ button_control_add_snprod.addEventListener("click", () => {
         body.date = date_value;
         body.uinstatus = uinstatus_value;
     
-        removeOptionsSetValue("select_add_SNProd_product", "-- Выберите изделие --");
+        removeOptionsSetValue("select_add_SNProd_product", "Выберите изделие");
         document.getElementById("input_add_SNProd_SN").value = "";
         document.getElementById("input_add_SNProd_count").value = "";
         document.getElementById("input_add_SNProd_count_use").value = "";
         document.getElementById("input_add_SNProd_date").value = "";
-        removeOptionsSetValue("select_add_SNProd_status", "-- Выберите статус --");
+        removeOptionsSetValue("select_add_SNProd_status", "Выберите статус");
     
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetSNProd()}, 100);
     }
 })
 
-listenSortSelect("sort_SNProd", "tb_products_SNProd", "snprod", funcProcessGetSNProd, filt_snprod);
+customSortSelect("sort_SNProd");
+const dropdown = document.getElementById("sort_SNProd");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "sort":"name", "filt":`${JSON.stringify(filt_snprod)}`};
+                funcCommand(body1, funcProcessGetSNProd);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "asort":"name", "filt":`${JSON.stringify(filt_snprod)}`};
+                funcCommand(body2, funcProcessGetSNProd);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "sort":"uin", "filt":`${JSON.stringify(filt_snprod)}`};
+                funcCommand(body3, funcProcessGetSNProd);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "asort":"uin", "filt":`${JSON.stringify(filt_snprod)}`};
+                funcCommand(body4, funcProcessGetSNProd);
+            break;
+        }
+    })
+})

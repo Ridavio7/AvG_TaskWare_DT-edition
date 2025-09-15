@@ -3,6 +3,7 @@ import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetShablonsSteps} from '../../modal/__info-shablons/modal__info-shablons.js';
 import {funcInfoShablonsTransferOpenModal} from '../../modal/__transfer-shablons/modal__transfer-shablons.js';
 import {funcGetTasksSteps} from '../../modal/__info-task/modal__info-task.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetShablons = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"100", "sort":"name"};
@@ -82,7 +83,7 @@ const addShablonsRow = (name, uin, del, tb_id) => {
     cellName.innerHTML = `<button class="button__control button__control_action button__control_modal-shablons-catSh" value="${uin}">${name}</button>`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_modal-shablons-release" value="${uin}" name="${name}">Запуск</button><button class="button__control button__control_mdel button__control_mdel-shablons${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_modal-shablons-release" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/start.svg" title="Запуск"></button><button class="button__control button__control_mdel button__control_mdel-shablons${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
 let button_control_add = document.querySelector(".button__control_add-shablons");
@@ -129,6 +130,32 @@ document.getElementById("sort_shablons").addEventListener('change', function(){
         funcCommand(body4, funcProcessGetShablons);
         break;
     }
+})
+
+customSortSelect("sort_shablons");
+const dropdown = document.getElementById("sort_shablons");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetShablons);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetShablons);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"5000", "sort":"uin"};
+                funcCommand(body3, funcProcessGetShablons);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"5000", "asort":"uin"};
+                funcCommand(body4, funcProcessGetShablons);
+            break;
+        }
+    })
 })
 
 export const funcGetShablonsTree = (uin) => {

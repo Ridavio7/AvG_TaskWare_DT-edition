@@ -168,111 +168,177 @@
             <!-- график -->
             <div id="shipment/schedule" class="sidebar__tabcontent__container">
                 <div class="sidebar__tabcontent__header">
-                    <button class="button__control button__control_previous-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_1.svg" alt=""></button>
+                    <button class="button__control button__control_previous-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_2.svg" alt="" style="width: 10px;"></button>
                     <input class="input__type-text input__type-text_title-table-schedule" type="text" value="" id="grf_year" disabled>
-                    <button class="button__control button__control_next-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_2.svg" alt=""></button>
+                    <button class="button__control button__control_next-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_1.svg" alt="" style="width: 10px;"></button>
                 </div>
-                <table class="table">
-                    <thead class="thead">
-                        <tr class="tr">
-                            <td class="td td_active" rowspan="2">№</td>
-                            <td class="td td_active" rowspan="2">Название</td>
-                            <td class="td td_active" colspan="2">Январь</td>
-                            <td class="td td_active" colspan="2">Февраль</td>
-                            <td class="td td_active" colspan="2">Март</td>
-                            <td class="td td_active" colspan="2">Апрель</td>
-                            <td class="td td_active" colspan="2">Май</td>
-                            <td class="td td_active" colspan="2">Июнь</td>
-                            <td class="td td_active" colspan="2">Июль</td>
-                            <td class="td td_active" colspan="2">Август</td>
-                            <td class="td td_active" colspan="2">Сентябрь</td>
-                            <td class="td td_active" colspan="2">Октябрь</td>
-                            <td class="td td_active" colspan="2">Ноябрь</td>
-                            <td class="td td_active" colspan="2">Декабрь</td>
-                            <td class="td td_active" colspan="2">Итого</td>
-                            <td class="td td_active" rowspan="2"></td>
-                        </tr>
-                        <tr class="tr">
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                            <td class="td td_active">План</td>
-                            <td class="td td_active">Отгр</td>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody" id="tb_grf">
-                        <tr class="tr">
-                            <td class="td td_right-border td_even-column-active"></td>
-                            <td class="td td_right-border td_even-column-active"><div class="custom-select"><select class="select select__title" id="select_add_grf_set"><option value="">Выберите</option></select><span class="select-text"></span></div></td>
-                            <td class="td td_odd-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m1" value="0"/></td>
-                            <td class="td td_right-border td_odd-column-active">---</td>
-                            <td class="td td_even-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m2" value="0"/></td>
-                            <td class="td td_right-border td_even-column-active">---</td>
-                            <td class="td td_odd-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m3" value="0"/></td>
-                            <td class="td td_right-border td_odd-column-active">---</td>
-                            <td class="td td_even-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m4" value="0"/></td>
-                            <td class="td td_right-border td_even-column-active">---</td>
-                            <td class="td td_odd-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m5" value="0"/></td>
-                            <td class="td td_right-border td_odd-column-active">---</td>
-                            <td class="td td_even-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m6" value="0"/></td>
-                            <td class="td td_right-border td_even-column-active">---</td>
-                            <td class="td td_odd-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m7" value="0"/></td>
-                            <td class="td td_right-border td_odd-column-active">---</td>
-                            <td class="td td_even-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m8" value="0"/></td>
-                            <td class="td td_right-border td_even-column-active">---</td>
-                            <td class="td td_odd-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m9" value="0"/></td>
-                            <td class="td td_right-border td_odd-column-active">---</td>
-                            <td class="td td_even-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m10" value="0"/></td>
-                            <td class="td td_right-border td_even-column-active">---</td>
-                            <td class="td td_odd-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m11" value="0"/></td>
-                            <td class="td td_right-border td_odd-column-active">---</td>
-                            <td class="td td_even-column-active"><input class="input__type-text input__type-text_width_100 input__type-text_title" type="text" id="input_add_grf_m12" value="0"/></td>
-                            <td class="td td_right-border td_even-column-active">---</td>
-                            <td class="td td_odd-column-active">---</td>
-                            <td class="td td_right-border td_odd-column-active">---</td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-schedule"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="modal__body">
+                    <div class="table-wrapper_left">
+                        <table class="table table_height-100">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active">№</td>
+                                    <td class="td td_active">Название</td>
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active"></td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody" id="tb_grf_left">
+                                <tr class="tr">
+                                    <td class="td td_right-border td_even-column-active"></td>
+                                    <td class="td td_right-border td_even-column-active"><div class="custom-select"><select class="select select__title input__type-text_modal_fix-width-150" id="select_add_grf_set"><option value="">Выберите</option></select><span class="select-text"></span></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-wrapper_center">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active" colspan="2">Январь</td>
+                                    <td class="td td_active" colspan="2">Февраль</td>
+                                    <td class="td td_active" colspan="2">Март</td>
+                                    <td class="td td_active" colspan="2">Апрель</td>
+                                    <td class="td td_active" colspan="2">Май</td>
+                                    <td class="td td_active" colspan="2">Июнь</td>
+                                    <td class="td td_active" colspan="2">Июль</td>
+                                    <td class="td td_active" colspan="2">Август</td>
+                                    <td class="td td_active" colspan="2">Сентябрь</td>
+                                    <td class="td td_active" colspan="2">Октябрь</td>
+                                    <td class="td td_active" colspan="2">Ноябрь</td>
+                                    <td class="td td_active" colspan="2">Декабрь</td>
+                                    
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody" id="tb_grf">
+                                <tr class="tr">
+                                    <td class="td td_odd-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m1" value="0"/></td>
+                                    <td class="td td_right-border td_odd-column-active">---</td>
+                                    <td class="td td_even-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m2" value="0"/></td>
+                                    <td class="td td_right-border td_even-column-active">---</td>
+                                    <td class="td td_odd-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m3" value="0"/></td>
+                                    <td class="td td_right-border td_odd-column-active">---</td>
+                                    <td class="td td_even-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m4" value="0"/></td>
+                                    <td class="td td_right-border td_even-column-active">---</td>
+                                    <td class="td td_odd-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m5" value="0"/></td>
+                                    <td class="td td_right-border td_odd-column-active">---</td>
+                                    <td class="td td_even-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m6" value="0"/></td>
+                                    <td class="td td_right-border td_even-column-active">---</td>
+                                    <td class="td td_odd-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m7" value="0"/></td>
+                                    <td class="td td_right-border td_odd-column-active">---</td>
+                                    <td class="td td_even-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m8" value="0"/></td>
+                                    <td class="td td_right-border td_even-column-active">---</td>
+                                    <td class="td td_odd-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m9" value="0"/></td>
+                                    <td class="td td_right-border td_odd-column-active">---</td>
+                                    <td class="td td_even-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m10" value="0"/></td>
+                                    <td class="td td_right-border td_even-column-active">---</td>
+                                    <td class="td td_odd-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m11" value="0"/></td>
+                                    <td class="td td_right-border td_odd-column-active">---</td>
+                                    <td class="td td_even-column-active"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_add_grf_m12" value="0"/></td>
+                                    <td class="td td_right-border td_even-column-active">---</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-wrapper_right">
+                        <table class="table">
+                            <thead class="thead">
+                                <tr class="tr">
+                                    <td class="td td_active" colspan="2">Итого</td>
+                                    <td class="td td_active"></td>
+                                </tr>
+                                <tr class="tr">
+                                    <td class="td td_active">План</td>
+                                    <td class="td td_active">Отгр</td>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody" id="tb_grf_right">
+                                <tr class="tr">
+                                    <td class="td td_odd-column-active">---</td>
+                                    <td class="td td_right-border td_odd-column-active">---</td>
+                                    <td class="td td_buttons-control"><button class="button__control button__control_add-schedule"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <!-- SN изделия -->
             <div id="shipment/SNProd" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_SNProd">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
-                    <div class="select select__filter" id="filt_SNprod_products" tabindex="100">
-                        <span class="select__anchor">Изделия <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_SNprod_products_items"></ul>
+                    <div class="select-custom" id="sort_SNProd">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
                     </div>
-                    <div class="select select__filter" id="filt_SNprod_status" tabindex="100">
-                        <span class="select__anchor">Статусы <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_SNprod_status_items"></ul>
+                    <div class="select-custom" id="SNProd_prod_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите изделие
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select-custom" id="SNProd_status_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите статус
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
                     </div>
                     <button class="button__control" id="button_SNprod_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                     <button class="button__control" id="button_SNprod_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
@@ -284,7 +350,7 @@
                             <td class="td td_active">Изделие</td>
                             <td class="td td_active">SN</td>
                             <td class="td td_active">Кол-во</td>
-                            <td class="td td_active">Испл.</td>
+                            <td class="td td_active">Использовано</td>
                             <td class="td td_active">Дата</td>
                             <td class="td td_active">Статус</td>
                             <td class="td td_active"></td>
@@ -297,7 +363,7 @@
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_SN" placeholder="Введите SN"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count" placeholder="Введите кол-во всего"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count_use" placeholder="Введите кол-во использованных"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-date" type="date" id="input_add_SNProd_date"></td>
+                            <td class="td td__text_align_center"><div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" id="input_add_SNProd_date"><label for="input_add_SNProd_date" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div></td>
                             <td class="td"><div class="custom-select"><select class="select select__title" id="select_add_SNProd_status"><option value="">Выберите статус</option></select><span class="select-text"></span></div></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-snprod"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
@@ -307,13 +373,18 @@
             <!-- SN статусы -->
             <div id="shipment/statussn" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_statuses_statussn">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_statuses_statussn">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -333,13 +404,18 @@
             <!-- статусы отгрузки -->
             <div id="shipment/statusship" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_statuses_shipment">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_statuses_shipment">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -359,37 +435,90 @@
             <!-- анализ комплектов -->
             <div id="shipment/analysis_sets" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_analysis_sets">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                        <option value="">По комплекту &#8659;</option>
-                        <option value="">По комплекту &#8657;</option>
-                        <option value="">По дате &#8659;</option>
-                        <option value="">По дате &#8657;</option>
-                    </select>
-                    <div class="select select__filter" id="filt_analysis_sets_sets" tabindex="100">
-                        <span class="select__anchor">Комплекты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_sets_sets_items"></ul>
+                    <div class="select-custom" id="sort_analysis_sets">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По новизне &#8659;</li>
+                            <li data-value="2">По новизне &#8657;</li>
+                            <li data-value="3">По комплекту &#8659;</li>
+                            <li data-value="4">По комплекту &#8657;</li>
+                            <li data-value="5">По дате &#8659;</li>
+                            <li data-value="6">По дате &#8657;</li>
+                        </ul>
                     </div>
-                    <div class="select select__filter" id="filt_analysis_sets_products" tabindex="100">
-                        <span class="select__anchor">Изделия <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_sets_products_items"></ul>
+                    <div class="select-custom" id="analysis_sets_set_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите комплект
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
                     </div>
-                    <div class="select select__filter" id="filt_analysis_sets_components" style="display: none;" tabindex="100">
-                        <span class="select__anchor">Комплектующие <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_sets_components_items"></ul>
+                    <div class="select-custom" id="analysis_sets_prod_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите изделие
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
                     </div>
-                    <div class="select select__filter" id="filt_analysis_sets_contragents" tabindex="100">
-                        <span class="select__anchor">Контрагенты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_sets_contragents_items"></ul>
+                    <div class="select-custom" id="analysis_sets_contr_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите контрагента
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
                     </div>
-                    <div class="select select__filter" id="filt_analysis_sets_status" tabindex="100">
-                        <span class="select__anchor">Статусы <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_sets_status_items"></ul>
+                    <div class="select-custom" id="analysis_sets_status_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите статус
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
                     </div>
-                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_sets_date_first">
-                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_sets_date_second">
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_sets_date_first"><label for="filt_analysis_sets_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_sets_date_second"><label for="filt_analysis_sets_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     <button class="button__control" id="button_analysis_sets_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                     <button class="button__control" id="button_analysis_sets_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                     <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt=""></button>
@@ -427,37 +556,73 @@
                 </div>
                 <div class="analysis-products">
                     <div class="select__wrapper">
-                        <select class="select select__sort" id="sort_analysis_products">
-                            <option value="">Сортировка &#8661;</option>
-                            <option value="">По новизне &#8659;</option>
-                            <option value="">По новизне &#8657;</option>
-                            <option value="">По изделию &#8659;</option>
-                            <option value="">По изделию &#8657;</option>
-                            <option value="">По дате &#8659;</option>
-                            <option value="">По дате &#8657;</option>
-                        </select>
-                        <div class="select select__filter" id="filt_analysis_products_sets" style="display: none;" tabindex="100">
-                            <span class="select__anchor">Комплекты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_sets_items"></ul>
+                        <div class="select-custom" id="sort_analysis_products">
+                            <div class="select-custom__header selectHeader">
+                                Выберите сортировку
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <ul class="select-custom__options optionsList">
+                                <li data-value="1">По новизне &#8659;</li>
+                                <li data-value="2">По новизне &#8657;</li>
+                                <li data-value="3">По изделию &#8659;</li>
+                                <li data-value="4">По изделию &#8657;</li>
+                                <li data-value="5">По дате &#8659;</li>
+                                <li data-value="6">По дате &#8657;</li>
+                            </ul>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_products" tabindex="100">
-                            <span class="select__anchor">Изделия <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_products_items"></ul>
+                        <div class="select-custom" id="analysis_products_prod_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите изделие
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_components" style="display: none;" tabindex="100">
-                            <span class="select__anchor">Комплектующие <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_components_items"></ul>
+                        <div class="select-custom" id="analysis_products_contr_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите контрагента
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_contragents" tabindex="100">
-                            <span class="select__anchor">Контрагенты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_contragents_items"></ul>
+                        <div class="select-custom" id="analysis_products_status_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите статус
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_status" tabindex="100">
-                            <span class="select__anchor">Статусы <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_status_items"></ul>
-                        </div>
-                        <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_products_date_first">
-                        <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_products_date_second">
+                        <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_date_first"><label for="filt_analysis_products_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
+                        <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_date_second"><label for="filt_analysis_products_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                         <button class="button__control" id="button_analysis_products_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                         <button class="button__control" id="button_analysis_products_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                         <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt=""></button>
@@ -486,37 +651,90 @@
                 </div>
                 <div class="analysis-products-all">
                     <div class="select__wrapper">
-                        <select class="select select__sort" id="sort_analysis_products_all">
-                            <option value="">Сортировка &#8661;</option>
-                            <option value="">По новизне &#8659;</option>
-                            <option value="">По новизне &#8657;</option>
-                            <option value="">По изделию &#8659;</option>
-                            <option value="">По изделию &#8657;</option>
-                            <option value="">По дате &#8659;</option>
-                            <option value="">По дате &#8657;</option>
-                        </select>
-                        <div class="select select__filter" id="filt_analysis_products_all_sets" tabindex="100">
-                            <span class="select__anchor">Комплекты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_all_sets_items"></ul>
+                        <div class="select-custom" id="sort_analysis_products_all">
+                            <div class="select-custom__header selectHeader">
+                                Выберите сортировку
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <ul class="select-custom__options optionsList">
+                                <li data-value="1">По новизне &#8659;</li>
+                                <li data-value="2">По новизне &#8657;</li>
+                                <li data-value="3">По комплекту &#8659;</li>
+                                <li data-value="4">По комплекту &#8657;</li>
+                                <li data-value="5">По дате &#8659;</li>
+                                <li data-value="6">По дате &#8657;</li>
+                            </ul>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_all_products" tabindex="100">
-                            <span class="select__anchor">Изделия <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_all_products_items"></ul>
+                        <div class="select-custom" id="analysis_products_all_set_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите комплект
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_all_components" style="display: none;" tabindex="100">
-                            <span class="select__anchor">Комплектующие <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_all_components_items"></ul>
+                        <div class="select-custom" id="analysis_products_all_prod_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите изделие
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_all_contragents" tabindex="100">
-                            <span class="select__anchor">Контрагенты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_all_contragents_items"></ul>
+                        <div class="select-custom" id="analysis_products_all_contr_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите контрагента
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
                         </div>
-                        <div class="select select__filter" id="filt_analysis_products_all_status" tabindex="100">
-                            <span class="select__anchor">Статусы <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                            <ul class="select__items" id="filt_analysis_products_all_status_items"></ul>
+                        <div class="select-custom" id="analysis_products_all_status_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите статус
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
                         </div>
-                        <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_products_all_date_first">
-                        <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_products_all_date_second">
+                        <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_all_date_first"><label for="filt_analysis_products_all_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
+                        <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_all_date_second"><label for="filt_analysis_products_all_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                         <button class="button__control" id="button_analysis_products_all_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                         <button class="button__control" id="button_analysis_products_all_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                         <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt=""></button>
@@ -548,37 +766,90 @@
             <!-- анализ комплектующих -->
             <div id="shipment/analysis_components" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_analysis_components">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                        <option value="">По компл. &#8659;</option>
-                        <option value="">По компл. &#8657;</option>
-                        <option value="">По дате &#8659;</option>
-                        <option value="">По дате &#8657;</option>
-                    </select>
-                    <div class="select select__filter" id="filt_analysis_components_all_sets" tabindex="100">
-                        <span class="select__anchor">Комплекты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_components_all_sets_items"></ul>
-                    </div>
-                    <div class="select select__filter" id="filt_analysis_components_all_products" tabindex="100">
-                        <span class="select__anchor">Изделия <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_components_all_products_items"></ul>
-                    </div>
-                    <div class="select select__filter" id="filt_analysis_components_all_components" tabindex="100" style="display: none;">
-                        <span class="select__anchor">Комплектующие <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_components_all_components_items"></ul>
-                    </div>
-                    <div class="select select__filter" id="filt_analysis_components_all_contragents" tabindex="100">
-                        <span class="select__anchor">Контрагенты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_components_all_contragents_items"></ul>
-                    </div>
-                    <div class="select select__filter" id="filt_analysis_components_all_status" tabindex="100">
-                        <span class="select__anchor">Статусы <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_analysis_components_all_status_items"></ul>
-                    </div>
-                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_components_all_date_first">
-                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="filt_analysis_components_all_date_second">
+                        <div class="select-custom" id="sort_analysis_components">
+                            <div class="select-custom__header selectHeader">
+                                Выберите сортировку
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <ul class="select-custom__options optionsList">
+                                <li data-value="1">По новизне &#8659;</li>
+                                <li data-value="2">По новизне &#8657;</li>
+                                <li data-value="3">По комплектующему &#8659;</li>
+                                <li data-value="4">По комплектующему &#8657;</li>
+                                <li data-value="5">По дате &#8659;</li>
+                                <li data-value="6">По дате &#8657;</li>
+                            </ul>
+                        </div>
+                    <div class="select-custom" id="analysis_components_set_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                                Выберите комплект
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
+                        </div>
+                        <div class="select-custom" id="analysis_components_prod_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите изделие
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
+                        </div>
+                        <div class="select-custom" id="analysis_components_contr_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите контрагента
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
+                        </div>
+                        <div class="select-custom" id="analysis_components_status_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите статус
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
+                        </div>
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_components_all_date_first"><label for="filt_analysis_components_all_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_components_all_date_second"><label for="filt_analysis_components_all_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     <button class="button__control" id="button_analysis_components_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                     <button class="button__control" id="button_analysis_components_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                 </div>
@@ -616,11 +887,71 @@
             <!-- лента -->
             <div id="production/events" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_events">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_events">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По новизне &#8659;</li>
+                            <li data-value="2">По новизне &#8657;</li>
+                        </ul>
+                    </div>
+                    <div class="select-custom" id="lentapp_users_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите пользователя
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select-custom" id="lentapp_prod_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите изделие
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select-custom" id="lentapp_techproc_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите тех. операцию
+                            <span class="select-custom__icon"></span>
+                    </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_lentapp_date_first"><label for="filt_lentapp_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_lentapp_date_second"><label for="filt_lentapp_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
+                    <button class="button__control" id="button_lentapp_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
+                    <button class="button__control" id="button_lentapp_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -644,13 +975,18 @@
             <!-- План -->
             <div id="production/plan" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_plan">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_plan">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -666,7 +1002,7 @@
                         <tr class="tr">
                             <td class="td"><div class="custom-select"><select class="select" id="select_add_plan_product"><option value="">Выберите изделие</option></select><span class="select-text"></span></div></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_count" value="" placeholder="Введите кол-во"></td>
-                            <td class="td td__text_align_center"><input class="input__type-text input__type-date" type="date" id="input_add_plan_date" value=""></td>
+                            <td class="td td__text_align_center"><div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" id="input_add_plan_date" value=""><label for="input_add_plan_date" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_prim" value="" placeholder="Введите примечание"></td>
                             <td class="td td_buttons-control"><button class="button__control button__control_add-plan"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
                         </tr>
@@ -676,11 +1012,16 @@
             <!-- Тех. операция -->
             <div id="production/process" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_techproc">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По номеру &#8659;</option>
-                        <option value="">По номеру &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_techproc">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По номеру &#8659;</li>
+                            <li data-value="2">По номеру &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -702,8 +1043,8 @@
             <!-- Анализ -->
             <div id="production/pivtablepp" class="sidebar__tabcontent__container">
                 <div class="sidebar__tabcontent__header">
-                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="pivtablepp_analysis_date_first">
-                    <input class="input__type-text input__type-date-filter input__type-text_title" type="date" id="pivtablepp_analysis_date_second">
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="pivtablepp_analysis_date_first"><label for="pivtablepp_analysis_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
+                    <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="pivtablepp_analysis_date_second"><label for="pivtablepp_analysis_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     <button class="button__control" id="button_pivtablepp_analysis_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                     <button class="button__control" id="button_pivtablepp_analysis_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                 </div>
@@ -736,21 +1077,52 @@
             <!-- главная -->
             <div id="provider/main" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_docpost">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По номеру 1С &#8657;</option>
-                        <option value="">По номеру 1С &#8659;</option>
-                        <option value="">По дате 1С &#8657;</option>
-                        <option value="">По дате 1С &#8659;</option>
-                    </select>
-                    <div class="select select__filter" id="filt_docpost_contragents" tabindex="100">
-                        <span class="select__anchor">Контрагенты <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_docpost_contragents_items"></ul>
-                    </div>
-                    <div class="select select__filter" id="filt_docpost_status" tabindex="100">
-                        <span class="select__anchor">Статусы <img class="select__img" src="../blocks/select/img/filter.svg" alt=""></span>
-                        <ul class="select__items" id="filt_docpost_status_items"></ul>
-                    </div>
+                        <div class="select-custom" id="sort_docpost">
+                            <div class="select-custom__header selectHeader">
+                                Выберите сортировку
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <ul class="select-custom__options optionsList">
+                                <li data-value="1">По номеру 1С &#8657;</li>
+                                <li data-value="2">По номеру 1С &#8659;</li>
+                                <li data-value="3">По дате 1С &#8657;</li>
+                                <li data-value="4">По дате 1С &#8659;</li>
+                            </ul>
+                        </div>
+                        <div class="select-custom" id="docpost_contr_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите контрагента
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
+                        </div>
+                        <div class="select-custom" id="docpost_status_customDropdown">
+                            <div class="select-custom__header selectHeader">
+                                Выберите статус
+                                <span class="select-custom__icon"></span>
+                            </div>
+                            <div class="select-custom__options">
+                                <div class="select-custom__search-box">
+                                    <input type="text" class="searchInput" placeholder="Поиск..." />
+                                </div>
+                                <div class="optionsList">
+
+                                </div>
+                                <div class="select-custom__no-results noResults">
+                                    Ничего не найдено
+                                </div>
+                            </div>
+                        </div>
                     <button class="button__control" id="button_docpost_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
                     <button class="button__control" id="button_docpost_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
                     <div class="modal__input-wrapper">
@@ -764,8 +1136,7 @@
                 <table class="table">
                     <thead class="thead">
                         <tr class="tr">
-                            <td class="td td_active">Статус</td>
-    
+                            <td class="td td_active" style="width: 150px;">Статус</td>
                             <td class="td td_active">№</td>
                             <td class="td td_active">Дата</td>
                             <td class="td td_active">№ 1С</td>
@@ -785,13 +1156,18 @@
             <!-- статус -->
             <div id="provider/statusdoc" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_statuses_statusdoc">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_statuses_statusdoc">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -831,25 +1207,29 @@
             <!-- склад главная -->
             <div id="storage/main" class="sidebar__tabcontent__container">
                 <div class="modal__body">
-                    <div class="modal__tree">
+                    <div class="modal__tree" id="wrapper_prod_tree">
                         <div class="select__wrapper">
-                            <select class="select select__sort" id="sort_storage_main">
-                                <option value="">Сортировка &#8661;</option>
-                                <option value="">По названию &#8659;</option>
-                                <option value="">По названию &#8657;</option>
-                            </select>
+                            <div class="select-custom" id="sort_storage_main">
+                                <div class="select-custom__header selectHeader">
+                                    Выберите сортировку
+                                    <span class="select-custom__icon"></span>
+                                </div>
+                                <ul class="select-custom__options optionsList">
+                                    <li data-value="1">По названию &#8659;</li>
+                                    <li data-value="2">По названию &#8657;</li>
+                                </ul>
+                            </div>
                         </div>
                         <div id="tree_storage_main"></div>
                     </div>
                     <div class="modal__table-wrapper">
-                        <div class="modal__table">
+                        <div class="modal__table" id="wrapper_prod_table">
                             <table class="table">
                                 <thead class="thead">
                                     <tr class="tr">
-                                        <td class="td td_active">Инфо</td>
-                                        <td class="td td_active">Отгр.</td>
-                                        <td class="td td_active">Тип</td>
                                         <td class="td td_active">Комплект/Изделие</td>
+                                        <td class="td td_active">Тип</td>
+                                        <td class="td td_active">Отгр.</td>
                                         <td class="td td_active"></td>
                                     </tr>
                                 </thead>
@@ -858,7 +1238,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="modal__table">
+                        <div class="modal__table" id="wrapper_prod_found">
                             <!--<table class="table">
                                 <thead class="thead">
                                     <tr class="tr">
@@ -883,13 +1263,18 @@
             <!-- склад статус -->
             <div id="storage/storages" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_storages">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_storages">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -909,13 +1294,18 @@
             <!-- склад цвета -->
             <div id="storage/colors" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_colors">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_colors">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -935,13 +1325,18 @@
             <!-- склад версии плат -->
             <div id="storage/verapp" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_verapp">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_verapp">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -961,13 +1356,18 @@
             <!-- склад версии ПО -->
             <div id="storage/verpp" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_verpp">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_verpp">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -997,25 +1397,29 @@
             <!-- комплектующие главная -->
             <div id="components/main" class="sidebar__tabcontent__container">
                 <div class="modal__body">
-                    <div class="modal__tree">
+                    <div class="modal__tree" id="wrapper_comp_tree">
                         <div class="select__wrapper">
-                            <select class="select select__sort" id="sort_components">
-                                <option value="">Сортировка &#8661;</option>
-                                <option value="">По названию &#8659;</option>
-                                <option value="">По названию &#8657;</option>
-                            </select>
+                            <div class="select-custom" id="sort_components">
+                                <div class="select-custom__header selectHeader">
+                                    Выберите сортировку
+                                    <span class="select-custom__icon"></span>
+                                </div>
+                                <ul class="select-custom__options optionsList">
+                                    <li data-value="1">По названию &#8659;</li>
+                                    <li data-value="2">По названию &#8657;</li>
+                                </ul>
+                            </div>
                         </div>
                         <div id="jstree_div"></div>
                     </div>
                     <div class="modal__table-wrapper">
-                        <div class="modal__table">
+                        <div class="modal__table" id="wrapper_comp_table">
                             <table class="table">
                                 <thead class="thead">
                                     <tr class="tr">
-                                        <td class="td td_active">Инфо</td>
-                                        <td class="td td_active">Абстр.</td>
                                         <td class="td td_active">Комплектующее</td>
                                         <td class="td td_active">Тип</td>
+                                        <td class="td td_active">Абстр.</td>
                                         <td class="td td_active"></td>
                                     </tr>
                                 </thead>
@@ -1024,7 +1428,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="modal__table">
+                        <div class="modal__table" id="wrapper_comp_found">
                             <table class="table">
                                 <thead class="thead">
                                     <tr class="tr">
@@ -1049,13 +1453,18 @@
             <!-- комплектующие ед. изм. -->
             <div id="components/measurement" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_measurement">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_measurement">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -1075,13 +1484,18 @@
             <!-- комплектующие приставки си -->
             <div id="components/coeffs" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_coeffs">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_coeffs">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -1107,13 +1521,18 @@
             <!-- комплектующие свойства -->
             <div id="components/props" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_props">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_props">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -1135,13 +1554,18 @@
             <!-- комплектующие типы -->
             <div id="components/typeselem" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
-                    <select class="select select__sort" id="sort_typeselem">
-                        <option value="">Сортировка &#8661;</option>
-                        <option value="">По названию &#8659;</option>
-                        <option value="">По названию &#8657;</option>
-                        <option value="">По новизне &#8659;</option>
-                        <option value="">По новизне &#8657;</option>
-                    </select>
+                    <div class="select-custom" id="sort_typeselem">
+                        <div class="select-custom__header selectHeader">
+                            Выберите сортировку
+                            <span class="select-custom__icon"></span>
+                        </div>
+                        <ul class="select-custom__options optionsList">
+                            <li data-value="1">По названию &#8659;</li>
+                            <li data-value="2">По названию &#8657;</li>
+                            <li data-value="3">По новизне &#8659;</li>
+                            <li data-value="4">По новизне &#8657;</li>
+                        </ul>
+                    </div>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -1164,13 +1588,18 @@
         <!-- контрагенты -->
         <div class="sidebar__tabcontent" id="contragents">
             <div class="select__wrapper">
-                <select class="select select__sort" id="sort_contragents">
-                    <option value="">Сортировка &#8661;</option>
-                    <option value="">По названию &#8659;</option>
-                    <option value="">По названию &#8657;</option>
-                    <option value="">По новизне &#8659;</option>
-                    <option value="">По новизне &#8657;</option>
-                </select>
+                <div class="select-custom" id="sort_contragents">
+                    <div class="select-custom__header selectHeader">
+                        Выберите сортировку
+                        <span class="select-custom__icon"></span>
+                    </div>
+                    <ul class="select-custom__options optionsList">
+                        <li data-value="1">По названию &#8659;</li>
+                        <li data-value="2">По названию &#8657;</li>
+                        <li data-value="3">По новизне &#8659;</li>
+                        <li data-value="4">По новизне &#8657;</li>
+                    </ul>
+                </div>
             </div>
             <table class="table">
                 <thead class="thead">
@@ -1392,10 +1821,7 @@
             <span class="modal__title" id="component_name_title"></span>
             <span class="modal__close" id="close_info">&times;</span>
         </div>
-        <div class="modal__content">
-            <div class="modal__header">
-                
-            </div>
+        <div class="modal__content" id="modal_info_component_resize">
             <div class="modal__body">
                 <div class="carousel">
                     <div class="carousel__container">
@@ -1410,29 +1836,28 @@
                         <img class="carousel__thumbnail" id="component_edit_imgs_img" src="../blocks/carousel/img/edit_img.svg" alt="Редактировать">
                     </div>
                 </div>
-                <div class="modal__body-wrapper">
-                    <div class="modal__table-wrapper">
-                        <div class="modal__input-wrapper">
-                            <label class="input__type-text__label" for="component_name">Название:</label>
-                            <input class="input__type-text input__type-text_modal" type="text" id="component_name" value="" placeholder="Введите название">
+                <div class="modal__wrapper-width-100">
+                    <div class="modal__header">
+                        <div>
+                            <div class="modal__input-wrapper">
+                                <label class="input__type-text__label" for="component_name">Название:</label>
+                                <input class="input__type-text input__type-text_modal" type="text" id="component_name" value="" placeholder="Введите название">
+                            </div>
+                            <div class="modal__input-wrapper">
+                                <label class="input__type-text__label" for="component_comment">Примечание:</label>
+                                <input class="input__type-text input__type-text_modal" type="text" id="component_comment" value="" placeholder="Введите примечание">
+                            </div>
                         </div>
-                        <div class="modal__input-wrapper">
-                            <label class="input__type-text__label" for="component_type">Тип:</label>
-                            <div class="custom-select"><select class="select select_modal" id="component_type"></select><span class="select-text"></span></div>
-                            <button class="button__control" id="component_type_info" value=""><img class="button__control__img" src="../blocks/button/__control/img/info.svg" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="modal__table-wrapper">
-
-                    </div>
-                    <div class="modal__table-wrapper">
-                        <div class="modal__input-wrapper">
-                            <label class="input__type-text__label" for="component_comment">Примечание:</label>
-                            <textarea class="input__type-text input__type-text_modal" id="component_comment" value="" placeholder="Введите примечание"></textarea>
-                        </div>
-                        <div class="modal__input-wrapper">
-                            <input class="checkbox" type="checkbox" id="component_tpack">
-                            <label for="component_tpack">Тех. упаковка</label>
+                        <div>
+                            <div class="modal__input-wrapper">
+                                <label class="input__type-text__label" for="component_type">Тип:</label>
+                                <div class="custom-select"><select class="select select_modal" id="component_type"></select><span class="select-text"></span></div>
+                                <button class="button__control" id="component_type_info" value=""><img class="button__control__img" src="../blocks/button/__control/img/info.svg" alt=""></button>
+                            </div>
+                            <div class="modal__input-wrapper">
+                                <input class="checkbox" type="checkbox" id="component_tpack">
+                                <label for="component_tpack">Тех. упаковка</label>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -1452,9 +1877,9 @@
                             <tbody id="tb_modal_info_component">
                                 <tr class="tr">
                                     <td class="td"></td>
-                                    <td class="td"><div class="custom-select"><select class="select" id="component_info_add_props_select"></select><span class="select-text"></span></div></td>
+                                    <td class="td"><div class="custom-select"><select class="select input__type-text_modal_fix-width-150" id="component_info_add_props_select"></select><span class="select-text"></span></div></td>
                                     <td class="td">---</td>
-                                    <td class="td"><div class="custom-select"><select class="select" id="component_info_add_props_value_select"><option value="">---</option></select><span class="select-text"></span></div><input class="input__type-text input__type-text_title" type="text" id="component_info_add_props_value_input" value="" style="display: none;"></td>
+                                    <td class="td"><div class="custom-select"><select class="select input__type-text_modal_fix-width-150" id="component_info_add_props_value_select"><option value="">---</option></select><span class="select-text"></span></div><input class="input__type-text input__type-text_title" type="text" id="component_info_add_props_value_input" value="" style="display: none;"></td>
                                     <!--<td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_perc" value="0"></td>
                                     <td class="td"><input class="input__type-text input__type-text_title input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
                                     <td class="td"><input class="input__type-text input__type-text_title input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>-->
@@ -1510,81 +1935,91 @@
             <span class="modal__title" id="info_product_name_title"></span>
             <span class="modal__close" id="info_product_close">&times;</span>
         </div>
-        <div class="modal__content">
-            <div class="modal__header">
-                
-            </div>
+        <div class="modal__content" id="info_product_resize">
             <div class="modal__body">
-                <div class="modal__body-wrapper">
-                    <div class="modal__table-wrapper_task">
-                        <div class="modal__input-wrapper">
-                            <label class="input__type-text__label" for="info_product_name">Название:</label>
-                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_name" value="" placeholder="Введите название">
+                <div class="modal__wrapper-width-100">
+                    <div class="modal__header">
+                        <div>
+                            <div class="modal__input-wrapper">
+                                <label class="input__type-text__label" for="info_product_name">Название:</label>
+                                <input class="input__type-text input__type-text_modal" type="text" id="info_product_name" value="" placeholder="Введите название">
+                            </div>
                         </div>
-                        <div class="modal__input-wrapper">
-                            <label class="input__type-text__label" for="info_product_color">Цвет:</label>
-                            <div class="custom-select"><select class="select select_modal" id="info_product_color"></select><span class="select-text"></span></div>
+                        <div>
+                            <div class="modal__input-wrapper">
+                                <button class="button__control" id="info_product_tcardprods" value=""><img class="button__control__img" src="../blocks/button/__tab/img/process.svg" alt=""></button>
+                            </div>
                         </div>
-                        <div class="modal__input-wrapper">
-                            <label class="input__type-text__label" for="info_product_train">Вагон:</label>
-                            <input class="input__type-text input__type-text_modal" type="text" id="info_product_train" value="" placeholder="Введите № вагона">
+                        <div>
+                            <div class="modal__input-wrapper">
+                                <label class="input__type-text__label" for="info_product_color">Цвет:</label>
+                                <div class="custom-select"><select class="select select_modal input__type-text_modal_fix-width-150" id="info_product_color"></select><span class="select-text"></span></div>
+                            </div>
+                            <div class="modal__table-wrapper_task">
+                                <div class="modal__input-wrapper">
+                                    <label class="input__type-text__label" for="info_product_train">Вагон:</label>
+                                    <input class="input__type-text input__type-text_modal" type="text" id="info_product_train" value="" placeholder="Введите № вагона">
+                                </div>
+                                
+                            </div>
+                            <div class="modal__input-wrapper">
+                                <label class="input__type-text__label" for="info_product_type">Тип:</label>
+                                <div class="custom-select">
+                                    <select class="select select_modal" id="info_product_type">
+                                        <option value=" ">---</option>
+                                        <option value="0">Сборочная единица</option>
+                                        <option value="1">Комплект</option>
+                                    </select>
+                                    <span class="select-text"></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal__input-wrapper">
-                            <button class="button__control" id="info_product_tcardprods" value="">Тех. процесс</button>
-                        </div>
-                        <div class="modal__input-wrapper">
-                            <input class="checkbox" type="checkbox" id="info_product_fship" disabled>
-                            <label for="info_product_fship">Отгружаемое</label>
-                        </div>
-                        <div class="modal__input-wrapper">
-                            <label class="input__type-text__label" for="info_product_type">Тип:</label>
-                            <div class="custom-select">
-                                <select class="select select_modal" id="info_product_type">
-                                    <option value=" ">---</option>
-                                    <option value="0">Изделие</option>
-                                    <option value="1">Комплект</option>
-                                </select>
-                                <span class="select-text"></span>
+                        <div>
+                            <div class="modal__input-wrapper">
+                                <input class="checkbox" type="checkbox" id="info_product_fship" disabled>
+                                <label for="info_product_fship">Отгружаемое</label>
                             </div>
                         </div>
                     </div>
-                    <div class="modal__table-wrapper-info-prod">
-                        <table class="table">
-                            <thead class="thead">
-                                <tr class="tr">
-                                    <td class="td td_active">Изделие</td>
-                                    <td class="td td_active">Кол-во</td>
-                                    <td class="td td_active"></td>
-                                </tr>
-                            </thead>
-                            <tbody id="tb_info_product_prod">
-                                <tr class="tr">
-                                    <td class="td"><button class="button__select button__select_product_innprod" id="button_info_product_add_prod" value="">Выберите изделие</button></td>
-                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_prod" placeholder="Введите кол-во"></td>
-                                    <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal__table-wrapper-info-prod">
-                        <table class="table">
-                            <thead class="thead">
-                                <tr class="tr">
-                                    <td class="td td_active">Тип</td>
-                                    <td class="td td_active">Комплектующее</td>
-                                    <td class="td td_active">Кол-во</td>
-                                    <td class="td td_active"></td>
-                                </tr>
-                            </thead>
-                            <tbody id="tb_info_product_comp">
-                                <tr class="tr">
-                                    <td class="td"></td>
-                                    <td class="td"><button class="button__select button__select_component button__select_product_componenet" id="button_info_product_add_comp" value="">Выберите комплектующее</button></td>
-                                    <td class="td"><input class="input__type-text input__type-text_title" type="text" id="input_info_product_add_comp" placeholder="Введите кол-во"></td>
-                                    <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="modal__body">
+                        <div class="modal__table-wrapper-info-prod">
+                            <table class="table">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td td_active">Сборочная единица</td>
+                                        <td class="td td_active">Кол-во</td>
+                                        <td class="td td_active"></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb_info_product_prod">
+                                    <tr class="tr">
+                                        <td class="td"><button class="button__select button__select_product_innprod" id="button_info_product_add_prod" value="">Выберите изделие</button></td>
+                                        <td class="td"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_info_product_add_prod"></td>
+                                        <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal__table-wrapper-info-prod">
+                            <table class="table  table_no-rotation">
+                                <thead class="thead">
+                                    <tr class="tr">
+                                        <td class="td td_active">Тип</td>
+                                        <td class="td td_active">Комплектующее</td>
+                                        <td class="td td_active">Кол-во</td>
+                                        <td class="td td_active"></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb_info_product_comp">
+                                    <tr class="tr">
+                                        <td class="td"></td>
+                                        <td class="td"><button class="button__select button__select_component button__select_product_componenet" id="button_info_product_add_comp" value="">Выберите комплектующее</button></td>
+                                        <td class="td"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_info_product_add_comp"></td>
+                                        <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1600,7 +2035,7 @@
             <span class="modal__title">Выбор комплектующего</span>
             <span class="modal__close" id="close_component_select">&times;</span>
         </div>
-        <div class="modal__content">
+        <div class="modal__content" id="modal_select_component_resize">
             <div class="modal__body">
                 <div class="modal__tree">
                     <div id="modal_select_component_tree"></div>
@@ -1656,7 +2091,7 @@
             <span class="modal__title">Выбор изделия</span>
             <span class="modal__close" id="close_products_select">&times;</span>
         </div>
-        <div class="modal__content">
+        <div class="modal__content" id="modal_select_products_resize">
             <div class="modal__body">
                 <div class="modal__tree">
                     <div id="modal_select_products_tree"></div>
@@ -1712,7 +2147,7 @@
             <span class="modal__title">Перемещение комплектующего</span>
             <span class="modal__close" id="close_component_transfer">&times;</span>
         </div>
-        <div class="modal__content">
+        <div class="modal__content" id="modal_transfer_component_resize">
             <div class="modal__body">
                 <div class="">
                     <input class="input__type-text input__type-text_modal" type="text" id="component_transfer_name" value="" name="" disabled>
@@ -1734,7 +2169,7 @@
             <span class="modal__title">Перемещение комплектующего</span>
             <span class="modal__close" id="close_product_transfer">&times;</span>
         </div>
-        <div class="modal__content">
+        <div class="modal__content" id="modal_transfer_product_resize">
             <div class="modal__body">
                 <div class="">
                     <input class="input__type-text input__type-text_modal" type="text" id="product_transfer_name" value="" name="" disabled>
@@ -1756,7 +2191,7 @@
             <span class="modal__title" id="docpost_numb_title"></span>
             <span class="modal__close" id="close_info_docpost">&times;</span>
         </div>
-        <div class="modal__content">
+        <div class="modal__content" id="modal_info_docpost_resize">
             <div class="modal__header">
                 <div>
                     <div class="modal__input-wrapper">
@@ -1767,29 +2202,25 @@
                         <label class="input__type-text__label" for="docpost_user">Пользователь:</label>
                         <div class="custom-select"><select class="select select_modal" id="docpost_user"></select><span class="select-text"></span></div>
                     </div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="docpost_prim">Примечание:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_prim" value="" placeholder="Введите примечание">
-                    </div>
                 </div>
                 <div>
                     <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="docpost_numb">Номер:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_numb" value="" placeholder="Введите номер">
+                        <label class="input__type-text__label" for="docpost_numb">№:</label>
+                        <input class="input__type-text input__type-text__small input__type-text_modal" type="text" id="docpost_numb" value="" placeholder="Введите номер">
                     </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="docpost_numb1c">№ 1C:</label>
+                        <input class="input__type-text input__type-text__small input__type-text_modal" type="text" id="docpost_numb1c" value="" disabled>
+                    </div>
+                </div>
+                <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="docpost_date">Дата:</label>
-                        <input class="input__type-text input__type-text_title input__type-text_modal" type="date" id="docpost_date" value="" placeholder="Введите дату">
-                    </div>
-                </div>
-                <div>
-                    <div class="modal__input-wrapper">
-                        <label class="input__type-text__label" for="docpost_numb1c">Номер 1C:</label>
-                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_numb1c" value="" disabled>
+                        <div class="input__type-date_wrapper"><input class="input__type-text input__type-date input__type-text_modal" type="date" id="docpost_date" value="" placeholder="Введите дату"><label for="docpost_date" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     </div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="docpost_date1c">Дата 1C:</label>
-                        <input class="input__type-text input__type-text_modal" type="date" id="docpost_date1c" value="" disabled>
+                        <div class="input__type-date_wrapper"><input class="input__type-text input__type-date input__type-text_modal" type="date" id="docpost_date1c" value="" disabled><label for="docpost_date1c" class="input__type-date_icon input__type-date_icon-no-active"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     </div>
                 </div>
                 <div>
@@ -1797,6 +2228,12 @@
                         <label class="input__type-text__label" for="docpost_contr">Контрагент:</label>
                         <input class="input__type-text input__type-text_modal" type="text" id="docpost_contr" value="" disabled>
                     </div>
+                    <div class="modal__input-wrapper">
+                        <label class="input__type-text__label" for="docpost_prim">Примечание:</label>
+                        <input class="input__type-text input__type-text_modal" type="text" id="docpost_prim" value="" placeholder="Введите примечание">
+                    </div>
+                </div>
+                <div>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="docpost_storage">Склад:</label>
                         <div class="custom-select"><select class="select select_modal" id="docpost_storage"></select><span class="select-text"></span></div>
@@ -1830,13 +2267,10 @@
     <!-- мод. окно свойств типа -->
     <div class="modal" id="modal_typeselem">
         <div class="modal__moving" id="modal_typeselem_moving">
-            <span class="modal__title">Свойства типа <span class="modal__title" id="typeselem_title"></span></span>
+            <span class="modal__title" id="typeselem_title"></span>
             <span class="modal__close" id="close_typeselem">&times;</span>
         </div>
-        <div class="modal__content">
-            <div class="modal__header">
-
-            </div>
+        <div class="modal__content" id="modal_typeselem_resize">
             <div class="modal__body">
                 <table class="table" id="main_tb_modal_typeselem">
                     <thead class="thead">
@@ -1855,9 +2289,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal__footer">
-                
-            </div>
         </div>
     </div>
     <!-- мод. окно тех. карты -->
@@ -1866,10 +2297,7 @@
             <span class="modal__title">Тех. процесс изделия <span class="modal__title" id="tcardprods_title"></span></span>
             <span class="modal__close" id="close_tcardprods">&times;</span>
         </div>
-        <div class="modal__content">
-            <div class="modal__header">
-
-            </div>
+        <div class="modal__content" id="modal_tcardprods_resize">
             <div class="modal__body">
                 <table class="table" id="main_tb_modal_tcardprods">
                     <thead class="thead">
@@ -1882,7 +2310,7 @@
                     </thead>
                     <tbody id="tb_modal_tcardprods">
                         <tr class="tr">
-                            <td class="td"><input class="input__type-text input__type-text_title" type="text" id="tcardprods_add_input_num" value="" placeholder="Введите номер операции"></td>
+                            <td class="td"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="tcardprods_add_input_num" value="" placeholder="Номер"></td>
                             <td class="td"><div class="custom-select"><select class="select" id="tcardprods_add_select_proc"></select><span class="select-text"></span></div></td>
                             <td class="td"><input class="checkbox" type="checkbox" id="tcardprods_add_chb_fix"><label for="tcardprods_add_chb_fix"></label></td>
                             <td class="td td_buttons-control"><button class="button__control" id="tcardprods_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
@@ -1890,21 +2318,15 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal__footer">
-                
-            </div>
         </div>
     </div>
     <!-- мод. окно значений свойства -->
     <div class="modal" id="enums_modal">
         <div class="modal__moving" id="enums_modal_moving">
-            <span class="modal__title">Значения свойства <span class="modal__title" id="enums_title"></span></span>
+            <span class="modal__title" id="enums_title"></span>
             <span class="modal__close" id="enums_close">&times;</span>
         </div>
-        <div class="modal__content">
-            <div class="modal__header">
-
-            </div>
+        <div class="modal__content" id="enums_modal_resize">
             <div class="modal__body">
                 <table class="table" id="enums_main_tb_modal">
                     <thead class="thead">
@@ -1921,9 +2343,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal__footer">
-                
-            </div>
         </div>
     </div>
     <!-- мод. окно расширенного поиска -->
@@ -1932,10 +2351,7 @@
             <span class="modal__title">Расширенный поиск</span>
             <span class="modal__close" id="found_plus_close">&times;</span>
         </div>
-        <div class="modal__content">
-            <div class="modal__header">
-
-            </div>
+        <div class="modal__content" id="found_plus_modal_resize">
             <div class="modal__body">
                 <table class="table" id="found_plus_main_tb_modal">
                     <thead class="thead">
@@ -1950,9 +2366,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal__footer">
-                
-            </div>
         </div>
     </div>
     <!-- мод. окно редактирования изображений -->
@@ -1961,10 +2374,7 @@
             <span class="modal__title">Редактирование изображений <span class="modal__title" id="comp_edit_imgs_title"></span></span>
             <span class="modal__close" id="comp_edit_imgs_close">&times;</span>
         </div>
-        <div class="modal__content">
-            <div class="modal__header">
-
-            </div>
+        <div class="modal__content" id="comp_edit_imgs_modal_resize">
             <div class="modal__body">
                 <table class="table">
                     <thead class="thead">
@@ -1985,9 +2395,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal__footer">
-                
-            </div>
         </div>
     </div>
     <!-- мод. окно подстановки поставки -->
@@ -1996,7 +2403,7 @@
             <span class="modal__title">Подстановка</span>
             <span class="modal__close" id="docpost_substdoc_close">&times;</span>
         </div>
-        <div class="modal__content">
+        <div class="modal__content" id="docpost_substdoc_modal_resize">
             <div class="modal__header">
                 <div>
                     <div class="modal__input-wrapper">

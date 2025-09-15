@@ -1,7 +1,5 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, listenFiltSelectAnalisys, sendFiltAnalisys, clearFiltAnalisys, sortAnalisys, makeSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
-import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
-
-let filt_analysis_products = [];
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, listenCustomSelect, sendFiltAnalisys, clearCustomSelect, sortAnalisys, makeSelect, highlightButtonSave, responseProcessor, listenDate, clearTableAll} from '../../../js/common/common.js';
+import {customSelect, customSortSelect} from '../../select/select.js';
 
 export const funcGetShipProducts = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipProducts", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_products)}`};
@@ -14,6 +12,7 @@ const funcProcessGetShipProducts = (result, respobj) => {
     console.log("Анализ изделий:", respobj);
 
     let tb_id = "tb_analysis_products";
+    clearTableAll("tb_analysis_products");
 
     for (let key in respobj.answ) {
         let val       = respobj.answ[key];
@@ -80,42 +79,42 @@ function addRowColumsShipProducts(SNprod, NPset, name, color, verapp, verpp, mac
     cellverpp.innerHTML  = verpp;
     cellmac.innerHTML    = mac;
     cellkontr.innerHTML  = kontr;
-    celldate.innerHTML   = `<input class="input__type-text input__type-date" type="date" value="${date}" name="shipproducts_date_${uin}">`;
+    celldate.innerHTML   = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="shipproducts_date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div>`;
     cellprim.innerHTML   = `<input class="input__type-text" type="text" value="${prim}" name="shipproducts_prim_${uin}">`;
     cellBtn.innerHTML    = `<button class="button__control button__control_update button__control_update-ananlysis-product" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 }
 
-addToDropdownPsevdo("filt_analysis_products_sets_items", JSON.parse(localStorage.getItem("sets_list")));
-psevdoSelect("filt_analysis_products_sets");
+customSelect('analysis_products_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
+customSelect('analysis_products_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
+customSelect('analysis_products_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
-addToDropdownPsevdo("filt_analysis_products_products_items", JSON.parse(localStorage.getItem("products_list")));
-psevdoSelect("filt_analysis_products_products");
+let filt_analysis_products = [];
+let filt_1 = {fld: "uin", on: "products"}; let val_1 = [];
+let filt_2 = {fld: "uin", on: "contragents"}; let val_2 = [];
+let filt_3 = {fld: "uin", on: "statuses"}; let val_3 = [];
+let filt_4 = {fld: "date"}; let val_4 = [];
 
-addToDropdownPsevdo("filt_analysis_products_components_items", JSON.parse(localStorage.getItem("components_list")));
-psevdoSelect("filt_analysis_products_components");
+listenCustomSelect("analysis_products_prod_customDropdown", filt_1, val_1, filt_analysis_products);
+listenCustomSelect("analysis_products_contr_customDropdown", filt_2, val_2, filt_analysis_products);
+listenCustomSelect("analysis_products_status_customDropdown", filt_3, val_3, filt_analysis_products);
+listenDate(document.getElementById('filt_analysis_products_date_first'), document.getElementById('filt_analysis_products_date_second'), filt_4, val_4, filt_analysis_products);
 
-addToDropdownPsevdo("filt_analysis_products_contragents_items", JSON.parse(localStorage.getItem("contragents_list")));
-psevdoSelect("filt_analysis_products_contragents");
-
-addToDropdownPsevdo("filt_analysis_products_status_items", JSON.parse(localStorage.getItem("statuses_list")));
-psevdoSelect("filt_analysis_products_status");
-
-let button_analysis_products_choose = document.getElementById("button_analysis_products_choose");
-button_analysis_products_choose.addEventListener("click", () => {
+document.getElementById("button_analysis_products_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_products, 'tb_analysis_products', 'shipProducts', funcProcessGetShipProducts);
-});
+})
 
-let button_analysis_products_reset = document.getElementById("button_analysis_products_reset");
-button_analysis_products_reset.addEventListener("click", () => {
+document.getElementById("button_analysis_products_reset").addEventListener("click", () => {
     filt_analysis_products.length = 0;
-    clearFiltAnalisys('filt_analysis_products_sets_items', 'filt_analysis_products_products_items', 'filt_analysis_products_components_items', 'filt_analysis_products_contragents_items',
-    'filt_analysis_products_status_items', "filt_analysis_products_date_first", "filt_analysis_products_date_second", 'tb_analysis_products', filt_analysis_products, funcGetShipProducts())
-});
+    clearCustomSelect('analysis_products_prod_customDropdown', 'изделие');
+    clearCustomSelect('analysis_products_contr_customDropdown', 'контрагента');
+    clearCustomSelect('analysis_products_status_customDropdown', 'статус');
+    document.getElementById('filt_analysis_products_date_first').value = '';
+    document.getElementById('filt_analysis_products_date_second').value = '';
+    funcGetShipProducts();
+})
 
-listenFiltSelectAnalisys("filt_analysis_products_sets_items", "filt_analysis_products_products_items", 'filt_analysis_products_components_items', "filt_analysis_products_contragents_items",
-"filt_analysis_products_status_items", "filt_analysis_products_date_first", "filt_analysis_products_date_second", filt_analysis_products)
-
-sortAnalisys("sort_analysis_products", "tb_analysis_products", filt_analysis_products, "shipProducts", funcProcessGetShipProducts);
+customSortSelect("sort_analysis_products");
+sortAnalisys("sort_analysis_products", filt_analysis_products, "shipProducts", funcProcessGetShipProducts);
 
 /* переклуючение таблиц */
 const tb1 = document.querySelector('.analysis-products');

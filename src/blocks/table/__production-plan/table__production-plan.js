@@ -1,4 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, highlightButtonSave, makeSelect, removeOptionsSetValue, addToDropdown, findForUpdateSelect, responseProcessor} from '../../../js/common/common.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetPlan = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"1000", "sort":"date"};
@@ -79,7 +80,7 @@ const addPlanRow = (uinprod, nameprod, count, date, prim, del, uin, tb_id) => {
 
     makeSelect("plan_product_select_", uin, nameprod, uinprod, "products_list", "select", cellProd);
     cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="plan_count_${uin}">`
-    cellDate.innerHTML  = `<input class="input__type-text input__type-date" type="date" value="${date}" name="plan_date_${uin}">`
+    cellDate.innerHTML  = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="plan_date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div>`
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="plan_prim_${uin}">`
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
@@ -113,34 +114,28 @@ button_control_add_product.addEventListener("click", () => {
     }
 })
 
-document.getElementById("sort_plan").addEventListener('change', function(){
-    clearTable("tb_plan");
-
-    let option = this.selectedIndex;
-    switch (option){
-        case 0:
-        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
-        funcCommand(body0, funcProcessGetPlan);
-        break;
-
-        case 1:
-        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "asort":"name"};
-        funcCommand(body1, funcProcessGetPlan);
-        break;
-
-        case 2:
-        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"name"};
-        funcCommand(body2, funcProcessGetPlan);
-        break;
-
-        case 3:
-        let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "asort":"date"};
-        funcCommand(body3, funcProcessGetPlan);
-        break;
-
-        case 4:
-        let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
-        funcCommand(body4, funcProcessGetPlan);
-        break;
-    }
-});
+customSortSelect("sort_plan");
+const dropdown = document.getElementById("sort_plan");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "asort":"name"};
+                funcCommand(body1, funcProcessGetPlan);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"name"};
+                funcCommand(body2, funcProcessGetPlan);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "asort":"date"};
+                funcCommand(body3, funcProcessGetPlan);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "sort":"date"};
+                funcCommand(body4, funcProcessGetPlan);
+            break;
+        }
+    })
+})

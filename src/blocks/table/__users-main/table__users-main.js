@@ -1,5 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoUserOpenModal} from '../../modal/__users/modal__users.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetUsers = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"100"};
@@ -74,4 +75,28 @@ const addUsersRow = (num, name, job, email, phone, del, uin, tb_id) => {
     cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-users-main${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
-listenSortSelect("sort_users", "tb_users", "users", funcProcessGetUsers);
+customSortSelect("sort_users");
+const dropdown = document.getElementById("sort_users");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetUsers);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetUsers);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "sort":"uin"};
+                funcCommand(body3, funcProcessGetUsers);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "asort":"uin"};
+                funcCommand(body4, funcProcessGetUsers);
+            break;
+        }
+    })
+})

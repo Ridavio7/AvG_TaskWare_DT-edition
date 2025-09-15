@@ -1,4 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetStatuses = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"100"};
@@ -87,4 +88,28 @@ button_control_add.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_statuses_shipment", "tb_statuses_shipment", "statuses", funcProcessGetStatuses);
+customSortSelect("sort_statuses_shipment");
+const dropdown = document.getElementById("sort_statuses_shipment");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetStatuses);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetStatuses);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"5000", "sort":"uin"};
+                funcCommand(body3, funcProcessGetStatuses);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"statuses", "count":"5000", "asort":"uin"};
+                funcCommand(body4, funcProcessGetStatuses);
+            break;
+        }
+    })
+})

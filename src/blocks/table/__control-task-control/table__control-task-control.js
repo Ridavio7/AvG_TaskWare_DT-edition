@@ -1,8 +1,36 @@
 import {funcCommand, setStatus, responseProcessor, formatDate, funcProcessOnlyConsole, funcProcessOnlyInfo} from '../../../js/common/common.js';
 import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetTasksSteps} from '../../modal/__info-task/modal__info-task.js';
+import {resizeModalWindow} from '../../modal/modal.js';
+
+resizeModalWindow(tb_tasks, "whTaskTable");
+resizeModalWindow(tree_task, "whTaskTree"); 
+
+/* настройка размера окна */
+const funcGetResizeTb = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTable"};
+    funcCommand(body, funcProcessGetResizeTb)
+}
+
+const funcProcessGetResizeTb = (result, respobj) => {
+    document.getElementById("tb_tasks").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("tb_tasks").style.height = `${respobj.answ.val[1]}px`;
+}
+
+/* настройка размера окна */
+const funcGetResizeTree = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTree"};
+    funcCommand(body, funcProcessGetResizeTree)
+}
+
+const funcProcessGetResizeTree = (result, respobj) => {
+    document.getElementById("tree_task").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("tree_task").style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcGetTasks = () => {
+    funcGetResizeTb();
+    funcGetResizeTree();
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"tasks", "count":"100", "asort":"datebegin"};
     funcCommand(body, funcProcessGetTasks);
 }
@@ -104,7 +132,7 @@ function buildStructure(data, container) {
 
             const tdBtn = document.createElement('td');
             tdBtn.classList = 'td td_nowrap-content';
-            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}">Отозвать</button><button class="button__control button__control_modal-tasks-archive" value="${task.uin}" name="${task.name}">Архивировать</button>`;
+            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}" title="Отозвать"><img class="button__control__img" src="assets/images/cancel_task.svg"></button><button class="button__control button__control_modal-tasks-archive" value="${task.uin}" name="${task.name}" title="В архив"><img class="button__control__img" src="assets/images/archive_task.svg"></button>`;
 
             if(task.fproblem != 0){
                 tr.classList.add('tr_mark-error');

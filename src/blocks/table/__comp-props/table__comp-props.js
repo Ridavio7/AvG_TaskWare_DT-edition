@@ -1,5 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, addToDropdown, makeSelect, clearTable, listenSortSelect, highlightButtonSave, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js';
 import {funcInfoEnumsOpenModal} from '../../modal/__enums/modal__enums.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetProps = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"100"};
@@ -106,4 +107,28 @@ button_control_add_product.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_props", "tb_componenets_props", "props", funcProcessGetProps);
+customSortSelect("sort_props");
+const dropdown = document.getElementById("sort_props");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetProps);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetProps);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"5000", "sort":"uin"};
+                funcCommand(body3, funcProcessGetProps);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"props", "count":"5000", "asort":"uin"};
+                funcCommand(body4, funcProcessGetProps);
+            break;
+        }
+    })
+})

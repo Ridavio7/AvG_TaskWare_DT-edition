@@ -1,7 +1,5 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, listenFiltSelectAnalisys, sendFiltAnalisys, clearFiltAnalisys, sortAnalisys, makeSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
-import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
-
-let filt_analysis_sets = [];
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, listenCustomSelect, sendFiltAnalisys, clearCustomSelect, sortAnalisys, makeSelect, highlightButtonSave, responseProcessor, listenDate, clearTableAll} from '../../../js/common/common.js';
+import {customSelect, customSortSelect} from '../../select/select.js';
 
 export const funcGetShipSets = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipSets", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_sets)}`};
@@ -14,6 +12,7 @@ const funcProcessGetShipSets = (result, respobj) => {
     console.log("Анализ комплектов:", respobj);
 
     let tb_id = "tb_analysis_sets";
+    clearTableAll("tb_analysis_sets");
 
     for (let key in respobj.answ) {
         let val = respobj.answ[key];
@@ -89,39 +88,43 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
     cellSNset.innerHTML = SNset;
     cellname.innerHTML  = name;
     cellkontr.innerHTML = kontr;
-    celldate.innerHTML  = `<input class="input__type-text input__type-date" type="date" value="${date}" name="shipsets_date_${uin}">`;
+    celldate.innerHTML  = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="shipsets_date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div>`;
     cellprim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="shipsets_prim_${uin}">`;
     cellBtn.innerHTML   = `<button class="button__control button__control_update button__control_update-ananlysis-set" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
 }
 
-addToDropdownPsevdo("filt_analysis_sets_sets_items", JSON.parse(localStorage.getItem("sets_list")));
-psevdoSelect("filt_analysis_sets_sets");
+customSelect('analysis_sets_set_customDropdown', JSON.parse(localStorage.getItem("sets_list")), 'комплект');
+customSelect('analysis_sets_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
+customSelect('analysis_sets_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
+customSelect('analysis_sets_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
-addToDropdownPsevdo("filt_analysis_sets_products_items", JSON.parse(localStorage.getItem("products_list")));
-psevdoSelect("filt_analysis_sets_products");
+let filt_analysis_sets = [];
+let filt_1 = {fld: "uin", on: "sets"}; let val_1 = [];
+let filt_2 = {fld: "uin", on: "products"}; let val_2 = [];
+let filt_3 = {fld: "uin", on: "contragents"}; let val_3 = [];
+let filt_4 = {fld: "uin", on: "statuses"}; let val_4 = [];
+let filt_5 = {fld: "date"}; let val_5 = [];
 
-addToDropdownPsevdo("filt_analysis_sets_components_items", JSON.parse(localStorage.getItem("components_list")));
-psevdoSelect("filt_analysis_sets_components");
+listenCustomSelect("analysis_sets_set_customDropdown", filt_1, val_1, filt_analysis_sets);
+listenCustomSelect("analysis_sets_prod_customDropdown", filt_2, val_2, filt_analysis_sets);
+listenCustomSelect("analysis_sets_contr_customDropdown", filt_3, val_3, filt_analysis_sets);
+listenCustomSelect("analysis_sets_status_customDropdown", filt_4, val_4, filt_analysis_sets);
+listenDate(document.getElementById('filt_analysis_sets_date_first'), document.getElementById('filt_analysis_sets_date_second'), filt_5, val_5, filt_analysis_sets);
 
-addToDropdownPsevdo("filt_analysis_sets_contragents_items", JSON.parse(localStorage.getItem("contragents_list")));
-psevdoSelect("filt_analysis_sets_contragents");
-
-addToDropdownPsevdo("filt_analysis_sets_status_items", JSON.parse(localStorage.getItem("statuses_list")));
-psevdoSelect("filt_analysis_sets_status");
-
-let button_analysis_sets_choose = document.getElementById("button_analysis_sets_choose");
-button_analysis_sets_choose.addEventListener("click", () => {
+document.getElementById("button_analysis_sets_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_sets, 'tb_analysis_sets', 'shipSets', funcProcessGetShipSets);
-});
+})
 
-let button_analysis_sets_reset = document.getElementById("button_analysis_sets_reset");
-button_analysis_sets_reset.addEventListener("click", () => {
+document.getElementById("button_analysis_sets_reset").addEventListener("click", () => {
     filt_analysis_sets.length = 0;
-    clearFiltAnalisys('filt_analysis_sets_sets_items', 'filt_analysis_sets_products_items', 'filt_analysis_sets_components_items', 'filt_analysis_sets_contragents_items',
-    'filt_analysis_sets_status_items', "filt_analysis_sets_date_first", "filt_analysis_sets_date_second", 'tb_analysis_sets', filt_analysis_sets, funcGetShipSets())
-});
+    clearCustomSelect('analysis_sets_set_customDropdown', 'комплект'); val_1 = [];
+    clearCustomSelect('analysis_sets_prod_customDropdown', 'изделие'); val_2 = [];
+    clearCustomSelect('analysis_sets_contr_customDropdown', 'контрагента'); val_3 = [];
+    clearCustomSelect('analysis_sets_status_customDropdown', 'статус'); val_4 = [];
+    document.getElementById('filt_analysis_sets_date_first').value = ''; val_5 = [];
+    document.getElementById('filt_analysis_sets_date_second').value = '';
+    funcGetShipSets();
+})
 
-listenFiltSelectAnalisys("filt_analysis_sets_sets_items", "filt_analysis_sets_products_items", 'filt_analysis_sets_components_items', "filt_analysis_sets_contragents_items",
-"filt_analysis_sets_status_items", "filt_analysis_sets_date_first", "filt_analysis_sets_date_second", filt_analysis_sets)
-
-sortAnalisys("sort_analysis_sets", "tb_analysis_sets", filt_analysis_sets, "shipSets", funcProcessGetShipSets);
+customSortSelect("sort_analysis_sets");
+sortAnalisys("sort_analysis_sets", filt_analysis_sets, "shipSets", funcProcessGetShipSets);

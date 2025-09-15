@@ -1,6 +1,6 @@
-import {funcCommand, funcProcessOnlyInfo, clearTableAll, sendFilt, clearFilt, listenSelect, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, clearTableAll, sendFilt, clearCustomSelect, listenCustomSelect, responseProcessor, formatDate} from '../../../js/common/common.js';
 import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js';
-import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
+import {customSelect, customSortSelect} from '../../select/select.js';
 import {funcInfoDocpostSubstdocOpenModal} from '../../modal/__docpost-substdoc/modal__docpost-substdoc.js';
 
 export const funcGetDocpost = () => {
@@ -61,13 +61,13 @@ const addDocpostRow =
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo        = newRow.insertCell(0);  cellInfo.classList        = "td td_nowrap-content";
+    let cellInfo        = newRow.insertCell(0);  cellInfo.classList        = "td td_nowrap-content"; cellInfo.style.width = "150px";
     //let cellStatdocName = newRow.insertCell(1);  cellStatdocName.classList = "td";
     let cellNumb        = newRow.insertCell(1);  cellNumb.classList        = "td";
     let cellDate        = newRow.insertCell(2);  cellDate.classList        = "td";
     let cellNumb1c      = newRow.insertCell(3);  cellNumb1c.classList      = "td";
     let cellDate1c      = newRow.insertCell(4);  cellDate1c.classList      = "td";
-    let cellContrName   = newRow.insertCell(5);  cellContrName.classList   = "td";
+    let cellContrName   = newRow.insertCell(5);  cellContrName.classList   = "td"; cellContrName.style.width = "300px";
     let cellStorageName = newRow.insertCell(6);  cellStorageName.classList = "td";
     let cellUserName    = newRow.insertCell(7);  cellUserName.classList    = "td";
     let cellPrim        = newRow.insertCell(8);  cellPrim.classList        = "td";
@@ -85,9 +85,9 @@ const addDocpostRow =
 
     //cellStatdocName.innerHTML = statdocName;
     cellNumb.innerHTML        = numb;
-    cellDate.innerHTML        = date;
+    cellDate.innerHTML        = formatDate(date).split(' ')[1];
     cellNumb1c.innerHTML      = numb1c;
-    cellDate1c.innerHTML      = date1c;
+    cellDate1c.innerHTML      = formatDate(date1c).split(' ')[1];
     cellContrName.innerHTML   = contrName;
     cellStorageName.innerHTML = storageName;
     cellUserName.innerHTML    = userName;
@@ -97,62 +97,51 @@ const addDocpostRow =
     cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
-document.getElementById("sort_docpost").onchange = (elem) => {
-    clearTableAll("tb_docpost");
-    console.log(elem)
+customSortSelect("sort_docpost");
+const dropdown = document.getElementById("sort_docpost");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                funcCommand(body1, funcProcessGetDocpost);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                funcCommand(body2, funcProcessGetDocpost);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                funcCommand(body3, funcProcessGetDocpost);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                funcCommand(body4, funcProcessGetDocpost);
+            break;
+        }
+    })
+})
 
-    let option = elem.target.selectedIndex;
-    switch (option){
-        case 0:
-        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "filt":`${JSON.stringify(filt_docpost)}`};
-        funcCommand(body0, funcProcessGetDocpost);
-        break;
-        case 1:
-        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
-        funcCommand(body1, funcProcessGetDocpost);
-        break;
-        case 2:
-        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
-        funcCommand(body2, funcProcessGetDocpost);
-        break;
-        case 3:
-        let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
-        funcCommand(body3, funcProcessGetDocpost);
-        break;
-        case 4:
-        let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
-        funcCommand(body4, funcProcessGetDocpost);
-        break;
-    }
-}
+customSelect('docpost_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
+customSelect('docpost_status_customDropdown', JSON.parse(localStorage.getItem("statusdoc_list")), 'статус');
 
-addToDropdownPsevdo("filt_docpost_contragents_items", JSON.parse(localStorage.getItem("contragents_list")));
-psevdoSelect("filt_docpost_contragents");
-
-addToDropdownPsevdo("filt_docpost_status_items", JSON.parse(localStorage.getItem("statusdoc_list")));
-psevdoSelect("filt_docpost_status");
-
-let button_filt_choose = document.getElementById("button_docpost_choose");
-button_filt_choose.addEventListener("click", () => {
-    sendFilt(filt_docpost, 'tb_docpost', 'docpost', funcProcessGetDocpost);
-});
-
-let button_filt_reset = document.getElementById("button_docpost_reset");
-button_filt_reset.addEventListener("click", () => {
-    filt_docpost.length = 0;
-    clearFilt(filt_docpost, 'filt_docpost_contragents_items', 'filt_docpost_status_items', 'filt_docpost_status_items', 'tb_docpost', funcGetDocpost());
-
-    document.getElementById('filt_docpost_contragents').firstChild.innerHTML = 'Контрагенты <img class="select__img" src="assets/images/filter.svg" alt="">';
-    document.getElementById('filt_docpost_status').firstChild.innerHTML = 'Статусы <img class="select__img" src="assets/images/filter.svg" alt="">';
-});
-
-let select_1 = document.getElementById("filt_docpost_contragents_items");
-let select_2 = document.getElementById("filt_docpost_status_items");
 let filt_docpost = [], val_1 = [], val_2 = [],
 filt_1 = {fld: "uincontr"}, filt_2 = {fld: "uinstatus"};
 
-listenSelect(select_1, filt_1, val_1, filt_docpost);
-listenSelect(select_2, filt_2, val_2, filt_docpost);
+listenCustomSelect("docpost_contr_customDropdown", filt_1, val_1, filt_docpost);
+listenCustomSelect("docpost_status_customDropdown", filt_2, val_2, filt_docpost);
+
+document.getElementById("button_docpost_choose").addEventListener("click", () => {
+    sendFilt(filt_docpost, 'tb_docpost', 'docpost', funcProcessGetDocpost);
+})
+
+document.getElementById("button_docpost_reset").addEventListener("click", () => {
+    filt_docpost.length = 0;
+    clearCustomSelect('docpost_contr_customDropdown', 'контрагента');
+    clearCustomSelect('docpost_status_customDropdown', 'статус');
+    funcGetDocpost();
+})
 
 document.getElementById("founddoc_button").onclick = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"founddoc", "obj":"docpost", "count":"10000", "name":"", "filt":`${JSON.stringify(filt_docpost)}`};
@@ -163,8 +152,8 @@ document.getElementById("founddoc_button").onclick = () => {
 document.getElementById("founddoc_reset_button").onclick = () => {
     funcGetDocpost();
     document.getElementById('founddoc_name').value = '';
-    document.getElementById('filt_docpost_contragents').firstChild.innerHTML = 'Контрагенты <img class="select__img" src="assets/images/filter.svg" alt="">';
-    document.getElementById('filt_docpost_status').firstChild.innerHTML = 'Статусы <img class="select__img" src="assets/images/filter.svg" alt="">';
+    clearCustomSelect('docpost_contr_customDropdown', 'контрагента');
+    clearCustomSelect('docpost_status_customDropdown', 'статус');
 }
 
 document.getElementById('docpost_substdoc_button').onclick = () => {

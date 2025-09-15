@@ -1,4 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
+import {customSortSelect} from '../../select/select.js';
 
 export const funcGetColors = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"100"};
@@ -86,4 +87,28 @@ button_control_add_product_color.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_colors", "tb_products_colors", "colors", funcProcessGetColors);
+customSortSelect("sort_colors");
+const dropdown = document.getElementById("sort_colors");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"5000", "sort":"name"};
+                funcCommand(body1, funcProcessGetColors);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"5000", "asort":"name"};
+                funcCommand(body2, funcProcessGetColors);
+            break;
+            case '3':
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"5000", "sort":"uin"};
+                funcCommand(body3, funcProcessGetColors);
+            break;
+            case '4':
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"5000", "asort":"uin"};
+                funcCommand(body4, funcProcessGetColors);
+            break;
+        }
+    })
+})

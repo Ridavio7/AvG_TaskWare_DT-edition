@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, clearTable, removeOptionsSetValue, makeSelect, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
+/*import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, clearTable, removeOptionsSetValue, makeSelect, sendFilt, clearFilt, listenSelect, listenSortSelect, addToDropdown, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, psevdoSelect} from '../../select/select.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 
@@ -40,7 +40,7 @@ const funcProcessGetFormulaSets = (result, respobj) => {
         addFormulaSetsRow(set, product, compont, count, del, uin, uinset, uinproduct, uincompont, tb_id);
     }
 
-    /* функция удаления */
+
     let button_control_mdel_set_formula = document.querySelectorAll(".button__control_mdel-set-formula");
     button_control_mdel_set_formula.forEach((elem) => {
         elem.addEventListener("click", () => {
@@ -56,7 +56,7 @@ const funcProcessGetFormulaSets = (result, respobj) => {
         })
     })
 
-    /* функция обновления */
+
     let button_control_update_set = document.querySelectorAll(".button__control_update-set-formula");
     button_control_update_set.forEach((elem) => {
         elem.addEventListener("click", () => {
@@ -178,4 +178,4 @@ button_control_add_set_formula.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_sets_formula", "tb_sets_formula_info", "formula_sets", funcProcessGetFormulaSets, filt_formula_sets);
+listenSortSelect("sort_sets_formula", "tb_sets_formula_info", "formula_sets", funcProcessGetFormulaSets, filt_formula_sets);*/

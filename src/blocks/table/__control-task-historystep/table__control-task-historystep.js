@@ -1,7 +1,7 @@
 import {funcCommand, clearTable, formatDate} from '../../../js/common/common.js';
 
-export const funcGetHistorystep = (uin) => {
-    let body  =  { "user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"historystep", "uinstep":`${uin}`, "count":"100", "sort":"datetm" };
+export const funcGetHistorystep = (uin, uinTask) => {
+    let body  =  { "user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"historystep", "uinstep":`${uin}`, "uintask":`${uinTask}`, "count":"100", "sort":"datetm"};
     funcCommand(body, funcProcessGetHistorystep);
 }
 

@@ -164,7 +164,7 @@ const addProducts = (namepr, uinpr, count, fset, uin, del, tb_id_prod) => {
     let cellBtn     = newRow.insertCell(2); cellBtn.classList     = "td";
 
     cellProduct.innerHTML = `<button class="button__select button__select_product_innprod" id="formula_product_select_innprod_${uin}" value="${uinpr}" name="${namepr}">${namepr}</button>`;
-    cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="formula_product_innprod_count_${uin}">`;
+    cellCount.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${count}" name="formula_product_innprod_count_${uin}">`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-innprod" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-innprod${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
@@ -203,9 +203,9 @@ button__control_add_prod.onclick = () => {
 const addComponentsType = (nameType, uinType, countType, typeArr, fset, tb_id_comp) => {
     let tableRef = document.getElementById(tb_id_comp);
     let newRow = tableRef.insertRow(-1);
-    newRow.classList = "tr";
+    newRow.classList = "tr tr_mark";
 
-    let cellType  = newRow.insertCell(0); cellType.classList  = "td";
+    let cellType  = newRow.insertCell(0); cellType.classList  = "td"; 
     let cellComp  = newRow.insertCell(1); cellComp.classList  = "td";
     let cellCount = newRow.insertCell(2); cellCount.classList = "td";
     let cellBtn   = newRow.insertCell(3); cellBtn.classList   = "td";
@@ -234,7 +234,7 @@ const addComponents = (nameCompont, uinCompont, count, fset, uin, del, tb_id_com
     let cellBtn   = newRow.insertCell(3); cellBtn.classList   = "td";
 
     cellComp.innerHTML = `<button class="button__select button__select_product_componenet" id="formula_product_select_componenet_${uin}" value="${uinCompont}" name="${nameCompont}">${nameCompont}</button>`;
-    cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="formula_product_componenet_count_${uin}">`;
+    cellCount.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${count}" name="formula_product_componenet_count_${uin}">`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update_formula-product-componenet" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel_formula-product-componenet${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;

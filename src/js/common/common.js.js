@@ -21,9 +21,9 @@ export const funcCommand = (body, callbackfunc, func) => {
             callbackfunc(0, null)
         })
         .then((data) => {
-            callbackfunc(1, data)
+            callbackfunc(1, data);
+            if(func){ func() }
         })
-        .then(func)
 }
 
 export const funcProcessOnlyInfo = (result, respobj) => {
@@ -153,7 +153,7 @@ export const makeSelect =
 
     let select = document.createElement("select");
     select.id = `${determinant}_${uin}`;
-    select.className = className;
+    select.classList = className;
     let option = document.createElement("option");
     option.text = optionText;
     option.value = optionUin;
@@ -275,6 +275,22 @@ export const listenSelect = (select, filt, val, filt_main) => {
     });
 }
 
+export const listenCustomSelect = (select_id, filt, val, filt_main) => {
+    let select = document.getElementById(select_id);
+    select.addEventListener('change', function(){
+        val.length = 0;
+        let checkboxes = select.getElementsByTagName("input");
+        for(let key in checkboxes){
+            if(checkboxes[key].checked === true){
+                let chbv = checkboxes[key].getAttribute('data-value');
+                val.push(chbv);
+            }
+        }
+        filt.val = val;
+        filt_main.push(filt);
+    })
+}
+
 /* date фильтра считывание значения */
 export const listenDate = (date_1, date_2, filt, val, filt_main) => {
     date_1.addEventListener('change', function(){
@@ -346,45 +362,46 @@ export const clearFiltAnalisys =
 }
 
 /* сортировка анализа */
-export const sortAnalisys = (selec, tb_id, filt, obj, func) => {
+export const sortAnalisys = (selec, filt, obj, func) => {
+    const dropdown  = document.getElementById(selec);
+    const options   = dropdown.querySelectorAll('li');
+    let filt_filter = Array.from(new Set(filt.map(filt => JSON.stringify(filt)))).map(filt => JSON.parse(filt));
+
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            switch (option.getAttribute('data-value')){
+                case '1':
+                    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${JSON.stringify(filt_filter)}`, "count":"5000", "sort":"uin"};
+                    funcCommand(body1, func);
+                break;
+                case '2':
+                    let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${JSON.stringify(filt_filter)}`, "count":"5000", "asort":"uin"};
+                    funcCommand(body2, func);
+                break;
+                case '3':
+                    let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${JSON.stringify(filt_filter)}`, "count":"5000", "sort":"name"};
+                    funcCommand(body3, func);
+                break;
+                case '4':
+                    let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${JSON.stringify(filt_filter)}`, "count":"5000", "asort":"name"};
+                    funcCommand(body4, func);
+                break;
+                case '5':
+                    let body5  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${JSON.stringify(filt_filter)}`, "count":"5000", "sort":"datechange"};
+                    funcCommand(body5, func);
+                break;
+                case '6':
+                    let body6  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${JSON.stringify(filt_filter)}`, "count":"5000", "asort":"datechange"};
+                    funcCommand(body6, func);
+                break;
+            }
+        })
+    })
+
     document.getElementById(selec).addEventListener('change', function(){
-        let table = document.getElementById(tb_id);
-        for(let i = 0; i < table.rows.length;){
-            table.deleteRow(i);
-        }
-    
-        let filt_filter = Array.from(new Set(filt.map(filt => JSON.stringify(filt)))).map(filt => JSON.parse(filt));
-        let filt_str = JSON.stringify(filt_filter);
-        let option = this.selectedIndex;
+        
         switch (option){
-            case 0:
-            let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000"};
-            funcCommand(body0, func);
-            break;
-            case 1:
-            let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"uin"};
-            funcCommand(body1, func);
-            break;
-            case 2:
-            let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"uin"};
-            funcCommand(body2, func);
-            break;
-            case 3:
-            let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"name"};
-            funcCommand(body3, func);
-            break;
-            case 4:
-            let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"name"};
-            funcCommand(body4, func);
-            break;
-            case 5:
-            let body5  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "sort":"datechange"};
-            funcCommand(body5, func);
-            break;
-            case 6:
-            let body6  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${filt_str}`, "count":"5000", "asort":"datechange"};
-            funcCommand(body6, func);
-            break;
+            
         }
     });
 }
@@ -407,11 +424,45 @@ export const clearFilt = (filt, select_1, select_2, select_3, tb_id, func) => {
     func;
 }
 
+export const clearFilter = (filt, arr, tb_id, func) => {
+    filt.length = 0;
+    console.log(arr)
+    for(let j in arr){
+        console.log(`"${arr[j]}"`)
+        let select = document.getElementById(`"${arr[j]}"`);
+        console.log(select)
+        let inputs = select.querySelectorAll("input");
+            for(let i = inputs.length; i--;) {
+            inputs[i].checked = false;
+        }
+    }
+
+    clearTable(tb_id);
+    func;
+}
+
 /* очистка чекбоксов фильтра */
 export const clearCheckboxes = (select_id) => {
     let selec = document.getElementById(select_id);
     let inputs = selec.querySelectorAll("input");
         for(let i = inputs.length; i--;) {
+        inputs[i].checked = false;
+    }
+}
+
+/* очистка чекбоксов фильтра */
+export const clearCustomSelect = (select_id, text) => {
+    let select = document.getElementById(select_id);
+    if(select.firstChild.nodeName === "#text"){
+        select.firstChild.nextElementSibling.textContent = '';
+        select.firstChild.nextElementSibling.insertAdjacentHTML('beforeend', `Выберите ${text} <span class="select-custom__icon"></span>`);
+    } else {
+        select.firstChild.textContent = '';
+        select.firstChild.insertAdjacentHTML('beforeend', `Выберите ${text} <span class="select-custom__icon"></span>`);
+    }
+    
+    let inputs = select.querySelectorAll("input");
+    for(let i = inputs.length; i--;) {
         inputs[i].checked = false;
     }
 }

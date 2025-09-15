@@ -1,7 +1,8 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, highlightButtonSave, makeSelect, clearTableAll, responseProcessor} from '../../../js/common/common.js';
+import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, highlightButtonSave, makeSelect, clearTableAll, responseProcessor, sendFilt, listenCustomSelect, clearCustomSelect, listenDate} from '../../../js/common/common.js';
+import {customSelect, customSortSelect} from '../../select/select.js';
 
 export const funcGetLentapp = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"100", "asort":"datetm"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"100", "asort":"datetm", "filt":`${JSON.stringify(filt_resp)}`};
     funcCommand(body, funcProcessGetLentapp);
 }
 
@@ -89,10 +90,10 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
     makeSelect("lentapp_user_select_", uin, nameuser, uinuser, "users_list", "select", cellUser);
     makeSelect("lentapp_prod_select_", uin, nameproduct, uinproduct, "products_list", "select", cellProd);
     makeSelect("lentapp_techproc_select_", uin, nametechproc, uintechproc, "techproc_list", "select", cellProc);
-    cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="lentapp_count_${uin}">`;
+    cellCount.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${count}" name="lentapp_count_${uin}">`;
     let date = datetm.split(" ")[0];
     let time = datetm.split(" ")[1];
-    cellDate.innerHTML  = `<input class="input__type-text input__type-date" type="date" value="${date}" name="lentapp_date_${uin}"><input class="input__type-text input__type-time" type="time" value="${time}" name="lentapp_time_${uin}" step="1">`;
+    cellDate.innerHTML  = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="lentapp_date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div><div class="input__type-date_wrapper"><input class="input__type-text input__type-time" type="time" value="${time}" name="lentapp_time_${uin}" step="1"><label for="" class="input__type-date_icon"><img src="assets/images/time.svg" alt=""></label></div>`;
     cellTask.innerHTML  = task;
     cellStep.innerHTML  = step;
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="lentapp_prim_${uin}">`;
@@ -101,22 +102,49 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-lentapp" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-lentapp${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
 }
 
-document.getElementById("sort_events").addEventListener('change', function(){
-    clearTableAll("tb_events");
+customSelect('lentapp_users_customDropdown', JSON.parse(localStorage.getItem("users_list")), 'пользователя');
+customSelect('lentapp_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
+customSelect('lentapp_techproc_customDropdown', JSON.parse(localStorage.getItem("techproc_list")), 'тех. операцию');
 
-    let option = this.selectedIndex;
-    switch (option){
-        case 0:
-        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "asort":"datetm"};
-        funcCommand(body0, funcProcessGetLentapp);
-        break;
-        case 1:
-        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "sort":"datetm"};
-        funcCommand(body1, funcProcessGetLentapp);
-        break;
-        case 2:
-        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "asort":"datetm"};
-        funcCommand(body2, funcProcessGetLentapp);
-        break;
-    }
-});
+let filt_resp = [], val_1 = [], val_2 = [], val_3 = [], val_4 = [],
+filt_1 = {fld: "uin", on: "users"},
+filt_2 = {fld: "uin", on: "products"},
+filt_3 = {fld: "uin", on: "techproc"},
+filt_4 = {fld: "date"};
+
+listenCustomSelect("lentapp_users_customDropdown", filt_1, val_1, filt_resp);
+listenCustomSelect("lentapp_prod_customDropdown", filt_2, val_2, filt_resp);
+listenCustomSelect("lentapp_techproc_customDropdown", filt_3, val_3, filt_resp);
+listenDate(document.getElementById('filt_lentapp_date_first'), document.getElementById('filt_lentapp_date_second'), filt_4, val_4, filt_resp);
+
+document.getElementById("button_lentapp_choose").addEventListener("click", () => {
+    sendFilt(filt_resp, 'tb_events', 'lentapp', funcProcessGetLentapp);
+})
+
+document.getElementById("button_lentapp_reset").addEventListener("click", () => {
+    filt_resp.length = 0;
+    clearCustomSelect('lentapp_users_customDropdown', 'пользователя');
+    clearCustomSelect('lentapp_prod_customDropdown', 'изделие');
+    clearCustomSelect('lentapp_techproc_customDropdown', 'тех. операцию');
+    document.getElementById('filt_lentapp_date_first').value = '';
+    document.getElementById('filt_lentapp_date_second').value = '';
+    funcGetLentapp();
+})
+
+customSortSelect("sort_events");
+const dropdown = document.getElementById("sort_events");
+const options  = dropdown.querySelectorAll('li');
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        switch (option.getAttribute('data-value')){
+            case '1':
+                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "sort":"datetm", "filt":`${JSON.stringify(filt_resp)}`};
+                funcCommand(body1, funcProcessGetLentapp);
+            break;
+            case '2':
+                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"lentapp", "count":"5000", "asort":"datetm", "filt":`${JSON.stringify(filt_resp)}`};
+                funcCommand(body2, funcProcessGetLentapp);
+            break;
+        }
+    })
+})

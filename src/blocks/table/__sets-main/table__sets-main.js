@@ -1,4 +1,4 @@
-import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, sendFilt, clearFilt, listenSelect, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
+/*import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, sendFilt, clearFilt, listenSelect, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {addToDropdownPsevdo, addToDropdownPsevdoAnotherList, psevdoSelect} from '../../select/select.js';
 
 export const funcGetSets = () => {
@@ -36,7 +36,6 @@ const funcProcessGetSets = (result, respobj) => {
         addSetsRow(name, other, del, uin, tb_id);
     }
 
-    /* функция удаления */
     let button_control_mdel_set = document.querySelectorAll(".button__control_mdel-set");
     button_control_mdel_set.forEach((elem) => {
         elem.addEventListener("click", () => {
@@ -52,7 +51,6 @@ const funcProcessGetSets = (result, respobj) => {
         })
     })
 
-    /* функция обновления */
     let button_control_update_set = document.querySelectorAll(".button__control_update-set");
     button_control_update_set.forEach((elem) => {
         elem.addEventListener("click", () => {
@@ -113,7 +111,6 @@ filt_2   = {fld: "model_train"};
 listenSelect(select_1, filt_1, val_1, filt_sets);
 listenSelect(select_2, filt_2, val_2, filt_sets);
 
-/* функция добавления */
 let button_control_add_set = document.querySelector(".button__control_add-set");
 button_control_add_set.addEventListener("click", () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"sets", "name":"", "model_train":""};
@@ -135,4 +132,4 @@ button_control_add_set.addEventListener("click", () => {
     }
 })
 
-listenSortSelect("sort_sets", "tb_sets_info", "sets", funcProcessGetSets, filt_sets);
+listenSortSelect("sort_sets", "tb_sets_info", "sets", funcProcessGetSets, filt_sets);*/

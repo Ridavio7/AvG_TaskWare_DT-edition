@@ -107,7 +107,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     let newRow     = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo    = newRow.insertCell(0); cellInfo.classList   = "td";
+    let cellInfo    = newRow.insertCell(0); cellInfo.classList    = "td";
     let cellProps   = newRow.insertCell(1); cellProps.classList   = "td";
     let cellMeas    = newRow.insertCell(2); cellMeas.classList    = "td";
     let cellPropVal = newRow.insertCell(3); cellPropVal.classList = "td";
@@ -118,7 +118,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-props-info" value="${propsUin}" name="${props}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
 
-    makeSelect("component_info_props_select_", uin, props, propsUin, "typesprops_list", "select", cellProps);
+    makeSelect("component_info_props_select_", uin, props, propsUin, "typesprops_list", "select input__type-text_modal_fix-width-150", cellProps);
     cellMeas.innerHTML  = meas;
 
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"enums", "uinprops":`${propsUin}`, "count":"100", "sort":"uin"};
@@ -129,10 +129,10 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
 
         if(respobj.answ != ''){
             localStorage.setItem("prop_enums_list", JSON.stringify(respobj.answ))
-            makeSelect("component_info_props_value_select_", uin, value, '---', "prop_enums_list", "select", cellPropVal);
+            makeSelect("component_info_props_value_select_", uin, value, '---', "prop_enums_list", "select input__type-text_modal_fix-width-150", cellPropVal);
         } else {
             let input = document.createElement('input');
-            input.className = "input__type-text input__type-text_title";
+            input.className = "input__type-text input__type-text_modal_fix-width-150";
             input.id = `component_info_props_value_select__${uin}`;
             input.value = value;
             cellPropVal.appendChild(input);

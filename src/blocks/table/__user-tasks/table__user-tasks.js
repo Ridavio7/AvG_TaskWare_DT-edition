@@ -77,7 +77,12 @@ function buildStructure(data, container) {
 
             document.querySelector('.container').insertAdjacentHTML('beforeend', userTasksContent(steps.task.name, steps.task.uin, steps.product.name,
               steps.product.uin, steps.techproc.name, steps.techproc.uin, steps.count, `user_task_link_${steps.uin}`, steps.name, steps.admin.name,
-              steps.datebegin, steps.dateend, steps.mission, steps.prim, steps.uin, steps.fproblem, steps.status.uin, steps.countstep, steps.countreal));
+              steps.datebegin, steps.dateend, steps.mission, steps.prim, steps.uin, steps.fproblem, steps.status.uin, steps.countstep, steps.countreal, steps.fpart));
+
+            document.getElementById(`task_date_first_${steps.uin}`).addEventListener('click', function(e) { e.preventDefault() })
+            document.getElementById(`task_time_first_${steps.uin}`).addEventListener('click', function(e) { e.preventDefault() })
+            document.getElementById(`task_date_second_${steps.uin}`).addEventListener('click', function(e) { e.preventDefault() })
+            document.getElementById(`task_time_second_${steps.uin}`).addEventListener('click', function(e) { e.preventDefault() })
 
             if(steps.fareaprof === 1) { li.append(span_area); }
             li.append(a);
@@ -91,19 +96,19 @@ function buildStructure(data, container) {
                 case 3:
                     document.getElementById(`user_task_link_${steps.uin}`).insertAdjacentHTML('beforeend', funcTaskContentMount(steps.uin));
                     funcTaskContentMountHelpers(steps.uin);
-                      if(steps.content.uin == 5){
-                          document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
-                          document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
-                      } else if(steps.content.uin == 3){
-                          document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
-                          document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
-                      } else {
-                          document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
-                          document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
-                      }
                       break
                 default:
                     break
+            }
+            if(steps.content.uin == 5){
+                document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+                document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+            } else if(steps.content.uin == 3){
+                document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+                document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+            } else {
+                document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
             }
         }
     }
@@ -187,7 +192,7 @@ function buildStructure(data, container) {
     })
 }
 
-const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTechproc, count, tabcontent_id, name, admin, datebegin, dateend, mission, prim, uin, fproblem, status, countstep, countreal) => {
+const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTechproc, count, tabcontent_id, name, admin, datebegin, dateend, mission, prim, uin, fproblem, status, countstep, countreal, fpart) => {
     return `
     <div class="sidebar__tabcontent" id="${tabcontent_id}">
         <div class="modal__header modal__header_task">
@@ -195,10 +200,11 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
             <div class="modal__table-wrapper_task">
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_task_name"
-                  >Название задачи:</label
+                  >Задача:</label
                 >
                 <input
-                  class="input__type-text input__type-text_task"
+                  style="margin-left: 19px;"
+                  class="input__type-text input__type-text_modal"
                   type="text"
                   id="task_task_name_${uin}"
                   value="${task_name}"
@@ -210,10 +216,10 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                   >Администратор:</label
                 >
                 <input
-                  class="input__type-text input__type-text_task"
+                  class="input__type-text input__type-text_modal"
                   type="text"
                   id="task_admin_${uin}"
-                  value="${admin}"
+                  value="${admin.split(' ').slice(0, 2).join(' ')}"
                   disabled
                 />
               </div>
@@ -222,7 +228,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                   >Изделие:</label
                 >
                 <input
-                  class="input__type-text input__type-text_task"
+                  class="input__type-text input__type-text_modal"
                   type="text"
                   id="task_prod_${uin}"
                   value="${product}"
@@ -235,7 +241,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                   >Кол-во:</label
                 >
                 <input
-                  class="input__type-text input__type-text__small input__type-text_task"
+                  class="input__type-text input__type-text__small input__type-text_modal"
                   type="text"
                   id="task_count_${uin}"
                   value="${count}"
@@ -243,7 +249,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                 />
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
-                <button class="button__control button__control_chat_task" value="${task_uin}"><img class="button__control__img" src="assets/images/chat.svg" alt=""></button>
+                <button class="button__control button__control_chat_task" value="${task_uin}"><img class="button__control_img__no-filter" src="assets/images/chat.svg" alt="" style="width: 18px;"></button>
               </div>
             </div>
           </div>
@@ -253,10 +259,10 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
             <div class="modal__table-wrapper_task">
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_name"
-                  >Название задания:</label
+                  >Задание:</label
                 >
                 <input
-                  class="input__type-text input__type-text_task"
+                  class="input__type-text input__type-text_modal"
                   type="text"
                   id="task_name_${uin}"
                   value="${name}"
@@ -269,40 +275,55 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                 <label class="input__type-text__label" for="task_date_first"
                   >Срок:</label
                 >
-                <input
-                  class="input__type-text input__type-date input__type-text_task"
-                  type="date"
-                  id="task_date_first_${uin}"
-                  value="${datebegin.split("T")[0]}"
-                  disabled
-                />
+                <div class="input__type-date_wrapper">
+                  <input
+                    class="input__type-text input__type-date input__type-date_disabled input__type-text_modal"
+                    type="date"
+                    id="task_date_first_${uin}"
+                    value="${datebegin.split("T")[0]}"
+                    disabled
+                  />
+                  <label for="task_date_first_${uin}" class="input__type-date_icon input__type-date_icon-no-active"><img src="assets/images/calendar.svg" alt=""></label>
+                </div>
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
-                <input
-                  class="input__type-text input__type-time input__type-text_task"
-                  type="time"
-                  id="task_time_first_${uin}"
-                  value="${datebegin.split("T")[1]}"
-                  disabled
-                />
+                <div class="input__type-date_wrapper">
+                  <input
+                    style="margin-left: -12px;"
+                    class="input__type-text input__type-time input__type-date_disabled input__type-text_modal"
+                    type="time"
+                    id="task_time_first_${uin}"
+                    value="${datebegin.split("T")[1]}"
+                    disabled
+                  />
+                  <label for="task_time_first_${uin}" class="input__type-date_icon input__type-date_icon-no-active"><img src="assets/images/time.svg" alt=""></label>
+                </div>
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
-                <input
-                  class="input__type-text input__type-date input__type-text_task"
-                  type="date"
-                  id="task_date_second_${uin}"
-                  value="${dateend.split("T")[0]}"
-                  disabled
-                />
+              <div class="input__type-date_wrapper">
+                  <input
+                    style="margin-left: -12px;"
+                    class="input__type-text input__type-date input__type-date_disabled input__type-text_modal"
+                    type="date"
+                    id="task_date_second_${uin}"
+                    value="${dateend.split("T")[0]}"
+                    disabled
+                  />
+                  <label for="task_date_second_${uin}" class="input__type-date_icon input__type-date_icon-no-active"><img src="assets/images/calendar.svg" alt=""></label>
+                </div>
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
-                <input
-                  class="input__type-text input__type-time input__type-text_task"
-                  type="time"
-                  id="task_time_second_${uin}"
-                  value="${dateend.split("T")[1]}"
-                  disabled
-                />
+                <div class="input__type-date_wrapper">
+                  <input
+                    style="margin-left: -12px;"
+                    class="input__type-text input__type-time input__type-date_disabled input__type-text_modal"
+                    type="time"
+                    id="task_time_second_${uin}"
+                    value="${dateend.split("T")[1]}"
+                    disabled
+                  />
+                  <label for="task_time_second_${uin}" class="input__type-date_icon input__type-date_icon-no-active"><img src="assets/images/time.svg" alt=""></label>
+                </div>
               </div>
             </div>
             <div class="modal__input-wrapper modal__input-wrapper_task">
@@ -310,7 +331,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                   >Тех. операция:</label
                 >
                 <input
-                  class="input__type-text input__type-text_task"
+                  class="input__type-text input__type-text_modal"
                   type="text"
                   id="task_techproc_${uin}"
                   value="${techproc}"
@@ -319,27 +340,27 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                 />
             </div>
             <div class="modal__input-wrapper modal__input-wrapper_task">
-                <label class="input__type-text__label" for="task_countstep"
-                  >Кол-во план:</label
-                >
+                <label class="input__type-text__label" for="task_countstep">Кол-во:</label>
                 <input
-                  class="input__type-text input__type-text__small input__type-text_task"
+                  class="input__type-text input__type-text__small input__type-text_modal"
                   type="text"
                   id="task_countstep_${uin}"
                   value="${countstep}"
                   disabled
                 />
+                <label class="input__type-text__label" for="task_countstep">план</label>
             </div>
             <div class="modal__input-wrapper modal__input-wrapper_task">
-                <label class="input__type-text__label" for="task_countreal">&nbsp;</label>
                 <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
                   <input
-                    class="input__type-text input__type-text__small input__type-text_task"
+                    style="margin-left: 0px;"
+                    class="input__type-text input__type-text__small input__type-text_modal"
                     type="text"
                     id="task_countreal_${uin}"
                     value="${countreal}"
                     disabled
                   />
+                  <label class="input__type-text__label" for="task_countstep">факт</label>
                   <button
                     style="margin-left: 5px;"
                     class="button__control button__control_detailpp"
@@ -351,11 +372,11 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
             <div class="modal__table-wrapper_task">
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_mission"
-                  >Комментарий администротора:</label
+                  >Комм. администротора:</label
                 >
                 <div class="modal__input-wrapper modal__input-wrapper_task-with-button">
                   <input
-                    class="input__type-text input__type-text_task input__type-text_modal_long"
+                    class="input__type-text input__type-text_modal input__type-text_modal_long"
                     type="text"
                     id="task_mission_${uin}"
                     value="${mission}"
@@ -366,16 +387,17 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
                 <label class="input__type-text__label" for="task_comment"
-                  >Комментарий исполнителя:</label
+                  >Комм. исполнителя:</label
                 >
                 <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
                   <input
-                    class="input__type-text input__type-text_task input__type-text_modal_long"
+                    style="margin-left: 38px;"
+                    class="input__type-text input__type-text_modal input__type-text_modal_long"
                     type="text"
                     id="task_comment_${uin}"
                     value="${prim}"
                   />
-                  <button class="button__control button__control_usersteps_update" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>
+                  <button class="button__control button__control_usersteps_update" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Чат"></button>
                 </div>
               </div>
             </div>
@@ -386,13 +408,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
               value="${uin}"
               ${status >= 4 ? "disabled" : ''}
             >
-              Принял
-            </button>
-            <button
-              class="button__control button__control_ready button__control_usersteps_problem"
-              value="${uin}"
-            >
-              ${fproblem === 0 ? "Проблема" : "Снять проблему"}
+              ${status >= 4 ? "Принято" : 'Принять'}
             </button>
             <button
               class="button__control button__control_ready button__control_usersteps_ready"
@@ -403,8 +419,15 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
             <button
               class="button__control button__control_ready button__control_usersteps_ready_part"
               value="${uin}"
+              ${fpart === 1 ? "disabled" : ''}
             >
               Частично готов
+            </button>
+            <button
+              class="button__control button__control_ready button__control_usersteps_problem ${fproblem === 1 ? "active" : ""}"
+              value="${uin}"
+            >
+              ${fproblem === 0 ? "Проблема" : "Снять&nbsp;проблему"}
             </button>
           </div>
         </div>
