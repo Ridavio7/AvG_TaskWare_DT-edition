@@ -20,6 +20,7 @@ import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';
 import '../blocks/input/__type-date/input__type-date.scss';
+import '../blocks/input/__type-time/input__type-time.scss';
 import '../blocks/input/__type-radio/input__type-radio.scss';
 import '../blocks/table/__analysis-products/table__analysis-products.scss';
 /* select */
@@ -30,6 +31,7 @@ import '../blocks/select/_modal/select_modal.scss';
 import '../blocks/modal/modal.scss';
 import '../blocks/modal/__notification/modal__notification.scss';
 import '../blocks/modal/__notification/modal__notification.js';
+import '../blocks/modal/__chat-task/modal__chat-task.scss';
 /* таблицы */
 import '../blocks/table/table.scss';
 /* дерево */
@@ -46,6 +48,7 @@ import {funcGetProf} from '../blocks/table/__dev-prof/table__dev-prof.js';
 
 /* настройки */
 import {funcGetSysopt} from '../blocks/table/__settings-server/table__settings-server.js';
+import {funcGetWebopt} from '../blocks/table/__settings-user/table__settings-user.js';
 
 /* шаблоны */
 import {funcGetShablons} from '../blocks/table/__template-task-shablons/table__template-task-shablons.js';
@@ -82,7 +85,7 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_users_prof"), f
 
 /* настройки */
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_server"), funcGetSysopt);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user"), '');
+addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user"), funcGetWebopt);
 
 /* задачи */
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_control"), funcGetTasks);
@@ -92,7 +95,7 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_contents"
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_startstep"), funcGetStartstep);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_archive"), funcGetTasksArchive);
 
-/* обновление контроля задач */
+/* обновление контроля задач 
 setInterval(function() {
     funcGetTasks();
 
@@ -105,4 +108,4 @@ setInterval(function() {
             }
         })
     }, 100)
-}, 10000)
+}, 10000)*/

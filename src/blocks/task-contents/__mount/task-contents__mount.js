@@ -34,7 +34,7 @@ export const funcTaskContentMount = (uin) => {
           </div>
         </div>
         <button class="button__control button__control_modal" id="mount_button_${uin}">
-          Сохранить
+          Выпустить
         </button>`
 }
 
