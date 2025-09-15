@@ -1,9 +1,9 @@
 .button__select{
+    width: 250px;
     padding: 3px 6px;
     margin: 2.5px 0px;
     color: var(--font-color);
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-size: var(--font_size);
     background-color: inherit;
     border: none;
     border-bottom: 2px solid var(--expand-button-active);

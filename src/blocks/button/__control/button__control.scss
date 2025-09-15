@@ -1,33 +1,84 @@
 .button__control{
-    height: 28px;
-    padding: 6px;
+    height: 30px;
+    min-width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: 1px solid var(--border);
-    border: 1px solid var(--border);
+    background-color: var(--link-active);
+    border: none;
+    outline: none;
     border-radius: 5px;
-    background-color: inherit;
     cursor: pointer;
     margin-right: 5px;
     transition: 0.3s;
     color: var(--font-color);
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
 
     &:disabled{
         cursor: no-drop;
     }
 
+    &_action{
+        background-color: inherit;
+        outline: none;
+        border: none;
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin-right: 0px;
+        justify-content: flex-start;
+        text-align: left;
+        transition: 0s;
+
+        &_text{
+            width: 160px;
+        }
+
+        &_date{
+            width: 70px;
+            text-align: center;
+        }
+    }
+
+    &_ready{
+        color: var(--expand-button-active);
+        font-size: var(--font_size);
+        background-color: inherit;
+        border: 1px solid var(--expand-button-active);
+        width: 150px;
+        height: 40px;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s all;
+
+        &:hover{
+            background-color: var(--expand-button-active);
+            color: var(--font-color-button);
+        }
+
+        &:disabled{
+            cursor: no-drop;
+
+            &:hover{
+                background-color: inherit;
+                color: var(--expand-button-active);
+            }
+        }
+    }
+
     /*&:hover{
         background-color: var(--expand-button-active);
+    }
+
+    &:hover &__img{
+        filter: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
+        -webkit-filter: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
     }*/
 
     &_update{
-        background-color: inherit;
-
         &:hover{
-            background-color: var(--green);
+            background-color: var(--green_hover);
         }
 
         &_active{
@@ -35,26 +86,39 @@
         }
     }
 
-    &_mdel{
-        background-color: inherit;
+    &_update:hover &__img{
+        -webkit-filter: var(--green__img-filter);
+        filter: var(--green__img-filter);
+    }
 
+    &_mdel{
         &:hover{
             background-color: var(--red_hover);
         }
 
         &_active{
-            background-color: var(--red);
+            background-color: var(--red_hover);
         }
     }
 
+    &_mdel:hover &__img{
+        -webkit-filter: var(--red__img-filter);
+        filter: var(--red__img-filter);
+    }
+
     &__img{
-        height: 14px;
+        width: 15px;
         filter: var(--img-button_color);
         -webkit-filter: var(--img-button_color);
     }
 
+    &_img__no-filter{
+        filter: none;
+        -webkit-filter: none;
+    }
+
     &_docpost-ready{
-        background-color: var(--green);
+        background-color: var(--green_hover);
 
         &_img{
             filter: var(--green__img-filter);
@@ -70,7 +134,7 @@
     }
 
     &_docpost-process{
-        background-color: var(--yellow);
+        background-color: var(--yellow_hover);
 
         &_img{
             filter: var(--yellow__img-filter);
@@ -86,7 +150,7 @@
     }
 
     &_docpost-new{
-        background-color: var(--red);
+        background-color: var(--red_hover);
 
         &_img{
             filter: var(--red__img-filter);
@@ -103,12 +167,93 @@
 
     &_active{
         background-color: var(--expand-button-active);
-        border: none;
         outline: none;
     }
 
     &_active &__img {
         filter: var(--img-button_color_white);
         -webkit-filter: var(--img-button_color_white);
+    }
+
+    &_usersteps{
+        &_accept{
+            &:disabled{
+                background-color: var(--border);
+                border: 1px solid var(--border);
+                color: var(--font-color);
+
+                &:hover{
+                    background-color: var(--border);
+                    color: var(--font-color);
+                }
+            }
+        }
+
+        &_problem{
+            width: 80px;
+            color: var(--font-color_active);
+            text-decoration: underline;
+            border: none;
+
+            &:hover{
+                background-color: inherit;
+                color: #ff3131;
+            }
+
+            &.active{
+                width: 125px;
+                background-color: inherit;
+                color: #ff3131;
+
+                &:hover{
+                    color: var(--font-color_active);
+                }
+            }
+        }
+
+        &_ready{
+            color: var(--green);
+            border: 1px solid var(--green);
+
+            &:hover{
+                background-color: var(--green_hover); /*#c1f596*/
+                color: var(--green);
+                border: none;
+            }
+        }
+
+        &_ready_part{
+            width: 135px;
+            text-decoration: underline;
+            border: none;
+            color: var(--font-color_active);
+
+            &:hover{
+                background-color: inherit;
+                color: var(--expand-button-active);
+            }
+
+            &:disabled{
+                color: var(--font-color);
+
+                &:hover{
+                    color: var(--font-color);
+                }
+            }
+        }
+    }
+
+    &_sidebar-task{
+        position: absolute;
+        background-color: inherit;
+        text-decoration: underline;
+        padding: 0px;
+        left: 60px;
+        top: 15px;
+        height: unset;
+
+        &:hover{
+            background-color: inherit;
+        }
     }
 }

@@ -6,12 +6,15 @@
 
 .checkbox + label {
     display: flex;
+    justify-content: center;
     align-items: center;
-    /*justify-content: center;*/
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    color: var(--font-color_active);
-    margin-bottom: 3px;
+    font-size: var(--font_size);
+    color: var(--font-color);
+    cursor: pointer;
+    
+    &:hover{
+        color: var(--font-color_active);
+    }
 }
 
 .checkbox + label::before {
@@ -23,9 +26,14 @@
     border: 1px solid var(--border);
     border-radius: 2px;
     margin: 3px;
+    margin-right: 10px;
 }
 
 .checkbox:checked + label::before {
     border-color: var(--expand-button-active);
     background: var(--expand-button-active) url(../__type-checkbox/img/arrow.svg) no-repeat center;
+}
+
+.checkbox:checked + label {
+    color: var(--font-color_active);
 }

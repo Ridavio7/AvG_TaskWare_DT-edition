@@ -1,8 +1,7 @@
 @import url(../../#common/common.styles.scss);
 
 .notification{
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-size: var(--font_size);
     background-color: var(--background_second);
     border-left: 5px solid var(--green);
     box-shadow: 0 2px 10px var(--box-shadow);
@@ -33,7 +32,7 @@
     }
 
     &-message {
-        font-size: 16px;
+        font-size: var(--font_size);
         color: var(--font-color_active);
     }
 

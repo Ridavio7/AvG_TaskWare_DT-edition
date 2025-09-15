@@ -7,21 +7,39 @@
         justify-content: center;
         background: #2a2a2c url('../entrance/img/entrance_logo.svg') no-repeat center / contain;
         color: #ffffff;
-        font-family: "Roboto", sans-serif;
-        font-size: 16px;
+        font-size: 15px;
+
+        &_logos{
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px;
+        }
     }
 
     &__title{
+        margin-bottom: 30px;
+    }
+
+    &__logo{
         filter: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
         -webkit-filter: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
-        margin-bottom: 40px;
+
+        &_avg{
+
+        }
+
+        &_dt{
+            height: 45px;
+        }
     }
 
     &__form{
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 30px 150px;
+        padding: 30px 135px;
         background-color: #2a2a2c;
         box-shadow: 0px 0px 60px -10px #212121;
         border-radius: 30px;

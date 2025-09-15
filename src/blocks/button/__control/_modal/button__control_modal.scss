@@ -1,10 +1,7 @@
 .button__control_modal{
     color: var(--font-color-button);
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-    background-color: var(--expand-button-active);
+    font-size: var(--font_size);
+    background-color: var(--font-color-modal-blue);
     border: none;
     width: 150px;
     height: 40px;

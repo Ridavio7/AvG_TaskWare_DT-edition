@@ -4,10 +4,14 @@
     margin-top: 10px;
     margin-right: 10px;
     max-width: 725px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &__container{
         position: relative;
-        width: 700px;
+        width: 400px;
         height: 400px;
         margin-bottom: 10px;
         overflow: hidden;
@@ -29,7 +33,7 @@
         height: 36px;
         color: var(--font-color_active);
         background-color: inherit;
-        border: none;
+        border: 1px solid var(--border);
         border-radius: 50%;
         font-size: 22px;
         cursor: pointer;
@@ -73,8 +77,8 @@
     }
 
     &__thumbnail{
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         object-fit: contain;
         cursor: pointer;
         border: 2px solid transparent;

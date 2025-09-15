@@ -1,0 +1,16 @@
+.input__type-time{
+    width: 71px !important;
+    min-width: 71px !important;
+    max-width: 71px !important;
+    background-image: none;
+    padding: 0px;
+    padding-right: 0px;
+
+    &:disabled{
+        color: var(--font-color);
+    }
+
+    &::-webkit-calendar-picker-indicator {
+        background: none;
+    }
+}

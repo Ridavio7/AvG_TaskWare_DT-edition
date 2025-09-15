@@ -1,10 +1,15 @@
-.select_modal{
-    background-color: var(--background_second);
-    margin: 5px;
-    padding: 0px 5px;
-    height: 40px;
-    width: 200px;
-    min-width: 200px;
-    border: 1px solid var(--border);
-    text-align: center;
+.select_modal {
+    max-height: 35px;
+    height: 35px;
+    min-width: 250px;
+    max-width: 250px;
+    border: 1px solid var(--background-modal-second);
+    border-bottom: 1px solid var(--border);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &_active {
+        border: 1px solid var(--expand-button-active);
+    }
 }

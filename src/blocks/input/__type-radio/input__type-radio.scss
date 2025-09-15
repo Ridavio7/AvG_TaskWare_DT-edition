@@ -1,9 +1,10 @@
-.input__type-radio{
+.input__type-radio {
     width: 17px;
     height: 17px;
     margin-right: 5px;
 
-    &__label{
+    &__label {
         white-space: nowrap;
+        color: var(--font-color_active);
     }
 }

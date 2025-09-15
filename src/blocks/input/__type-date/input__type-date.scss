@@ -1,15 +1,63 @@
 .input__type-date{
-    width: 130px;
+    width: 105px !important;
+    min-width: 105px !important;
+    max-width: 105px !important;
+    padding: 0px;
+    padding-right: 0px;
+    background-image: none;
+
+    &_disabled{
+        color: var(--font-color);
+        cursor: not-allowed;
+    }
+
+    &_wrapper{
+        position: relative;
+        display: inline-block;
+    }
+
+    &_icon{
+        position: absolute;
+        right: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        cursor: pointer;
+        width: 15px;
+        height: 18px;
+
+        & img{
+            filter: var(--img_color);
+            -webkit-filter: var(--img_color);
+        }
+    }
+
+    &_icon-no-active{
+        & img{
+            filter: var(--img-color__no-active);
+            -webkit-filter: var(--img-color__no-active);
+            cursor: not-allowed;
+        }
+    }
 
     &_margin-left-wrapper{
         margin-left: 18px;
     }
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
 .input__type-date-filter{
     width: 120px;
-    height: 40px;
-    margin-right: 5px;
+    height: 33px;
     margin-bottom: 5px;
-    padding: 0px 5px;
+    margin-right: 5px;
+}
+
+.input__type-date-filter + .input__type-date_icon{
+    right: 8px;
 }

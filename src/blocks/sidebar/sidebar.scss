@@ -3,7 +3,7 @@
     min-width: 180px;
     max-width: 180px;
 
-    margin: 55px 0px 10px 5px;
+    margin: 55px 0px 10px 0px;
     padding: 5px 0px;
     user-select: none;
     display: flex;
@@ -17,6 +17,7 @@
         place-items: center;
         cursor: pointer;
         background-color: var(--background_second);
+        box-shadow: 4px 4px 10px -4px var(--font-color_active);
         z-index: 1;
         right: -1rem;
         width: 2.25rem;
@@ -59,6 +60,7 @@
         &_task{
             padding: 0px;
             height: 50px;
+            overflow: hidden;
         }
 
         &:hover{
@@ -95,11 +97,23 @@
 
     &__img{
         margin-right: 5px;
-
         &_filter{
             width: 25px;
-            filter: var(--img_color);
-            -webkit-filter: var(--img_color);
+            filter: var(--img-color__no-active);
+            -webkit-filter: var(--img-color__no-active);
+        }
+
+        &_container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3px;
+            width: 30px;
+            height: 40px;
+
+            &-warning{
+                background-color: #ffdbdb;
+            }
         }
     }
 
@@ -113,13 +127,12 @@
     }
 
     &__name{
-        font-family: 'Roboto', sans-serif;
         color: var(--font-color);
 
         &_time{
             font-size: 13px;
-            font-family: 'Roboto', sans-serif;
             color: var(--font-color);
+            text-align: center;
         }
     }
 
@@ -148,7 +161,6 @@
             margin: 3px 18px;
             padding: 5px 10px;
             color: var(--font-color);
-            font-family: 'Roboto', sans-serif;
 
             &:hover,
             &:active{
@@ -233,6 +245,7 @@ body.collapsed .sidebar__block-task-time {
 
 body.collapsed .sidebar__arrow,
 body.collapsed .sidebar__name,
-body.collapsed .sidebar__menu {
+body.collapsed .sidebar__menu,
+body.collapsed .button__control.button__control_sidebar-task{
     display: none;
 }

@@ -1,0 +1,150 @@
+.chat-task{
+    &__container{
+        position: relative;
+        width: 450px;
+        height: 500px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px var(--box-shadow);
+        display: flex;
+        flex-direction: column;
+        background-image: var(--background-modal-chattask);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        resize: both;
+    }
+
+    &__messages{
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    &__message{
+        max-width: 60%;
+        padding: 10px 15px;
+        border-radius: 15px;
+        font-size: var(--font_size);
+        line-height: 1.4;
+        position: relative;
+        word-wrap: break-word;
+
+        &.left {
+            align-self: flex-start;
+            background-color: var(--background-modal-another-sms);
+        }
+
+        &.right {
+            align-self: flex-end;
+            background-color: var(--background-modal-my-sms);
+        }
+    }
+
+    &__username{
+        font-size: var(--font_size);
+        color: var(--font-color-modal-blue);
+        margin-bottom: 2px;
+    }
+
+    &__text{
+        font-size: var(--font_size);
+        color: var(--font-color_active);
+    }
+
+    &__time{
+        font-size: 10px;
+        text-align: right;
+        color: var(--font-color_active);
+    }
+
+    &__check{
+        height: 10px;
+    }
+
+    &__scroll-to-bottom {
+        position: absolute;
+        bottom: 60px;
+        right: 15px;
+        background-color: var(--link-active);
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 0.3s, transform 0.2s;
+        opacity: 0;
+        transform: scale(0.9);
+        z-index: 10;
+
+        &:hover {
+            transform: scale(1);
+        }
+    }
+
+    &__badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background-color: var(--font-color-modal-blue);
+        color: var(--white);
+        font-size: 10px;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &-img{
+            filter: var(--font-color-modal-blue-img);
+        }
+    }
+
+    &__container-input{
+        display: flex;
+        padding: 10px;
+        background-color: var(--link-active);
+        border-top: 1px solid var(--border);
+    }
+
+    &__input{
+        flex: 1;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        resize: none;
+        outline: none;
+        font-size: var(--font_size);
+        max-height: 60px;
+        height: 37px;
+        border-radius: 15px;
+        background-color: var(--background_second);
+        color: var(--font-color_active);
+        overflow: hidden;
+    }
+
+    &__button-send{
+        margin-left: 10px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        background-color: inherit;
+        outline: none;
+        display: flex;
+        align-items: center;
+
+        & img{
+            filter: var(--font-color-modal-blue-img);
+        }
+    }
+}
