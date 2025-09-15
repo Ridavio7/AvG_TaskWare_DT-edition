@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, clearTable, clearTableAll} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcProcessGetDocpost} from '../../table/__provider/table__provider.js';
 
 let docpost_substdoc_modal          = document.getElementById("docpost_substdoc_modal");
@@ -13,6 +13,7 @@ let docpost_substdoc_status_process = document.getElementById("docpost_substdoc_
 let docpost_substdoc_button_perfom  = document.getElementById("docpost_substdoc_button_perfom");
 let tb_docpost_substdoc_1c          = document.getElementById("tb_docpost_substdoc_1c");
 let tb_docpost_substdoc_comp        = document.getElementById("tb_docpost_substdoc_comp");
+let modal_resize                    = document.getElementById("docpost_substdoc_modal_resize");
 
 let uincompont;
 
@@ -26,8 +27,21 @@ docpost_substdoc_close.ontouchend = (e) => {
 }
 
 dragElement(docpost_substdoc_modal);
+resizeModalWindow(modal_resize, "whModalDocpostSubstDoc");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDocpostSubstDoc"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoDocpostSubstdocOpenModal = () => {
+    funcGetResize();
     docpost_substdoc_modal.style.display = "block";
 }
 

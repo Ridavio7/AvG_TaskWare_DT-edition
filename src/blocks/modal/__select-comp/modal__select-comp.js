@@ -1,5 +1,5 @@
 import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcProcessInfoComponentsModalAdd} from '../__info-comp/modal__info-comp.js';
 import {funcFoundComponents, funcFoundComponents1C} from '../../table/__comp-found/table__comp-found.js';
 import {funcFoundPlusOpenModal} from '../__found-plus/modal__found-plus.js';
@@ -9,6 +9,7 @@ import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_select_comp = document.getElementById("modal_select_component");
 let span_select_comp  = document.getElementById("close_component_select");
+let modal_select_resize = document.getElementById('modal_select_component_resize');
 
 let uinCatc = null;
 
@@ -25,6 +26,7 @@ span_select_comp.ontouchend = (e) => {
 }
 
 dragElement(modal_select_comp);
+resizeModalWindow(modal_select_resize, "whModalSelectComponent");
 
 let found_select       = document.getElementById("found_select");
 let found_button       = document.getElementById("found_button");
@@ -44,6 +46,7 @@ found_button_modal.onclick = function(){
 }
 
 export const funcGetComponentsTreeSelect = () => {
+    funcGetResize();
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"100"};
     funcCommand(body, funcProcessGetComponentsTreeSelect);
 
@@ -56,6 +59,17 @@ function funcProcessGetComponentsTreeSelect(result, respobj){
 
     const tree = new TreeBuilder('modal_select_component_tree', 'dirC', 'catC', funcGetComponentsTreeSelect, funcGetDirC, '', ["openall"]);
     tree.build(respobj.answ);
+}
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSelectComponent"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    document.getElementById("modal_select_component_resize").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("modal_select_component_resize").style.height = `${respobj.answ.val[1]}px`;
 }
 
 export const funcGetDirC = (uin) => {

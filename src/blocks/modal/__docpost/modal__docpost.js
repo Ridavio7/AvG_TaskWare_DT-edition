@@ -1,5 +1,5 @@
 import {funcCommand, clearTableAll, clearTable, addToDropdownOneOption, addToDropdown, funcProcessOnlyInfo, removeOptions, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 import {funcGetDocpost} from '../../table/__provider/table__provider.js';
 import {funcFoundOneComponent} from '../../table/__comp-found/table__comp-found.js';
@@ -18,6 +18,7 @@ let docpost_contr   = document.getElementById("docpost_contr");
 let docpost_storage = document.getElementById("docpost_storage");
 let docpost_save    = document.getElementById("docpost_save");
 let modal_select_component = document.getElementById("modal_select_component");
+let modal_resize    = document.getElementById("modal_info_docpost_resize");
 
 docpost_close.onclick = function(){
     docpost_modal.style.display = "none";
@@ -29,8 +30,21 @@ docpost_close.ontouchend = (e) => {
 }
 
 dragElement(docpost_modal);
+resizeModalWindow(modal_resize, "whModalDocpost");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDocpost"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    document.getElementById("modal_info_docpost_resize").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("modal_info_docpost_resize").style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoDocpostOpenModal = (uin) => {
+    funcGetResize();
     docpost_modal.style.display = "block";
     localStorage.setItem("docpost_uin", uin);
 
@@ -192,9 +206,9 @@ const addDocpostInfoTable = (name, compontName, compontUin, price, sum, measName
 
     makeSelect("docpost_meas_select_", uin, measName, measUin, "meas_list", "select", cellMeas);
     makeSelect("docpost_storage_select_", uin, storageName, storageUin, "storages_list", "select", cellStorage);
-    cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="docpost_count_${uin}">`;
-    cellPrice.innerHTML = price;
-    cellSum.innerHTML   = sum;
+    cellCount.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${count}" name="docpost_count_${uin}">`;
+    cellPrice.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${price}" disabled>`;
+    cellSum.innerHTML   = `<input class="input__type-text input__type-text__small" type="text" value="${sum}" disabled>`;;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-docpost" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;

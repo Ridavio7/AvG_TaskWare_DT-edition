@@ -1,8 +1,9 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown, responseProcessor} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 
 let modal_typeselem = document.getElementById("modal_typeselem");
 let span_typeselem  = document.getElementById("close_typeselem");
+let modal_resize    = document.getElementById("modal_typeselem_resize");
 let typeUinForAdd   = null;
 
 span_typeselem.onclick = () => {
@@ -15,8 +16,21 @@ span_typeselem.ontouchend = (e) => {
 }
 
 dragElement(modal_typeselem);
+resizeModalWindow(modal_resize, "whModalTypeselem");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTypeselem"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    document.getElementById("modal_typeselem_resize").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("modal_typeselem_resize").style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoTypeselemOpenModal = (uin) => {
+    funcGetResize();
     modal_typeselem.style.display = "block";
 
     funcGetInfoTypeselem(uin);
@@ -97,7 +111,7 @@ const funcProcessGetInfoTypeselem = (result, respobj) => {
 }
 
 const addInfoTypeselem = (compName, typeUin, propName, propUin, meas, del, tb_id, arr) => {
-    document.getElementById("typeselem_title").innerHTML = compName;
+    document.getElementById("typeselem_title").innerHTML = `Свойства типа ${compName}`;
     typeUinForAdd = typeUin;
 
     let tableRef = document.getElementById(tb_id);

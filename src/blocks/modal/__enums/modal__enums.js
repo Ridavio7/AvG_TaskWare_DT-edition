@@ -1,9 +1,11 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateInput, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 
-let enums_modal = document.getElementById("enums_modal");
-let enums_close = document.getElementById("enums_close");
-let enums_title = document.getElementById("enums_title");
+let enums_modal  = document.getElementById("enums_modal");
+let enums_close  = document.getElementById("enums_close");
+let enums_title  = document.getElementById("enums_title");
+let modal_resize = document.getElementById('enums_modal_resize');
+
 let propUinForAdd = null;
 
 enums_close.onclick = () => {
@@ -16,11 +18,24 @@ enums_close.ontouchend = (e) => {
 }
 
 dragElement(enums_modal);
+resizeModalWindow(modal_resize, "whModalEnums");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalEnums"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoEnumsOpenModal = (uin, name) => {
+    funcGetResize();
     enums_modal.style.display = "block";
 
-    enums_title.innerHTML = name;
+    enums_title.innerHTML = `Значения свойства ${name}`;
 
     propUinForAdd = uin;
 

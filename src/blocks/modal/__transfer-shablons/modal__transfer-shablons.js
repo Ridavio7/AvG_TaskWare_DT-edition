@@ -1,13 +1,14 @@
 import {funcCommand, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetShablonsTree} from '../../table/__template-task-shablons/table__template-task-shablons.js';
 import {funcGetShablonsSteps} from '../__info-shablons/modal__info-shablons.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_transfer  = document.getElementById("modal_transfer_shablons");
 let span_transfer   = document.getElementById("close_shablons_transfer");
 let name_transfer   = document.getElementById("shablons_transfer_name");
 let button_transfer = document.getElementById("shablons_transfer");
+let modal_resize    = document.getElementById('modal_transfer_shablons_resize');
 
 let uinCatp  = null;
 let uinItem  = null;
@@ -23,8 +24,21 @@ span_transfer.ontouchend = (e) => {
 }
 
 dragElement(modal_transfer);
+resizeModalWindow(modal_resize, "whModalTransferShablon");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTransferShablon"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoShablonsTransferOpenModal = (uin, name, uinShablon) => {
+    funcGetResize();
     modal_transfer.style.display = "block";
 
     name_transfer.value = name;

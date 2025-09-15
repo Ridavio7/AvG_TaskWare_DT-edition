@@ -1,3 +1,5 @@
+import {funcCommand, funcProcessOnlyInfo} from '../../js/common/common.js';
+
 export const dragElement = (elmnt) => {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     const mover = document.getElementById(elmnt.id + "_moving");
@@ -57,3 +59,34 @@ modals.forEach((elem) => {
         elem.target.offsetParent.offsetParent.style.zIndex = count;
     })
 })
+
+export const resizeModalWindow = (modalId, modalRespName) => {
+    let isResizing = false;
+    let initialWidth, initialHeight;
+    
+    modalId.addEventListener('mousedown', function(e) {
+        const rect = modalId.getBoundingClientRect();
+        initialWidth = rect.width;
+        initialHeight = rect.height;
+        isResizing = true;
+    
+        document.addEventListener('mouseup', handleMouseUp, { once: true });
+    })
+    
+    function handleMouseUp() {
+        if (!isResizing) return;
+    
+        const rect = modalId.getBoundingClientRect();
+        const newWidth = rect.width;
+        const newHeight = rect.height;
+    
+        if (newWidth !== initialWidth || newHeight !== initialHeight) {saveSizeToServer(newWidth, newHeight)}
+    
+        isResizing = false;
+    }
+
+    async function saveSizeToServer(width, height) {
+        let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"webopt", "name":`${modalRespName}`, "descr":"", "show":"", "fmode":"", "val":`[${width},${height}]`};
+        funcCommand(body, funcProcessOnlyInfo);
+    }
+}

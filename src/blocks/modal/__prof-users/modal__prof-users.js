@@ -1,11 +1,13 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateSelect, insertDataInSelect, removeOptions, funcProcessOnlyConsole, makeSelect} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 
 let prof_users_modal = document.getElementById("prof_users_modal");
 let prof_users_close = document.getElementById("prof_users_close");
 let prof_users_title = document.getElementById("prof_users_title");
 let prof_users_add_u = document.getElementById("prof_users_add_user");
 let prof_users_add_b = document.getElementById('prof_users_add_button');
+let modal_resize     = document.getElementById("prof_users_modal_resize");
+
 let profUinForAdd = null;
 
 prof_users_close.onclick = () => {
@@ -18,8 +20,21 @@ prof_users_close.ontouchend = (e) => {
 }
 
 dragElement(prof_users_modal);
+resizeModalWindow(modal_resize, "whModalProfUsers");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalProfUsers"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoProfUsersOpenModal = (uin, name) => {
+    funcGetResize();
     prof_users_modal.style.display = "block";
     prof_users_title.innerHTML = name;
 

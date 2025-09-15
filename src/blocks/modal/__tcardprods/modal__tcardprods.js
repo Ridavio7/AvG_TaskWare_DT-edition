@@ -1,8 +1,9 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 
 let modal_tcardprods = document.getElementById("modal_tcardprods");
 let span_tcardprods  = document.getElementById("close_tcardprods");
+let modal_resize     = document.getElementById("modal_tcardprods_resize");
 let uinProdForAdd;
 
 span_tcardprods.onclick = () => {
@@ -15,8 +16,21 @@ span_tcardprods.ontouchend = (e) => {
 }
 
 dragElement(modal_tcardprods);
+resizeModalWindow(modal_resize, "whModalTcardProd");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTcardProd"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoTcardprodsOpenModal = (uin) => {
+    funcGetResize();
     modal_tcardprods.style.display = "block";
 
     funcGetInfoTcardprod(uin);
@@ -128,7 +142,7 @@ const addInfoTcardprod = (prod, numb, nametechproc, uintechproc, fix, uin, del, 
     let cellFix  = newRow.insertCell(2); cellFix.classList  = "td";
     let cellBtn  = newRow.insertCell(3); cellBtn.classList  = "td";
 
-    cellNumb.innerHTML = `<input class="input__type-text" type="text" value="${numb}" name="tcardprods_numb_${uin}">`;
+    cellNumb.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${numb}" name="tcardprods_numb_${uin}">`;
     makeSelect("tcardprods_select_", uin, nametechproc, uintechproc, "techproc_list", "select", cellName);
     let fix_checked    = fix === 1 ? 'checked' : '';
     cellFix.innerHTML  = `<input class="checkbox" type="checkbox" id="tcardprods_fix_${uin}" ${fix_checked}><label for="tcardprods_fix_${uin}"></label>` 

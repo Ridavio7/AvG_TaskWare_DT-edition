@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, insertDataInSelect, responseProcessor} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcGetShablons, funcGetShablonsTree} from '../../table/__template-task-shablons/table__template-task-shablons.js';
 import {funcGetProductsTreeSelectUnic} from '../__select-prod-unic/modal__select-prod-unic.js';
 
@@ -23,6 +23,10 @@ let shablons_start    = document.getElementById("shablons_start");
 let shablons_save     = document.getElementById("shablons_save");
 let switch_1          = document.getElementById("switch_shablons_inputs_1");
 let switch_2          = document.getElementById("switch_shablons_inputs_2");
+let modal_resize      = document.getElementById("shablons_modal_resize");
+
+let shablonsCountLastValue;
+let shablonsContentLastValue;
 
 shablons_close.onclick = function(){
     shablons_modal.style.display = "none";
@@ -34,8 +38,21 @@ shablons_close.ontouchend = (e) => {
 }
 
 dragElement(shablons_modal);
+resizeModalWindow(modal_resize, "whModalShablon");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalShablon"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcGetShablonsSteps = (uin) => {
+    funcGetResize();
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":"dirSh", "uin":`${uin}`, "uinShablon":`${localStorage.getItem('uinShablon')}`};
     funcCommand(body, funcProcessGetShablonsSteps);
 
@@ -63,13 +80,13 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
         shablons_dl_h.disabled     = true;
         shablons_dl_m.disabled     = true;
         shablons_start.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
-        switch_1.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        switch_1.parentElement.parentElement.parentElement.style.opacity = "0";
     } else {
         shablons_areaprof.disabled = false;
         shablons_dl_d.disabled     = false;
         shablons_dl_h.disabled     = false;
         shablons_dl_m.disabled     = false;
-        shablons_start.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        shablons_start.parentElement.parentElement.style.opacity = "1";
         switch_1.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
     }
 
@@ -115,11 +132,13 @@ const addShablonsInfo =
     shablons_dl_d.value        = dl.dl_d;
     shablons_dl_h.value        = dl.dl_h;
     shablons_dl_m.value        = dl.dl_m;
-    shablons_count.value = count;
+    shablons_count.value       = count;
+    shablonsCountLastValue     = shablons_count.value;
     insertDataInSelect(shablons_user, nameUser, uinUser, "users_list");
     uin === "0" ? shablons_user.parentElement.previousElementSibling.textContent = "Администратор:" : shablons_user.parentElement.previousElementSibling.textContent = "Исполнитель:";
     insertDataInSelect(shablons_areaprof, nameAreaprof, uinAreaprof, "prof_list");
     insertDataInSelect(shablons_content, nameContent, uinContent, "contents_list");
+    shablonsContentLastValue = uinContent;
     if(uin === "0" && uinContent === 5){
         shablons_c_prod.parentElement.classList.remove("modal__input-wrapper_display-none");
         shablons_c_proc.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
@@ -168,6 +187,29 @@ const addShablonsInfo =
     shablons_save.name = uinShablon;
 }
 
+/* отслеживание count/content */
+let shablonsCountChangeValue = false;
+let shablonsContentChangeValue = false;
+
+shablons_count.addEventListener('input', () => {
+    const currentValue = shablons_count.value;
+
+    if (currentValue !== shablonsCountLastValue) {
+        shablonsCountLastValue = currentValue;
+        shablonsCountChangeValue = true;
+    }
+})
+
+shablons_content.addEventListener('change', () => {
+    const currentValue = shablons_content.value;
+
+    if (currentValue !== shablonsContentLastValue) {
+        shablonsContentLastValue = currentValue;
+        shablonsContentChangeValue = true;
+    }
+})
+
+/* кнопка сохранения */
 shablons_save.onclick = (elem) => {
     let body;
     elem.target.value === 0 ? 
@@ -194,6 +236,20 @@ shablons_save.onclick = (elem) => {
     body.uintechproc  = shablons_c_proc.value;
 
     funcCommand(body, funcProcessOnlyInfo);
+
+    if(elem.target.value == 0){
+        if(shablonsCountChangeValue === true || shablonsContentChangeValue === true){
+            let result = confirm('Поменять количество/тип контента во всех шагах шаблона?');
+            if(result){
+                let body_2 = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"catSh", "uinShablon":`${localStorage.getItem('uinShablon')}`, "count":`${shablons_count.value}`, "uincontent":`${shablons_content.value}`};
+                funcCommand(body_2, funcProcessOnlyInfo);
+
+                shablonsCountChangeValue = false;
+                shablonsContentChangeValue = false;
+            }
+        }
+    }
+
     setTimeout(function(){funcGetShablonsTree(elem.target.name)}, 100);
     setTimeout(function(){funcGetShablons()}, 150);
     setTimeout(function(){funcGetShablonsSteps(elem.target.value)}, 200);

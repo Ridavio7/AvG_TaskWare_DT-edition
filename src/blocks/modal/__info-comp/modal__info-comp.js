@@ -1,5 +1,5 @@
 import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcGetComponentInfoProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
 import {funcGetComponentInfoTypesProps} from '../../table/__comp-typesprops/table__comp-typesprops.js';
@@ -12,6 +12,7 @@ export const modal_info_component = document.getElementById("modal_info_componen
 let span_info_component           = document.getElementById("close_info");
 let component_input_name          = document.getElementById("component_name");
 let component_input_name_title    = document.getElementById("component_name_title");
+let component_resize              = document.getElementById("modal_info_component_resize");
 let component_select_type         = document.getElementById("component_type");
 let component_button_type_info    = document.getElementById("component_type_info");
 let component_checkbox_funic      = document.getElementById("component_unic");
@@ -56,14 +57,16 @@ span_info_component.ontouchend = (e) => {
 }
 
 dragElement(modal_info_component);
+resizeModalWindow(component_resize, 'whModalComponents');
 
 /* функция добавления комплектующего */
 export const funcProcessInfoComponentsModalAdd = (uin) => {
     modal_info_component.style.display = "block";
 
     component_input_name.value = "";
-    component_input_name_title.innerHTML = "";
+    component_input_name_title.innerHTML = "Добавление комплектующего";
     //component_checkbox_funic.checked = false;
+    component_input_comment.value = '';
     component_checkbox_tpack.checked = false;
 
     removeOptionsSetValue("component_type", "---");
@@ -114,11 +117,23 @@ component_button_add.onclick = () => {
 
 /* открытие модального окна */
 export const funcInfoComponentsOpenModal = (uin) => {
+    funcGetResize();
     modal_info_component.style.display = "block";
 
     funcGetComponentInfo(uin);
     setTimeout(function(){funcGetComponentInfoProps(uin)}, 100);
     setTimeout(function(){funcGetCompontlinks(uin); funcGetCompontimgs(uin)}, 120);
+}
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalComponents"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    document.getElementById("modal_info_component_resize").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("modal_info_component_resize").style.height = `${respobj.answ.val[1]}px`;
 }
 
 /* инфо о комплектующем в модальном окне */
@@ -209,8 +224,8 @@ const addComponentInfo = (name, typelm, typelmUin, fUnic, tpack, comment, ost, u
     component_table_link.parentElement.parentElement.style.display = "block";
 
     component_table_props.style.display = "inline-table";
-    component_button_type_info.style.display = "block";
-    document.querySelector('.carousel').style.display = "block";
+    component_button_type_info.style.display = "flex";
+    document.querySelector('.carousel').style.display = "flex";
 
     component_button_add_props.value = "";
     component_button_save.value = "";

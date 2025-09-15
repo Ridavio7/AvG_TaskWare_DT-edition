@@ -1,8 +1,9 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable, formatDate, findForUpdateInput, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {funcCommand, funcProcessOnlyInfo, clearTable, formatDate, findForUpdateInput, responseProcessor, funcProcessOnlyConsole, clearTableAll} from '../../../js/common/common.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 
 let detailpp_modal = document.getElementById("detailpp_modal");
 let detailpp_close = document.getElementById("detailpp_close");
+let modal_resize   = document.getElementById("detailpp_modal_resize");
 
 detailpp_close.onclick = () => {
     detailpp_modal.style.display = "none";
@@ -14,8 +15,21 @@ detailpp_close.ontouchend = (e) => {
 }
 
 dragElement(detailpp_modal);
+resizeModalWindow(modal_resize, "whModalDetailpp");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDetailpp"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoDetailppOpenModal = (uin) => {
+    funcGetResize();
     detailpp_modal.style.display = "block";
 
     funcGetInfoDetailpp(uin);
@@ -30,7 +44,7 @@ const funcProcessGetInfoDetailpp = (result, respobj) => {
     console.log("детализация:", respobj);
 
     let tb_id = "detailpp_tb_modal";
-    clearTable(tb_id);
+    clearTableAll(tb_id);
 
     if(respobj.answ === ''){
         clearTable(tb_id);

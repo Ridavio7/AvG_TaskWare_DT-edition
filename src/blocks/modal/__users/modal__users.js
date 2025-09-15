@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect, togglePassword, validateForm, responseProcessor} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {showNotification} from '../__notification/modal__notification.js';
 import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 
@@ -16,6 +16,7 @@ let user_pass_s = document.getElementById("user_pass_second");
 let user_save   = document.getElementById("user_save");
 let user_add    = document.getElementById("user_add");
 let user_table  = document.getElementById("tb_user_rights");
+let modal_resize = document.getElementById("user_modal_resize");
 
 let log_pass_change = 0;
 
@@ -35,9 +36,22 @@ user_close.ontouchend = (e) => {
 }
 
 dragElement(user_modal);
+resizeModalWindow(modal_resize, "whModalUser");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalUser"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 /* открытие инфо мод. окна пользователя */
 export const funcInfoUserOpenModal = (uin) => {
+    funcGetResize();
     user_modal.style.display  = "block";
 
     user_save.style.display = "flex";

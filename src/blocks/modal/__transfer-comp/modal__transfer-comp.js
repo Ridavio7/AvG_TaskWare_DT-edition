@@ -1,6 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_transfer       = document.getElementById("modal_transfer_component");
@@ -8,6 +8,7 @@ let span_transfer        = document.getElementById("close_component_transfer");
 let name_transfer        = document.getElementById("component_transfer_name");
 let button_transfer_comp = document.getElementById("component_transfer_comp");
 let button_transfer_dirc = document.getElementById("component_transfer_catc");
+let modal_resize         = document.getElementById('modal_transfer_component_resize');
 
 let uinCatc  = null;
 let uinItem  = null;
@@ -23,8 +24,21 @@ span_transfer.ontouchend = (e) => {
 }
 
 dragElement(modal_transfer);
+resizeModalWindow(modal_resize, "whModalTransferComponent");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTransferComponent"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    document.getElementById("modal_transfer_component_resize").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("modal_transfer_component_resize").style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcInfoComponentsTransferOpenModal = (uin, name) => {
+    funcGetResize();
     modal_transfer.style.display = "block";
 
     name_transfer.value = name;

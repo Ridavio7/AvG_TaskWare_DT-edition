@@ -1,9 +1,10 @@
 import {funcCommand, clearTableAll, responseProcessor} from '../../../js/common/common.js.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_select_prod = document.getElementById("modal_select_products_unic");
 let span_select_prod  = document.getElementById("close_products_select_unic");
+let modal_resize      = document.getElementById("modal_select_products_unic_resize");
 
 let uinCatc = null;
 
@@ -17,8 +18,21 @@ span_select_prod.ontouchend = (e) => {
 }
 
 dragElement(modal_select_prod);
+resizeModalWindow(modal_resize, "whModalSelectProdUnic");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSelectProdUnic"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcGetProductsTreeSelectUnic = () => {
+    funcGetResize();
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"1000"};
     funcCommand(body, funcProcessGetProductsTreeSelectUnic);
 }

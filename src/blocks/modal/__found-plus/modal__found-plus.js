@@ -1,6 +1,6 @@
 import {funcCommand, clearTableAll, addToDropdown, addToDropdownOneOption, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js.js';
-import {addToDropdownPsevdoFoundPlus, psevdoSelect} from '../../select/select.js';
-import {dragElement} from '../modal.js';
+import {customSelect} from '../../select/select.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcFoundPlusComponents} from '../../table/__comp-found/table__comp-found.js';
 
 let found_plus_modal  = document.getElementById("found_plus_modal");
@@ -8,6 +8,7 @@ let found_plus_close  = document.getElementById("found_plus_close");
 let found_plus_select = document.getElementById("found_plus_select");
 let found_plus_input  = document.getElementById("found_plus_input");
 let found_plus_button = document.getElementById("found_plus_button");
+let modal_resize      = document.getElementById("found_plus_modal_resize");
 
 let found_tree;
 let found_table;
@@ -17,7 +18,7 @@ let found_input_id;
 found_plus_close.onclick = () => {
     found_plus_modal.style.display = "none";
 
-    removeOptionsSetValue("found_plus_select", "-- Выберите тип --");
+    removeOptionsSetValue("found_plus_select", "Выберите тип");
     clearTableAll("found_plus_tb");
     found_plus_input.value = "";
 }
@@ -26,14 +27,27 @@ found_plus_close.ontouchend = (e) => {
     e.preventDefault();
     found_plus_modal.style.display = "none";
 
-    removeOptionsSetValue("found_plus_select", "-- Выберите тип --");
+    removeOptionsSetValue("found_plus_select", "Выберите тип");
     clearTableAll("found_plus_tb");
     found_plus_input.value = "";
 }
 
 dragElement(found_plus_modal);
+resizeModalWindow(modal_resize, "whModalFoundPlus");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalFoundPlus"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcFoundPlusOpenModal = (tb_id, tb_id_comp, tree_id, input_id) => {
+    funcGetResize();
     found_plus_modal.style.display = "block";
 
     removeOptionsSetValue("found_plus_select", "-- Выберите тип --");
@@ -148,13 +162,34 @@ const addFoundTypesProps = (name, uin, tb_id) => {
         if(respobj.answ === ''){
             cellValue.innerHTML = `<input class="input__type-text input__type-text_title input__type-text_types-props-value" type="text" value="">`;
         } else {
-            cellValue.innerHTML = `<div class="select select__filter select-props-value" id="list_enums_prop_${uin}" tabindex="100">
-                        <span class="select__anchor">Значения <img class="select__img" src="assets/images/filter.svg" alt=""></span>
-                        <ul class="select__items" id="list_enums_prop_${uin}_items"></ul>
-                    </div>`
+            cellValue.innerHTML = `<div class="select-custom" id="list_enums_prop_${uin}">
+                                    <div class="select-custom__header selectHeader">
+                                        Выберите значение
+                                        <span class="select-custom__icon"></span>
+                                    </div>
+                                    <div class="select-custom__options">
+                                        <div class="select-custom__search-box">
+                                            <input type="text" class="searchInput" placeholder="Поиск..." />
+                                        </div>
+                                        <div class="optionsList">
 
-            addToDropdownPsevdoFoundPlus(`list_enums_prop_${uin}_items`, respobj.answ[0].vals);
-            psevdoSelect(`list_enums_prop_${uin}`);
+                                        </div>
+                                        <div class="select-custom__no-results noResults">
+                                            Ничего не найдено
+                                        </div>
+                                    </div>
+                                </div>`
+
+            let vals = respobj.answ[0].vals;
+            let transformed = vals.map(item => ({
+                del: 0,
+                name: item,
+                uin: item
+            }))
+
+            customSelect(`list_enums_prop_${uin}`, transformed, 'значение');
+            //addToDropdownPsevdoFoundPlus(`list_enums_prop_${uin}_items`, respobj.answ[0].vals);
+            //psevdoSelect(`list_enums_prop_${uin}`);
         }
     }
 }

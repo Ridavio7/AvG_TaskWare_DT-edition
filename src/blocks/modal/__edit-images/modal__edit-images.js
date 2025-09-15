@@ -1,10 +1,11 @@
 import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement} from '../modal.js';
+import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table__comp-compontimgs.js';
 
 let edit_imgs_modal = document.getElementById("comp_edit_imgs_modal");
 let edit_imgs_close = document.getElementById("comp_edit_imgs_close");
 let edit_imgs_title = document.getElementById("comp_edit_imgs_title");
+let modal_resize    = document.getElementById("comp_edit_imgs_modal_resize");
 
 edit_imgs_close.onclick = () => {
     edit_imgs_modal.style.display = "none";
@@ -16,8 +17,21 @@ edit_imgs_close.ontouchend = (e) => {
 }
 
 dragElement(edit_imgs_modal);
+resizeModalWindow(modal_resize, "whModalEditCompImgs");
+
+/* настройка размера окна */
+const funcGetResize = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalEditCompImgs"};
+    funcCommand(body, funcProcessGetResize)
+}
+
+const funcProcessGetResize = (result, respobj) => {
+    modal_resize.style.width  = `${respobj.answ.val[0]}px`;
+    modal_resize.style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcEditImgsOpenModal = (uin, name) => {
+    funcGetResize();
     edit_imgs_modal.style.display = "block";
 
     edit_imgs_title.innerHTML = name;
