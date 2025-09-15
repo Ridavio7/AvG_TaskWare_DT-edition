@@ -6,7 +6,7 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const TerserWebpackPlugin       = require('terser-webpack-plugin');
 const ImageMinimizerPlugin      = require("image-minimizer-webpack-plugin");
 const CopyWebpackPlugin         = require("copy-webpack-plugin");
-const {CleanWebpackPlugin}      = require('clean-webpack-plugin')
+const {CleanWebpackPlugin}      = require('clean-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -48,6 +48,10 @@ const plugins = () => {
         { from: "src/blocks/button/__control/img/found_it.svg", to: "assets/images/" },
         { from: "src/blocks/button/__control/img/minus.svg", to: "assets/images/" },
         { from: "src/blocks/button/__control/img/chat.svg", to: "assets/images/" },
+        { from: "src/blocks/button/__control/img/cancel_task.svg", to: "assets/images/" },
+        { from: "src/blocks/button/__control/img/archive_task.svg", to: "assets/images/" },
+        { from: "src/blocks/button/__control/img/start.svg", to: "assets/images/" },
+        { from: "src/blocks/button/__control/img/create.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_green.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_orange.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_white.svg", to: "assets/images/" },
@@ -55,6 +59,8 @@ const plugins = () => {
         { from: "src/blocks/entrance/img/entrance_eye_off.svg", to: "assets/images/" },
         { from: "src/blocks/modal/__chat-task/img/send.svg", to: "assets/images/" },
         { from: "src/blocks/modal/__chat-task/img/change.svg", to: "assets/images/" },
+        { from: "src/blocks/modal/__chat-task/img/check.svg", to: "assets/images/" },
+        { from: "src/blocks/modal/__chat-task/img/no-check.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/active.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/active_time_fail.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/active_accept.svg", to: "assets/images/" },
@@ -63,7 +69,9 @@ const plugins = () => {
         { from: "src/blocks/table/__control-task-control/img/complete_time_fail.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/cancel.svg", to: "assets/images/" },
         { from: "src/blocks/table/__control-task-control/img/complete_part.svg", to: "assets/images/" },
-        { from: "src/blocks/table/__control-task-control/img/complete_time_fail_part.svg", to: "assets/images/" }
+        { from: "src/blocks/table/__control-task-control/img/complete_time_fail_part.svg", to: "assets/images/" },
+        { from: "src/blocks/input/__type-date/img/calendar.svg", to: "assets/images/" },
+        { from: "src/blocks/input/__type-time/img/time.svg", to: "assets/images/" }
       ],
     }),
     new webpack.ProvidePlugin({
