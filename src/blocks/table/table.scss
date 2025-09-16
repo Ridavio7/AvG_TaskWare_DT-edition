@@ -72,6 +72,12 @@
             -webkit-filter: var(--img-button_color_white);
         }*/
     }
+
+    &_no-hover{
+        &:hover{
+            border: none;
+        }
+    }
 }
 
 .td{
@@ -80,11 +86,15 @@
 
     &_active{
         background-color: var(--td-active);
-        border-left: 1px solid var(--border);
         border-right: 1px solid var(--border);
         border-top: 1px solid var(--border);
         text-align: center;
         color: var(--font-color_active);
+
+        &-no-border{
+            border-right: none;
+            border-top: none;
+        }
     }
 
     &_active-cell{

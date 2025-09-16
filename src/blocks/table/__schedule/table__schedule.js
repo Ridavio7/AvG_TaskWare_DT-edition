@@ -97,10 +97,10 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
 const addGrfLeftRow = (num, uinSet, nameSet, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
-    newRow.classList = "tr";
+    newRow.classList = "tr tr_no-hover";
 
-    let cellNum  = newRow.insertCell(0); cellNum.classList  = "td td_right-border";
-    let cellName = newRow.insertCell(1); cellName.classList = "td td_right-border";
+    let cellNum  = newRow.insertCell(0); cellNum.classList  = "td td_right-border td_active td_active-no-border";
+    let cellName = newRow.insertCell(1); cellName.classList = "td td_right-border td_active td_active-no-border";
 
     let number         = +num + 1;
     cellNum.innerHTML  = number;
@@ -154,16 +154,16 @@ const addGrfCenterRow = (uin, tb_id, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m1
 const addGrfRightRow = (msum, rsum, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
-    newRow.classList = "tr";
+    newRow.classList = "tr tr_no-hover";
 
-    let cellMsum = newRow.insertCell(0); cellMsum.classList = "td";
-    let cellRsum = newRow.insertCell(1); cellRsum.classList = "td td_right-border";
+    let cellMsum = newRow.insertCell(0); cellMsum.classList = "td td_active";
+    let cellRsum = newRow.insertCell(1); cellRsum.classList = "td td_right-border td_active";
     let cellBtn  = newRow.insertCell(2);
 
     cellMsum.innerHTML = msum;
     cellRsum.innerHTML = rsum;
     
-    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control td_active td_active-no-border";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-schedule" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-schedule${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
