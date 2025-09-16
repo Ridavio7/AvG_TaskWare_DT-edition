@@ -15,11 +15,11 @@ detailpp_close.ontouchend = (e) => {
 }
 
 dragElement(detailpp_modal);
-resizeModalWindow(modal_resize, "whModalDetailpp");
+resizeModalWindow(modal_resize, "whModalDetailpp", "Размеры окна детализации количества");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDetailpp"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDetailpp", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

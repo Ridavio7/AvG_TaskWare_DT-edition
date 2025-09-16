@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, responseProcessor, makeSelect, addToDropdownOneOption, removeOptionsSetValue} from '../../../js/common/common.js';
 
 export const funcGetWebopt = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"webopt", "count":"100"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"webopt", "count":"100", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetWebopt);
 }
 
@@ -80,7 +80,7 @@ const addWeboptRow = (name, descr, show, fmode, val, del, uin, tb_id) => {
         makeSelect("setting_user_fmod_", uin, 'Число', 2, "", "select", cellFmod);
         cellVal.innerHTML = `<input class="input__type-text input__type-text_modal" type="number" id="setting_user_${uin}" name="${name}" value="${val}">`;
     } else if(fmode === 3) {
-        makeSelect("setting_user_fmod_", uin, 'Массив чисел', 2, "", "select", cellFmod);
+        makeSelect("setting_user_fmod_", uin, 'Массив чисел', 3, "", "select", cellFmod);
         cellVal.innerHTML = `<input class="input__type-text input__type-text_modal" type="text" id="setting_user_${uin}" name="${name}" value="${val}">`;
     }
     addToDropdownOneOption(document.getElementById(`setting_user_fmod__${uin}`), 'Булево', 0);
@@ -94,7 +94,7 @@ const addWeboptRow = (name, descr, show, fmode, val, del, uin, tb_id) => {
 
 /* функция добавления */
 document.querySelector(".button__control_add-webopt").addEventListener("click", (elem) => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"webopt", "name":"", "descr":"", "show":"", "fmode":"", "val":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"webopt", "name":"", "descr":"", "show":"", "fmode":"", "val":"", "uinuser":`${localStorage.getItem('user_uin')}`};
 
     body.name  = document.getElementById('setting_user_name_add').value;
     body.descr = document.getElementById('setting_user_descr_add').value;

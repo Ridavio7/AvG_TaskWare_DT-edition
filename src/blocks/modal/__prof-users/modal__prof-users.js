@@ -20,11 +20,11 @@ prof_users_close.ontouchend = (e) => {
 }
 
 dragElement(prof_users_modal);
-resizeModalWindow(modal_resize, "whModalProfUsers");
+resizeModalWindow(modal_resize, "whModalProfUsers", "Размеры окна пользователей в участке");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalProfUsers"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalProfUsers", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

@@ -17,11 +17,11 @@ edit_imgs_close.ontouchend = (e) => {
 }
 
 dragElement(edit_imgs_modal);
-resizeModalWindow(modal_resize, "whModalEditCompImgs");
+resizeModalWindow(modal_resize, "whModalEditCompImgs", "Размеры окна добавления изображения");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalEditCompImgs"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalEditCompImgs", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

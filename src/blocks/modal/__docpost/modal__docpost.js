@@ -30,11 +30,11 @@ docpost_close.ontouchend = (e) => {
 }
 
 dragElement(docpost_modal);
-resizeModalWindow(modal_resize, "whModalDocpost");
+resizeModalWindow(modal_resize, "whModalDocpost", "Размеры окна поставки");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDocpost"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDocpost", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

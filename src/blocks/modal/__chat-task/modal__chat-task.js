@@ -38,11 +38,11 @@ chat_task_close.ontouchend = (e) => {
 }
 
 dragElement(chat_task_modal);
-resizeModalWindow(modal_resize, "whchattask");
+resizeModalWindow(modal_resize, "whchattask", "Размеры окна чата");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whchattask"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whchattask", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

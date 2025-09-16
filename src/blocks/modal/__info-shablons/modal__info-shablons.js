@@ -38,11 +38,11 @@ shablons_close.ontouchend = (e) => {
 }
 
 dragElement(shablons_modal);
-resizeModalWindow(modal_resize, "whModalShablon");
+resizeModalWindow(modal_resize, "whModalShablon", "Размеры окна шаблона");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalShablon"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalShablon", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

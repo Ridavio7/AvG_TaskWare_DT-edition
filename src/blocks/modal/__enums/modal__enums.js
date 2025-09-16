@@ -18,11 +18,11 @@ enums_close.ontouchend = (e) => {
 }
 
 dragElement(enums_modal);
-resizeModalWindow(modal_resize, "whModalEnums");
+resizeModalWindow(modal_resize, "whModalEnums", "Размеры окна значений свойства");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalEnums"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalEnums", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

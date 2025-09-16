@@ -24,11 +24,11 @@ span_transfer.ontouchend = (e) => {
 }
 
 dragElement(modal_transfer);
-resizeModalWindow(modal_resize, "whModalTransferShablon");
+resizeModalWindow(modal_resize, "whModalTransferShablon", "Размеры окна перемещения шаблона");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTransferShablon"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTransferShablon", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

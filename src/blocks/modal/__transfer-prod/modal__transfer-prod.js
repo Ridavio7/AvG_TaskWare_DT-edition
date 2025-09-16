@@ -24,11 +24,11 @@ span_transfer.ontouchend = (e) => {
 }
 
 dragElement(modal_transfer);
-resizeModalWindow(modal_resize, "whModalTransferProd");
+resizeModalWindow(modal_resize, "whModalTransferProd", "Размеры окна перемещения комплекта/изделия");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTransferProd"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTransferProd", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

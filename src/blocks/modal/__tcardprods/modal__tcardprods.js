@@ -16,11 +16,11 @@ span_tcardprods.ontouchend = (e) => {
 }
 
 dragElement(modal_tcardprods);
-resizeModalWindow(modal_resize, "whModalTcardProd");
+resizeModalWindow(modal_resize, "whModalTcardProd", "Размеры окна тех. карты");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTcardProd"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTcardProd", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

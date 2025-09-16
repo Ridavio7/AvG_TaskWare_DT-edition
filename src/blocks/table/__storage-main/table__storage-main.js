@@ -5,13 +5,13 @@ import {TreeBuilder} from '../../_tree/tree.js';
 import {customSortSelect} from '../../select/select.js';
 import {resizeModalWindow} from '../../modal/modal.js';
 
-resizeModalWindow(wrapper_prod_tree, "whComponentTree");
-resizeModalWindow(wrapper_prod_table, "whComponentTable"); 
-resizeModalWindow(wrapper_prod_found, "whComponentFound");
+resizeModalWindow(wrapper_prod_tree, "whComponentTree", "Размеры окна дерева комплектующих");
+resizeModalWindow(wrapper_prod_table, "whComponentTable", "Размеры окна таблицы комплектующих"); 
+resizeModalWindow(wrapper_prod_found, "whComponentFound", "Размеры окна поиска комплектующих");
 
 /* настройка размера окна */
 const funcGetResizeTree = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentTree"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentTree", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeTree)
 }
 
@@ -22,7 +22,7 @@ const funcProcessGetResizeTree = (result, respobj) => {
 
 /* настройка размера окна */
 const funcGetResizeTb = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentTable"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentTable", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeTb)
 }
 
@@ -33,7 +33,7 @@ const funcProcessGetResizeTb = (result, respobj) => {
 
 /* настройка размера окна */
 const funcGetResizeFound = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentFound"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentFound", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeFound)
 }
 

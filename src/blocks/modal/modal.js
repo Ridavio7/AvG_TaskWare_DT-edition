@@ -60,7 +60,7 @@ modals.forEach((elem) => {
     })
 })
 
-export const resizeModalWindow = (modalId, modalRespName) => {
+export const resizeModalWindow = (modalId, modalRespName, descrText) => {
     let isResizing = false;
     let initialWidth, initialHeight;
     
@@ -86,7 +86,15 @@ export const resizeModalWindow = (modalId, modalRespName) => {
     }
 
     async function saveSizeToServer(width, height) {
-        let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"webopt", "name":`${modalRespName}`, "descr":"", "show":"", "fmode":"", "val":`[${width},${height}]`};
-        funcCommand(body, funcProcessOnlyInfo);
+        let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"webopt", "name":`${modalRespName}`, "descr":"", "show":"", "fmode":"", "val":`[${width},${height}]`, "uinuser":`${localStorage.getItem('user_uin')}`};
+        funcCommand(body, funcProcesssaveSizeToServer);
+    }
+
+    const funcProcesssaveSizeToServer = (result, respobj) => {
+        if(respobj.succ != 1 && respobj.size != 1){
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"webopt", "name":`${modalRespName}`, "descr":`${descrText}`, "show":"1", "fmode":"3", "val":`[${initialWidth},${initialHeight}]`, "uinuser":`${localStorage.getItem('user_uin')}`};
+            console.log(body)
+            funcCommand(body, funcProcessOnlyInfo);
+        }
     }
 }

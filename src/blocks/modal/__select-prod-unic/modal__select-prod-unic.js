@@ -18,11 +18,11 @@ span_select_prod.ontouchend = (e) => {
 }
 
 dragElement(modal_select_prod);
-resizeModalWindow(modal_resize, "whModalSelectProdUnic");
+resizeModalWindow(modal_resize, "whModalSelectProdUnic", "Размеры окна выбора изделия");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSelectProdUnic"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSelectProdUnic", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

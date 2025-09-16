@@ -26,7 +26,7 @@ span_select_comp.ontouchend = (e) => {
 }
 
 dragElement(modal_select_comp);
-resizeModalWindow(modal_select_resize, "whModalSelectComponent");
+resizeModalWindow(modal_select_resize, "whModalSelectComponent", "Размеры окна выбора комплектующего");
 
 let found_select       = document.getElementById("found_select");
 let found_button       = document.getElementById("found_button");
@@ -63,7 +63,7 @@ function funcProcessGetComponentsTreeSelect(result, respobj){
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSelectComponent"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSelectComponent", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

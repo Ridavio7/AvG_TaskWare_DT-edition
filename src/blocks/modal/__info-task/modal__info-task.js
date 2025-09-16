@@ -59,11 +59,11 @@ tasks_close.ontouchend = (e) => {
 }
 
 dragElement(tasks_modal);
-resizeModalWindow(modal_resize, "whModalTask");
+resizeModalWindow(modal_resize, "whModalTask", "Размеры окна задачи");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTask"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTask", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

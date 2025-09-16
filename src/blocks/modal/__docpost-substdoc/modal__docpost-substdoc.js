@@ -27,11 +27,11 @@ docpost_substdoc_close.ontouchend = (e) => {
 }
 
 dragElement(docpost_substdoc_modal);
-resizeModalWindow(modal_resize, "whModalDocpostSubstDoc");
+resizeModalWindow(modal_resize, "whModalDocpostSubstDoc", "Размеры окна автоподстановки");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDocpostSubstDoc"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalDocpostSubstDoc", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

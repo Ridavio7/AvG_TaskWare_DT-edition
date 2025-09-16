@@ -36,11 +36,11 @@ user_close.ontouchend = (e) => {
 }
 
 dragElement(user_modal);
-resizeModalWindow(modal_resize, "whModalUser");
+resizeModalWindow(modal_resize, "whModalUser", "Размеры окна пользователя");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalUser"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalUser", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

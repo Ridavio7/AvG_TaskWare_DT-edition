@@ -55,7 +55,7 @@ span_info_product.ontouchend = (e) => {
 }
 
 dragElement(modal_info_product);
-resizeModalWindow(info_product_resize, "whModalSetProd");
+resizeModalWindow(info_product_resize, "whModalSetProd", "Размеры окна комплект/изделие");
 
 /* открытие модального окна */
 export const funcInfoProductOpenModal = (uin, fset) => {
@@ -68,7 +68,7 @@ export const funcInfoProductOpenModal = (uin, fset) => {
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSetProd"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalSetProd", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

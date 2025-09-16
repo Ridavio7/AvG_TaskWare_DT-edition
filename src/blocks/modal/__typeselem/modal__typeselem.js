@@ -16,11 +16,11 @@ span_typeselem.ontouchend = (e) => {
 }
 
 dragElement(modal_typeselem);
-resizeModalWindow(modal_resize, "whModalTypeselem");
+resizeModalWindow(modal_resize, "whModalTypeselem", "Размеры окна свойства типа");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTypeselem"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalTypeselem", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 

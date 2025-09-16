@@ -57,7 +57,7 @@ span_info_component.ontouchend = (e) => {
 }
 
 dragElement(modal_info_component);
-resizeModalWindow(component_resize, 'whModalComponents');
+resizeModalWindow(component_resize, 'whModalComponents', "Размеры окна комплектующих");
 
 /* функция добавления комплектующего */
 export const funcProcessInfoComponentsModalAdd = (uin) => {
@@ -127,7 +127,7 @@ export const funcInfoComponentsOpenModal = (uin) => {
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalComponents"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalComponents", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 
