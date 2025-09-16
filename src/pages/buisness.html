@@ -24,11 +24,11 @@
                 <div class="header__user header__user_burger">
                     <div class="header__user__wrapper">
                         <div class="header__user__user">
-                            <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user">
+                            <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user" title="Уведомления">
                             <input class="header__user__switch-theme-input" type="checkbox" id="switch_theme_input_burger">
                             <label class="header__user__switch-theme" for="switch_theme_input_burger"></label>
                             <a class="header__link header__user__name"></a>
-                            <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user">
+                            <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user" title="Выход">
                         </div>
                     </div>
                 </div>
@@ -49,11 +49,11 @@
             <div class="header__user">
                 <div class="header__user__wrapper">
                     <div class="header__user__user">
-                        <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user">
+                        <img class="header__user__avatar header__user__link_notifications" src="../blocks/header/img/notifications.svg" alt="user" title="Уведомления">
                         <input class="header__user__switch-theme-input" type="checkbox" id="switch_theme_input">
                         <label class="header__user__switch-theme" for="switch_theme_input"></label>
                         <a class="header__link header__user__name"></a>
-                        <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user">
+                        <img class="header__user__avatar header__user__link_leave-site" src="../blocks/header/img/exit.svg" alt="user" title="Выход">
                     </div>
                 </div>
             </div>
@@ -168,9 +168,9 @@
             <!-- график -->
             <div id="shipment/schedule" class="sidebar__tabcontent__container">
                 <div class="sidebar__tabcontent__header">
-                    <button class="button__control button__control_previous-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_2.svg" alt="" style="width: 10px;"></button>
+                    <button class="button__control button__control_previous-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_2.svg" alt="" style="width: 10px;" title="Предыдущий год"></button>
                     <input class="input__type-text input__type-text_title-table-schedule" type="text" value="" id="grf_year" disabled>
-                    <button class="button__control button__control_next-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_1.svg" alt="" style="width: 10px;"></button>
+                    <button class="button__control button__control_next-year"><img class="button__control__img" src="../blocks/button/__control/img/arrow_1.svg" alt="" style="width: 10px;" title="Следующий год"></button>
                 </div>
                 <div class="modal__body">
                     <div class="table-wrapper_left">
@@ -284,7 +284,7 @@
                                 <tr class="tr">
                                     <td class="td td_odd-column-active">---</td>
                                     <td class="td td_right-border td_odd-column-active">---</td>
-                                    <td class="td td_buttons-control"><button class="button__control button__control_add-schedule"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                    <td class="td td_buttons-control"><button class="button__control button__control_add-schedule"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -340,8 +340,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="button__control" id="button_SNprod_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                    <button class="button__control" id="button_SNprod_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    <button class="button__control" id="button_SNprod_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                    <button class="button__control" id="button_SNprod_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -365,7 +365,7 @@
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_SNProd_count_use" placeholder="Введите кол-во использованных"></td>
                             <td class="td td__text_align_center"><div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" id="input_add_SNProd_date"><label for="input_add_SNProd_date" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div></td>
                             <td class="td"><div class="custom-select"><select class="select select__title" id="select_add_SNProd_status"><option value="">Выберите статус</option></select><span class="select-text"></span></div></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-snprod"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-snprod"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -396,7 +396,7 @@
                     <tbody id="tb_statuses_statussn">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statussn_name" placeholder="Введите название статуса"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statussn"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statussn"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -427,7 +427,7 @@
                     <tbody id="tb_statuses_shipment">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statuses_shipment_name" placeholder="Введите название статуса"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-shipment"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-shipment"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -519,9 +519,9 @@
                     </div>
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_sets_date_first"><label for="filt_analysis_sets_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_sets_date_second"><label for="filt_analysis_sets_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
-                    <button class="button__control" id="button_analysis_sets_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                    <button class="button__control" id="button_analysis_sets_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
-                    <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt=""></button>
+                    <button class="button__control" id="button_analysis_sets_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                    <button class="button__control" id="button_analysis_sets_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
+                    <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt="" title="Создать Excel"></button>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -623,9 +623,9 @@
                         </div>
                         <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_date_first"><label for="filt_analysis_products_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                         <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_date_second"><label for="filt_analysis_products_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
-                        <button class="button__control" id="button_analysis_products_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                        <button class="button__control" id="button_analysis_products_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
-                        <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt=""></button>
+                        <button class="button__control" id="button_analysis_products_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                        <button class="button__control" id="button_analysis_products_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
+                        <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt="" title="Создать Excel"></button>
                     </div>
                     <table class="table">
                         <thead class="thead">
@@ -735,9 +735,9 @@
                         </div>
                         <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_all_date_first"><label for="filt_analysis_products_all_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                         <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_products_all_date_second"><label for="filt_analysis_products_all_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
-                        <button class="button__control" id="button_analysis_products_all_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                        <button class="button__control" id="button_analysis_products_all_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
-                        <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt=""></button>
+                        <button class="button__control" id="button_analysis_products_all_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                        <button class="button__control" id="button_analysis_products_all_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
+                        <button class="button__control"><img class="button__control__img" src="../blocks/button/__control/img/excel.svg" alt="" title="Создать Excel"></button>
                     </div>
                     <table class="table">
                         <thead class="thead">
@@ -850,8 +850,8 @@
                         </div>
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_components_all_date_first"><label for="filt_analysis_components_all_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_analysis_components_all_date_second"><label for="filt_analysis_components_all_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
-                    <button class="button__control" id="button_analysis_components_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                    <button class="button__control" id="button_analysis_components_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    <button class="button__control" id="button_analysis_components_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                    <button class="button__control" id="button_analysis_components_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -950,8 +950,8 @@
                     </div>
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_lentapp_date_first"><label for="filt_lentapp_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="filt_lentapp_date_second"><label for="filt_lentapp_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
-                    <button class="button__control" id="button_lentapp_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                    <button class="button__control" id="button_lentapp_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    <button class="button__control" id="button_lentapp_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                    <button class="button__control" id="button_lentapp_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
                 </div>
                 <table class="table">
                     <thead class="thead">
@@ -1004,7 +1004,7 @@
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_count" value="" placeholder="Введите кол-во"></td>
                             <td class="td td__text_align_center"><div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" id="input_add_plan_date" value=""><label for="input_add_plan_date" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_plan_prim" value="" placeholder="Введите примечание"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-plan"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-plan"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1035,7 +1035,7 @@
                             <!--<td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_numb" value="" placeholder="Введите номер тех. процесса"></td>-->
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_techproc_name" value="" placeholder="Введите название тех. процесса"></td>
                             <!--<td class="td"><input class="checkbox" type="checkbox" id="input_add_techproc_fix"><label for="input_add_techproc_fix"></label></td>-->
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-techproc"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-techproc"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1045,8 +1045,8 @@
                 <div class="sidebar__tabcontent__header">
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="pivtablepp_analysis_date_first"><label for="pivtablepp_analysis_date_first" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
                     <div class="input__type-date_wrapper"><input class="input__type-text input__type-date-filter input__type-date input__type-text_title" type="date" id="pivtablepp_analysis_date_second"><label for="pivtablepp_analysis_date_second" class="input__type-date_icon"><img src="../blocks/input/__type-date/img/calendar.svg" alt=""></label></div>
-                    <button class="button__control" id="button_pivtablepp_analysis_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                    <button class="button__control" id="button_pivtablepp_analysis_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    <button class="button__control" id="button_pivtablepp_analysis_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                    <button class="button__control" id="button_pivtablepp_analysis_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
                 </div>
                 <!--<div class="select__wrapper">
                     <select class="select select__sort" id="sort_pivtablepp">
@@ -1123,13 +1123,13 @@
                                 </div>
                             </div>
                         </div>
-                    <button class="button__control" id="button_docpost_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt=""></button>
-                    <button class="button__control" id="button_docpost_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                    <button class="button__control" id="button_docpost_choose"><img class="button__control__img" src="../blocks/button/__control/img/arrow_3.svg" alt="" title="Отфильтровать"></button>
+                    <button class="button__control" id="button_docpost_reset"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить фильтр"></button>
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="founddoc_name">Поиск по комплектующему:</label>
                         <input class="input__type-text input__type-text_title input__type-text_modal" type="text" id="founddoc_name" value="" placeholder="Введите название комплектующего">
-                        <button class="button__control button__control_active" id="founddoc_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button>
-                        <button class="button__control button__control_active" id="founddoc_reset_button"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt=""></button>
+                        <button class="button__control button__control_active" id="founddoc_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt="" title="Поиск"></button>
+                        <button class="button__control button__control_active" id="founddoc_reset_button"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить поиск"></button>
                     </div>
                     <button class="button__control button__control_modal" id="docpost_substdoc_button" value="">Подстановка</button>
                 </div>
@@ -1179,7 +1179,7 @@
                     <tbody id="tb_statuses_statusdoc">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_statusdoc_name" placeholder="Введите название статуса"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statusdoc" disabled><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-statuses-statusdoc" disabled><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1286,7 +1286,7 @@
                     <tbody id="tb_storages">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_storages_name" placeholder="Введите название статуса"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-storages"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-storages"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1317,7 +1317,7 @@
                     <tbody id="tb_products_colors">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_colors" placeholder="Введите название цвета"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-color"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-color"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1348,7 +1348,7 @@
                     <tbody id="tb_products_verapp">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verapp" placeholder="Введите название версии"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-verapp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-verapp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1379,7 +1379,7 @@
                     <tbody id="tb_products_verpp">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_verpp" placeholder="Введите название версии"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-verpp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-verpp"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1434,12 +1434,12 @@
                                     <tr class="tr">
                                         <td class="td">Поиск</td>
                                         <td class="td"></td>
-                                        <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                        <td class="td"><button class="button__control button__control_active" id="found_main_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt="" title="Создать"></button></td>
                                     </tr>
                                     <tr class="tr">
                                         <td class="td td_active"><div class="custom-select"><select class="select" id="found_main_select"></select><span class="select-text"></span></div></td>
                                         <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_main_input" value="" placeholder="Комплектующее"></td>
-                                        <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                        <td class="td td_active"><button class="button__control button__control_active" id="found_main_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt="" title="Поиск"></button></td>
                                     </tr>
                                 </thead>
                                 <tbody id="found_main_table">
@@ -1476,7 +1476,7 @@
                     <tbody id="tb_componenets_measurement">
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_measurement" placeholder="Введите название ед. изм."></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-measurement"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-measurement"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1513,7 +1513,7 @@
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_coeff" placeholder="Введите степень"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_smv" placeholder="Введите обозначение"></td>
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_coeffs_help" placeholder="Введите подсказку"></td>
-                            <td class="td td_buttons-control"><button class="button__control button__control_add-coeffs"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control button__control_add-coeffs"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1546,7 +1546,7 @@
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_props" placeholder="Введите название свойства"></td>
                             <td class="td td__text_align_center"><div class="custom-select"><select class="select" id="select_add_props"><option value="">Выберите ед. изм.</option></select><span class="select-text"></span></div></td>
-                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-props"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-props"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1579,7 +1579,7 @@
                         <tr class="tr">
                             <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_typeselem" placeholder="Введите название типа"></td>
                             <td class="td"></td>
-                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-typeselem"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td__text_align_center td_buttons-control"><button class="button__control button__control_add-typeselem"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1621,7 +1621,7 @@
                         <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_kpp" placeholder="Введите КПП"></td>
                         <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_inn" placeholder="Введите ИНН"></td>
                         <td class="td td__text_align_center"><input class="input__type-text input__type-text_title" type="text" id="input_add_contragents_address" placeholder="Введите адрес"></td>
-                        <td class="td td_buttons-control"><button class="button__control button__control_add-contragents"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                        <td class="td td_buttons-control"><button class="button__control button__control_add-contragents"><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                     </tr>
                 </tbody>
             </table>
@@ -1833,7 +1833,7 @@
                         <div class="carousel__container-thumbnail" id="thumbnailContainer">
 
                         </div>
-                        <img class="carousel__thumbnail" id="component_edit_imgs_img" src="../blocks/carousel/img/edit_img.svg" alt="Редактировать">
+                        <img class="carousel__thumbnail" id="component_edit_imgs_img" src="../blocks/carousel/img/edit_img.svg" alt="Добавить изображение" title="Добавить изображение">
                     </div>
                 </div>
                 <div class="modal__wrapper-width-100">
@@ -1852,7 +1852,7 @@
                             <div class="modal__input-wrapper">
                                 <label class="input__type-text__label" for="component_type">Тип:</label>
                                 <div class="custom-select"><select class="select select_modal" id="component_type"></select><span class="select-text"></span></div>
-                                <button class="button__control" id="component_type_info" value=""><img class="button__control__img" src="../blocks/button/__control/img/info.svg" alt=""></button>
+                                <button class="button__control" id="component_type_info" value=""><img class="button__control__img" src="../blocks/button/__control/img/info.svg" alt="" title="Инфо свойст типа"></button>
                             </div>
                             <div class="modal__input-wrapper">
                                 <input class="checkbox" type="checkbox" id="component_tpack">
@@ -1883,7 +1883,7 @@
                                     <!--<td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_perc" value="0"></td>
                                     <td class="td"><input class="input__type-text input__type-text_title input__type-text_comp-fault" type="text" id="component_info_add_d1" class="component_info_input" value="0"></td>
                                     <td class="td"><input class="input__type-text input__type-text_title input__type-text_comp-fault" type="text" id="component_info_add_d2" class="component_info_input" value="0"></td>-->
-                                    <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1916,7 +1916,7 @@
                                     <td class="td"></td>
                                     <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_name" placeholder="Введите название"></td>
                                     <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_link_link" placeholder="Введите ссылку"></td>
-                                    <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_link" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                    <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_link" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1947,7 +1947,7 @@
                         </div>
                         <div>
                             <div class="modal__input-wrapper">
-                                <button class="button__control" id="info_product_tcardprods" value=""><img class="button__control__img" src="../blocks/button/__tab/img/process.svg" alt=""></button>
+                                <button class="button__control" id="info_product_tcardprods" value=""><img class="button__control__img" src="../blocks/button/__tab/img/process.svg" alt="" title="Тех. процессы изделия"></button>
                             </div>
                         </div>
                         <div>
@@ -1995,7 +1995,7 @@
                                     <tr class="tr">
                                         <td class="td"><button class="button__select button__select_product_innprod" id="button_info_product_add_prod" value="">Выберите изделие</button></td>
                                         <td class="td"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_info_product_add_prod"></td>
-                                        <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                        <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_prod" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -2015,7 +2015,7 @@
                                         <td class="td"></td>
                                         <td class="td"><button class="button__select button__select_component button__select_product_componenet" id="button_info_product_add_comp" value="">Выберите комплектующее</button></td>
                                         <td class="td"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="input_info_product_add_comp"></td>
-                                        <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                                        <td class="td td_buttons-control"><button class="button__control" id="button__control_info_product_add_comp" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -2063,17 +2063,17 @@
                                 <tr class="tr">
                                     <td class="td">Поиск</td>
                                     <td class="td"></td>
-                                    <td class="td"><button class="button__control button__control_active" id="found_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt=""></button></td>
+                                    <td class="td"><button class="button__control button__control_active" id="found_button_modal_plus"><img class="button__control__img" src="../blocks/button/__control/img/found_plus.svg" alt="" title="Расширенный поиск"></button></td>
                                 </tr>
                                 <tr class="tr">
                                     <td class="td td_active"><div class="custom-select"><select class="select" id="found_select"></select><span class="select-text"></span></div></td>
                                     <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_input" value="" placeholder="Комплектующее"></td>
-                                    <td class="td td_active"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                    <td class="td td_active"><button class="button__control button__control_active" id="found_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt="" title="Поиск по комплектующим TW"></button></td>
                                 </tr>
                                 <tr class="tr">
                                     <td class="td td_active"></td>
                                     <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_1c_input" value="" placeholder="Комплектующее 1C"></td>
-                                    <td class="td td_active"><button class="button__control button__control_active" id="found_1c_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                                    <td class="td td_active"><button class="button__control button__control_active" id="found_1c_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt="" title="Поиск по комплектующим 1C"></button></td>
                                 </tr>
                             </thead>
                             <tbody id="found_table">
@@ -2284,7 +2284,7 @@
                         <tr class="tr">
                             <td class="td"><div class="custom-select"><select class="select" id="typeselem_add_props_select" name=""></select><span class="select-text"></span></div></td>
                             <td class="td"></td>
-                            <td class="td td_buttons-control"><button class="button__control" id="typeselem_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control" id="typeselem_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -2313,7 +2313,7 @@
                             <td class="td"><input class="input__type-text input__type-text__small input__type-text_title" type="text" id="tcardprods_add_input_num" value="" placeholder="Номер"></td>
                             <td class="td"><div class="custom-select"><select class="select" id="tcardprods_add_select_proc"></select><span class="select-text"></span></div></td>
                             <td class="td"><input class="checkbox" type="checkbox" id="tcardprods_add_chb_fix"><label for="tcardprods_add_chb_fix"></label></td>
-                            <td class="td td_buttons-control"><button class="button__control" id="tcardprods_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control" id="tcardprods_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -2338,7 +2338,7 @@
                     <tbody id="enums_tb_modal">
                         <tr class="tr">
                             <td class="td"><input class="input__type-text input__type-text_title" type="text" id="enums_add_input" value="" placeholder="Введите значение"></td>
-                            <td class="td td_buttons-control"><button class="button__control" id="enums_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control" id="enums_add_button" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -2358,7 +2358,7 @@
                         <tr class="tr">
                             <td class="td td_active"><div class="custom-select"><select class="select" id="found_plus_select"></select><span class="select-text"></span></div></td>
                             <td class="td td_active"><input class="input__type-text input__type-text_title" type="text" id="found_plus_input" value="" placeholder="Комплектующее"></td>
-                            <td class="td td_active"><button class="button__control button__control_active" id="found_plus_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""></button></td>
+                            <td class="td td_active"><button class="button__control button__control_active" id="found_plus_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt=""  title="Поиск"></button></td>
                         </tr>
                     </thead>
                     <tbody id="found_plus_tb">
@@ -2390,7 +2390,7 @@
                             <td class="td"></td>
                             <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_img_name" placeholder="Введите название"></td>
                             <td class="td"><input type="file" class="input__type-file_img" id="component_info_add_img_img" accept="image/*" hidden><label class="input__type-text input__type-file" for="component_info_add_img_img">Выберите файл</label></td>
-                            <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_img" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt=""></button></td>
+                            <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_img" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>
                 </table>

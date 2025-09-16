@@ -77,7 +77,7 @@ const funcProcessGetProducts = (result, respobj) => {
 
     let table = document.getElementById(tb_id);
     let row_head   = table.insertRow(-1);
-    row_head.innerHTML = `<tr class="tr"><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/create.svg"></button></td></tr>`;
+    row_head.innerHTML = `<tr class="tr"><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/create.svg" title="Создать"></button></td></tr>`;
 
     document.getElementById("button_info_product_add").value = uinCatc;
 
@@ -138,14 +138,14 @@ const addProducts = (name, fship, fset, del, uin, tb_id) => {
     let cellFship = newRow.insertCell(2); cellFship.classList = "td";
     let cellBtn   = newRow.insertCell(3); cellBtn.classList   = "td";
 
-    cellName.innerHTML = `<button class="button__control button__control_modal-product" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/info.svg"></button> ${name}`;
+    cellName.innerHTML = `<button class="button__control button__control_modal-product" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/info.svg" title="Инфо"></button> ${name}`;
     cellName.id = `product_name_${uin}`;
     fship === 1 ? cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_${uin}" disabled checked><label for="chb_fship_${uin}"></label>` : 
                     cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_${uin}" disabled><label for="chb_fship_${uin}"></label>`;
     cellType.innerHTML = fset === 1 ? "Комлект" : "Изделие";
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-products${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-products" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-products${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button><button class="button__control button__control_transfer-products" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg" title="Переместить"></button>`;
 }
 
 customSortSelect("sort_storage_main");

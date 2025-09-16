@@ -89,7 +89,7 @@ const addWeboptRow = (name, descr, show, fmode, val, del, uin, tb_id) => {
     addToDropdownOneOption(document.getElementById(`setting_user_fmod__${uin}`), 'Массив чисел', 3);
 
     cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML  = `<button class="button__control button__control_update button__control_update-settings-user" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellBtn.innerHTML  = `<button class="button__control button__control_update button__control_update-settings-user" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button>`;
 }
 
 /* функция добавления */

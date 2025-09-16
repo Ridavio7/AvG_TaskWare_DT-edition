@@ -249,7 +249,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                 />
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
-                <button class="button__control button__control_chat_task" value="${task_uin}"><img class="button__control_img__no-filter" src="assets/images/chat.svg" alt="" style="width: 18px;"></button>
+                <button class="button__control button__control_chat_task" value="${task_uin}"><img class="button__control_img__no-filter" src="assets/images/chat.svg" alt="" style="width: 18px;" title="Чат"></button>
               </div>
             </div>
           </div>
@@ -365,7 +365,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                     style="margin-left: 5px;"
                     class="button__control button__control_detailpp"
                     value="${uin}">
-                    <img class="button__control__img" src="assets/images/info.svg">
+                    <img class="button__control__img" src="assets/images/info.svg" title="Инфо">
                   </button>
                 </div>
             </div>
@@ -397,7 +397,7 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                     id="task_comment_${uin}"
                     value="${prim}"
                   />
-                  <button class="button__control button__control_usersteps_update" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Чат"></button>
+                  <button class="button__control button__control_usersteps_update" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button>
                 </div>
               </div>
             </div>

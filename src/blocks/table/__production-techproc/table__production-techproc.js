@@ -76,7 +76,7 @@ const addTechprocRow = (numb, name, fix, del, uin, tb_id) => {
     //cellFix.innerHTML  = `<input class="checkbox" type="checkbox" id="techproc_fix_${uin}" ${fix_checked}><label for="techproc_fix_${uin}"></label>` 
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-techproc" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-techproc${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-techproc" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-techproc${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
 let button_control_add_product = document.querySelector(".button__control_add-techproc");

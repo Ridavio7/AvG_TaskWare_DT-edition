@@ -81,7 +81,7 @@ function addRowColumsShipProducts(SNprod, NPset, name, color, verapp, verpp, mac
     cellkontr.innerHTML  = kontr;
     celldate.innerHTML   = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="shipproducts_date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div>`;
     cellprim.innerHTML   = `<input class="input__type-text" type="text" value="${prim}" name="shipproducts_prim_${uin}">`;
-    cellBtn.innerHTML    = `<button class="button__control button__control_update button__control_update-ananlysis-product" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellBtn.innerHTML    = `<button class="button__control button__control_update button__control_update-ananlysis-product" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button>`;
 }
 
 customSelect('analysis_products_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');

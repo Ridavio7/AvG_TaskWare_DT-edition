@@ -85,7 +85,7 @@ function funcProcessGetComponentsSelect(result, respobj){
     
     let tableRef       = document.getElementById(tb_id);
     let row_head       = tableRef.insertRow(0);
-    row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button></td></tr>`;
+    row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt="" title="Создать"></button></td></tr>`;
 
     let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-select");
     button_control_add_comp_tree.addEventListener("click", (elem) => {
@@ -144,17 +144,17 @@ function addComponentsSelect(name, typelm, del, uin, tb_id){
     let cellBtn    = newRow.insertCell(4); cellBtn.classList    = "td";
 
     if(del != 0){
-        cellSelect.innerHTML = `<button class="button__control" disabled><img class="button__control__img" src="assets/images/plus.svg" alt=""></button>`;
+        cellSelect.innerHTML = `<button class="button__control" disabled><img class="button__control__img" src="assets/images/plus.svg" alt="" title="Создать"></button>`;
     } else {
-        cellSelect.innerHTML = `<button class="button__control button__control_select-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button>`;
+        cellSelect.innerHTML = `<button class="button__control button__control_select-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/plus.svg" alt="" title="Создать"></button>`;
     }
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-comp-info" value="${uin}"><img class="button__control__img" src="assets/images/info.svg"></button>`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-comp-info" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" title="Инфо"></button>`;
 
     cellName.innerHTML = `${name}`;
     cellName.id = `select_component_name_${uin}`;
     cellType.innerHTML = typelm;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel${bx_color}" disabled><img class="button__control__img" src="assets/images/cross.svg"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel${bx_color}" disabled><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg" title="Переместить"></button>`;
 }

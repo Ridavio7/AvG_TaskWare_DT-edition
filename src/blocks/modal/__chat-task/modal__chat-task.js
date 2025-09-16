@@ -119,7 +119,7 @@ const craeteMsgRight = (nameUser, name, date, whoreadcnt, change) => {
             <div class="chat-task__text">
                 ${name}
             </div>
-        <div class="chat-task__time">${formatDate(date)} ${whoreadcnt > 0 ? '<img class="chat-task__check" src="assets/images/check.svg" alt="">' : '<img class="chat-task__check" src="assets/images/no-check.svg" alt="">'}</div>
+        <div class="chat-task__time">${formatDate(date)} ${whoreadcnt > 0 ? '<img class="chat-task__check" src="assets/images/check.svg" alt="" title="Прочитано">' : '<img class="chat-task__check" src="assets/images/no-check.svg" alt="" title="Не прочитано">'}</div>
         ${change == 1 ? '<div class="chat-task__time">Изменено</div>' : ''}
     `
 }

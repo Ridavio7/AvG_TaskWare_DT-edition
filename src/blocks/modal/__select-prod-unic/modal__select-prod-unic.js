@@ -92,8 +92,8 @@ function addProductsSelect(name, fship, fset, del, uin, tb_id){
     let cellBtn    = newRow.insertCell(4); cellBtn.classList    = "td";
 
     del != 0 ?
-        cellSelect.innerHTML = `<button class="button__control" disabled><img class="button__control__img" src="assets/images/plus.svg" alt=""></button>` :
-        cellSelect.innerHTML = `<button class="button__control button__control_select-product-unic" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/plus.svg" alt=""></button>`;
+        cellSelect.innerHTML = `<button class="button__control" disabled><img class="button__control__img" src="assets/images/plus.svg" alt="" title="Создать"></button>` :
+        cellSelect.innerHTML = `<button class="button__control button__control_select-product-unic" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/plus.svg" alt="" title="Создать"></button>`;
 
     fship === 1 ? cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_select_unic_${uin}" disabled checked><label for="chb_fship_select_unic_${uin}"></label>` : 
                     cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_select_unic_${uin}" disabled><label for="chb_fship_select_unic_${uin}"></label>`;
@@ -102,5 +102,5 @@ function addProductsSelect(name, fship, fset, del, uin, tb_id){
     cellName.id = `select_product_name_${uin}`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel${bx_color}" disabled><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel${bx_color}" disabled><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }

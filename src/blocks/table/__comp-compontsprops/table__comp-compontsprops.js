@@ -116,7 +116,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     //let cellD2      = newRow.insertCell(6); cellD2.classList      = "td";
     let cellBtn     = newRow.insertCell(4); cellBtn.classList     = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-props-info" value="${propsUin}" name="${props}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-props-info" value="${propsUin}" name="${props}"><img class="button__control__img" src="assets/images/info.svg" alt="" title="Инфо"></button>`;
 
     makeSelect("component_info_props_select_", uin, props, propsUin, "typesprops_list", "select input__type-text_modal_fix-width-150", cellProps);
     cellMeas.innerHTML  = meas;
@@ -149,7 +149,7 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     });
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-compontsprops" value="${uin}" name="${uincompont}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel-compontsprops${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-compontsprops" value="${uin}" name="${uincompont}"><img class="button__control__img" src="assets/images/arrow_3.svg" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-compontsprops${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
 let button_control_add = document.getElementById("component_info_add_button");

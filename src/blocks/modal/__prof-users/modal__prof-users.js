@@ -117,5 +117,5 @@ const addInfoProfUsers = (uin_prof, name, uin, tb_id) => {
     makeSelect("prof_user_select_", uin, name, uin, "users_list", "select", cellUser);
 
     cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof-users" value="${uin_prof}" name="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof-users" value="${uin_prof}" name="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button>`;
 }

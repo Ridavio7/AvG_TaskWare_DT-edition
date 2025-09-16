@@ -79,14 +79,14 @@ const addProfRow = (numb, name, fc, users, del, uin, tb_id) => {
     //let cellFc   = newRow.insertCell(3); cellFc.classList   = "td";
     let cellBtn  = newRow.insertCell(2); cellBtn.classList  = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-prof-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button><input class="input__type-text" type="text" value="${name}" name="prof_name_${uin}">`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-prof-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt="" title="Инфо"></button><input class="input__type-text" type="text" value="${name}" name="prof_name_${uin}">`;
     //cellNumb.innerHTML = numb;
     cellName.innerHTML = ``;
     //let fc_checked     = fc === 1 ? 'checked' : '';
     //cellFc.innerHTML   = `<input class="checkbox" type="checkbox" id="prof_fc_${uin}" ${fc_checked}><label for="prof_fc_${uin}"></label>` 
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-prof${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-prof${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
 let button_control_add = document.querySelector(".button__control_add-prof");

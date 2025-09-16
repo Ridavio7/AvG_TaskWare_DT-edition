@@ -71,11 +71,11 @@ const addProductsRow = (name, del, uin, tb_id) => {
     let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
     let cellBtn  = newRow.insertCell(2); cellBtn.classList  = "td";
 
-    cellInfo.innerHTML = `<button class="button__control button__control_modal-process" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-process" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt="" title="Инфо"></button>`;
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="product_name_${uin}">`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-product" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-product${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-product" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-product${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
 let button_control_add_product = document.querySelector(".button__control_add-product");

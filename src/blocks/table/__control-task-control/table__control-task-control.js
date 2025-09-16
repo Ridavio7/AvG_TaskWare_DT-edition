@@ -132,7 +132,7 @@ function buildStructure(data, container) {
 
             const tdBtn = document.createElement('td');
             tdBtn.classList = 'td td_nowrap-content';
-            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}" title="Отозвать"><img class="button__control__img" src="assets/images/cancel_task.svg"></button><button class="button__control button__control_modal-tasks-archive" value="${task.uin}" name="${task.name}" title="В архив"><img class="button__control__img" src="assets/images/archive_task.svg"></button>`;
+            tdBtn.innerHTML = `<button class="button__control button__control_modal-tasks-del" value="${task.uin}" name="${task.name}"><img class="button__control__img" src="assets/images/cancel_task.svg" title="Отозвать"></button><button class="button__control button__control_modal-tasks-archive" value="${task.uin}" name="${task.name}"><img class="button__control__img" src="assets/images/archive_task.svg" title="В архив"></button>`;
 
             if(task.fproblem != 0){
                 tr.classList.add('tr_mark-error');

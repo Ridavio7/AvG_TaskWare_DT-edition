@@ -211,7 +211,7 @@ const addDocpostInfoTable = (name, compontName, compontUin, price, sum, measName
     cellSum.innerHTML   = `<input class="input__type-text input__type-text__small" type="text" value="${sum}" disabled>`;;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-docpost" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg"></button><button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-docpost" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
 /* функция сохранения обновления поставки */

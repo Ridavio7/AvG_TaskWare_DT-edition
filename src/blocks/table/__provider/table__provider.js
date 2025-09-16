@@ -73,15 +73,22 @@ const addDocpostRow =
     let cellPrim        = newRow.insertCell(8);  cellPrim.classList        = "td";
     let cellBtn         = newRow.insertCell(9); cellBtn.classList          = "td";
 
-    if(statdocName === "Готов"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-ready" value="${uin}"><img class="button__control__img button__control_docpost-ready_img" src="assets/images/info.svg" alt=""></button> Готов`;
-    } else if (statdocName === "Обработка"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-process" value="${uin}"><img class="button__control__img button__control_docpost-process_img" src="assets/images/info.svg" alt=""></button> Обработка`;
-    } else if (statdocName === "Новый"){
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost button__control_docpost-new" value="${uin}"><img class="button__control__img button__control_docpost-new_img" src="assets/images/info.svg" alt=""></button> Новый`;
-    } else {
-        cellInfo.innerHTML = `<button class="button__control button__control_modal-docpost" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>`;
+    const statusConfig = {
+        "Готов": "ready",
+        "Обработка": "process",
+        "Новый": "new"
     }
+
+    const suffix = statusConfig[statdocName] || "";
+    const className = suffix ? ` button__control_docpost-${suffix}` : "";
+    const imgClassName = suffix ? ` button__control_docpost-${suffix}_img` : "";
+
+    cellInfo.innerHTML = `
+        <button class="button__control button__control_modal-docpost${className}" value="${uin}">
+            <img class="button__control__img${imgClassName}" src="assets/images/info.svg" alt="" title="Инфо">
+        </button>
+        ${statdocName || ""}
+    `.trim();
 
     //cellStatdocName.innerHTML = statdocName;
     cellNumb.innerHTML        = numb;
@@ -94,7 +101,7 @@ const addDocpostRow =
     cellPrim.innerHTML        = prim;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
 customSortSelect("sort_docpost");

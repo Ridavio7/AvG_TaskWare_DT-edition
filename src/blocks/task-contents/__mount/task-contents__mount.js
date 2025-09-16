@@ -22,6 +22,7 @@ export const funcTaskContentMount = (uin) => {
                 class="button__control__img"
                 src="assets/images/minus.svg"
                 alt=""
+                title="Убрать"
               />
             </button>
             <button class="button__control" id="mount_count_plus_${uin}">
@@ -29,6 +30,7 @@ export const funcTaskContentMount = (uin) => {
                 class="button__control__img"
                 src="assets/images/plus.svg"
                 alt=""
+                title="Добавить"
               />
             </button>
           </div>

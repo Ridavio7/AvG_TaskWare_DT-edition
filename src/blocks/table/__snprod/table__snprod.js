@@ -87,13 +87,13 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
     let cellBtn      = newRow.insertCell(7); cellBtn.classList      = "td";
 
     if(led === 0){
-        ceelLed.innerHTML = `<img src="assets/images/ellipse_green.svg">`;
+        ceelLed.innerHTML = `<img src="assets/images/ellipse_green.svg" title="Активен - в работе">`;
     } else if(led === 1){
-        ceelLed.innerHTML = `<img src="assets/images/ellipse_orange.svg">`;
+        ceelLed.innerHTML = `<img src="assets/images/ellipse_orange.svg" title="Активен, но близок к концу">`;
     } else if(led === 2){
-        ceelLed.innerHTML = `<img src="assets/images/ellipse_white.svg">`;
+        ceelLed.innerHTML = `<img src="assets/images/ellipse_white.svg" title="Не начат">`;
     } else if(led === 3){
-        ceelLed.innerHTML = `<img src="assets/images/ellipse_red.svg">`;
+        ceelLed.innerHTML = `<img src="assets/images/ellipse_red.svg" title="Закончен">`;
     }
 
     makeSelect("snprod_product_select_", uin, name, uinproduct, "products_list", "select", cellName);
@@ -106,7 +106,7 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
     makeSelect("snprod_status_select_", uin, status, uinstatus, "statussn_list", "select", cellStatus);
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-snprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-snprod${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-snprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-snprod${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
 customSelect('SNProd_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
