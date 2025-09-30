@@ -98,7 +98,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="sidebar__wrapper">
+                    <li class="sidebar__wrapper modal__input-wrapper_display-none">
                         <a href="#development">
                             <div class="sidebar__link development sidebar__link_development" id="link_development">
                                 <div class="sidebar__title">
@@ -138,19 +138,6 @@
                             </div>
                         </a>
                     </li>
-                    <!--<li class="sidebar__wrapper" id="sidebar_tablink_6">
-                        <div class="sidebar__link directory_all" id="link_directory_all">
-                            <div class="sidebar__title">
-                                <img class="sidebar__img sidebar__img_filter" src="../blocks/sidebar/img/directory.svg" alt="">
-                                <span class="sidebar__name">Справочники</span>
-                            </div>
-                            <img class="sidebar__arrow" src="../blocks/sidebar/img/arrow_sidebar_2.svg" alt="">
-                        </div>
-                        <ul class="sidebar__menu">
-                            <li><a class="sidebar__menu__link" id="link_dir_sets" href="#dir_sets">Комплекты</a></li>
-                            <li><a class="sidebar__menu__link" id="link_dir_product" href="#dir_product">Изделия</a></li>
-                        </ul>
-                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -934,7 +921,24 @@
                         <div class="select-custom__header selectHeader">
                             Выберите тех. операцию
                             <span class="select-custom__icon"></span>
+                        </div>
+                        <div class="select-custom__options">
+                            <div class="select-custom__search-box">
+                                <input type="text" class="searchInput" placeholder="Поиск..." />
+                            </div>
+                            <div class="optionsList">
+
+                            </div>
+                            <div class="select-custom__no-results noResults">
+                                Ничего не найдено
+                            </div>
+                        </div>
                     </div>
+                    <div class="select-custom" id="lentapp_tasks_customDropdown">
+                        <div class="select-custom__header selectHeader">
+                            Выберите задачу
+                            <span class="select-custom__icon"></span>
+                        </div>
                         <div class="select-custom__options">
                             <div class="select-custom__search-box">
                                 <input type="text" class="searchInput" placeholder="Поиск..." />
@@ -1069,13 +1073,11 @@
         </div>
         <!-- поставка -->
         <div class="sidebar__tabcontent" id="provider">
-            <div class="sidebar__tabcontent__first-tabs">
+            <!-- <div class="sidebar__tabcontent__first-tabs">
                 <a href="#provider/main"><button class="button__tab__first button__tab__first_provider-main"><img class="button__tab__first__img" src="../blocks/sidebar/img/provider.svg">Главная</button></a>
-                <a href="#provider/statusdoc"><button class="button__tab__first button__tab__first_provider-statusdoc"><img class="button__tab__first__img" src="../blocks/button/__tab/img/status.svg">Статус док.</button></a>
-            </div>
-            <!-- главная -->
-            <div id="provider/main" class="sidebar__tabcontent__container">
-                <div class="select__wrapper">
+                <a href="#provider/statusdoc" class="modal__input-wrapper_display-none"><button class="button__tab__first button__tab__first_provider-statusdoc"><img class="button__tab__first__img" src="../blocks/button/__tab/img/status.svg">Статус док.</button></a>
+            </div> -->
+            <div class="select__wrapper">
                         <div class="select-custom" id="sort_docpost">
                             <div class="select-custom__header selectHeader">
                                 Выберите сортировку
@@ -1127,7 +1129,7 @@
                     <div class="modal__input-wrapper">
                         <label class="input__type-text__label" for="founddoc_name">Поиск по комплектующему:</label>
                         <input class="input__type-text input__type-text_title input__type-text_modal" type="text" id="founddoc_name" value="" placeholder="Введите название комплектующего">
-                        <button class="button__control button__control_active" id="founddoc_button"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt="" title="Поиск"></button>
+                        <button class="button__control button__control_active" id="founddoc_button" style="margin-left: 5px;"><img class="button__control__img" src="../blocks/button/__control/img/found.svg" alt="" title="Поиск"></button>
                         <button class="button__control button__control_active" id="founddoc_reset_button"><img class="button__control__img" src="../blocks/button/__control/img/cross.svg" alt="" title="Сбросить поиск"></button>
                     </div>
                     <button class="button__control button__control_modal" id="docpost_substdoc_button" value="">Подстановка</button>
@@ -1151,7 +1153,6 @@
             
                     </tbody>
                 </table>
-            </div>
             <!-- статус -->
             <div id="provider/statusdoc" class="sidebar__tabcontent__container">
                 <div class="select__wrapper">
@@ -1228,7 +1229,7 @@
                                     <tr class="tr">
                                         <td class="td td_active">Комплект/Изделие</td>
                                         <td class="td td_active">Тип</td>
-                                        <td class="td td_active">Отгр.</td>
+                                        <td class="td td_active">Остаток</td>
                                         <td class="td td_active"></td>
                                     </tr>
                                 </thead>
@@ -1418,7 +1419,7 @@
                                     <tr class="tr">
                                         <td class="td td_active">Комплектующее</td>
                                         <td class="td td_active">Тип</td>
-                                        <td class="td td_active">Абстр.</td>
+                                        <td class="td td_active">Остаток</td>
                                         <td class="td td_active"></td>
                                     </tr>
                                 </thead>
@@ -1975,7 +1976,7 @@
                         </div>
                         <div>
                             <div class="modal__input-wrapper">
-                                <input class="checkbox" type="checkbox" id="info_product_fship" disabled>
+                                <input class="checkbox" type="checkbox" id="info_product_fship">
                                 <label for="info_product_fship">Отгружаемое</label>
                             </div>
                         </div>

@@ -60,7 +60,6 @@ export const funcGetShablonsSteps = (uin) => {
 }
 
 const funcProcessGetShablonsSteps = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Инфо шага:", respobj);
 
     shablons_name.value    = '';
@@ -86,8 +85,8 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
         shablons_dl_d.disabled     = false;
         shablons_dl_h.disabled     = false;
         shablons_dl_m.disabled     = false;
-        shablons_start.parentElement.parentElement.style.opacity = "1";
-        switch_1.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+        shablons_start.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        switch_1.parentElement.parentElement.parentElement.style.opacity = "1";
     }
 
     let obj          = respobj.answ;

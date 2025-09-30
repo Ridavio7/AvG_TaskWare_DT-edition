@@ -1,14 +1,16 @@
 .table-wrapper_left{
     flex: 0 0 auto;
+    overflow-x: scroll;
 }
 
 .table-wrapper_right{
     flex: 0 0 auto;
+    overflow-x: scroll;
 }
 
 .table-wrapper_center{
     flex: 1 1 auto;
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
 }
 

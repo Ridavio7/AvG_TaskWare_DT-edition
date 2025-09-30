@@ -6,7 +6,6 @@ export const funcGetCompontlinks = (uin) => {
 }
 
 const funcProcessGetCompontlinks = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Сылки:", respobj);
 
     let tb_id = "tb_modal_link";

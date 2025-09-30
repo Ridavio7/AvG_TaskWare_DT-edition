@@ -67,7 +67,6 @@
 
 .tree-catalog{
     &__item{
-        margin: 5px 0;
         position: relative;
     }
 
@@ -82,7 +81,7 @@
     }
 
     &__head{
-        display: flex  ;
+        display: flex;
         flex-direction: row-reverse;
         align-items: center;
         justify-content: flex-end;
@@ -154,8 +153,12 @@
 
     &__header &__arrow{
         position: absolute;
-        left: 10px;
+        left: 5px;
         transition: transform 0.2s;
+    }
+
+    &__header &__arrow_task{
+        top: 15px;
     }
 
     &__header &__arrow.collapsed{
@@ -215,7 +218,7 @@
     }
 
     &__children-container{
-        padding-left: 30px;
+        padding-left: 15px;
         overflow: hidden;
         transition: max-height 0.3s ease-out;
 

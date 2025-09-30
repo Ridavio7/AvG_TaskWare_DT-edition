@@ -7,7 +7,6 @@ export const funcGetShipSets = () => {
 }
 
 const funcProcessGetShipSets = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_sets_reset").click()};
     console.log("Анализ комплектов:", respobj);
 
@@ -99,17 +98,18 @@ customSelect('analysis_sets_contr_customDropdown', JSON.parse(localStorage.getIt
 customSelect('analysis_sets_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
 let filt_analysis_sets = [];
-let filt_1 = {fld: "uin", on: "sets"}; let val_1 = [];
-let filt_2 = {fld: "uin", on: "products"}; let val_2 = [];
-let filt_3 = {fld: "uin", on: "contragents"}; let val_3 = [];
-let filt_4 = {fld: "uin", on: "statuses"}; let val_4 = [];
-let filt_5 = {fld: "date"}; let val_5 = [];
+let filt_1 = {fld: "uin", on: "sets", vald: []};
+let filt_2 = {fld: "uin", on: "products", vald: []};
+let filt_3 = {fld: "uin", on: "contragents", vald: []};
+let filt_4 = {fld: "uin", on: "statuses", vald: []};
+let filt_5 = {fld: "date", vald: []};
+filt_analysis_sets.push(filt_5);
 
-listenCustomSelect("analysis_sets_set_customDropdown", filt_1, val_1, filt_analysis_sets);
-listenCustomSelect("analysis_sets_prod_customDropdown", filt_2, val_2, filt_analysis_sets);
-listenCustomSelect("analysis_sets_contr_customDropdown", filt_3, val_3, filt_analysis_sets);
-listenCustomSelect("analysis_sets_status_customDropdown", filt_4, val_4, filt_analysis_sets);
-listenDate(document.getElementById('filt_analysis_sets_date_first'), document.getElementById('filt_analysis_sets_date_second'), filt_5, val_5, filt_analysis_sets);
+listenCustomSelect("analysis_sets_set_customDropdown", filt_1, [], filt_analysis_sets);
+listenCustomSelect("analysis_sets_prod_customDropdown", filt_2, [], filt_analysis_sets);
+listenCustomSelect("analysis_sets_contr_customDropdown", filt_3, [], filt_analysis_sets);
+listenCustomSelect("analysis_sets_status_customDropdown", filt_4, [], filt_analysis_sets);
+listenDate(document.getElementById('filt_analysis_sets_date_first'), document.getElementById('filt_analysis_sets_date_second'), filt_5, [], filt_analysis_sets);
 
 document.getElementById("button_analysis_sets_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_sets, 'tb_analysis_sets', 'shipSets', funcProcessGetShipSets);
@@ -117,11 +117,11 @@ document.getElementById("button_analysis_sets_choose").addEventListener("click",
 
 document.getElementById("button_analysis_sets_reset").addEventListener("click", () => {
     filt_analysis_sets.length = 0;
-    clearCustomSelect('analysis_sets_set_customDropdown', 'комплект'); val_1 = [];
-    clearCustomSelect('analysis_sets_prod_customDropdown', 'изделие'); val_2 = [];
-    clearCustomSelect('analysis_sets_contr_customDropdown', 'контрагента'); val_3 = [];
-    clearCustomSelect('analysis_sets_status_customDropdown', 'статус'); val_4 = [];
-    document.getElementById('filt_analysis_sets_date_first').value = ''; val_5 = [];
+    clearCustomSelect('analysis_sets_set_customDropdown', 'комплект');
+    clearCustomSelect('analysis_sets_prod_customDropdown', 'изделие');
+    clearCustomSelect('analysis_sets_contr_customDropdown', 'контрагента');
+    clearCustomSelect('analysis_sets_status_customDropdown', 'статус');
+    document.getElementById('filt_analysis_sets_date_first').value = '';
     document.getElementById('filt_analysis_sets_date_second').value = '';
     funcGetShipSets();
 })

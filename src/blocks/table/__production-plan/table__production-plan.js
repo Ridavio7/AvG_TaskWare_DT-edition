@@ -7,7 +7,6 @@ export const funcGetPlan = () => {
 }
 
 const funcProcessGetPlan = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("План:", respobj);
 
     let tb_id = "tb_plan";

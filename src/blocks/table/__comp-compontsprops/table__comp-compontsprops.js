@@ -9,7 +9,6 @@ export const funcGetComponentInfoProps = (uin) => {
 }
 
 const funcProcessGetComponentInfoProps = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Комплектующее св-ва:", respobj);
 
     let select = document.getElementById("component_info_add_props_select");
@@ -125,8 +124,6 @@ const addComponentInfoProps = (props, propsUin, meas, value, perc, d1, d2, del, 
     funcCommand(body, funcProcessGetInfoEnumsForModalComp);
 
     function funcProcessGetInfoEnumsForModalComp(result, respobj){
-        //responseProcessor(result, respobj.succ);
-
         if(respobj.answ != ''){
             localStorage.setItem("prop_enums_list", JSON.stringify(respobj.answ))
             makeSelect("component_info_props_value_select_", uin, value, '---', "prop_enums_list", "select input__type-text_modal_fix-width-150", cellPropVal);
@@ -161,8 +158,8 @@ button_control_add.addEventListener("click", () => {
     let prop_select_value = document.getElementById(`component_info_add_props_value_select`);
     let prop_input_value = document.getElementById(`component_info_add_props_value_input`);
     let value;
-    if(prop_select_value.style.display === "inline"){
-        value = prop_select_value.options[prop_select_value.selectedIndex].text
+    if(prop_select_value.parentElement.style.display === "inline-block"){
+        value = prop_select_value.options[prop_select_value.selectedIndex].text;
     } else {
         value = prop_input_value.value;
     }
@@ -171,7 +168,7 @@ button_control_add.addEventListener("click", () => {
     let d2_value       = 0//document.getElementById(`component_info_add_d2`).value;
     let perc_value     = 0//document.getElementById(`component_info_add_perc`).value;
 
-    if(uinprops_value === "" || value === "" || perc_value === ""){
+    if(uinprops_value === "" || value === ""){
         alert("Вы не заполнили все поля!");
     } else {
         body.uinprops = uinprops_value;
@@ -199,8 +196,6 @@ export const addEventSelectProps = (select, select_value_id) => {
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
-        //responseProcessor(result, respobj.succ);
-
         select.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
@@ -209,7 +204,6 @@ export const addEventSelectProps = (select, select_value_id) => {
 
     let select_value = document.getElementById(select_value_id);
     function funcSelectAddEnumsOnTable(result, respobj){
-        //responseProcessor(result, respobj.succ);
         console.log(respobj)
 
         if(respobj.answ != 0){

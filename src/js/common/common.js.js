@@ -66,6 +66,14 @@ export const responseProcessor = (res, respobj) => {
             showNotification('warning', 'Предупреждение!', 'Недостаточно прав доступа');
             result = false;
             break
+        case -10:
+            showNotification('warning', 'Предупреждение!', 'Превышение количества выпуска продукции');
+            result = false;
+            break
+        case -11:
+            showNotification('warning', 'Предупреждение!', 'Фактическое кол-во выпущенной продукции меньше запланированной');
+            result = false;
+            break
         default:
             showNotification('success', 'Успех!', 'Операция выполнена успешно');
             result = true;
@@ -276,34 +284,77 @@ export const listenSelect = (select, filt, val, filt_main) => {
 }
 
 export const listenCustomSelect = (select_id, filt, val, filt_main) => {
-    let select = document.getElementById(select_id);
-    select.addEventListener('change', function(){
+    const select = document.getElementById(select_id);
+
+    const updateFilter = () => {
+        const checkboxes = select.querySelectorAll('input[type="checkbox"]');
         val.length = 0;
-        let checkboxes = select.getElementsByTagName("input");
-        for(let key in checkboxes){
-            if(checkboxes[key].checked === true){
-                let chbv = checkboxes[key].getAttribute('data-value');
-                val.push(chbv);
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const dataValue = checkbox.getAttribute('data-value');
+                if (dataValue !== null) {
+                val.push(dataValue);
+                }
+            }
+        })
+
+        filt.vald = [...val];
+
+        const hasSelection = val.length > 0;
+
+        const isSameFilter = (item) => {
+            if (item.fld !== filt.fld) return false;
+
+            if (item.hasOwnProperty('on') && filt.hasOwnProperty('on')) {
+                return item.on === filt.on;
+            }
+
+            if (item.hasOwnProperty('on') !== filt.hasOwnProperty('on')) {
+                return false;
+            }
+
+            return true;
+        }
+
+        const index = filt_main.findIndex(isSameFilter);
+
+        if (hasSelection) {
+            if (index === -1) {
+                filt_main.push(filt);
+            }
+        } else {
+            if (index !== -1) {
+                filt_main.splice(index, 1);
             }
         }
-        filt.val = val;
-        filt_main.push(filt);
+    }
+
+    const checkboxes = select.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateFilter);
     })
 }
 
 /* date фильтра считывание значения */
 export const listenDate = (date_1, date_2, filt, val, filt_main) => {
-    date_1.addEventListener('change', function(){
+    const formatDateWithTime = (dateStr, isEnd = false) => {
+        if (!dateStr) return null;
+        const time = isEnd ? '23:59:59' : '00:00:00';
+        return `${dateStr}T${time}`;
+    }
+
+    const updateFilter = () => {
+        const d1 = date_1.value;
+        const d2 = date_2.value;
         val.length = 0;
-        val.push(date_1.value);
-        filt.vald = val;
-        filt_main.push(filt);
-    })
-    date_2.addEventListener('change', function(){
-        val.push(date_2.value);
-        filt.vald = val;
-        filt_main.push(filt);
-    })
+        if (d1) { val.push(formatDateWithTime(d1, false)) }
+        if (d2) { val.push(formatDateWithTime(d2, true)) }
+        filt.vald = [...val];
+    }
+
+    date_1.addEventListener('change', updateFilter);
+    date_2.addEventListener('change', updateFilter);
 }
 
 /* фильтр для анализа слушает */
@@ -342,7 +393,8 @@ export const sendFiltAnalisys = (filt, tb_id, obj, func) => {
     let filt_filter = Array.from(new Set(filt.map(filt => JSON.stringify(filt)))).map(filt => JSON.parse(filt));
     let filt_str = JSON.stringify(filt_filter);
     clearTableAll(tb_id);
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"5000", "filt":`${filt_str}`, "asotr": "uin"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"5000", "filt":`${filt_str}`, "asort": "uin"};
+        console.log(body)
     funcCommand(body, func);
 }
 
@@ -410,7 +462,8 @@ export const sortAnalisys = (selec, filt, obj, func) => {
 export const sendFilt = (filt, tb_id, obj, func) => {
     let filt_str = JSON.stringify(filt);
     clearTable(tb_id);
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj": `${obj}`, "count":"10000", "filt":`${filt_str}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj": `${obj}`, "count":"5000", "filt":`${filt_str}`, "asort":"uin"};
+    console.log(body)
     funcCommand(body, func);
 }
 
@@ -538,7 +591,7 @@ export const returnTabs = () => {
     /* помечаем кнопки боковой панели */
     document.getElementById(localStorage.getItem("sidebar_tab_active")).click();
     /* помечаем кнопки вкладок контента */
-    document.getElementsByClassName(localStorage.getItem("tabcontent_tab_active"))[0].click();
+    //document.getElementsByClassName(localStorage.getItem("tabcontent_tab_active"))[0].click();
 }
 
 export const updateDirectory = () => {
@@ -558,7 +611,7 @@ export const updateDirectory = () => {
         { obj: "statuses", callback: processResponse("statuses") },
         { obj: "statussn", callback: processResponse("statussn") },
         { obj: "statusdoc", callback: processResponse("statusdoc") },
-        { obj: "users", callback: processResponse("users") },
+        //{ obj: "users", callback: processResponse("users") },
         { obj: "prof", callback: processResponse("prof") },
         { obj: "contents", callback: processResponse("contents") },
         { obj: "startstep", callback: processResponse("startstep") },
@@ -582,6 +635,21 @@ export const updateDirectory = () => {
             if (result === 0) return;
             localStorage.setItem(`${storageKey}_list`, JSON.stringify(respobj.answ));
         };
+    }
+
+    funcCommand({"user":`${user}`,"meth":"view","obj":"users","count":"5000","faccprof":"0"}, usersList);
+    function usersList(result, respobj){ localStorage.setItem("users_list", JSON.stringify(respobj.answ)) };
+    funcCommand({"user":`${user}`,"meth":"view","obj":"tasks","count":"5000"}, tasksList);
+    function tasksList(result, respobj){ 
+        let arr = [];
+        for (let keyi in respobj.answ){
+            let obi = respobj.answ[keyi];
+            for (let keyj in obi.tasks){
+                let obj = obi.tasks[keyj];
+                arr.push(obj)
+            }
+        }
+        localStorage.setItem("tasks_list", JSON.stringify(arr));
     }
 }
 

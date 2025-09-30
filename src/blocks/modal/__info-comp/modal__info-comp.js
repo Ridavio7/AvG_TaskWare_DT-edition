@@ -143,7 +143,6 @@ export const funcGetComponentInfo = (uin) => {
 }
 
 const funcProcessGetComponentInfo = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Комплектующее ИНФО:", respobj);
 
     document.getElementById("component_name").value      = "";
@@ -294,7 +293,6 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
     funcCommand(body_1, funcSelectAddMeasOnTable);
 
     function funcSelectAddMeasOnTable(result, respobj){
-        //responseProcessor(result, respobj.succ);
         select.parentElement.parentElement.nextElementSibling.innerText = respobj.answ[0].meas.name;
     }
 
@@ -307,7 +305,7 @@ const addEventSelectOrInputProps = (select, select_value_id) => {
     function funcSelectAddEnumsOnTable(result, respobj){
         removeOptions(select_value);
         if(respobj.answ != ''){
-            select_value.parentElement.style.display = "block";
+            select_value.parentElement.style.display = "inline-block";
             input_value.style.display  = "none";
             let arr = respobj.answ;
             for (let key in arr) {

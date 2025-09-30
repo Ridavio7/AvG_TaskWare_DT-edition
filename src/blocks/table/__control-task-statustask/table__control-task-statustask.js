@@ -7,7 +7,6 @@ export const funcGetStatustask = () => {
 }
 
 const funcProcessGetStatustask = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Статусы задач:", respobj);
 
     let tb_id = "tb_statustask";

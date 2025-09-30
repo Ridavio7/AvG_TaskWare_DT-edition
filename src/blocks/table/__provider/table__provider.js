@@ -4,12 +4,11 @@ import {customSelect, customSortSelect} from '../../select/select.js';
 import {funcInfoDocpostSubstdocOpenModal} from '../../modal/__docpost-substdoc/modal__docpost-substdoc.js';
 
 export const funcGetDocpost = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000"};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "filt":`${JSON.stringify(filt_docpost)}`};
     funcCommand(body, funcProcessGetDocpost);
 }
 
 export const funcProcessGetDocpost = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Док. поступления:", respobj);
 
     let tb_id = "tb_docpost";
@@ -133,11 +132,10 @@ options.forEach(option => {
 customSelect('docpost_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
 customSelect('docpost_status_customDropdown', JSON.parse(localStorage.getItem("statusdoc_list")), 'статус');
 
-let filt_docpost = [], val_1 = [], val_2 = [],
-filt_1 = {fld: "uincontr"}, filt_2 = {fld: "uinstatus"};
+let filt_docpost = [], filt_1 = {fld: "uincontr", vald: []}, filt_2 = {fld: "uinstatus", vald: []};
 
-listenCustomSelect("docpost_contr_customDropdown", filt_1, val_1, filt_docpost);
-listenCustomSelect("docpost_status_customDropdown", filt_2, val_2, filt_docpost);
+listenCustomSelect("docpost_contr_customDropdown", filt_1, [], filt_docpost);
+listenCustomSelect("docpost_status_customDropdown", filt_2, [], filt_docpost);
 
 document.getElementById("button_docpost_choose").addEventListener("click", () => {
     sendFilt(filt_docpost, 'tb_docpost', 'docpost', funcProcessGetDocpost);

@@ -7,7 +7,6 @@ export const funcGetContents = () => {
 }
 
 const funcProcessGetContents = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Контенты:", respobj);
 
     let tb_id = "tb_contents";

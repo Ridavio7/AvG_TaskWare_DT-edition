@@ -39,8 +39,6 @@ export const funcGetProductsTreeSelect = () => {
 }
 
 function funcProcessGetProductsTreeSelect(result, respobj){
-    //responseProcessor(result, respobj.succ);
-
     const tree = new TreeBuilder('modal_select_products_tree', 'dirP', 'catP', funcGetProductsTreeSelect, funcGetDirP, '', ["openall"]);
     tree.build(respobj.answ);
 }
@@ -51,7 +49,6 @@ export const funcGetDirP = (uin) => {
 }
 
 function funcProcessGetProductsSelect(result, respobj){
-    //responseProcessor(result, respobj.succ);
     console.log(respobj)
 
     let tb_id = "tb_products_select";

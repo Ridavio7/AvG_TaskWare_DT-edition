@@ -7,7 +7,6 @@ export const funcGetStorages = () => {
 }
 
 const funcProcessGetStorages = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Склады:", respobj);
 
     let storages_list = respobj.answ;

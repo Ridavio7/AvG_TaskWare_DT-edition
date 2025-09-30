@@ -7,7 +7,6 @@ export const funcGetTechproc = () => {
 }
 
 const funcProcessGetTechproc = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Тех.процесс:", respobj);
 
     let tb_id = "tb_techproc";

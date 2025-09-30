@@ -13,6 +13,7 @@ let modal_resize         = document.getElementById("modal_transfer_product_resiz
 let uinCatp  = null;
 let uinItem  = null;
 let nameItem = null;
+let fsetType = null;
 
 span_transfer.onclick = function(){
     modal_transfer.style.display = "none";
@@ -37,13 +38,14 @@ const funcProcessGetResize = (result, respobj) => {
     document.getElementById("modal_transfer_product_resize").style.height = `${respobj.answ.val[1]}px`;
 }
 
-export const funcInfoProductsTransferOpenModal = (uin, name) => {
+export const funcInfoProductsTransferOpenModal = (uin, name, fset) => {
     funcGetResize();
     modal_transfer.style.display = "block";
 
     name_transfer.value = name;
     uinItem = uin;
     nameItem = name;
+    fsetType = fset;
     button_transfer_dirP.style.display = "none";
     button_transfer_comp.style.display = "flex";
 
@@ -52,8 +54,6 @@ export const funcInfoProductsTransferOpenModal = (uin, name) => {
 }
 
 const funcProcessGetProductsTree = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
-
     const tree = new TreeBuilder('modal_transfer_product_tree', 'dirP', 'catP', funcGetProductsTree, funcGetProducts, funcInfocatPTransferOpenModal, ["openall"]);
     tree.build(respobj.answ);
 
@@ -64,8 +64,7 @@ const funcProcessGetProductsTree = (result, respobj) => {
 }
 
 button_transfer_comp.onclick = () => {
-    let type = document.getElementById("button_info_product_save").getAttribute("data-value");
-    let body = type == 0 ?
+    let body = fsetType == 0 ?
     {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`} :
     {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"sets", "name":`${nameItem}`, "uin":`${uinItem}`, "uincat":`${uinCatp}`};
 

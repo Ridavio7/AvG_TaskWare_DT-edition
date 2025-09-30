@@ -91,17 +91,17 @@ export class TreeTaskBuilder {
         itemHeader.addEventListener('contextmenu', (e) => { e.preventDefault(); this.showContextMenu(e, item); this.markItem(itemHeader) })
 
         const arrow = document.createElement('span');
-        arrow.className = 'tree-catalog__arrow collapsed';
+        arrow.className = 'tree-catalog__arrow tree-catalog__arrow_task collapsed';
         arrow.addEventListener('click', (e) => { e.stopPropagation(); this.toggleItemChildren(itemContainer) })
         itemHeader.appendChild(arrow);
 
         const textSpanContainer     = document.createElement('div');
         textSpanContainer.className = 'tree-catalog__text-container';
-        if(document.URL.includes('#tasks/tasks_shablons')){
+        if(document.URL.includes('#shablons')){
             // дерево шаблонов
             if(item.lv === 0){
                 // шапка
-                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span');
+                treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
                 treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span');
                 treeSpanFactory(textSpanContainer, item.dl, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-dl');
             } else {
@@ -134,7 +134,7 @@ export class TreeTaskBuilder {
                     treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
                     treeSpanFactory(textSpanContainer, formatDate(item.dateend), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
                 }
-                iteamHead.insertAdjacentHTML('beforeend', `<button class="button__control button__control_chat_task" value="${localStorage.getItem('uinTask')}"><img class="button__control_img__no-filter" src="assets/images/chat.svg" alt="" style="width: 18px;"></button>`);
+                iteamHead.insertAdjacentHTML('beforeend', `<button class="button__control button__control_chat_task" value="${localStorage.getItem('uinTask')}"><img class="button__control_img__no-filter" src="assets/images/chat.svg" alt="" style="width: 18px;" title=""Чат></button>`);
             } else {
                 // ветви
                 if(item.fproblem != 0){

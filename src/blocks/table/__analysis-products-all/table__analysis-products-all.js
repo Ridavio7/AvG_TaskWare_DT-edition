@@ -7,7 +7,6 @@ export const funcGetShipProductsAll = () => {
 }
 
 const funcProcessGetShipProductsAll = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_products_all_reset").click()};
     console.log("Анализ всех изделий:", respobj);
 
@@ -77,17 +76,18 @@ customSelect('analysis_products_all_contr_customDropdown', JSON.parse(localStora
 customSelect('analysis_products_all_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
 let filt_analysis_products_all = [];
-let filt_1 = {fld: "uin", on: "sets"}; let val_1 = [];
-let filt_2 = {fld: "uin", on: "products"}; let val_2 = [];
-let filt_3 = {fld: "uin", on: "contragents"}; let val_3 = [];
-let filt_4 = {fld: "uin", on: "statuses"}; let val_4 = [];
-let filt_5 = {fld: "date"}; let val_5 = [];
+let filt_1 = {fld: "uin", on: "sets", vald: []};
+let filt_2 = {fld: "uin", on: "products", vald: []};
+let filt_3 = {fld: "uin", on: "contragents", vald: []};
+let filt_4 = {fld: "uin", on: "statuses", vald: []};
+let filt_5 = {fld: "date", vald: []};
+filt_analysis_products_all.push(filt_5);
 
-listenCustomSelect("analysis_products_all_set_customDropdown", filt_1, val_1, filt_analysis_products_all);
-listenCustomSelect("analysis_products_all_prod_customDropdown", filt_2, val_2, filt_analysis_products_all);
-listenCustomSelect("analysis_products_all_contr_customDropdown", filt_3, val_3, filt_analysis_products_all);
-listenCustomSelect("analysis_products_all_status_customDropdown", filt_4, val_4, filt_analysis_products_all);
-listenDate(document.getElementById('filt_analysis_products_all_date_first'), document.getElementById('filt_analysis_products_all_date_second'), filt_5, val_5, filt_analysis_products_all);
+listenCustomSelect("analysis_products_all_set_customDropdown", filt_1, [], filt_analysis_products_all);
+listenCustomSelect("analysis_products_all_prod_customDropdown", filt_2, [], filt_analysis_products_all);
+listenCustomSelect("analysis_products_all_contr_customDropdown", filt_3, [], filt_analysis_products_all);
+listenCustomSelect("analysis_products_all_status_customDropdown", filt_4, [], filt_analysis_products_all);
+listenDate(document.getElementById('filt_analysis_products_all_date_first'), document.getElementById('filt_analysis_products_all_date_second'), filt_5, [], filt_analysis_products_all);
 
 document.getElementById("button_analysis_products_all_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_products_all, 'tb_analysis_products_all', 'shipProdsAll', funcProcessGetShipProductsAll);

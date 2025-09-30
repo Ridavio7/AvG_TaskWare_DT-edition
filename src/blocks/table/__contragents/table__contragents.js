@@ -7,7 +7,6 @@ export const funcGetContragents = () => {
 }
 
 const funcProcessGetContragents = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Контрагенты:", respobj);
 
     let contragents_list = respobj.answ;

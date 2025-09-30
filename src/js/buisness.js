@@ -124,8 +124,8 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_production-inst
 // проектирование
 
 // поставка
-addEventButtonTab(document.querySelectorAll(".button__tab__first_provider-main"), funcGetDocpost);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_provider-statusdoc"), funcGetStatusDoc);
+addEventButtonTab(document.querySelectorAll(".sidebar__link_provider"), funcGetDocpost);
+//addEventButtonTab(document.querySelectorAll(".button__tab__first_provider-statusdoc"), funcGetStatusDoc);
 
 // проектирование
 addEventButtonTab(document.querySelectorAll(".button__tab__first_development-begunok"), '');

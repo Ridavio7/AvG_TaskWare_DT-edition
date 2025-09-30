@@ -7,7 +7,6 @@ export const funcGetStatussn = () => {
 }
 
 const funcProcessGetStatussn = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("SN статус:", respobj);
 
     let statussn_list = respobj.answ;

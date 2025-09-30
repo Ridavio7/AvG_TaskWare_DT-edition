@@ -7,7 +7,6 @@ export const funcGetShipComponentsAll = () => {
 }
 
 const funcProcessGetShipComponentsAll = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_components_reset").click()};
     console.log("Анализ всех комплектующих:", respobj);
 
@@ -70,17 +69,18 @@ customSelect('analysis_components_contr_customDropdown', JSON.parse(localStorage
 customSelect('analysis_components_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
 let filt_analysis_components_all = [];
-let filt_1 = {fld: "uin", on: "sets"}; let val_1 = [];
-let filt_2 = {fld: "uin", on: "products"}; let val_2 = [];
-let filt_3 = {fld: "uin", on: "contragents"}; let val_3 = [];
-let filt_4 = {fld: "uin", on: "statuses"}; let val_4 = [];
-let filt_5 = {fld: "date"}; let val_5 = [];
+let filt_1 = {fld: "uin", on: "sets", vald: []};
+let filt_2 = {fld: "uin", on: "products", vald: []};
+let filt_3 = {fld: "uin", on: "contragents", vald: []};
+let filt_4 = {fld: "uin", on: "statuses", vald: []};
+let filt_5 = {fld: "date", vald: []};
+filt_analysis_components_all.push(filt_5);
 
-listenCustomSelect("analysis_components_set_customDropdown", filt_1, val_1, filt_analysis_components_all);
-listenCustomSelect("analysis_components_prod_customDropdown", filt_2, val_2, filt_analysis_components_all);
-listenCustomSelect("analysis_components_contr_customDropdown", filt_3, val_3, filt_analysis_components_all);
-listenCustomSelect("analysis_components_status_customDropdown", filt_4, val_4, filt_analysis_components_all);
-listenDate(document.getElementById('filt_analysis_components_all_date_first'), document.getElementById('filt_analysis_components_all_date_second'), filt_5, val_5, filt_analysis_components_all);
+listenCustomSelect("analysis_components_set_customDropdown", filt_1, [], filt_analysis_components_all);
+listenCustomSelect("analysis_components_prod_customDropdown", filt_2, [], filt_analysis_components_all);
+listenCustomSelect("analysis_components_contr_customDropdown", filt_3, [], filt_analysis_components_all);
+listenCustomSelect("analysis_components_status_customDropdown", filt_4, [], filt_analysis_components_all);
+listenDate(document.getElementById('filt_analysis_components_all_date_first'), document.getElementById('filt_analysis_components_all_date_second'), filt_5, [], filt_analysis_components_all);
 
 document.getElementById("button_analysis_components_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_components_all, 'tb_analysis_components_all', 'shipCompontsAll', funcProcessGetShipComponentsAll);

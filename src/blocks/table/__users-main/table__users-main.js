@@ -8,7 +8,6 @@ export const funcGetUsers = () => {
 }
 
 const funcProcessGetUsers = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Пользователи:", respobj);
 
     let tb_id = "tb_users";

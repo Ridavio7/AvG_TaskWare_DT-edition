@@ -7,7 +7,6 @@ export const funcGetStatuses = () => {
 }
 
 const funcProcessGetStatuses = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Статусы:", respobj);
     
     let tb_id = "tb_statuses_shipment";

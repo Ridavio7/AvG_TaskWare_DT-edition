@@ -30,7 +30,7 @@ const optimization = () => {
   return configObj;
 };
 
-const pages = ['index', 'tasks', 'buisness', 'control', 'change_pass', 'notifications', 'result_table', 'rules'];
+const pages = ['index', 'tasks', 'tasks_test', 'buisness', 'control', 'change_pass', 'notifications', 'result_table', 'rules'];
 
 const plugins = () => {
   const basePlugins = [
@@ -52,6 +52,7 @@ const plugins = () => {
         { from: "src/blocks/button/__control/img/archive_task.svg", to: "assets/images/" },
         { from: "src/blocks/button/__control/img/start.svg", to: "assets/images/" },
         { from: "src/blocks/button/__control/img/create.svg", to: "assets/images/" },
+        { from: "src/blocks/button/__control/img/three_dot.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_green.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_orange.svg", to: "assets/images/" },
         { from: "src/blocks/table/__snprod/img/ellipse_white.svg", to: "assets/images/" },

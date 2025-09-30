@@ -7,7 +7,6 @@ export const funcGetSNProd = () => {
 }
 
 const funcProcessGetSNProd = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("SNProd:", respobj);
     
     let tb_id = "tb_products_SNProd";
@@ -112,11 +111,10 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
 customSelect('SNProd_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
 customSelect('SNProd_status_customDropdown', JSON.parse(localStorage.getItem("statussn_list")), 'статус');
 
-let filt_snprod = [], val_1 = [], val_2 = [],
-filt_1 = {fld: "uin", on: "products"}, filt_2 = {fld: "uin", on: "statussn"};
+let filt_snprod = [], filt_1 = {fld: "uin", on: "products"}, filt_2 = {fld: "uin", on: "statussn"};
 
-listenCustomSelect("SNProd_prod_customDropdown", filt_1, val_1, filt_snprod);
-listenCustomSelect("SNProd_status_customDropdown", filt_2, val_2, filt_snprod);
+listenCustomSelect("SNProd_prod_customDropdown", filt_1, [], filt_snprod);
+listenCustomSelect("SNProd_status_customDropdown", filt_2, [], filt_snprod);
 
 document.getElementById("button_SNprod_choose").addEventListener("click", () => {
     sendFilt(filt_snprod, 'tb_products_SNProd', 'snprod', funcProcessGetSNProd);

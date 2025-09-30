@@ -7,7 +7,6 @@ export const funcGetProducts = () => {
 }
 
 const funcProcessGetProducts = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Изделия:", respobj);
 
     let tb_id = "tb_products_main";

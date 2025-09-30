@@ -7,7 +7,6 @@ export const funcGetStartstep = () => {
 }
 
 const funcProcessGetStartstep = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Контенты:", respobj);
 
     let tb_id = "tb_startstep";

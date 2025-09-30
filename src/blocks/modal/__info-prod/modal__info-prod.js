@@ -85,7 +85,6 @@ export const funcGetProductInfo = (uin, fset) => {
 }
 
 const funcProcessGetProductInfo = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Комплект/изделие ИНФО:", respobj);
 
     while (select_info_product_color.options.length) {select_info_product_color.options[0] = null};
@@ -118,17 +117,19 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
     addToDropdown(select_info_product_color, "colors_list");
     input_info_product_train.value = dopName;
 
-    chb_info_product_fship.checked = fship === 1 ? true : false;
-
     if(fset == 0){
         select_info_product_color.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
         button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
         button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
+        chb_info_product_fship.checked = fship === 1 ? true : false;
+        chb_info_product_fship.disabled = false;
     } else {
         select_info_product_color.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
         button_info_product_tcard.parentElement.classList.add("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.remove("modal__input-wrapper_display-none");
+        chb_info_product_fship.checked = true;
+        chb_info_product_fship.disabled = true;
     }
     
     select_info_product_type.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
@@ -154,9 +155,10 @@ button_info_product_save.onclick = (elem) => {
     let name = input_info_product_name.value;
     let dopC = select_info_product_color.value;
     let dopM = input_info_product_train.value;
+    let fship = chb_info_product_fship.checked === true ? "1" : "0";
 
     let body = type == 0 ?
-    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopuin":`${dopC}`} :
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopuin":`${dopC}`, "fship":`${fship}`} :
     {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"sets", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopname":`${dopM}`};
 
     console.log(body)

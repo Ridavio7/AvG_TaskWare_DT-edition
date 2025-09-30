@@ -37,7 +37,7 @@ resizeModalWindow(modal_resize, "whModalFoundPlus");
 
 /* настройка размера окна */
 const funcGetResize = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalFoundPlus"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whModalFoundPlus", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResize)
 }
 
@@ -112,7 +112,6 @@ found_plus_select.addEventListener("change", (elem) => {
 })
 
 const funcProcessGetTypesPropsFetch = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("TypesProps поиска:", respobj);
 
     let tb_id = "found_plus_tb";
@@ -156,7 +155,6 @@ const addFoundTypesProps = (name, uin, tb_id) => {
     funcCommand(body, funcProcessGetInfoEnums);
 
     function funcProcessGetInfoEnums(result, respobj){
-        //responseProcessor(result, respobj.succ);
         console.log("Значения в поиске:", respobj);
 
         if(respobj.answ === ''){

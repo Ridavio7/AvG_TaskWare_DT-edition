@@ -48,7 +48,6 @@ const funcGetInfoEnums = (uin) => {
 }
 
 const funcProcessGetInfoEnums = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Значения:", respobj);
 
     let tb_id = "enums_tb_modal";

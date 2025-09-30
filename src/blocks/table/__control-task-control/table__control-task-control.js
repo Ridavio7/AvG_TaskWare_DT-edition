@@ -3,12 +3,12 @@ import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetTasksSteps} from '../../modal/__info-task/modal__info-task.js';
 import {resizeModalWindow} from '../../modal/modal.js';
 
-resizeModalWindow(tb_tasks, "whTaskTable");
-resizeModalWindow(tree_task, "whTaskTree"); 
+resizeModalWindow(tb_tasks, "whTaskTable", "Размеры окна задач таблицы");
+resizeModalWindow(tree_task, "whTaskTree", "Размеры окна задач дерева"); 
 
 /* настройка размера окна */
 const funcGetResizeTb = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTable"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTable", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeTb)
 }
 
@@ -19,7 +19,7 @@ const funcProcessGetResizeTb = (result, respobj) => {
 
 /* настройка размера окна */
 const funcGetResizeTree = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTree"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTree", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeTree)
 }
 
@@ -36,7 +36,6 @@ export const funcGetTasks = () => {
 }
 
 const funcProcessGetTasks = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Задачи:", respobj);
 
     const container = document.getElementById('tb_tasks');
@@ -115,7 +114,7 @@ function buildStructure(data, container) {
             tr.classList.add('tr');
 
             const tdStatus = document.createElement('td');
-            tdStatus.classList.add('td');
+            tdStatus.className = 'td td_tree-status';
             tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin, task.fpart)}</button>`
 
             const tdName = document.createElement('td');

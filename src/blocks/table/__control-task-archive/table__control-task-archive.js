@@ -8,7 +8,7 @@ resizeModalWindow(wrapper_tree_tasks_archive, "whTaskTree");
 
 /* настройка размера окна */
 const funcGetResizeTb = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTable"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTable", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeTb)
 }
 
@@ -19,7 +19,7 @@ const funcProcessGetResizeTb = (result, respobj) => {
 
 /* настройка размера окна */
 const funcGetResizeTree = () => {
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTree"};
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whTaskTree", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeTree)
 }
 
@@ -36,7 +36,6 @@ export const funcGetTasksArchive = () => {
 }
 
 const funcProcessGetTasksArchive = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Архив:", respobj);
 
     const container = document.getElementById('tb_tasks_archive');

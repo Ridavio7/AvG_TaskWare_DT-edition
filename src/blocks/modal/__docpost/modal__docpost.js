@@ -58,7 +58,6 @@ const funcGetInfoInputsDocpost = (uin) => {
 }
 
 const funcProcessGetInfoInputsDocpost = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Док. поступления 1:", respobj);
 
     removeOptions(docpost_status);
@@ -114,7 +113,6 @@ const funcGetInfoTableDocpost = (uin) => {
 }
 
 const funcProcessGetInfoTableDocpost = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Таблица док. поступления 1:", respobj);
 
     let tb_id = "tb_modal_docpost";

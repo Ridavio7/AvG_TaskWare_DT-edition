@@ -18,7 +18,6 @@ export const funcGetProductViewInside = (uin, fset) => {
 }
 
 const funcProcessGetProductViewInside = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("viewInside:", respobj);
 
     uinMainProd = respobj.uinprod;

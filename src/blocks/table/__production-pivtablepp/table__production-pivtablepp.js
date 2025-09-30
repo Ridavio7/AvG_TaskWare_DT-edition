@@ -31,7 +31,6 @@ export const funcGetPivTableppTab = () => {
 }
 
 const funcProcessGetPivTablepp = (result_piv, respobj_piv) => {
-    responseProcessor(result_piv, respobj_piv.succ);
     console.log("СТ Печатных Плат:", respobj_piv);
 
     let tproc_arr = [];

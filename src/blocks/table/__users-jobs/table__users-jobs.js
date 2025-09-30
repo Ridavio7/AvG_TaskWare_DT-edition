@@ -7,7 +7,6 @@ export const funcGetJobs = () => {
 }
 
 const funcProcessGetJobs = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Должности:", respobj);
 
     let tb_id = "tb_jobs";

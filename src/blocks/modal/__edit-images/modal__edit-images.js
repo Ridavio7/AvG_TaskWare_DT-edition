@@ -44,7 +44,6 @@ export const funcGetCompontimgsEdit = (uin) => {
 }
 
 const funcProcessGetCompontimgs = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Картинки:", respobj);
 
     let tb_id = "tb_modal_img";
@@ -121,7 +120,6 @@ const addCompontimgs = (name, fname, del, uin, tb_id) => {
 }
 
 const funcProcessOpenCompontimgs = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Картинка:", respobj);
 
     var win = window.open();

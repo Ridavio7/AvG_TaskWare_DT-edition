@@ -76,7 +76,6 @@ export const funcGetComponentsTree = () => {
 }
 
 const funcProcessGetComponentsTree = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Дерево:", respobj);
 
     const tree = new TreeBuilder('jstree_div', 'dirC', 'catC', funcGetComponentsTree, funcGetComponents, funcInfoCatcTransferOpenModal, ['contextmenu', 'openall']);
@@ -99,7 +98,6 @@ export const funcGetComponents = (uin) => {
 }
 
 const funcProcessGetComponents = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Директория:", respobj);
 
     let tb_id = "tb_components_tree"
@@ -113,10 +111,11 @@ const funcProcessGetComponents = (result, respobj) => {
         let set    = respobj.answ[key];
         let name   = set.name;
         let fUnic  = set.fUnic;
+        let ost    = set.ost;
         let typelm = set.typelm.name;
         let del    = set.del;
         let uin    = set.uin;
-        addComponents(name, fUnic, typelm, del, uin, tb_id);
+        addComponents(name, fUnic, ost, typelm, del, uin, tb_id);
     }
 
     /* функция удаления */
@@ -155,20 +154,21 @@ const funcProcessGetComponents = (result, respobj) => {
     })
 }
 
-const addComponents = (name, fUnic, typelm, del, uin, tb_id) => {
+const addComponents = (name, fUnic, ost, typelm, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
     let cellName   = newRow.insertCell(0); cellName.classList   = "td td_nowrap-content";
     let cellTypelm = newRow.insertCell(1); cellTypelm.classList = "td";
-    let cellFUnic  = newRow.insertCell(2); cellFUnic.classList  = "td";
+    let cellFUnic  = newRow.insertCell(2); cellFUnic.classList  = "td td__text_align_center";
     let cellBtn    = newRow.insertCell(3); cellBtn.classList    = "td";
 
     cellName.innerHTML = `<button class="button__control button__control_modal-component" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" title="Инфо"></button> ${name}`;
     cellName.id = `component_name_${uin}`;
-    fUnic === 1 ? cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled checked><label for="chb_funic_${uin}"></label>` : 
-                  cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled><label for="chb_funic_${uin}"></label>`;
+    cellFUnic.innerHTML = ost;
+    /*fUnic === 1 ? cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled checked><label for="chb_funic_${uin}"></label>` : 
+                  cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled><label for="chb_funic_${uin}"></label>`;*/
     cellTypelm.innerHTML   = typelm;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";

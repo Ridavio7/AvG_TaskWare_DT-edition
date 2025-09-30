@@ -8,7 +8,6 @@ export const funcGetTypeselem = () => {
 }
 
 const funcProcessGetTypeselem = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Типы элем.:", respobj);
 
     let tb_id = "tb_componenets_typeselem";

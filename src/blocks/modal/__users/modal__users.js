@@ -3,20 +3,22 @@ import {dragElement, resizeModalWindow} from '../modal.js';
 import {showNotification} from '../__notification/modal__notification.js';
 import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 
-let user_modal  = document.getElementById("user_modal");
-let user_close  = document.getElementById("user_close");
-let user_name   = document.getElementById("user_name_modal");
-let user_name_t = document.getElementById("user_name_title");
-let user_job    = document.getElementById("user_job");
-let user_email  = document.getElementById("user_email");
-let user_phone  = document.getElementById("user_phone");
-let user_login  = document.getElementById("user_login");
-let user_pass_f = document.getElementById("user_pass_first");
-let user_pass_s = document.getElementById("user_pass_second");
-let user_save   = document.getElementById("user_save");
-let user_add    = document.getElementById("user_add");
-let user_table  = document.getElementById("tb_user_rights");
-let modal_resize = document.getElementById("user_modal_resize");
+let user_modal    = document.getElementById("user_modal");
+let user_close    = document.getElementById("user_close");
+let user_name     = document.getElementById("user_name_modal");
+let user_name_t   = document.getElementById("user_name_title");
+let user_job      = document.getElementById("user_job");
+let user_email    = document.getElementById("user_email");
+let user_phone    = document.getElementById("user_phone");
+let user_login    = document.getElementById("user_login");
+let user_pass_f   = document.getElementById("user_pass_first");
+let user_pass_s   = document.getElementById("user_pass_second");
+let user_save     = document.getElementById("user_save");
+let user_add      = document.getElementById("user_add");
+let user_table    = document.getElementById("tb_user_rights");
+let user_faccprof = document.getElementById("user_faccprof");
+let user_accprof  = document.getElementById("user_accprof");
+let modal_resize  = document.getElementById("user_modal_resize");
 
 let log_pass_change = 0;
 
@@ -70,7 +72,6 @@ const funcGetRightsUsersInfo = () => {
 }
 
 const funcProcessGetRightsUsersInfo = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Права:", respobj);
 
     let tb_id = "tb_user_rights";
@@ -91,8 +92,8 @@ const addRightsUsersInfo = (name, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellRightName = newRow.insertCell(0); cellRightName.classList = "td";
-    let cellRightAcc  = newRow.insertCell(1); cellRightAcc.classList  = "td";
+    let cellRightName = newRow.insertCell(0); cellRightName.classList = "td td_font-color-active";
+    let cellRightAcc  = newRow.insertCell(1); cellRightAcc.classList  = "td td__text_align_center";
 
     cellRightName.innerHTML = name;
     if(name === 'Полные права' || name === 'Удаление помеченных'){
@@ -113,7 +114,6 @@ const funcGetUserInfo = (uin) => {
 }
 
 const funcProcessGetUserInfo = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Пользователь:", respobj);
 
     user_name_t.innerHTML = "";
@@ -121,22 +121,26 @@ const funcProcessGetUserInfo = (result, respobj) => {
     user_email.value      = "";
     user_phone.value      = "";
     removeOptions(user_job);
+    removeOptions(user_accprof);
 
-    let obj     = respobj.answ[0];
-    let name    = obj.name;
-    let jobName = obj.job.name;
-    let jobUin  = obj.job.uin;
-    let email   = obj.email;
-    let phone   = obj.phone;
-    let rights  = obj.rights;
-    let login   = obj.log;
-    let fpsw    = obj.fpsw;
-    let uin     = obj.uin;
+    let obj         = respobj.answ[0];
+    let name        = obj.name;
+    let jobName     = obj.job.name;
+    let jobUin      = obj.job.uin;
+    let email       = obj.email;
+    let phone       = obj.phone;
+    let rights      = obj.rights;
+    let login       = obj.log;
+    let fpsw        = obj.fpsw;
+    let faccprof    = obj.faccprof;
+    let accprofName = obj.accprof.name;
+    let accprofUin  = obj.accprof.uin;
+    let uin         = obj.uin;
 
-    addUserInfo(name, jobName, jobUin, email, phone, rights, login, fpsw, uin);
+    addUserInfo(name, jobName, jobUin, email, phone, rights, login, fpsw, faccprof, accprofName, accprofUin, uin);
 }
 
-const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, fpsw, uin) => {
+const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, fpsw, faccprof, accprofName, accprofUin, uin) => {
     user_login.parentElement.style.display  = "flex";
     user_pass_f.parentElement.style.display = "flex";
     user_pass_s.parentElement.style.display = "flex";
@@ -149,8 +153,17 @@ const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, fpsw, u
     user_save.value       = uin;
     addToDropdownOneOption(user_job, jobName, jobUin);
     addToDropdown(user_job, "jobs_list");
+    addToDropdownOneOption(user_accprof, accprofName, accprofUin);
+    addToDropdown(user_accprof, "prof_list");
 
     if(fpsw === 1){user_pass_f.value = 'password'; user_pass_s.value = 'password';}
+    if(faccprof === 1){
+        user_faccprof.checked = true;
+        user_accprof.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+    } else {
+        user_faccprof.checked = false;
+        user_accprof.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    }
 
     for(let key in rights){
         let obj  = rights[key];
@@ -195,7 +208,7 @@ user_pass_s.addEventListener("change", () => {
 
 /* функция обновления пользователи */
 user_save.addEventListener("click", (evt) => {
-    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
+    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "email":"", "phone":"", "faccprof":"", "uinaccprof":""};
 
     validateForm('user_name_modal', 'user_email', 'user_phone').then(result => {
         if(result === true){
@@ -203,10 +216,21 @@ user_save.addEventListener("click", (evt) => {
             body1.uinjob = user_job.value;
             body1.email  = user_email.value;
             body1.phone  = user_phone.value;
+            body1.faccprof = user_faccprof.checked === true ? "1" : "0";
+            body1.uinaccprof = user_accprof.value;
             body1.rights = `${JSON.stringify(searchUserRights())}`;
 
-            funcCommand(body1, funcProcessOnlyInfo);
-            setTimeout(function(){funcGetUsers()}, 100);
+            if(user_faccprof.checked === true){
+                if(user_accprof.value == 0){
+                    alert('Вы выбрали "Аккаунт участка", но не выбрали сам участок!');
+                } else {
+                    funcCommand(body1, funcProcessOnlyInfo);
+                    setTimeout(function(){funcGetUsers()}, 100);
+                }
+            } else {
+                funcCommand(body1, funcProcessOnlyInfo);
+                setTimeout(function(){funcGetUsers()}, 100);
+            }
         } else {
             showNotification('error', 'Ошибка!', 'Произошла ошибка при выполнении.');
         }
@@ -224,8 +248,6 @@ user_save.addEventListener("click", (evt) => {
         funcCommand(body2, funcProcessOnlyInfo);
 
         log_pass_change = 0;
-    } else {
-        console.log(log_pass_change);
     }
 })
 
@@ -248,6 +270,11 @@ function funcProcessInfoUserOpenModalAdd(){
     removeOptions(user_job)
     addToDropdownOneOption(user_job, "Выберите должность", "");
     addToDropdown(user_job, "jobs_list");
+    user_faccprof.checked = false;
+    user_accprof.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+    removeOptions(user_accprof)
+    addToDropdownOneOption(user_accprof, "Выберите участок", "");
+    addToDropdown(user_accprof, "prof_list");
 
     user_login.parentElement.style.display  = "none";
     user_pass_f.parentElement.style.display = "none";
@@ -255,7 +282,7 @@ function funcProcessInfoUserOpenModalAdd(){
 }
 
 user_add.onclick = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "email":"", "phone":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "email":"", "phone":"", "faccprof":"", "uinaccprof":""};
 
     validateForm('user_name_modal', 'user_email', 'user_phone').then(result => {
         if(result === true){
@@ -263,11 +290,23 @@ user_add.onclick = () => {
             body.uinjob = user_job.value;
             body.email  = user_email.value;
             body.phone  = user_phone.value;
+            body.faccprof = user_faccprof.checked === true ? "1" : "0";
+            body.uinaccprof = user_accprof.value;
             body.rights = `${JSON.stringify(searchUserRights())}`;
 
-            funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(function(){funcGetUsers()}, 100);
-            setTimeout(function(){user_modal.style.display  = "none"}, 150);
+            if(user_faccprof.checked === true){
+                if(user_accprof.value == ""){
+                    alert('Вы выбрали "Аккаунт участка", но не выбрали сам участок!');
+                } else {
+                    funcCommand(body, funcProcessOnlyInfo);
+                    setTimeout(function(){funcGetUsers()}, 100);
+                    setTimeout(function(){user_modal.style.display  = "none"}, 150);
+                }
+            } else {
+                funcCommand(body, funcProcessOnlyInfo);
+                setTimeout(function(){funcGetUsers()}, 100);
+                setTimeout(function(){user_modal.style.display  = "none"}, 150);
+            }
         } else {
             console.log('Ошибка валидации полей!');
         }
@@ -301,3 +340,9 @@ const searchUserRights = () => {
 
 document.getElementById('user_pass_first_toggle').addEventListener('click', (elem) => togglePassword(elem, 'user_pass_first'));
 document.getElementById('user_pass_second_toggle').addEventListener('click', (elem) => togglePassword(elem, 'user_pass_second'));
+
+user_faccprof.addEventListener('change', (elem) => {
+    elem.target.checked === true
+    ? elem.target.parentElement.nextElementSibling.classList.remove("modal__input-wrapper_display-none")
+    : elem.target.parentElement.nextElementSibling.classList.add("modal__input-wrapper_display-none")
+})

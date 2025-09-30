@@ -30,7 +30,8 @@
   }
 
   &__title{
-    color: var(--font-color-modal-blue);
+    /*color: var(--font-color-modal-blue);*/
+    color: var(--font-color-modal-blue-second);
     font-size: var(--font_size);
     display: flex;
     align-items: center;
@@ -345,6 +346,25 @@
 
     &__tree{
       height: 510px;
+    }
+  }
+}
+
+@media (max-width: 600px){
+  .modal{
+    &__header{
+      flex-direction: column;
+    }
+    &__body{
+      flex-direction: column;
+    }
+
+    &__table-task{
+      width: 100% !important;
+    }
+
+    &__tree{
+      width: 100% !important;
     }
   }
 }

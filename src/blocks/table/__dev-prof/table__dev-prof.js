@@ -8,7 +8,6 @@ export const funcGetProf = () => {
 }
 
 const funcProcessGetProf = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Участки согл.:", respobj);
 
     let tb_id = "tb_prof";

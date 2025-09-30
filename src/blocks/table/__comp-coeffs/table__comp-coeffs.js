@@ -7,7 +7,6 @@ export const funcGetCoeffs = () => {
 }
 
 const funcProcessGetCoeffs = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Приставки СИ:", respobj);
     
     let tb_id = "tb_componenets_coeffs";

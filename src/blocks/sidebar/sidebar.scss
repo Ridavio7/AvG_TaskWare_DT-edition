@@ -1,7 +1,7 @@
 .sidebar{
     position: sticky;
-    min-width: 180px;
-    max-width: 180px;
+    min-width: 190px;
+    max-width: 190px;
 
     margin: 55px 0px 10px 0px;
     padding: 5px 0px;
@@ -58,8 +58,7 @@
         cursor: pointer;
 
         &_task{
-            padding: 0px;
-            height: 50px;
+            padding: 5px 0px;
             overflow: hidden;
         }
 
@@ -75,8 +74,10 @@
         }
 
         &:hover .sidebar__name,
+        &:hover .sidebar__name_task,
         &:hover .sidebar__name_time,
         &_active .sidebar__name,
+        &_active .sidebar__name_task,
         &_active .sidebar__name_time{
             color: var(--font-color-button);
         }
@@ -126,13 +127,24 @@
         margin-left: -5px;
     }
 
+    &__block-task-name{
+        display: flex;
+        flex-direction: column;
+    }
+
     &__name{
         color: var(--font-color);
 
-        &_time{
-            font-size: 13px;
+        &_task{
             color: var(--font-color);
-            text-align: center;
+            border-bottom: 1px solid var(--border);
+            margin-right: 5px;
+            margin-bottom: 3px;
+        }
+
+        &_time{
+            font-size: 11px;
+            color: var(--font-color);
         }
     }
 
@@ -226,7 +238,7 @@ body.collapsed .sidebar {
 }
 
 body.collapsed .sidebar__link {
-    justify-content: center;
+    justify-content: start;
 }
 
 body.collapsed .sidebar__img {
@@ -243,8 +255,11 @@ body.collapsed .sidebar__block-task-time {
     margin-left: 0px;
 }
 
+body.collapsed .table__title,
 body.collapsed .sidebar__arrow,
 body.collapsed .sidebar__name,
+body.collapsed .sidebar__name_task-collapsed,
+body.collapsed .sidebar__name_time,
 body.collapsed .sidebar__menu,
 body.collapsed .button__control.button__control_sidebar-task{
     display: none;

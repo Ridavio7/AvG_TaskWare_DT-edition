@@ -7,7 +7,6 @@ export const funcGetShipProducts = () => {
 }
 
 const funcProcessGetShipProducts = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     if(respobj.answ === "" && respobj.succ === 0){alert("Не найдено! Повторите запрос!"); document.getElementById("button_analysis_products_reset").click()};
     console.log("Анализ изделий:", respobj);
 
@@ -89,15 +88,16 @@ customSelect('analysis_products_contr_customDropdown', JSON.parse(localStorage.g
 customSelect('analysis_products_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
 let filt_analysis_products = [];
-let filt_1 = {fld: "uin", on: "products"}; let val_1 = [];
-let filt_2 = {fld: "uin", on: "contragents"}; let val_2 = [];
-let filt_3 = {fld: "uin", on: "statuses"}; let val_3 = [];
-let filt_4 = {fld: "date"}; let val_4 = [];
+let filt_1 = {fld: "uin", on: "products", vald: []};
+let filt_2 = {fld: "uin", on: "contragents", vald: []};
+let filt_3 = {fld: "uin", on: "statuses", vald: []};
+let filt_4 = {fld: "date", vald: []};
+filt_analysis_products.push(filt_4);
 
-listenCustomSelect("analysis_products_prod_customDropdown", filt_1, val_1, filt_analysis_products);
-listenCustomSelect("analysis_products_contr_customDropdown", filt_2, val_2, filt_analysis_products);
-listenCustomSelect("analysis_products_status_customDropdown", filt_3, val_3, filt_analysis_products);
-listenDate(document.getElementById('filt_analysis_products_date_first'), document.getElementById('filt_analysis_products_date_second'), filt_4, val_4, filt_analysis_products);
+listenCustomSelect("analysis_products_prod_customDropdown", filt_1, [], filt_analysis_products);
+listenCustomSelect("analysis_products_contr_customDropdown", filt_2, [], filt_analysis_products);
+listenCustomSelect("analysis_products_status_customDropdown", filt_3, [], filt_analysis_products);
+listenDate(document.getElementById('filt_analysis_products_date_first'), document.getElementById('filt_analysis_products_date_second'), filt_4, [], filt_analysis_products);
 
 document.getElementById("button_analysis_products_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_products, 'tb_analysis_products', 'shipProducts', funcProcessGetShipProducts);

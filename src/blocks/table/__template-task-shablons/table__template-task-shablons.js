@@ -4,14 +4,29 @@ import {funcGetShablonsSteps} from '../../modal/__info-shablons/modal__info-shab
 import {funcInfoShablonsTransferOpenModal} from '../../modal/__transfer-shablons/modal__transfer-shablons.js';
 import {funcGetTasksSteps} from '../../modal/__info-task/modal__info-task.js';
 import {customSortSelect} from '../../select/select.js';
+import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
+import {resizeModalWindow} from '../../modal/modal.js';
+
+resizeModalWindow(tree_shablons_resize, "whShablonTree", "Размеры окна задач дерева"); 
+
+/* настройка размера окна */
+const funcGetResizeTb = () => {
+    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whShablonTree", "uinuser":`${localStorage.getItem('user_uin')}`};
+    funcCommand(body, funcProcessGetResizeTb)
+}
+
+const funcProcessGetResizeTb = (result, respobj) => {
+    document.getElementById("tree_shablons_resize").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("tree_shablons_resize").style.height = `${respobj.answ.val[1]}px`;
+}
 
 export const funcGetShablons = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"100", "sort":"name"};
     funcCommand(body, funcProcessGetShablons);
+    funcGetResizeTb();
 }
 
 const funcProcessGetShablons = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Шаблоны:", respobj);
 
     let tb_id = "tb_shablons";
@@ -25,22 +40,32 @@ const funcProcessGetShablons = (result, respobj) => {
         addShablonsRow(name, uin, del, tb_id);
     }
 
-    /* функция удаления */
-    let button_control_mdel = document.querySelectorAll(".button__control_mdel-shablons");
-    button_control_mdel.forEach((elem) => {
-        elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"shablons", "uin":`${elem.value}`};
-
-            if(elem.classList[3] === 'button__control_mdel_active'){
-                elem.classList.remove('button__control_mdel_active');
-            } else {
-                elem.classList.add('button__control_mdel_active');
-            }
+    /* функция пометки на удаление */
+    const funcDelElem = (uin) => {
+        let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"shablons", "uin":`${uin}`};
         
+        funcCommand(body, funcProcessOnlyInfo);
+        setTimeout(() => {funcGetShablons(); funcGetShablonsTree(uin)}, 100);
+    }
+
+    /* функция полного удаления */
+    const funcFullDelElem = (uin) => {
+        let result = confirm("Вы действительно хотите полностью удалить шаблон?");
+        if(result){
+            let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"fulldel", "obj":"shablons", "uin":`${uin}`};
+            
             funcCommand(body, funcProcessOnlyInfo);
-            setTimeout(() => {funcGetTasksSteps(elem.value)}, 100);
-        })
-    })
+            setTimeout(() => {funcGetShablons(); document.getElementById('tree_shablons').innerHTML = ""}, 100);
+        }
+    }
+
+    /* функция копирования */
+    const funcCopyElem = (uin) => {
+        let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"copy", "obj":"shablons", "uin":`${uin}`};
+        
+        funcCommand(body, funcProcessOnlyInfo);
+        setTimeout(() => {funcGetShablons()}, 100);
+    }
 
     /* открытие модального окна */
     let button_modal = document.querySelectorAll(".button__control_modal-shablons-catSh");
@@ -70,20 +95,33 @@ const funcProcessGetShablons = (result, respobj) => {
             }
         })
     })
+
+    /* кнопки выпадающие списки */
+    document.querySelectorAll(".button__control_modal-dropdown-shablons").forEach((elem) => {
+        let del = elem.getAttribute("data-id") == 1 ? "Снять пометку на удаление" : "Пометить на удаление";
+        new DropdownButton(elem, '', [
+            { text: 'Сделать копию', action: () => funcCopyElem(elem.getAttribute("data-value")) },
+            { text: del, action: () => funcDelElem(elem.getAttribute("data-value")) },
+            { text: 'Удалить', action: () => funcFullDelElem(elem.getAttribute("data-value")) }
+        ], 'assets/images/three_dot.svg');
+    })
 }
 
 const addShablonsRow = (name, uin, del, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
-    newRow.classList = "tr";
 
     let cellName = newRow.insertCell(0); cellName.classList = "td";
-    let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td td__text_align_center";
+    let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td td_buttons-control";
 
     cellName.innerHTML = `<button class="button__control button__control_action button__control_modal-shablons-catSh" value="${uin}">${name}</button>`;
-
-    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_modal-shablons-release" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/start.svg" title="Запуск"></button><button class="button__control button__control_mdel button__control_mdel-shablons${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_modal-shablons-release" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/start.svg" title="Запуск"></button><div class="button__control_dropdown-container button__control_modal-dropdown-shablons" data-value="${uin}" data-id="${del}"></div>`;
+    if(del === 1){
+        newRow.classList = "tr tr_mark-error";
+        cellName.firstChild.style.color = '#ff3131';
+    } else {
+        newRow.classList = "tr";
+    }
 }
 
 let button_control_add = document.querySelector(".button__control_add-shablons");

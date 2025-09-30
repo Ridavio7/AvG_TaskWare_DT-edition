@@ -10,7 +10,6 @@ export const funcGetGrfShipSets = () => {
 }
 
 export const funcProcessGetGrfShipSets = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("График:", respobj);
 
     let select_sets = document.getElementById("select_add_grf_set");

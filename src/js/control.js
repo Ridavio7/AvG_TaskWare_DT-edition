@@ -14,7 +14,8 @@ import '../blocks/button/__control/button__control.scss';
 import '../blocks/button/__control/_modal/button__control_modal.scss';
 import '../blocks/button/__tab/button__tab.scss';
 import '../blocks/button/__tab/button__tab.js';
-import '../blocks/button/__select/button__select.scss'
+import '../blocks/button/__select/button__select.scss';
+import '../blocks/button/__control/_dropdown/button__control_dropdown.scss';
 /* input */
 import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-checkbox/input__type-checkbox.scss';
@@ -66,7 +67,7 @@ window.onload = function(){
     returnTabs();
     updateDirectory();
 
-    setTimeout(() => {
+    /*setTimeout(() => {
         let buttons = document.querySelectorAll(".button__control_action_status.button__control_modal-tasks-catTask");
         let uin     = localStorage.getItem('button-active__tasks-catTask');
         buttons.forEach(button => {
@@ -74,7 +75,7 @@ window.onload = function(){
                 button.click();
             }
         })
-    }, 100)
+    }, 100)*/
 }
 
 /* пользователи */
@@ -88,12 +89,14 @@ addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_server
 addEventButtonTab(document.querySelectorAll(".button__tab__first_settings_user"), funcGetWebopt);
 
 /* задачи */
-addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_control"), funcGetTasks);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_shablons"), funcGetShablons);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_status"), funcGetStatustask);
+addEventButtonTab(document.querySelectorAll(".sidebar__link_tasks"), funcGetTasks);
+addEventButtonTab(document.querySelectorAll(".sidebar__link_shablons"), funcGetShablons);
+addEventButtonTab(document.querySelectorAll(".sidebar__link_tasksArch"), funcGetTasksArchive);
+
+/* справочники */
+//addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_status"), funcGetStatustask);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_contents"), funcGetContents);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_startstep"), funcGetStartstep);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_archive"), funcGetTasksArchive);
+//addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_startstep"), funcGetStartstep);
 
 /* обновление контроля задач 
 setInterval(function() {

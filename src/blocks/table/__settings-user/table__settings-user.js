@@ -6,7 +6,6 @@ export const funcGetWebopt = () => {
 }
 
 const funcProcessGetWebopt = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Настр.польз:", respobj);
 
     let tb_id = "tb_settings_user";
@@ -27,7 +26,7 @@ const funcProcessGetWebopt = (result, respobj) => {
     /* функция обновления */
     document.querySelectorAll(".button__control_update-settings-user").forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"webopt", "name":`${elem.name}`, "descr":"", "show":"", "fmode":"", "val":"", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"webopt", "name":`${elem.name}`, "descr":"", "show":"", "fmode":"", "val":"", "uin":`${elem.value}`, "uinuser":`${localStorage.getItem('user_uin')}`};
 
             let element = document.getElementById(`setting_user_${elem.value}`);
             if(element.type === 'text' || element.type === 'number'){
@@ -39,7 +38,9 @@ const funcProcessGetWebopt = (result, respobj) => {
             body.name  = document.getElementById(`setting_user_name_${elem.value}`).value;
             body.descr = document.getElementById(`setting_user_descr_${elem.value}`).value;
             body.show  = document.getElementById(`setting_user_show_${elem.value}`).checked === true ? '1' : '0';
+            body.fmode  = document.getElementById(`setting_user_fmod__${elem.value}`).value;
         
+            console.log(body)
             funcCommand(body, funcProcessOnlyInfo);
             highlightButtonSave(elem);
             setTimeout(function(){funcGetWebopt()}, 100);

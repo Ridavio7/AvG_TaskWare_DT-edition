@@ -30,12 +30,19 @@
         transition: 0s;
 
         &_text{
-            width: 160px;
+            text-align: left;
+            text-wrap: nowrap;
+            width: 200px;
+                margin-right: 10px;
         }
 
         &_date{
             width: 70px;
             text-align: center;
+        }
+
+        &_status{
+            width: 30px;
         }
     }
 

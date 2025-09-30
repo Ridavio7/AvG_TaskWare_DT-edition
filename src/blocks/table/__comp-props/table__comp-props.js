@@ -8,7 +8,6 @@ export const funcGetProps = () => {
 }
 
 const funcProcessGetProps = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Свойства:", respobj);
 
     let tb_id = "tb_componenets_props";

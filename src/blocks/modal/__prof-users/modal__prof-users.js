@@ -1,5 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateSelect, insertDataInSelect, removeOptions, funcProcessOnlyConsole, makeSelect} from '../../../js/common/common.js';
 import {dragElement, resizeModalWindow} from '../modal.js';
+import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
 
 let prof_users_modal = document.getElementById("prof_users_modal");
 let prof_users_close = document.getElementById("prof_users_close");
@@ -73,19 +74,30 @@ const funcProcessGetInfoProfUsers = (result, respobj) => {
         }
     }
 
-    /* функция обновления */
-    let button_control_update = document.querySelectorAll(".button__control_update-prof-users");
-    button_control_update.forEach((elem) => {
-        elem.addEventListener("click", () => {
-            funcAddAndUpdate(elem.value);
-        })
-    })
+    /* функция полного удаления */
+    const funcFullDelElem = (uin, uinuser) => {
+        let result = confirm("Вы действительно хотите полностью удалить пользователя с участка?");
+        if(result){
+            let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"fulldel", "obj":"prof", "uin":`${uin}`,"uinuser":`${uinuser}`};
+            
+            funcCommand(body, funcProcessOnlyInfo);
+            setTimeout(() => {funcGetInfoProfUsers(uin)}, 100);
+        }
+    }
 
     /* функция добавления */
     let button_control_add = document.getElementById('prof_users_add_button');
     button_control_add.onclick = () => {
         funcAddAndUpdate(profUinForAdd);
     }
+
+    /* кнопки выпадающие списки */
+    document.querySelectorAll(".button__control_modal-dropdown-prof-users").forEach((elem) => {
+        new DropdownButton(elem, '', [
+            { text: 'Обновить', action: () => funcAddAndUpdate(elem.getAttribute("data-value")) },
+            { text: 'Удалить', action: () => funcFullDelElem(elem.getAttribute("data-value"), elem.getAttribute("data-id")) }
+        ], 'assets/images/three_dot.svg');
+    })
 }
 
 const funcAddAndUpdate = (uin) => {
@@ -112,10 +124,8 @@ const addInfoProfUsers = (uin_prof, name, uin, tb_id) => {
     newRow.classList = "tr";
 
     let cellUser = newRow.insertCell(0); cellUser.classList = "td";
-    let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td";
+    let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td td_buttons-control";
 
     makeSelect("prof_user_select_", uin, name, uin, "users_list", "select", cellUser);
-
-    cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof-users" value="${uin_prof}" name="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button>`;
+    cellBtn.innerHTML = `<div class="button__control_dropdown-container button__control_modal-dropdown-prof-users" data-value="${uin_prof}" data-id="${uin}"></div>`;
 }

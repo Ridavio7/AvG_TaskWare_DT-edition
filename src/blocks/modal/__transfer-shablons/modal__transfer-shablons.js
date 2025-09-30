@@ -50,8 +50,6 @@ export const funcInfoShablonsTransferOpenModal = (uin, name, uinShablon) => {
 }
 
 const funcProcessGetShablonsTree = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
-
     const tree = new TreeBuilder('modal_transfer_shablons_tree', 'dirSh', 'catSh', funcGetShablonsTree, funcGetShablonsSteps, '', []);
     tree.build(respobj.answ);
     document.getElementById("shablons_modal").style.display = "none";

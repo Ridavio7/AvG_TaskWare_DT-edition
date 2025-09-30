@@ -7,7 +7,6 @@ export const funcGetVerpp = () => {
 }
 
 const funcProcessGetVerpp = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("verpp:", respobj);
     
     let tb_id = "tb_products_verpp";

@@ -7,7 +7,6 @@ export const funcGetMeas = () => {
 }
 
 const funcProcessGetMeas = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Ед. изм.:", respobj);
 
     let tb_id = "tb_componenets_measurement";

@@ -124,4 +124,12 @@
     &_small{
         width: 125px;
     }
+
+    &_tree-status{
+        width: 30px;
+    }
+
+    &_font-color-active{
+        color: var(--font-color_active);
+    }
 }

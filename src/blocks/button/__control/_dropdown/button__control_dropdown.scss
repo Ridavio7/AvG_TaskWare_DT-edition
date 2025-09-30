@@ -1,0 +1,56 @@
+.button__control_dropdown{
+    &-container{
+        position: relative;
+        display: inline-block;
+    }
+
+    &-menu{
+        position: absolute;
+        top: 100%;
+        left: -150px;
+        background: var(--background_first);;
+        border: 1px solid var(--border);
+        min-width: 180px;
+        z-index: 1000;
+
+        /* Анимация */
+        opacity: 0;
+        transform: translateY(-10px);
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        margin-top: 5px;
+
+        &.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+    }
+
+    &-button{
+        display: block;
+        width: 100%;
+        padding: 8px 16px;
+        text-align: left;
+        text-wrap: nowrap;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--font-color);
+        font-size: var(--font_size);
+        background-color: inherit;
+        border: none;
+        transition: background 0.2s;
+
+        &:hover{
+            background-color: var(--border);
+            color: var(--font-color_active);
+        }
+    }
+
+    &-img{
+        height: 20px;
+        width: 5px;
+    }
+}

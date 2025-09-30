@@ -6,7 +6,6 @@ export const funcGetSysopt = () => {
 }
 
 const funcProcessGetSysopt = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Настр.сервера:", respobj);
 
     let tb_id = "tb_settings_server";

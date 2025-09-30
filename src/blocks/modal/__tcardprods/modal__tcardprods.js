@@ -44,7 +44,6 @@ const funcGetInfoTcardprod = (uin) => {
 }
 
 const funcProcessGetInfoTcardprod = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Тех.карта:", respobj);
 
     let tb_id = "tb_modal_tcardprods";

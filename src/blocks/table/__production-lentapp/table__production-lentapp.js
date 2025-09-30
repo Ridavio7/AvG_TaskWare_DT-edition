@@ -7,7 +7,6 @@ export const funcGetLentapp = () => {
 }
 
 const funcProcessGetLentapp = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Лента:", respobj);
     
     let tb_id = "tb_events";
@@ -105,17 +104,21 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
 customSelect('lentapp_users_customDropdown', JSON.parse(localStorage.getItem("users_list")), 'пользователя');
 customSelect('lentapp_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
 customSelect('lentapp_techproc_customDropdown', JSON.parse(localStorage.getItem("techproc_list")), 'тех. операцию');
+customSelect('lentapp_tasks_customDropdown', JSON.parse(localStorage.getItem("tasks_list")), 'задачу');
 
-let filt_resp = [], val_1 = [], val_2 = [], val_3 = [], val_4 = [],
-filt_1 = {fld: "uin", on: "users"},
-filt_2 = {fld: "uin", on: "products"},
-filt_3 = {fld: "uin", on: "techproc"},
-filt_4 = {fld: "date"};
+let filt_resp = [];
+let filt_1 = {fld: "uinuser", vald: []};
+let filt_2 = {fld: "uinproduct", vald: []};
+let filt_3 = {fld: "uintechproc", vald: []};
+let filt_4 = {fld: "uintask", vald: []};
+let filt_5 = {fld: "datetm", vald: []};
+filt_resp.push(filt_5);
 
-listenCustomSelect("lentapp_users_customDropdown", filt_1, val_1, filt_resp);
-listenCustomSelect("lentapp_prod_customDropdown", filt_2, val_2, filt_resp);
-listenCustomSelect("lentapp_techproc_customDropdown", filt_3, val_3, filt_resp);
-listenDate(document.getElementById('filt_lentapp_date_first'), document.getElementById('filt_lentapp_date_second'), filt_4, val_4, filt_resp);
+listenCustomSelect("lentapp_users_customDropdown", filt_1, [], filt_resp);
+listenCustomSelect("lentapp_prod_customDropdown", filt_2, [], filt_resp);
+listenCustomSelect("lentapp_techproc_customDropdown", filt_3, [], filt_resp); 
+listenCustomSelect("lentapp_tasks_customDropdown", filt_4, [], filt_resp);
+listenDate(document.getElementById('filt_lentapp_date_first'), document.getElementById('filt_lentapp_date_second'), filt_5, [], filt_resp);
 
 document.getElementById("button_lentapp_choose").addEventListener("click", () => {
     sendFilt(filt_resp, 'tb_events', 'lentapp', funcProcessGetLentapp);
@@ -126,6 +129,7 @@ document.getElementById("button_lentapp_reset").addEventListener("click", () => 
     clearCustomSelect('lentapp_users_customDropdown', 'пользователя');
     clearCustomSelect('lentapp_prod_customDropdown', 'изделие');
     clearCustomSelect('lentapp_techproc_customDropdown', 'тех. операцию');
+    clearCustomSelect('lentapp_tasks_customDropdown', 'задачу');
     document.getElementById('filt_lentapp_date_first').value = '';
     document.getElementById('filt_lentapp_date_second').value = '';
     funcGetLentapp();

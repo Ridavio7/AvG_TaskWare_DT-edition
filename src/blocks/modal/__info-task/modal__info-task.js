@@ -92,7 +92,6 @@ export const funcGetTasksArchiveSteps = (uin) => {
 }
 
 const funcProcessGetTasksSteps = (result, respobj) => {
-    //responseProcessor(result, respobj.succ);
     console.log("Инфо шага:", respobj);
 
     removeOptions(tasks_status);
@@ -107,7 +106,9 @@ const funcProcessGetTasksSteps = (result, respobj) => {
         tasks_dl_h.disabled    = true;
         tasks_dl_m.disabled    = true;
         tasks_status.disabled  = true;
+        tasks_status.parentElement.previousElementSibling.className = "input__type-text__label";
         tasks_problem.disabled = true;
+        tasks_problem.nextElementSibling.className = "input__type-text__label";
         tasks_count_r.style.opacity = "0";
         task_detailpp.classList.add("modal__input-wrapper_display-none");
         tasks_dtpredel.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
@@ -121,7 +122,9 @@ const funcProcessGetTasksSteps = (result, respobj) => {
         tasks_dl_h.disabled    = false;
         tasks_dl_m.disabled    = false;
         tasks_status.disabled  = false;
+        tasks_status.parentElement.previousElementSibling.className = "input__type-text__label-active";
         tasks_problem.disabled = false;
+        tasks_problem.nextElementSibling.className = "input__type-text__label-active";
         tasks_count_r.style.opacity = "1";
         task_detailpp.classList.remove("modal__input-wrapper_display-none");
         tasks_dtpredel.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
@@ -248,7 +251,7 @@ const addTasksInfo =
     }
     insertDataInSelect(tasks_con_proc, nameProc, uinProc, "techproc_list");
     insertDataInSelect(tasks_start, nameStart, uinStart, "startstep_list");
-    uin === "0" && uinStart === 2 ? tasks_dtstart.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none") : tasks_dtstart.parentElement.parentElement.classList.add("modal__input-wrapper_display-none")
+    uin === "0" && uinStart === 2 ? tasks_dtstart.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none") : tasks_dtstart.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none")
     tasks_autor.checked   = autoready === 1 ? true : false;
     tasks_problem.checked = fproblem === 1 ? true : false;
     tasks_part.checked    = fpart === 1 ? true : false;

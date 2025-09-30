@@ -7,7 +7,6 @@ export const funcGetColors = () => {
 }
 
 const funcProcessGetColors = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Цвета:", respobj);
 
     let tb_id = "tb_products_colors";

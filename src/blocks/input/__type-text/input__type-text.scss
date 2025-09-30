@@ -42,11 +42,15 @@
     }
 
     &__label{
-        color: var(--font-color_active);
+        color: var(--font-color);
+    }
+
+    &__label-active{
+        color: var(--font-color_active) !important;
     }
 
     &__label-blue{
-        color: var(--font-color-modal-blue);
+        color: var(--font-color-modal-blue-second);
     }
 
     &__small{

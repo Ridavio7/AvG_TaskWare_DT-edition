@@ -44,17 +44,23 @@ function buildStructure(data, container) {
             const div_img = document.createElement('div');
             div_img.classList.add('sidebar__img_container');
 
-            const div_time = document.createElement('div');
-            div_time.classList.add('sidebar__block-task-time');
+            //const div_time = document.createElement('div');
+            //div_time.classList.add('sidebar__block-task-time');
 
             const span_time = document.createElement('span');
             span_time.classList.add('sidebar__name_time');
 
-            const span_date = document.createElement('span');
-            span_date.classList.add('sidebar__name_time');
+            const div_name = document.createElement('div');
+            div_name.classList.add('sidebar__block-task-name');
+
+            const span_task = document.createElement('span');
+            span_task.classList = 'sidebar__name_task';
+
+            const span_prod = document.createElement('span');
+            span_prod.classList = 'sidebar__name_task sidebar__name_task-collapsed';
 
             const span_name = document.createElement('span');
-            span_name.classList.add('sidebar__name');
+            span_name.classList = 'sidebar__name_task sidebar__name_task-collapsed';
 
             a.href = `#user_task_link_${steps.uin}`;
             div_block.className = `sidebar__link user_task_link_${steps.uin} sidebar__link_task sidebar__link_no-child`;
@@ -62,15 +68,21 @@ function buildStructure(data, container) {
             div_img.innerHTML = setStatus(steps.status.uin, steps.fpart);
             if(steps.fproblem === 1) div_img.classList.add('sidebar__img_container-warning');
 
-            span_time.innerHTML = steps.datebegin != '' ? formatDate(steps.datebegin) : "---";
+            span_time.innerHTML = steps.dateend != '' ? `До: ${formatDate(steps.dateend)}` : "---";
+            span_task.innerHTML = steps.task.name;
+            span_prod.innerHTML = steps.product.name === '' ? '---' : steps.product.name;
             span_name.innerHTML = steps.name;
 
-            div_time.append(span_time);
-            //div_time.append(span_date);
+            //div_time.append(span_time);
+
+            div_name.append(span_task);
+            div_name.append(span_prod);
+            div_name.append(span_name);
+            div_name.append(span_time);
 
             div_title.append(div_img);
-            div_title.append(div_time);
-            div_title.append(span_name);
+            //div_title.append(div_time);
+            div_title.append(div_name);
 
             div_block.append(div_title);
             a.append(div_block);
@@ -95,20 +107,36 @@ function buildStructure(data, container) {
                     break
                 case 3:
                     document.getElementById(`user_task_link_${steps.uin}`).insertAdjacentHTML('beforeend', funcTaskContentMount(steps.uin));
-                    funcTaskContentMountHelpers(steps.uin);
+                    funcTaskContentMountHelpers(steps.uin, steps.faccprof);
                       break
                 default:
                     break
             }
             if(steps.content.uin == 5){
+                // бегунок
                 document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
                 document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                document.getElementById(`task_countstep_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                document.getElementById(`task_countreal_${steps.uin}`).parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
             } else if(steps.content.uin == 3){
+                // монтаж ПП
                 document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
                 document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+                document.getElementById(`task_countstep_${steps.uin}`).parentElement.classList.remove("modal__input-wrapper_display-none");
+                document.getElementById(`task_countreal_${steps.uin}`).parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+                if(steps.faccprof === 1){
+                    let select = document.getElementById(`mount_usersaccprof_${steps.uin}`);
+                    select.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+                    for (let key in steps.usersaccprof) {
+                        let obj  = steps.usersaccprof[key];
+                        select.append(new Option(obj.name, obj.uin));
+                    }
+                }
             } else {
                 document.getElementById(`task_prod_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
                 document.getElementById(`task_techproc_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                document.getElementById(`task_countstep_${steps.uin}`).parentElement.classList.add("modal__input-wrapper_display-none");
+                document.getElementById(`task_countreal_${steps.uin}`).parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
             }
         }
     }
@@ -128,8 +156,13 @@ function buildStructure(data, container) {
             let result = confirm("Отметить это задание готовым?");
             if(result){
               let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"ready", "obj":"usersteps", "uinuser":`${localStorage.getItem('user_uin')}`, "uinstep":`${elem.value}`, "fpart":"0"};
-              funcCommand(body, funcProcessOnlyInfo);
-              setTimeout(function(){location.reload()}, 100);
+              funcCommand(body, funcProcessTaskReady);
+
+              function funcProcessTaskReady (result, respobj){
+                responseProcessor(result, respobj.succ);
+
+                if(respobj.succ != -11){ location.reload() };
+              }
             }
         })
     })
@@ -386,10 +419,10 @@ const userTasksContent = (task_name, task_uin, product, uinProd, techproc, uinTe
                 </div>
               </div>
               <div class="modal__input-wrapper modal__input-wrapper_task">
-                <label class="input__type-text__label" for="task_comment"
+                <label class="input__type-text__label-active" for="task_comment"
                   >Комм. исполнителя:</label
                 >
-                <div class="modal__input-wrapper  modal__input-wrapper_task-with-button">
+                <div class="modal__input-wrapper modal__input-wrapper_task-with-button">
                   <input
                     style="margin-left: 38px;"
                     class="input__type-text input__type-text_modal input__type-text_modal_long"

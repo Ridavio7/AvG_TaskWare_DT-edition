@@ -7,7 +7,6 @@ export const funcGetRights = () => {
 }
 
 const funcProcessGetRights = (result, respobj) => {
-    responseProcessor(result, respobj.succ);
     console.log("Права:", respobj);
 
     let tb_id = "tb_rights";
