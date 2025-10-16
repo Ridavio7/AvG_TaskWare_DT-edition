@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Бизнес управление</title>
     <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon">
 </head>
@@ -59,7 +59,7 @@
             </div>
         </div>
     </header>
-    <div class="container">
+    <div class="container container_flex-column">
         <nav class="sidebar">
             <div>
                 <button class="sidebar__expand-button" type="button">
@@ -67,7 +67,7 @@
                 </button>
             </div>
             <div class="sidebar__container">
-                <ul>
+                <ul class="sidebar__list">
                     <li class="sidebar__wrapper">
                         <a href="#shipment">
                             <div class="sidebar__link shipment sidebar__link_shipment" id="link_shipment">
@@ -1838,7 +1838,7 @@
                 </div>
                 <div class="modal__wrapper-width-100">
                     <div class="modal__header">
-                        <div>
+                        <div class="modal__wrapper-width-100">
                             <div class="modal__input-wrapper">
                                 <label class="input__type-text__label" for="component_name">Название:</label>
                                 <input class="input__type-text input__type-text_modal" type="text" id="component_name" value="" placeholder="Введите название">
@@ -1848,7 +1848,7 @@
                                 <input class="input__type-text input__type-text_modal" type="text" id="component_comment" value="" placeholder="Введите примечание">
                             </div>
                         </div>
-                        <div>
+                        
                             <div class="modal__input-wrapper">
                                 <label class="input__type-text__label" for="component_type">Тип:</label>
                                 <div class="custom-select"><select class="select select_modal" id="component_type"></select><span class="select-text"></span></div>
@@ -1858,7 +1858,7 @@
                                 <input class="checkbox" type="checkbox" id="component_tpack">
                                 <label for="component_tpack">Тех. упаковка</label>
                             </div>
-                        </div>
+                        
                     </div>
                     <div>
                         <table class="table" id="main_tb_modal_info_component">
@@ -1960,7 +1960,6 @@
                                     <label class="input__type-text__label" for="info_product_train">Вагон:</label>
                                     <input class="input__type-text input__type-text_modal" type="text" id="info_product_train" value="" placeholder="Введите № вагона">
                                 </div>
-                                
                             </div>
                             <div class="modal__input-wrapper">
                                 <label class="input__type-text__label" for="info_product_type">Тип:</label>
@@ -1972,6 +1971,12 @@
                                     </select>
                                     <span class="select-text"></span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="modal__table-wrapper_task">
+                            <div class="modal__input-wrapper">
+                                <label class="input__type-text__label" for="info_product_comment">Комментарий:</label>
+                                <input class="input__type-text input__type-text_modal" type="text" id="info_product_comment" value="" placeholder="Введите комментарий">
                             </div>
                         </div>
                         <div>
@@ -2389,7 +2394,7 @@
                         <tr class="tr">
                             <td class="td"></td>
                             <td class="td"><input class="input__type-text input__type-text_title" type="text" id="component_info_add_img_name" placeholder="Введите название"></td>
-                            <td class="td"><input type="file" class="input__type-file_img" id="component_info_add_img_img" accept="image/*" hidden><label class="input__type-text input__type-file" for="component_info_add_img_img">Выберите файл</label></td>
+                            <td class="td"><input type="file" class="input__type-file_img" id="component_info_add_img_img" accept="image/*" hidden><label class="input__type-text input__type-file input__type-file_title" for="component_info_add_img_img">Выберите файл</label></td>
                             <td class="td td_buttons-control"><button class="button__control" id="component_info_add_button_img" value=""><img class="button__control__img" src="../blocks/button/__control/img/plus.svg" alt="" title="Создать"></button></td>
                         </tr>
                     </tbody>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Контроль</title>
     <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon" />
   </head>
@@ -115,7 +115,7 @@
         </div>
       </div>
     </header>
-    <div class="container">
+    <div class="container container_flex-column">
       <nav class="sidebar">
         <div>
           <button class="sidebar__expand-button" type="button">
@@ -127,7 +127,7 @@
           </button>
         </div>
         <div class="sidebar__container">
-          <ul>
+          <ul class="sidebar__list">
             <li class="sidebar__wrapper">
               <a href="#tasks">
                 <div
@@ -627,52 +627,54 @@
       <div class="sidebar__tabcontent" id="shablons">
         <div class="modal__body">
           <div>
-            <div class="select__wrapper">
-              <div class="select-custom" id="sort_shablons">
-                <div class="select-custom__header selectHeader">
-                  Выберите сортировку
-                  <span class="select-custom__icon"></span>
+            <div class="modal__table-task" id="tb_shablons_resize">
+              <div class="select__wrapper">
+                <div class="select-custom" id="sort_shablons">
+                  <div class="select-custom__header selectHeader">
+                    Выберите сортировку
+                    <span class="select-custom__icon"></span>
+                  </div>
+                  <ul class="select-custom__options optionsList">
+                    <li data-value="1">По названию &#8659;</li>
+                    <li data-value="2">По названию &#8657;</li>
+                    <li data-value="3">По новизне &#8659;</li>
+                    <li data-value="4">По новизне &#8657;</li>
+                  </ul>
                 </div>
-                <ul class="select-custom__options optionsList">
-                  <li data-value="1">По названию &#8659;</li>
-                  <li data-value="2">По названию &#8657;</li>
-                  <li data-value="3">По новизне &#8659;</li>
-                  <li data-value="4">По новизне &#8657;</li>
-                </ul>
               </div>
-            </div>
-            <table class="table">
-              <thead class="thead">
-                <tr class="tr">
-                  <td class="td td_active">Название</td>
-                  <td class="td td_active"></td>
-                </tr>
-              </thead>
-              <tbody id="tb_shablons">
-                <tr class="tr">
-                  <td class="td td__text_align_center">
-                    <input
-                      class="input__type-text input__type-text_title"
-                      type="text"
-                      id="input_add_shablons_name"
-                      placeholder="Введите название шаблона"
-                    />
-                  </td>
-                  <td class="td td_buttons-control">
-                    <button
-                      class="button__control button__control_add-shablons"
-                    >
-                      <img
-                        class="button__control__img"
-                        src="../blocks/button/__control/img/plus.svg"
-                        alt=""
-                        title="Создать"
+              <table class="table table_no-rotation">
+                <thead class="thead">
+                  <tr class="tr">
+                    <td class="td td_active">Название</td>
+                    <td class="td td_active"></td>
+                  </tr>
+                </thead>
+                <tbody id="tb_shablons">
+                  <tr class="tr">
+                    <td class="td td__text_align_center">
+                      <input
+                        class="input__type-text input__type-text_title"
+                        type="text"
+                        id="input_add_shablons_name"
+                        placeholder="Введите название шаблона"
                       />
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                    <td class="td td_buttons-control">
+                      <button
+                        class="button__control button__control_add-shablons"
+                      >
+                        <img
+                          class="button__control__img"
+                          src="../blocks/button/__control/img/plus.svg"
+                          alt=""
+                          title="Создать"
+                        />
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           <div
             class="modal__tree modal__tree_width-auto"
@@ -756,7 +758,7 @@
           </table>
         </div>
         <!-- Статус задач -->
-        <div id="tasks/tasks_status" class="sidebar__tabcontent__container">
+        <div id="directory/tasks_status" class="sidebar__tabcontent__container">
           <div class="select__wrapper">
             <div class="select-custom" id="sort_statustask">
               <div class="select-custom__header selectHeader">
