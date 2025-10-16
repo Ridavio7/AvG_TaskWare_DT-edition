@@ -10,7 +10,6 @@ let currentIndex = 0;
 export const createCarousel = (arr) => {
     productImages = arr;
 
-    mainImage.src = productImages[0];
     setCurrentImage(0);
     thumbnailContainer.innerHTML = '';
     
@@ -35,7 +34,7 @@ export const createCarousel = (arr) => {
 // Устанавливаем текущее изображение
 function setCurrentImage(index) {
     currentIndex = index;
-    mainImage.src = productImages[currentIndex];
+    mainImage.src = productImages[currentIndex] == undefined ? "https://imgholder.ru/700x400/fff/212121&text=Фото+отсутствует" : productImages[currentIndex];
     
     // Обновляем активную миниатюру
     const thumbnails = document.querySelectorAll('.carousel__thumbnail');

@@ -1,11 +1,15 @@
 import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
 import {dragElement, resizeModalWindow} from '../modal.js';
 import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table__comp-compontimgs.js';
+import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
+import {funcInfoComponentsOpenModal} from '../__info-comp/modal__info-comp.js';
 
 let edit_imgs_modal = document.getElementById("comp_edit_imgs_modal");
 let edit_imgs_close = document.getElementById("comp_edit_imgs_close");
 let edit_imgs_title = document.getElementById("comp_edit_imgs_title");
 let modal_resize    = document.getElementById("comp_edit_imgs_modal_resize");
+
+let uinCompont = null;
 
 edit_imgs_close.onclick = () => {
     edit_imgs_modal.style.display = "none";
@@ -34,6 +38,7 @@ export const funcEditImgsOpenModal = (uin, name) => {
     funcGetResize();
     edit_imgs_modal.style.display = "block";
 
+    uinCompont = uin;
     edit_imgs_title.innerHTML = name;
     funcGetCompontimgsEdit(uin);
 }
@@ -62,7 +67,7 @@ const funcProcessGetCompontimgs = (result, respobj) => {
     let button_control_mdel = document.querySelectorAll(".button__control_mdel-compontimgs");
     button_control_mdel.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"compontimgBS", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"mdel", "obj":"compontimgBS", "uin":`${elem.value}`, "uincompont":`${uinCompont}`};
 
             if(elem.classList[3] === 'button__control_mdel_active'){
                 elem.classList.remove('button__control_mdel_active');
@@ -71,33 +76,43 @@ const funcProcessGetCompontimgs = (result, respobj) => {
             }
         
             funcCommand(body, funcProcessOnlyInfo);
+            setTimeout(function(){funcGetCompontimgs(`${uinCompont}`)}, 200);
         })
     })
 
-    // функция обновления
-    // API UPDATE ОТСТУТВТВУЕ, у кнопок disabled
-    let button_control_update = document.querySelectorAll(".button__control_update-compontimgs");
-    button_control_update.forEach((elem) => {
-        elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"compontimgs", "uincompont":`${elem.name}`, "name":"", "img":"", "uin":`${elem.value}`};
+    function funcUpdateElem(uin){
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"compontimgBS", "uincompont":`${uinCompont}`, "name":"", "uin":`${uin}`};
 
-            let target_table = tb_modal_img;
-            body.name = findForUpdateInput(`component_info_img_name_${elem.value}`, target_table);
-            body.img = findForUpdateInput(`component_info_img_img_${elem.value}`, target_table);
+        let target_table = tb_modal_img;
+        body.name = findForUpdateInput(`component_info_img_name_${uin}`, target_table);
 
-            funcCommand(body, funcProcessOnlyConsole);
-            highlightButtonSave(elem);
-            setTimeout(function(){funcGetCompontimgsEdit(`${elem.name}`)}, 100);
-        })
-    })
+        funcCommand(body, funcProcessOnlyConsole);
+        setTimeout(function(){funcGetCompontimgsEdit(`${uinCompont}`)}, 100);
+    }
+    
+    function funcFullDelElem(uin){
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"fulldel", "obj":"compontimgBS", "uincompont":`${uinCompont}`, "uin":`${uin}`};
+
+        funcCommand(body, funcProcessOnlyConsole);
+        setTimeout(function(){funcGetCompontimgsEdit(`${uinCompont}`)}, 100);
+        setTimeout(function(){funcInfoComponentsOpenModal(`${uinCompont}`)}, 150);
+    }
 
     // открытие окна с картинкой
     let button_control_open = document.querySelectorAll(".button__control_open-compontimgs");
     button_control_open.forEach((elem) => {
         elem.addEventListener("click", () => {
-            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewBS", "obj":"compontimgBS", "uin":`${elem.value}`};
+            let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewBS", "obj":"compontimgBS", "uin":`${elem.value}`, "uincompont":`${uinCompont}`};
             funcCommand(body, funcProcessOpenCompontimgs);
         })
+    })
+
+    /* кнопки выпадающие списки */
+    document.querySelectorAll(".button__control_modal-dropdown-component-imgs").forEach((elem) => {
+        new DropdownButton(elem, '', [
+            { text: 'Обновить', action: () => funcUpdateElem(elem.getAttribute("data-value")) },
+            { text: 'Удалить', action: () => funcFullDelElem(elem.getAttribute("data-value")) }
+        ], 'assets/images/three_dot.svg');
     })
 }
 
@@ -113,10 +128,10 @@ const addCompontimgs = (name, fname, del, uin, tb_id) => {
 
     cellInfo.innerHTML = `<button class="button__control button__control_open-compontimgs" value="${uin}"><img class="button__control__img" src="assets/images/link.svg" alt="" title="Ссылка"></button>`;
     cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="component_info_img_name_${uin}">`;
-    cellImg.innerHTML  = `<input type="file" class="input__type-file_img" name="component_info_img_img_${uin}" id="component_info_img_img_${uin}" accept="image/*" disabled hidden><label class="input__type-text input__type-file" for="component_info_img_img_${uin}">${fname}</label>`;
+    cellImg.innerHTML  = `<input type="file" class="input__type-file_img" name="component_info_img_img_${uin}" id="component_info_img_img_${uin}" accept="image/*" disabled hidden><label class="input__type-text input__type-file" for="component_info_img_img_${uin}" disabled>${fname}</label>`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-compontimgs" value="${uin}" disabled><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-compontimgs${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-compontimgs${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button><div class="button__control_dropdown-container button__control_modal-dropdown-component-imgs" data-value="${uin}" data-name="${name}"></div>`;
 }
 
 const funcProcessOpenCompontimgs = (result, respobj) => {
@@ -155,6 +170,7 @@ button_control_add.onclick = () => {
             funcCommand(body, funcProcessOnlyInfo);
             setTimeout(function(){funcGetCompontimgsEdit(uin_value)}, 100);
             setTimeout(function(){funcGetCompontimgs(uin_value)}, 150);
+            setTimeout(function(){funcInfoComponentsOpenModal(uin_value)}, 200);
         }
     }
     reader.readAsDataURL(file);
