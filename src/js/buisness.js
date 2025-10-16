@@ -15,6 +15,7 @@ import '../blocks/button/__control/button__control.js';
 import '../blocks/button/__tab/button__tab.scss';
 import '../blocks/button/__tab/button__tab.js';
 import '../blocks/button/__select/button__select.scss'
+import '../blocks/button/__control/_dropdown/button__control_dropdown.scss';
 /* input */
 import '../blocks/input/__type-text/input__type-text.scss';
 import '../blocks/input/__type-text/_modal/input__type-text_modal.scss';

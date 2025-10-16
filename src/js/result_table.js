@@ -6,7 +6,6 @@ import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
 /* боковая панель */
 import '../blocks/sidebar/sidebar.scss';
-import '../blocks/sidebar/__task/sidebar__task.scss';
 /* кнопки */
 import '../blocks/button/__control/button__control.scss';
 import '../blocks/button/__control/_modal/button__control_modal.scss';

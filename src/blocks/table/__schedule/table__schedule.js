@@ -98,8 +98,8 @@ const addGrfLeftRow = (num, uinSet, nameSet, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr tr_no-hover";
 
-    let cellNum  = newRow.insertCell(0); cellNum.classList  = "td td_right-border td_active td_active-no-border";
-    let cellName = newRow.insertCell(1); cellName.classList = "td td_right-border td_active td_active-no-border";
+    let cellNum  = newRow.insertCell(0); cellNum.classList  = "td td_right-border td_active_fix td_active-no-border";
+    let cellName = newRow.insertCell(1); cellName.classList = "td td_right-border td_active_fix td_active-no-border";
 
     let number         = +num + 1;
     cellNum.innerHTML  = number;
@@ -155,14 +155,14 @@ const addGrfRightRow = (msum, rsum, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr tr_no-hover";
 
-    let cellMsum = newRow.insertCell(0); cellMsum.classList = "td td_active";
-    let cellRsum = newRow.insertCell(1); cellRsum.classList = "td td_right-border td_active";
+    let cellMsum = newRow.insertCell(0); cellMsum.classList = "td td_active_fix";
+    let cellRsum = newRow.insertCell(1); cellRsum.classList = "td td_right-border td_active_fix";
     let cellBtn  = newRow.insertCell(2);
 
     cellMsum.innerHTML = msum;
     cellRsum.innerHTML = rsum;
     
-    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control td_active td_active-no-border";
+    let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control td_active_fix td_active-no-border";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-schedule" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-schedule${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 

@@ -15,6 +15,8 @@ const funcGetResizeTb = () => {
 const funcProcessGetResizeTb = (result, respobj) => {
     document.getElementById("tb_tasks").style.width  = `${respobj.answ.val[0]}px`;
     document.getElementById("tb_tasks").style.height = `${respobj.answ.val[1]}px`;
+    document.getElementById("tb_shablons_resize").style.width  = `${respobj.answ.val[0]}px`;
+    document.getElementById("tb_shablons_resize").style.height = `${respobj.answ.val[1]}px`;
 }
 
 /* настройка размера окна */
@@ -115,7 +117,7 @@ function buildStructure(data, container) {
 
             const tdStatus = document.createElement('td');
             tdStatus.className = 'td td_tree-status';
-            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin, task.fpart)}</button>`
+            tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-catTask" value="${task.uin}">${setStatus(task.status.uin, task.fpart, 'control-task__img-status')}</button>`
 
             const tdName = document.createElement('td');
             tdName.classList.add('td');

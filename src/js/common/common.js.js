@@ -29,11 +29,6 @@ export const funcCommand = (body, callbackfunc, func) => {
 export const funcProcessOnlyInfo = (result, respobj) => {
     console.log(respobj);
     responseProcessor(result, respobj.succ);
-    
-    if(respobj.uintask != undefined) {
-        localStorage.setItem('uinTask', respobj.uintask);
-        localStorage.setItem('button-active__tasks-catTask', respobj.uintask);
-    }
 }
 
 export const funcProcessOnlyConsole = (result, respobj) => {
@@ -155,13 +150,14 @@ export const insertDataInSelect = (select, text, uin, arr_obj) => {
 
 /* создание и заполнение select для составов */
 export const makeSelect = 
-(determinant, uin, optionText, optionUin, list, className, cell) => {
+(determinant, uin, optionText, optionUin, list, className, cell, disabl = false) => {
     let div = document.createElement("div");
     div.classList = 'custom-select';
 
     let select = document.createElement("select");
     select.id = `${determinant}_${uin}`;
     select.classList = className;
+    select.disabled = disabl;
     let option = document.createElement("option");
     option.text = optionText;
     option.value = optionUin;
@@ -299,7 +295,7 @@ export const listenCustomSelect = (select_id, filt, val, filt_main) => {
             }
         })
 
-        filt.vald = [...val];
+        filt.val = [...val];
 
         const hasSelection = val.length > 0;
 
@@ -679,40 +675,40 @@ export const formatDate = (dateString) => {
     if(hours != 'NaN' && mins != 'NaN' && day != 'NaN' && month != 'NaN' && year != 'NaN'){
         return `${hours}:${mins} ${day}.${month}.${year}`;
     } else {
-        return `-:- -.-.-`;
+        return `--- -----`;
     }
 }
-
-export const setStatus = (status, fpart) => {
+// control-task__img-status
+export const setStatus = (status, fpart, clas) => {
     let img;
     switch (status) {
         case 1: // не начато
             img = '---';
             break
         case 2: // активно
-            img = '<img class="control-task__img-status" src="assets/images/active.svg" title="Активно">';
+            img = `<img class="${clas}" src="assets/images/active.svg" title="Активно">`;
             break
         case 3: // Активно Просрочено
-            img = '<img class="control-task__img-status" src="assets/images/active_time_fail.svg" title="Активно просрочено">';
+            img = `<img class="${clas}" src="assets/images/active_time_fail.svg" title="Активно просрочено">`;
             break
         case 4: // Активно Принят
-            img = '<img class="control-task__img-status" src="assets/images/active_accept.svg" title="Активно принято">';
+            img = `<img class="${clas}" src="assets/images/active_accept.svg" title="Активно принято">`;
             break
         case 5: // Активно Принят Просрочено
-            img = '<img class="control-task__img-status" src="assets/images/active_accept_time_fail.svg" title="Активно принято просрочено">';
+            img = `<img class="${clas}" src="assets/images/active_accept_time_fail.svg" title="Активно принято просрочено">`;
             break
         case 10: // Завершено
             fpart === 0
-            ? img = '<img class="control-task__img-status" src="assets/images/complete.svg" title="Завершено">'
-            : img = '<img class="control-task__img-status" src="assets/images/complete_part.svg" title="Завершено частично">';
+            ? img = `<img class="${clas}" src="assets/images/complete.svg" title="Завершено">`
+            : img = `<img class="${clas}" src="assets/images/complete_part.svg" title="Завершено частично">`;
             break
         case 11: // Завершено с опозданием
             fpart === 0
-            ? img = '<img class="control-task__img-status" src="assets/images/complete_time_fail.svg" title="Завершено с опозданием">'
-            : img = '<img class="control-task__img-status" src="assets/images/complete_time_fail_part.svg" title="Завершено с опозданием частично">';
+            ? img = `<img class="${clas}" src="assets/images/complete_time_fail.svg" title="Завершено с опозданием">`
+            : img = `<img class="${clas}" src="assets/images/complete_time_fail_part.svg" title="Завершено с опозданием частично">`;
             break
         case 15: // Отменено
-            img = '<img class="control-task__img-status" src="assets/images/cancel.svg" title="Отменено">';
+            img = `<img class="${clas}" src="assets/images/cancel.svg" title="Отменено">`;
             break
         default:
             img = '???';

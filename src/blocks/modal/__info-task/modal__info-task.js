@@ -198,7 +198,7 @@ tasks_con_prod.onclick = () => {
 
 const addTasksInfo =
 (name, mission, prim, numb_i, dl, nameStatus, uinStatus, dtstart, dateaccept, datebegin, dateend, dtpredel, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, nameProd, uinProd, nameProc, uinProc, autoready, fproblem, fareaprof, fpart, count, countreal, uin, del, nameUsermove, datemove) => {
-    uin === "0" ? tasks_title_n.innerHTML = `${setStatus(uinStatus, fpart)} Задача: ${name}` : tasks_title_n.innerHTML = `${setStatus(uinStatus, fpart)} Задание: ${name}`;
+    uin === "0" ? tasks_title_n.innerHTML = `${setStatus(uinStatus, fpart, 'control-task__img-status')} Задача: ${name}` : tasks_title_n.innerHTML = `${setStatus(uinStatus, fpart, 'control-task__img-status')} Задание: ${name}`;
     tasks_name.value      = name;
     tasks_dtstart.value   = dtstart    != undefined ? dtstart.split("T")[0] : '';
     tasks_dtstartt.value  = dtstart    != undefined ? dtstart.split("T")[1] : '';

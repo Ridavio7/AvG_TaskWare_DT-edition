@@ -5,6 +5,7 @@ import {funcFoundOneComponent} from '../__comp-found/table__comp-found.js';
 
 let button__control_add_prod = document.getElementById('button__control_info_product_add_prod');
 let button__control_add_comp = document.getElementById('button__control_info_product_add_comp');
+let input_info_comment       = document.getElementById("info_product_comment");
 
 let uinMainProd = null;
 let uinMainSet  = null;
@@ -24,6 +25,9 @@ const funcProcessGetProductViewInside = (result, respobj) => {
     uinMainSet  = respobj.uinset;
     fsetMain    = respobj.fset;
     let fset    = respobj.fset;
+    let comment = respobj.comment;
+
+    input_info_comment.value = comment;
 
     let tb_id_prod = 'tb_info_product_prod';
     clearTable(tb_id_prod)

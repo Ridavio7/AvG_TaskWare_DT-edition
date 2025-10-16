@@ -7,6 +7,7 @@ import {funcFoundPlusOpenModal} from '../../modal/__found-plus/modal__found-plus
 import {TreeBuilder} from '../../_tree/tree.js';
 import {customSortSelect} from '../../select/select.js';
 import {resizeModalWindow} from '../../modal/modal.js';
+import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
 
 resizeModalWindow(wrapper_comp_tree, "whComponentTree", "Размеры окна дерева комплектующих");
 resizeModalWindow(wrapper_comp_table, "whComponentTable", "Размеры окна таблицы комплектующих"); 
@@ -141,16 +142,35 @@ const funcProcessGetComponents = (result, respobj) => {
         })
     })
 
-    let button_modal_transfer = document.querySelectorAll(".button__control_transfer-component");
-    button_modal_transfer.forEach((elem) => {
-        elem.addEventListener("click", () => {
-            funcInfoComponentsTransferOpenModal(elem.value, elem.name);
-        })
-    })
-
     let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-tree");
     button_control_add_comp_tree.addEventListener("click", (elem) => {
         funcProcessInfoComponentsModalAdd(elem.value);
+    })
+
+    function funcCopyElem(uin){
+        let result = confirm("Сделать копию этого комплектующего?");
+        if(result){
+            let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"copy", "obj":"components", "uin":`${uin}`};
+            funcCommand(body, funcProcessOnlyInfo);
+            setTimeout(() => {funcGetComponentsTree()}, 100);
+        }
+    }
+
+    function funcTransferElem(uin, name){
+        funcInfoComponentsTransferOpenModal(uin, name);
+    }
+
+    function funcFullDelElem(uin){
+        
+    }
+
+    /* кнопки выпадающие списки */
+    document.querySelectorAll(".button__control_modal-dropdown-component").forEach((elem) => {
+        new DropdownButton(elem, '', [
+            { text: 'Копировать', action: () => funcCopyElem(elem.getAttribute("data-value")) },
+            { text: 'Переместить', action: () => funcTransferElem(elem.getAttribute("data-value"), elem.getAttribute("data-name")) },
+            { text: 'Удалить', action: () => funcFullDelElem(elem.getAttribute("data-value")) }
+        ], 'assets/images/three_dot.svg');
     })
 }
 
@@ -172,7 +192,7 @@ const addComponents = (name, fUnic, ost, typelm, del, uin, tb_id) => {
     cellTypelm.innerHTML   = typelm;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
-    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-component${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button><button class="button__control button__control_transfer-component" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/moving.svg" title="Перемещение"></button>`;
+    cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-component${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button><div class="button__control_dropdown-container button__control_modal-dropdown-component" data-value="${uin}" data-name="${name}"></div>`;
 }
 
 customSortSelect("sort_components");

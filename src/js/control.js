@@ -67,7 +67,7 @@ window.onload = function(){
     returnTabs();
     updateDirectory();
 
-    /*setTimeout(() => {
+    setTimeout(() => {
         let buttons = document.querySelectorAll(".button__control_action_status.button__control_modal-tasks-catTask");
         let uin     = localStorage.getItem('button-active__tasks-catTask');
         buttons.forEach(button => {
@@ -75,7 +75,7 @@ window.onload = function(){
                 button.click();
             }
         })
-    }, 100)*/
+    }, 100)
 }
 
 /* пользователи */
@@ -98,11 +98,11 @@ addEventButtonTab(document.querySelectorAll(".sidebar__link_tasksArch"), funcGet
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_contents"), funcGetContents);
 //addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_startstep"), funcGetStartstep);
 
-/* обновление контроля задач 
+/* обновление контроля задач */
 setInterval(function() {
     funcGetTasks();
 
-    setTimeout(() => {
+    /*setTimeout(() => {
         let buttons = document.querySelectorAll(".button__control_action_status.button__control_modal-tasks-catTask");
         let uin     = localStorage.getItem('button-active__tasks-catTask');
         buttons.forEach(button => {
@@ -110,5 +110,5 @@ setInterval(function() {
                 button.click();
             }
         })
-    }, 100)
-}, 10000)*/
+    }, 100)*/
+}, 10000)

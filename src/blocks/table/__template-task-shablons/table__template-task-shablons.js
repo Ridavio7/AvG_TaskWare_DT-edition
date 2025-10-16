@@ -90,8 +90,15 @@ const funcProcessGetShablons = (result, respobj) => {
             let result = confirm(`Запустить шаблон задачи "${elem.name}"?`);
             if(result === true){
                 let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"starttask", "obj":"tasks", "uinShablon":`${elem.value}`};
-                funcCommand(body, funcProcessOnlyInfo);
-                setTimeout(() => {funcGetTasksSteps(0)}, 200);
+
+                funcCommand(body, (result, respobj) => {
+                    console.log(respobj);
+                    if (result === 1 && respobj?.uintask) {
+                        localStorage.setItem('uinTask', respobj.uintask);
+                        localStorage.setItem('button-active__tasks-catTask', respobj.uintask);
+                        funcGetTasksSteps(0);
+                    }
+                })
             }
         })
     })
@@ -100,7 +107,7 @@ const funcProcessGetShablons = (result, respobj) => {
     document.querySelectorAll(".button__control_modal-dropdown-shablons").forEach((elem) => {
         let del = elem.getAttribute("data-id") == 1 ? "Снять пометку на удаление" : "Пометить на удаление";
         new DropdownButton(elem, '', [
-            { text: 'Сделать копию', action: () => funcCopyElem(elem.getAttribute("data-value")) },
+            { text: 'Копировать', action: () => funcCopyElem(elem.getAttribute("data-value")) },
             { text: del, action: () => funcDelElem(elem.getAttribute("data-value")) },
             { text: 'Удалить', action: () => funcFullDelElem(elem.getAttribute("data-value")) }
         ], 'assets/images/three_dot.svg');

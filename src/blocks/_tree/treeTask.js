@@ -58,7 +58,7 @@ export class TreeTaskBuilder {
         this.container.append(root_branch);
 
         if(this.options.includes("contextmenu")){this.contextMenu()} else {this.contextMenuDiv = null};
-        let button_chat_task = document.querySelectorAll(".button__control_chat_task");
+        let button_chat_task = document.querySelectorAll(".button__control_chat_task_tree");
         button_chat_task.forEach((elem) => {
             elem.addEventListener("click", () => {
                 funcInfoChatTaskOpenModal(elem.value);
@@ -119,7 +119,7 @@ export class TreeTaskBuilder {
                 // шапка
                 if(item.fproblem != 0){
                     // без проблем
-                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center tree-catalog__text_span-warning');
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart, 'control-task__img-status'), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center tree-catalog__text_span-warning');
                     treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-warning');
                     treeSpanFactory(textSpanContainer, `${item.count}`, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-count tree-catalog__text_span-warning');
                     treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-warning');
@@ -127,20 +127,20 @@ export class TreeTaskBuilder {
                     treeSpanFactory(textSpanContainer, formatDate(item.dateend), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date tree-catalog__text_span-warning');
                 } else {
                     // проблема
-                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart, 'control-task__img-status'), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
                     treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span');
                     treeSpanFactory(textSpanContainer, `${item.count}`, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-count');
                     treeSpanFactory(textSpanContainer, item.username, '', 'tree-catalog__text tree-catalog__text_span');
                     treeSpanFactory(textSpanContainer, formatDate(item.datebegin), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
                     treeSpanFactory(textSpanContainer, formatDate(item.dateend), '', 'tree-catalog__text tree-catalog__text_span button__control_action_date');
                 }
-                iteamHead.insertAdjacentHTML('beforeend', `<button class="button__control button__control_chat_task" value="${localStorage.getItem('uinTask')}"><img class="button__control_img__no-filter" src="assets/images/chat.svg" alt="" style="width: 18px;" title=""Чат></button>`);
+                iteamHead.insertAdjacentHTML('beforeend', `<button class="button__control button__control_chat_task_tree" value="${localStorage.getItem('uinTask')}"><img class="button__control_img__no-filter" src="assets/images/chat.svg" alt="" style="width: 18px;" title=""Чат></button>`);
             } else {
                 // ветви
                 if(item.fproblem != 0){
                     // без проблем
                     treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number tree-catalog__text_span-warning');
-                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center tree-catalog__text_span-warning');
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart, 'control-task__img-status'), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center tree-catalog__text_span-warning');
                     treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text tree-catalog__text_span-warning');
                     treeSpanFactory(textSpanContainer, `${item.countreal}`, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-count tree-catalog__text_span-warning');
                     item.fareaprof === 0
@@ -151,7 +151,7 @@ export class TreeTaskBuilder {
                 } else {
                     // проблема
                     treeSpanFactory(textSpanContainer, item.number, '№ ', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number');
-                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
+                    treeSpanFactoryStatusTree(textSpanContainer, setStatus(item.uinstatus, item.fpart, 'control-task__img-status'), 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-number td__text_align_center');
                     treeSpanFactory(textSpanContainer, item.text, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-text');
                     treeSpanFactory(textSpanContainer, `${item.countreal}`, '', 'tree-catalog__text tree-catalog__text_span tree-catalog__text_span-count');
                     item.fareaprof === 0
