@@ -87,12 +87,12 @@ const addLentappRow = (nameproduct, uinproduct, nametechproc, uintechproc, nameu
     let cellBtn   = newRow.insertCell(8); cellBtn.classList   = "td td__text_align_center";
 
     makeSelect("lentapp_user_select_", uin, nameuser, uinuser, "users_list", "select", cellUser);
-    makeSelect("lentapp_prod_select_", uin, nameproduct, uinproduct, "products_list", "select", cellProd);
-    makeSelect("lentapp_techproc_select_", uin, nametechproc, uintechproc, "techproc_list", "select", cellProc);
+    makeSelect("lentapp_prod_select_", uin, nameproduct, uinproduct, "products_list", "select", cellProd, true);
+    makeSelect("lentapp_techproc_select_", uin, nametechproc, uintechproc, "techproc_list", "select", cellProc, true);
     cellCount.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${count}" name="lentapp_count_${uin}">`;
     let date = datetm.split(" ")[0];
     let time = datetm.split(" ")[1];
-    cellDate.innerHTML  = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="lentapp_date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div><div class="input__type-date_wrapper"><input class="input__type-text input__type-time" type="time" value="${time}" name="lentapp_time_${uin}" step="1"><label for="" class="input__type-date_icon"><img src="assets/images/time.svg" alt=""></label></div>`;
+    cellDate.innerHTML  = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="lentapp_date_${uin}" disabled><label for="" class="input__type-date_icon input__type-date_icon-no-active"><img src="assets/images/calendar.svg" alt=""></label></div><div class="input__type-date_wrapper"><input class="input__type-text input__type-time" type="time" value="${time}" name="lentapp_time_${uin}" step="1" disabled><label for="" class="input__type-date_icon input__type-date_icon-no-active"><img src="assets/images/time.svg" alt=""></label></div>`;
     cellTask.innerHTML  = task;
     cellStep.innerHTML  = step;
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="lentapp_prim_${uin}">`;
@@ -107,10 +107,10 @@ customSelect('lentapp_techproc_customDropdown', JSON.parse(localStorage.getItem(
 customSelect('lentapp_tasks_customDropdown', JSON.parse(localStorage.getItem("tasks_list")), 'задачу');
 
 let filt_resp = [];
-let filt_1 = {fld: "uinuser", vald: []};
-let filt_2 = {fld: "uinproduct", vald: []};
-let filt_3 = {fld: "uintechproc", vald: []};
-let filt_4 = {fld: "uintask", vald: []};
+let filt_1 = {fld: "uinuser"};
+let filt_2 = {fld: "uinproduct"};
+let filt_3 = {fld: "uintechproc"};
+let filt_4 = {fld: "uintask"};
 let filt_5 = {fld: "datetm", vald: []};
 filt_resp.push(filt_5);
 
@@ -133,6 +133,7 @@ document.getElementById("button_lentapp_reset").addEventListener("click", () => 
     document.getElementById('filt_lentapp_date_first').value = '';
     document.getElementById('filt_lentapp_date_second').value = '';
     funcGetLentapp();
+    filt_resp.push(filt_5);
 })
 
 customSortSelect("sort_events");

@@ -76,10 +76,10 @@ customSelect('analysis_products_all_contr_customDropdown', JSON.parse(localStora
 customSelect('analysis_products_all_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
 let filt_analysis_products_all = [];
-let filt_1 = {fld: "uin", on: "sets", vald: []};
-let filt_2 = {fld: "uin", on: "products", vald: []};
-let filt_3 = {fld: "uin", on: "contragents", vald: []};
-let filt_4 = {fld: "uin", on: "statuses", vald: []};
+let filt_1 = {fld: "uin", on: "sets"};
+let filt_2 = {fld: "uin", on: "products"};
+let filt_3 = {fld: "uin", on: "contragents"};
+let filt_4 = {fld: "uin", on: "statuses"};
 let filt_5 = {fld: "date", vald: []};
 filt_analysis_products_all.push(filt_5);
 
@@ -102,6 +102,7 @@ document.getElementById("button_analysis_products_all_reset").addEventListener("
     document.getElementById('filt_analysis_products_all_date_first').value = '';
     document.getElementById('filt_analysis_products_all_date_second').value = '';
     funcGetShipProductsAll();
+    filt_analysis_products_all.push(filt_5);
 })
 
 customSortSelect("sort_analysis_products_all");

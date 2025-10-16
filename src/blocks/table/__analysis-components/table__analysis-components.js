@@ -69,10 +69,10 @@ customSelect('analysis_components_contr_customDropdown', JSON.parse(localStorage
 customSelect('analysis_components_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
 let filt_analysis_components_all = [];
-let filt_1 = {fld: "uin", on: "sets", vald: []};
-let filt_2 = {fld: "uin", on: "products", vald: []};
-let filt_3 = {fld: "uin", on: "contragents", vald: []};
-let filt_4 = {fld: "uin", on: "statuses", vald: []};
+let filt_1 = {fld: "uin", on: "sets"};
+let filt_2 = {fld: "uin", on: "products"};
+let filt_3 = {fld: "uin", on: "contragents"};
+let filt_4 = {fld: "uin", on: "statuses"};
 let filt_5 = {fld: "date", vald: []};
 filt_analysis_components_all.push(filt_5);
 
@@ -95,6 +95,7 @@ document.getElementById("button_analysis_components_reset").addEventListener("cl
     document.getElementById('filt_analysis_components_all_date_first').value = '';
     document.getElementById('filt_analysis_components_all_date_second').value = '';
     funcGetShipComponentsAll();
+    filt_analysis_components_all.push(filt_5);
 })
 
 customSortSelect("sort_analysis_components");

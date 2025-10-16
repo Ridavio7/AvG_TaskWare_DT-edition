@@ -132,7 +132,7 @@ options.forEach(option => {
 customSelect('docpost_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
 customSelect('docpost_status_customDropdown', JSON.parse(localStorage.getItem("statusdoc_list")), 'статус');
 
-let filt_docpost = [], filt_1 = {fld: "uincontr", vald: []}, filt_2 = {fld: "uinstatus", vald: []};
+let filt_docpost = [], filt_1 = {fld: "uincontr"}, filt_2 = {fld: "uinstatus"};
 
 listenCustomSelect("docpost_contr_customDropdown", filt_1, [], filt_docpost);
 listenCustomSelect("docpost_status_customDropdown", filt_2, [], filt_docpost);

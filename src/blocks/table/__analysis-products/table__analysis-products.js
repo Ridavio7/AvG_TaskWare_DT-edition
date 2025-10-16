@@ -88,9 +88,9 @@ customSelect('analysis_products_contr_customDropdown', JSON.parse(localStorage.g
 customSelect('analysis_products_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
 
 let filt_analysis_products = [];
-let filt_1 = {fld: "uin", on: "products", vald: []};
-let filt_2 = {fld: "uin", on: "contragents", vald: []};
-let filt_3 = {fld: "uin", on: "statuses", vald: []};
+let filt_1 = {fld: "uin", on: "products"};
+let filt_2 = {fld: "uin", on: "contragents"};
+let filt_3 = {fld: "uin", on: "statuses"};
 let filt_4 = {fld: "date", vald: []};
 filt_analysis_products.push(filt_4);
 
@@ -111,6 +111,7 @@ document.getElementById("button_analysis_products_reset").addEventListener("clic
     document.getElementById('filt_analysis_products_date_first').value = '';
     document.getElementById('filt_analysis_products_date_second').value = '';
     funcGetShipProducts();
+    filt_analysis_products.push(filt_4);
 })
 
 customSortSelect("sort_analysis_products");
