@@ -11,6 +11,7 @@ let info_product_resize           = document.getElementById("info_product_resize
 let input_info_product_name       = document.getElementById("info_product_name");
 let select_info_product_color     = document.getElementById("info_product_color");
 let input_info_product_train      = document.getElementById("info_product_train");
+let input_info_comment            = document.getElementById("info_product_comment");
 let select_info_product_type      = document.getElementById("info_product_type");
 let button_info_product_tcard     = document.getElementById("info_product_tcardprods");
 let chb_info_product_fship        = document.getElementById("info_product_fship");
@@ -132,6 +133,7 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
         chb_info_product_fship.disabled = true;
     }
     
+    input_info_comment.parentElement.classList.remove("modal__input-wrapper_display-none");
     select_info_product_type.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     chb_info_product_fship.parentElement.classList.remove("modal__input-wrapper_display-none");
     tb_info_product_prod.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
@@ -156,12 +158,12 @@ button_info_product_save.onclick = (elem) => {
     let dopC = select_info_product_color.value;
     let dopM = input_info_product_train.value;
     let fship = chb_info_product_fship.checked === true ? "1" : "0";
+    let comment = input_info_comment.value;
 
     let body = type == 0 ?
-    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopuin":`${dopC}`, "fship":`${fship}`} :
-    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"sets", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopname":`${dopM}`};
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"products", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopuin":`${dopC}`, "fship":`${fship}`, "comment":`${comment}`} :
+    {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"sets", "uin":`${elem.target.value}`, "name":`${name}`, "uincat":`${elem.target.name}`, "dopname":`${dopM}`, "comment":`${comment}`};
 
-    console.log(body)
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){
         let button_control_update_prod = document.querySelectorAll(".button__control_update_formula-product-innprod");
@@ -186,6 +188,7 @@ export const funcProcessInfoProductsModalAdd = () => {
     select_info_product_type.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
     select_info_product_color.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
+    input_info_comment.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_prod.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_comp.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     button_info_product_tcard.parentElement.classList.add("modal__input-wrapper_display-none");
