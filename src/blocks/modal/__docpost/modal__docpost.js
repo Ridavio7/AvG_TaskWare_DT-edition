@@ -206,7 +206,7 @@ const addDocpostInfoTable = (name, compontName, compontUin, price, sum, measName
     makeSelect("docpost_storage_select_", uin, storageName, storageUin, "storages_list", "select", cellStorage);
     cellCount.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${count}" name="docpost_count_${uin}">`;
     cellPrice.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${price}" disabled>`;
-    cellSum.innerHTML   = `<input class="input__type-text input__type-text__small" type="text" value="${sum}" disabled>`;;
+    cellSum.innerHTML   = `<input class="input__type-text input__type-text__small" type="text" value="${sum}" disabled>`;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-docpost" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
@@ -232,10 +232,23 @@ docpost_save.onclick = () => {
             elem.click();
         })
     }, 100);
-
     
     setTimeout(function(){funcGetInfoInputsDocpost(localStorage.getItem("docpost_uin"))}, 100);
     setTimeout(function(){funcGetInfoTableDocpost(localStorage.getItem("docpost_uin"))}, 150);
     setTimeout(function(){clearTableAll("tb_docpost")}, 200);
     setTimeout(function(){funcGetDocpost()}, 250);
+}
+
+docpost_storage.onchange = (elem) => {
+    let res = confirm('Заменить склад во всех строках документа?')
+    if(res){
+        let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"multiupdate", "obj":"docpost", "uindoc":"", "uinstorage":""};
+
+        body.uindoc     = localStorage.getItem("docpost_uin");
+        body.uinstorage = elem.target.value;
+
+        funcCommand(body, funcProcessOnlyConsole);
+
+        setTimeout(function(){funcGetInfoTableDocpost(localStorage.getItem("docpost_uin"))}, 100);
+    }
 }
