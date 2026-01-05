@@ -18,14 +18,14 @@ const funcProcessGetUsers = (result, respobj) => {
 
     for (let key in respobj.answ){
         let obj   = respobj.answ[key];
-        let num   = +key + 1;
+        let tabn  = obj.tabnumber;
         let name  = obj.name;
         let job   = obj.job.name;
         let email = obj.email;
         let phone = obj.phone;
         let del   = obj.del;
         let uin   = obj.uin;
-        addUsersRow(num, name, job, email, phone, del, uin, tb_id);
+        addUsersRow(tabn, name, job, email, phone, del, uin, tb_id);
     }
 
     /* функция удаления */
@@ -52,19 +52,19 @@ const funcProcessGetUsers = (result, respobj) => {
     })
 }
 
-const addUsersRow = (num, name, job, email, phone, del, uin, tb_id) => {
+const addUsersRow = (tabn, name, job, email, phone, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellNum   = newRow.insertCell(0); cellNum.classList   = "td td_nowrap-content td__text_align_center";
+    let cellNum   = newRow.insertCell(0); cellNum.classList   = "td td__text_align_center";
     let cellName  = newRow.insertCell(1); cellName.classList  = "td";
     let cellJob   = newRow.insertCell(2); cellJob.classList   = "td";
     let cellEmail = newRow.insertCell(3); cellEmail.classList = "td";
     let cellPhone = newRow.insertCell(4); cellPhone.classList = "td td__text_align_center";
     let cellBtn   = newRow.insertCell(5); cellBtn.classList   = "td";
 
-    cellNum.innerHTML   = `<button class="button__control button__control_modal-users-main" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button>&nbsp; ${num}`;
+    cellNum.innerHTML   = `<div class="button__control_wrapper"><button class="button__control button__control_modal-users-main" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" alt=""></button><span>${tabn}</span></div>`;
     cellName.innerHTML  = name;
     cellJob.innerHTML   = job;
     cellEmail.innerHTML = email;
@@ -79,6 +79,10 @@ const dropdown = document.getElementById("sort_users");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "sort":"name"};
@@ -89,13 +93,24 @@ options.forEach(option => {
                 funcCommand(body2, funcProcessGetUsers);
             break;
             case '3':
-                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "sort":"uin"};
+                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "sort":"tabnumber"};
                 funcCommand(body3, funcProcessGetUsers);
             break;
             case '4':
-                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "asort":"uin"};
+                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "asort":"tabnumber"};
                 funcCommand(body4, funcProcessGetUsers);
             break;
+            case '5':
+                let body5  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "sort":"uin"};
+                funcCommand(body5, funcProcessGetUsers);
+            break;
+            case '6':
+                let body6  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"users", "count":"5000", "asort":"uin"};
+                funcCommand(body6, funcProcessGetUsers);
+            break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })

@@ -6,6 +6,8 @@ import '../blocks/hamburger-menu/hamburger.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
+import {fetchNotifications} from '../blocks/header/header.js';
+
 /* боковая панель */
 import '../blocks/sidebar/sidebar.scss';
 import '../blocks/sidebar/sidebar.js';
@@ -39,7 +41,7 @@ import '../blocks/table/table.scss';
 import '../blocks/_tree/tree.js';
 import '../blocks/_tree/tree.scss';
 
-import {addEventButtonTab,updateDirectory} from '../js/common/common.js.js';
+import {addEventButtonTab, updateDirectory, funcShowTabs} from '../js/common/common.js.js';
 
 /* пользователи */
 import {funcGetUsers} from '../blocks/table/__users-main/table__users-main.js';
@@ -64,6 +66,8 @@ import {funcGetTasksArchive} from '../blocks/table/__control-task-archive/table_
 import {returnTabs} from '../js/common/common.js.js';
 
 window.onload = function(){
+    fetchNotifications();
+    funcShowTabs();
     returnTabs();
     updateDirectory();
 
@@ -98,11 +102,11 @@ addEventButtonTab(document.querySelectorAll(".sidebar__link_tasksArch"), funcGet
 addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_contents"), funcGetContents);
 //addEventButtonTab(document.querySelectorAll(".button__tab__first_tasks_startstep"), funcGetStartstep);
 
-/* обновление контроля задач */
+/* обновление контроля задач 
 setInterval(function() {
     funcGetTasks();
 
-    /*setTimeout(() => {
+    setTimeout(() => {
         let buttons = document.querySelectorAll(".button__control_action_status.button__control_modal-tasks-catTask");
         let uin     = localStorage.getItem('button-active__tasks-catTask');
         buttons.forEach(button => {
@@ -110,5 +114,5 @@ setInterval(function() {
                 button.click();
             }
         })
-    }, 100)*/
-}, 10000)
+    }, 100)
+}, 10000)*/

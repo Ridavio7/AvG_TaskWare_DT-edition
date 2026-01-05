@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, addToDropdown, addToDropdownOneOption, clearTableAll, makeSelect, togglePassword, validateForm, responseProcessor} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, updateOverlay, openModal} from '../modal.js';
 import {showNotification} from '../__notification/modal__notification.js';
 import {funcGetUsers} from '../../table/__users-main/table__users-main.js';
 
@@ -8,6 +8,7 @@ let user_close    = document.getElementById("user_close");
 let user_name     = document.getElementById("user_name_modal");
 let user_name_t   = document.getElementById("user_name_title");
 let user_job      = document.getElementById("user_job");
+let user_tabnum   = document.getElementById("user_tabnumber");
 let user_email    = document.getElementById("user_email");
 let user_phone    = document.getElementById("user_phone");
 let user_login    = document.getElementById("user_login");
@@ -24,6 +25,7 @@ let log_pass_change = 0;
 
 user_close.onclick = function(){
     user_modal.style.display = "none";
+    updateOverlay();
 
     user_pass_f.value = '';
     user_pass_s.value = '';
@@ -32,6 +34,7 @@ user_close.onclick = function(){
 user_close.ontouchend = (e) => {
     e.preventDefault();
     user_modal.style.display = "none";
+    updateOverlay();
 
     user_pass_f.value = '';
     user_pass_s.value = '';
@@ -54,7 +57,7 @@ const funcProcessGetResize = (result, respobj) => {
 /* открытие инфо мод. окна пользователя */
 export const funcInfoUserOpenModal = (uin) => {
     funcGetResize();
-    user_modal.style.display  = "block";
+    openModal(user_modal);
 
     user_save.style.display = "flex";
     user_add.style.display  = "none";
@@ -90,7 +93,7 @@ const funcProcessGetRightsUsersInfo = (result, respobj) => {
 const addRightsUsersInfo = (name, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
-    newRow.classList = "tr";
+    newRow.classList = "tr tr_last-child-no-100px";
 
     let cellRightName = newRow.insertCell(0); cellRightName.classList = "td td_font-color-active";
     let cellRightAcc  = newRow.insertCell(1); cellRightAcc.classList  = "td td__text_align_center";
@@ -127,6 +130,7 @@ const funcProcessGetUserInfo = (result, respobj) => {
     let name        = obj.name;
     let jobName     = obj.job.name;
     let jobUin      = obj.job.uin;
+    let tabnum      = obj.tabnumber;
     let email       = obj.email;
     let phone       = obj.phone;
     let rights      = obj.rights;
@@ -137,16 +141,17 @@ const funcProcessGetUserInfo = (result, respobj) => {
     let accprofUin  = obj.accprof.uin;
     let uin         = obj.uin;
 
-    addUserInfo(name, jobName, jobUin, email, phone, rights, login, fpsw, faccprof, accprofName, accprofUin, uin);
+    addUserInfo(name, jobName, jobUin, tabnum, email, phone, rights, login, fpsw, faccprof, accprofName, accprofUin, uin);
 }
 
-const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, fpsw, faccprof, accprofName, accprofUin, uin) => {
-    user_login.parentElement.style.display  = "flex";
-    user_pass_f.parentElement.style.display = "flex";
-    user_pass_s.parentElement.style.display = "flex";
+const addUserInfo = (name, jobName, jobUin, tabnum, email, phone, rights, login, fpsw, faccprof, accprofName, accprofUin, uin) => {
+    user_login.parentElement.parentElement.style.display  = "table-row";
+    user_pass_f.parentElement.parentElement.style.display = "table-row";
+    user_pass_s.parentElement.parentElement.style.display = "table-row";
 
     user_name_t.innerHTML = name;
     user_name.value       = name;
+    user_tabnum.value     = tabnum;
     user_email.value      = email;
     user_phone.value      = phone;
     user_login.value      = login;
@@ -159,10 +164,10 @@ const addUserInfo = (name, jobName, jobUin, email, phone, rights, login, fpsw, f
     if(fpsw === 1){user_pass_f.value = 'password'; user_pass_s.value = 'password';}
     if(faccprof === 1){
         user_faccprof.checked = true;
-        user_accprof.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+        user_accprof.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
     } else {
         user_faccprof.checked = false;
-        user_accprof.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        user_accprof.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     }
 
     for(let key in rights){
@@ -208,17 +213,18 @@ user_pass_s.addEventListener("change", () => {
 
 /* функция обновления пользователи */
 user_save.addEventListener("click", (evt) => {
-    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "email":"", "phone":"", "faccprof":"", "uinaccprof":""};
+    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"update", "obj":"users", "uin":`${evt.currentTarget.value}`, "name":"", "rights":"", "uinjob":"", "tabnumber":"", "email":"", "phone":"", "faccprof":"", "uinaccprof":""};
 
     validateForm('user_name_modal', 'user_email', 'user_phone').then(result => {
         if(result === true){
-            body1.name   = user_name.value;
-            body1.uinjob = user_job.value;
-            body1.email  = user_email.value;
-            body1.phone  = user_phone.value;
-            body1.faccprof = user_faccprof.checked === true ? "1" : "0";
+            body1.name       = user_name.value;
+            body1.uinjob     = user_job.value;
+            body1.tabnumber  = user_tabnum.value;
+            body1.email      = user_email.value;
+            body1.phone      = user_phone.value;
+            body1.faccprof   = user_faccprof.checked === true ? "1" : "0";
             body1.uinaccprof = user_accprof.value;
-            body1.rights = `${JSON.stringify(searchUserRights())}`;
+            body1.rights     = `${JSON.stringify(searchUserRights())}`;
 
             if(user_faccprof.checked === true){
                 if(user_accprof.value == 0){
@@ -254,7 +260,7 @@ user_save.addEventListener("click", (evt) => {
 /* открытие добавления мод. окна пользователя */
 let button__control_add = document.querySelector(".button__control_add-users-main");
 button__control_add.addEventListener("click", () => {
-    user_modal.style.display  = "block";
+    openModal(user_modal);
 
     user_add.style.display  = "flex";
     user_save.style.display = "none";
@@ -267,6 +273,7 @@ function funcProcessInfoUserOpenModalAdd(){
     user_name.value   = "";
     user_email.value  = "";
     user_phone.value  = "";
+    user_tabnum.value = "";
     removeOptions(user_job)
     addToDropdownOneOption(user_job, "Выберите должность", "");
     addToDropdown(user_job, "jobs_list");
@@ -276,23 +283,24 @@ function funcProcessInfoUserOpenModalAdd(){
     addToDropdownOneOption(user_accprof, "Выберите участок", "");
     addToDropdown(user_accprof, "prof_list");
 
-    user_login.parentElement.style.display  = "none";
-    user_pass_f.parentElement.style.display = "none";
-    user_pass_s.parentElement.style.display = "none";
+    user_login.parentElement.parentElement.style.display  = "none";
+    user_pass_f.parentElement.parentElement.style.display = "none";
+    user_pass_s.parentElement.parentElement.style.display = "none";
 }
 
 user_add.onclick = () => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "email":"", "phone":"", "faccprof":"", "uinaccprof":""};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"users", "name":"", "rights":"", "uinjob":"", "tabnumber":"", "email":"", "phone":"", "faccprof":"", "uinaccprof":""};
 
     validateForm('user_name_modal', 'user_email', 'user_phone').then(result => {
         if(result === true){
-            body.name   = user_name.value;
-            body.uinjob = user_job.value;
-            body.email  = user_email.value;
-            body.phone  = user_phone.value;
-            body.faccprof = user_faccprof.checked === true ? "1" : "0";
+            body.name       = user_name.value;
+            body.uinjob     = user_job.value;
+            body.tabnumber  = user_tabnum.value;
+            body.email      = user_email.value;
+            body.phone      = user_phone.value;
+            body.faccprof   = user_faccprof.checked === true ? "1" : "0";
             body.uinaccprof = user_accprof.value;
-            body.rights = `${JSON.stringify(searchUserRights())}`;
+            body.rights     = `${JSON.stringify(searchUserRights())}`;
 
             if(user_faccprof.checked === true){
                 if(user_accprof.value == ""){
@@ -343,6 +351,6 @@ document.getElementById('user_pass_second_toggle').addEventListener('click', (el
 
 user_faccprof.addEventListener('change', (elem) => {
     elem.target.checked === true
-    ? elem.target.parentElement.nextElementSibling.classList.remove("modal__input-wrapper_display-none")
-    : elem.target.parentElement.nextElementSibling.classList.add("modal__input-wrapper_display-none")
+    ? elem.target.parentElement.parentElement.nextElementSibling.classList.remove("modal__input-wrapper_display-none")
+    : elem.target.parentElement.parentElement.nextElementSibling.classList.add("modal__input-wrapper_display-none")
 })

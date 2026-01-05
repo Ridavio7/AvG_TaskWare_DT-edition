@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, formatDate, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, updateOverlay} from '../modal.js';
 
 let chat_task_modal         = document.getElementById("modal_chat_task");
 let modal_resize            = document.getElementById("modal_chat_task_resize");
@@ -26,6 +26,7 @@ chat_task_close.onclick = () => {
     chat_task_input.style.height = '37px';
 
     clearInterval(timerId);
+    updateOverlay();
 }
 
 chat_task_close.ontouchend = (e) => {
@@ -35,6 +36,7 @@ chat_task_close.ontouchend = (e) => {
     chat_task_input.style.height = '37px';
 
     clearInterval(timerId);
+    updateOverlay();
 }
 
 dragElement(chat_task_modal);
@@ -54,7 +56,7 @@ const funcProcessGetResize = (result, respobj) => {
 /* открытие окна */
 export const funcInfoChatTaskOpenModal = (uin) => {
     funcGetResize();
-    chat_task_modal.style.display = "block";
+    openModal(chat_task_modal);
 
     chat_task_send_button.value = uin;
 
@@ -137,17 +139,19 @@ const craeteMsgLeft = (nameUser, name, date, change) => {
 
 /* добавление сообщения */
 chat_task_send_button.addEventListener('click', (elem) => {
-    let uintask = elem.currentTarget.value
-    let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"chattask", "uinuser":`${localStorage.getItem('user_uin')}`, "uintask":`${uintask}`, "name":""};
+    if(!document.URL.includes('#tasksArch')){
+        let uintask = elem.currentTarget.value
+        let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"chattask", "uinuser":`${localStorage.getItem('user_uin')}`, "uintask":`${uintask}`, "name":""};
 
-    if(chat_task_input.value != ''){
-        body.name = chat_task_input.value;
-        funcCommand(body, funcProcessOnlyInfo, () => {
-            funcGetInfoChatTask(uintask, scrollToBottom);
-        })
-        
-        chat_task_input.value = '';
-        chat_task_input.style.height = '37px'; // сброс высоты
+        if(chat_task_input.value != ''){
+            body.name = chat_task_input.value;
+            funcCommand(body, funcProcessOnlyInfo, () => {
+                funcGetInfoChatTask(uintask, scrollToBottom);
+            })
+            
+            chat_task_input.value = '';
+            chat_task_input.style.height = '37px'; // сброс высоты
+        }
     }
 })
 

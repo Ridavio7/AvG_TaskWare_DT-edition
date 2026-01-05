@@ -5,6 +5,7 @@ import '../blocks/hamburger-menu/hamburger.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
+import {fetchNotifications} from '../blocks/header/header.js';
 /* боковая панель */
 import '../blocks/sidebar/sidebar.scss';
 import '../blocks/sidebar/sidebar.js';
@@ -42,7 +43,7 @@ import '../blocks/table/table.scss';
 import '../blocks/carousel/carousel.scss';
 import '../blocks/carousel/carousel.js';
 
-import {addEventButtonTab, returnTabs, updateDirectory} from '../js/common/common.js.js';
+import {addEventButtonTab, returnTabs, updateDirectory, funcShowTabs} from '../js/common/common.js.js';
 
 /* Отгрузка */
 import {funcGetGrfShipSets} from '../blocks/table/__schedule/table__schedule.js';
@@ -96,11 +97,14 @@ import {funcGetContragents} from '../blocks/table/__contragents/table__contragen
 
 /* склады */
 import {funcGetStorages} from '../blocks/table/__storages/table__storages.js';
+import {funcGetDocperem} from '../blocks/table/__docperem/table__docperem.js';
 
 /* статусы */
 
 
 window.onload = function(){
+    fetchNotifications();
+    funcShowTabs();
     updateDirectory();
     funcGetShipProductsAll();
     returnTabs();
@@ -131,12 +135,15 @@ addEventButtonTab(document.querySelectorAll(".sidebar__link_provider"), funcGetD
 // проектирование
 addEventButtonTab(document.querySelectorAll(".button__tab__first_development-begunok"), '');
 
+// продукция
+addEventButtonTab(document.querySelectorAll(".button__tab__first_products-main"), funcGetProductsTree);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_products-colors"), funcGetColors);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_products-verapp"), funcGetVerapp);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_products-verpp"), funcGetVerpp);
+
 // склад
-addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-main"), funcGetProductsTree);
 addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-storages"), funcGetStorages);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-colors"), funcGetColors);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-verapp"), funcGetVerapp);
-addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-verpp"), funcGetVerpp);
+addEventButtonTab(document.querySelectorAll(".button__tab__first_storage-docperem"), funcGetDocperem);
 
 // комплектующие
 addEventButtonTab(document.querySelectorAll(".button__tab__first_components-main"), funcGetComponentsTree);

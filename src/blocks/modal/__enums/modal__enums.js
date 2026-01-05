@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateInput, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 
 let enums_modal  = document.getElementById("enums_modal");
 let enums_close  = document.getElementById("enums_close");
@@ -8,14 +8,7 @@ let modal_resize = document.getElementById('enums_modal_resize');
 
 let propUinForAdd = null;
 
-enums_close.onclick = () => {
-    enums_modal.style.display = "none";
-}
-
-enums_close.ontouchend = (e) => {
-    e.preventDefault();
-    enums_modal.style.display = "none";
-}
+closeModal(enums_modal, enums_close);
 
 dragElement(enums_modal);
 resizeModalWindow(modal_resize, "whModalEnums", "Размеры окна значений свойства");
@@ -33,10 +26,9 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoEnumsOpenModal = (uin, name) => {
     funcGetResize();
-    enums_modal.style.display = "block";
+    openModal(enums_modal);
 
     enums_title.innerHTML = `Значения свойства ${name}`;
-
     propUinForAdd = uin;
 
     funcGetInfoEnums(uin);

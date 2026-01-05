@@ -1,5 +1,5 @@
 import {funcCommand, clearTableAll, responseProcessor} from '../../../js/common/common.js.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal, updateOverlay} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_select_prod = document.getElementById("modal_select_products_unic");
@@ -8,14 +8,7 @@ let modal_resize      = document.getElementById("modal_select_products_unic_resi
 
 let uinCatc = null;
 
-span_select_prod.onclick = () => {
-    modal_select_prod.style.display = "none";
-}
-
-span_select_prod.ontouchend = (e) => {
-    e.preventDefault();
-    modal_select_prod.style.display = "none";
-}
+closeModal(modal_select_prod, span_select_prod);
 
 dragElement(modal_select_prod);
 resizeModalWindow(modal_resize, "whModalSelectProdUnic", "Размеры окна выбора изделия");
@@ -33,6 +26,8 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcGetProductsTreeSelectUnic = () => {
     funcGetResize();
+    openModal(modal_select_prod);
+
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"1000"};
     funcCommand(body, funcProcessGetProductsTreeSelectUnic);
 }
@@ -69,6 +64,7 @@ function funcProcessGetProductsSelectUnic(result, respobj){
             result = confirm("Подтверждаете выбор изделия?");
             if(result === true){
                 modal_select_prod.style.display = "none";
+                updateOverlay();
 
                 let button = document.getElementById(localStorage.getItem("button_select_product_unic_id"));
                 button.value     = elem.value;

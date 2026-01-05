@@ -3,6 +3,9 @@ import {funcInfoDocpostOpenModal} from '../../modal/__docpost/modal__docpost.js'
 import {customSelect, customSortSelect} from '../../select/select.js';
 import {funcInfoDocpostSubstdocOpenModal} from '../../modal/__docpost-substdoc/modal__docpost-substdoc.js';
 
+let sort = document.getElementById('sort_docpost');
+let sort_second = document.getElementById('sort_docpost_second');
+
 export const funcGetDocpost = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "filt":`${JSON.stringify(filt_docpost)}`};
     funcCommand(body, funcProcessGetDocpost);
@@ -60,13 +63,13 @@ const addDocpostRow =
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellInfo        = newRow.insertCell(0);  cellInfo.classList        = "td td_nowrap-content"; cellInfo.style.width = "150px";
+    let cellInfo        = newRow.insertCell(0);  cellInfo.classList        = "td td_nowrap-content";
     //let cellStatdocName = newRow.insertCell(1);  cellStatdocName.classList = "td";
-    let cellNumb        = newRow.insertCell(1);  cellNumb.classList        = "td";
-    let cellDate        = newRow.insertCell(2);  cellDate.classList        = "td";
-    let cellNumb1c      = newRow.insertCell(3);  cellNumb1c.classList      = "td";
-    let cellDate1c      = newRow.insertCell(4);  cellDate1c.classList      = "td";
-    let cellContrName   = newRow.insertCell(5);  cellContrName.classList   = "td"; cellContrName.style.width = "300px";
+    let cellNumb        = newRow.insertCell(1);  cellNumb.classList        = "td td__text_align_center";
+    let cellDate        = newRow.insertCell(2);  cellDate.classList        = "td td__text_align_center";
+    let cellNumb1c      = newRow.insertCell(3);  cellNumb1c.classList      = "td td__text_align_center";
+    let cellDate1c      = newRow.insertCell(4);  cellDate1c.classList      = "td td__text_align_center";
+    let cellContrName   = newRow.insertCell(5);  cellContrName.classList   = "td";
     let cellStorageName = newRow.insertCell(6);  cellStorageName.classList = "td";
     let cellUserName    = newRow.insertCell(7);  cellUserName.classList    = "td";
     let cellPrim        = newRow.insertCell(8);  cellPrim.classList        = "td";
@@ -91,9 +94,9 @@ const addDocpostRow =
 
     //cellStatdocName.innerHTML = statdocName;
     cellNumb.innerHTML        = numb;
-    cellDate.innerHTML        = formatDate(date).split(' ')[1];
+    cellDate.innerHTML        = formatDate(date, false).split('<br>')[0];
     cellNumb1c.innerHTML      = numb1c;
-    cellDate1c.innerHTML      = formatDate(date1c).split(' ')[1];
+    cellDate1c.innerHTML      = formatDate(date1c, false).split('<br>')[0];
     cellContrName.innerHTML   = contrName;
     cellStorageName.innerHTML = storageName;
     cellUserName.innerHTML    = userName;
@@ -103,49 +106,73 @@ const addDocpostRow =
     cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-docpost${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
-customSortSelect("sort_docpost");
-const dropdown = document.getElementById("sort_docpost");
-const options  = dropdown.querySelectorAll('li');
-options.forEach(option => {
-    option.addEventListener('click', () => {
-        switch (option.getAttribute('data-value')){
-            case '1':
-                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
-                funcCommand(body1, funcProcessGetDocpost);
-            break;
-            case '2':
-                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
-                funcCommand(body2, funcProcessGetDocpost);
-            break;
-            case '3':
-                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
-                funcCommand(body3, funcProcessGetDocpost);
-            break;
-            case '4':
-                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
-                funcCommand(body4, funcProcessGetDocpost);
-            break;
-        }
-    })
-})
+const selectSortEvent = (dropdown) => {
+    const options  = dropdown.querySelectorAll('li');
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            options.forEach(elem => {
+                elem.style.color = 'var(--font-color)';
+            })
 
-customSelect('docpost_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
-customSelect('docpost_status_customDropdown', JSON.parse(localStorage.getItem("statusdoc_list")), 'статус');
+            switch (option.getAttribute('data-value')){
+                case '1':
+                    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                    funcCommand(body1, funcProcessGetDocpost);
+                break;
+                case '2':
+                    let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"numb1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                    funcCommand(body2, funcProcessGetDocpost);
+                break;
+                case '3':
+                    let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "sort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                    funcCommand(body3, funcProcessGetDocpost);
+                break;
+                case '4':
+                    let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"docpost", "count":"10000", "asort":"date1c", "filt":`${JSON.stringify(filt_docpost)}`};
+                    funcCommand(body4, funcProcessGetDocpost);
+                break;
+            }
+            
+            option.style.color = 'var(--font-color-modal-blue)';
+            document.getElementById('modal-overlay').style.display = 'none';
+        })
+    })
+}
+
+if(window.innerWidth <= 1024){
+    sort.style.display = "block";
+    sort_second.style.display = "none";
+    customSortSelect("sort_docpost");
+    selectSortEvent(document.getElementById("sort_docpost"));
+} else {
+    sort.style.display = "none";
+    sort_second.style.display = "block";
+    customSortSelect("sort_docpost_second");
+    selectSortEvent(document.getElementById("sort_docpost_second"));
+}
+
+customSelect('docpost_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'Контрагент');
+customSelect('docpost_status_customDropdown', JSON.parse(localStorage.getItem("statusdoc_list")), 'Статус');
 
 let filt_docpost = [], filt_1 = {fld: "uincontr"}, filt_2 = {fld: "uinstatus"};
 
 listenCustomSelect("docpost_contr_customDropdown", filt_1, [], filt_docpost);
 listenCustomSelect("docpost_status_customDropdown", filt_2, [], filt_docpost);
 
+const btn_filter_open = document.querySelector('[data-target="select-sort-docpost"]').firstElementChild;
+
 document.getElementById("button_docpost_choose").addEventListener("click", () => {
     sendFilt(filt_docpost, 'tb_docpost', 'docpost', funcProcessGetDocpost);
+    btn_filter_open.classList.add('active');
 })
 
 document.getElementById("button_docpost_reset").addEventListener("click", () => {
     filt_docpost.length = 0;
-    clearCustomSelect('docpost_contr_customDropdown', 'контрагента');
-    clearCustomSelect('docpost_status_customDropdown', 'статус');
+    clearCustomSelect('docpost_contr_customDropdown', 'Контрагент');
+    clearCustomSelect('docpost_status_customDropdown', 'Статус');
     funcGetDocpost();
+
+    btn_filter_open.classList.remove('active');
 })
 
 document.getElementById("founddoc_button").onclick = () => {
@@ -157,10 +184,39 @@ document.getElementById("founddoc_button").onclick = () => {
 document.getElementById("founddoc_reset_button").onclick = () => {
     funcGetDocpost();
     document.getElementById('founddoc_name').value = '';
-    clearCustomSelect('docpost_contr_customDropdown', 'контрагента');
-    clearCustomSelect('docpost_status_customDropdown', 'статус');
+    clearCustomSelect('docpost_contr_customDropdown', 'Контрагент');
+    clearCustomSelect('docpost_status_customDropdown', 'Статус');
+
+    document.getElementById('founddoc_name').classList.remove('input__type-text_search-focus');
+    document.getElementById("founddoc_button").classList.add('modal__input-wrapper_display-none');
+    document.getElementById("founddoc_reset_button").classList.add('modal__input-wrapper_display-none');
 }
 
 document.getElementById('docpost_substdoc_button').onclick = () => {
     funcInfoDocpostSubstdocOpenModal();
 }
+
+document.getElementById('founddoc_name').addEventListener('focus', (elem) => {
+    document.getElementById("founddoc_button").classList.remove('modal__input-wrapper_display-none');
+    elem.target.classList.add('input__type-text_search-focus');
+})
+
+document.getElementById('founddoc_name').addEventListener('blur', (elem) => {
+    if(elem.target.value != ''){
+        document.getElementById("founddoc_button").classList.remove('modal__input-wrapper_display-none');
+        document.getElementById("founddoc_reset_button").classList.remove('modal__input-wrapper_display-none');
+        elem.target.classList.add('input__type-text_search-focus');
+    } else {
+        document.getElementById("founddoc_button").classList.add('modal__input-wrapper_display-none');
+        document.getElementById("founddoc_reset_button").classList.add('modal__input-wrapper_display-none');
+        elem.target.classList.remove('input__type-text_search-focus');
+    }
+})
+
+document.getElementById('founddoc_name').addEventListener('input', (elem) => {
+    if(elem.target.value != ''){
+        document.getElementById("founddoc_reset_button").classList.remove('modal__input-wrapper_display-none');
+    } else {
+        document.getElementById("founddoc_reset_button").classList.add('modal__input-wrapper_display-none');
+    }
+})

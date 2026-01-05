@@ -5,9 +5,12 @@ import {TreeBuilder} from '../../_tree/tree.js';
 import {customSortSelect} from '../../select/select.js';
 import {resizeModalWindow} from '../../modal/modal.js';
 
+let wrapper_prod_table = document.getElementById("wrapper_prod_table");
+let tabcontent_close = document.querySelector('.button__control_tabcontent-close-storage-main');
+
 resizeModalWindow(wrapper_prod_tree, "whComponentTree", "Размеры окна дерева комплектующих");
 resizeModalWindow(wrapper_prod_table, "whComponentTable", "Размеры окна таблицы комплектующих"); 
-resizeModalWindow(wrapper_prod_found, "whComponentFound", "Размеры окна поиска комплектующих");
+//resizeModalWindow(wrapper_prod_found, "whComponentFound", "Размеры окна поиска комплектующих");
 
 /* настройка размера окна */
 const funcGetResizeTree = () => {
@@ -27,11 +30,11 @@ const funcGetResizeTb = () => {
 }
 
 const funcProcessGetResizeTb = (result, respobj) => {
-    document.getElementById("wrapper_prod_table").style.width  = `${respobj.answ.val[0]}px`;
-    document.getElementById("wrapper_prod_table").style.height = `${respobj.answ.val[1]}px`;
+    wrapper_prod_table.style.width  = `${respobj.answ.val[0]}px`;
+    wrapper_prod_table.style.height = `${respobj.answ.val[1]}px`;
 }
 
-/* настройка размера окна */
+/* настройка размера окна 
 const funcGetResizeFound = () => {
     let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"get", "obj":"webopt", "name":"whComponentFound", "uinuser":`${localStorage.getItem('user_uin')}`};
     funcCommand(body, funcProcessGetResizeFound)
@@ -40,12 +43,12 @@ const funcGetResizeFound = () => {
 const funcProcessGetResizeFound = (result, respobj) => {
     document.getElementById("wrapper_prod_found").style.width  = `${respobj.answ.val[0]}px`;
     document.getElementById("wrapper_prod_found").style.height = `${respobj.answ.val[1]}px`;
-}
+}*/
 
 export const funcGetProductsTree = () => {
     funcGetResizeTree();
     funcGetResizeTb();
-    funcGetResizeFound();
+    //funcGetResizeFound();
     let body = {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
     funcCommand(body, funcProcessGetProductsTree);
 }
@@ -75,6 +78,17 @@ const funcProcessGetProducts = (result, respobj) => {
     let row_head   = table.insertRow(-1);
     row_head.innerHTML = `<tr class="tr"><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td_buttons-control"><button class="button__control button__control_add-prod-tree"><img class="button__control__img" src="assets/images/create.svg" title="Создать"></button></td></tr>`;
 
+    if(tabcontent_close != null){
+        if(window.innerWidth <= 1024){
+            tabcontent_close.style.display = "flex";
+            tabcontent_close.addEventListener('click', () => {
+                wrapper_prod_table.style.display = "none";
+            })
+        } else {
+            tabcontent_close.style.display = "none";
+        }
+    }
+    
     for (let key in respobj.answ){
         let set   = respobj.answ[key];
         let name  = set.name;
@@ -84,6 +98,10 @@ const funcProcessGetProducts = (result, respobj) => {
         let del   = set.del;
         let uin   = set.uin;
         addProducts(name, fship, ost, fset, del, uin, tb_id);
+    }
+
+    if(window.innerWidth <= 1024){
+        wrapper_prod_table.style.display = "block";
     }
 
     // функция удаления
@@ -128,17 +146,15 @@ const addProducts = (name, fship, ost, fset, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName  = newRow.insertCell(0); cellName.classList  = "td td_nowrap-content";
+    let cellName  = newRow.insertCell(0); cellName.classList  = "td";
     let cellType  = newRow.insertCell(1); cellType.classList  = "td";
     let cellFship = newRow.insertCell(2); cellFship.classList = "td td__text_align_center";
     let cellBtn   = newRow.insertCell(3); cellBtn.classList   = "td";
 
-    cellName.innerHTML = `<button class="button__control button__control_modal-product" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/info.svg" title="Инфо"></button> ${name}`;
+    cellName.innerHTML = `<div class="button__control_wrapper"><button class="button__control button__control_modal-product" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/info.svg" title="Инфо"></button><span>${name}</span></div>`;
     cellName.id = `product_name_${uin}`;
     cellFship.innerHTML = ost;
-    /*fship === 1 ? cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_${uin}" disabled checked><label for="chb_fship_${uin}"></label>` : 
-                    cellFship.innerHTML = `<input class="checkbox" type="checkbox" id="chb_fship_${uin}" disabled><label for="chb_fship_${uin}"></label>`;*/
-    cellType.innerHTML = fset === 1 ? "Комлект" : "Изделие";
+    cellType.innerHTML = fset === 1 ? "Комлект" : "Сбор. ед.";
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_mdel button__control_mdel-products${bx_color}" value="${uin}" name="${fset}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button><button class="button__control button__control_transfer-products" value="${uin}" name="${name}" data-value="${fset}"><img class="button__control__img" src="assets/images/moving.svg" title="Переместить"></button>`;
@@ -149,6 +165,10 @@ const dropdown = document.getElementById("sort_storage_main");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"1000", "sort":"name"};
@@ -159,5 +179,8 @@ options.forEach(option => {
                 funcCommand(body2, funcProcessGetProductsTree);
             break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })

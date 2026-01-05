@@ -41,7 +41,7 @@ export class TreeBuilder {
         const root_branch = this.createBranch(root_item);
         this.container.append(root_branch);
 
-        this.initStorage()
+        if(window.innerWidth >= 1024) this.initStorage(); 
 
         if(this.options.includes("contextmenu")){this.contextMenu()} else {this.contextMenuDiv = null};
     }
@@ -85,8 +85,13 @@ export class TreeBuilder {
 
         const textSpan       = document.createElement('span');
         textSpan.className   = 'tree-catalog__text';
-        textSpan.textContent = `${item.text} (${item.contentNum})`;
+        textSpan.textContent = `${item.text}`;
         itemHeader.appendChild(textSpan);
+
+        const countSpan       = document.createElement('span');
+        countSpan.className   = 'tree-catalog__text tree-catalog__count';
+        countSpan.textContent = `${item.contentNum === 0 ? '' : item.contentNum}`;
+        itemHeader.appendChild(countSpan);
 
         const childrenContainer = document.createElement('div');
         childrenContainer.className = 'tree-catalog__children-container';

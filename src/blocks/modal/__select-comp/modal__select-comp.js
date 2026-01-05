@@ -1,5 +1,5 @@
 import {funcCommand, clearTableAll, addToDropdown, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, updateOverlay} from '../modal.js';
 import {funcProcessInfoComponentsModalAdd} from '../__info-comp/modal__info-comp.js';
 import {funcFoundComponents, funcFoundComponents1C} from '../../table/__comp-found/table__comp-found.js';
 import {funcFoundPlusOpenModal} from '../__found-plus/modal__found-plus.js';
@@ -7,21 +7,25 @@ import {funcInfoComponentsOpenModal} from '../__info-comp/modal__info-comp.js';
 import {funcInfoComponentsTransferOpenModal} from '../__transfer-comp/modal__transfer-comp.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
-let modal_select_comp = document.getElementById("modal_select_component");
-let span_select_comp  = document.getElementById("close_component_select");
+let modal_select_comp   = document.getElementById("modal_select_component");
+let span_select_comp    = document.getElementById("close_component_select");
 let modal_select_resize = document.getElementById('modal_select_component_resize');
 
 let uinCatc = null;
 
 span_select_comp.onclick = () => {
-    document.getElementById('modal_select_component_tree').innerHTML = '';
     modal_select_comp.style.display = "none";
+    updateOverlay();
+
+    document.getElementById('modal_select_component_tree').innerHTML = '';
     removeOptionsSetValue("found_select", "-- Выберите тип --");
 }
 
 span_select_comp.ontouchend = (e) => {
-    document.getElementById('modal_select_component_tree').innerHTML = '';
     modal_select_comp.style.display = "none";
+    updateOverlay();
+    
+    document.getElementById('modal_select_component_tree').innerHTML = '';
     removeOptionsSetValue("found_select", "-- Выберите тип --");
 }
 
@@ -81,7 +85,7 @@ function funcProcessGetComponentsSelect(result, respobj){
     
     let tableRef       = document.getElementById(tb_id);
     let row_head       = tableRef.insertRow(0);
-    row_head.innerHTML = `<tr class="tr"><td></td><td></td><td></td><td></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt="" title="Создать"></button></td></tr>`;
+    row_head.innerHTML = `<tr class="tr"><td class="td"></td><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-select" value="${uinCatc}"><img class="button__control__img" src="assets/images/plus.svg" alt="" title="Создать"></button></td></tr>`;
 
     let button_control_add_comp_tree = document.querySelector(".button__control_add-comp-select");
     button_control_add_comp_tree.addEventListener("click", (elem) => {
@@ -103,6 +107,7 @@ function funcProcessGetComponentsSelect(result, respobj){
             result = confirm("Подтверждаете выбор комплектующего?");
             if(result === true){
                 modal_select_comp.style.display = "none";
+                updateOverlay();
 
                 let button = document.getElementById(localStorage.getItem("button_select_component_id"));
                 button.value     = elem.value;

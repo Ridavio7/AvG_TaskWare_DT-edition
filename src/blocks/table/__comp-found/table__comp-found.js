@@ -103,7 +103,7 @@ const addFoundComponents = (name, name1c, uin, nametype, uincatC, found_table) =
     if(name1c != undefined){
         cellName.innerHTML = `<div>TW: ${name}</div><div>1C: ${name1c}</div>`;
     } else {
-        cellName.innerHTML = name;
+        cellName.innerHTML = `<div class="button__control_wrapper"><span>${name}</span></div>`;
     }
 
     cellBtn.innerHTML  = `<button class="button__control button__control_found-comp" value="${uincatC}" name="${uin}"><img class="button__control__img" src="assets/images/found_it.svg" title="Найти элемент"></button>`;
@@ -135,14 +135,18 @@ export const funcFindAnchor = (value, name) => {
         }
     }
 
+    if(window.innerWidth <= 1024){
+        wrapper_comp_found.style.display = "none";
+    }
+
     setTimeout(() => {
         let tr = document.getElementById(`${found_input_id}${name}`);
         tr .parentElement.className += " tr_mark";
         tr .parentElement.scrollIntoView({behavior: "smooth", block: "center", inline: "start"});
-    }, 300)
+    }, 500)
 
     setTimeout(() => {
         let tr = document.getElementById(`${found_input_id}${name}`);
         tr.parentElement.className = tr.parentElement.className.replace(" tr_mark", "");
-    }, 1000)
+    }, 2000)
 }

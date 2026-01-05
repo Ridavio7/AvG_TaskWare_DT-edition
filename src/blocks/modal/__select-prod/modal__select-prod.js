@@ -1,22 +1,15 @@
 import {funcCommand, clearTableAll, responseProcessor} from '../../../js/common/common.js.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal, updateOverlay} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 import {funcProcessInfoProductsModalAdd} from '../../modal/__info-prod/modal__info-prod.js';
 
-let modal_select_prod = document.getElementById("modal_select_products");
-let span_select_prod  = document.getElementById("close_products_select");
+let modal_select_prod    = document.getElementById("modal_select_products");
+let span_select_prod     = document.getElementById("close_products_select");
 let modal_select__resize = document.getElementById('modal_select_products_resize');
 
 let uinCatc = null;
 
-span_select_prod.onclick = () => {
-    modal_select_prod.style.display = "none";
-}
-
-span_select_prod.ontouchend = (e) => {
-    e.preventDefault();
-    modal_select_prod.style.display = "none";
-}
+closeModal(modal_select_prod, span_select_prod);
 
 dragElement(modal_select_prod);
 resizeModalWindow(modal_select__resize, "whModalSelectProd", "Размеры окна выбора изделия");
@@ -34,6 +27,8 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcGetProductsTreeSelect = () => {
     funcGetResize();
+    openModal(modal_select_prod);
+
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catP", "count":"100"};
     funcCommand(body, funcProcessGetProductsTreeSelect);
 }
@@ -79,6 +74,7 @@ function funcProcessGetProductsSelect(result, respobj){
             result = confirm("Подтверждаете выбор изделия?");
             if(result === true){
                 modal_select_prod.style.display = "none";
+                updateOverlay();
 
                 let button = document.getElementById(localStorage.getItem("button_select_product_id"));
                 button.value     = elem.value;

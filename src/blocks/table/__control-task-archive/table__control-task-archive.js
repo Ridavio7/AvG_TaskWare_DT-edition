@@ -3,6 +3,9 @@ import {TreeTaskBuilder} from '../../_tree/treeTask.js';
 import {funcGetTasksArchiveSteps} from '../../modal/__info-task/modal__info-task.js';
 import {resizeModalWindow} from '../../modal/modal.js';
 
+let wrapper_tree_tasks_archive = document.getElementById("wrapper_tree_tasks_archive");
+let tabcontent_close = document.querySelector('.button__control_tabcontent-close-archTask');
+
 resizeModalWindow(tb_tasks_archive, "whTaskTable");
 resizeModalWindow(wrapper_tree_tasks_archive, "whTaskTree"); 
 
@@ -24,8 +27,8 @@ const funcGetResizeTree = () => {
 }
 
 const funcProcessGetResizeTree = (result, respobj) => {
-    document.getElementById("wrapper_tree_tasks_archive").style.width  = `${respobj.answ.val[0]}px`;
-    document.getElementById("wrapper_tree_tasks_archive").style.height = `${respobj.answ.val[1]}px`;
+    wrapper_tree_tasks_archive.style.width  = `${respobj.answ.val[0]}px`;
+    wrapper_tree_tasks_archive.style.height = `${respobj.answ.val[1]}px`;
 }
 
 export const funcGetTasksArchive = () => {
@@ -55,43 +58,58 @@ const funcProcessGetTasksArchive = (result, respobj) => {
             funcGetTasksArchiveTree(elem.value);
             elem.classList.add('button__control_active');
             elem.parentElement.parentElement.classList.add('tr_mark');
+
+            if(window.innerWidth <= 1025){
+                wrapper_tree_tasks_archive.style.display = "block";
+                tabcontent_close.style.display = "flex";
+            }
         })
     })
 }
 
 function buildStructure(data, container) {
     for (const item of data) {
-        const title = document.createElement('h3');
-        title.textContent = item.nameshablon;
-        title.classList.add('table__title');
-        container.appendChild(title);
+        const title_tb = document.createElement('table');
+        title_tb.classList = 'table table_no-border-radius';
+
+        const title_tr = document.createElement('tr');
+        title_tr.classList.add('tr');
+
+        const title_td = document.createElement('td');
+        title_td.classList = 'td td__text_align_center td_font-color-active';
+        title_td.innerHTML = item.nameshablon;
+
+        title_tr.append(title_td);
+        title_tb.append(title_tr);
+
+        container.appendChild(title_tb);
 
         const table = document.createElement('table');
-        table.classList = 'table table_no-rotation';
+        table.classList = 'table  table_no-border-radius';
 
         const tbody = document.createElement('tbody');
         for (const task of item.tasks) {
             const tr = document.createElement('tr');
-            tr.classList.add('tr');
+            tr.classList = 'tr tr_hover-btn';
 
             const tdStatus = document.createElement('td');
-            tdStatus.classList.add('td');
+            tdStatus.classList = 'td td_tree-status';
             tdStatus.innerHTML = `<button class="button__control button__control_action button__control_action_status button__control_modal-tasks-archive-catTask" value="${task.uin}">${setStatus(task.status.uin, task.fpart, 'control-task__img-status')}</button>`
 
             const tdName = document.createElement('td');
             tdName.classList.add('td');
-            tdName.innerHTML = `<button class="button__control button__control_action button__control_action_text button__control_modal-tasks-archive-catTask" value="${task.uin}">${task.name}</button>`;
+            tdName.innerHTML = `<button class="button__control button__control_action button__control_action_text button__control_action_text-arch button__control_modal-tasks-archive-catTask" value="${task.uin}">${task.name}</button>`;
 
-            const tdDateBegin = document.createElement('td');
+            /*const tdDateBegin = document.createElement('td');
             tdDateBegin.classList.add('td');
             tdDateBegin.innerHTML = `<button class="button__control button__control_action button__control_action_date button__control_modal-tasks-archive-catTask" value="${task.uin}">${formatDate(task.datebegin)}</button>`;
-
+            
             const tdDateEnd = document.createElement('td');
             tdDateEnd.classList.add('td');
             tdDateEnd.innerHTML = `<button class="button__control button__control_action button__control_action_date button__control_modal-tasks-archive-catTask" value="${task.uin}">${formatDate(task.dateend)}</button>`;
-
+            */
             const tdDateMove = document.createElement('td');
-            tdDateMove.classList.add('td');
+            tdDateMove.classList = 'td td_width-5';
             tdDateMove.innerHTML = `<button class="button__control button__control_action button__control_action_date button__control_modal-tasks-archive-catTask" value="${task.uin}">${formatDate(task.datemove)}</button>`;
 
             if(task.fproblem != 0){
@@ -103,8 +121,8 @@ function buildStructure(data, container) {
 
             tr.appendChild(tdStatus);
             tr.appendChild(tdName);
-            tr.appendChild(tdDateBegin);
-            tr.appendChild(tdDateEnd);
+            //tr.appendChild(tdDateBegin);
+            //tr.appendChild(tdDateEnd);
             tr.appendChild(tdDateMove);
 
             tbody.appendChild(tr);
@@ -124,8 +142,19 @@ const funcProcessGetTasksArchiveTree = (result, respobj) => {
     if( result === 0 ) return;
     console.log("Дерево архива:", respobj);
 
-    localStorage.setItem("uinTaskArchive", respobj.answ.uinTask)
+    localStorage.setItem("uinTask", respobj.answ.uinTask)
 
     const tree = new TreeTaskBuilder('tree_tasks_archive', 'dirTaskArch', 'catTaskArch', funcGetTasksArchiveTree, funcGetTasksArchiveSteps, '', funcGetTasksArchive, []);
     tree.build(respobj.answ);
+}
+
+if(tabcontent_close != null){
+    if(window.innerWidth <= 1024){
+        tabcontent_close.style.opacity = "1";
+        tabcontent_close.addEventListener('click', () => {
+            wrapper_tree_tasks_archive.style.display = "none";
+        })
+    } else {
+        tabcontent_close.style.opacity = "0";
+    }
 }

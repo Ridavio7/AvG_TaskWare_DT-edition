@@ -91,6 +91,10 @@ const dropdown = document.getElementById("sort_colors");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"colors", "count":"5000", "sort":"name"};
@@ -109,5 +113,8 @@ options.forEach(option => {
                 funcCommand(body4, funcProcessGetColors);
             break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })

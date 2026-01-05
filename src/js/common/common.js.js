@@ -2,6 +2,16 @@ import {showNotification} from '../../blocks/modal/__notification/modal__notific
 
 const url = "https://apitw.avantguard.pro:32100/json";
 
+window.addEventListener('resize', () => {
+    if(window.innerWidth <= 1400){
+        document.body.classList.add("collapsed");
+    }
+
+    if(window.innerWidth <= 1024){
+        document.body.classList.remove("collapsed");
+    }
+})
+
 export const funcCommand = (body, callbackfunc, func) => {
     fetch(url, {
         method: 'POST',
@@ -28,12 +38,61 @@ export const funcCommand = (body, callbackfunc, func) => {
 
 export const funcProcessOnlyInfo = (result, respobj) => {
     console.log(respobj);
+    if(respobj.succ == -113) { window.location = 'https://dev.proektit.ru/AvG_TaskWare/index.html' };
     responseProcessor(result, respobj.succ);
 }
 
 export const funcProcessOnlyConsole = (result, respobj) => {
     if( result === 0 ) return;
     console.log(respobj);
+    if(respobj.succ == -113) { window.location = 'https://dev.proektit.ru/AvG_TaskWare/index.html' };
+}
+
+export const funcShowTabs = () => {
+    const stored = localStorage.getItem('user_bm');
+
+    let numbersArray = [];
+    try {
+        numbersArray = stored ? JSON.parse(stored) : [];
+    } catch (e) {
+        console.error('Ошибка при парсинге данных из localStorage:', e);
+        numbersArray = [];
+    }
+
+    console.log(stored)
+    if(!numbersArray.includes(0)){
+        // мои задачи
+        if (!numbersArray.includes(1)) {        
+            document.querySelectorAll('a[href="tasks.html"]').forEach(el => { el.style.display = 'none' });
+        }
+
+        // бизнесс управление
+        if (numbersArray.includes(2)) {
+            if(document.URL.includes('buisness.html')){
+                !numbersArray.includes(4) ? document.getElementById('link_shipment').style.display    = 'none' : '';
+                !numbersArray.includes(5) ? document.getElementById('link_production').style.display  = 'none' : '';
+                !numbersArray.includes(6) ? document.getElementById('link_provider').style.display    = 'none' : '';
+                !numbersArray.includes(7) ? document.getElementById('link_storage').style.display     = 'none' : '';
+                !numbersArray.includes(8) ? document.getElementById('link_components').style.display  = 'none' : '';
+                !numbersArray.includes(9) ? document.getElementById('link_contragents').style.display = 'none' : '';
+            }
+        } else {
+            document.querySelectorAll('a[href="buisness.html"]').forEach(el => { el.style.display = 'none' });
+        }
+
+        if (numbersArray.includes(3)) {
+            if(document.URL.includes('control.html')){
+                !numbersArray.includes(10) ? document.getElementById('link_tasks').style.display     = 'none' : '';
+                !numbersArray.includes(11) ? document.getElementById('link_shablons').style.display  = 'none' : '';
+                !numbersArray.includes(12) ? document.getElementById('link_tasksArch').style.display = 'none' : '';
+                !numbersArray.includes(13) ? document.getElementById('link_users').style.display     = 'none' : '';
+                !numbersArray.includes(14) ? document.getElementById('link_settings').style.display  = 'none' : '';
+                !numbersArray.includes(15) ? document.getElementById('link_directory').style.display = 'none' : '';
+            }  
+        } else {
+            document.querySelectorAll('a[href="control.html"]').forEach(el => { el.style.display = 'none' });
+        }
+    }
 }
 
 export const responseProcessor = (res, respobj) => {
@@ -50,8 +109,9 @@ export const responseProcessor = (res, respobj) => {
             break
         case -113:
             showNotification('info', 'Предупреждение!', 'Пройдите авторизацию на сайте');
+            console.log("!!!!!")
             result = true;
-            window.location = 'index.html';
+            window.location = 'https://dev.proektit.ru/AvG_TaskWare/index.html';
             break
         case 0:
             showNotification('error', 'Ошибка!', 'Произошла ошибка при выполнении');
@@ -63,6 +123,10 @@ export const responseProcessor = (res, respobj) => {
             break
         case -10:
             showNotification('warning', 'Предупреждение!', 'Превышение количества выпуска продукции');
+            result = false;
+            break
+        case -16:
+            showNotification('warning', 'Предупреждение!', 'Изделие или Тех. операция не заданы');
             result = false;
             break
         case -11:
@@ -152,7 +216,7 @@ export const insertDataInSelect = (select, text, uin, arr_obj) => {
 export const makeSelect = 
 (determinant, uin, optionText, optionUin, list, className, cell, disabl = false) => {
     let div = document.createElement("div");
-    div.classList = 'custom-select';
+    div.classList = 'custom-select custom-select_width-100';
 
     let select = document.createElement("select");
     select.id = `${determinant}_${uin}`;
@@ -290,7 +354,7 @@ export const listenCustomSelect = (select_id, filt, val, filt_main) => {
             if (checkbox.checked) {
                 const dataValue = checkbox.getAttribute('data-value');
                 if (dataValue !== null) {
-                val.push(dataValue);
+                    val.push(dataValue);
                 }
             }
         })
@@ -392,6 +456,14 @@ export const sendFiltAnalisys = (filt, tb_id, obj, func) => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "count":"5000", "filt":`${filt_str}`, "asort": "uin"};
         console.log(body)
     funcCommand(body, func);
+
+    if(window.innerWidth <= 1024){
+        document.querySelectorAll('.button__control_tabcontent-filter-close').forEach(child => {
+            const targetId = child.dataset.target;
+            const targetBlock = document.getElementById(targetId);
+            if (targetBlock) { targetBlock.style.display = 'none' };
+        })
+    }
 }
 
 /* фильтр для анализа очистка */
@@ -417,6 +489,10 @@ export const sortAnalisys = (selec, filt, obj, func) => {
 
     options.forEach(option => {
         option.addEventListener('click', () => {
+            options.forEach(elem => {
+                elem.style.color = 'var(--font-color)';
+            })
+
             switch (option.getAttribute('data-value')){
                 case '1':
                     let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":obj, "filt":`${JSON.stringify(filt_filter)}`, "count":"5000", "sort":"uin"};
@@ -443,15 +519,10 @@ export const sortAnalisys = (selec, filt, obj, func) => {
                     funcCommand(body6, func);
                 break;
             }
+            option.style.color = 'var(--font-color-modal-blue)';
+            document.getElementById('modal-overlay').style.display = 'none';
         })
     })
-
-    document.getElementById(selec).addEventListener('change', function(){
-        
-        switch (option){
-            
-        }
-    });
 }
 
 /* отправка отфильтрованного запроса */
@@ -459,8 +530,15 @@ export const sendFilt = (filt, tb_id, obj, func) => {
     let filt_str = JSON.stringify(filt);
     clearTable(tb_id);
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj": `${obj}`, "count":"5000", "filt":`${filt_str}`, "asort":"uin"};
-    console.log(body)
     funcCommand(body, func);
+
+    if(window.innerWidth <= 1024){
+        document.querySelectorAll('.button__control_tabcontent-filter-close').forEach(child => {
+            const targetId = child.dataset.target;
+            const targetBlock = document.getElementById(targetId);
+            if (targetBlock) { targetBlock.style.display = 'none' };
+        })
+    }
 }
 
 /* очистка фильтра */
@@ -504,10 +582,10 @@ export const clearCustomSelect = (select_id, text) => {
     let select = document.getElementById(select_id);
     if(select.firstChild.nodeName === "#text"){
         select.firstChild.nextElementSibling.textContent = '';
-        select.firstChild.nextElementSibling.insertAdjacentHTML('beforeend', `Выберите ${text} <span class="select-custom__icon"></span>`);
+        select.firstChild.nextElementSibling.insertAdjacentHTML('beforeend', `<span class="select-custom__icon select-custom__icon-filter"></span> ${text}`);
     } else {
         select.firstChild.textContent = '';
-        select.firstChild.insertAdjacentHTML('beforeend', `Выберите ${text} <span class="select-custom__icon"></span>`);
+        select.firstChild.insertAdjacentHTML('beforeend', `<span class="select-custom__icon select-custom__icon-filter"></span> ${text}`);
     }
     
     let inputs = select.querySelectorAll("input");
@@ -588,6 +666,8 @@ export const returnTabs = () => {
     document.getElementById(localStorage.getItem("sidebar_tab_active")).click();
     /* помечаем кнопки вкладок контента */
     //document.getElementsByClassName(localStorage.getItem("tabcontent_tab_active"))[0].click();
+
+    
 }
 
 export const updateDirectory = () => {
@@ -609,19 +689,24 @@ export const updateDirectory = () => {
         { obj: "statusdoc", callback: processResponse("statusdoc") },
         //{ obj: "users", callback: processResponse("users") },
         { obj: "prof", callback: processResponse("prof") },
+        { obj: "moves", callback: processResponse("moves") },
         { obj: "contents", callback: processResponse("contents") },
         { obj: "startstep", callback: processResponse("startstep") },
         { obj: "statustask", callback: processResponse("statustask") },
-        { obj: "techproc", callback: processResponse("techproc") }
+        { obj: "techproc", callback: processResponse("techproc") },
+        { obj: "bmlist", callback: processResponse("bmlist") },
+        { obj: "alltasks", callback: processResponse("alltasks") },
+        { obj: "alltasks", callback: processResponse("alltasks_active"), reg: "active"  }
     ];
 
-    requests.forEach(({ obj, callback, sort }) => {
+    requests.forEach(({ obj, callback, sort, reg }) => {
         const body = { 
             user, 
             meth: "view", 
             obj, 
             count: "5000",
-            ...(sort && { sort })
+            ...(sort && { sort }),
+            ...(reg && { reg })
         };
         funcCommand(body, callback);
     });
@@ -637,22 +722,24 @@ export const updateDirectory = () => {
     function usersList(result, respobj){ localStorage.setItem("users_list", JSON.stringify(respobj.answ)) };
     funcCommand({"user":`${user}`,"meth":"view","obj":"tasks","count":"5000"}, tasksList);
     function tasksList(result, respobj){ 
-        let arr = [];
-        for (let keyi in respobj.answ){
-            let obi = respobj.answ[keyi];
-            for (let keyj in obi.tasks){
-                let obj = obi.tasks[keyj];
-                arr.push(obj)
+        if(respobj.answ != undefined){
+            let arr = [];
+            for (let keyi in respobj.answ){
+                let obi = respobj.answ[keyi];
+                for (let keyj in obi.tasks){
+                    let obj = obi.tasks[keyj];
+                    arr.push(obj)
+                }
             }
+            localStorage.setItem("tasks_list", JSON.stringify(arr));
         }
-        localStorage.setItem("tasks_list", JSON.stringify(arr));
     }
 }
 
 export const treeSpanFactory = (container, data, text, style) => {
     const textSpan = document.createElement('span');
     textSpan.className = style;
-    textSpan.textContent = data != '' ? `${text}${data}` : '---';
+    textSpan.innerHTML = data != '' ? `${text}${data}` : '---';
     container.appendChild(textSpan);
 }
 
@@ -663,7 +750,7 @@ export const treeSpanFactoryStatusTree = (container, data, style) => {
     container.appendChild(textSpan);
 }
 
-export const formatDate = (dateString) => {
+export const formatDate = (dateString, img=true) => {
     const date = new Date(dateString);
 
     const day   = String(date.getDate()).padStart(2, '0');
@@ -673,10 +760,23 @@ export const formatDate = (dateString) => {
     const mins  = String(date.getMinutes()).padStart(2, '0');
 
     if(hours != 'NaN' && mins != 'NaN' && day != 'NaN' && month != 'NaN' && year != 'NaN'){
-        return `${hours}:${mins} ${day}.${month}.${year}`;
+        return `&nbsp;${day}.${month}.${year}<br>${hours}:${mins} `;
     } else {
-        return `--- -----`;
+        return `-----<br>---`;
     }
+}
+
+export const formatTime = (days, hours, minutes) => {
+    function getWordForm(number, forms) {
+        const n = Math.abs(number) % 100;
+        const n1 = n % 10;
+        if (n > 10 && n < 20) return forms[2];
+        if (n1 > 1 && n1 < 5) return forms[1];
+        if (n1 === 1) return forms[0];
+        return forms[2];
+    }
+
+    return `${days} д &nbsp;&nbsp;${hours} ч &nbsp;&nbsp;${minutes} м`;
 }
 // control-task__img-status
 export const setStatus = (status, fpart, clas) => {

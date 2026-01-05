@@ -84,7 +84,7 @@ const addPivTableppRow = (name, plan, tcard, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName  = newRow.insertCell(0); cellName.classList  = "td td__text_align_center"; cellName.innerHTML = name;
+    let cellName  = newRow.insertCell(0); cellName.classList  = "td"; cellName.innerHTML = name;
     let cellPlan  = newRow.insertCell(1); cellPlan.classList  = "td td__text_align_center"; cellPlan.innerHTML = plan;
 
     for (let j in tcard){
@@ -97,27 +97,3 @@ const addPivTableppRow = (name, plan, tcard, del, uin, tb_id) => {
         newRow.append(td);
     }
 }
-
-/*document.getElementById("sort_pivtablepp").addEventListener('change', function(){
-    clearTableAll("tb_pivtablepp");
-
-    let option = this.selectedIndex;
-    switch (option){
-        case 0:
-        let body0  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "asort":"name"};
-        funcCommand(body0, funcProcessGetPivTablepp);
-        break;
-        case 1:
-        let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "sort":"name"};
-        funcCommand(body1, funcProcessGetPivTablepp);
-        break;
-        case 2:
-        let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "asort":"uin"};
-        funcCommand(body2, funcProcessGetPivTablepp);
-        break;
-        case 3:
-        let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"pivTablepp", "count":"1000", "sort":"uin"};
-        funcCommand(body3, funcProcessGetPivTablepp);
-        break;
-    }
-});*/

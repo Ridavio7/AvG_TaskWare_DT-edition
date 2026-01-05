@@ -9,6 +9,13 @@ import {customSortSelect} from '../../select/select.js';
 import {resizeModalWindow} from '../../modal/modal.js';
 import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
 
+let wrapper_comp_tree = document.getElementById("wrapper_comp_tree");
+let wrapper_comp_table = document.getElementById("wrapper_comp_table");
+let wrapper_comp_found = document.getElementById("wrapper_comp_found");
+let tabcontent_close_comp = document.querySelector('.button__control_tabcontent-close-component');
+let tabcontent_close_comp_found = document.querySelector('.button__control_tabcontent-close-component-found');
+let tabcontent_open_found = document.querySelector('.button__control_tabcontent-open-found');
+
 resizeModalWindow(wrapper_comp_tree, "whComponentTree", "Размеры окна дерева комплектующих");
 resizeModalWindow(wrapper_comp_table, "whComponentTable", "Размеры окна таблицы комплектующих"); 
 resizeModalWindow(wrapper_comp_found, "whComponentFound", "Размеры окна поиска комплектующих");
@@ -20,8 +27,8 @@ const funcGetResizeTree = () => {
 }
 
 const funcProcessGetResizeTree = (result, respobj) => {
-    document.getElementById("wrapper_comp_tree").style.width  = `${respobj.answ.val[0]}px`;
-    document.getElementById("wrapper_comp_tree").style.height = `${respobj.answ.val[1]}px`;
+    wrapper_comp_tree.style.width  = `${respobj.answ.val[0]}px`;
+    wrapper_comp_tree.style.height = `${respobj.answ.val[1]}px`;
 }
 
 /* настройка размера окна */
@@ -31,8 +38,8 @@ const funcGetResizeTb = () => {
 }
 
 const funcProcessGetResizeTb = (result, respobj) => {
-    document.getElementById("wrapper_comp_table").style.width  = `${respobj.answ.val[0]}px`;
-    document.getElementById("wrapper_comp_table").style.height = `${respobj.answ.val[1]}px`;
+    wrapper_comp_table.style.width  = `${respobj.answ.val[0]}px`;
+    wrapper_comp_table.style.height = `${respobj.answ.val[1]}px`;
 }
 
 /* настройка размера окна */
@@ -42,8 +49,8 @@ const funcGetResizeFound = () => {
 }
 
 const funcProcessGetResizeFound = (result, respobj) => {
-    document.getElementById("wrapper_comp_found").style.width  = `${respobj.answ.val[0]}px`;
-    document.getElementById("wrapper_comp_found").style.height = `${respobj.answ.val[1]}px`;
+    wrapper_comp_found.style.width  = `${respobj.answ.val[0]}px`;
+    wrapper_comp_found.style.height = `${respobj.answ.val[1]}px`;
 }
 
 export const funcGetTasks = () => {
@@ -106,7 +113,30 @@ const funcProcessGetComponents = (result, respobj) => {
 
     let table = document.getElementById(tb_id);
     let row_head   = table.insertRow(-1);
-    row_head.innerHTML = `<tr class="tr"><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td_buttons-control"><button class="button__control button__control_add-comp-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/create.svg" title="Создать"></button></td></tr>`;
+    row_head.innerHTML = `<tr class="tr"><td class="td"></td><td class="td"></td><td class="td"></td><td class="td td__text_align_center"><button class="button__control button__control_add-comp-tree" value="${uinCatc}"><img class="button__control__img" src="assets/images/create.svg" title="Создать"></button></td></tr>`;
+
+    if(tabcontent_close_comp != null){
+        if(window.innerWidth <= 1024){
+            tabcontent_close_comp.style.display = "dlock";
+            tabcontent_close_comp.addEventListener('click', () => {
+                wrapper_comp_table.style.display = "none";
+            })
+
+            tabcontent_close_comp_found.style.display = "dlock";
+            tabcontent_close_comp_found.addEventListener('click', () => {
+                wrapper_comp_found.style.display = "none";
+            })
+
+            tabcontent_open_found.style.display = "dlock";
+            tabcontent_open_found.addEventListener('click', () => {
+                wrapper_comp_found.style.display = "block";
+            })
+        } else {
+            tabcontent_close_comp.style.display = "none";
+            tabcontent_close_comp_found.style.display = "none";
+            tabcontent_open_found.style.display = "none";
+        }
+    }
 
     for (let key in respobj.answ){
         let set    = respobj.answ[key];
@@ -117,6 +147,10 @@ const funcProcessGetComponents = (result, respobj) => {
         let del    = set.del;
         let uin    = set.uin;
         addComponents(name, fUnic, ost, typelm, del, uin, tb_id);
+    }
+
+    if(window.innerWidth <= 1024){
+        wrapper_comp_table.style.display = "block";
     }
 
     /* функция удаления */
@@ -179,16 +213,14 @@ const addComponents = (name, fUnic, ost, typelm, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName   = newRow.insertCell(0); cellName.classList   = "td td_nowrap-content";
+    let cellName   = newRow.insertCell(0); cellName.classList   = "td";
     let cellTypelm = newRow.insertCell(1); cellTypelm.classList = "td";
     let cellFUnic  = newRow.insertCell(2); cellFUnic.classList  = "td td__text_align_center";
     let cellBtn    = newRow.insertCell(3); cellBtn.classList    = "td";
 
-    cellName.innerHTML = `<button class="button__control button__control_modal-component" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" title="Инфо"></button> ${name}`;
+    cellName.innerHTML = `<div class="button__control_wrapper"><button class="button__control button__control_modal-component" value="${uin}"><img class="button__control__img" src="assets/images/info.svg" title="Инфо"></button><span>${name}</span></div>`;
     cellName.id = `component_name_${uin}`;
     cellFUnic.innerHTML = ost;
-    /*fUnic === 1 ? cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled checked><label for="chb_funic_${uin}"></label>` : 
-                  cellFUnic.innerHTML = `<input class="checkbox" type="checkbox" id="chb_funic_${uin}" disabled><label for="chb_funic_${uin}"></label>`;*/
     cellTypelm.innerHTML   = typelm;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
@@ -200,6 +232,10 @@ const dropdown = document.getElementById("sort_components");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+        
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"catC", "count":"5000", "sort":"name"};
@@ -210,5 +246,8 @@ options.forEach(option => {
                 funcCommand(body2, funcProcessGetComponentsTree);
             break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })

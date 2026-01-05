@@ -61,7 +61,7 @@ const addWeboptRow = (name, descr, show, fmode, val, del, uin, tb_id) => {
     let cellName  = newRow.insertCell(0); cellName.classList  = "td";
     let cellDescr = newRow.insertCell(1); cellDescr.classList = "td";
     let cellShow  = newRow.insertCell(2); cellShow.classList  = "td";
-    let cellFmod  = newRow.insertCell(3); cellFmod.classList  = "td";
+    let cellFmod  = newRow.insertCell(3); cellFmod.classList  = "td td_no-padding";
     let cellVal   = newRow.insertCell(4); cellVal.classList   = "td";
     let cellBtn   = newRow.insertCell(5); cellBtn.classList   = "td";
 

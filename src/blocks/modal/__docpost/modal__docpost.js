@@ -1,5 +1,5 @@
 import {funcCommand, clearTableAll, clearTable, addToDropdownOneOption, addToDropdown, funcProcessOnlyInfo, removeOptions, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 import {funcGetComponentsTreeSelect} from '../../modal/__select-comp/modal__select-comp.js';
 import {funcGetDocpost} from '../../table/__provider/table__provider.js';
 import {funcFoundOneComponent} from '../../table/__comp-found/table__comp-found.js';
@@ -20,14 +20,7 @@ let docpost_save    = document.getElementById("docpost_save");
 let modal_select_component = document.getElementById("modal_select_component");
 let modal_resize    = document.getElementById("modal_info_docpost_resize");
 
-docpost_close.onclick = function(){
-    docpost_modal.style.display = "none";
-}
-
-docpost_close.ontouchend = (e) => {
-    e.preventDefault();
-    docpost_modal.style.display = "none";
-}
+closeModal(docpost_modal, docpost_close);
 
 dragElement(docpost_modal);
 resizeModalWindow(modal_resize, "whModalDocpost", "Размеры окна поставки");
@@ -45,7 +38,8 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoDocpostOpenModal = (uin) => {
     funcGetResize();
-    docpost_modal.style.display = "block";
+    openModal(docpost_modal);
+
     localStorage.setItem("docpost_uin", uin);
 
     setTimeout(function(){funcGetInfoInputsDocpost(uin)}, 100);
@@ -187,7 +181,7 @@ const addDocpostInfoTable = (name, compontName, compontUin, price, sum, measName
     newRow.classList = "tr";
 
     let cellName    = newRow.insertCell(0); cellName.classList    = "td";
-    let cellCompont = newRow.insertCell(1); cellCompont.classList = "td td_nowrap-content";
+    let cellCompont = newRow.insertCell(1); cellCompont.classList = "td";
     let cellCount   = newRow.insertCell(2); cellCount.classList   = "td";
     let cellPrice   = newRow.insertCell(3); cellPrice.classList   = "td";
     let cellSum     = newRow.insertCell(4); cellSum.classList     = "td";

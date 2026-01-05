@@ -1,18 +1,11 @@
-import {funcCommand, funcProcessOnlyInfo, clearTable, formatDate, findForUpdateInput, responseProcessor, funcProcessOnlyConsole, clearTableAll} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {funcCommand, clearTable, formatDate, clearTableAll} from '../../../js/common/common.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 
 let detailpp_modal = document.getElementById("detailpp_modal");
 let detailpp_close = document.getElementById("detailpp_close");
 let modal_resize   = document.getElementById("detailpp_modal_resize");
 
-detailpp_close.onclick = () => {
-    detailpp_modal.style.display = "none";
-}
-
-detailpp_close.ontouchend = (e) => {
-    e.preventDefault();
-    detailpp_modal.style.display = "none";
-}
+closeModal(detailpp_modal, detailpp_close);
 
 dragElement(detailpp_modal);
 resizeModalWindow(modal_resize, "whModalDetailpp", "Размеры окна детализации количества");
@@ -30,7 +23,7 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoDetailppOpenModal = (uin) => {
     funcGetResize();
-    detailpp_modal.style.display = "block";
+    openModal(detailpp_modal);
 
     funcGetInfoDetailpp(uin);
 }
@@ -41,7 +34,7 @@ const funcGetInfoDetailpp = (uin) => {
 }
 
 const funcProcessGetInfoDetailpp = (result, respobj) => {
-    console.log("детализация:", respobj);
+    console.log("Детализация:", respobj);
 
     let tb_id = "detailpp_tb_modal";
     clearTableAll(tb_id);

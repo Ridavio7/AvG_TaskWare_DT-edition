@@ -1,6 +1,6 @@
 import {funcCommand, clearTableAll, addToDropdown, addToDropdownOneOption, removeOptionsSetValue, responseProcessor} from '../../../js/common/common.js.js';
 import {customSelect} from '../../select/select.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, updateOverlay, openModal} from '../modal.js';
 import {funcFoundPlusComponents} from '../../table/__comp-found/table__comp-found.js';
 
 let found_plus_modal  = document.getElementById("found_plus_modal");
@@ -21,6 +21,7 @@ found_plus_close.onclick = () => {
     removeOptionsSetValue("found_plus_select", "Выберите тип");
     clearTableAll("found_plus_tb");
     found_plus_input.value = "";
+    updateOverlay();
 }
 
 found_plus_close.ontouchend = (e) => {
@@ -30,6 +31,7 @@ found_plus_close.ontouchend = (e) => {
     removeOptionsSetValue("found_plus_select", "Выберите тип");
     clearTableAll("found_plus_tb");
     found_plus_input.value = "";
+    updateOverlay();
 }
 
 dragElement(found_plus_modal);
@@ -48,7 +50,7 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcFoundPlusOpenModal = (tb_id, tb_id_comp, tree_id, input_id) => {
     funcGetResize();
-    found_plus_modal.style.display = "block";
+    openModal(found_plus_modal);
 
     removeOptionsSetValue("found_plus_select", "-- Выберите тип --");
     addToDropdownOneOption(found_plus_select, "Все", '');
@@ -99,6 +101,9 @@ found_plus_button.onclick = function(){
     setTimeout(() => {
         funcFoundPlusComponents("found_plus_input", "found_plus_select", props_str, found_table, found_table_comp, found_tree, found_input_id);
     }, 500)
+
+    document.getElementById('found_plus_modal').style.display = "none";
+    updateOverlay();
 }
 
 found_plus_select.addEventListener("change", (elem) => {
@@ -162,8 +167,8 @@ const addFoundTypesProps = (name, uin, tb_id) => {
         } else {
             cellValue.innerHTML = `<div class="select-custom" id="list_enums_prop_${uin}">
                                     <div class="select-custom__header selectHeader">
-                                        Выберите значение
-                                        <span class="select-custom__icon"></span>
+                                        <span class="select-custom__icon select-custom__icon-filter"></span>
+                                        Значения
                                     </div>
                                     <div class="select-custom__options">
                                         <div class="select-custom__search-box">
@@ -185,7 +190,7 @@ const addFoundTypesProps = (name, uin, tb_id) => {
                 uin: item
             }))
 
-            customSelect(`list_enums_prop_${uin}`, transformed, 'значение');
+            customSelect(`list_enums_prop_${uin}`, transformed, 'Значение');
             //addToDropdownPsevdoFoundPlus(`list_enums_prop_${uin}_items`, respobj.answ[0].vals);
             //psevdoSelect(`list_enums_prop_${uin}`);
         }

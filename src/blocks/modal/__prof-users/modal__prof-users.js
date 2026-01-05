@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, highlightButtonSave, findForUpdateSelect, insertDataInSelect, removeOptions, funcProcessOnlyConsole, makeSelect} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
 
 let prof_users_modal = document.getElementById("prof_users_modal");
@@ -11,14 +11,7 @@ let modal_resize     = document.getElementById("prof_users_modal_resize");
 
 let profUinForAdd = null;
 
-prof_users_close.onclick = () => {
-    prof_users_modal.style.display = "none";
-}
-
-prof_users_close.ontouchend = (e) => {
-    e.preventDefault();
-    prof_users_modal.style.display = "none";
-}
+closeModal(prof_users_modal, prof_users_close);
 
 dragElement(prof_users_modal);
 resizeModalWindow(modal_resize, "whModalProfUsers", "Размеры окна пользователей в участке");
@@ -36,7 +29,8 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoProfUsersOpenModal = (uin, name) => {
     funcGetResize();
-    prof_users_modal.style.display = "block";
+    openModal(prof_users_modal);
+
     prof_users_title.innerHTML = name;
 
     profUinForAdd = uin;

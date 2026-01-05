@@ -1,5 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, clearTable, listenSortSelect, highlightButtonSave, responseProcessor} from '../../../js/common/common.js';
 import {customSortSelect} from '../../select/select.js';
+import {funcInfoBmrightsUsersOpenModal} from '../../modal/__bmrights-users/modal__bmrights-users.js';
 
 export const funcGetRights = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"rights", "count":"100"};
@@ -53,6 +54,13 @@ const funcProcessGetRights = (result, respobj) => {
             setTimeout(function(){funcGetRights()}, 100);
         })
     })
+
+    let button_modal = document.querySelectorAll(".button__control_modal-right-users");
+    button_modal.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            funcInfoBmrightsUsersOpenModal(elem.value, elem.name);
+        })
+    })
 }
 
 const addRightsRow = (name, del, uin, tb_id) => {
@@ -60,10 +68,12 @@ const addRightsRow = (name, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellName = newRow.insertCell(0); cellName.classList = "td td__text_align_center";
-    let cellBtn = newRow.insertCell(1);  cellBtn.classList  = "td";
+    let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td_nowrap-content";
+    let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
+    let cellBtn  = newRow.insertCell(2); cellBtn.classList = "td";
 
-    cellName.innerHTML = `<input class="input__type-text" type="text" value="${name}" name="right_name_${uin}">`;
+    cellInfo.innerHTML = `<button class="button__control button__control_modal-right-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt="" title="Инфо"></button><input class="input__type-text" type="text" value="${name}" name="right_name_${uin}">`;
+    cellName.innerHTML = ``;
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-users-rights" value="${uin}" disabled><img class="button__control__img" src="assets/images/arrow_3.svg" alt=""></button><button class="button__control button__control_mdel button__control_mdel-users-rights${bx_color}" value="${uin}" disabled><img class="button__control__img" src="assets/images/cross.svg"></button>`;
@@ -92,6 +102,10 @@ const dropdown = document.getElementById("sort_rights");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+        
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"rights", "count":"5000", "sort":"name"};
@@ -110,5 +124,8 @@ options.forEach(option => {
                 funcCommand(body4, funcProcessGetRights);
             break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })

@@ -1,6 +1,9 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, makeSelect, clearTable, removeOptionsSetValue, sendFilt, listenCustomSelect, clearCustomSelect, addToDropdown, responseProcessor} from '../../../js/common/common.js';
 import {customSelect, customSortSelect} from '../../select/select.js';
 
+let sort = document.getElementById('sort_SNProd');
+let sort_second = document.getElementById('sort_SNProd_second');
+
 export const funcGetSNProd = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"100", "filt":`${JSON.stringify(filt_snprod)}`};
     funcCommand( body, funcProcessGetSNProd );
@@ -71,18 +74,18 @@ const funcProcessGetSNProd = (result, respobj) => {
     })
 }
 
-function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status, uinstatus, del, uin, tb_id){
+const addSNProdRow = (led, name, uinproduct, SN, count, count_use, date, status, uinstatus, del, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
     let ceelLed      = newRow.insertCell(0); ceelLed.classList      = "td td__text_align_center";
-    let cellName     = newRow.insertCell(1); cellName.classList     = "td";
+    let cellName     = newRow.insertCell(1); cellName.classList     = "td td_no-padding";
     let cellSN       = newRow.insertCell(2); cellSN.classList       = "td td__text_align_center";
     let cellCount    = newRow.insertCell(3); cellCount.classList    = "td td__text_align_center";
     let cellCountUse = newRow.insertCell(4); cellCountUse.classList = "td td__text_align_center";
     let cellDate     = newRow.insertCell(5); cellDate.classList     = "td td__text_align_center";
-    let cellStatus   = newRow.insertCell(6); cellStatus.classList   = "td";
+    let cellStatus   = newRow.insertCell(6); cellStatus.classList   = "td td_no-padding";
     let cellBtn      = newRow.insertCell(7); cellBtn.classList      = "td";
 
     if(led === 0){
@@ -108,23 +111,28 @@ function addSNProdRow(led, name, uinproduct, SN, count, count_use, date, status,
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-snprod" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-snprod${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
 }
 
-customSelect('SNProd_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
-customSelect('SNProd_status_customDropdown', JSON.parse(localStorage.getItem("statussn_list")), 'статус');
+customSelect('SNProd_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'Изделие');
+customSelect('SNProd_status_customDropdown', JSON.parse(localStorage.getItem("statussn_list")), 'Статус');
 
 let filt_snprod = [], filt_1 = {fld: "uin", on: "products"}, filt_2 = {fld: "uin", on: "statussn"};
 
 listenCustomSelect("SNProd_prod_customDropdown", filt_1, [], filt_snprod);
 listenCustomSelect("SNProd_status_customDropdown", filt_2, [], filt_snprod);
 
+const btn_filter_open = document.querySelector('[data-target="select-sort"]').firstElementChild;
+
 document.getElementById("button_SNprod_choose").addEventListener("click", () => {
     sendFilt(filt_snprod, 'tb_products_SNProd', 'snprod', funcProcessGetSNProd);
+    btn_filter_open.classList.add('active');
 })
 
 document.getElementById("button_SNprod_reset").addEventListener("click", () => {
     filt_snprod.length = 0;
-    clearCustomSelect('SNProd_prod_customDropdown', 'изделие');
-    clearCustomSelect('SNProd_status_customDropdown', 'статус');
+    clearCustomSelect('SNProd_prod_customDropdown', 'Изделие');
+    clearCustomSelect('SNProd_status_customDropdown', 'Статус');
     funcGetSNProd();
+
+    btn_filter_open.classList.remove('active');
 })
 
 let button_control_add_snprod = document.querySelector(".button__control_add-snprod");
@@ -148,40 +156,59 @@ button_control_add_snprod.addEventListener("click", () => {
         body.date = date_value;
         body.uinstatus = uinstatus_value;
     
-        removeOptionsSetValue("select_add_SNProd_product", "Выберите изделие");
+        removeOptionsSetValue("select_add_SNProd_product", "Изделие");
         document.getElementById("input_add_SNProd_SN").value = "";
         document.getElementById("input_add_SNProd_count").value = "";
         document.getElementById("input_add_SNProd_count_use").value = "";
         document.getElementById("input_add_SNProd_date").value = "";
-        removeOptionsSetValue("select_add_SNProd_status", "Выберите статус");
+        removeOptionsSetValue("select_add_SNProd_status", "Статус");
     
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetSNProd()}, 100);
     }
 })
 
-customSortSelect("sort_SNProd");
-const dropdown = document.getElementById("sort_SNProd");
-const options  = dropdown.querySelectorAll('li');
-options.forEach(option => {
-    option.addEventListener('click', () => {
-        switch (option.getAttribute('data-value')){
-            case '1':
-                let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "sort":"name", "filt":`${JSON.stringify(filt_snprod)}`};
-                funcCommand(body1, funcProcessGetSNProd);
-            break;
-            case '2':
-                let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "asort":"name", "filt":`${JSON.stringify(filt_snprod)}`};
-                funcCommand(body2, funcProcessGetSNProd);
-            break;
-            case '3':
-                let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "sort":"uin", "filt":`${JSON.stringify(filt_snprod)}`};
-                funcCommand(body3, funcProcessGetSNProd);
-            break;
-            case '4':
-                let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "asort":"uin", "filt":`${JSON.stringify(filt_snprod)}`};
-                funcCommand(body4, funcProcessGetSNProd);
-            break;
-        }
+const selectSortEvent = (dropdown) => {
+    const options  = dropdown.querySelectorAll('li');
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            options.forEach(elem => {
+                elem.style.color = 'var(--font-color)';
+            })
+            
+            switch (option.getAttribute('data-value')){
+                case '1':
+                    let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "sort":"name", "filt":`${JSON.stringify(filt_snprod)}`};
+                    funcCommand(body1, funcProcessGetSNProd);
+                break;
+                case '2':
+                    let body2  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "asort":"name", "filt":`${JSON.stringify(filt_snprod)}`};
+                    funcCommand(body2, funcProcessGetSNProd);
+                break;
+                case '3':
+                    let body3  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "sort":"uin", "filt":`${JSON.stringify(filt_snprod)}`};
+                    funcCommand(body3, funcProcessGetSNProd);
+                break;
+                case '4':
+                    let body4  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"snprod", "count":"5000", "asort":"uin", "filt":`${JSON.stringify(filt_snprod)}`};
+                    funcCommand(body4, funcProcessGetSNProd);
+                break;
+            }
+            
+            option.style.color = 'var(--font-color-modal-blue)';
+            document.getElementById('modal-overlay').style.display = 'none';
+        })
     })
-})
+}
+
+if(window.innerWidth <= 1024){
+    sort.style.display = "block";
+    sort_second.style.display = "none";
+    customSortSelect("sort_SNProd");
+    selectSortEvent(document.getElementById("sort_SNProd"));
+} else {
+    sort.style.display = "none";
+    sort_second.style.display = "block";
+    customSortSelect("sort_SNProd_second");
+    selectSortEvent(document.getElementById("sort_SNProd_second"));
+}

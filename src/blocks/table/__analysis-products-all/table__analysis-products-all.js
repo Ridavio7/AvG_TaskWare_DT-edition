@@ -1,6 +1,9 @@
 import {funcCommand, listenCustomSelect, sendFiltAnalisys, clearCustomSelect, sortAnalisys, makeSelect, responseProcessor, listenDate, clearTableAll} from '../../../js/common/common.js';
 import {customSelect, customSortSelect} from '../../select/select.js';
 
+let sort = document.getElementById('sort_analysis_products_all');
+let sort_second = document.getElementById('sort_analysis_products_all_second');
+
 export const funcGetShipProductsAll = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipProdsAll", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_products_all)}`};
     funcCommand(body, funcProcessGetShipProductsAll);
@@ -70,10 +73,10 @@ const addRowColumsShipProductsAll =
     cellprim.innerHTML    = `<input class="input__type-text" type="text" value="${prim}" name="shipproducts_all_prim_${uin}">`;
 }
 
-customSelect('analysis_products_all_set_customDropdown', JSON.parse(localStorage.getItem("sets_list")), 'комплект');
-customSelect('analysis_products_all_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
-customSelect('analysis_products_all_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
-customSelect('analysis_products_all_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
+customSelect('analysis_products_all_set_customDropdown', JSON.parse(localStorage.getItem("sets_list")), 'Комплект');
+customSelect('analysis_products_all_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'Изделие');
+customSelect('analysis_products_all_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'Контрагент');
+customSelect('analysis_products_all_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'Статус');
 
 let filt_analysis_products_all = [];
 let filt_1 = {fld: "uin", on: "sets"};
@@ -89,21 +92,35 @@ listenCustomSelect("analysis_products_all_contr_customDropdown", filt_3, [], fil
 listenCustomSelect("analysis_products_all_status_customDropdown", filt_4, [], filt_analysis_products_all);
 listenDate(document.getElementById('filt_analysis_products_all_date_first'), document.getElementById('filt_analysis_products_all_date_second'), filt_5, [], filt_analysis_products_all);
 
+const btn_filter_open = document.querySelector('[data-target="select-sort-analysis-products-all"]').firstElementChild;
+
 document.getElementById("button_analysis_products_all_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_products_all, 'tb_analysis_products_all', 'shipProdsAll', funcProcessGetShipProductsAll);
+    btn_filter_open.classList.add('active');
 })
 
 document.getElementById("button_analysis_products_all_reset").addEventListener("click", () => {
     filt_analysis_products_all.length = 0;
-    clearCustomSelect('analysis_products_all_set_customDropdown', 'комплект');
-    clearCustomSelect('analysis_products_all_prod_customDropdown', 'изделие');
-    clearCustomSelect('analysis_products_all_contr_customDropdown', 'контрагента');
-    clearCustomSelect('analysis_products_all_status_customDropdown', 'статус');
+    clearCustomSelect('analysis_products_all_set_customDropdown', 'Комплект');
+    clearCustomSelect('analysis_products_all_prod_customDropdown', 'Изделие');
+    clearCustomSelect('analysis_products_all_contr_customDropdown', 'Контрагент');
+    clearCustomSelect('analysis_products_all_status_customDropdown', 'Статус');
     document.getElementById('filt_analysis_products_all_date_first').value = '';
     document.getElementById('filt_analysis_products_all_date_second').value = '';
     funcGetShipProductsAll();
     filt_analysis_products_all.push(filt_5);
+    
+    btn_filter_open.classList.remove('active');
 })
 
-customSortSelect("sort_analysis_products_all");
-sortAnalisys("sort_analysis_products_all", filt_analysis_products_all, "shipProdsAll", funcProcessGetShipProductsAll);
+if(window.innerWidth <= 1024){
+    sort.style.display = "block";
+    sort_second.style.display = "none";
+    customSortSelect("sort_analysis_products_all");
+    sortAnalisys("sort_analysis_products_all", filt_analysis_products_all, "shipProdsAll", funcProcessGetShipProductsAll);
+} else {
+    sort.style.display = "none";
+    sort_second.style.display = "block";
+    customSortSelect("sort_analysis_products_all_second");
+    sortAnalisys("sort_analysis_products_all_second", filt_analysis_products_all, "shipProdsAll", funcProcessGetShipProductsAll);
+}

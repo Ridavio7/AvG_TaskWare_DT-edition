@@ -73,16 +73,11 @@ const addProfRow = (numb, name, fc, users, del, uin, tb_id) => {
     newRow.classList = "tr";
 
     let cellInfo = newRow.insertCell(0); cellInfo.classList = "td td_nowrap-content";
-    //let cellNumb = newRow.insertCell(1); cellNumb.classList = "td td_small";
     let cellName = newRow.insertCell(1); cellName.classList = "td td__text_align_center";
-    //let cellFc   = newRow.insertCell(3); cellFc.classList   = "td";
     let cellBtn  = newRow.insertCell(2); cellBtn.classList  = "td";
 
     cellInfo.innerHTML = `<button class="button__control button__control_modal-prof-users" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/info.svg" alt="" title="Инфо"></button><input class="input__type-text" type="text" value="${name}" name="prof_name_${uin}">`;
-    //cellNumb.innerHTML = numb;
     cellName.innerHTML = ``;
-    //let fc_checked     = fc === 1 ? 'checked' : '';
-    //cellFc.innerHTML   = `<input class="checkbox" type="checkbox" id="prof_fc_${uin}" ${fc_checked}><label for="prof_fc_${uin}"></label>` 
 
     let bx_color = del === 0 ? bx_color = "" : bx_color = " button__control_mdel_active"; cellBtn.classList = "td td_buttons-control";
     cellBtn.innerHTML = `<button class="button__control button__control_update button__control_update-prof" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button><button class="button__control button__control_mdel button__control_mdel-prof${bx_color}" value="${uin}"><img class="button__control__img" src="assets/images/cross.svg" title="Пометить на удаление"></button>`;
@@ -92,20 +87,14 @@ let button_control_add = document.querySelector(".button__control_add-prof");
 button_control_add.addEventListener("click", () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"prof", "name":"", "numb":"0", "fcount":""};
 
-    //let numb_value = document.getElementById("input_add_prof_numb").value;
     let name_value = document.getElementById("input_add_prof_name").value;
-    //let checkbox   = document.getElementById("input_add_prof_fc");
 
     if(name_value === ""){
         alert("Вы не заполнили все поля!");
     } else {
-        //body.numb   = numb_value;
         body.name   = name_value;
-        //body.fcount = checkbox.checked === true ? "1" : "0";
-
-        //document.getElementById("input_add_prof_numb").value = "";
+        
         document.getElementById("input_add_prof_name").value = "";
-        //document.getElementById("input_add_prof_fc").checked = false;
 
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetProf()}, 100);
@@ -117,6 +106,10 @@ const dropdown = document.getElementById("sort_prof");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+        
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"prof", "count":"5000", "sort":"name"};
@@ -135,5 +128,8 @@ options.forEach(option => {
                 funcCommand(body4, funcProcessGetProf);
             break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })

@@ -1,19 +1,13 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown, responseProcessor} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 
 let modal_typeselem = document.getElementById("modal_typeselem");
 let span_typeselem  = document.getElementById("close_typeselem");
 let modal_resize    = document.getElementById("modal_typeselem_resize");
+
 let typeUinForAdd   = null;
 
-span_typeselem.onclick = () => {
-    modal_typeselem.style.display = "none";
-}
-
-span_typeselem.ontouchend = (e) => {
-    e.preventDefault();
-    modal_typeselem.style.display = "none";
-}
+closeModal(modal_typeselem, span_typeselem);
 
 dragElement(modal_typeselem);
 resizeModalWindow(modal_resize, "whModalTypeselem", "Размеры окна свойства типа");
@@ -31,7 +25,7 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoTypeselemOpenModal = (uin) => {
     funcGetResize();
-    modal_typeselem.style.display = "block";
+    openModal(modal_typeselem);
 
     funcGetInfoTypeselem(uin);
 }

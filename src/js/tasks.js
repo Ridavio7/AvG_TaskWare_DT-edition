@@ -3,13 +3,15 @@ import 'normalize.css';
 import '../blocks/#common/common.styles.scss';
 import '../blocks/table/__control-task-control/table__control-task-control.scss';
 import '../blocks/hamburger-menu/hamburger.scss';
+import '../blocks/table/__user-tasks/table__user-tasks.scss';
 /* шапка */
 import '../blocks/header/header.scss';
 import '../blocks/header/header.js';
+import {fetchNotifications} from '../blocks/header/header.js';
+
 /* боковая панель */
 import '../blocks/sidebar/sidebar.scss';
 import '../blocks/sidebar/sidebar.js';
-import '../blocks/sidebar/__task/sidebar__task.scss';
 /* кнопки */
 import '../blocks/button/__control/button__control.scss';
 import '../blocks/button/__control/_modal/button__control_modal.scss';
@@ -40,11 +42,11 @@ import '../blocks/table/table.scss';
 /* дерево */
 import '../blocks/_tree/tree.scss';
 
-
-import {funcGetUserTasks} from '../blocks/table/__user-tasks/table__user-tasks.js';
+import {funcShowTabs} from '../js/common/common.js.js';
+import {funcGetUserTasksThreeColl} from '../blocks/table/__user-tasks/table__user-tasks.js';
 
 window.onload = function(){
-    funcGetUserTasks();
-
-    setTimeout(() => { document.getElementById(localStorage.getItem("sidebar_task_tab_active")).click(); }, 1000);
+    fetchNotifications();
+    funcShowTabs();
+    funcGetUserTasksThreeColl();
 }

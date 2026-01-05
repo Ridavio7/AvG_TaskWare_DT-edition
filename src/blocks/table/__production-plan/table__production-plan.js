@@ -71,14 +71,14 @@ const addPlanRow = (uinprod, nameprod, count, date, prim, del, uin, tb_id) => {
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr";
 
-    let cellProd  = newRow.insertCell(0); cellProd.classList  = "td";
+    let cellProd  = newRow.insertCell(0); cellProd.classList  = "td td_no-padding";
     let cellCount = newRow.insertCell(1); cellCount.classList = "td td__text_align_center";
     let cellDate  = newRow.insertCell(2); cellDate.classList  = "td td__text_align_center";
     let cellPrim  = newRow.insertCell(3); cellPrim.classList  = "td td__text_align_center";
     let cellBtn   = newRow.insertCell(4); cellBtn.classList   = "td";
 
     makeSelect("plan_product_select_", uin, nameprod, uinprod, "products_list", "select", cellProd);
-    cellCount.innerHTML = `<input class="input__type-text" type="text" value="${count}" name="plan_count_${uin}">`
+    cellCount.innerHTML = `<input class="input__type-text input__type-text__small" type="text" value="${count}" name="plan_count_${uin}">`
     cellDate.innerHTML  = `<div class="input__type-date_wrapper"><input class="input__type-text input__type-date" type="date" value="${date}" name="plan_date_${uin}"><label for="" class="input__type-date_icon"><img src="assets/images/calendar.svg" alt=""></label></div>`
     cellPrim.innerHTML  = `<input class="input__type-text" type="text" value="${prim}" name="plan_prim_${uin}">`
 
@@ -118,6 +118,10 @@ const dropdown = document.getElementById("sort_plan");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+        
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"planpp", "count":"5000", "asort":"name"};
@@ -136,5 +140,8 @@ options.forEach(option => {
                 funcCommand(body4, funcProcessGetPlan);
             break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })

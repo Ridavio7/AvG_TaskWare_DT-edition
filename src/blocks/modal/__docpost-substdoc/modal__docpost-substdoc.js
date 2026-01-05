@@ -1,5 +1,5 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, clearTable, clearTableAll} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 import {funcProcessGetDocpost} from '../../table/__provider/table__provider.js';
 
 let docpost_substdoc_modal          = document.getElementById("docpost_substdoc_modal");
@@ -17,14 +17,7 @@ let modal_resize                    = document.getElementById("docpost_substdoc_
 
 let uincompont;
 
-docpost_substdoc_close.onclick = () => {
-    docpost_substdoc_modal.style.display = "none";
-}
-
-docpost_substdoc_close.ontouchend = (e) => {
-    e.preventDefault();
-    docpost_substdoc_modal.style.display = "none";
-}
+closeModal(docpost_substdoc_modal, docpost_substdoc_close);
 
 dragElement(docpost_substdoc_modal);
 resizeModalWindow(modal_resize, "whModalDocpostSubstDoc", "Размеры окна автоподстановки");
@@ -42,7 +35,7 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoDocpostSubstdocOpenModal = () => {
     funcGetResize();
-    docpost_substdoc_modal.style.display = "block";
+    openModal(docpost_substdoc_modal);
 }
 
 docpost_substdoc_name_1c.addEventListener('input', (elem) => {

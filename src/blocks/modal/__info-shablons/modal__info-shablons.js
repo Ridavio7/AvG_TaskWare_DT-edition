@@ -1,7 +1,8 @@
 import {funcCommand, funcProcessOnlyInfo, removeOptions, insertDataInSelect, responseProcessor} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 import {funcGetShablons, funcGetShablonsTree} from '../../table/__template-task-shablons/table__template-task-shablons.js';
 import {funcGetProductsTreeSelectUnic} from '../__select-prod-unic/modal__select-prod-unic.js';
+import {funcGetShblcontrol} from '../../modal/__shblcontrol/modal__shblcontrol.js';
 
 let shablons_modal    = document.getElementById("shablons_modal");
 let shablons_close    = document.getElementById("shablons_close");
@@ -25,17 +26,13 @@ let switch_1          = document.getElementById("switch_shablons_inputs_1");
 let switch_2          = document.getElementById("switch_shablons_inputs_2");
 let modal_resize      = document.getElementById("shablons_modal_resize");
 
+const tabButtons = document.querySelectorAll('.modal__tab-button_shablons');
+const tabContents = document.querySelectorAll('.modal__tab-content_shablons');
+
 let shablonsCountLastValue;
 let shablonsContentLastValue;
 
-shablons_close.onclick = function(){
-    shablons_modal.style.display = "none";
-}
-
-shablons_close.ontouchend = (e) => {
-    e.preventDefault();
-    shablons_modal.style.display = "none";
-}
+closeModal(shablons_modal, shablons_close);
 
 dragElement(shablons_modal);
 resizeModalWindow(modal_resize, "whModalShablon", "Размеры окна шаблона");
@@ -53,10 +50,12 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcGetShablonsSteps = (uin) => {
     funcGetResize();
+    openModal(shablons_modal);
+
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":"dirSh", "uin":`${uin}`, "uinShablon":`${localStorage.getItem('uinShablon')}`};
     funcCommand(body, funcProcessGetShablonsSteps);
 
-    shablons_modal.style.display  = "block";
+    funcGetShblcontrol(localStorage.getItem('uinShablon'));
 }
 
 const funcProcessGetShablonsSteps = (result, respobj) => {
@@ -80,6 +79,8 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
         shablons_dl_m.disabled     = true;
         shablons_start.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
         switch_1.parentElement.parentElement.parentElement.style.opacity = "0";
+        if(window.innerWidth < 1024){ switch_1.parentElement.parentElement.parentElement.style.display = "none" };
+        tabButtons[1].disabled = false;
     } else {
         shablons_areaprof.disabled = false;
         shablons_dl_d.disabled     = false;
@@ -87,6 +88,8 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
         shablons_dl_m.disabled     = false;
         shablons_start.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
         switch_1.parentElement.parentElement.parentElement.style.opacity = "1";
+        if(window.innerWidth < 1024){ switch_1.parentElement.parentElement.parentElement.style.display = "block" };
+        tabButtons[1].disabled = true;
     }
 
     let obj          = respobj.answ;
@@ -119,7 +122,6 @@ const funcProcessGetShablonsSteps = (result, respobj) => {
 shablons_c_prod.onclick = () => {
     funcGetProductsTreeSelectUnic();
     localStorage.setItem("button_select_product_unic_id", "shablons_content_product");
-    document.getElementById("modal_select_products_unic").style.display = "block";
 }
 
 const addShablonsInfo =
@@ -134,7 +136,7 @@ const addShablonsInfo =
     shablons_count.value       = count;
     shablonsCountLastValue     = shablons_count.value;
     insertDataInSelect(shablons_user, nameUser, uinUser, "users_list");
-    uin === "0" ? shablons_user.parentElement.previousElementSibling.textContent = "Администратор:" : shablons_user.parentElement.previousElementSibling.textContent = "Исполнитель:";
+    uin === "0" ? shablons_user.parentElement.previousElementSibling.textContent = "Админ:" : shablons_user.parentElement.previousElementSibling.textContent = "Исполнитель:";
     insertDataInSelect(shablons_areaprof, nameAreaprof, uinAreaprof, "prof_list");
     insertDataInSelect(shablons_content, nameContent, uinContent, "contents_list");
     shablonsContentLastValue = uinContent;
@@ -268,5 +270,17 @@ radioButtons.forEach(radio => {
             shablons_user.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
             shablons_areaprof.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
         }
+    })
+})
+
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const targetTab = button.getAttribute('data-tab');
+
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
     })
 })

@@ -1,6 +1,6 @@
 import {funcCommand, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetProductsTree, funcGetProducts} from '../../table/__storage-main/table__storage-main.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal, updateOverlay} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_transfer       = document.getElementById("modal_transfer_product");
@@ -15,14 +15,7 @@ let uinItem  = null;
 let nameItem = null;
 let fsetType = null;
 
-span_transfer.onclick = function(){
-    modal_transfer.style.display = "none";
-}
-
-span_transfer.ontouchend = (e) => {
-    e.preventDefault();
-    modal_transfer.style.display = "none";
-}
+closeModal(modal_transfer, span_transfer);
 
 dragElement(modal_transfer);
 resizeModalWindow(modal_resize, "whModalTransferProd", "Размеры окна перемещения комплекта/изделия");
@@ -40,7 +33,7 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoProductsTransferOpenModal = (uin, name, fset) => {
     funcGetResize();
-    modal_transfer.style.display = "block";
+    openModal(modal_transfer);
 
     name_transfer.value = name;
     uinItem = uin;
@@ -74,10 +67,11 @@ button_transfer_comp.onclick = () => {
     }, 100);
 
     modal_transfer.style.display = "none";
+    updateOverlay();
 }
 
 export const funcInfocatPTransferOpenModal = (uin, name) => {
-    modal_transfer.style.display = "block";
+    openModal(modal_transfer);
 
     name_transfer.value = name;
     uinItem = uin;
@@ -98,4 +92,5 @@ button_transfer_dirP.onclick = () => {
     }, 100);
 
     modal_transfer.style.display = "none";
+    updateOverlay();
 }

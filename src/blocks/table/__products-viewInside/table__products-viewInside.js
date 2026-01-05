@@ -90,7 +90,6 @@ const funcProcessGetProductViewInside = (result, respobj) => {
                 funcFoundOneComponent(elem.name)
             }, 300)*/
             localStorage.setItem("button_select_product_id", elem.id);
-            modal_select_products.style.display = "block";
         })
     })
 
@@ -193,7 +192,7 @@ button__control_add_prod.onclick = () => {
     } else {
         body.count      = count_value.value;
     
-        innprod_value.innerText = "Выберите изделие";
+        innprod_value.innerText = "Сбор. ед.";
         innprod_value.value     = "";
         count_value.value       = "";
     
@@ -259,7 +258,7 @@ button__control_add_comp.onclick = () => {
         body.uincompont = uincompont_value.value;
         body.count      = count_value.value;
     
-        uincompont_value.innerText = "Выберите комплектующее";
+        uincompont_value.innerText = "Комплектующее";
         uincompont_value.value     = "";
         count_value.value          = "";
     

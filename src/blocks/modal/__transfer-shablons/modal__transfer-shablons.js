@@ -1,7 +1,7 @@
 import {funcCommand, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
 import {funcGetShablonsTree} from '../../table/__template-task-shablons/table__template-task-shablons.js';
 import {funcGetShablonsSteps} from '../__info-shablons/modal__info-shablons.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal, updateOverlay} from '../modal.js';
 import {TreeBuilder} from '../../_tree/tree.js';
 
 let modal_transfer  = document.getElementById("modal_transfer_shablons");
@@ -14,14 +14,7 @@ let uinCatp  = null;
 let uinItem  = null;
 let nameItem = null;
 
-span_transfer.onclick = function(){
-    modal_transfer.style.display = "none";
-}
-
-span_transfer.ontouchend = (e) => {
-    e.preventDefault();
-    modal_transfer.style.display = "none";
-}
+closeModal(modal_transfer, span_transfer);
 
 dragElement(modal_transfer);
 resizeModalWindow(modal_resize, "whModalTransferShablon", "Размеры окна перемещения шаблона");
@@ -39,7 +32,7 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoShablonsTransferOpenModal = (uin, name, uinShablon) => {
     funcGetResize();
-    modal_transfer.style.display = "block";
+    openModal(modal_transfer);
 
     name_transfer.value = name;
     uinItem = uin;
@@ -68,4 +61,5 @@ button_transfer.onclick = () => {
     setTimeout(() => {funcGetShablonsTree(localStorage.getItem("uinShablon"))}, 100);
 
     modal_transfer.style.display = "none";
+    updateOverlay();
 }

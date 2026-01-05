@@ -1,6 +1,9 @@
 import {funcCommand, funcProcessOnlyInfo, findForUpdateInput, findForUpdateSelect, listenCustomSelect, sendFiltAnalisys, clearCustomSelect, sortAnalisys, makeSelect, highlightButtonSave, responseProcessor, listenDate, clearTableAll} from '../../../js/common/common.js';
 import {customSelect, customSortSelect} from '../../select/select.js';
 
+let sort = document.getElementById('sort_analysis_sets');
+let sort_second = document.getElementById('sort_analysis_sets_second');
+
 export const funcGetShipSets = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipSets", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_sets)}`};
     funcCommand(body, funcProcessGetShipSets);
@@ -56,14 +59,14 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
     let cellNPset  = newRow.insertCell(1); cellNPset.classList  = "td td__text_align_center";
     let cellname   = newRow.insertCell(2); cellname.classList   = "td";
     let cellcomp   = newRow.insertCell(3);
-    let cellstatus = newRow.insertCell(4); cellstatus.classList = "td td__text_align_center";
+    let cellstatus = newRow.insertCell(4); cellstatus.classList = "td td__text_align_center td_no-padding";
     let cellkontr  = newRow.insertCell(5); cellkontr.classList  = "td";
     let celldate   = newRow.insertCell(6); celldate.classList   = "td td__text_align_center";
     let cellprim   = newRow.insertCell(7); cellprim.classList   = "td td__text_align_center";
     let cellBtn    = newRow.insertCell(8); cellBtn.classList    = "td";
 
     let prodTable = document.createElement('table');
-    prodTable.className = "table table__little-product";
+    prodTable.className = "table table__little-product table_no-border-radius";
     cellcomp.append(prodTable);
 
     for(let key in comp){
@@ -92,10 +95,10 @@ const addRowColumsShipSets = (NPset, SNset, name, status, uinstatus, kontr, date
     cellBtn.innerHTML   = `<button class="button__control button__control_update button__control_update-ananlysis-set" value="${uin}"><img class="button__control__img" src="assets/images/arrow_3.svg" alt="" title="Обновить"></button>`;
 }
 
-customSelect('analysis_sets_set_customDropdown', JSON.parse(localStorage.getItem("sets_list")), 'комплект');
-customSelect('analysis_sets_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
-customSelect('analysis_sets_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
-customSelect('analysis_sets_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
+customSelect('analysis_sets_set_customDropdown', JSON.parse(localStorage.getItem("sets_list")), 'Комплект');
+customSelect('analysis_sets_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'Изделие');
+customSelect('analysis_sets_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'Контрагент');
+customSelect('analysis_sets_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'Статус');
 
 let filt_analysis_sets = [];
 let filt_1 = {fld: "uin", on: "sets"};
@@ -111,21 +114,35 @@ listenCustomSelect("analysis_sets_contr_customDropdown", filt_3, [], filt_analys
 listenCustomSelect("analysis_sets_status_customDropdown", filt_4, [], filt_analysis_sets);
 listenDate(document.getElementById('filt_analysis_sets_date_first'), document.getElementById('filt_analysis_sets_date_second'), filt_5, [], filt_analysis_sets);
 
+const btn_filter_open = document.querySelector('[data-target="select-sort-analysis-sets"]').firstElementChild;
+
 document.getElementById("button_analysis_sets_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_sets, 'tb_analysis_sets', 'shipSets', funcProcessGetShipSets);
+    btn_filter_open.classList.add('active');
 })
 
 document.getElementById("button_analysis_sets_reset").addEventListener("click", () => {
     filt_analysis_sets.length = 0;
-    clearCustomSelect('analysis_sets_set_customDropdown', 'комплект');
-    clearCustomSelect('analysis_sets_prod_customDropdown', 'изделие');
-    clearCustomSelect('analysis_sets_contr_customDropdown', 'контрагента');
-    clearCustomSelect('analysis_sets_status_customDropdown', 'статус');
+    clearCustomSelect('analysis_sets_set_customDropdown', 'Комплект');
+    clearCustomSelect('analysis_sets_prod_customDropdown', 'Изделие');
+    clearCustomSelect('analysis_sets_contr_customDropdown', 'Контрагент');
+    clearCustomSelect('analysis_sets_status_customDropdown', 'Статус');
     document.getElementById('filt_analysis_sets_date_first').value = '';
     document.getElementById('filt_analysis_sets_date_second').value = '';
     funcGetShipSets();
     filt_analysis_sets.push(filt_5);
+
+    btn_filter_open.classList.remove('active');
 })
 
-customSortSelect("sort_analysis_sets");
-sortAnalisys("sort_analysis_sets", filt_analysis_sets, "shipSets", funcProcessGetShipSets);
+if(window.innerWidth <= 1024){
+    sort.style.display = "block";
+    sort_second.style.display = "none";
+    customSortSelect("sort_analysis_sets");
+    sortAnalisys("sort_analysis_sets", filt_analysis_sets, "shipSets", funcProcessGetShipSets);
+} else {
+    sort.style.display = "none";
+    sort_second.style.display = "block";
+    customSortSelect("sort_analysis_sets_second");
+    sortAnalisys("sort_analysis_sets_second", filt_analysis_sets, "shipSets", funcProcessGetShipSets);
+}

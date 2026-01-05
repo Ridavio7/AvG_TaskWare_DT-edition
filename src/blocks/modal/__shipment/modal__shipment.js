@@ -1,4 +1,4 @@
-import {dragElement} from '../modal.js';
+import {dragElement, updateOverlay} from '../modal.js';
 
 let shipment_modal      = document.getElementById("shipment_modal");
 let shipment_close      = document.getElementById("shipment_close");
@@ -8,12 +8,14 @@ export let zapros_set = [], forModal_set = [], zapros_product = [], forModal_pro
 
 shipment_close.onclick = () => {
     shipment_modal.style.display = "none";
+    updateOverlay();
     clearModalTable();
 }
 
 shipment_close.ontouchend = (e) => {
     e.preventDefault();
     shipment_modal.style.display = "none";
+    updateOverlay();
     clearModalTable();
 }
 
@@ -23,6 +25,7 @@ window.onclick = function(event) {
     if (event.target == shipment_modal) {
         clearModalTable();
         shipment_modal.style.display = "none";
+        updateOverlay();
     }
 }
 

@@ -25,7 +25,6 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
 
     for (let key in respobj.answ) {
         let row  = respobj.answ[key];
-        let num  = key;
         let msum = row.msum == 0 ? "" : row.msum;
         let rsum = row.rsum == 0 ? "" : row.rsum;
         let uin  = row.uin;
@@ -46,10 +45,12 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
         let m11 = row.m11 == 0 ? "" : row.m11; let r11 = row.r11 == 0 ? "" : row.r11;
         let m12 = row.m12 == 0 ? "" : row.m12; let r12 = row.r12 == 0 ? "" : row.r12;
 
-        addGrfLeftRow(num, uinSet, nameSet, uin, tb_id_left);
+        addGrfLeftRow(uinSet, nameSet, uin, tb_id_left);
         addGrfCenterRow(uin, tb_id_center, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12);
         addGrfRightRow(msum, rsum, del, uin, tb_id_right);
     }
+
+    document.getElementById('schedule_td_count').innerHTML = `Кол-во строк: ${respobj.size}`;
 
     /* функция удаления */
     document.querySelectorAll(".button__control_mdel-schedule").forEach((elem) => {
@@ -93,17 +94,14 @@ export const funcProcessGetGrfShipSets = (result, respobj) => {
     })
 }
 
-const addGrfLeftRow = (num, uinSet, nameSet, uin, tb_id) => {
+const addGrfLeftRow = (uinSet, nameSet, uin, tb_id) => {
     let tableRef = document.getElementById(tb_id);
     let newRow = tableRef.insertRow(-1);
     newRow.classList = "tr tr_no-hover";
 
-    let cellNum  = newRow.insertCell(0); cellNum.classList  = "td td_right-border td_active_fix td_active-no-border";
-    let cellName = newRow.insertCell(1); cellName.classList = "td td_right-border td_active_fix td_active-no-border";
+    let cellName = newRow.insertCell(0); cellName.classList = "td td_active_fix td_active-no-border td_no-padding";
 
-    let number         = +num + 1;
-    cellNum.innerHTML  = number;
-    makeSelect("grf_set_select_", uin, nameSet, uinSet, "sets_list", "select input__type-text_modal_fix-width-150", cellName);
+    makeSelect("grf_set_select_", uin, nameSet, uinSet, "sets_list", "select", cellName);
 }
 
 const addGrfCenterRow = (uin, tb_id, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12) => {
@@ -134,7 +132,7 @@ const addGrfCenterRow = (uin, tb_id, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m1
     let cellM11  = newRow.insertCell(20); cellM11.classList  = "td";
     let cellR11  = newRow.insertCell(21); cellR11.classList  = "td td_right-border";
     let cellM12  = newRow.insertCell(22); cellM12.classList  = "td";
-    let cellR12  = newRow.insertCell(23); cellR12.classList  = "td td_right-border";
+    let cellR12  = newRow.insertCell(23); cellR12.classList  = "td";
     
     cellM1.innerHTML   = `<input class="input__type-text input__type-text__small" type="text" value="${m1}"  id="grf_input_m1_${uin}">`;  cellR1.innerHTML  = r1;
     cellM2.innerHTML   = `<input class="input__type-text input__type-text__small" type="text" value="${m2}"  id="grf_input_m2_${uin}">`;  cellR2.innerHTML  = r2;

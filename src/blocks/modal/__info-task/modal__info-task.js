@@ -1,7 +1,8 @@
 import {funcCommand, removeOptions, insertDataInSelect, setStatus, formatDate, funcProcessOnlyInfo, treeSpanFactory} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 import {funcGetTasks, funcGetTasksTree} from '../../table/__control-task-control/table__control-task-control.js';
 import {funcGetHistorystep} from '../../table/__control-task-historystep/table__control-task-historystep.js';
+import {funcGetTaskcontrol} from '../../table/__control-task-taskcontrol/table__control-task-taskcontrol.js';
 import {funcGetProductsTreeSelectUnic} from '../__select-prod-unic/modal__select-prod-unic.js';
 import {funcInfoDetailppOpenModal} from '../../modal/__detailpp/modal__detailpp.js';
 
@@ -25,6 +26,9 @@ let tasks_prim     = document.getElementById("tasks_prim");
 let tasks_dl_d     = document.getElementById("tasks_dl_d");
 let tasks_dl_h     = document.getElementById("tasks_dl_h");
 let tasks_dl_m     = document.getElementById("tasks_dl_m");
+let tasks_dl1_d    = document.getElementById("tasks_dl1_d");
+let tasks_dl1_h    = document.getElementById("tasks_dl1_h");
+let tasks_dl1_m    = document.getElementById("tasks_dl1_m");
 let tasks_user     = document.getElementById("tasks_user");
 let tasks_areaprof = document.getElementById("tasks_areaprof");
 let tasks_content  = document.getElementById("tasks_content");
@@ -43,20 +47,16 @@ let tasks_save     = document.getElementById("tasks_save");
 let switch_1       = document.getElementById("switch_tasks_inputs_1");
 let switch_2       = document.getElementById("switch_tasks_inputs_2");
 let modal_resize   = document.getElementById("tasks_modal_resize");
-
 let tasks_usermove = document.getElementById("tasks_usermove");
 let tasks_datemove = document.getElementById("tasks_datemove");
+let tasks_timemove = document.getElementById("tasks_timemove");
+
+const tabButtons = document.querySelectorAll('.modal__tab-button_tasks');
+const tabContents = document.querySelectorAll('.modal__tab-content_tasks');
 
 let taskCountLastValue;
 
-tasks_close.onclick = function(){
-    tasks_modal.style.display = "none";
-}
-
-tasks_close.ontouchend = (e) => {
-    e.preventDefault();
-    tasks_modal.style.display = "none";
-}
+closeModal(tasks_modal, tasks_close);
 
 dragElement(tasks_modal);
 resizeModalWindow(modal_resize, "whModalTask", "Размеры окна задачи");
@@ -74,21 +74,25 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcGetTasksSteps = (uin) => {
     funcGetResize();
+    openModal(tasks_modal);
+
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":"dirTask", "uin":`${uin}`, "uinTask":`${localStorage.getItem('uinTask')}`};
     funcCommand(body, funcProcessGetTasksSteps);
 
     funcGetHistorystep(uin, localStorage.getItem('uinTask'));
+    funcGetTaskcontrol(localStorage.getItem('uinTask'));
     tasks_save.value = "";
     tasks_save.value = uin;
-
-    tasks_modal.style.display  = "block";
 }
 
 export const funcGetTasksArchiveSteps = (uin) => {
-    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":"dirTaskArch", "uin":`${uin}`, "uinTaskArch":`${localStorage.getItem('uinTaskArchive')}`};
+    let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"viewInside", "obj":"dirTaskArch", "uin":`${uin}`, "uinTaskArch":`${localStorage.getItem('uinTask')}`};
     funcCommand(body, funcProcessGetTasksSteps);
 
-    tasks_modal.style.display  = "block";
+    funcGetHistorystep(uin, localStorage.getItem('uinTask'));
+    funcGetTaskcontrol(localStorage.getItem('uinTask'));
+
+    openModal(tasks_modal);
 }
 
 const funcProcessGetTasksSteps = (result, respobj) => {
@@ -106,7 +110,6 @@ const funcProcessGetTasksSteps = (result, respobj) => {
         tasks_dl_h.disabled    = true;
         tasks_dl_m.disabled    = true;
         tasks_status.disabled  = true;
-        tasks_status.parentElement.previousElementSibling.className = "input__type-text__label";
         tasks_problem.disabled = true;
         tasks_problem.nextElementSibling.className = "input__type-text__label";
         tasks_count_r.style.opacity = "0";
@@ -117,12 +120,25 @@ const funcProcessGetTasksSteps = (result, respobj) => {
         tasks_dateacc.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
         tasks_part.parentElement.classList.add("modal__input-wrapper_display-none");
         switch_1.parentElement.parentElement.parentElement.style.opacity = "0";
+        if(window.innerWidth < 1024){ switch_1.parentElement.parentElement.parentElement.style.display = "none" };
+        if(document.URL.includes('#tasksArch')){
+            tasks_usermove.parentElement.classList.remove("modal__input-wrapper_display-none");
+            tasks_datemove.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
+            tasks_save.classList.add("modal__input-wrapper_display-none");
+            tasks_dl1_d.parentElement.classList.add("modal__input-wrapper_display-none");
+        } else {
+            tasks_usermove.parentElement.classList.add("modal__input-wrapper_display-none");
+            tasks_datemove.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+            tasks_save.classList.remove("modal__input-wrapper_display-none");
+            tasks_dl1_d.parentElement.classList.remove("modal__input-wrapper_display-none");
+        }
+        tabButtons[2].disabled = false;
     } else {
         tasks_dl_d.disabled    = false;
         tasks_dl_h.disabled    = false;
         tasks_dl_m.disabled    = false;
         tasks_status.disabled  = false;
-        tasks_status.parentElement.previousElementSibling.className = "input__type-text__label-active";
+        tasks_dl1_d.parentElement.classList.add("modal__input-wrapper_display-none");
         tasks_problem.disabled = false;
         tasks_problem.nextElementSibling.className = "input__type-text__label-active";
         tasks_count_r.style.opacity = "1";
@@ -133,16 +149,15 @@ const funcProcessGetTasksSteps = (result, respobj) => {
         tasks_dateacc.parentElement.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
         tasks_part.parentElement.classList.remove("modal__input-wrapper_display-none");
         switch_1.parentElement.parentElement.parentElement.style.opacity = "1";
-    }
-
-    if(document.URL.includes('#tasks/tasks_archive')){
-        tasks_usermove.parentElement.classList.remove("modal__input-wrapper_display-none");
-        tasks_datemove.parentElement.classList.remove("modal__input-wrapper_display-none");
-        tasks_save.classList.add("modal__input-wrapper_display-none");
-    } else {
+        if(window.innerWidth < 1024){ switch_1.parentElement.parentElement.parentElement.style.display = "block" };
         tasks_usermove.parentElement.classList.add("modal__input-wrapper_display-none");
-        tasks_datemove.parentElement.classList.add("modal__input-wrapper_display-none");
-        tasks_save.classList.remove("modal__input-wrapper_display-none");
+        tasks_datemove.parentElement.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
+        if(document.URL.includes('#tasksArch')){
+            tasks_save.classList.add("modal__input-wrapper_display-none");
+        } else {
+            tasks_save.classList.remove("modal__input-wrapper_display-none");
+        }
+        tabButtons[2].disabled = true;
     }
 
     let obj          = respobj.answ;
@@ -151,6 +166,7 @@ const funcProcessGetTasksSteps = (result, respobj) => {
     let prim         = obj.prim         != undefined ? obj.prim : '---';
     let numb_i       = obj.numb_inlevel != undefined ? obj.numb_inlevel : '0';
     let dl           = obj.dl;
+    let dl1          = obj.dl1 != undefined ? obj.dl1 : '';
     let nameStatus   = obj.status.name;
     let uinStatus    = obj.status.uin;
     let dtstart      = obj.datestart;
@@ -180,9 +196,9 @@ const funcProcessGetTasksSteps = (result, respobj) => {
     let del          = obj.del;
 
     let nameUsermove = obj.usermove != undefined ? obj.usermove.name : '---';
-    let datemove     = obj.datemove;
+    let datemove     = obj.datemove != undefined ? obj.datemove : '';
 
-    addTasksInfo(name, mission, prim, numb_i, dl, nameStatus, uinStatus, dtstart, dateaccept, datebegin, dateend, dtpredel, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, nameProd, uinProd, nameProc, uinProc, autoready, fproblem, fareaprof, fpart, count, countreal, uin, del, nameUsermove, datemove);
+    addTasksInfo(name, mission, prim, numb_i, dl, dl1, nameStatus, uinStatus, dtstart, dateaccept, datebegin, dateend, dtpredel, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, nameProd, uinProd, nameProc, uinProc, autoready, fproblem, fareaprof, fpart, count, countreal, uin, del, nameUsermove, datemove);
 }
 
 /* открыть детализацию */
@@ -193,11 +209,17 @@ task_detailpp.addEventListener('click', (elem) => {
 tasks_con_prod.onclick = () => {
     funcGetProductsTreeSelectUnic();
     localStorage.setItem("button_select_product_unic_id", "tasks_content_product");
-    document.getElementById("modal_select_products_unic").style.display = "block";
+}
+
+document.querySelector('.button__control_clear-tasks-content-product').onclick = () => {
+    tasks_con_prod.value = 0;
+    tasks_con_prod.name = '';
+    tasks_con_prod.textContent = 'Выберите изделие';
 }
 
 const addTasksInfo =
-(name, mission, prim, numb_i, dl, nameStatus, uinStatus, dtstart, dateaccept, datebegin, dateend, dtpredel, nameUser, uinUser, nameAreaprof, uinAreaprof, nameStart, uinStart, nameContent, uinContent, nameProd, uinProd, nameProc, uinProc, autoready, fproblem, fareaprof, fpart, count, countreal, uin, del, nameUsermove, datemove) => {
+(name, mission, prim, numb_i, dl, dl1, nameStatus, uinStatus, dtstart, dateaccept, datebegin, dateend, dtpredel, nameUser, uinUser, nameAreaprof, uinAreaprof,
+nameStart, uinStart, nameContent, uinContent, nameProd, uinProd, nameProc, uinProc, autoready, fproblem, fareaprof, fpart, count, countreal, uin, del, nameUsermove, datemove) => {
     uin === "0" ? tasks_title_n.innerHTML = `${setStatus(uinStatus, fpart, 'control-task__img-status')} Задача: ${name}` : tasks_title_n.innerHTML = `${setStatus(uinStatus, fpart, 'control-task__img-status')} Задание: ${name}`;
     tasks_name.value      = name;
     tasks_dtstart.value   = dtstart    != undefined ? dtstart.split("T")[0] : '';
@@ -215,9 +237,12 @@ const addTasksInfo =
     tasks_dl_d.value      = dl.dl_d;
     tasks_dl_h.value      = dl.dl_h;
     tasks_dl_m.value      = dl.dl_m;
+    tasks_dl1_d.value     = dl1.dl_d1;
+    tasks_dl1_h.value     = dl1.dl_h1;
+    tasks_dl1_m.value     = dl1.dl_m1;
     insertDataInSelect(tasks_status, nameStatus, uinStatus, "statustask_list");
     insertDataInSelect(tasks_user, nameUser, uinUser, "users_list");
-    uin === "0" ? tasks_user.parentElement.previousElementSibling.textContent = "Администратор:" : tasks_user.parentElement.previousElementSibling.textContent = "Исполнитель:";
+    uin === "0" ? tasks_user.parentElement.previousElementSibling.textContent = "Админ:" : tasks_user.parentElement.previousElementSibling.textContent = "Исполнитель:";
     insertDataInSelect(tasks_areaprof, nameAreaprof, uinAreaprof, "prof_list");
     insertDataInSelect(tasks_content, nameContent, uinContent, "contents_list");
     if(uin === "0" && uinContent === 5){
@@ -272,8 +297,19 @@ const addTasksInfo =
     tasks_count_r.value = countreal;
     task_detailpp.value = uin;
 
-    tasks_usermove.value != undefined ? nameUsermove : '---';
-    tasks_datemove.value  = datemove != '' ? formatDate(datemove) : '---';
+    tasks_usermove.value = nameUsermove;
+    tasks_datemove.value = datemove != '' ? datemove.split('T')[0] : '';
+    tasks_timemove.value = datemove != '' ? datemove.split('T')[1] : '';
+
+    if(uin === '0'){
+        if(uinStatus == 10 || uinStatus == 11 || uinStatus == 15){
+            document.querySelector(`label[for="tasks_dateend"]`).textContent = 'Окончание:';
+        } else {
+            document.querySelector(`label[for="tasks_dateend"]`).innerHTML = 'Окончание<br>расчет.:';
+        }
+    } else {
+        document.querySelector(`label[for="tasks_dateend"]`).textContent = 'Окончание:';
+    }
 }
 
 /* отслеживание count */
@@ -320,8 +356,6 @@ tasks_save.onclick = () => {
     body.uinproduct    = tasks_con_prod.value;
     body.uintechproc   = tasks_con_proc.value;
 
-    console.log(body)
-
     funcCommand(body, funcProcessOnlyInfo);
     setTimeout(function(){ funcGetTasks() }, 100);
     setTimeout(function(){ funcGetTasksTree(`${localStorage.getItem('uinTask')}`) }, 150);
@@ -346,9 +380,6 @@ tasks_save.onclick = () => {
         }
     }
 }
-
-const tabButtons = document.querySelectorAll('.modal__tab-button');
-const tabContents = document.querySelectorAll('.modal__tab-content');
 
 tabButtons.forEach(button => {
     button.addEventListener('click', () => {

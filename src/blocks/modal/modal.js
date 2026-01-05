@@ -56,7 +56,7 @@ modals.forEach((elem) => {
     elem.addEventListener("click", (elem) => {
         count += 2;
         if(elem.target.offsetParent != null) 
-        elem.target.offsetParent.offsetParent.style.zIndex = count;
+        elem.target.parentElement.style.zIndex = count;
     })
 })
 
@@ -96,5 +96,32 @@ export const resizeModalWindow = (modalId, modalRespName, descrText) => {
             let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"add", "obj":"webopt", "name":`${modalRespName}`, "descr":`${descrText}`, "show":"1", "fmode":"3", "val":`[${initialWidth},${initialHeight}]`, "uinuser":`${localStorage.getItem('user_uin')}`};
             funcCommand(body, funcProcessOnlyInfo);
         }
+    }
+}
+
+export const updateOverlay = () => {
+    const modals = document.querySelectorAll('.modal');
+    const hasVisibleModal = Array.from(modals).some(modal =>
+        modal.style.display === 'block'
+    );
+    const overlay = document.getElementById('modal-overlay');
+    overlay.style.display = hasVisibleModal ? 'block' : 'none';
+}
+
+export const openModal = (modal) => {
+    modal.style.display = 'block';
+    updateOverlay();
+}
+
+export const closeModal = (modal, close) => {
+    close.onclick = () => {
+        modal.style.display = "none";
+        updateOverlay();
+    }
+
+    close.ontouchend = (e) => {
+        e.preventDefault();
+        modal.style.display = "none";
+        updateOverlay();
     }
 }

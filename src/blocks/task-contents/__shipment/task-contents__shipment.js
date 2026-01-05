@@ -63,5 +63,5 @@ export const funcTaskContentShipmentHelpers = () => {
     funcGetSets();
     funcGetProducts();
     funcGetContragents();
-    funcGetUsers();
+    //funcGetUsers();
 }

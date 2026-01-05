@@ -1,6 +1,9 @@
 import {funcCommand, listenCustomSelect, sendFiltAnalisys, clearCustomSelect, sortAnalisys, makeSelect, responseProcessor, listenDate, clearTableAll} from '../../../js/common/common.js';
 import {customSelect, customSortSelect} from '../../select/select.js';
 
+let sort = document.getElementById('sort_analysis_components');
+let sort_second = document.getElementById('sort_analysis_components_second');
+
 export const funcGetShipComponentsAll = () => {
     let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shipCompontsAll", "count":"500", "filt":"", "asort": "uin", "filt":`${JSON.stringify(filt_analysis_components_all)}`};
     funcCommand(body, funcProcessGetShipComponentsAll);
@@ -44,7 +47,7 @@ function addRowColumsShipComponentsAll(SNset, NPset, set, product, innproduct, c
     let cellInnproduct = newRow.insertCell(4);  cellInnproduct.classList = "td";
     let cellCount      = newRow.insertCell(5);  cellCount.classList      = "td";
     let cellComp       = newRow.insertCell(6);  cellComp.classList       = "td";
-    let cellStatus     = newRow.insertCell(7);  cellStatus.classList     = "td td__text_align_center";
+    let cellStatus     = newRow.insertCell(7);  cellStatus.classList     = "td td__text_align_center td_no-padding";
     let cellKontr      = newRow.insertCell(8);  cellKontr.classList      = "td";
     let cellDate       = newRow.insertCell(9);  cellDate.classList       = "td td__text_align_center";
     let cellPrim       = newRow.insertCell(10); cellPrim.classList       = "td td__text_align_center";
@@ -63,10 +66,10 @@ function addRowColumsShipComponentsAll(SNset, NPset, set, product, innproduct, c
     cellPrim.innerHTML       = `<input class="input__type-text" type="text" value="${prim}" name="shipcomponents_all_prim_${uin}">`;
 }
 
-customSelect('analysis_components_set_customDropdown', JSON.parse(localStorage.getItem("sets_list")), 'комплект');
-customSelect('analysis_components_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'изделие');
-customSelect('analysis_components_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'контрагента');
-customSelect('analysis_components_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'статус');
+customSelect('analysis_components_set_customDropdown', JSON.parse(localStorage.getItem("sets_list")), 'Комплект');
+customSelect('analysis_components_prod_customDropdown', JSON.parse(localStorage.getItem("products_list")), 'Изделие');
+customSelect('analysis_components_contr_customDropdown', JSON.parse(localStorage.getItem("contragents_list")), 'Контрагент');
+customSelect('analysis_components_status_customDropdown', JSON.parse(localStorage.getItem("statuses_list")), 'Статус');
 
 let filt_analysis_components_all = [];
 let filt_1 = {fld: "uin", on: "sets"};
@@ -82,21 +85,35 @@ listenCustomSelect("analysis_components_contr_customDropdown", filt_3, [], filt_
 listenCustomSelect("analysis_components_status_customDropdown", filt_4, [], filt_analysis_components_all);
 listenDate(document.getElementById('filt_analysis_components_all_date_first'), document.getElementById('filt_analysis_components_all_date_second'), filt_5, [], filt_analysis_components_all);
 
+const btn_filter_open = document.querySelector('[data-target="select-sort-analysis-components"]').firstElementChild;
+
 document.getElementById("button_analysis_components_choose").addEventListener("click", () => {
     sendFiltAnalisys(filt_analysis_components_all, 'tb_analysis_components_all', 'shipCompontsAll', funcProcessGetShipComponentsAll);
+    btn_filter_open.classList.add('active');
 })
 
 document.getElementById("button_analysis_components_reset").addEventListener("click", () => {
     filt_analysis_components_all.length = 0;
-    clearCustomSelect('analysis_components_set_customDropdown', 'комплект');
-    clearCustomSelect('analysis_components_prod_customDropdown', 'изделие');
-    clearCustomSelect('analysis_components_contr_customDropdown', 'контрагента');
-    clearCustomSelect('analysis_components_status_customDropdown', 'статус');
+    clearCustomSelect('analysis_components_set_customDropdown', 'Комплект');
+    clearCustomSelect('analysis_components_prod_customDropdown', 'Изделие');
+    clearCustomSelect('analysis_components_contr_customDropdown', 'Контрагент');
+    clearCustomSelect('analysis_components_status_customDropdown', 'Статус');
     document.getElementById('filt_analysis_components_all_date_first').value = '';
     document.getElementById('filt_analysis_components_all_date_second').value = '';
     funcGetShipComponentsAll();
     filt_analysis_components_all.push(filt_5);
+
+    btn_filter_open.classList.remove('active');
 })
 
-customSortSelect("sort_analysis_components");
-sortAnalisys("sort_analysis_components", filt_analysis_components_all, "shipCompontsAll", funcProcessGetShipComponentsAll);
+if(window.innerWidth <= 1024){
+    sort.style.display = "block";
+    sort_second.style.display = "none";
+    customSortSelect("sort_analysis_components");
+    sortAnalisys("sort_analysis_components", filt_analysis_components_all, "shipCompontsAll", funcProcessGetShipComponentsAll);
+} else {
+    sort.style.display = "none";
+    sort_second.style.display = "block";
+    customSortSelect("sort_analysis_components_second");
+    sortAnalisys("sort_analysis_components_second", filt_analysis_components_all, "shipCompontsAll", funcProcessGetShipComponentsAll);
+}

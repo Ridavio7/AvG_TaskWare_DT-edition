@@ -1,5 +1,5 @@
 import {funcCommand, clearTable, removeOptionsSetValue, removeOptions, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, clearTableAll, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, updateOverlay, openModal} from '../modal.js';
 import {funcGetComponentsTree, funcGetComponents} from '../../table/__comp-main/table__comp-main.js';
 import {funcGetComponentInfoProps} from '../../table/__comp-compontsprops/table__comp-compontsprops.js';
 import {funcGetComponentInfoTypesProps} from '../../table/__comp-typesprops/table__comp-typesprops.js';
@@ -40,6 +40,7 @@ span_info_component.onclick = function(){
         if(res === true) modal_info_component.style.display = "none";
     } else {
         modal_info_component.style.display = "none";
+        updateOverlay();
     }
 }
 
@@ -53,6 +54,7 @@ span_info_component.ontouchend = (e) => {
         if(res === true) modal_info_component.style.display = "none";
     } else {
         modal_info_component.style.display = "none";
+        updateOverlay();
     }
 }
 
@@ -61,7 +63,7 @@ resizeModalWindow(component_resize, 'whModalComponents', "Размеры окн�
 
 /* функция добавления комплектующего */
 export const funcProcessInfoComponentsModalAdd = (uin) => {
-    modal_info_component.style.display = "block";
+    openModal(modal_info_component);
 
     component_input_name.value = "";
     component_input_name_title.innerHTML = "Добавление комплектующего";
@@ -118,7 +120,7 @@ component_button_add.onclick = () => {
 /* открытие модального окна */
 export const funcInfoComponentsOpenModal = (uin) => {
     funcGetResize();
-    modal_info_component.style.display = "block";
+    openModal(modal_info_component);
 
     funcGetComponentInfo(uin);
     setTimeout(function(){funcGetComponentInfoProps(uin)}, 100);

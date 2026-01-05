@@ -4,6 +4,7 @@ export const customSelect = (select_id, arr, text) => {
     const searchInput = dropdown.querySelector('.searchInput');
     const optionsList = dropdown.querySelector('.optionsList');
     const noResults   = dropdown.querySelector('.noResults');
+    const button      = dropdown.querySelector('.buttonReset');
 
     for(let key in arr){
         if(arr[key].del === 0){
@@ -29,11 +30,9 @@ export const customSelect = (select_id, arr, text) => {
         }
     }
 
-    // Все оригинальные опции (для фильтрации)
     const optionItems = optionsList.querySelectorAll('.select-custom__option-item');
     const checkboxes = optionsList.querySelectorAll('input[type="checkbox"]');
 
-    // Переключение видимости
     header.addEventListener('click', () => {
         dropdown.classList.toggle('active');
         if (dropdown.classList.contains('active')) {
@@ -42,14 +41,6 @@ export const customSelect = (select_id, arr, text) => {
         }
     })
 
-    // Закрытие при клике вне
-    document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('active');
-        }
-    })
-
-    // Фильтрация опций по поиску
     searchInput.addEventListener('input', filterOptions);
 
     function filterOptions() {
@@ -66,7 +57,6 @@ export const customSelect = (select_id, arr, text) => {
             }
         })
 
-        // Показать/скрыть сообщение "Ничего не найдено"
         if (query && visibleCount === 0) {
             noResults.style.display = 'block';
         } else {
@@ -74,7 +64,6 @@ export const customSelect = (select_id, arr, text) => {
         }
     }
 
-    // Обновление выбранных значений
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', updateSelection);
     })
@@ -85,13 +74,25 @@ export const customSelect = (select_id, arr, text) => {
             .map(cb => cb.value);
 
         if (checked.length === 0) {
-            header.textContent = `Выберите ${text}`;
+            header.innerHTML = `<span class="select-custom__icon select-custom__icon-filter"></span> ${text}`;
+            if (button) button.style.display = 'none';
         } else {
             header.textContent = checked.length > 1 
             ? `${checked.length} выбрано` 
             : checked.join(', ');
+            if (button) button.style.display = 'flex';
         }
-        header.insertAdjacentHTML('beforeend', '<span class="select-custom__icon"></span>');
+    }
+
+    if (button) {
+        button.addEventListener('click', () => {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            updateSelection();
+            searchInput.value = '';
+            filterOptions();
+        })
     }
 
     // Очистка поиска при закрытии
@@ -99,7 +100,6 @@ export const customSelect = (select_id, arr, text) => {
       // Можно оставить, если хочется сбрасывать поиск при уходе
     });
 
-    // По нажатию Esc — закрыть dropdown
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             dropdown.classList.remove('active');
@@ -110,24 +110,68 @@ export const customSelect = (select_id, arr, text) => {
 export const customSortSelect = (select_id) => {
     const dropdown      = document.getElementById(select_id);
     const selectHeader  = dropdown.querySelector('.selectHeader');
+    const icon          = dropdown.querySelector('.select-custom__icon');
     const options       = dropdown.querySelectorAll('li');
 
     selectHeader.addEventListener('click', () => {
         dropdown.classList.toggle('active');
+        
+        if(window.innerWidth <= 1024){
+            document.getElementById('modal-overlay').style.display = 'block';
+        }
     })
 
     options.forEach(option => {
         option.addEventListener('click', () => {
-            selectHeader.textContent = option.textContent;
+            if(window.innerWidth <= 1024){
+                selectHeader.classList.add('active');
+            } else {
+                selectHeader.textContent = option.textContent;
+                selectHeader.insertAdjacentHTML('afterbegin', '<span class="select-custom__icon"></span>');
+            }
             dropdown.classList.remove('active');
+        })
+    })
+}
 
-            selectHeader.insertAdjacentHTML('beforeend', '<span class="select-custom__icon"></span>');
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.select-custom')) {
+        document.querySelectorAll('.select-custom').forEach(d => d.classList.remove('active'));
+
+        if(window.innerWidth <= 1024){
+            document.getElementById('modal-overlay').style.display = 'none';
+        }
+    }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.select-custom_filter-open').forEach(child => {
+        child.addEventListener('click', () => {
+            const targetId = child.dataset.target;
+            const targetBlock = document.getElementById(targetId);
+            if (targetBlock) {
+                targetBlock.style.display = 'flex';
+            }
         })
     })
 
-    document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('active');
-        }
+    document.querySelectorAll('.button__control_tabcontent-filter-close').forEach(child => {
+        child.addEventListener('click', () => {
+            const targetId = child.dataset.target;
+            const targetBlock = document.getElementById(targetId);
+            if (targetBlock) {
+                targetBlock.style.display = 'none';
+            }
+        })
     })
-}
+
+    if(window.innerWidth <= 1024){
+        document.querySelectorAll('.button__control_tabcontent-send-filter').forEach(child => {
+            child.textContent = 'Применить';
+        })
+
+        document.querySelectorAll('.button__control_tabcontent-reset-filter').forEach(child => {
+            child.textContent = 'Сбросить';
+        })
+    }
+})

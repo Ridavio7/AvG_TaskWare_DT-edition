@@ -7,6 +7,9 @@ import {customSortSelect} from '../../select/select.js';
 import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
 import {resizeModalWindow} from '../../modal/modal.js';
 
+let tree_shablons_resize = document.getElementById("tree_shablons_resize");
+let tabcontent_close = document.querySelector('.button__control_tabcontent-close-shablons');
+
 resizeModalWindow(tree_shablons_resize, "whShablonTree", "Размеры окна задач дерева"); 
 
 /* настройка размера окна */
@@ -16,8 +19,8 @@ const funcGetResizeTb = () => {
 }
 
 const funcProcessGetResizeTb = (result, respobj) => {
-    document.getElementById("tree_shablons_resize").style.width  = `${respobj.answ.val[0]}px`;
-    document.getElementById("tree_shablons_resize").style.height = `${respobj.answ.val[1]}px`;
+    tree_shablons_resize.style.width  = `${respobj.answ.val[0]}px`;
+    tree_shablons_resize.style.height = `${respobj.answ.val[1]}px`;
 }
 
 export const funcGetShablons = () => {
@@ -80,6 +83,11 @@ const funcProcessGetShablons = (result, respobj) => {
             funcGetShablonsTree(elem.value);
             elem.classList.add('button__control_active');
             elem.parentElement.parentElement.classList.add('tr_mark');
+
+            if(window.innerWidth <= 1025){
+                tree_shablons_resize.style.display = "block";
+                tabcontent_close.style.display = "flex";
+            }
         })
     })
 
@@ -89,15 +97,15 @@ const funcProcessGetShablons = (result, respobj) => {
         elem.addEventListener("click", () => {
             let result = confirm(`Запустить шаблон задачи "${elem.name}"?`);
             if(result === true){
-                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"starttask", "obj":"tasks", "uinShablon":`${elem.value}`};
+                let body  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"prevtask", "obj":"tasks", "uinShablon":`${elem.value}`};
 
                 funcCommand(body, (result, respobj) => {
                     console.log(respobj);
-                    if (result === 1 && respobj?.uintask) {
+                    /*if (result === 1 && respobj?.uintask) {
                         localStorage.setItem('uinTask', respobj.uintask);
                         localStorage.setItem('button-active__tasks-catTask', respobj.uintask);
                         funcGetTasksSteps(0);
-                    }
+                    }*/
                 })
             }
         })
@@ -119,15 +127,15 @@ const addShablonsRow = (name, uin, del, tb_id) => {
     let newRow = tableRef.insertRow(-1);
 
     let cellName = newRow.insertCell(0); cellName.classList = "td";
-    let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td td_buttons-control";
+    let cellBtn  = newRow.insertCell(1); cellBtn.classList  = "td td_buttons-control td_width-5";
 
     cellName.innerHTML = `<button class="button__control button__control_action button__control_modal-shablons-catSh" value="${uin}">${name}</button>`;
-    cellBtn.innerHTML = `<button class="button__control button__control_modal-shablons-release" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/start.svg" title="Запуск"></button><div class="button__control_dropdown-container button__control_modal-dropdown-shablons" data-value="${uin}" data-id="${del}"></div>`;
+    cellBtn.innerHTML = `<div class="modal__button-wrapper"><button class="button__control button__control_modal-shablons-release" value="${uin}" name="${name}"><img class="button__control__img" src="assets/images/start.svg" title="Запуск"></button><div class="button__control_dropdown-container button__control_modal-dropdown-shablons" data-value="${uin}" data-id="${del}"></div></div>`;
     if(del === 1){
         newRow.classList = "tr tr_mark-error";
         cellName.firstChild.style.color = '#ff3131';
     } else {
-        newRow.classList = "tr";
+        newRow.classList = "tr tr_hover-btn";
     }
 }
 
@@ -182,6 +190,10 @@ const dropdown = document.getElementById("sort_shablons");
 const options  = dropdown.querySelectorAll('li');
 options.forEach(option => {
     option.addEventListener('click', () => {
+        options.forEach(elem => {
+            elem.style.color = 'var(--font-color)';
+        })
+        
         switch (option.getAttribute('data-value')){
             case '1':
                 let body1  =  {"user":`${localStorage.getItem('srtf')}`, "meth":"view", "obj":"shablons", "count":"5000", "sort":"name"};
@@ -200,6 +212,9 @@ options.forEach(option => {
                 funcCommand(body4, funcProcessGetShablons);
             break;
         }
+
+        option.style.color = 'var(--font-color-modal-blue)';
+        document.getElementById('modal-overlay').style.display = 'none';
     })
 })
 
@@ -216,4 +231,15 @@ const funcProcessGetShablonsTree = (result, respobj) => {
 
     const tree = new TreeTaskBuilder('tree_shablons', 'dirSh', 'catSh', funcGetShablonsTree, funcGetShablonsSteps, funcInfoShablonsTransferOpenModal, funcGetShablons, ["contextmenu"]);
     tree.build(respobj.answ);
+}
+
+if(tabcontent_close != null){
+    if(window.innerWidth <= 1024){
+        tabcontent_close.style.opacity = "1";
+        tabcontent_close.addEventListener('click', () => {
+            tree_shablons_resize.style.display = "none";
+        })
+    } else {
+        tabcontent_close.style.opacity = "0";
+    }
 }

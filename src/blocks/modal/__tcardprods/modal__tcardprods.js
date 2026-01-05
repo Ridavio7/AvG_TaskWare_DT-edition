@@ -1,19 +1,12 @@
 import {funcCommand, funcProcessOnlyInfo, clearTable, removeOptionsSetValue, addToDropdown, makeSelect, findForUpdateSelect, findForUpdateInput, highlightButtonSave, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 
 let modal_tcardprods = document.getElementById("modal_tcardprods");
 let span_tcardprods  = document.getElementById("close_tcardprods");
 let modal_resize     = document.getElementById("modal_tcardprods_resize");
 let uinProdForAdd;
 
-span_tcardprods.onclick = () => {
-    modal_tcardprods.style.display = "none";
-}
-
-span_tcardprods.ontouchend = (e) => {
-    e.preventDefault();
-    modal_tcardprods.style.display = "none";
-}
+closeModal(modal_tcardprods, span_tcardprods);
 
 dragElement(modal_tcardprods);
 resizeModalWindow(modal_resize, "whModalTcardProd", "Размеры окна тех. карты");
@@ -31,7 +24,7 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcInfoTcardprodsOpenModal = (uin) => {
     funcGetResize();
-    modal_tcardprods.style.display = "block";
+    openModal(modal_tcardprods);
 
     funcGetInfoTcardprod(uin);
 }

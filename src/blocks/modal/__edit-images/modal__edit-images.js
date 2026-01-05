@@ -1,5 +1,5 @@
 import {funcCommand, clearTable, findForUpdateInput, highlightButtonSave, funcProcessOnlyInfo, responseProcessor, funcProcessOnlyConsole} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, openModal, closeModal} from '../modal.js';
 import {funcGetCompontimgs} from '../../table/__comp-compontimgs/table__comp-compontimgs.js';
 import {DropdownButton} from '../../button/__control/_dropdown/button__control_dropdown.js';
 import {funcInfoComponentsOpenModal} from '../__info-comp/modal__info-comp.js';
@@ -11,14 +11,7 @@ let modal_resize    = document.getElementById("comp_edit_imgs_modal_resize");
 
 let uinCompont = null;
 
-edit_imgs_close.onclick = () => {
-    edit_imgs_modal.style.display = "none";
-}
-
-edit_imgs_close.ontouchend = (e) => {
-    e.preventDefault();
-    edit_imgs_modal.style.display = "none";
-}
+closeModal(edit_imgs_modal, edit_imgs_close);
 
 dragElement(edit_imgs_modal);
 resizeModalWindow(modal_resize, "whModalEditCompImgs", "Размеры окна добавления изображения");
@@ -36,10 +29,11 @@ const funcProcessGetResize = (result, respobj) => {
 
 export const funcEditImgsOpenModal = (uin, name) => {
     funcGetResize();
-    edit_imgs_modal.style.display = "block";
+    openModal(edit_imgs_modal);
 
     uinCompont = uin;
     edit_imgs_title.innerHTML = name;
+    
     funcGetCompontimgsEdit(uin);
 }
 

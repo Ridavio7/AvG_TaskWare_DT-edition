@@ -1,5 +1,5 @@
 import {funcCommand, removeOptionsSetValue, addToDropdown, addToDropdownOneOption, funcProcessOnlyInfo, responseProcessor} from '../../../js/common/common.js';
-import {dragElement, resizeModalWindow} from '../modal.js';
+import {dragElement, resizeModalWindow, updateOverlay, openModal} from '../modal.js';
 import {funcGetProductsTree} from '../../table/__storage-main/table__storage-main.js';
 import {funcGetProductViewInside} from '../../table/__products-viewInside/table__products-viewInside.js';
 import {funcInfoTcardprodsOpenModal} from '../__tcardprods/modal__tcardprods.js';
@@ -24,17 +24,18 @@ let inputIsChange  = false;
 
 span_info_product.onclick = function(){
     if(inputIsChange === true){
-        inputIsChange  = false;
+        inputIsChange = false;
 
         let res = confirm("Вы не сохранили все изменения! Все равно выйти?");
         if(res === true) modal_info_product.style.display = "none";
     } else {
         modal_info_product.style.display = "none";
+        updateOverlay();
     }
 
-    document.getElementById("button_info_product_add_prod").textContent = 'Выберите изделие';
+    document.getElementById("button_info_product_add_prod").textContent = 'Сбор. ед.';
     document.getElementById("input_info_product_add_prod").value        = '';
-    document.getElementById("button_info_product_add_comp").textContent = 'Выберите комплектующее';
+    document.getElementById("button_info_product_add_comp").textContent = 'Комплектующее';
     document.getElementById("input_info_product_add_comp").value        = '';
 }
 
@@ -47,21 +48,22 @@ span_info_product.ontouchend = (e) => {
         if(res === true) modal_info_product.style.display = "none";
     } else {
         modal_info_product.style.display = "none";
+        updateOverlay();
     }
 
-    document.getElementById("button_info_product_add_prod").textContent = 'Выберите изделие';
+    document.getElementById("button_info_product_add_prod").textContent = 'Сбор. ед.';
     document.getElementById("input_info_product_add_prod").value        = '';
-    document.getElementById("button_info_product_add_comp").textContent = 'Выберите комплектующее';
+    document.getElementById("button_info_product_add_comp").textContent = 'Комплектующее';
     document.getElementById("input_info_product_add_comp").value        = '';
 }
 
 dragElement(modal_info_product);
-resizeModalWindow(info_product_resize, "whModalSetProd", "Размеры окна комплект/изделие");
+resizeModalWindow(info_product_resize, "whModalSetProd", "Размеры окна комплект/сбор. ед.");
 
 /* открытие модального окна */
 export const funcInfoProductOpenModal = (uin, fset) => {
     funcGetResize();
-    modal_info_product.style.display = "block";
+    openModal(modal_info_product);
 
     funcGetProductInfo(uin, fset);
     setTimeout(function(){funcGetProductViewInside(uin, fset)}, 100);
@@ -86,7 +88,7 @@ export const funcGetProductInfo = (uin, fset) => {
 }
 
 const funcProcessGetProductInfo = (result, respobj) => {
-    console.log("Комплект/изделие ИНФО:", respobj);
+    console.log("Комплект/сбор. ед. ИНФО:", respobj);
 
     while (select_info_product_color.options.length) {select_info_product_color.options[0] = null};
     input_info_product_train.value = '';
@@ -111,7 +113,7 @@ const funcProcessGetProductInfo = (result, respobj) => {
 }
 
 const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
-    input_info_product_name_title.innerHTML = fset == 0 ? `Изделие ${name}` : `Комплект ${name}`;
+    input_info_product_name_title.innerHTML = fset == 0 ? `Сбор. ед. ${name}` : `Комплект ${name}`;
     input_info_product_name.value           = name;
 
     addToDropdownOneOption(select_info_product_color, dopName, dopUin);
@@ -120,14 +122,13 @@ const addProductInfo = (name, dopName, dopUin, fship, uin, uincat, fset) => {
 
     if(fset == 0){
         select_info_product_color.parentElement.parentElement.classList.remove("modal__input-wrapper_display-none");
-        button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
-        button_info_product_tcard.parentElement.classList.remove("modal__input-wrapper_display-none");
+        button_info_product_tcard.classList.remove("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.add("modal__input-wrapper_display-none");
         chb_info_product_fship.checked = fship === 1 ? true : false;
         chb_info_product_fship.disabled = false;
     } else {
         select_info_product_color.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
-        button_info_product_tcard.parentElement.classList.add("modal__input-wrapper_display-none");
+        button_info_product_tcard.classList.add("modal__input-wrapper_display-none");
         input_info_product_train.parentElement.classList.remove("modal__input-wrapper_display-none");
         chb_info_product_fship.checked = true;
         chb_info_product_fship.disabled = true;
@@ -176,8 +177,9 @@ button_info_product_save.onclick = (elem) => {
 
 /* функция добавления комплектующего */
 export const funcProcessInfoProductsModalAdd = () => {
-    modal_info_product.style.display = "block";
-    input_info_product_name_title.innerHTML = 'Добавление изделия/комплектующего';
+    openModal(modal_info_product);
+    
+    input_info_product_name_title.innerHTML = 'Добавление комплекта/изделия';
 
     input_info_product_name.value           = "";
     chb_info_product_fship.parentElement.classList.add("modal__input-wrapper_display-none");
@@ -191,7 +193,7 @@ export const funcProcessInfoProductsModalAdd = () => {
     input_info_comment.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_prod.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
     tb_info_product_comp.parentElement.parentElement.classList.add("modal__input-wrapper_display-none");
-    button_info_product_tcard.parentElement.classList.add("modal__input-wrapper_display-none");
+    button_info_product_tcard.classList.add("modal__input-wrapper_display-none");
 
     button_info_product_add.style.display  = "flex";
     button_info_product_save.style.display = "none";
@@ -211,6 +213,6 @@ button_info_product_add.onclick = (elem) => {
 
         funcCommand(body, funcProcessOnlyInfo);
         setTimeout(function(){funcGetProductsTree()}, 100);
-        setTimeout(function(){modal_info_product.style.display = "none";}, 150);
+        setTimeout(function(){modal_info_product.style.display = "none"}, 150);
     }
 }
