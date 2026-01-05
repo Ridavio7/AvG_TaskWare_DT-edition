@@ -1,17 +1,30 @@
 .input__type-text_modal {
     max-height: 33px;
     height: 33px;
-    min-width: 250px;
-    max-width: 250px;
-    margin-left: 10px;
+    border-bottom: 1px solid var(--border);
+    margin-left: 5px;
+
+    &:focus-visible{
+        outline: none;
+        border: none;
+        border-bottom: 1px solid var(--border);
+    }
 
     &_label{
-        color: var(--font-color);
+        color: var(--font-color_active);
+
+        &-task{
+            min-width: 95px;
+        }
+
+        &-docpost{
+            min-width: 110px;
+        }
     }
 
     &_long {
-        width: 796px !important;
-        max-width: 796px !important;
+        width: 745px !important;
+        max-width: 745px !important;
         margin-right: 5px;
     }
 
@@ -20,6 +33,19 @@
         min-width: 50px !important;
         max-width: 50px !important;
         margin-left: 10px;
+    }
+
+    &_delta{
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+        height: 20px;
+        text-align: center;
+        padding: 0px 0px 0px 0px;
+
+        &-label{
+            width: 91px;
+        }
     }
 
     &_active {

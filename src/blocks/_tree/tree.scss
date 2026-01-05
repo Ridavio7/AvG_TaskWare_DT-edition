@@ -65,18 +65,23 @@
     }
 }
 
+#tree_tasks,
+#tree_shablons,
+#tree_tasks_archive{
+    margin-left: 10px;
+}
+
 .tree-catalog{
     &__item{
         position: relative;
+        margin-top: 5px;
     }
 
     &__arrow{
         &:before{
-            content: url(../_tree/img/arrow_tree.svg);
+            content: var(--tree-arrow-background);
             position: relative;
             transition: transform 0.2s;
-            filter: var(--img_color);
-            -webkit-filter: var(--img_color);
         }
     }
 
@@ -85,57 +90,45 @@
         flex-direction: row-reverse;
         align-items: center;
         justify-content: flex-end;
+        width: 100%;
+    }
+
+    &__head:has(.tree-catalog__header_active){
+        background: var(--table-tr-hover);
     }
 
     &__header{
         cursor: pointer;
         position: relative;
-        padding-left: 25px;
+        padding-left: 30px;
         padding-right: 3px;
-        padding-top: 3px;
-        padding-bottom: 3px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         user-select: none;
         outline: none;
         border: none;
+        width: 100%;
 
         &:before{
-            content: url(../_tree/img/folder.svg);
+            content: var(--tree-folder-background);
             position: relative;
             transition: transform 0.2s;
             margin-right: 5px;
-            filter: var(--img_color);
-            -webkit-filter: var(--img_color);
-        }
-
-        &:hover{
-            background: var(--table-row-mark);
-            outline: none;
-            border: none;
         }
 
         &:hover .tree-catalog__text{
-            color: var(--black);
+            color: var(--font-color_active);
         }
 
+        &:hover,
         &_active{
-            background: var(--table-row-mark);
-            outline: none;
-            border: none;
+            color: var(--font-color_active);
+            background: var(--table-tr-hover);
+            backdrop-filter: blur(2px);
         }
 
         &_active .tree-catalog__text{
-            color: var(--black);
-        }
-
-        &_active .tree-catalog__arrow:before,
-        &:hover .tree-catalog__arrow:before{
-            filter: var(--img-button-color-black);
-            -webkit-filter: var(--img-button-color-black);
-        }
-
-        &_no-children{
-            padding-left: 3px;
-            margin-left: 22px;
+            color: var(--font-color_active);
         }
 
         &_deleted{
@@ -149,12 +142,18 @@
         &_no-icon:before{
             content: none;
         }
+
+        &_control-task{
+            border: 1px solid var(--border);
+        }
     }
 
     &__header &__arrow{
         position: absolute;
-        left: 5px;
+        left: 15px;
+        top: 2px;
         transition: transform 0.2s;
+        transform: rotate(270deg);
     }
 
     &__header &__arrow_task{
@@ -162,12 +161,13 @@
     }
 
     &__header &__arrow.collapsed{
-        transform: rotate(90deg);
+        transform: rotate(360deg);
     }
 
     &__text-container{
         display: flex;
-        gap: 5px;
+        gap: 10px;
+        height: 42px;
     }
 
     &__text{
@@ -177,7 +177,6 @@
         font-weight: 400;
 
         &_span{
-            border: 1px solid var(--border);
             padding: 3px;
             display: flex;
             justify-content: flex-start;
@@ -187,19 +186,34 @@
                 text-wrap: nowrap;
             }
 
+            &-status{
+                text-wrap: nowrap;
+                width: 33px;
+            }
+
             &-number{
-                min-width: 50px;
-                height: 42.5px;
+                min-width: 35px;
                 text-wrap: nowrap;
                 justify-content: center;
             }
 
             &-text{
-                width: 200px;
+                min-width: 125px;
+                width: 20%;
+
+                &_main{
+                    width: 25%;
+                }
             }
 
             &-user{
-                width: 200px;
+                min-width: 100px;
+                width: 30%;
+            }
+
+            &-dateend,
+            &-datebegin{
+                align-items: flex-start;
             }
 
             &-dl{
@@ -209,6 +223,13 @@
 
             &-count{
                 min-width: 30px;
+                margin-right: 35px;
+                text-align: center;
+
+                &-title{
+                    min-width: 80px;
+                    margin-right: 0px;
+                }
             }
 
             &-warning{
@@ -217,13 +238,190 @@
         }
     }
 
+    &__count{
+        position: absolute;
+        right: 10px;
+    }
+
     &__children-container{
-        padding-left: 15px;
+        padding-left: 20px;
         overflow: hidden;
         transition: max-height 0.3s ease-out;
 
         &.collapsed{
             max-height: 0 !important;
         }
+
+        &_control-task{
+            padding-left: 48px;
+        }
+    }
+}
+
+@mixin tree-catalog-responsive-styles{
+    .tree-catalog{
+        &__header{
+            padding-left: 20px;
+        }
+        &__text-container{
+            gap: 0px;
+        }
+        &__children-container_control-task{
+            padding-left: 20px;
+        }
+        &__text_span-count{
+            //margin-right: 15px;
+            font-size: 13px;
+        }
+        &__text_span-datebegin,
+        &__text_span-dateend{
+            font-size: 13px;
+        }
+    }
+    .tree-catalog__header .tree-catalog__arrow{
+        left: 7px;
+    }
+    #tree_tasks, #tree_shablons, #tree_tasks_archive{
+        margin-left: 0px;
+    }
+}
+
+@container modal-tree-task-resizable-box (max-width: 875px){
+    @include tree-catalog-responsive-styles;
+}
+
+@container modal-tree-components-resizable-box (max-width: 485px){
+    .tree-catalog{
+        &__header{
+            padding-left: 18px;
+        }
+    }
+    .tree-catalog__header .tree-catalog__arrow{
+        left: 7px;
+    }
+
+    #tree_tasks div{
+        width: 100%;
+        overflow-x: scroll;
+    }
+}
+
+@container modal-tree-components-resizable-box (max-width: 380px){
+    .tree-catalog{
+        &__children-container{
+            padding-left: 15px;
+        }
+    }
+}
+
+@container modal-tree-storage-main-resizable-box (max-width: 485px){
+    .tree-catalog{
+        &__header{
+            padding-left: 18px;
+        }
+    }
+    .tree-catalog__header .tree-catalog__arrow{
+        left: 7px;
+    }
+}
+
+@container modal-tree-storage-main-resizable-box (max-width: 380px){
+    .tree-catalog{
+        &__children-container{
+            padding-left: 15px;
+        }
+    }
+}
+
+@container modal-table-components-resizable-box (max-width: 540px){
+    .button__control_wrapper{
+        & span{
+            max-width: 150px;
+        }
+    }
+}
+
+@container modal-table-components-resizable-box (max-width: 460px){
+    .button__control_wrapper{
+        & span{
+            max-width: 100px;
+        }
+    }
+}
+
+@container modal-table-storage-main-resizable-box (max-width: 485px){
+    .button__control_wrapper{
+        & span{
+            max-width: 150px;
+        }
+    }
+}
+
+@container modal-table-storage-main-resizable-box (max-width: 460px){
+    .button__control_wrapper{
+        & span{
+            max-width: 100px;
+        }
+    }
+}
+
+@media (max-width: 1440px){
+    @include tree-catalog-responsive-styles;
+}
+
+@media (max-width: 1024px){
+    .tree-catalog{
+        &__header{
+            padding-left: 18px;
+
+            &::before{
+                content: var(--tree-folder-background-lt);
+            }
+
+            &_no-icon::before{
+                content: none;
+            }
+        }
+        &__arrow{
+            &::before{
+                content: var(--tree-arrow-background-lt);
+            }
+        }
+        &__text-container{
+            gap: 0px;
+        }
+        &__children-container_control-task{
+            padding-left: 40px;
+        }
+        &__text_span-count{
+            margin-right: 20px;
+            font-size: var(--font_size);
+        }
+        &__text_span-datebegin,
+        &__text_span-dateend{
+            font-size: var(--font_size);
+        }
+    }
+    .tree-catalog__header .tree-catalog__arrow{
+        left: 5px;
+    }
+}
+
+@media (max-width: 600px){
+    .tree-catalog{
+        &__children-container_control-task{
+            padding-left: 15px;
+        }
+        &__text_span-user{
+            display: none;
+        }
+        &__text_span-datebegin,
+        &__text_span-dateend{
+            font-size: 13px;
+        }
+    }
+    #tree_tasks{
+        margin-left: 0px;
+        padding-bottom: 30px;
     }
 }

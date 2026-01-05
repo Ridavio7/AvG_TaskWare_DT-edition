@@ -7,14 +7,13 @@
 }
 
 :root{
-    --white: #ffffff;
-    --blue: #334cd3;
+    --white: #f9f8f9;
+    --blue: #cfd7ff;
     --black: #010101;
     --font-color-button: #ffffff;
-    --img-button_color_white: invert(100%) sepia(0%) saturate(0%) hue-rotate(162deg) brightness(111%) contrast(101%);
+    --img-button-color-white: invert(100%) sepia(0%) saturate(0%) hue-rotate(162deg) brightness(111%) contrast(101%);
     --img-button-color-black: invert(0%) sepia(94%) saturate(49%) hue-rotate(86deg) brightness(100%) contrast(99%);
     --expand-button-active: #2687e1;
-    --table-row-mark: #d4eaff;
     --img-color__no-active: invert(58%) sepia(0%) saturate(0%) hue-rotate(30deg) brightness(95%) contrast(92%);
 
     --font_size: 15px;
@@ -22,14 +21,13 @@
 
 .theme-light {
     overflow: hidden;
-    --font-color: #8b8b8b;
+    --font-color: rgb(0 0 0 / 60%);
     --font-color_active: #010101;
     --background_first: #ffffff;
-    --background_second: #f8faff;
+    --background_second: #ffffff; /*#f5f5f7*/
     --background_sidebar: #ffffff;
-    --expand-button: #ffffff;
     --border: #cecece;
-    --td-active: #E5EAF7;
+    
     --border-td-bottom: #dddddd;
     --box-shadow: #cecece;
     --link-active: #EDF2FE;
@@ -45,6 +43,9 @@
     --background-modal-my-sms: #C4E3FF;
     --background-modal-another-sms: #e5e5ea;
     --background-modal-chattask: url(../../blocks/modal/__chat-task/img/background_white.svg);
+    --table-row-mark: #e1f1ff;
+    --block-task-coll: #f5f7f8;
+
     --green: #039d2e;
     --green_hover: #96f596;
     --green__img-filter: invert(54%) sepia(53%) saturate(832%) hue-rotate(86deg) brightness(95%) contrast(79%); /*1fb649*/
@@ -54,25 +55,87 @@
     --yellow: #f7f501;
     --yellow_hover: #fffea4;
     --yellow__img-filter: invert(59%) sepia(100%) saturate(552%) hue-rotate(353deg) brightness(95%) contrast(96%); /*ee9b0f*/
+    --orange: #e0af03;
+    --orange_hover: #ffc704;
+
+    --task-card-background: #ffffff;
+    --task-card-background-active: linear-gradient(330deg, #e8f2fc 0%, #cfe2ff 40%, #e8f2fc 85%);
+    --task-card-border: #1e202317;
+    --task-card-border-active: #4c4d4d;
+    --task-card-box-shadow: rgba(9, 30, 66, 0.15);
+    
+    --task-col-background: #ffffff;
+    --task-col-col: #fafafa;
+    --task-col-acc: #64e40545;
+    --task-col-no-acc: #cfceceb5;
+
+    --task-content: linear-gradient(330deg, #e6f0ff4a 0%, #ccdfff4d 30%, #e6f0ff3d 70%);
+    --task-content-header: #eff5f9;
+    --task-content-count: #4cc9f01a;
+    --task-content-comment: #f8f9fa;
+    --task-content-label-grey: #575757;
+    --task-content-box-shadow-1: #e6ebf566;
+    --task-content-box-shadow-2: #e3ebfc;
+
+    --sidebar-tabcontent-background: linear-gradient(152deg, rgba(246, 246, 246, 1), rgba(255, 255, 255, 1));
+    
+    --sidebar-link-background: radial-gradient(51.07% 92.4% at 51% 7.61%, #ffffff 0%, #bdddee 100%);
+    --sidebar-link-img: invert(0%) sepia(94%) saturate(49%) hue-rotate(86deg) brightness(100%) contrast(99%);
+
+    --modal-moving-background: #f8f8f8;
+    --modal-content-background: #fff;
+    --modal-button-background: linear-gradient(to right, #0363bb, rgb(89 171 249), #046ac4);
+    --modal-button-background-hover: linear-gradient(to right, #0363bbe3, rgb(89 171 249 / 97%), #046ac4db);
+    --modal-chat-task-username: #010101a1;
+    --modal-chat-task-msg-right: #1fb64980;
+    --modal-chat-task-msg-left: rgba(31, 182, 73, 0.1803921569);
+    --modal-overlay-background: rgba(0, 0, 0, 0.2);
+    --modal-tree-background: #ffffff;
+
+    --td-active: #e3f1f8;
+    --table-tr-rotation-odd: rgb(255 255 255);
+    --table-tr-rotation-even: #f5f7f8;
+    --table-tr-hover: #e3f1f8a1;
+    --table-td-border: rgb(37 38 43 / 26%);
+
+    --button-tab-background: #ffffff;
+    --button-tab-border: #1e2023;
+
+    --button-control-container-button-control: rgb(255 255 255 / 30%);
+    --button-control-border: #e5e5ea;
+    --button-control-background-hover: #e1e1ea;
+    --button-control-border-hover: #e1e1ea;
+    --button-control-img-hover: invert(0%) sepia(94%) saturate(49%) hue-rotate(86deg) brightness(100%) contrast(99%);
+
+    --tree-arrow-background: url(../_tree/img/arrow_tree_light.svg);
+    --tree-folder-background: url(../_tree/img/folder_tree_light.svg);
+    --tree-arrow-background-lt: url(../_tree/img/arrow_tree_light_lt.svg);
+    --tree-folder-background-lt: url(../_tree/img/folder_tree_light_lt.svg);
+    --docpost-input-img-search: url(../button/__control/img/found.svg);
+
+    --scrollbar-track-background: #ffffff2b;
+    --scrollbar-thumb-background: #0e0e101f;
+
+    --notification-msg-unread: rgb(0, 255, 120, 10%);
+    --notification-msg-read: #ffffff;
 }
 
 .theme-dark {
     overflow: hidden;
     --font-color: #8b8b8b;
-    --font-color_active: #ffffff;
+    --font-color_active: #f9f8f9;
     --background_first: #343435;
-    --background_second: #3b3b3d;
+    --background_second: #07080a; /*#08090a;*/
     --background_sidebar: #2a2a2c;
     --box-shadow: #212121;
-    --expand-button: #414143;
-    --border: #575757;
-    --td-active: #2a2a2c;
+    --border: #ffffff2b;
+    
     --border-td-bottom: #575757;
     --link-active: #575757;
-    --link-active_decor: #C8D8FF;
+    --link-active_decor: rgb(29 93 235 / 50%);
     --img_color: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
     --img-button_color: invert(100%) sepia(1%) saturate(82%) hue-rotate(82deg) brightness(115%) contrast(100%);
-    --input-text-icon: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.58207 14.377C5.38183 14.5744 5.14404 14.7311 4.88228 14.838C4.62052 14.9449 4.33994 14.9999 4.05655 15H1V12.0102C1 11.4471 1.22752 10.9065 1.63201 10.5083M5.58207 14.377L1.63201 10.5083M5.58207 14.377L13.4616 6.61631M1.63201 10.5083L9.51948 2.73441L10.646 1.62374C10.8465 1.42608 11.0846 1.26925 11.3466 1.16222C11.6087 1.0552 11.8896 1.00007 12.1734 1C12.4571 0.999928 12.738 1.05491 13.0002 1.1618C13.2623 1.2687 13.5004 1.4254 13.701 1.62297L14.5906 2.49952C14.9955 2.89816 15.2229 3.43883 15.2229 4.00258C15.2229 4.56634 14.9955 5.107 14.5906 5.50564L13.4616 6.61631M13.4616 6.61631L9.51869 2.73441' stroke='%230084E1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --input-text-icon: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.58207 14.377C5.38183 14.5744 5.14404 14.7311 4.88228 14.838C4.62052 14.9449 4.33994 14.9999 4.05655 15H1V12.0102C1 11.4471 1.22752 10.9065 1.63201 10.5083M5.58207 14.377L1.63201 10.5083M5.58207 14.377L13.4616 6.61631M1.63201 10.5083L9.51948 2.73441L10.646 1.62374C10.8465 1.42608 11.0846 1.26925 11.3466 1.16222C11.6087 1.0552 11.8896 1.00007 12.1734 1C12.4571 0.999928 12.738 1.05491 13.0002 1.1618C13.2623 1.2687 13.5004 1.4254 13.701 1.62297L14.5906 2.49952C14.9955 2.89816 15.2229 3.43883 15.2229 4.00258C15.2229 4.56634 14.9955 5.107 14.5906 5.50564L13.4616 6.61631M13.4616 6.61631L9.51869 2.73441' stroke='%230084E1' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     --font-color-modal-blue: #0084e1;
     --font-color-modal-blue-second: #63bfff;
     --font-color-modal-blue-img: invert(48%) sepia(66%) saturate(5937%) hue-rotate(185deg) brightness(95%) contrast(101%); /*0084e1*/
@@ -81,6 +144,8 @@
     --background-modal-my-sms: #2b5278;
     --background-modal-another-sms: #3b3b3d;
     --background-modal-chattask: url(../../blocks/modal/__chat-task/img/background_black.svg);
+    --table-row-mark: #21222391;
+    --block-task-coll: #1f1f1f;
     --green: #039d2e;
     --green_hover: #7bfd7b;
     --green__img-filter: invert(54%) sepia(53%) saturate(832%) hue-rotate(86deg) brightness(95%) contrast(79%); /*1fb649*/
@@ -90,6 +155,70 @@
     --yellow: #f7f501;
     --yellow_hover: #f2fd7b;
     --yellow__img-filter: invert(59%) sepia(100%) saturate(552%) hue-rotate(353deg) brightness(95%) contrast(96%); /*ee9b0f*/
+    --orange: #e0af03;
+    --orange_hover: #ffc704;
+
+    --task-card-background: #0e0e10;
+    --task-card-background-active: linear-gradient(130deg, #16191f 0%, #3787e32b 30%, #163a6414 70%) !important;
+    --task-card-border: #1e2023;
+    --task-card-border-active: #4c4d4d;
+    --task-card-box-shadow: rgba(9, 30, 66, 0.15);
+
+    --task-col-background: #0D0D0D;
+    --task-col-col: rgba(14, 14, 16, 0.5);
+    --task-col-acc: #1fb6492e;
+    --task-col-no-acc: #1f8bb62e;
+    
+    --task-content: linear-gradient(330deg, rgba(22, 25, 31, 0.3294117647), rgba(27, 41, 57, 0.4509803922) 30%, rgba(22, 25, 31, 0.568627451) 70%);;
+    --task-content-header: #161819;
+    --task-content-count: #0e0e108f;
+    --task-content-comment: #0e0e103d;
+    --task-content-label-grey: #939599;
+    --task-content-box-shadow-1: #e6ebf500;
+    --task-content-box-shadow-2: #e3ebfc2e;
+
+    --sidebar-tabcontent-background: rgb(14, 14, 16);
+
+    --sidebar-link-background: radial-gradient(51.07% 92.4% at 51% 7.61%, #5a5a5a 0, #1a1a1a 100%);
+    --sidebar-link-img: invert(100%) sepia(0%) saturate(0%) hue-rotate(162deg) brightness(111%) contrast(101%);
+
+    --modal-moving-background: radial-gradient(57.07% 97.4% at 32% 30.61%, #5a5a5a 0, #1a1a1a 100%);
+    --modal-content-background: linear-gradient(189deg, rgb(22, 25, 31), rgba(12, 15, 17, 0.43) 30%, rgba(38, 38, 39, 0.15) 70%);;
+    --modal-button-background: linear-gradient(to right, #154a7b, #2687e1c7, #154A7B);
+    --modal-button-background-hover: linear-gradient(to right, #154A7B, #2687E1, #154A7B);
+    --modal-chat-task-username: #ffffff75;
+    --modal-chat-task-msg-right: rgba(31, 182, 73, 0.1803921569);
+    --modal-chat-task-msg-left: rgba(31, 182, 73, 0.1803921569);
+    --modal-chat-task-check: invert(100%) sepia(0%) saturate(0%) hue-rotate(162deg) brightness(111%) contrast(101%);
+    --modal-overlay-background: rgba(0, 0, 0, 0.7);
+    --modal-tree-background: inherit;
+
+    --td-active: #212223;
+    --table-tr-rotation-odd: #1e1e2217;
+    --table-tr-rotation-even: rgba(14, 14, 16, 0.5);
+    --table-tr-hover: #21222391;
+    --table-td-border: #ffffff2b;
+
+    --button-tab-background: #0e0e10;
+    --button-tab-border: #ffffff;
+
+    --button-control-container-button-control: rgba(7, 8, 10, 0.2509803922);
+    --button-control-border: rgba(255, 255, 255, 0.05);
+    --button-control-button-control-hover: rgba(56, 56, 61, 0.5);
+    --button-control-border-hover: #232326;
+    --button-control-img-hover: invert(100%) sepia(0%) saturate(0%) hue-rotate(162deg) brightness(111%) contrast(101%);
+
+    --tree-arrow-background: url(../_tree/img/arrow_tree_dark.svg);
+    --tree-folder-background: url(../_tree/img/folder_tree_dark.svg);
+    --tree-arrow-background-lt: url(../_tree/img/arrow_tree_dark_lt.svg);
+    --tree-folder-background-lt: url(../_tree/img/folder_tree_dark_lt.svg);
+    --docpost-input-img-search: url(../button/__control/img/found_white.svg);
+
+    --scrollbar-track-background: #0e0e10;
+    --scrollbar-thumb-background: #ffffff14;
+
+    --notification-msg-unread: rgb(14 42 24 / 61%);
+    --notification-msg-read: #1f1f1f;
 }
 
 *{
@@ -98,14 +227,10 @@
     box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
-	width: 10px;
-} 
-::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 10px var(--box-shadow); 
-} 
-::-webkit-scrollbar-thumb {
-	box-shadow: inset 0 0 10px var(--box-shadow); 
+*,
+html *{
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-background) var(--scrollbar-track-background);
 }
 
 html, body{
@@ -119,6 +244,9 @@ html, body{
     transition: all 0.5s;
     font-family: "Roboto", sans-serif;
     font-size: var(--font_size);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-background) var(--scrollbar-track-background);
 }
 
 .container{
@@ -129,9 +257,28 @@ html, body{
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    position: relative;
 
     &__tables-shipment{
         display: table !important;
         padding-top: 50px;
+    }
+
+    &_padding-top {
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 1024px){
+    .container_flex-column{
+        flex-direction: column;
+    }
+
+    .container_no-scroll{
+        overflow-y: hidden;
+    }
+
+    html, body{
+        font-size: 16px;
     }
 }

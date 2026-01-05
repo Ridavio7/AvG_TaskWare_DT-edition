@@ -1,7 +1,7 @@
 .button__control_modal{
     color: var(--font-color-button);
     font-size: var(--font_size);
-    background-color: var(--font-color-modal-blue);
+    background: var(--modal-button-background);
     border: none;
     width: 150px;
     height: 40px;
@@ -9,9 +9,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        background: var(--modal-button-background-hover);
+    }
 
     &:active {
         transform: scale(0.95);
         box-shadow: 0 2px 4px var(--box-shadow);
+    }
+
+    @media (max-width: 1140px){
+        &{
+            min-width: unset;
+            min-height: 40px;
+            width: 100%;
+            margin-right: 0px;
+        }
     }
 }

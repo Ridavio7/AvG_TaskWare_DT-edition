@@ -4,14 +4,16 @@
     background-color: initial;
     height: 27px;
     width: 100%;
+    min-width: 120px;
     padding: 0 25px 0 5px;
     border: none;
-    border-bottom: 1px solid var(--border);
     background-image: var(--input-text-icon);
     background-repeat: no-repeat;
-    background-position: right 5px center; /* Позиционируем справа */
-    background-size: 14px; /* Размер иконки */
+    background-position: left 5px center;
+    background-size: 12px;
     caret-color: var(--expand-button-active);
+    padding-left: 27px;
+    margin-left: 0px !important;
 
     &:focus-visible{
         outline: none;
@@ -22,12 +24,16 @@
         padding-right: 0px;
         background-image: none;
         color: var(--font-color);
+        padding: 0px;
+        cursor: not-allowed;
     }
 
     &_title{
         border: 1px solid var(--border);
         padding-right: 5px;
+        padding-left: 10px;
         background-image: none;
+        border-radius: 10px;
     }
 
     &_title-table-schedule{
@@ -35,22 +41,28 @@
         padding: 0px;
         border: none;
         text-align: center;
+        min-width: 60px;
         width: 60px;
-        margin-left: -5px;
+        margin-left: -5px !important;
         padding-right: 0px;
         background-image: none;
     }
 
     &__label{
-        color: var(--font-color);
-    }
+        color: var(--font-color_active);
 
-    &__label-active{
-        color: var(--font-color_active) !important;
+        &-active{
+            color: var(--font-color_active) !important;
+        }
+
+        &-users{
+            width: 115px;
+        }
     }
 
     &__label-blue{
         color: var(--font-color-modal-blue-second);
+        font-size: 13px;
     }
 
     &__small{
@@ -58,6 +70,8 @@
         min-width: 65px !important;
         max-width: 65px !important;
         text-align: center;
+        padding-right: 0px;
+        padding-left: 10px;
     }
 
     &_width_100{
@@ -81,13 +95,62 @@
         z-index: 2;
         width: 18px;
         height: 20px;
-        left: 323px;
+        left: 103px;
         filter: var(--img_color);
         -webkit-filter: var(--img_color);
     }
 
     &_error{
         border: 2px solid var(--red_hover) !important;
+    }
+
+    &_task-mount{
+        width: 100px;
+        padding: 20px;
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    &_search-block{
+        display: flex;
+        margin: 5px 0px;
+        gap: 10px;
+
+        & div{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-right: 5px;
+        }
+    }
+
+    &_search-wrapper{
+        border: 1px solid var(--border);
+        border-radius: 10px;
+    }
+
+    &_search{
+        height: 33px;
+        padding: 0 0px 0 25px;
+        background-image: var(--docpost-input-img-search);
+        background-repeat: no-repeat;
+        background-position: left 5px center;
+        background-size: 12px;
+        border: none;
+
+        &:focus-visible{
+            outline: none;
+            border: none;
+        }
+
+        &-focus{
+            background-image: none;
+            padding: 0 0px 0 5px;
+        }
     }
 }
 
@@ -101,4 +164,27 @@ input[type="number"]:hover,
 input[type="number"]:focus {
     appearance: none;
     -moz-appearance: textfield;
+}
+
+@media (max-width: 1024px) {
+    .input__type-text{
+        height: 33px;
+        background-image: none;
+        padding: 0 5px 0 5px;
+        
+        &_search-block{
+            margin: 10px 5px;
+            margin-top: 15px;
+            flex-direction: column;
+        }
+
+        &_search{
+            height: 40px;
+            font-size: 16px;
+        }
+
+        &_pass{
+            padding: 0 5px 0 25px;
+        }
+    }
 }

@@ -1,12 +1,12 @@
 .input__type-date{
-    width: 105px !important;
-    min-width: 105px !important;
-    max-width: 105px !important;
+    width: 130px !important;
+    min-width: 130px !important;
+    max-width: 130px !important;
     padding: 0px;
-    padding-right: 0px;
+    padding-left: 28px !important;
     background-image: none;
 
-    &_disabled{
+    &:disabled{
         color: var(--font-color);
         cursor: not-allowed;
     }
@@ -18,18 +18,13 @@
 
     &_icon{
         position: absolute;
-        right: 3px;
-        top: 50%;
+        left: 8px;
+        top: 55%;
         transform: translateY(-50%);
         pointer-events: none;
         cursor: pointer;
         width: 15px;
         height: 18px;
-
-        & img{
-            filter: var(--img_color);
-            -webkit-filter: var(--img_color);
-        }
     }
 
     &_icon-no-active{
@@ -38,6 +33,14 @@
             -webkit-filter: var(--img-color__no-active);
             cursor: not-allowed;
         }
+    }
+
+    &_img-no-active{
+        filter: var(--img-color__no-active);
+        -webkit-filter: var(--img-color__no-active);
+        cursor: not-allowed;
+        position: relative;
+        top: 2px;
     }
 
     &_margin-left-wrapper{
@@ -53,9 +56,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .input__type-date-filter{
     width: 120px;
-    height: 33px;
-    margin-bottom: 5px;
-    margin-right: 5px;
+    height: 40px;
 }
 
 .input__type-date-filter + .input__type-date_icon{

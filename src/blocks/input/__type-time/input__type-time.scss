@@ -1,13 +1,14 @@
 .input__type-time{
-    width: 71px !important;
-    min-width: 71px !important;
-    max-width: 71px !important;
+    width: 101px !important;
+    min-width: 102px !important;
+    max-width: 102px !important;
     background-image: none;
     padding: 0px;
-    padding-right: 0px;
+    padding-left: 30px !important;
 
     &:disabled{
         color: var(--font-color);
+        cursor: not-allowed;
     }
 
     &::-webkit-calendar-picker-indicator {

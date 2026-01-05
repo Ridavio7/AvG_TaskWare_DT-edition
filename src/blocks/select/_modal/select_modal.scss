@@ -3,13 +3,26 @@
     height: 35px;
     min-width: 250px;
     max-width: 250px;
-    border: 1px solid var(--background-modal-second);
-    border-bottom: 1px solid var(--border);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    border-bottom: 1px solid var(--border);
+    margin-left: 5px;
 
     &_active {
         border: 1px solid var(--expand-button-active);
+    }
+
+    &_max-width-unset{
+        max-width: unset;
+    }
+}
+
+@media (max-width: 425px) {
+    .select{
+        &_modal{
+            max-width: unset;
+            min-width: unset;
+        }
     }
 }

@@ -1,11 +1,15 @@
+.analysis-products{
+    overflow: auto;
+}
+
 .analysis-products-all{
     display: none;
+    overflow: auto;
 }
 
 .switch-table{
     color: var(--font-color);
     font-size: var(--font_size);
-    margin-right: 10px;
     display: flex;
     flex-wrap: nowrap;
 
@@ -13,7 +17,7 @@
         display: flex;
         align-items: center;
         flex-wrap: nowrap;
-        margin: 5px 0px;
+        margin: 8px 0px;
         margin-right: 10px;
     }
 }

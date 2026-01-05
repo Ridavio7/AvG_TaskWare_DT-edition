@@ -27,7 +27,7 @@
 
     &__message{
         max-width: 60%;
-        padding: 10px 15px;
+        padding: 5px 15px;
         border-radius: 15px;
         font-size: var(--font_size);
         line-height: 1.4;
@@ -41,14 +41,14 @@
 
         &.right {
             align-self: flex-end;
-            background-color: var(--background-modal-my-sms);
+            background-color: var(--modal-chat-task-msg-right);
         }
     }
 
     &__username{
         font-size: var(--font_size);
-        color: var(--font-color-modal-blue);
-        margin-bottom: 2px;
+        color: var(--modal-chat-task-username);
+        margin-bottom: 5px;
     }
 
     &__text{
@@ -64,6 +64,8 @@
 
     &__check{
         height: 10px;
+        filter: var(--modal-chat-task-check);
+        -webkit-filter: var(--modal-chat-task-check);
     }
 
     &__scroll-to-bottom {
@@ -145,6 +147,16 @@
 
         & img{
             filter: var(--font-color-modal-blue-img);
+        }
+    }
+}
+
+@media (max-width: 1024px){
+    .chat-task{
+        &__container{
+            width: 100% !important;
+            height: 100% !important;
+            padding-bottom: 50px;
         }
     }
 }

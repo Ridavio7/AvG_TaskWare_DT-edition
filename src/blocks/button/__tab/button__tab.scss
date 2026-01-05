@@ -1,9 +1,9 @@
 .button__tab__first{
     float: left;
-    background-color: var(--expand-button);
+    background-color: var(--button-tab-background);
     border: none;
     outline: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     transition: 0.3s;
     color: var(--font-color);
@@ -13,20 +13,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    box-shadow: 3px 3px 10px -1px var(--box-shadow);
+    box-shadow: 3px 3px 10px -1px var(--task-card-border);
+    border: 2px solid var(--task-card-border);
 
     &:hover,
     &_active{
-        background-color: var(--expand-button-active);
-        color: var(--font-color-button);
+        /*background: linear-gradient(330deg, #004cff 0%, #60a9ff 30%, #145ff3 70%);
+        background: linear-gradient(330deg, rgb(22 25 31), rgb(40 68 100) 30%, rgb(19 47 104 / 56%) 70%);*/
+        border: 2px solid var(--task-card-border);
+        color: var(--font-color_active);
+        background: var(--sidebar-link-background);
+        backdrop-filter: blur(2px);
+        border-radius: 35px;
+        transition: transform .3s ease, width .3s ease;
+        border-top: 1px solid #535353;
+        border-left: 1px solid #5353537d;
+        border-right: 1px solid #5353537d;
     }
 
     &:hover &__img,
     &_active &__img{
-        filter: var(--img-button_color_white);
-        -webkit-filter: var(--img-button_color_white);
+        filter: var(--sidebar-link-img);
+        -webkit-filter: var(--sidebar-link-img);
     }
 
     &__img{
@@ -35,5 +43,49 @@
         margin-right: 10px;
         filter: var(--img-color__no-active);
         -webkit-filter: var(--img-color__no-active);
+    }
+}
+
+@media (max-width: 1024px){
+    .button__tab__first{
+        width: unset;
+        line-height: 15px;
+        margin-bottom: 0px;
+        padding: 7px 10px;
+        border: 1px solid var(--task-card-border);
+        border-radius: 5px;
+        box-shadow: none;
+        height: 40px;
+        background-color: inherit;
+
+        &__img{
+            display: none;
+        }
+    }
+    .button__tab__first:hover, .button__tab__first_active{
+        border-radius: 5px;
+        background: none;
+        border: 1px solid var(--button-tab-border);
+        background-color: var(--button-tab-background);
+    }
+}
+
+@media (min-resolution: 1.25dppx){
+    .button__tab__first{
+        width: 165px;
+
+        &__img{
+            margin-right: 5px;
+        }
+    }
+}
+
+@media (min-resolution: 1.25dppx) and (max-width: 1024px){
+    .button__tab__first{
+        width: 100%;
+
+        &__img{
+            margin-right: 5px;
+        }
     }
 }

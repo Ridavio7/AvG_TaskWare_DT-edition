@@ -2,10 +2,16 @@
     display: inline-block;
     width: 200px;
     height: 27px;
-    text-align: center;
     cursor: pointer;
     padding-top: 3px;
     text-overflow: ellipsis;
     overflow: hidden;
     user-select: none;
+    background-image: none;
+    margin-top: 6px;
+
+    &_title{
+        border: 1px solid var(--border);
+        margin-top: 6px;
+    }
 }
