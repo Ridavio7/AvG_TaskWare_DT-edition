@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Мои задачи</title>
     <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon" />
   </head>
@@ -29,33 +29,29 @@
               <li><a class="header__link" href="control.html">Контроль</a></li>
             </ul>
           </div>
-          <div class="header__user header__user_burger">
-            <div class="header__user__wrapper">
-              <div class="header__user__user">
-                <img
-                  class="header__user__avatar header__user__link_notifications"
-                  src="../blocks/header/img/notifications.svg"
-                  alt="user"
-                  title="Уведомления"
-                />
-                <input
-                  class="header__user__switch-theme-input"
-                  type="checkbox"
-                  id="switch_theme_input_burger"
-                />
-                <label
-                  class="header__user__switch-theme"
-                  for="switch_theme_input_burger"
-                ></label>
-                <a class="header__link header__user__name"></a>
-                <img
-                  class="header__user__avatar header__user__link_leave-site"
-                  src="../blocks/header/img/exit.svg"
-                  alt="user"
-                  title="Выход"
-                />
-              </div>
-            </div>
+          <div class="header__user__user">
+            <img
+              class="header__user__avatar header__user__link_notifications"
+              src="../blocks/header/img/notifications.svg"
+              alt="user"
+              title="Уведомления"
+            />
+            <input
+              class="header__user__switch-theme-input"
+              type="checkbox"
+              id="switch_theme_input_burger"
+            />
+            <label
+              class="header__user__switch-theme"
+              for="switch_theme_input_burger"
+            ></label>
+            <a class="header__link header__user__name"></a>
+            <img
+              class="header__user__avatar header__user__link_leave-site"
+              src="../blocks/header/img/exit.svg"
+              alt="user"
+              title="Выход"
+            />
           </div>
         </div>
       </ul>
@@ -116,26 +112,291 @@
       </div>
     </header>
     <div class="container">
-      <nav class="sidebar">
-        <div>
-          <button class="sidebar__expand-button" type="button">
-            <img
-              class="sidebar__expand-button__img"
-              src="../blocks/sidebar/img/arrow_sidebar_1.svg"
-              alt=""
-            />
+      <div class="user-tasks-col">
+        <button class="button__control button__control_tabcontent-close">
+          <img
+            class="button__control_img"
+            src="../blocks/button/__control/img/arrow_close.svg"
+            alt="Чат"
+          />
+        </button>
+        <div class="user-tasks-tabs">
+          <button
+            class="user-tasks-tabs__btn user-tasks-tabs__btn_no-acc active"
+            data-tab="user_task_no_start"
+          >
+            Не принятые
+            <span
+              class="user-tasks-col__count user-tasks-col__count_no-start user-tasks-tabs__btn_count"
+            ></span>
+          </button>
+          <button
+            class="user-tasks-tabs__btn user-tasks-tabs__btn_acc"
+            data-tab="user_task_in_progress"
+          >
+            В работе
+            <span
+              class="user-tasks-col__count user-tasks-col__count_in-progress user-tasks-tabs__btn_count"
+            ></span>
           </button>
         </div>
-        <button
-          class="button__control button__control_sidebar-task"
-          id="user_task_create"
-        >
-          Создать
-        </button>
-        <div class="sidebar__container">
-          <ul id="user_tasks"></ul>
+        <div class="user-tasks-col__board">
+          <div class="user-tasks-col__column active" id="user_task_no_start">
+            <div
+              class="user-tasks-col__column-header user-tasks-col__column-header_no-acc"
+            >
+              <h3>Не принятые</h3>
+              <span
+                class="user-tasks-col__count user-tasks-col__count_no-start"
+              ></span>
+            </div>
+            <div class="user-tasks-col__tasks"></div>
+          </div>
+          <div class="user-tasks-col__column" id="user_task_in_progress">
+            <div
+              class="user-tasks-col__column-header user-tasks-col__column-header_acc"
+            >
+              <h3>В работе</h3>
+              <span
+                class="user-tasks-col__count user-tasks-col__count_in-progress"
+              ></span>
+            </div>
+            <div class="user-tasks-col__tasks"></div>
+          </div>
         </div>
-      </nav>
+      </div>
+      <div class="user-tasks-content__container" id="user_tasks_content">
+        <div class="sidebar__tabcontent sidebar__tabcontent_task" id="">
+          <div class="modal__header modal__header_task">
+            <div class="user-tasks-content__task-detail">
+              <div class="user-tasks-content__detail-header">
+                <div>
+                  <div
+                    class="user-tasks-content__detail-title"
+                    id="user-tasks-content_task"
+                  >
+                    Задача: ${task_name}
+                  </div>
+                  <div
+                    class="user-tasks-content__detail-subtitle"
+                    id="user-tasks-content_prod"
+                  >
+                    Изделие:
+                    <span id="task_prod_${uin}"
+                      >${product === '' ? '---' : product}</span
+                    >
+                  </div>
+                </div>
+                <div id="task_count_main_${uin}">
+                  <div
+                    class="user-tasks-content__detail-title user-tasks-content__detail-title_black"
+                    id="user-tasks-content_count"
+                  >
+                    ${count}
+                  </div>
+                  <div class="user-tasks-content__detail-subtitle">Кол-во</div>
+                </div>
+                <button
+                  class="button__control button__control_chat_task"
+                  value=""
+                  title="Чат"
+                >
+                  <img
+                    class="button__control_img__no-filter"
+                    src="../blocks/button/__control/img/chat.svg"
+                    alt="Чат"
+                  />
+                </button>
+              </div>
+              <div class="user-tasks-content__detail-body">
+                <div class="user-tasks-content__detail-grid">
+                  <div class="user-tasks-content__info-item">
+                    <div class="user-tasks-content__info-label">Задание</div>
+                    <div
+                      class="user-tasks-content__info-value"
+                      id="user-tasks-content_exercise"
+                    >
+                      ${name}
+                    </div>
+                  </div>
+                  <div class="user-tasks-content__info-item">
+                    <div class="user-tasks-content__info-label">
+                      Администратор
+                    </div>
+                    <div
+                      class="user-tasks-content__info-value"
+                      id="user-tasks-content_admin"
+                    >
+                      ${admin}
+                    </div>
+                  </div>
+                  <div class="user-tasks-content__info-item">
+                    <div class="user-tasks-content__info-label">Принят</div>
+                    <div
+                      class="user-tasks-content__info-value"
+                      id="user-tasks-content_dateaccept"
+                    >
+                      ${formatDate(dateaccept)}
+                    </div>
+                  </div>
+                  <div class="user-tasks-content__info-item">
+                    <div class="user-tasks-content__info-label">
+                      Длительность
+                    </div>
+                    <div
+                      class="user-tasks-content__info-value"
+                      id="user-tasks-content_delta"
+                    >
+                      ${formatTime(dl_d, dl_h, dl_m)}
+                    </div>
+                  </div>
+                  <div class="user-tasks-content__info-item">
+                    <div class="user-tasks-content__info-label">
+                      Тех. операция
+                    </div>
+                    <div
+                      class="user-tasks-content__info-value"
+                      id="user-tasks-content_techproc"
+                    >
+                      <span id="task_techproc_${uin}"
+                        >${techproc === '' ? '---' : techproc}</span
+                      >
+                    </div>
+                  </div>
+                  <div class="user-tasks-content__info-item">
+                    <div class="user-tasks-content__info-label"></div>
+                    <div class="user-tasks-content__info-value"></div>
+                  </div>
+                </div>
+                <div class="user-tasks-content__detail-section">
+                  <div class="user-tasks-content__section-title">
+                    Количество
+                  </div>
+                  <div class="user-tasks-content__available">
+                    <div class="user-tasks-content__operation-info">
+                      <div class="user-tasks-content__operation-item">
+                        <div
+                          class="user-tasks-content__operation-value"
+                          id="user-tasks-content_countstep"
+                        >
+                          ${countstep}
+                        </div>
+                        <div class="user-tasks-content__operation-label">
+                          План
+                        </div>
+                      </div>
+                      <div class="user-tasks-content__operation-item">
+                        <div
+                          class="user-tasks-content__operation-value"
+                          id="user-tasks-content_countprev"
+                        >
+                          ${countprev}
+                        </div>
+                        <div class="user-tasks-content__operation-label">
+                          Доступно
+                        </div>
+                      </div>
+                      <div class="user-tasks-content__operation-item">
+                        <div
+                          class="user-tasks-content__operation-value"
+                          id="user-tasks-content_countreal"
+                        >
+                          ${countreal}
+                        </div>
+                        <div class="user-tasks-content__operation-label">
+                          Факт
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      class="button__control button__control_detailpp"
+                      value=""
+                    >
+                      <img
+                        class="button__control__img"
+                        src="../blocks/button/__control/img/info.svg"
+                        title="Детализация количества"
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                <div class="user-tasks-content__comments">
+                  <div
+                    class="user-tasks-content__info-label user-tasks-content__info-label-comment"
+                  >
+                    Комментарий администратора:
+                  </div>
+                  <div
+                    class="user-tasks-content__comment user-tasks-content__comment-admin"
+                  >
+                    <div
+                      class="user-tasks-content__comment-text"
+                      id="user-tasks-content_mission"
+                    >
+                      ${mission === '' ? '---' : mission}
+                    </div>
+                  </div>
+                  <div
+                    class="user-tasks-content__info-label user-tasks-content__info-label-comment"
+                  >
+                    Комментарий исполнителя:
+                  </div>
+                  <div
+                    class="user-tasks-content__comment user-tasks-content__comment-executor"
+                  >
+                    <input
+                      class="input__type-text input__type-text_modal"
+                      type="text"
+                      id="user-tasks-content_comment"
+                      value=""
+                      placeholder="Напишите ваш комментарий"
+                    />
+                    <button
+                      class="button__control button__control_usersteps_update"
+                      value=""
+                      title="Обновить"
+                    >
+                      <img
+                        class="button__control__img"
+                        src="../blocks/button/__control/img/arrow_3.svg"
+                        alt="Обновить"
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                <div class="user-tasks-content__action-group">
+                  <div class="user-tasks-content__action-group">
+                    <button
+                      class="button__control button__control_ready button__control_usersteps_accept"
+                      value="${uin}"
+                    ></button>
+                    <button
+                      class="button__control button__control_ready button__control_usersteps_ready"
+                      value=""
+                    >
+                      Готов
+                    </button>
+                  </div>
+                  <div class="user-tasks-content__action-group">
+                    <button
+                      class="button__control button__control_ready button__control_usersteps_ready_part"
+                      value=""
+                    >
+                      Частично готов
+                    </button>
+                    <button
+                      class="button__control button__control_ready button__control_usersteps_problem"
+                      value=""
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- мод. окно чата задачи -->
     <div class="modal" id="modal_chat_task">

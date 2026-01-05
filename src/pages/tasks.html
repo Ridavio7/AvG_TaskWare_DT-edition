@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Мои задачи</title>
     <link rel="icon" href="../blocks/header/img/icon.svg" type="image/x-icon" />
   </head>
@@ -29,33 +29,29 @@
               <li><a class="header__link" href="control.html">Контроль</a></li>
             </ul>
           </div>
-          <div class="header__user header__user_burger">
-            <div class="header__user__wrapper">
-              <div class="header__user__user">
-                <img
-                  class="header__user__avatar header__user__link_notifications"
-                  src="../blocks/header/img/notifications.svg"
-                  alt="user"
-                  title="Уведомления"
-                />
-                <input
-                  class="header__user__switch-theme-input"
-                  type="checkbox"
-                  id="switch_theme_input_burger"
-                />
-                <label
-                  class="header__user__switch-theme"
-                  for="switch_theme_input_burger"
-                ></label>
-                <a class="header__link header__user__name"></a>
-                <img
-                  class="header__user__avatar header__user__link_leave-site"
-                  src="../blocks/header/img/exit.svg"
-                  alt="user"
-                  title="Выход"
-                />
-              </div>
-            </div>
+          <div class="header__user__user">
+            <img
+              class="header__user__avatar header__user__link_notifications"
+              src="../blocks/header/img/notifications.svg"
+              alt="user"
+              title="Уведомления"
+            />
+            <input
+              class="header__user__switch-theme-input"
+              type="checkbox"
+              id="switch_theme_input_burger"
+            />
+            <label
+              class="header__user__switch-theme"
+              for="switch_theme_input_burger"
+            ></label>
+            <a class="header__link header__user__name"></a>
+            <img
+              class="header__user__avatar header__user__link_leave-site"
+              src="../blocks/header/img/exit.svg"
+              alt="user"
+              title="Выход"
+            />
           </div>
         </div>
       </ul>
@@ -88,12 +84,25 @@
         <div class="header__user">
           <div class="header__user__wrapper">
             <div class="header__user__user">
-              <img
-                class="header__user__avatar header__user__link_notifications"
-                src="../blocks/header/img/notifications.svg"
-                alt="user"
-                title="Уведомления"
-              />
+              <div class="notification-widget">
+                <button
+                  class="notification-widget__icon"
+                  type="button"
+                  aria-label="Уведомления"
+                >
+                  <img
+                    class="header__user__avatar header__user__link_notifications"
+                    src="../blocks/header/img/notifications.svg"
+                    alt="user"
+                    title="Уведомления"
+                  />
+                  <span class="notification-widget__badge" hidden></span>
+                </button>
+
+                <div class="notification-widget__popup" hidden>
+                  <div class="notification-widget__list"></div>
+                </div>
+              </div>
               <input
                 class="header__user__switch-theme-input"
                 type="checkbox"
@@ -115,72 +124,236 @@
         </div>
       </div>
     </header>
-    <div class="container">
-      <nav class="sidebar">
-        <div>
-          <button class="sidebar__expand-button" type="button">
-            <img
-              class="sidebar__expand-button__img"
-              src="../blocks/sidebar/img/arrow_sidebar_1.svg"
-              alt=""
-            />
+    <div class="container container_no-scroll container_padding-top">
+      <div class="user-tasks-col">
+        <div class="user-tasks-col__button">
+          <div
+            class="select-custom select-custom_filter-open"
+            data-target="select-sort"
+          >
+            <div class="select-custom__header">
+              <span
+                class="select-custom__icon select-custom__icon-filter-open"
+              ></span>
+            </div>
+          </div>
+          <button class="user-tasks-content__button">Создать задачу</button>
+        </div>
+        <div class="user-tasks-tabs">
+          <button
+            class="user-tasks-tabs__btn user-tasks-tabs__btn_no-acc active"
+            data-tab="user_task_no_start"
+          >
+            Не принятые
+            <span
+              class="user-tasks-col__count user-tasks-col__count_no-start user-tasks-tabs__btn_count"
+            ></span>
+          </button>
+          <button
+            class="user-tasks-tabs__btn user-tasks-tabs__btn_acc"
+            data-tab="user_task_in_progress"
+          >
+            В работе
+            <span
+              class="user-tasks-col__count user-tasks-col__count_in-progress user-tasks-tabs__btn_count"
+            ></span>
           </button>
         </div>
-        <button
-          class="button__control button__control_sidebar-task"
-          id="user_task_create"
-        >
-          Создать
-        </button>
-        <div class="sidebar__container">
-          <ul id="user_tasks"></ul>
+        <div class="user-tasks-filter" id="select-sort">
+          <div class="select__wrapper-header">
+            <button
+              class="button__control button__control_tabcontent-filter-close"
+              data-target="select-sort"
+            >
+              <img
+                class="button__control_img"
+                src="../blocks/button/__control/img/arrow_close.svg"
+                alt=""
+              />
+            </button>
+          </div>
+          <div
+            class="select-custom select-custom-filter"
+            id="user_task_prod_customDropdown"
+          >
+            <div class="select-custom__header selectHeader">
+              <span class="select-custom__icon-filter"></span>
+              Изделие
+            </div>
+            <div class="select-custom__options select-custom__options-filter">
+              <div class="select-custom__search-box">
+                <input type="text" class="searchInput" placeholder="Поиск..." />
+              </div>
+              <div class="optionsList"></div>
+              <div class="select-custom__no-results noResults">
+                Ничего не найдено
+              </div>
+            </div>
+            <button class="select-custom__button-reset buttonReset">
+              <img
+                class="button__control__img"
+                src="../blocks/button/__control/img/cross.svg"
+                alt=""
+                title="Сбросить фильтр"
+              />
+            </button>
+          </div>
+          <div
+            class="select-custom select-custom-filter"
+            id="user_task_task_customDropdown"
+          >
+            <div class="select-custom__header selectHeader">
+              <span class="select-custom__icon-filter"></span>
+              Задача
+            </div>
+            <div class="select-custom__options select-custom__options-filter">
+              <div class="select-custom__search-box">
+                <input type="text" class="searchInput" placeholder="Поиск..." />
+              </div>
+              <div class="optionsList"></div>
+              <div class="select-custom__no-results noResults">
+                Ничего не найдено
+              </div>
+            </div>
+            <button class="select-custom__button-reset buttonReset">
+              <img
+                class="button__control__img"
+                src="../blocks/button/__control/img/cross.svg"
+                alt=""
+                title="Сбросить фильтр"
+              />
+            </button>
+          </div>
+          <div
+            class="select-custom select-custom-filter"
+            id="user_task_techproc_customDropdown"
+          >
+            <div class="select-custom__header selectHeader">
+              <span class="select-custom__icon-filter"></span>
+              Тех. процесс
+            </div>
+            <div class="select-custom__options select-custom__options-filter">
+              <div class="select-custom__search-box">
+                <input type="text" class="searchInput" placeholder="Поиск..." />
+              </div>
+              <div class="optionsList"></div>
+              <div class="select-custom__no-results noResults">
+                Ничего не найдено
+              </div>
+            </div>
+            <button class="select-custom__button-reset buttonReset">
+              <img
+                class="button__control__img"
+                src="../blocks/button/__control/img/cross.svg"
+                alt=""
+                title="Сбросить фильтр"
+              />
+            </button>
+          </div>
+          <div class="button__control_wrapper button__control_wrapper-filter">
+            <button
+              class="button__control button__control_tabcontent button__control_tabcontent-send-filter"
+              id="button_user_task_choose"
+            >
+              <img
+                class="button__control__img"
+                src="../blocks/button/__control/img/arrow_3.svg"
+                alt=""
+                title="Отфильтровать"
+              />
+            </button>
+            <button
+              class="button__control button__control_tabcontent button__control_tabcontent-reset-filter"
+              id="button_user_task_reset"
+            >
+              <img
+                class="button__control__img"
+                src="../blocks/button/__control/img/cross.svg"
+                alt=""
+                title="Сбросить фильтр"
+              />
+            </button>
+          </div>
         </div>
-      </nav>
+        <div class="user-tasks-col__board">
+          <div class="user-tasks-col__column active" id="user_task_no_start">
+            <div
+              class="user-tasks-col__column-header user-tasks-col__column-header_no-acc"
+            >
+              <h3>Не принятые</h3>
+              <span
+                class="user-tasks-col__count user-tasks-col__count_no-start"
+              ></span>
+            </div>
+            <div class="user-tasks-col__tasks"></div>
+          </div>
+          <div class="user-tasks-col__column" id="user_task_in_progress">
+            <div
+              class="user-tasks-col__column-header user-tasks-col__column-header_acc"
+            >
+              <h3>В работе</h3>
+              <span
+                class="user-tasks-col__count user-tasks-col__count_in-progress"
+              ></span>
+            </div>
+            <div class="user-tasks-col__tasks"></div>
+          </div>
+        </div>
+      </div>
+      <div class="user-tasks-content__container" id="user_tasks_content">
+        <div class="user-tasks-content__button-block">
+          <button class="user-tasks-content__button">Создать задачу</button>
+        </div>
+      </div>
     </div>
+    <div id="modal-overlay" class="modal-overlay"></div>
     <!-- мод. окно чата задачи -->
     <div class="modal" id="modal_chat_task">
       <div class="modal__moving" id="modal_chat_task_moving">
         <span class="modal__title"
           >Чат&nbsp;<span class="modal__title" id="modal_chat_task_title"></span
         ></span>
-        <span class="modal__close" id="close_chat_task">&times;</span>
+        <span class="button__control" id="close_chat_task"
+          ><img
+            class="button__control__img"
+            src="../blocks/button/__control/img/cross.svg"
+            title="Закрыть"
+        /></span>
       </div>
-      <div class="modal__content" style="resize: none">
-        <div class="chat-task__container" id="modal_chat_task_resize">
-          <div class="chat-task__messages" id="chat_task_messages"></div>
-          <div class="chat-task__scroll-to-bottom" id="chat_task_scroll">
-            <span class="chat-task__badge" id="chat_task_badge">0</span>
+      <div class="chat-task__container" id="modal_chat_task_resize">
+        <div class="chat-task__messages" id="chat_task_messages"></div>
+        <div class="chat-task__scroll-to-bottom" id="chat_task_scroll">
+          <span class="chat-task__badge" id="chat_task_badge">0</span>
+          <img
+            class="chat-task__badge-img"
+            src="../blocks/sidebar/img/arrow_sidebar_2.svg"
+            alt=""
+          />
+        </div>
+        <div class="chat-task__container-input">
+          <textarea
+            class="chat-task__input"
+            id="chat_task_input"
+            placeholder="Введите сообщение..."
+            rows="1"
+          ></textarea>
+          <button class="chat-task__button-send" id="chat_task_send_button">
             <img
-              class="chat-task__badge-img"
-              src="../blocks/sidebar/img/arrow_sidebar_2.svg"
+              src="../blocks/modal/__chat-task/img/send.svg"
               alt=""
+              title="Отправить сообщение"
             />
-          </div>
-          <div class="chat-task__container-input">
-            <textarea
-              class="chat-task__input"
-              id="chat_task_input"
-              placeholder="Введите сообщение..."
-              rows="1"
-            ></textarea>
-            <button class="chat-task__button-send" id="chat_task_send_button">
-              <img
-                src="../blocks/modal/__chat-task/img/send.svg"
-                alt=""
-                title="Отправить сообщение"
-              />
-            </button>
-            <button
-              class="chat-task__button-send modal__input-wrapper_display-none"
-              id="chat_task_change_button"
-            >
-              <img
-                src="../blocks/modal/__chat-task/img/change.svg"
-                alt=""
-                title="Отправить измененное сообщение"
-              />
-            </button>
-          </div>
+          </button>
+          <button
+            class="chat-task__button-send modal__input-wrapper_display-none"
+            id="chat_task_change_button"
+          >
+            <img
+              src="../blocks/modal/__chat-task/img/change.svg"
+              alt=""
+              title="Отправить измененное сообщение"
+            />
+          </button>
         </div>
       </div>
     </div>
@@ -188,7 +361,12 @@
     <div class="modal" id="shipment_modal">
       <div class="modal__moving" id="shipment_modal_moving">
         <span class="modal__title">Подтвердите выбранное</span>
-        <span class="modal__close" id="shipment_close">&times;</span>
+        <span class="button__control" id="shipment_close"
+          ><img
+            class="button__control__img"
+            src="../blocks/button/__control/img/cross.svg"
+            title="Закрыть"
+        /></span>
       </div>
       <div class="modal__content">
         <div class="modal__header"></div>
@@ -217,20 +395,160 @@
     <div class="modal" id="detailpp_modal">
       <div class="modal__moving" id="detailpp_modal_moving">
         <span class="modal__title">Детализация количества</span>
-        <span class="modal__close" id="detailpp_close">&times;</span>
+        <span class="button__control" id="detailpp_close"
+          ><img
+            class="button__control__img"
+            src="../blocks/button/__control/img/cross.svg"
+            title="Закрыть"
+        /></span>
       </div>
       <div class="modal__content" id="detailpp_modal_resize">
         <div class="modal__body">
           <table class="table" id="detailpp_main_tb_modal">
-            <thead class="thead">
+            <thead class="">
               <tr class="tr">
                 <td class="td td_active">Исполнитель</td>
-                <td class="td td_active">Количество</td>
+                <td class="td td_active">Кол-во</td>
                 <td class="td td_active">Дата</td>
               </tr>
             </thead>
             <tbody id="detailpp_tb_modal"></tbody>
           </table>
+        </div>
+      </div>
+    </div>
+    <!-- мод. окно себе задачи -->
+    <div class="modal" id="shablons_sys_modal">
+      <div class="modal__moving" id="shablons_sys_modal_moving">
+        <span class="modal__title">Создание себе задачи</span>
+        <span class="button__control" id="shablons_sys_close"
+          ><img
+            class="button__control__img"
+            src="../blocks/button/__control/img/cross.svg"
+            title="Закрыть"
+        /></span>
+      </div>
+      <div class="modal__content" id="shablons_sys_resize">
+        <div class="modal__header">
+          <div class="">
+            <div class="modal__input-wrapper">
+              <label
+                class="input__type-text__label-active input__type-text_modal_label-task"
+                for="shablons_sys_tasks"
+                >Задачи:</label
+              >
+              <div class="custom-select custom-select_width-100">
+                <select
+                  class="select select_modal"
+                  id="shablons_sys_tasks"
+                ></select>
+                <span class="select-text"></span>
+              </div>
+            </div>
+            <div class="modal__input-wrapper">
+              <label
+                class="input__type-text__label-active input__type-text_modal_label-task"
+                for="shablons_sys_prim"
+                >Примечание:</label
+              >
+              <input
+                class="input__type-text input__type-text_modal"
+                type="text"
+                id="shablons_sys_prim"
+                value=""
+                placeholder="Примечание"
+              />
+            </div>
+          </div>
+          <div class="">
+            <div class="modal__input-wrapper">
+              <label
+                class="input__type-text_modal_label input__type-text_modal_label-task"
+                for="tasks_datebegin"
+                >Начало:</label
+              >
+              <div>
+                <div class="input__type-date_wrapper">
+                  <input
+                    class="input__type-text input__type-text_modal input__type-date"
+                    type="date"
+                    id="shablons_sys_datebegin"
+                    value=""
+                  />
+                  <label
+                    for="shablons_sys_datebegin"
+                    class="input__type-date_icon input__type-date_icon-no-active"
+                  >
+                    <img
+                      src="../blocks/input/__type-date/img/calendar.svg"
+                      alt=""
+                    />
+                  </label>
+                </div>
+                <div class="input__type-date_wrapper">
+                  <input
+                    class="input__type-text input__type-time input__type-text_modal"
+                    type="time"
+                    id="shablons_sys_datebegin_time"
+                    value=""
+                  />
+                  <label
+                    for="shablons_sys_datebegin_time"
+                    class="input__type-date_icon input__type-date_icon-no-active"
+                    ><img src="../blocks/input/__type-time/img/time.svg" alt=""
+                  /></label>
+                </div>
+              </div>
+            </div>
+            <div class="modal__input-wrapper">
+              <label
+                class="input__type-text_modal_label input__type-text_modal_label-task"
+                for="tasks_datebegin"
+                >Срок:</label
+              >
+              <div>
+                <div class="input__type-date_wrapper">
+                  <input
+                    class="input__type-text input__type-text_modal input__type-date"
+                    type="date"
+                    id="shablons_sys_dateend"
+                    value=""
+                  />
+                  <label
+                    for="shablons_sys_dateend"
+                    class="input__type-date_icon input__type-date_icon-no-active"
+                  >
+                    <img
+                      src="../blocks/input/__type-date/img/calendar.svg"
+                      alt=""
+                    />
+                  </label>
+                </div>
+                <div class="input__type-date_wrapper">
+                  <input
+                    class="input__type-text input__type-time input__type-text_modal"
+                    type="time"
+                    id="shablons_sys_dateend_time"
+                    value=""
+                  />
+                  <label
+                    for="shablons_sys_dateend_time"
+                    class="input__type-date_icon input__type-date_icon-no-active"
+                    ><img src="../blocks/input/__type-time/img/time.svg" alt=""
+                  /></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="button__control button__control_modal"
+            id="shablons_sys_save"
+            value=""
+          >
+            Выпустить
+          </button>
         </div>
       </div>
     </div>
