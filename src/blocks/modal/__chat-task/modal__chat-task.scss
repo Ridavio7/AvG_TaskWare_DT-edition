@@ -11,24 +11,24 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 0.938rem;
+        border-bottom-right-radius: 0.938rem;
         resize: both;
     }
 
     &__messages{
         flex: 1;
-        padding: 10px;
+        padding: 0.625rem;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 0.313rem;
     }
 
     &__message{
         max-width: 60%;
-        padding: 5px 15px;
-        border-radius: 15px;
+        padding: 0.313rem 0.938rem;
+        border-radius: 0.938rem;
         font-size: var(--font_size);
         line-height: 1.4;
         position: relative;
@@ -48,7 +48,7 @@
     &__username{
         font-size: var(--font_size);
         color: var(--modal-chat-task-username);
-        margin-bottom: 5px;
+        margin-bottom: 0.313rem;
     }
 
     &__text{
@@ -57,7 +57,7 @@
     }
 
     &__time{
-        font-size: 10px;
+        font-size: var(--font_size-small);
         text-align: right;
         color: var(--font-color_active);
     }
@@ -96,7 +96,7 @@
         right: -6px;
         background-color: var(--font-color-modal-blue);
         color: var(--white);
-        font-size: 10px;
+        font-size: var(--font_size-small);
         font-weight: bold;
         border-radius: 50%;
         width: 18px;
@@ -114,29 +114,29 @@
 
     &__container-input{
         display: flex;
-        padding: 10px;
+        padding: 0.625rem;
         background-color: var(--link-active);
-        border-top: 1px solid var(--border);
+        border-top: 0.063rem solid var(--border);
     }
 
     &__input{
         flex: 1;
-        padding: 10px;
-        border: 1px solid var(--border);
-        border-radius: 20px;
+        padding: 0.625rem;
+        border: 0.063rem solid var(--border);
+        border-radius: 1.25rem;
         resize: none;
         outline: none;
         font-size: var(--font_size);
         max-height: 60px;
         height: 37px;
-        border-radius: 15px;
+        border-radius: 0.938rem;
         background-color: var(--background_second);
         color: var(--font-color_active);
         overflow: hidden;
     }
 
     &__button-send{
-        margin-left: 10px;
+        margin-left: 0.625rem;
         border: none;
         cursor: pointer;
         transition: background-color 0.2s;
@@ -156,7 +156,7 @@
         &__container{
             width: 100% !important;
             height: 100% !important;
-            padding-bottom: 50px;
+            padding-bottom: 3.125rem;
         }
     }
 }

@@ -5,21 +5,21 @@
     /*overflow: hidden;
     height: 100%;*/
     width: 100%;
-    border: 1px solid var(--table-td-border);
-    border-radius: 12px;
+    border: 0.063rem solid var(--table-td-border);
+    border-radius: 0.75rem;
 
     &__label{
         font-size: var(--font_size);
         border: none;
-        margin: 5px;
+        margin: 0.313rem;
     }
 
     &__title{
         color: var(--font-color);
         font-size: var(--font_size);
-        margin-top: 10px;
-        margin-bottom: 3px;
-        margin-left: 5px;
+        margin-top: 0.625rem;
+        margin-bottom: 0.188rem;
+        margin-left: 0.313rem;
 
         &_disabled{
             color: var(--table-td-border);
@@ -61,12 +61,12 @@
 }
 
 .thead .tr td:first-child{
-    border-top-left-radius: 11px;
+    border-top-left-radius: 0.688rem;
     border-left: none;
 }
 
 .thead .tr td:last-child{
-    border-top-right-radius: 11px;
+    border-top-right-radius: 0.688rem;
     border-right: none;
 }
 
@@ -102,7 +102,7 @@
         }
 
         &-error{
-            border:  1px solid #ff3131;
+            border:  0.063rem solid #ff3131;
         }
     }
 
@@ -125,9 +125,9 @@
 }
 
 .td{
-    padding: 0px 5px;
+    padding: 0 0.313rem;
     height: 50px;
-    border-bottom: 1px solid var(--table-td-border);
+    border-bottom: 0.063rem solid var(--table-td-border);
     /*text-wrap: nowrap;*/
 
     &_no-border-bottom{
@@ -140,7 +140,7 @@
 
     &_active{
         background: var(--td-active);
-        border-right: 1px solid var(--table-td-border);
+        border-right: 0.063rem solid var(--table-td-border);
         text-align: center;
         color: var(--font-color_active);
         height: 50px;
@@ -152,7 +152,7 @@
 
         &-no-background{
             background: var(--table-tr-rotation-even);
-            border-bottom: 1px solid var(--border) !important;
+            border-bottom: 0.063rem solid var(--border) !important;
             border-right: none;
         }
 
@@ -163,8 +163,8 @@
 
     &_active-cell{
         background-color: var(--td-active);
-        border-left: 1px solid var(--table-td-border);
-        border-right: 1px solid var(--table-td-border);
+        border-left: 0.063rem solid var(--table-td-border);
+        border-right: 0.063rem solid var(--table-td-border);
         color: var(--font-color_active);
     }
 
@@ -198,12 +198,12 @@
     }
 
     &_no-padding{
-        padding: 0px;
+        padding: 0;
     }
 
     &_no-visible{
         width: 0.1%;
-        padding: 0px;
+        padding: 0;
         border-right: none;
     }
 
@@ -243,13 +243,13 @@
 
 @media (max-width: 950px){
     .table{
-        border-radius: 0px;
+        border-radius: 0;
     }
     .thead .tr td:last-child{
-        border-top-right-radius: 0px;
+        border-top-right-radius: 0;
     }
     .thead .tr td:first-child {
-        border-top-left-radius: 0px;
+        border-top-left-radius: 0;
     }
 }
 

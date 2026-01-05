@@ -7,19 +7,19 @@
         justify-content: center;
         background: #08090a url('../entrance/img/entrance_logo.svg') no-repeat center / contain;
         color: #ffffff;
-        font-size: 15px;
+        font-size: 1rem;
 
         &_logos{
             position: fixed;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin: 20px;
+            gap: 0.938rem;
+            margin: 1.25rem;
         }
     }
 
     &__title{
-        margin-bottom: 30px;
+        margin-bottom: 1.875rem;
     }
 
     &__logo{
@@ -39,20 +39,20 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 30px 135px;
+        padding: 1.875rem 8.438rem;
         background-color: #08090ae3;
-        box-shadow: 0px 0px 15px 2px #000000;
-        border-radius: 30px;
+        box-shadow: 0 0px 15px 2px #000000;
+        border-radius: 1.875rem;
     }
 
     &__input-wrapper{
         display: flex;
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
     }
 
     &__label{
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
     }
 
     &__input-container{
@@ -64,17 +64,17 @@
         background-color: #e9e9e9;
         border: none;
         outline: none;
-        border-radius: 5px;
+        border-radius: 0.313rem;
         height: 50px;
         width: 300px;
-        padding: 15px 35px;
+        padding: 0.938rem 2.188rem;
         position: relative;
         z-index: 1;
 
         &_icon{
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 16px;
+            background-size: 1rem;
             position: absolute;
             left: 10px;
             top: 50%;
@@ -101,7 +101,7 @@
     &__button{
         background: linear-gradient(to right, #154A7B, #2687E1, #154A7B);
         background-size: 200% auto;
-        box-shadow: 0px 4px 8px #212121;
+        box-shadow: 0 4px 8px #212121;
         transition: background-position 0.5s;
         color: #ffffff;
         width: 260px;
@@ -111,9 +111,9 @@
         align-items: center;
         outline: none;
         border: none;
-        border-radius: 5px;
+        border-radius: 0.313rem;
         cursor: pointer;
-        margin-top: 20px;
+        margin-top: 1.25rem;
 
         &:hover{
             background-position: 100% 0;
@@ -128,54 +128,54 @@
     &__captcha-box {
         display: none;
         flex-direction: column;
-        padding: 16px;
-        border-radius: 5px;
-        border: 1px solid #2687e1;
+        padding: 1rem;
+        border-radius: 0.313rem;
+        border: 0.063rem solid #2687e1;
         max-width: 300px;
         width: 100%;
 
         & input {
             width: 100%;
             height: 50px;
-            padding: 8px;
+            padding: 0.5rem;
             text-align: center;
             color: #3b3b3d;
             background-color: #e9e9e9;
             border: none;
             outline: none;
-            border-radius: 5px;
-            padding: 15px 35px;
+            border-radius: 0.313rem;
+            padding: 0.938rem 2.188rem;
         }
 
         h3 {
-            font-size: var(--font_size);
+            font-size: 1rem;
             font-weight: 500;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
         }
     }
 
     &__captcha-visual {
         font-family: 'Courier New', monospace;
-        font-size: 25px;
+        font-size: 1.563rem;
         font-weight: bold;
-        letter-spacing: 3px;
+        letter-spacing: 0.188rem;
         text-align: center;
-        margin-bottom: 10px;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        margin-bottom: 0.625rem;
+        text-shadow: 0.063rem 0.063rem 2px rgba(0,0,0,0.1);
         transform: rotate(-1deg);
         display: inline-block;
 
         & span {
             display: inline-block;
             transform: rotate(calc((var(--r)) * 1deg));
-            margin: 0 2px;
+            margin: 0 0.125rem;
         }
     }
 }
 
 @media (max-width: 570px){
     .entrance__form{
-        padding: 0px;
+        padding: 0;
     }
 }

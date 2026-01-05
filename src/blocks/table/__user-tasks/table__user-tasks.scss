@@ -33,7 +33,7 @@
     &__container{
         width: 100%;
         height: 100%;
-        padding-right: 30px;
+        padding-right: 1.875rem;
     }
 
     &__button {
@@ -54,23 +54,23 @@
     }
 
     &__task-detail {
-        border-radius: 12px;
+        border-radius: 0.75rem;
         overflow: hidden;
         width: 100%;
     }
 
     &__detail-header {
-        padding: 17px 25px;
+        padding: 17px 1.563rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        border-bottom: 1px solid var(--border);
+        gap: 0.938rem;
+        border-bottom: 0.063rem solid var(--border);
     }
 
     &__detail-title {
-        font-size: 20px;
+        font-size: var(--font_size-big);
         font-weight: 600;
-        margin-bottom: 5px;
+        margin-bottom: 0.313rem;
         color: var(--font-color-modal-blue);
 
         &_black {
@@ -84,15 +84,15 @@
     }
 
     &__detail-body {
-        padding: 25px;
+        padding: 1.563rem;
     }
 
     &__detail-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-bottom: 25px;
-        padding: 0px 25px;
+        gap: 1.25rem;
+        margin-bottom: 1.563rem;
+        padding: 0 1.563rem;
     }
 
     &__info-item {
@@ -103,7 +103,7 @@
     &__info-label {
         font-size: var(--font_size);
         color: var(--task-content-label-grey);
-        margin-bottom: 5px;
+        margin-bottom: 0.313rem;
         display: flex;
         align-items: center;
     }
@@ -116,28 +116,28 @@
     }
 
     &__detail-section {
-        margin-bottom: 25px;
+        margin-bottom: 1.563rem;
     }
 
     &__section-title {
         font-size: var(--font_size);
-        margin-bottom: 15px;
+        margin-bottom: 0.938rem;
         color: var(--task-content-label-grey);
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.5rem;
+        border-bottom: 0.063rem solid var(--border);
     }
 
     &__available {
         text-align: center;
-        padding: 20px;
+        padding: 1.25rem;
         background: var(--task-content-count);
-        border-radius: 10px;
-        margin-bottom: 20px;
+        border-radius: 0.625rem;
+        margin-bottom: 1.25rem;
         position: relative;
 
         & button {
             position: absolute;
-            top: 15px;
+            top: 0.938rem;
             right: 10px;
         }
     }
@@ -145,18 +145,18 @@
     &__operation-info {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 15px;
+        gap: 0.938rem;
     }
 
     &__operation-item {
         text-align: center;
-        border-radius: 10px;
+        border-radius: 0.625rem;
     }
 
     &__operation-value {
-        font-size: 22px;
+        font-size: var(--font_size-big);
         font-weight: 600;
-        margin-bottom: 5px;
+        margin-bottom: 0.313rem;
         color: var(--task-content-label-grey);
     }
 
@@ -166,11 +166,11 @@
 
     &__comment {
         display: flex;
-        gap: 10px;
+        gap: 0.625rem;
         height: 63px;
-        margin-bottom: 15px;
-        padding: 15px;
-        border-radius: 10px;
+        margin-bottom: 0.938rem;
+        padding: 0.938rem;
+        border-radius: 0.625rem;
         background: var(--task-content-comment);
         align-items: center;
 
@@ -180,7 +180,7 @@
         
         &-executor {
             border-left: 4px solid #4cc9f0;
-            padding-left: 0px;
+            padding-left: 0;
         }
     }
 
@@ -196,16 +196,16 @@
     background-color: var(--background_second);
     position: sticky;
     top: 0;
-    padding: 0px 5px;
+    padding: 0 0.313rem;
 
     &__btn{
-        padding: 20px 10px;
+        padding: 1.25rem 0.625rem;
         font-size: var(--font_size);
         background: none;
         border: none;
         cursor: pointer;
         color: var(--font-color);
-        line-height: 12px;
+        line-height: 0.75rem;
         transition: all 0.3s ease;
         flex: 1;
         text-align: center;
@@ -229,44 +229,44 @@
 
         &_count{
         position: absolute;
-        top: 0px;
-        right: 0px;
+        top: 0;
+        right: 0;
         }
     }
 }
 
 .user-tasks-filter{
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 0.625rem;
+    margin-bottom: 0.625rem;
     justify-content: center;
 }
 
 .user-tasks-col{
-    margin-left: 15px;
-    margin-bottom: 10px;
+    margin-left: 0.938rem;
+    margin-bottom: 0.625rem;
 
     &__board {
         flex: 1;
         display: flex;
-        gap: 10px;
+        gap: 0.625rem;
         height: 95%;
     }
 
     &__button {
         display: none;
-        margin: 0px 10px;
+        margin: 0 0.625rem;
         justify-content: space-between;
     }
 
     &__column {
         flex: 1;
         width: 380px;
-        border-radius: 16px;
+        border-radius:1rem;
         overflow: hidden;
-        border: 1px solid var(--border);
+        border: 0.063rem solid var(--border);
         background: var(--task-col-col);
-        box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, .1);
+        box-shadow: inset 0 0.063rem 0 0 hsla(0, 0%, 100%, .1);
     }
 
     &__column.active {
@@ -277,7 +277,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 12px 15px;
+        padding: 0.75rem 0.938rem;
         font-size: var(--font_size);
 
         &_no-acc{
@@ -303,18 +303,18 @@
     &__count {
         background: var(--green);
         color: var(--font-color-button);
-        padding: 4px 8px;
-        border-radius: 12px;
-        font-size: 14px;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.75rem;
+        font-size: var(--font_size-medium);
     }
 
     &__tasks {
-        padding: 0px 5px;
-        padding-top: 5px;
+        padding: 0 0.313rem;
+        padding-top: 0.313rem;
         max-height: 100%;
         overflow-y: auto;
-        padding-bottom: 55px;
-        gap: 10px;
+        padding-bottom: 3.438rem;
+        gap: 0.625rem;
         display: flex;
         flex-direction: column;
 
@@ -326,19 +326,19 @@
             width: 1px;
         } 
         &::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 1px var(--link-active); 
+            box-shadow: inset 0 0 0.063rem var(--link-active); 
         } 
         &::-webkit-scrollbar-thumb {
-            box-shadow: inset 0 0 1px var(--link-active_decor); 
+            box-shadow: inset 0 0 0.063rem var(--link-active_decor); 
         }
     }
 }
 
 .user-tasks-card {
     background: inherit;
-    border-radius: 12px;
-    padding: 5px 10px;
-    padding-bottom: 10px;
+    border-radius: 0.75rem;
+    padding: 0.313rem 0.625rem;
+    padding-bottom: 0.625rem;
     transition: all 0.3s ease;
     width: 100%;
 
@@ -348,27 +348,27 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     &__task-info{
         display: flex;
-        gap: 7px;
+        gap: 0.438rem;
         flex-direction: column;
-        margin-bottom: 7px;
+        margin-bottom: 0.438rem;
     }
 
     &__task-title {
-        font-size: 16px;
+        font-size: var(--font_size);
         font-weight: 600;
         color: var(--font-color-modal-blue);
         text-wrap: nowrap;
     }
 
     &__priority {
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 11px;
+        padding: 0.313rem 0.625rem;
+        border-radius: 1.25rem;
+        font-size: var(--font_size-small);
         max-width: 110px;
         text-align: center;
         color: var(--font-color_active);
@@ -378,19 +378,19 @@
     &__img-status{
         width: 35px;
         height: 40px;
-        margin-bottom: -10px;
-        margin-right: -5px;
+        margin-bottom: -0.625rem;
+        margin-right: -0.313rem;
     }
 
     &__task-product {
         display: flex;
         align-items: center;
         color: var(--task-content-label-grey);
-        gap: 3px;
+        gap: 0.188rem;
     }
 
     &__task-assignment {
-        margin-bottom: 7px;
+        margin-bottom: 0.438rem;
         font-size: var(--font_size);
         color: var(--font-color_active);
     }
@@ -398,23 +398,23 @@
     &__progress-container {
         display: flex;
         align-items: center;
-        gap: 5px;
-        margin-bottom: 7px;
-        font-size: 13px;
+        gap: 0.313rem;
+        margin-bottom: 0.438rem;
+        font-size: var(--font_size-medium);
         color: var(--font-color_active);
     }
 
     &__progress-bar {
         height: 8px;
         background: var(--block-task-coll);
-        border-radius: 10px;
+        border-radius: 0.625rem;
         overflow: hidden;
         width: 100%;
     }
 
     &__progress-fill {
         height: 100%;
-        border-radius: 10px;
+        border-radius: 0.625rem;
         transition: width 0.5s ease;
     }
 
@@ -446,16 +446,16 @@
 
     &__dates {
         display: flex;
-        gap: 30px;
+        gap: 1.875rem;
     }
 
     &__date-item {
         display: flex;
-        gap: 3px;
+        gap: 0.188rem;
     }
 
     &__date-label {
-        font-size: 13px;
+        font-size: var(--font_size-medium);
         color: var(--task-content-label-grey);
 
         & img{
@@ -466,11 +466,11 @@
     }
 
     &__date-value {
-        font-size: 13px;
+        font-size: var(--font_size-medium);
         color: var(--font-color_active);
         font-weight: 600;
         text-align: center;
-        margin-left: 5px;
+        margin-left: 0.313rem;
     }
 
     &__card-compact {
@@ -480,12 +480,12 @@
     &__pair-statuses{
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 0.313rem;
     }
 
     &__status {
-        padding: 8px 15px;
-        border-radius: 15px;
+        padding: 0.5rem 0.938rem;
+        border-radius: 0.938rem;
         color: #b61f1f;
         background: #ffc4c4;
         display: flex;
@@ -498,26 +498,26 @@
     }
 
     &__part {
-        padding: 5px 10px;
-        border-radius: 20px;
+        padding: 0.313rem 0.625rem;
+        border-radius: 1.25rem;
         color: var(--font-color_active);
-        font-size: 13px;
+        font-size: var(--font_size-medium);
         background: #f9e9b1;
     }
 }
 
 @media (max-width: 1600px){
     .user-tasks-col{
-        margin-left: 7.5px;
+        margin-left: 0.469rem;
         &__board{
-            gap: 10px;
+            gap: 0.625rem;
         }
         &__column{
             width: 330px;
         }
     }
     .user-tasks-content__container {
-        padding-right: 22.5px;
+        padding-right: 1.406rem;
     }
     .user-tasks-card{
         &__task-title-span,
@@ -534,12 +534,12 @@
         }
     }
     .user-tasks-card{
-        padding: 8px;
+        padding: 0.5rem;
 
         &__task-info{
             flex-direction: column;
-            gap: 5px;
-            margin-bottom: 5px;
+            gap: 0.313rem;
+            margin-bottom: 0.313rem;
         }
     }
 }
@@ -552,10 +552,10 @@
     }
     .user-tasks-content__action-group{
         flex-direction: column;
-        gap: 10px;
+        gap: 0.625rem;
     }
     .modal__wrapper-task-mount{
-        gap: 5px;
+        gap: 0.313rem;
     }
 }
 
@@ -567,24 +567,24 @@
             background: var(--task-col-background);
         }
         &__pair{
-            padding-right: 0px;
+            padding-right: 0;
         }
         &__group{
-            margin-right: 0px;
+            margin-right: 0;
         }
         &__detail-header,
         &__detail-body{
-            padding: 25px 30px;
+            padding: 1.563rem 1.875rem;
         }
         &__info-label,
         &__detail-subtitle,
         &__section-title,
         &__operation-label,
         &__info-value{
-            font-size: 16px;
+            font-size: var(--font_size);
         }
         &__task-detail{
-            border-radius: 0px;
+            border-radius: 0;
         }
         &__button-block{
             display: none;
@@ -595,18 +595,18 @@
         position: fixed;
         top: 50px;
         bottom: 0;
-        margin-left: 0px;
+        margin-left: 0;
 
         &__column{
             display: none;
-            border-radius: 0px;
+            border-radius: 0;
         }
         &__tasks {
-            padding: 0px 30px;
-            margin-top: 10px;
-            gap: 0px;
-            border-radius: 23px;
-            padding-bottom: 60px;
+            padding: 0 1.875rem;
+            margin-top: 0.625rem;
+            gap: 0;
+            border-radius: 1.438rem;
+            padding-bottom: 3.75rem;
         }
         &__column-header {
             display: none;
@@ -619,8 +619,8 @@
         display: flex;
     }
     .user-tasks-card{
-        border-radius: 0px;
-        padding: 15px 20px;
+        border-radius: 0;
+        padding: 0.938rem 1.25rem;
 
         &__dates-status{
             flex-direction: row;
@@ -628,15 +628,15 @@
 
         &__task-info{
             flex-direction: row;
-            gap: 20px;
+            gap: 1.25rem;
         }
 
         &__task-title{
-            font-size: 18px;
+            font-size: var(--font_size);
         }
 
         &__task-product{
-            font-size: 16px;
+            font-size: var(--font_size);
         }
     }
     .user-tasks-filter{
@@ -650,36 +650,36 @@
         z-index: 1;
         width: 100%;
         height: 100%;
-        padding: 0px 10px;
-        margin-top: 10px;
+        padding: 0 0.625rem;
+        margin-top: 0.625rem;
     }
     .sidebar__tabcontent_task{
-        padding-top: 55px;
+        padding-top: 3.438rem;
     }
     .sidebar__tabcontent_task-active{
         position: absolute;
         overflow-y: auto;
         padding: unset;
-        padding-bottom: 45px;
+        padding-bottom: 2.813rem;
         z-index: 3;
     }
     .sidebar__link_task{
-        margin: 0px;
+        margin: 0;
         box-shadow: 4px 4px 13px -4px var(--font-color_active);
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
     .modal__header_task{
         box-shadow: unset;
-        border-radius: 0px;
-        padding-top: 45px;
+        border-radius: 0;
+        padding-top: 2.813rem;
         background: inherit;
         border: none;
     }
     .sidebar__tabcontent_task{
         position: absolute;
-        padding: 0px;
-        margin: 0px;
-        border-radius: 0px;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
     }
     .button__control_modal {
         min-width: unset;
@@ -701,29 +701,29 @@
 
 @media (max-width: 660px) and (min-resolution: 1.25dppx) {
     .user-tasks-content__detail-grid{
-        padding: 0px !important;
+        padding: 0 !important;
     }
 }
 
 @media (max-width: 660px){
     .user-tasks-content{
         &__detail-header{
-            padding: 10px 15px;
+            padding: 0.625rem 0.938rem;
             display: flex;
             justify-content: space-between;
         }
         &__detail-body {
-            padding: 10px 15px;
+            padding: 0.625rem 0.938rem;
         }
         &__detail-grid{
             grid-template-columns: none;
-            gap: 10px;
-            margin-bottom: 15px;
-            padding: 0px 0px;
+            gap: 0.625rem;
+            margin-bottom: 0.938rem;
+            padding: 0 0;
         }
         &__info-item{
             flex-direction: row;
-            gap: 10px;
+            gap: 0.625rem;
         }
         &__info-label{
             width: 120px;
@@ -732,19 +732,19 @@
             width: 100%;
         }
         &__available{
-            padding: 10px 20px;
-            border-radius: 0px;
-            margin: 0px -15px;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0;
+            margin: 0 -0.938rem;
 
             & button{
                 top: 9px;
             }
         }
         &__operation-info{
-            gap: 20px;
+            gap: 1.25rem;
             display: flex;
             justify-content: space-evenly;
-            margin-right: 50px;
+            margin-right: 3.125rem;
         }
         &__comment{
             height: 50px;
@@ -754,31 +754,31 @@
 
 @media (max-width: 600px){
     .user-tasks-col__tasks {
-        padding: 0px 15px;
-        padding-bottom: 60px;
+        padding: 0 0.938rem;
+        padding-bottom: 3.75rem;
     }
     .user-tasks-card__task-info {
         flex-direction: column;
-        gap: 7px;
+        gap: 0.438rem;
     }
     .user-tasks-content{
         &__detail-title,
         &__operation-value{
-            font-size: 18px;
-            margin-bottom: 0px;
+            font-size: var(--font_size);
+            margin-bottom: 0;
         }
         &__section-title{
-            margin-bottom: 0px;
+            margin-bottom: 0;
         }
     }
 }
 
 @media (max-width: 440px){
     .user-tasks-card {
-        padding: 8px 12px;
+        padding: 0.5rem 0.75rem;
     }
     .sidebar__link_task {
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
 }
 
@@ -786,8 +786,8 @@
     .user-tasks-card{
         &__task-info{
             flex-direction: column;
-            gap: 5px;
-            margin-bottom: 5px;
+            gap: 0.313rem;
+            margin-bottom: 0.313rem;
         }
     }
 }
@@ -795,57 +795,57 @@
 @media (min-resolution: 1.25dppx) {
     .user-tasks-content{
         &__detail-body{
-            padding: 15px;
+            padding: 0.938rem;
         }
 
         &__detail-grid{
-            gap: 15px;
-            margin-bottom: 10px;
-            padding: 0px 15px;
+            gap: 0.938rem;
+            margin-bottom: 0.625rem;
+            padding: 0 0.938rem;
         }
 
         &__detail-section{
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
         }
 
         &__detail-header{
-            padding: 10px 15px;
+            padding: 0.625rem 0.938rem;
         }
 
         &__section-title{
-            margin-bottom: 5px;
+            margin-bottom: 0.313rem;
         }
 
         &__detail-title{
-            font-size: 18px;
+            font-size: var(--font_size);
         }
 
         &__info-item{
             flex-direction: row;
-            gap: 15px;
+            gap: 0.938rem;
         }
 
         &__available{
-            margin-bottom: 10px;
-            padding: 10px 20px;
+            margin-bottom: 0.625rem;
+            padding: 0.625rem 1.25rem;
         }
 
         &__comment{
             height: 45px;
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
         }
     }
 
     .user-tasks-col__tasks{
-        gap: 5px;
+        gap: 0.313rem;
     }
 
     .user-tasks-card{
-        padding: 5px;
+        padding: 0.313rem;
     }
 
     .modal__wrapper-task-mount{
         flex-direction: row;
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
     }
 }

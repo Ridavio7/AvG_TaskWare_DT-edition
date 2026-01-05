@@ -1,8 +1,8 @@
 .carousel{
-    padding: 10px;
-    border: 1px solid var(--border);
-    margin-top: 10px;
-    margin-right: 10px;
+    padding: 0.625rem;
+    border: 0.063rem solid var(--border);
+    margin-top: 0.625rem;
+    margin-right: 0.625rem;
     max-width: 725px;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
         position: relative;
         width: 400px;
         height: 400px;
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
         overflow: hidden;
     }
 
@@ -29,7 +29,7 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 22px;
+        font-size: var(--font_size-big);
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -48,7 +48,7 @@
 
     &__container-thumbnail{
         display: flex;
-        gap: 10px;
+        gap: 0.625rem;
         overflow-x: auto;
 
         &::-webkit-scrollbar {
@@ -57,12 +57,12 @@
 
         &::-webkit-scrollbar-track {
             background: var(--border);
-            border-radius: 5px;
+            border-radius: 0.313rem;
         }
         
         &::-webkit-scrollbar-thumb {
             background: var(--font-color);
-            border-radius: 5px;
+            border-radius: 0.313rem;
         }
     }
 
@@ -71,7 +71,7 @@
         height: 60px;
         object-fit: contain;
         cursor: pointer;
-        border: 2px solid transparent;
+        border: 0.125rem solid transparent;
         transition: all 0.3s ease;
 
         &:hover{
@@ -86,7 +86,7 @@
 
 @media (max-width: 1024px){
     .carousel{
-        margin-right: 0px;
+        margin-right: 0;
         width: 100%;
         max-height: 400px;
         

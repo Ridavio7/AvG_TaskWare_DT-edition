@@ -1,13 +1,13 @@
 .input__type-text_modal {
     max-height: 33px;
     height: 33px;
-    border-bottom: 1px solid var(--border);
-    margin-left: 5px;
+    border-bottom: 0.063rem solid var(--border);
+    margin-left: 0.313rem;
 
     &:focus-visible{
         outline: none;
         border: none;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 0.063rem solid var(--border);
     }
 
     &_label{
@@ -25,14 +25,14 @@
     &_long {
         width: 745px !important;
         max-width: 745px !important;
-        margin-right: 5px;
+        margin-right: 0.313rem;
     }
 
     &_short {
         width: 50px !important;
         min-width: 50px !important;
         max-width: 50px !important;
-        margin-left: 10px;
+        margin-left: 0.625rem;
     }
 
     &_delta{
@@ -41,7 +41,7 @@
         max-width: 50px !important;
         height: 20px;
         text-align: center;
-        padding: 0px 0px 0px 0px;
+        padding: 0 0 0 0;
 
         &-label{
             width: 91px;
@@ -49,14 +49,14 @@
     }
 
     &_active {
-        border: 1px solid var(--expand-button-active);
+        border: 0.063rem solid var(--expand-button-active);
     }
 
     &_date{
         width: 105px;
         min-width: 105px;
         max-width: 105px;
-        padding: 0px 0px 0px 5px;
+        padding: 0 0 0 0.313rem;
     }
 
     &_no-pen{

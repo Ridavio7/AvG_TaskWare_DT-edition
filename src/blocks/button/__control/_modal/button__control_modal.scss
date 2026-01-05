@@ -12,7 +12,7 @@
     box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
 
     &:hover {
-        transform: translateY(-3px);
+        transform: translateY(-0.188rem);
         box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
         background: var(--modal-button-background-hover);
     }
@@ -27,7 +27,7 @@
             min-width: unset;
             min-height: 40px;
             width: 100%;
-            margin-right: 0px;
+            margin-right: 0;
         }
     }
 }

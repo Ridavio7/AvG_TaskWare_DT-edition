@@ -2,7 +2,7 @@
     width: 130px !important;
     min-width: 130px !important;
     max-width: 130px !important;
-    padding: 0px;
+    padding: 0;
     padding-left: 28px !important;
     background-image: none;
 
@@ -40,11 +40,11 @@
         -webkit-filter: var(--img-color__no-active);
         cursor: not-allowed;
         position: relative;
-        top: 2px;
+        top: 0.125rem;
     }
 
     &_margin-left-wrapper{
-        margin-left: 18px;
+        margin-left: 1.125rem;
     }
 }
 

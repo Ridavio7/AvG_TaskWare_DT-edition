@@ -9,17 +9,17 @@
         top: 100%;
         left: -150px;
         background: var(--background_first);;
-        border: 1px solid var(--border);
+        border: 0.063rem solid var(--border);
         min-width: 180px;
         z-index: 1000;
 
         /* Анимация */
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-0.625rem);
         visibility: hidden;
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-        margin-top: 5px;
+        margin-top: 0.313rem;
 
         &.show {
             opacity: 1;
@@ -31,7 +31,7 @@
     &-button{
         display: block;
         width: 100%;
-        padding: 8px 16px;
+        padding: 0.5rem 1rem;
         text-align: left;
         text-wrap: nowrap;
         background: none;
@@ -51,6 +51,6 @@
 
     &-img{
         height: 13px;
-        width: 5px;
+        width: 0.313rem;
     }
 }

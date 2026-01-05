@@ -5,46 +5,46 @@
     height: 27px;
     width: 100%;
     min-width: 120px;
-    padding: 0 25px 0 5px;
+    padding: 0 1.563rem 0 0.313rem;
     border: none;
     background-image: var(--input-text-icon);
     background-repeat: no-repeat;
     background-position: left 5px center;
-    background-size: 12px;
+    background-size: 0.75rem;
     caret-color: var(--expand-button-active);
-    padding-left: 27px;
-    margin-left: 0px !important;
+    padding-left: 1.688rem;
+    margin-left: 0 !important;
 
     &:focus-visible{
         outline: none;
-        border: 1px solid var(--font-color);
+        border: 0.063rem solid var(--font-color);
     }
 
     &:disabled{
-        padding-right: 0px;
+        padding-right: 0;
         background-image: none;
         color: var(--font-color);
-        padding: 0px;
+        padding: 0;
         cursor: not-allowed;
     }
 
     &_title{
-        border: 1px solid var(--border);
-        padding-right: 5px;
-        padding-left: 10px;
+        border: 0.063rem solid var(--border);
+        padding-right: 0.313rem;
+        padding-left: 0.625rem;
         background-image: none;
-        border-radius: 10px;
+        border-radius: 0.625rem;
     }
 
     &_title-table-schedule{
         max-width: none;
-        padding: 0px;
+        padding: 0;
         border: none;
         text-align: center;
         min-width: 60px;
         width: 60px;
-        margin-left: -5px !important;
-        padding-right: 0px;
+        margin-left: -0.313rem !important;
+        padding-right: 0;
         background-image: none;
     }
 
@@ -62,7 +62,7 @@
 
     &__label-blue{
         color: var(--font-color-modal-blue-second);
-        font-size: 13px;
+        font-size: var(--font_size-medium);
     }
 
     &__small{
@@ -70,8 +70,8 @@
         min-width: 65px !important;
         max-width: 65px !important;
         text-align: center;
-        padding-right: 0px;
-        padding-left: 10px;
+        padding-right: 0;
+        padding-left: 0.625rem;
     }
 
     &_width_100{
@@ -81,7 +81,7 @@
 
     &_pass{
         position: relative;
-        padding-right: 0px;
+        padding-right: 0;
         background-image: none;
     }
 
@@ -89,7 +89,7 @@
         background-image: url('../../entrance/img/entrance_eye_on.svg');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 16px;
+        background-size:1rem;
         cursor: pointer;
         position: absolute;
         z-index: 2;
@@ -101,45 +101,45 @@
     }
 
     &_error{
-        border: 2px solid var(--red_hover) !important;
+        border: 0.125rem solid var(--red_hover) !important;
     }
 
     &_task-mount{
         width: 100px;
-        padding: 20px;
-        border: 2px solid var(--border);
-        border-radius: 10px;
-        font-size: 1.2rem;
+        padding: 1.25rem;
+        border: 0.125rem solid var(--border);
+        border-radius: 0.625rem;
+        font-size: var(--font_size-big);
         font-weight: 600;
         text-align: center;
-        margin-left: 10px;
+        margin-left: 0.625rem;
     }
 
     &_search-block{
         display: flex;
-        margin: 5px 0px;
-        gap: 10px;
+        margin: 0.313rem 0;
+        gap: 0.625rem;
 
         & div{
             display: flex;
             align-items: center;
             width: 100%;
-            margin-right: 5px;
+            margin-right: 0.313rem;
         }
     }
 
     &_search-wrapper{
-        border: 1px solid var(--border);
-        border-radius: 10px;
+        border: 0.063rem solid var(--border);
+        border-radius: 0.625rem
     }
 
     &_search{
         height: 33px;
-        padding: 0 0px 0 25px;
+        padding: 0 0 0 1.563rem;
         background-image: var(--docpost-input-img-search);
         background-repeat: no-repeat;
-        background-position: left 5px center;
-        background-size: 12px;
+        background-position: left 0.313rem center;
+        background-size: 0.75rem;
         border: none;
 
         &:focus-visible{
@@ -149,7 +149,7 @@
 
         &-focus{
             background-image: none;
-            padding: 0 0px 0 5px;
+            padding: 0 0 0 0.313rem;
         }
     }
 }
@@ -170,21 +170,21 @@ input[type="number"]:focus {
     .input__type-text{
         height: 33px;
         background-image: none;
-        padding: 0 5px 0 5px;
+        padding: 0 0.313rem 0 0.313rem;
         
         &_search-block{
-            margin: 10px 5px;
-            margin-top: 15px;
+            margin: 0.625rem 0.313rem;
+            margin-top: 0.938rem;
             flex-direction: column;
         }
 
         &_search{
             height: 40px;
-            font-size: 16px;
+            font-size: var(--font_size);
         }
 
         &_pass{
-            padding: 0 5px 0 25px;
+            padding: 0 0.313rem 0 1.563rem;
         }
     }
 }

@@ -4,16 +4,16 @@
 
 .table__little-product tr:nth-child(odd) {
     background-color: inherit;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 0.063rem solid var(--border);
 }
 
 .table__little-product tr:nth-child(even) {
     background-color: inherit;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 0.063rem solid var(--border);
 }
 
 .td__little-product{
     height: 25px;
-    padding: 0px;
-    padding-left: 5px;
+    padding: 0;
+    padding-left: 0.313rem;
 }

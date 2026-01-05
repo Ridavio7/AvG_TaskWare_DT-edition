@@ -15,7 +15,7 @@ export const funcTaskContentMount = (uin) => {
                         type="number"
                         id="mount_count_${uin}"
                         min="1"
-                        style="border-bottom: 1px solid var(--border)"
+                        style="border-bottom: 0.063rem solid var(--border)"
                     />
                 </div>
                 <div class="modal__button-wrapper">

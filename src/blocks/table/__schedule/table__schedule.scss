@@ -5,7 +5,7 @@
 .table-wrapper_left{
     flex: 0 0 auto;
     overflow-x: scroll;
-    border-top-left-radius: 12px;
+    border-top-left-radius: 0.75rem;
     
     & table {
         border-radius: unset;
@@ -15,7 +15,7 @@
 .table-wrapper_right{
     flex: 0 0 auto;
     overflow-x: scroll;
-    border-top-right-radius: 12px;
+    border-top-right-radius: 0.75rem;
 
     & table {
         border-radius: unset;
@@ -40,9 +40,9 @@
 }
 
 .td_left-border{
-    border-left: 1px solid var(--table-td-border);
+    border-left: 0.063rem solid var(--table-td-border);
 }
 
 .td_right-border{
-    border-right: 1px solid var(--table-td-border);
+    border-right: 0.063rem solid var(--table-td-border);
 }

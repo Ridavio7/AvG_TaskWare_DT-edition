@@ -3,7 +3,7 @@
     background-color: var(--button-tab-background);
     border: none;
     outline: none;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     cursor: pointer;
     transition: 0.3s;
     color: var(--font-color);
@@ -14,21 +14,21 @@
     align-items: center;
     justify-content: center;
     box-shadow: 3px 3px 10px -1px var(--task-card-border);
-    border: 2px solid var(--task-card-border);
+    border: 0.125rem solid var(--task-card-border);
 
     &:hover,
     &_active{
         /*background: linear-gradient(330deg, #004cff 0%, #60a9ff 30%, #145ff3 70%);
         background: linear-gradient(330deg, rgb(22 25 31), rgb(40 68 100) 30%, rgb(19 47 104 / 56%) 70%);*/
-        border: 2px solid var(--task-card-border);
+        border: 0.125rem solid var(--task-card-border);
         color: var(--font-color_active);
         background: var(--sidebar-link-background);
-        backdrop-filter: blur(2px);
-        border-radius: 35px;
+        backdrop-filter: blur(0.125rem);
+        border-radius: 2.188rem;
         transition: transform .3s ease, width .3s ease;
-        border-top: 1px solid #535353;
-        border-left: 1px solid #5353537d;
-        border-right: 1px solid #5353537d;
+        border-top: 0.063rem solid #535353;
+        border-left: 0.063rem solid #5353537d;
+        border-right: 0.063rem solid #5353537d;
     }
 
     &:hover &__img,
@@ -40,7 +40,7 @@
     &__img{
         height: 23px;
         cursor: pointer;
-        margin-right: 10px;
+        margin-right: 0.625rem;
         filter: var(--img-color__no-active);
         -webkit-filter: var(--img-color__no-active);
     }
@@ -49,11 +49,11 @@
 @media (max-width: 1024px){
     .button__tab__first{
         width: unset;
-        line-height: 15px;
-        margin-bottom: 0px;
-        padding: 7px 10px;
-        border: 1px solid var(--task-card-border);
-        border-radius: 5px;
+        line-height: 0.938rem;
+        margin-bottom: 0;
+        padding: 0.375rem 0.625rem;
+        border: 0.063rem solid var(--task-card-border);
+        border-radius: 0.313rem;
         box-shadow: none;
         height: 40px;
         background-color: inherit;
@@ -63,9 +63,9 @@
         }
     }
     .button__tab__first:hover, .button__tab__first_active{
-        border-radius: 5px;
+        border-radius: 0.313rem;
         background: none;
-        border: 1px solid var(--button-tab-border);
+        border: 0.063rem solid var(--button-tab-border);
         background-color: var(--button-tab-background);
     }
 }
@@ -75,7 +75,7 @@
         width: 165px;
 
         &__img{
-            margin-right: 5px;
+            margin-right: 0.313rem;
         }
     }
 }
@@ -85,7 +85,7 @@
         width: 100%;
 
         &__img{
-            margin-right: 5px;
+            margin-right: 0.313rem;
         }
     }
 }

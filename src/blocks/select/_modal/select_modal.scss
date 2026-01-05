@@ -1,16 +1,16 @@
 .select_modal {
-    max-height: 35px;
+    max-height: 2.188rem;
     height: 35px;
     min-width: 250px;
     max-width: 250px;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    border-bottom: 1px solid var(--border);
-    margin-left: 5px;
+    border-bottom: 0.063rem solid var(--border);
+    margin-left: 0.313rem;
 
     &_active {
-        border: 1px solid var(--expand-button-active);
+        border: 0.063rem solid var(--expand-button-active);
     }
 
     &_max-width-unset{
